@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { cn } from '@/lib/cn'
 import { NumPad } from '@/components/ui'
 
@@ -12,14 +12,20 @@ export interface PinPadProps {
 }
 
 export function PinPad({ onPin, minLength = 4, maxLength = 6, disabled, error }: PinPadProps) {
-  const [pin, setPin] = useState('')
+  const [pin, setPinState] = useState('')
   const [shake, setShake] = useState(false)
+  // A ref keeps fast typing (or a PIN typed by a keyboard wedge) from reading stale state.
+  const pinRef = useRef('')
+  const setPin = (v: string) => {
+    pinRef.current = v
+    setPinState(v)
+  }
 
   const push = async (key: string) => {
     if (disabled) return
-    if (key === 'back') return setPin((p) => p.slice(0, -1))
+    if (key === 'back') return setPin(pinRef.current.slice(0, -1))
     if (!/^\d$/.test(key)) return
-    const next = (pin + key).slice(0, maxLength)
+    const next = (pinRef.current + key).slice(0, maxLength)
     setPin(next)
     if (next.length >= minLength) {
       const ok = await onPin(next)
@@ -37,8 +43,14 @@ export function PinPad({ onPin, minLength = 4, maxLength = 6, disabled, error }:
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
       if (e.target instanceof HTMLInputElement || e.target instanceof HTMLTextAreaElement) return
-      if (/^\d$/.test(e.key)) void push(e.key)
-      else if (e.key === 'Backspace') void push('back')
+      // preventDefault stops the digit from also landing in the search box once unlocked.
+      if (/^\d$/.test(e.key)) {
+        e.preventDefault()
+        void push(e.key)
+      } else if (e.key === 'Backspace') {
+        e.preventDefault()
+        void push('back')
+      }
     }
     window.addEventListener('keydown', onKey)
     return () => window.removeEventListener('keydown', onKey)
