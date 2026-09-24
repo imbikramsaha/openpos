@@ -3,7 +3,7 @@ import { db } from '@/db/db'
 import { defaultSettings } from '@/db/defaults'
 import { moveStock, put, rebuildStock, tx } from '@/db/repo'
 import { recomputeCustomer } from '@/db/customers'
-import type { CartState, Customer, Product, Tax, User } from '@/core/types'
+import type { CartState, Customer, CustomerPayment, Product, Tax, User } from '@/core/types'
 import { useSettings } from '@/stores/settings'
 import { useSession } from '@/stores/session'
 import { alreadyRefunded, completeSale, refundSale, voidSale } from '@/features/sell/checkout'
@@ -50,7 +50,7 @@ describe('checkout', () => {
     let c = (await db.customers.get(customer.id))!
     expect(c.balance).toBe(10000)
     expect(c.loyaltyPoints).toBe(10)
-    await put('customerPayments', { customerId: customer.id, amount: 4000, method: 'cash', userId: 'u1' })
+    await put<CustomerPayment>('customerPayments', { customerId: customer.id, amount: 4000, method: 'cash', userId: 'u1' })
     await recomputeCustomer(customer.id)
     c = (await db.customers.get(customer.id))!
     expect(c.balance).toBe(6000)

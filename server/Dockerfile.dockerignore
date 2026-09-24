@@ -1,0 +1,19 @@
+# Used by BuildKit for server/Dockerfile (build context = project root).
+**/node_modules
+.git
+.github
+dist
+dist-electron
+release
+android
+ios
+e2e
+coverage
+server/data
+**/*.sqlite
+**/*.sqlite-wal
+**/*.sqlite-shm
+**/*.log
+.env
+.env.*
+.DS_Store

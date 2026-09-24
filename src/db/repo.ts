@@ -1,5 +1,5 @@
 import type { Table } from 'dexie'
-import { db } from './db'
+import { db, type PosDB } from './db'
 import { uuid } from '@/lib/uuid'
 import type { AuditEntry, Base, Product, StockMovement, StockMovementType, SyncedTable } from '@/core/types'
 
@@ -95,13 +95,13 @@ export async function moveStock(productId: string, qty: number, type: StockMovem
 export const round3 = (n: number) => Math.round(n * 1000) / 1000
 
 /** Recomputes cached stock for every product from the movement ledger. */
-export async function rebuildStock(): Promise<void> {
+export async function rebuildStock(database: PosDB = db): Promise<void> {
   const totals = new Map<string, number>()
-  await db.stockMovements.each((m) => {
+  await database.stockMovements.each((m) => {
     if (!m.deleted) totals.set(m.productId, (totals.get(m.productId) ?? 0) + m.qty)
   })
-  await db.transaction('rw', db.products, async () => {
-    await db.products.toCollection().modify((p: Product) => {
+  await database.transaction('rw', database.products, async () => {
+    await database.products.toCollection().modify((p: Product) => {
       p.stock = round3(totals.get(p.id) ?? 0)
     })
   })
