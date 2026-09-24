@@ -1,0 +1,99 @@
+# Kasa POS desktop installers (electron-builder). Build the web app first:
+#   npx vite build && npx electron-builder --win|--mac|--linux [--publish never|always]
+# See docs/DEPLOYMENT.md for signing and the GitHub release workflow.
+appId: com.kasapos.app
+productName: Kasa POS
+copyright: Copyright © Kasa POS
+
+directories:
+  output: release
+  buildResources: build
+
+files:
+  - dist/**
+  - electron/**
+  - package.json
+  - "!electron/entitlements.mac.plist"
+  # Web-only dependencies are already bundled into dist/ by Vite; the main process only needs
+  # electron-updater. Keep this list in sync when adding big front-end packages.
+  - "!node_modules/{react,react-dom,dexie,dexie-react-hooks,i18next,react-i18next,lucide-react,zustand,zxing-wasm,barcode-detector,jsbarcode,qrcode}{,/**}"
+  - "!node_modules/@capacitor{,/**}"
+
+icon: build/icon.png
+asar: true
+compression: normal
+# Only the renderer uses dist/; no native modules to rebuild.
+npmRebuild: false
+
+win:
+  target:
+    - target: nsis
+      arch: [x64]
+    - target: portable
+      arch: [x64]
+  # Code signing (optional): set CSC_LINK (base64 .pfx or path) + CSC_KEY_PASSWORD in the environment.
+
+nsis:
+  oneClick: false
+  perMachine: false
+  allowToChangeInstallationDirectory: true
+  createDesktopShortcut: always
+  createStartMenuShortcut: true
+  shortcutName: Kasa POS
+  # Never delete the local sales database on uninstall.
+  deleteAppDataOnUninstall: false
+  artifactName: Kasa-POS-Setup-${version}-${arch}.${ext}
+
+portable:
+  artifactName: Kasa-POS-Portable-${version}-${arch}.${ext}
+
+mac:
+  target:
+    - target: dmg
+      arch: [x64, arm64]
+    # The zip is what electron-updater downloads on macOS (Squirrel.Mac); the dmg is for humans.
+    - target: zip
+      arch: [x64, arm64]
+  category: public.app-category.business
+  hardenedRuntime: true
+  gatekeeperAssess: false
+  # Camera (barcode scanning) under the hardened runtime needs an entitlement + usage string.
+  entitlements: electron/entitlements.mac.plist
+  entitlementsInherit: electron/entitlements.mac.plist
+  extendInfo:
+    NSCameraUsageDescription: Kasa POS uses the camera to scan product barcodes and QR codes.
+  artifactName: Kasa-POS-${version}-mac-${arch}.${ext}
+  # Signing/notarisation (optional): CSC_LINK + CSC_KEY_PASSWORD (Developer ID Application .p12)
+  # and APPLE_ID + APPLE_APP_SPECIFIC_PASSWORD + APPLE_TEAM_ID. Unsigned builds still work
+  # (right-click → Open the first time) but cannot auto-update.
+
+dmg:
+  artifactName: Kasa-POS-${version}-mac-${arch}.${ext}
+
+linux:
+  target:
+    - AppImage
+    - deb
+  category: Office
+  executableName: kasa-pos
+  synopsis: Offline-first point of sale
+  description: Fast, offline-first point of sale for retail, restaurants and services.
+  # Required for .deb when package.json "author" has no email. Format: "Name <email>".
+  maintainer: Kasa POS
+  artifactName: Kasa-POS-${version}-linux-${arch}.${ext}
+
+appImage:
+  artifactName: Kasa-POS-${version}-linux-${arch}.${ext}
+
+deb:
+  artifactName: kasa-pos_${version}_${arch}.${ext}
+  # `lp` (cups-client) is used to kick the cash drawer; recommended rather than required.
+  fpm: ["--deb-recommends=cups-client"]
+
+# Auto-update + release assets (GitHub Releases). Owner/repo come from package.json "repository"
+# or the `origin` git remote (scripts/github-setup.sh creates it). Before either exists, local
+# builds need: -c.publish.owner=<github-user> -c.publish.repo=kasa-pos
+# The release workflow uploads into a draft release and publishes it when every job succeeded.
+publish:
+  provider: github
+  releaseType: draft

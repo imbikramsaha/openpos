@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!-- Hardened-runtime entitlements for the signed macOS build (electron-builder.yml → mac.entitlements). -->
+<plist version="1.0">
+<dict>
+  <!-- Required by Electron's V8 JIT under the hardened runtime. -->
+  <key>com.apple.security.cs.allow-jit</key>
+  <true/>
+  <key>com.apple.security.cs.allow-unsigned-executable-memory</key>
+  <true/>
+  <!-- Camera for barcode scanning (paired with NSCameraUsageDescription). -->
+  <key>com.apple.security.device.camera</key>
+  <true/>
+  <!-- Only used if the app is ever built with the App Sandbox (Mac App Store). -->
+  <key>com.apple.security.network.client</key>
+  <true/>
+  <key>com.apple.security.print</key>
+  <true/>
+</dict>
+</plist>

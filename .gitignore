@@ -20,3 +20,6 @@ ios/DerivedData/
 *.keystore
 *.jks
 .vite/
+*.p12
+*.pfx
+*.mobileprovision

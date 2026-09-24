@@ -1,0 +1,355 @@
+# Builds every platform and publishes one GitHub Release.
+#   git tag v1.2.3 && git push origin v1.2.3        (or: Actions → Release → Run workflow)
+#
+# Flow: prepare (draft release) → desktop ×3, android, ios, web (in parallel) → publish.
+# The release is only published when desktop + android succeed; iOS and Pages are best effort.
+#
+# Optional secrets (unsigned builds are produced when they are missing):
+#   Android: ANDROID_KEYSTORE_BASE64, ANDROID_KEYSTORE_PASSWORD, ANDROID_KEY_ALIAS, ANDROID_KEY_PASSWORD
+#   Windows: WIN_CSC_LINK (base64 .pfx), WIN_CSC_KEY_PASSWORD
+#   macOS:   MAC_CSC_LINK (base64 Developer ID .p12), MAC_CSC_KEY_PASSWORD,
+#            APPLE_ID, APPLE_APP_SPECIFIC_PASSWORD, APPLE_TEAM_ID (notarisation)
+name: Release
+
+on:
+  push:
+    tags: ['v*']
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: 'Release tag (default: v + package.json version)'
+        required: false
+        type: string
+
+permissions:
+  contents: write
+
+concurrency:
+  group: release-${{ github.ref }}
+  cancel-in-progress: false
+
+env:
+  ELECTRON_SKIP_BINARY_DOWNLOAD: '1'
+  PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: '1'
+  GH_REPO: ${{ github.repository }}
+
+jobs:
+  prepare:
+    name: Prepare draft release
+    runs-on: ubuntu-latest
+    outputs:
+      tag: ${{ steps.version.outputs.tag }}
+      version: ${{ steps.version.outputs.version }}
+      prerelease: ${{ steps.version.outputs.prerelease }}
+    steps:
+      - uses: actions/checkout@v7
+
+      - name: Resolve version
+        id: version
+        env:
+          INPUT_TAG: ${{ inputs.tag }}
+        run: |
+          if [ "$GITHUB_REF_TYPE" = tag ]; then tag="$GITHUB_REF_NAME"
+          elif [ -n "$INPUT_TAG" ]; then tag="$INPUT_TAG"
+          else tag="v$(node -p "require('./package.json').version")"; fi
+          version="${tag#v}"
+          if ! printf '%s' "$version" | grep -Eq '^[0-9]+\.[0-9]+\.[0-9]+(-[0-9A-Za-z.-]+)?$'; then
+            echo "::error::Tag '$tag' is not v<semver> (e.g. v1.2.3)"; exit 1
+          fi
+          case "$version" in *-*) pre=true ;; *) pre=false ;; esac
+          { echo "tag=$tag"; echo "version=$version"; echo "prerelease=$pre"; } >> "$GITHUB_OUTPUT"
+          echo "Releasing $tag (version $version, prerelease=$pre)"
+
+      - name: Create draft release
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TAG: ${{ steps.version.outputs.tag }}
+          PRE: ${{ steps.version.outputs.prerelease }}
+        run: |
+          if gh release view "$TAG" >/dev/null 2>&1; then
+            echo "Release $TAG already exists — assets will be added/replaced."
+          else
+            flags=(--draft --title "Kasa POS $TAG" --generate-notes --target "$GITHUB_SHA")
+            [ "$PRE" = true ] && flags+=(--prerelease)
+            gh release create "$TAG" "${flags[@]}"
+          fi
+
+  desktop:
+    name: Desktop (${{ matrix.name }})
+    needs: prepare
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - { name: Windows, os: windows-latest, target: --win }
+          - { name: macOS, os: macos-latest, target: --mac }
+          - { name: Linux, os: ubuntu-latest, target: --linux }
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 24
+          cache: npm
+
+      - run: npm ci
+
+      - name: Stamp version ${{ needs.prepare.outputs.version }}
+        shell: bash
+        run: npm pkg set version="${{ needs.prepare.outputs.version }}"
+
+      - name: Build web app
+        run: npx vite build
+
+      - name: Configure code signing (only if secrets exist)
+        shell: bash
+        env:
+          WIN_CSC_LINK_S: ${{ secrets.WIN_CSC_LINK }}
+          WIN_CSC_KEY_PASSWORD_S: ${{ secrets.WIN_CSC_KEY_PASSWORD }}
+          MAC_CSC_LINK_S: ${{ secrets.MAC_CSC_LINK }}
+          MAC_CSC_KEY_PASSWORD_S: ${{ secrets.MAC_CSC_KEY_PASSWORD }}
+          APPLE_ID_S: ${{ secrets.APPLE_ID }}
+          APPLE_APP_SPECIFIC_PASSWORD_S: ${{ secrets.APPLE_APP_SPECIFIC_PASSWORD }}
+          APPLE_TEAM_ID_S: ${{ secrets.APPLE_TEAM_ID }}
+        run: |
+          # electron-builder treats an empty CSC_LINK as "sign with nothing", so only export real values.
+          put() { if [ -n "$2" ]; then printf '%s=%s\n' "$1" "$2" >> "$GITHUB_ENV"; fi; }
+          case "$RUNNER_OS" in
+            Windows) link="$WIN_CSC_LINK_S"; pass="$WIN_CSC_KEY_PASSWORD_S" ;;
+            macOS)   link="$MAC_CSC_LINK_S"; pass="$MAC_CSC_KEY_PASSWORD_S" ;;
+            *)       link=""; pass="" ;;
+          esac
+          if [ -n "$link" ]; then
+            put CSC_LINK "$link"; put CSC_KEY_PASSWORD "$pass"; echo "Code signing: enabled"
+          else
+            put CSC_IDENTITY_AUTO_DISCOVERY false; echo "Code signing: not configured — building unsigned"
+          fi
+          if [ "$RUNNER_OS" = macOS ] && [ -n "$link" ] && [ -n "$APPLE_ID_S" ]; then
+            put APPLE_ID "$APPLE_ID_S"; put APPLE_APP_SPECIFIC_PASSWORD "$APPLE_APP_SPECIFIC_PASSWORD_S"; put APPLE_TEAM_ID "$APPLE_TEAM_ID_S"
+            echo "Notarisation: enabled"
+          fi
+
+      - name: Build installers and upload to the draft release
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: npx electron-builder ${{ matrix.target }} --publish always
+
+      - name: Keep installers as workflow artifacts
+        uses: actions/upload-artifact@v7
+        with:
+          name: desktop-${{ runner.os }}
+          path: |
+            release/*.exe
+            release/*.dmg
+            release/*.zip
+            release/*.AppImage
+            release/*.deb
+            release/*.yml
+            release/*.blockmap
+          if-no-files-found: warn
+          retention-days: 14
+
+  android:
+    name: Android
+    needs: prepare
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 24
+          cache: npm
+
+      - uses: actions/setup-java@v6
+        with:
+          distribution: temurin
+          java-version: 21
+
+      - uses: android-actions/setup-android@v4
+
+      - uses: gradle/actions/setup-gradle@v6
+
+      - run: npm ci
+
+      - name: Stamp version ${{ needs.prepare.outputs.version }}
+        run: npm pkg set version="${{ needs.prepare.outputs.version }}"
+
+      - name: Build web app and sync into the Android project
+        run: |
+          npx vite build
+          npx cap sync android
+
+      - name: Release keystore
+        id: keystore
+        env:
+          KEYSTORE_BASE64: ${{ secrets.ANDROID_KEYSTORE_BASE64 }}
+          KEYSTORE_PASSWORD: ${{ secrets.ANDROID_KEYSTORE_PASSWORD }}
+          KEY_ALIAS: ${{ secrets.ANDROID_KEY_ALIAS }}
+          KEY_PASSWORD: ${{ secrets.ANDROID_KEY_PASSWORD }}
+        run: |
+          if [ -n "$KEYSTORE_BASE64" ] && [ -n "$KEYSTORE_PASSWORD" ] && [ -n "$KEY_ALIAS" ]; then
+            printf '%s' "$KEYSTORE_BASE64" | base64 -d > "$RUNNER_TEMP/kasa-release.keystore"
+            {
+              echo "ANDROID_KEYSTORE_FILE=$RUNNER_TEMP/kasa-release.keystore"
+              echo "ANDROID_KEYSTORE_PASSWORD=$KEYSTORE_PASSWORD"
+              echo "ANDROID_KEY_ALIAS=$KEY_ALIAS"
+              echo "ANDROID_KEY_PASSWORD=${KEY_PASSWORD:-$KEYSTORE_PASSWORD}"
+            } >> "$GITHUB_ENV"
+            echo "signed=true" >> "$GITHUB_OUTPUT"
+            echo "Signing with the release keystore"
+          else
+            echo "signed=false" >> "$GITHUB_OUTPUT"
+            echo "::warning::ANDROID_KEYSTORE_* secrets not set — building a debug-signed APK (sideload only, not for Play Store)"
+          fi
+
+      - name: Gradle build
+        working-directory: android
+        run: |
+          chmod +x gradlew
+          if [ "${{ steps.keystore.outputs.signed }}" = true ]; then
+            ./gradlew --no-daemon assembleRelease bundleRelease
+          else
+            ./gradlew --no-daemon assembleDebug
+          fi
+
+      - name: Collect APK/AAB
+        env:
+          V: ${{ needs.prepare.outputs.version }}
+        run: |
+          mkdir -p out
+          if [ "${{ steps.keystore.outputs.signed }}" = true ]; then
+            cp android/app/build/outputs/apk/release/app-release.apk "out/Kasa-POS-$V-android.apk"
+            cp android/app/build/outputs/bundle/release/app-release.aab "out/Kasa-POS-$V-android.aab"
+          else
+            cp android/app/build/outputs/apk/debug/app-debug.apk "out/Kasa-POS-$V-android-debug.apk"
+          fi
+          ls -l out
+
+      - uses: actions/upload-artifact@v7
+        with:
+          name: android
+          path: out/*
+          retention-days: 14
+
+      - name: Attach to release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh release upload "${{ needs.prepare.outputs.tag }}" out/* --clobber
+
+  ios:
+    name: iOS (simulator build, unsigned)
+    needs: prepare
+    runs-on: macos-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 24
+          cache: npm
+
+      - run: npm ci
+
+      - name: Stamp version ${{ needs.prepare.outputs.version }}
+        run: npm pkg set version="${{ needs.prepare.outputs.version }}"
+
+      - name: Build web app and sync into the iOS project
+        run: |
+          npx vite build
+          [ -d ios ] || npx cap add ios --packagemanager SPM
+          npx cap sync ios
+
+      - name: xcodebuild (iphonesimulator, no signing)
+        env:
+          V: ${{ needs.prepare.outputs.version }}
+        run: |
+          xcodebuild -project ios/App/App.xcodeproj -list
+          xcodebuild -project ios/App/App.xcodeproj -scheme App -configuration Release \
+            -sdk iphonesimulator -destination 'generic/platform=iOS Simulator' \
+            -derivedDataPath "$RUNNER_TEMP/dd" \
+            MARKETING_VERSION="$V" CURRENT_PROJECT_VERSION="${{ github.run_number }}" \
+            CODE_SIGNING_ALLOWED=NO build
+          mkdir -p out
+          ditto -c -k --keepParent "$RUNNER_TEMP/dd/Build/Products/Release-iphonesimulator/App.app" "out/Kasa-POS-$V-ios-simulator.zip"
+
+      - uses: actions/upload-artifact@v7
+        with:
+          name: ios-simulator
+          path: out/*
+          retention-days: 14
+
+      - name: Attach to release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh release upload "${{ needs.prepare.outputs.tag }}" out/* --clobber
+
+  web:
+    name: Web / PWA (GitHub Pages)
+    needs: prepare
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    permissions:
+      contents: write
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 24
+          cache: npm
+
+      - run: npm ci
+
+      - name: Stamp version ${{ needs.prepare.outputs.version }}
+        run: npm pkg set version="${{ needs.prepare.outputs.version }}"
+
+      - name: Build web app
+        run: npx vite build
+
+      - name: Attach zipped web build (for self-hosting)
+        env:
+          GH_TOKEN: ${{ github.token }}
+          V: ${{ needs.prepare.outputs.version }}
+        run: |
+          (cd dist && zip -qr "../Kasa-POS-$V-web.zip" .)
+          gh release upload "${{ needs.prepare.outputs.tag }}" "Kasa-POS-$V-web.zip" --clobber
+
+      # Needs Settings → Pages → Source: "GitHub Actions" (and, for tag builds, a `v*` rule under
+      # Settings → Environments → github-pages → Deployment branches and tags).
+      - uses: actions/configure-pages@v6
+
+      - uses: actions/upload-pages-artifact@v5
+        with:
+          path: dist
+
+      - id: deploy
+        uses: actions/deploy-pages@v5
+
+  publish:
+    name: Publish release
+    needs: [prepare, desktop, android, ios, web]
+    if: ${{ always() && needs.prepare.result == 'success' && needs.desktop.result == 'success' && needs.android.result == 'success' }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Publish the draft
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TAG: ${{ needs.prepare.outputs.tag }}
+          PRE: ${{ needs.prepare.outputs.prerelease }}
+        run: |
+          if [ "$PRE" = true ]; then
+            gh release edit "$TAG" --draft=false --prerelease
+          else
+            gh release edit "$TAG" --draft=false --latest
+          fi
+          gh release view "$TAG" --json url,assets --jq '"Published " + .url + " with " + (.assets | length | tostring) + " assets"'
