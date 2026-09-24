@@ -1,0 +1,46 @@
+/* Chart tokens for reports and the cash register.
+   Categorical slots are in a fixed order and were validated (dataviz palette checker) against
+   the app's card surfaces — #ffffff light, #121829 dark: OKLCH lightness band, chroma floor,
+   adjacent-pair CVD ΔE ≥ 8.4 and normal-vision ΔE ≥ 19. Slot 1 is the brand primary.
+   Light slots 3–5 sit below 3:1 on white, so every chart that uses them ships direct labels,
+   a legend and a table view. Dark mode uses its own steps (not an automatic flip). */
+.kviz {
+  --viz-1: #4f46e5;
+  --viz-2: #eb6834;
+  --viz-3: #1baf7a;
+  --viz-4: #eda100;
+  --viz-5: #e87ba4;
+  --viz-6: #008300;
+  --viz-7: #2a78d6;
+  --viz-8: #e34948;
+  /* De-emphasis for comparison series. */
+  --viz-prev: #a0a6b8;
+  --viz-grid: var(--border);
+  --viz-axis: var(--border-strong);
+  --viz-label: var(--subtle);
+  --viz-surface: var(--surface);
+  --viz-zero: var(--surface-3);
+}
+
+.dark .kviz {
+  --viz-1: #6d66f2;
+  --viz-2: #d95926;
+  --viz-3: #199e70;
+  --viz-4: #c98500;
+  --viz-5: #d55181;
+  --viz-6: #008300;
+  --viz-7: #3987e5;
+  --viz-8: #e66767;
+  --viz-prev: #5f6883;
+}
+
+.kviz svg text {
+  font-variant-numeric: tabular-nums;
+}
+
+@media (forced-colors: active) {
+  .kviz [data-mark] {
+    forced-color-adjust: none;
+    stroke: CanvasText;
+  }
+}

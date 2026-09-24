@@ -250,6 +250,8 @@ export interface Shift extends Base {
   difference?: Minor
   status: 'open' | 'closed'
   notes?: string
+  closedById?: ID
+  closedByName?: string
 }
 
 export interface CashMovement extends Base {
