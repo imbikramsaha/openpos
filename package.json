@@ -6,7 +6,7 @@
   "type": "module",
   "description": "Offline-first, cross-platform point of sale for retail, restaurants and services. Web, Windows, macOS, Linux, Android and iOS from one codebase.",
   "author": "Kasa POS",
-  "license": "MIT",
+  "license": "UNLICENSED",
   "main": "electron/main.cjs",
   "scripts": {
     "dev": "vite",

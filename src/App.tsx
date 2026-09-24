@@ -14,6 +14,7 @@ import { AppShell } from '@/components/layout/AppShell'
 import { NAV } from '@/components/layout/nav'
 import { ConfirmHost, EmptyState, FullScreenLoader, Toasts, Button } from '@/components/ui'
 import { UpdatePrompt } from '@/components/UpdatePrompt'
+import { ErrorBoundary } from '@/components/ErrorBoundary'
 import { LockScreen } from '@/features/auth/LockScreen'
 import { OverrideHost } from '@/features/auth/OverrideHost'
 import { SetupWizard } from '@/features/setup/SetupWizard'
@@ -21,7 +22,9 @@ import { loadCurrentShift } from '@/features/shifts/service'
 import SellScreen from '@/features/sell/SellScreen'
 import { startSync } from '@/sync/engine'
 
-const screens: Record<Exclude<RouteName, 'sell'>, LazyExoticComponent<ComponentType>> = {
+const CustomerDisplay = lazy(() => import('@/features/display/CustomerDisplay'))
+
+const screens: Record<Exclude<RouteName, 'sell' | 'display'>, LazyExoticComponent<ComponentType>> = {
   sales: lazy(() => import('@/features/sales/SalesScreen')),
   products: lazy(() => import('@/features/products/ProductsScreen')),
   inventory: lazy(() => import('@/features/inventory/InventoryScreen')),
@@ -99,12 +102,14 @@ function Screen() {
       />
     )
   }
-  if (item.route === 'sell') return <SellScreen />
-  const Lazy = screens[item.route]
+  if (item.route === 'sell') return <ErrorBoundary resetKey="sell"><SellScreen /></ErrorBoundary>
+  const Lazy = screens[item.route as keyof typeof screens]
   return (
-    <Suspense fallback={<FullScreenLoader />}>
-      <Lazy />
-    </Suspense>
+    <ErrorBoundary resetKey={route.name + route.sub}>
+      <Suspense fallback={<FullScreenLoader />}>
+        <Lazy />
+      </Suspense>
+    </ErrorBoundary>
   )
 }
 
@@ -114,9 +119,11 @@ export default function App() {
   const loaded = useSettings((s) => s.loaded)
   const user = useSession((s) => s.user)
   const userCount = useLiveQuery(() => db.users.filter((u) => !u.deleted).count(), [])
+  const route = useRoute()
 
   let body
-  if (!loaded || userCount === undefined) body = <FullScreenLoader />
+  if (route.name === 'display') body = loaded ? <Suspense fallback={<FullScreenLoader />}><CustomerDisplay /></Suspense> : <FullScreenLoader />
+  else if (!loaded || userCount === undefined) body = <FullScreenLoader />
   else if (userCount === 0) body = <SetupWizard />
   else if (!user) body = <LockScreen />
   else

@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">Kasa POS</string>
+    <string name="title_activity_main">Kasa POS</string>
+    <string name="package_name">com.kasapos.app</string>
+    <string name="custom_url_scheme">com.kasapos.app</string>
+</resources>

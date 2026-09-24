@@ -158,5 +158,12 @@
     "inWords": "Amount in words",
     "note": "Note",
     "authorisedSignatory": "Authorised signatory"
+  },
+  "customerDisplay": "Customer display",
+  "display": {
+    "welcome": "Welcome! Your items will appear here.",
+    "toPay": "Amount to pay",
+    "scanUpi": "Scan with any UPI app to pay",
+    "thankYou": "Thank you for shopping with us!"
   }
 }

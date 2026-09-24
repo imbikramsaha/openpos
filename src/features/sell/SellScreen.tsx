@@ -136,6 +136,7 @@ export default function SellScreen() {
     },
     onRecall: () => setDialog({ kind: 'held' }),
     onRefund: async () => (await requirePermission('refund')) && setDialog({ kind: 'refund' }),
+    onShortcuts: () => setDialog({ kind: 'shortcuts' }),
   }
 
   // Keyboard shortcuts (desktop). Ignored while a dialog is open.

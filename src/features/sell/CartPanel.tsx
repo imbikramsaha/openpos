@@ -2,7 +2,7 @@ import { useEffect, useMemo, useRef, useState, type ReactNode } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useLiveQuery } from 'dexie-react-hooks'
 import {
-  Ban, ChevronDown, Inbox, Minus, MoreVertical, NotebookPen, PauseCircle, Percent, PlayCircle, Plus, ReceiptText,
+  Ban, ChevronDown, Keyboard, MonitorSmartphone, Inbox, Minus, MoreVertical, NotebookPen, PauseCircle, Percent, PlayCircle, Plus, ReceiptText,
   ShoppingBag, Tag, Trash2, Undo2, UserRound, Utensils, Vault,
 } from 'lucide-react'
 import type { CartLine, OrderType } from '@/core/types'
@@ -19,6 +19,7 @@ import { confirmDialog, toast } from '@/stores/ui'
 import { Avatar, Badge, Button, Kbd } from '@/components/ui'
 import { audit } from '@/db/repo'
 import { calcCart } from './checkout'
+import { openCustomerDisplay } from '@/features/display/channel'
 
 export interface CartActions {
   onPay: () => void
@@ -31,6 +32,7 @@ export interface CartActions {
   onHold: () => void
   onRecall: () => void
   onRefund: () => void
+  onShortcuts: () => void
 }
 
 export function CartPanel({ actions, className }: { actions: CartActions; className?: string }) {
@@ -297,6 +299,8 @@ function CartMenu({ onClose, actions, onClear }: { onClose: () => void; actions:
           if (!ok) toast(t('drawerFailed'), 'error')
           else void audit('drawer.open')
         })}
+      {item(<MonitorSmartphone />, t('customerDisplay'), openCustomerDisplay)}
+      {item(<Keyboard />, t('shortcuts.title'), actions.onShortcuts, 'F1')}
       {item(<Ban />, t('clearSale'), onClear, undefined, true)}
       {cart.interState && gstMode && <div className="px-4 pb-2"><Badge tone="primary">IGST</Badge></div>}
     </div>

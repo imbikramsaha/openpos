@@ -14,6 +14,7 @@ import { confirmDialog, toast } from '@/stores/ui'
 import { Button, Modal, NumPad, applyNumKey } from '@/components/ui'
 import { requirePermission } from '@/features/auth/permission'
 import { calcCart, completeSale } from './checkout'
+import { sendToDisplay } from '@/features/display/channel'
 
 export const METHOD_ICONS: Record<PaymentMethod, typeof Banknote> = {
   cash: Banknote,
@@ -48,6 +49,17 @@ export function PaymentDialog({ open, onClose, onComplete, onNeedCustomer }: { o
 
   const total = calc.total
   const { paid, change, due } = computeChange(total, payments)
+
+  // Mirror the amount due on the customer display (with a UPI QR when enabled).
+  useEffect(() => {
+    if (open) sendToDisplay({ type: 'pay', amount: due })
+  }, [open, due])
+  useEffect(() => {
+    if (!open) return
+    return () => {
+      if (!busyRef.current) sendToDisplay({ type: 'idle' })
+    }
+  }, [open])
   const typed = text ? toMinor(parseDecimal(text)) : 0
   const pointsValue = customer ? customer.loyaltyPoints * (settings.loyaltyPointValue || 0) : 0
 
@@ -64,6 +76,7 @@ export function PaymentDialog({ open, onClose, onComplete, onNeedCustomer }: { o
     try {
       const sale = await completeSale(cart.snapshot(), all, customer ?? undefined)
       cart.clear()
+      sendToDisplay({ type: 'paid', total: sale.total, change: sale.change })
       onComplete(sale)
     } catch (e) {
       toast(e instanceof Error ? e.message : String(e), 'error')

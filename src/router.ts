@@ -3,7 +3,7 @@ import { useMemo, useSyncExternalStore } from 'react'
 // Minimal hash router. Hash URLs work identically in browsers, Electron (app://)
 // and Capacitor, with no server rewrites needed.
 
-export type RouteName = 'sell' | 'sales' | 'products' | 'inventory' | 'customers' | 'reports' | 'shifts' | 'users' | 'settings'
+export type RouteName = 'sell' | 'sales' | 'products' | 'inventory' | 'customers' | 'reports' | 'shifts' | 'users' | 'settings' | 'display'
 
 const subscribe = (cb: () => void) => {
   window.addEventListener('hashchange', cb)
