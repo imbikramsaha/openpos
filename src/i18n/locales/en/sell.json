@@ -165,5 +165,6 @@
     "toPay": "Amount to pay",
     "scanUpi": "Scan with any UPI app to pay",
     "thankYou": "Thank you for shopping with us!"
-  }
+  },
+  "addProduct": "Add product"
 }

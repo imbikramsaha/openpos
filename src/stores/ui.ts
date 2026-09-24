@@ -4,10 +4,16 @@ import type { Permission } from '@/core/types'
 
 export type ToastKind = 'success' | 'error' | 'info' | 'warning'
 
+export interface ToastAction {
+  label: string
+  onClick: () => void
+}
+
 export interface Toast {
   id: number
   kind: ToastKind
   message: string
+  action?: ToastAction
 }
 
 export interface ConfirmRequest {
@@ -28,7 +34,7 @@ interface UIStore {
   confirm: ConfirmRequest | null
   override: OverrideRequest | null
   sidebarCollapsed: boolean
-  toast: (message: string, kind?: ToastKind) => void
+  toast: (message: string, kind?: ToastKind, action?: ToastAction) => void
   dismiss: (id: number) => void
   setConfirm: (c: ConfirmRequest | null) => void
   setOverride: (o: OverrideRequest | null) => void
@@ -42,10 +48,10 @@ export const useUI = create<UIStore>((set, get) => ({
   confirm: null,
   override: null,
   sidebarCollapsed: false,
-  toast: (message, kind = 'success') => {
+  toast: (message, kind = 'success', action) => {
     const id = nextId++
-    set({ toasts: [...get().toasts.slice(-3), { id, kind, message }] })
-    setTimeout(() => get().dismiss(id), kind === 'error' ? 5000 : 2600)
+    set({ toasts: [...get().toasts.slice(-3), { id, kind, message, action }] })
+    setTimeout(() => get().dismiss(id), action ? 6000 : kind === 'error' ? 5000 : 2600)
   },
   dismiss: (id) => set({ toasts: get().toasts.filter((t) => t.id !== id) }),
   setConfirm: (confirm) => set({ confirm }),
@@ -53,7 +59,7 @@ export const useUI = create<UIStore>((set, get) => ({
   toggleSidebar: () => set({ sidebarCollapsed: !get().sidebarCollapsed }),
 }))
 
-export const toast = (message: string, kind?: ToastKind) => useUI.getState().toast(message, kind)
+export const toast = (message: string, kind?: ToastKind, action?: ToastAction) => useUI.getState().toast(message, kind, action)
 
 export function confirmDialog(opts: Omit<ConfirmRequest, 'resolve'>): Promise<boolean> {
   return new Promise((resolve) => useUI.getState().setConfirm({ ...opts, resolve }))

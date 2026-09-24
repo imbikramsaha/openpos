@@ -19,14 +19,23 @@ export function Toasts() {
   return (
     <div className="pointer-events-none fixed inset-x-0 bottom-20 z-[60] flex flex-col items-center gap-2 px-4 sm:bottom-6" aria-live="polite">
       {toasts.map((t) => (
-        <button
-          key={t.id}
-          onClick={() => dismiss(t.id)}
-          className="animate-pop pointer-events-auto flex max-w-md items-center gap-3 rounded-2xl border border-border bg-surface px-4 py-3 text-start text-sm font-medium shadow-pop"
-        >
-          {toastIcon[t.kind]}
-          <span>{t.message}</span>
-        </button>
+        <div key={t.id} className="animate-pop pointer-events-auto flex max-w-md items-center gap-3 rounded-2xl border border-border bg-surface px-4 py-3 text-sm font-medium shadow-pop">
+          <button onClick={() => dismiss(t.id)} className="flex items-center gap-3 text-start">
+            {toastIcon[t.kind]}
+            <span>{t.message}</span>
+          </button>
+          {t.action && (
+            <button
+              onClick={() => {
+                dismiss(t.id)
+                t.action!.onClick()
+              }}
+              className="shrink-0 rounded-lg bg-primary-soft px-3 py-1.5 text-xs font-semibold text-primary"
+            >
+              {t.action.label}
+            </button>
+          )}
+        </div>
       ))}
     </div>
   )

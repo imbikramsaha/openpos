@@ -12,6 +12,7 @@ import { useSession } from '@/stores/session'
 import { useSettings } from '@/stores/settings'
 import { confirmDialog, toast } from '@/stores/ui'
 import { Button, Kbd, Modal } from '@/components/ui'
+import { navigate } from '@/router'
 import { requirePermission } from '@/features/auth/permission'
 import { OpenShiftDialog } from '@/features/shifts/OpenShiftDialog'
 import { CartPanel, type CartActions } from './CartPanel'
@@ -76,16 +77,23 @@ export default function SellScreen() {
     [sound, t],
   )
 
+  // Unknown code: offer to create the product with this barcode (if allowed).
+  const notFound = useCallback(
+    (code: string) => {
+      if (sound) beep(false)
+      const canAdd = useSession.getState().can('products_manage')
+      toast(t('notFound', { code }), 'error', canAdd ? { label: t('addProduct'), onClick: () => navigate(`products?new=1&barcode=${encodeURIComponent(code)}`) } : undefined)
+    },
+    [sound, t],
+  )
+
   const onScan = useCallback(
     async (code: string) => {
       const hit = await findByCode(code)
       if (hit) addProduct(hit.product, hit.qty, hit.price)
-      else {
-        if (sound) beep(false)
-        toast(t('notFound', { code }), 'error')
-      }
+      else notFound(code)
     },
-    [addProduct, sound, t],
+    [addProduct, notFound],
   )
   useScanner(onScan, !dialog && !receipt)
 
@@ -99,10 +107,7 @@ export default function SellScreen() {
       addProduct(matches[0])
       return true
     }
-    if (!matches.length) {
-      if (sound) beep(false)
-      toast(t('notFound', { code: q }), 'error')
-    }
+    if (!matches.length) notFound(q)
     return false
   }
 

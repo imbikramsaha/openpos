@@ -125,8 +125,8 @@ export function MoneyInput({ value, onChange, ...rest }: MoneyInputProps) {
         const n = parseDecimal(e.target.value)
         onChange(Number.isNaN(n) ? undefined : toMinor(n))
       }}
-      className={cn('tnum', rest.className)}
       {...rest}
+      className={cn('tnum', rest.className)}
     />
   )
 }
@@ -152,8 +152,8 @@ export function NumberInput({ value, onChange, ...rest }: NumberInputProps) {
         const n = parseDecimal(e.target.value)
         onChange(Number.isNaN(n) ? undefined : n)
       }}
-      className={cn('tnum', rest.className)}
       {...rest}
+      className={cn('tnum', rest.className)}
     />
   )
 }
