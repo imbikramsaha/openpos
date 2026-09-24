@@ -1,5 +1,6 @@
 import type { ReactNode } from 'react'
 import { ArrowLeft } from 'lucide-react'
+import { useTranslation } from 'react-i18next'
 import { cn } from '@/lib/cn'
 
 export function Page({ children, className }: { children: ReactNode; className?: string }) {
@@ -7,11 +8,12 @@ export function Page({ children, className }: { children: ReactNode; className?:
 }
 
 export function PageHeader({ title, subtitle, actions, onBack, children }: { title: ReactNode; subtitle?: ReactNode; actions?: ReactNode; onBack?: () => void; children?: ReactNode }) {
+  const { t } = useTranslation()
   return (
     <header className="border-b border-border bg-surface px-4 pt-4 pb-3 sm:px-6">
       <div className="flex flex-wrap items-center gap-3">
         {onBack && (
-          <button onClick={onBack} className="-ms-2 flex size-9 items-center justify-center rounded-lg hover:bg-surface-3" aria-label="Back">
+          <button onClick={onBack} className="-ms-2 flex size-9 items-center justify-center rounded-lg hover:bg-surface-3" aria-label={t('back')}>
             <ArrowLeft className="size-5 rtl:rotate-180" />
           </button>
         )}

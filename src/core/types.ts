@@ -345,6 +345,7 @@ export interface Settings extends Base {
   scale: ScaleBarcodeSettings
   orderTypes: boolean
   defaultTaxId?: ID
+  /** Banknote values in MAJOR units (e.g. 100 = ₹100) for quick-cash buttons. */
   quickCash: number[]
   lockAfterSale: boolean
   autoLockMinutes: number

@@ -148,7 +148,8 @@ function invoiceA4(sale: Sale, s: Settings): string {
     <h1>${e(s.legalName || s.businessName)}</h1>
     <div class="m">${e(s.address)}${state ? `, ${e(state[1])} (${e(state[0])})` : ''}</div>
     <div class="m">${[s.phone, s.email, s.website].filter(Boolean).map(e).join(' · ')}</div>
-    ${s.taxNumber ? `<div class="b">${e(s.taxLabel)}: ${e(s.taxNumber)}</div>` : ''}</div>
+    ${s.taxNumber ? `<div class="b">${e(s.taxLabel)}: ${e(s.taxNumber)}</div>` : ''}
+    ${s.receipt.header ? `<div class="m" style="white-space:pre-line;margin-top:4px">${e(s.receipt.header)}</div>` : ''}</div>
     <div class="r"><h2>${e(docTitle(sale, s)).toUpperCase()}</h2>
     <div><span class="m">${e(t('receipt.number'))}:</span> <b>${e(sale.number)}</b></div>
     <div><span class="m">${e(t('receipt.date'))}:</span> ${e(formatDateTime(sale.createdAt))}</div>

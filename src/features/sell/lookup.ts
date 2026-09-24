@@ -2,6 +2,7 @@ import type { Product } from '@/core/types'
 import { parseScaleBarcode } from '@/core/barcode'
 import { db } from '@/db/db'
 import { settings } from '@/stores/settings'
+import { toMinor } from '@/lib/money'
 
 export interface LookupResult {
   product: Product
@@ -28,7 +29,7 @@ export async function findByCode(raw: string): Promise<LookupResult | null> {
     if (product) {
       if (s.scale.valueType === 'weight') return { product, qty: scale.value }
       // Price-embedded labels: value is the line total; derive quantity from unit price.
-      const priceMinor = Math.round(scale.value * 100)
+      const priceMinor = toMinor(scale.value)
       return { product, qty: product.price ? Math.round((priceMinor / product.price) * 1000) / 1000 : 1, price: product.price || priceMinor }
     }
   }
