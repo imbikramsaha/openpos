@@ -41,7 +41,7 @@ export function Button({ variant = 'secondary', size = 'md', loading, icon, icon
       type={type}
       disabled={disabled || loading}
       className={cn(
-        'inline-flex shrink-0 items-center justify-center font-medium whitespace-nowrap transition-[background,filter,transform,color] duration-100 active:scale-[0.97] disabled:opacity-50 disabled:active:scale-100',
+        'inline-flex shrink-0 items-center justify-center font-medium whitespace-nowrap [&>svg]:shrink-0 transition-[background,filter,transform,color] duration-100 active:scale-[0.97] disabled:opacity-50 disabled:active:scale-100',
         variants[variant],
         sizes[size],
         block && 'w-full',

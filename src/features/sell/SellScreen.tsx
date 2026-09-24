@@ -140,7 +140,7 @@ export default function SellScreen() {
       if (await holdCurrentCart()) toast(t('held'))
     },
     onRecall: () => setDialog({ kind: 'held' }),
-    onRefund: async () => (await requirePermission('refund')) && setDialog({ kind: 'refund' }),
+    onRefund: () => setDialog({ kind: 'refund' }),
     onShortcuts: () => setDialog({ kind: 'shortcuts' }),
   }
 
@@ -166,7 +166,7 @@ export default function SellScreen() {
         case 'F7': return handled(actions.onRecall)
         case 'F8': return handled(actions.onNote)
         case 'F9': return handled(() => setDialog({ kind: 'custom' }))
-        case 'F10': return handled(() => void actions.onRefund())
+        case 'F10': return handled(actions.onRefund)
         case 'F12': return handled(() => void pay())
       }
       if (e.key === 'Enter' && (e.ctrlKey || e.metaKey)) return handled(() => void pay())

@@ -1,1 +1,144 @@
-{}
+{
+  "title": "Sales",
+  "searchPlaceholder": "Receipt no., name or phone",
+  "walkIn": "Walk-in",
+  "itemsCount_one": "{{count}} line",
+  "itemsCount_other": "{{count}} lines",
+  "allDatesHint": "Matching receipt numbers from all dates",
+  "clearFilters": "Clear filters",
+  "loadMore": "Show more",
+  "showing": "Showing {{shown}} of {{total}}",
+  "range": {
+    "today": "Today",
+    "yesterday": "Yesterday",
+    "last7": "Last 7 days",
+    "thisMonth": "This month",
+    "last30": "Last 30 days",
+    "custom": "Custom"
+  },
+  "filter": {
+    "period": "Period",
+    "type": "Type",
+    "allTypes": "All types",
+    "sales": "Sales only",
+    "refunds": "Refunds only",
+    "status": "Status",
+    "allStatuses": "Any status",
+    "method": "Payment method",
+    "allMethods": "Any payment",
+    "cashier": "Cashier",
+    "allCashiers": "All cashiers"
+  },
+  "col": {
+    "number": "Receipt",
+    "time": "Time",
+    "payment": "Paid by"
+  },
+  "type": {
+    "sale": "Sale",
+    "refund": "Refund"
+  },
+  "status": {
+    "completed": "Completed",
+    "voided": "Voided"
+  },
+  "badge": {
+    "refund": "Refund",
+    "voided": "Voided",
+    "partiallyRefunded": "Partially refunded",
+    "refunded": "Refunded"
+  },
+  "summary": {
+    "count": "Transactions",
+    "voided_one": "{{count}} voided",
+    "voided_other": "{{count}} voided",
+    "net": "Net total",
+    "sales_one": "{{count}} sale",
+    "sales_other": "{{count}} sales",
+    "refunds_one": "{{count}} refund",
+    "refunds_other": "{{count}} refunds"
+  },
+  "empty": {
+    "title": "No sales in this period",
+    "hint": "Sales you ring up at the till will appear here.",
+    "filtered": "Nothing matches these filters",
+    "filteredHint": "Try another date range, search or filter."
+  },
+  "export": {
+    "sales": "Sales (one row per receipt)",
+    "items": "Line items (one row per item)",
+    "empty": "Nothing to export for these filters",
+    "done_one": "Exported {{count}} receipt",
+    "done_other": "Exported {{count}} receipts"
+  },
+  "detail": {
+    "title": "Sale",
+    "notFound": "Sale not found",
+    "notFoundHint": "It may have been removed or not synced to this terminal yet.",
+    "details": "Details",
+    "receipt": "Receipt",
+    "a4": "A4 invoice",
+    "refundOf": "Refund of",
+    "cashier": "Cashier",
+    "terminal": "Terminal",
+    "orderType": "Order type",
+    "supply": "Supply",
+    "interState": "Inter-state (IGST)",
+    "intraState": "Intra-state (CGST + SGST)",
+    "items": "Items",
+    "taxIncluded": "Prices include {{amount}} tax",
+    "taxBreakdown": "Tax breakdown",
+    "payments": "Payments",
+    "refundedVia": "Paid back",
+    "noPayments": "No payments recorded",
+    "pointsEarned_one": "+{{count}} point earned",
+    "pointsEarned_other": "+{{count}} points earned",
+    "pointsRedeemed_one": "{{count}} point redeemed",
+    "pointsRedeemed_other": "{{count}} points redeemed",
+    "linked": "Refunds against this sale"
+  },
+  "refund": {
+    "action": "Refund",
+    "title": "Refund {{number}}",
+    "pickItems": "Choose what the customer is returning.",
+    "everything": "Refund everything",
+    "clearAll": "Clear selection",
+    "nothingLeft": "Everything on this sale has already been refunded.",
+    "voided": "This sale was voided and can't be refunded.",
+    "returnedQty": "{{qty}} returned",
+    "method": "Pay back with",
+    "creditHint": "Reduces what {{name}} owes on account.",
+    "restock": "Put items back in stock",
+    "restockHint": "Returned items are added back to inventory.",
+    "noRestockHint": "Stock stays as is — use this for damaged or expired goods.",
+    "reason": "Reason",
+    "reasons": {
+      "damaged": "Damaged",
+      "wrongItem": "Wrong item",
+      "changedMind": "Changed mind",
+      "notAsDescribed": "Not as described"
+    },
+    "total": "Refund total",
+    "confirm": "Refund",
+    "done": "Credit note {{number}} created",
+    "complete": "Refund complete",
+    "payBack": "Give back in {{method}}",
+    "toAccount": "Credited to customer account"
+  },
+  "void": {
+    "action": "Void",
+    "title": "Void {{number}}",
+    "hint": "Voiding cancels the whole sale and puts its items back in stock. Use it to correct mistakes; use a refund when goods come back.",
+    "reason": "Reason",
+    "reasons": {
+      "mistake": "Rung up by mistake",
+      "duplicate": "Duplicate sale",
+      "testSale": "Test sale",
+      "customerLeft": "Customer didn't pay"
+    },
+    "confirmTitle": "Void {{number}}?",
+    "confirmMessage": "The sale of {{amount}} will be cancelled and its stock returned. This cannot be undone.",
+    "done": "{{number}} voided",
+    "voided": "Voided"
+  }
+}

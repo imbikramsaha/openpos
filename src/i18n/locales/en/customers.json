@@ -1,1 +1,196 @@
-{}
+{
+  "title": "Customers",
+  "subtitle_one": "{{count}} customer",
+  "subtitle_other": "{{count}} customers",
+  "name": "Name",
+  "phone": "Phone",
+  "email": "Email",
+  "taxNumber": "Tax number",
+  "address": "Address",
+  "city": "City",
+  "state": "State / region",
+  "notes": "Notes",
+  "discountPercent": "Automatic discount",
+  "creditLimit": "Credit limit",
+  "openingBalance": "Opening balance",
+  "newCustomer": "New customer",
+  "searchPlaceholder": "Search name, phone, email or tax ID",
+  "createNamed": "Create “{{name}}”",
+  "showing": "Showing {{shown}} of {{total}}",
+  "loadMore": "Show more",
+  "totalDue": "Total due",
+  "balanceDue": "Balance due",
+  "advance": "Advance (in credit)",
+  "noBalance": "No balance due",
+  "dueBadge": "Due {{amount}}",
+  "advanceBadge": "Advance {{amount}}",
+  "pointsBadge_one": "{{count}} pt",
+  "pointsBadge_other": "{{count}} pts",
+  "discountBadge": "{{value}} off",
+  "limitInfo": "Limit {{limit}} · {{available}} available",
+  "overLimit": "Over the credit limit of {{limit}}",
+  "receivePayment": "Receive payment",
+  "sendReminder": "WhatsApp reminder",
+  "adjustBalance": "Adjust balance",
+  "printStatement": "Statement",
+  "filter": {
+    "all": "All",
+    "due": "Balance due",
+    "points": "Has points"
+  },
+  "sort": {
+    "label": "Sort",
+    "name": "Sort: Name (A–Z)",
+    "balance": "Sort: Highest balance",
+    "recent": "Sort: Recent visits"
+  },
+  "col": {
+    "customer": "Customer",
+    "balance": "Balance",
+    "points": "Points",
+    "spent": "Total spent",
+    "visits": "Visits",
+    "lastVisit": "Last visit"
+  },
+  "empty": {
+    "title": "No customers yet",
+    "hint": "Add customers to track purchases, loyalty points and credit (khata) balances.",
+    "filtered": "No customers match",
+    "filteredHint": "Try a different name, phone number or filter."
+  },
+  "csv": {
+    "template": "Download CSV template",
+    "nothing": "No customers to export",
+    "exported_one": "Exported {{count}} customer",
+    "exported_other": "Exported {{count}} customers",
+    "noRows": "No customers found in that file. The first row must contain column names such as name, phone, email.",
+    "confirmTitle_one": "Import {{count}} customer?",
+    "confirmTitle_other": "Import {{count}} customers?",
+    "confirmMessage": "{{creates}} new, {{updates}} updated (matched by phone or email), {{skipped}} rows skipped without a name. Balances are never changed by an import.",
+    "imported": "Imported: {{creates}} new, {{updates}} updated",
+    "failed": "Import failed: {{error}}"
+  },
+  "form": {
+    "newTitle": "New customer",
+    "editTitle": "Edit customer",
+    "contact": "Contact",
+    "addressSection": "Address",
+    "account": "Account",
+    "selectState": "Select state",
+    "nameRequired": "Enter the customer's name",
+    "emailInvalid": "This doesn't look like an email address",
+    "discountRange": "Enter a percentage between 0 and 100",
+    "limitNegative": "The limit can't be negative",
+    "discountHint": "Applied automatically when this customer is added to a sale.",
+    "creditLimitHint": "Warns the cashier when an on-account sale goes over it.",
+    "noLimit": "No limit",
+    "openingHint": "Amount the customer already owes you from before.",
+    "openingAdvance": "The customer has {{amount}} in credit with you.",
+    "balanceReadonly": "The balance is calculated from sales and payments. Use Adjust balance to correct it.",
+    "duplicateTitle": "Phone number already used",
+    "duplicatePhone": "{{name}} already has this phone number. Save anyway?",
+    "saveAnyway": "Save anyway",
+    "created": "{{name}} added",
+    "saved": "Customer saved"
+  },
+  "detail": {
+    "title": "Customer",
+    "notFound": "Customer not found",
+    "notFoundHint": "This customer may have been deleted.",
+    "newSale": "New sale"
+  },
+  "stats": {
+    "spent": "Total spent",
+    "visits": "Visits",
+    "average": "Average sale",
+    "lastVisit": "Last visit",
+    "points": "Loyalty points",
+    "pointsWorth": "Worth {{value}}",
+    "since": "Customer since",
+    "visitsLast": "Visits (90 days)"
+  },
+  "tabs": {
+    "purchases": "Purchases",
+    "statement": "Account",
+    "info": "Details"
+  },
+  "purchases": {
+    "empty": "No purchases yet",
+    "emptyHint": "Sales made to this customer will show up here.",
+    "lines_one": "{{count}} item",
+    "lines_other": "{{count}} items"
+  },
+  "statement": {
+    "empty": "No account activity",
+    "emptyHint": "On-account sales, payments and adjustments will appear here.",
+    "balanceAfter": "Bal. {{amount}}",
+    "printReceipt": "Print payment receipt",
+    "deleteTitle": "Delete this entry?",
+    "deleteMessage": "The {{amount}} entry will be removed and the balance recalculated.",
+    "deleted": "Entry deleted"
+  },
+  "kind": {
+    "sale": "Sale on account",
+    "refund": "Refund to account",
+    "payment": "Payment received",
+    "charge": "Charge"
+  },
+  "pay": {
+    "title": "Receive payment",
+    "receiptTitle": "Payment recorded",
+    "method": "Received by",
+    "fullBalance": "Full balance {{amount}}",
+    "showQr": "Show UPI QR code",
+    "notePlaceholder": "Optional, e.g. cheque no. or UPI ref",
+    "after": "Balance after payment: {{amount}}",
+    "overpaid": "{{amount}} will be kept as an advance.",
+    "confirm": "Receive {{amount}}",
+    "done": "{{amount}} received from {{name}}",
+    "received": "Payment received"
+  },
+  "adjust": {
+    "title": "Adjust balance",
+    "addCharge": "Add charge",
+    "reduce": "Reduce balance",
+    "chargeHint": "Increases what the customer owes, e.g. an old bill or a service charge.",
+    "reduceHint": "Decreases what the customer owes without taking money, e.g. a write-off or goodwill discount.",
+    "chargePlaceholder": "e.g. Old bill from notebook",
+    "reducePlaceholder": "e.g. Settlement discount",
+    "newBalance": "New balance",
+    "done": "Balance adjusted"
+  },
+  "delete": {
+    "title": "Delete {{name}}?",
+    "message": "The customer is removed from lists. Past sales keep their details.",
+    "balanceWarning": "This customer still has an open balance of {{amount}}. Deleting hides it from customer lists and reminders. Past sales keep their details.",
+    "done": "{{name}} deleted"
+  },
+  "reminder": {
+    "text": "Hello {{name}}, this is a friendly reminder from {{business}} that {{amount}} is due on your account.",
+    "upi": "You can pay by UPI to {{upi}}.",
+    "contact": "Questions? Call us on {{phone}}.",
+    "thanks": "Thank you!"
+  },
+  "print": {
+    "paymentReceipt": "Payment receipt",
+    "receiptNo": "Receipt no.",
+    "date": "Date",
+    "customer": "Customer",
+    "receivedBy": "Received by",
+    "amountReceived": "Amount received",
+    "previousBalance": "Previous balance",
+    "paid": "Paid",
+    "balanceDue": "Balance due",
+    "advance": "Advance",
+    "thanksText": "Thank you {{name}}, we received {{amount}} by {{method}}.",
+    "statement": "Statement of account",
+    "generated": "Generated {{date}}",
+    "totalCharges": "Total charges",
+    "totalPayments": "Total payments & credits",
+    "description": "Description",
+    "debit": "Charges",
+    "credit": "Payments",
+    "balance": "Balance",
+    "pleasePay": "Please pay the outstanding balance of {{amount}}"
+  }
+}

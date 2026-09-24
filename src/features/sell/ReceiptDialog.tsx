@@ -1,4 +1,5 @@
 import { useEffect, useMemo } from 'react'
+import i18n from 'i18next'
 import { useTranslation } from 'react-i18next'
 import { CheckCircle2, Mail, MessageCircle, Printer, Share2 } from 'lucide-react'
 import type { Sale } from '@/core/types'
@@ -32,7 +33,7 @@ export async function shareNative(sale: Sale) {
     }
   } else {
     await navigator.clipboard?.writeText(text)
-    toast('Copied')
+    toast(i18n.t('common:copied'))
   }
 }
 
