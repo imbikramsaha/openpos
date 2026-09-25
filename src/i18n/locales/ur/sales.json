@@ -1,0 +1,144 @@
+{
+  "title": "سیلز",
+  "searchPlaceholder": "رسید نمبر، نام یا فون",
+  "walkIn": "واک اِن",
+  "itemsCount_one": "{{count}} لائن",
+  "itemsCount_other": "{{count}} لائنیں",
+  "allDatesHint": "تمام تاریخوں سے ملتے جلتے رسید نمبرز",
+  "clearFilters": "فلٹرز صاف کریں",
+  "loadMore": "مزید دکھائیں",
+  "showing": "{{total}} میں سے {{shown}} دکھائے جا رہے ہیں",
+  "range": {
+    "today": "آج",
+    "yesterday": "گزشتہ کل",
+    "last7": "پچھلے 7 دن",
+    "thisMonth": "اس مہینے",
+    "last30": "پچھلے 30 دن",
+    "custom": "حسب ضرورت"
+  },
+  "filter": {
+    "period": "مدت",
+    "type": "قسم",
+    "allTypes": "تمام اقسام",
+    "sales": "صرف فروخت",
+    "refunds": "صرف واپسیاں",
+    "status": "صورتحال",
+    "allStatuses": "کوئی بھی صورتحال",
+    "method": "ادائیگی کا طریقہ",
+    "allMethods": "کوئی بھی ادائیگی",
+    "cashier": "کیشیئر",
+    "allCashiers": "تمام کیشیئرز"
+  },
+  "col": {
+    "number": "رسید",
+    "time": "وقت",
+    "payment": "ادا کنندہ"
+  },
+  "type": {
+    "sale": "فروخت",
+    "refund": "ریفنڈ"
+  },
+  "status": {
+    "completed": "مکمل",
+    "voided": "منسوخ"
+  },
+  "badge": {
+    "refund": "ریفنڈ",
+    "voided": "منسوخ",
+    "partiallyRefunded": "جزوی طور پر ریفنڈ",
+    "refunded": "ریفنڈ شدہ"
+  },
+  "summary": {
+    "count": "لین دین",
+    "voided_one": "{{count}} منسوخ",
+    "voided_other": "{{count}} منسوخ",
+    "net": "خالص کل",
+    "sales_one": "{{count}} فروخت",
+    "sales_other": "{{count}} فروخت",
+    "refunds_one": "{{count}} ریفنڈ",
+    "refunds_other": "{{count}} ریفنڈز"
+  },
+  "empty": {
+    "title": "اس مدت میں کوئی فروخت نہیں",
+    "hint": "کاؤنٹر پر کی گئی فروخت یہاں ظاہر ہوگی۔",
+    "filtered": "ان فلٹرز سے کچھ میل نہیں کھاتا",
+    "filteredHint": "مختلف تاریخ کی حد، تلاش یا فلٹر آزمائیں۔"
+  },
+  "export": {
+    "sales": "فروخت (فی رسید ایک قطار)",
+    "items": "لائن آئٹمز (فی آئٹم ایک قطار)",
+    "empty": "ان فلٹرز کے لیے ایکسپورٹ کرنے کے لیے کچھ نہیں",
+    "done_one": "{{count}} رسید ایکسپورٹ ہوئی",
+    "done_other": "{{count}} رسیدیں ایکسپورٹ ہوئیں"
+  },
+  "detail": {
+    "title": "فروخت",
+    "notFound": "فروخت نہیں ملی",
+    "notFoundHint": "یہ شاید ہٹا دی گئی ہو یا ابھی اس ٹرمینل پر سنک نہ ہوئی ہو۔",
+    "details": "تفصیلات",
+    "receipt": "رسید",
+    "a4": "A4 انوائس",
+    "refundOf": "کی ریفنڈ",
+    "cashier": "کیشیئر",
+    "terminal": "ٹرمینل",
+    "orderType": "آرڈر کی قسم",
+    "supply": "سپلائی",
+    "interState": "بین الریاستی (IGST)",
+    "intraState": "اندرون ریاست (CGST + SGST)",
+    "items": "اشیاء",
+    "taxIncluded": "قیمتوں میں {{amount}} ٹیکس شامل ہے",
+    "taxBreakdown": "ٹیکس کی تفصیل",
+    "payments": "ادائیگیاں",
+    "refundedVia": "واپس ادا کیا گیا",
+    "noPayments": "کوئی ادائیگی درج نہیں",
+    "pointsEarned_one": "+{{count}} پوائنٹ کمایا",
+    "pointsEarned_other": "+{{count}} پوائنٹس کمائے",
+    "pointsRedeemed_one": "{{count}} پوائنٹ استعمال ہوا",
+    "pointsRedeemed_other": "{{count}} پوائنٹس استعمال ہوئے",
+    "linked": "اس فروخت کے خلاف ریفنڈز"
+  },
+  "refund": {
+    "action": "ریفنڈ",
+    "title": "{{number}} ریفنڈ کریں",
+    "pickItems": "منتخب کریں کہ گاہک کیا واپس کر رہا ہے۔",
+    "everything": "سب کچھ ریفنڈ کریں",
+    "clearAll": "انتخاب صاف کریں",
+    "nothingLeft": "اس فروخت کی ہر چیز پہلے ہی ریفنڈ ہو چکی ہے۔",
+    "voided": "یہ فروخت منسوخ ہو چکی ہے اور اسے ریفنڈ نہیں کیا جا سکتا۔",
+    "returnedQty": "{{qty}} واپس کی گئی",
+    "method": "کس طرح واپس کریں",
+    "creditHint": "{{name}} کے کھاتے پر واجب الادا رقم کم کرتا ہے۔",
+    "restock": "اشیاء دوبارہ اسٹاک میں شامل کریں",
+    "restockHint": "واپس کی گئی اشیاء دوبارہ اسٹاک میں شامل ہو جاتی ہیں۔",
+    "noRestockHint": "اسٹاک ویسا ہی رہے گا — خراب یا میعاد ختم اشیاء کے لیے یہ استعمال کریں۔",
+    "reason": "وجہ",
+    "reasons": {
+      "damaged": "خراب",
+      "wrongItem": "غلط آئٹم",
+      "changedMind": "ارادہ بدل گیا",
+      "notAsDescribed": "بیان کے مطابق نہیں"
+    },
+    "total": "کل ریفنڈ",
+    "confirm": "ریفنڈ کریں",
+    "done": "کریڈٹ نوٹ {{number}} بن گیا",
+    "complete": "ریفنڈ مکمل",
+    "payBack": "{{method}} میں واپس دیں",
+    "toAccount": "گاہک کے اکاؤنٹ میں کریڈٹ ہوا"
+  },
+  "void": {
+    "action": "منسوخ کریں",
+    "title": "{{number}} منسوخ کریں",
+    "hint": "منسوخ کرنے سے پوری فروخت منسوخ ہو جاتی ہے اور اس کی اشیاء دوبارہ اسٹاک میں چلی جاتی ہیں۔ غلطیاں درست کرنے کے لیے اسے استعمال کریں؛ سامان واپس آنے پر ریفنڈ استعمال کریں۔",
+    "reason": "وجہ",
+    "reasons": {
+      "mistake": "غلطی سے درج ہوئی",
+      "duplicate": "ڈپلیکیٹ فروخت",
+      "testSale": "ٹیسٹ فروخت",
+      "customerLeft": "گاہک نے ادائیگی نہیں کی"
+    },
+    "confirmTitle": "{{number}} منسوخ کریں؟",
+    "confirmMessage": "{{amount}} کی فروخت منسوخ ہو جائے گی اور اس کا اسٹاک واپس آ جائے گا۔ اسے واپس نہیں کیا جا سکتا۔",
+    "done": "{{number}} منسوخ ہو گئی",
+    "voided": "منسوخ شدہ"
+  }
+}

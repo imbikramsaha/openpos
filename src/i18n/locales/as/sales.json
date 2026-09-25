@@ -1,0 +1,144 @@
+{
+  "title": "বিক্ৰীৰ হিচাপ",
+  "searchPlaceholder": "ৰচিদ নং, নাম বা ফ'ন",
+  "walkIn": "সাধাৰণ গ্ৰাহক",
+  "itemsCount_one": "{{count}}টা শাৰী",
+  "itemsCount_other": "{{count}}টা শাৰী",
+  "allDatesHint": "সকলো তাৰিখৰ মিলা ৰচিদ নম্বৰ",
+  "clearFilters": "ফিল্টাৰ মচক",
+  "loadMore": "আৰু দেখুৱাওক",
+  "showing": "{{total}}ৰ ভিতৰত {{shown}}টা দেখুওৱা হৈছে",
+  "range": {
+    "today": "আজি",
+    "yesterday": "কালি",
+    "last7": "যোৱা 7 দিন",
+    "thisMonth": "এই মাহ",
+    "last30": "যোৱা 30 দিন",
+    "custom": "কাষ্টম"
+  },
+  "filter": {
+    "period": "সময়কাল",
+    "type": "প্ৰকাৰ",
+    "allTypes": "সকলো প্ৰকাৰ",
+    "sales": "কেৱল বিক্ৰী",
+    "refunds": "কেৱল ৰিফাণ্ড",
+    "status": "স্থিতি",
+    "allStatuses": "যিকোনো স্থিতি",
+    "method": "পেমেণ্ট পদ্ধতি",
+    "allMethods": "যিকোনো পেমেণ্ট",
+    "cashier": "কেশিয়াৰ",
+    "allCashiers": "সকলো কেশিয়াৰ"
+  },
+  "col": {
+    "number": "ৰচিদ",
+    "time": "সময়",
+    "payment": "যিদৰে পৰিশোধ"
+  },
+  "type": {
+    "sale": "বিক্ৰী",
+    "refund": "ৰিফাণ্ড"
+  },
+  "status": {
+    "completed": "সম্পূৰ্ণ",
+    "voided": "বাতিল"
+  },
+  "badge": {
+    "refund": "ৰিফাণ্ড",
+    "voided": "বাতিল",
+    "partiallyRefunded": "আংশিক ৰিফাণ্ড",
+    "refunded": "ৰিফাণ্ড হ'ল"
+  },
+  "summary": {
+    "count": "লেনদেন",
+    "voided_one": "{{count}}টা বাতিল",
+    "voided_other": "{{count}}টা বাতিল",
+    "net": "নেট মুঠ",
+    "sales_one": "{{count}}টা বিক্ৰী",
+    "sales_other": "{{count}}টা বিক্ৰী",
+    "refunds_one": "{{count}}টা ৰিফাণ্ড",
+    "refunds_other": "{{count}}টা ৰিফাণ্ড"
+  },
+  "empty": {
+    "title": "এই সময়কালত কোনো বিক্ৰী নাই",
+    "hint": "কাউণ্টাৰত কৰা বিক্ৰী ইয়াতে দেখা যাব।",
+    "filtered": "এই ফিল্টাৰত একো মিলা নাই",
+    "filteredHint": "আন এটা তাৰিখৰ ৰেঞ্জ, বিচাৰ বা ফিল্টাৰ দি চেষ্টা কৰক।"
+  },
+  "export": {
+    "sales": "বিক্ৰী (প্ৰতি ৰচিদত এটা শাৰী)",
+    "items": "লাইন আইটেম (প্ৰতি আইটেমত এটা শাৰী)",
+    "empty": "এই ফিল্টাৰত এক্সপ'ৰ্ট কৰিবলৈ একো নাই",
+    "done_one": "{{count}}টা ৰচিদ এক্সপ'ৰ্ট হ'ল",
+    "done_other": "{{count}}টা ৰচিদ এক্সপ'ৰ্ট হ'ল"
+  },
+  "detail": {
+    "title": "বিক্ৰী",
+    "notFound": "বিক্ৰী পোৱা নগ'ল",
+    "notFoundHint": "ইয়াক হয়তো আঁতৰোৱা হৈছে বা এতিয়াও এই টাৰ্মিনেলত ছিংক হোৱা নাই।",
+    "details": "বিৱৰণ",
+    "receipt": "ৰচিদ",
+    "a4": "A4 ইনভইচ",
+    "refundOf": "ইয়াৰ ৰিফাণ্ড",
+    "cashier": "কেশিয়াৰ",
+    "terminal": "টাৰ্মিনেল",
+    "orderType": "অৰ্ডাৰৰ প্ৰকাৰ",
+    "supply": "যোগান",
+    "interState": "আন্তঃৰাজ্য (IGST)",
+    "intraState": "ৰাজ্যৰ ভিতৰত (CGST + SGST)",
+    "items": "আইটেম",
+    "taxIncluded": "দামৰ ভিতৰত {{amount}} কৰ ধৰা আছে",
+    "taxBreakdown": "কৰৰ বিৱৰণ",
+    "payments": "পেমেণ্ট",
+    "refundedVia": "যিদৰে ঘূৰাই দিয়া হ'ল",
+    "noPayments": "কোনো পেমেণ্ট ৰেকৰ্ড নাই",
+    "pointsEarned_one": "+{{count}} পইণ্ট পোৱা গ'ল",
+    "pointsEarned_other": "+{{count}} পইণ্ট পোৱা গ'ল",
+    "pointsRedeemed_one": "{{count}} পইণ্ট ব্যৱহাৰ হ'ল",
+    "pointsRedeemed_other": "{{count}} পইণ্ট ব্যৱহাৰ হ'ল",
+    "linked": "এই বিক্ৰীৰ বিপৰীতে ৰিফাণ্ড"
+  },
+  "refund": {
+    "action": "ৰিফাণ্ড",
+    "title": "{{number}} ৰিফাণ্ড কৰক",
+    "pickItems": "গ্ৰাহকে কি ঘূৰাই দিছে বাছনি কৰক।",
+    "everything": "সকলো ৰিফাণ্ড কৰক",
+    "clearAll": "বাছনি মচক",
+    "nothingLeft": "এই বিক্ৰীৰ সকলো ইতিমধ্যে ৰিফাণ্ড কৰা হৈছে।",
+    "voided": "এই বিক্ৰীটো বাতিল কৰা হৈছে, সেয়ে ৰিফাণ্ড কৰিব নোৱাৰি।",
+    "returnedQty": "{{qty}} ঘূৰাই দিয়া হ'ল",
+    "method": "যিদৰে ঘূৰাই দিব",
+    "creditHint": "{{name}}ৰ বাকী একাউণ্টত কমায়।",
+    "restock": "আইটেম পুনৰ ষ্টকত যোগ কৰক",
+    "restockHint": "ঘূৰাই অহা আইটেম পুনৰ ষ্টকত যোগ হ'ব।",
+    "noRestockHint": "ষ্টক অপৰিৱৰ্তিত থাকিব — ক্ষতিগ্ৰস্ত বা মিয়াদ উকলা সামগ্ৰীৰ বাবে এইটো ব্যৱহাৰ কৰক।",
+    "reason": "কাৰণ",
+    "reasons": {
+      "damaged": "ক্ষতিগ্ৰস্ত",
+      "wrongItem": "ভুল আইটেম",
+      "changedMind": "মন সলনি হ'ল",
+      "notAsDescribed": "বিৱৰণ অনুসৰি নহয়"
+    },
+    "total": "মুঠ ৰিফাণ্ড",
+    "confirm": "ৰিফাণ্ড কৰক",
+    "done": "{{number}} ক্ৰেডিট নোট সৃষ্টি হ'ল",
+    "complete": "ৰিফাণ্ড সম্পূৰ্ণ",
+    "payBack": "{{method}}ত ঘূৰাই দিয়ক",
+    "toAccount": "গ্ৰাহকৰ একাউণ্টত ক্ৰেডিট হ'ল"
+  },
+  "void": {
+    "action": "বাতিল কৰক",
+    "title": "{{number}} বাতিল কৰক",
+    "hint": "বাতিল কৰিলে গোটেই বিক্ৰী বাতিল হয় আৰু আইটেমবোৰ পুনৰ ষ্টকত যোগ হয়। ভুল সংশোধনৰ বাবে এইটো ব্যৱহাৰ কৰক; সামগ্ৰী ঘূৰি আহিলে ৰিফাণ্ড ব্যৱহাৰ কৰক।",
+    "reason": "কাৰণ",
+    "reasons": {
+      "mistake": "ভুলতে বিক্ৰী হ'ল",
+      "duplicate": "একেই বিক্ৰী দুবাৰ হ'ল",
+      "testSale": "টেষ্ট বিক্ৰী",
+      "customerLeft": "গ্ৰাহকে পেমেণ্ট নকৰিলে"
+    },
+    "confirmTitle": "{{number}} বাতিল কৰিব নে?",
+    "confirmMessage": "{{amount}}ৰ বিক্ৰীটো বাতিল হ'ব আৰু ইয়াৰ ষ্টক ঘূৰাই যোগ হ'ব। ইয়াক ওভতাব নোৱাৰি।",
+    "done": "{{number}} বাতিল হ'ল",
+    "voided": "বাতিল"
+  }
+}

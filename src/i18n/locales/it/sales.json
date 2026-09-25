@@ -1,0 +1,151 @@
+{
+  "title": "Vendite",
+  "searchPlaceholder": "N. scontrino, nome o telefono",
+  "walkIn": "Occasionale",
+  "itemsCount_one": "{{count}} riga",
+  "itemsCount_many": "{{count}} righe",
+  "itemsCount_other": "{{count}} righe",
+  "allDatesHint": "Numeri di scontrino corrispondenti da tutte le date",
+  "clearFilters": "Rimuovi filtri",
+  "loadMore": "Mostra altri",
+  "showing": "{{shown}} di {{total}} visualizzati",
+  "range": {
+    "today": "Oggi",
+    "yesterday": "Ieri",
+    "last7": "Ultimi 7 giorni",
+    "thisMonth": "Questo mese",
+    "last30": "Ultimi 30 giorni",
+    "custom": "Personalizzato"
+  },
+  "filter": {
+    "period": "Periodo",
+    "type": "Tipo",
+    "allTypes": "Tutti i tipi",
+    "sales": "Solo vendite",
+    "refunds": "Solo rimborsi",
+    "status": "Stato",
+    "allStatuses": "Qualsiasi stato",
+    "method": "Metodo di pagamento",
+    "allMethods": "Qualsiasi pagamento",
+    "cashier": "Cassiere",
+    "allCashiers": "Tutti i cassieri"
+  },
+  "col": {
+    "number": "Scontrino",
+    "time": "Ora",
+    "payment": "Pagato con"
+  },
+  "type": {
+    "sale": "Vendita",
+    "refund": "Rimborso"
+  },
+  "status": {
+    "completed": "Completata",
+    "voided": "Annullata"
+  },
+  "badge": {
+    "refund": "Rimborso",
+    "voided": "Annullata",
+    "partiallyRefunded": "Parzialmente rimborsata",
+    "refunded": "Rimborsata"
+  },
+  "summary": {
+    "count": "Transazioni",
+    "voided_one": "{{count}} annullata",
+    "voided_many": "{{count}} annullate",
+    "voided_other": "{{count}} annullate",
+    "net": "Totale netto",
+    "sales_one": "{{count}} vendita",
+    "sales_many": "{{count}} vendite",
+    "sales_other": "{{count}} vendite",
+    "refunds_one": "{{count}} rimborso",
+    "refunds_many": "{{count}} rimborsi",
+    "refunds_other": "{{count}} rimborsi"
+  },
+  "empty": {
+    "title": "Nessuna vendita in questo periodo",
+    "hint": "Le vendite registrate alla cassa appariranno qui.",
+    "filtered": "Nessun risultato per questi filtri",
+    "filteredHint": "Prova un altro intervallo di date, ricerca o filtro."
+  },
+  "export": {
+    "sales": "Vendite (una riga per scontrino)",
+    "items": "Righe articolo (una riga per articolo)",
+    "empty": "Niente da esportare per questi filtri",
+    "done_one": "{{count}} scontrino esportato",
+    "done_many": "{{count}} scontrini esportati",
+    "done_other": "{{count}} scontrini esportati"
+  },
+  "detail": {
+    "title": "Vendita",
+    "notFound": "Vendita non trovata",
+    "notFoundHint": "Potrebbe essere stata rimossa o non ancora sincronizzata con questa cassa.",
+    "details": "Dettagli",
+    "receipt": "Scontrino",
+    "a4": "Fattura A4",
+    "refundOf": "Rimborso di",
+    "cashier": "Cassiere",
+    "terminal": "Terminale",
+    "orderType": "Tipo di ordine",
+    "supply": "Fornitura",
+    "interState": "Interstatale (IGST)",
+    "intraState": "Intrastatale (CGST + SGST)",
+    "items": "Articoli",
+    "taxIncluded": "I prezzi includono {{amount}} di imposta",
+    "taxBreakdown": "Dettaglio imposte",
+    "payments": "Pagamenti",
+    "refundedVia": "Rimborsato tramite",
+    "noPayments": "Nessun pagamento registrato",
+    "pointsEarned_one": "+{{count}} punto guadagnato",
+    "pointsEarned_many": "+{{count}} punti guadagnati",
+    "pointsEarned_other": "+{{count}} punti guadagnati",
+    "pointsRedeemed_one": "{{count}} punto riscattato",
+    "pointsRedeemed_many": "{{count}} punti riscattati",
+    "pointsRedeemed_other": "{{count}} punti riscattati",
+    "linked": "Rimborsi su questa vendita"
+  },
+  "refund": {
+    "action": "Reso",
+    "title": "Rimborsa {{number}}",
+    "pickItems": "Scegli cosa sta restituendo il cliente.",
+    "everything": "Rimborsa tutto",
+    "clearAll": "Deseleziona",
+    "nothingLeft": "Tutto ciò che riguarda questa vendita è già stato rimborsato.",
+    "voided": "Questa vendita è stata annullata e non può essere rimborsata.",
+    "returnedQty": "{{qty}} restituiti",
+    "method": "Rimborsa con",
+    "creditHint": "Riduce quanto deve {{name}} sul proprio conto.",
+    "restock": "Rimetti gli articoli in scorta",
+    "restockHint": "Gli articoli restituiti vengono riaggiunti al magazzino.",
+    "noRestockHint": "Le scorte restano invariate — usa questa opzione per merce danneggiata o scaduta.",
+    "reason": "Motivo",
+    "reasons": {
+      "damaged": "Danneggiato",
+      "wrongItem": "Articolo sbagliato",
+      "changedMind": "Ripensamento",
+      "notAsDescribed": "Non come descritto"
+    },
+    "total": "Totale rimborso",
+    "confirm": "Rimborsa",
+    "done": "Nota di credito {{number}} creata",
+    "complete": "Reso completato",
+    "payBack": "Rimborsa con {{method}}",
+    "toAccount": "Accreditato sul conto cliente"
+  },
+  "void": {
+    "action": "Annulla",
+    "title": "Annulla {{number}}",
+    "hint": "Annullare cancella l'intera vendita e rimette i suoi articoli in scorta. Usalo per correggere errori; usa un rimborso quando la merce viene restituita.",
+    "reason": "Motivo",
+    "reasons": {
+      "mistake": "Registrata per errore",
+      "duplicate": "Vendita duplicata",
+      "testSale": "Vendita di prova",
+      "customerLeft": "Il cliente non ha pagato"
+    },
+    "confirmTitle": "Annullare {{number}}?",
+    "confirmMessage": "La vendita di {{amount}} verrà annullata e le sue scorte ripristinate. Questa azione non può essere annullata.",
+    "done": "{{number}} annullata",
+    "voided": "Annullata"
+  }
+}
