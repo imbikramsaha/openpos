@@ -1,0 +1,144 @@
+{
+  "title": "વેચાણ",
+  "searchPlaceholder": "રસીદ નંબર, નામ અથવા ફોન",
+  "walkIn": "સામાન્ય ગ્રાહક",
+  "itemsCount_one": "{{count}} લાઈન",
+  "itemsCount_other": "{{count}} લાઈન",
+  "allDatesHint": "બધી તારીખોમાંથી મેળ ખાતા રસીદ નંબર",
+  "clearFilters": "ફિલ્ટર દૂર કરો",
+  "loadMore": "વધુ બતાવો",
+  "showing": "{{total}} માંથી {{shown}} બતાવી રહ્યા છીએ",
+  "range": {
+    "today": "આજે",
+    "yesterday": "ગઈકાલે",
+    "last7": "છેલ્લા 7 દિવસ",
+    "thisMonth": "આ મહિને",
+    "last30": "છેલ્લા 30 દિવસ",
+    "custom": "કસ્ટમ"
+  },
+  "filter": {
+    "period": "સમયગાળો",
+    "type": "પ્રકાર",
+    "allTypes": "બધા પ્રકાર",
+    "sales": "ફક્ત વેચાણ",
+    "refunds": "ફક્ત રિફંડ",
+    "status": "સ્થિતિ",
+    "allStatuses": "કોઈપણ સ્થિતિ",
+    "method": "પેમેન્ટની રીત",
+    "allMethods": "કોઈપણ પેમેન્ટ",
+    "cashier": "કેશિયર",
+    "allCashiers": "બધા કેશિયર"
+  },
+  "col": {
+    "number": "રસીદ",
+    "time": "સમય",
+    "payment": "પેમેન્ટ"
+  },
+  "type": {
+    "sale": "વેચાણ",
+    "refund": "રિફંડ"
+  },
+  "status": {
+    "completed": "પૂર્ણ થયું",
+    "voided": "રદ"
+  },
+  "badge": {
+    "refund": "રિફંડ",
+    "voided": "રદ",
+    "partiallyRefunded": "આંશિક રિફંડ",
+    "refunded": "રિફંડ થયું"
+  },
+  "summary": {
+    "count": "ટ્રાન્ઝેક્શન",
+    "voided_one": "{{count}} રદ",
+    "voided_other": "{{count}} રદ",
+    "net": "નેટ ટોટલ",
+    "sales_one": "{{count}} વેચાણ",
+    "sales_other": "{{count}} વેચાણ",
+    "refunds_one": "{{count}} રિફંડ",
+    "refunds_other": "{{count}} રિફંડ"
+  },
+  "empty": {
+    "title": "આ સમયગાળામાં કોઈ વેચાણ નથી",
+    "hint": "કાઉન્ટર પર કરેલું વેચાણ અહીં દેખાશે.",
+    "filtered": "આ ફિલ્ટર સાથે કંઈ મેળ ખાતું નથી",
+    "filteredHint": "બીજી તારીખ શ્રેણી, શોધ અથવા ફિલ્ટર અજમાવો."
+  },
+  "export": {
+    "sales": "વેચાણ (દરેક રસીદની એક લાઈન)",
+    "items": "લાઈન આઈટમ (દરેક આઈટમની એક લાઈન)",
+    "empty": "આ ફિલ્ટર માટે એક્સપોર્ટ કરવા જેવું કંઈ નથી",
+    "done_one": "{{count}} રસીદ એક્સપોર્ટ થઈ",
+    "done_other": "{{count}} રસીદો એક્સપોર્ટ થઈ"
+  },
+  "detail": {
+    "title": "વેચાણ",
+    "notFound": "વેચાણ મળ્યું નહીં",
+    "notFoundHint": "તે કદાચ કાઢી નાખવામાં આવ્યું હશે અથવા હજુ આ ટર્મિનલ પર સિંક થયું નથી.",
+    "details": "વિગતો",
+    "receipt": "રસીદ",
+    "a4": "A4 ઇન્વોઇસ",
+    "refundOf": "આનું રિફંડ",
+    "cashier": "કેશિયર",
+    "terminal": "ટર્મિનલ",
+    "orderType": "ઓર્ડર ટાઇપ",
+    "supply": "પુરવઠો",
+    "interState": "આંતર-રાજ્ય (IGST)",
+    "intraState": "રાજ્યની અંદર (CGST + SGST)",
+    "items": "આઈટમ",
+    "taxIncluded": "કિંમતોમાં {{amount}} ટેક્સ સામેલ",
+    "taxBreakdown": "ટેક્સની વિગત",
+    "payments": "પેમેન્ટ",
+    "refundedVia": "પરત કર્યું",
+    "noPayments": "કોઈ પેમેન્ટ નોંધાયેલું નથી",
+    "pointsEarned_one": "+{{count}} પોઈન્ટ મળ્યો",
+    "pointsEarned_other": "+{{count}} પોઈન્ટ મળ્યા",
+    "pointsRedeemed_one": "{{count}} પોઈન્ટ વપરાયો",
+    "pointsRedeemed_other": "{{count}} પોઈન્ટ વપરાયા",
+    "linked": "આ વેચાણના રિફંડ"
+  },
+  "refund": {
+    "action": "રિફંડ",
+    "title": "{{number}} રિફંડ કરો",
+    "pickItems": "ગ્રાહક શું પરત કરી રહ્યો છે તે પસંદ કરો.",
+    "everything": "બધું રિફંડ કરો",
+    "clearAll": "પસંદગી દૂર કરો",
+    "nothingLeft": "આ વેચાણમાં બધું પહેલેથી રિફંડ થઈ ગયું છે.",
+    "voided": "આ વેચાણ રદ કરવામાં આવ્યું છે અને તેનું રિફંડ થઈ શકશે નહીં.",
+    "returnedQty": "{{qty}} પરત કર્યું",
+    "method": "આનાથી પરત કરો",
+    "creditHint": "{{name}} ની ઉધાર રકમ ઘટાડે છે.",
+    "restock": "આઈટમ પાછી સ્ટોકમાં મૂકો",
+    "restockHint": "પરત કરેલી આઈટમ ઈન્વેન્ટરીમાં પાછી ઉમેરાય છે.",
+    "noRestockHint": "સ્ટોક જેમનું તેમ રહે છે — બગડેલા અથવા એક્સપાયર થયેલા માલ માટે આ વાપરો.",
+    "reason": "કારણ",
+    "reasons": {
+      "damaged": "બગડેલું",
+      "wrongItem": "ખોટી આઈટમ",
+      "changedMind": "મન બદલાયું",
+      "notAsDescribed": "કહ્યા પ્રમાણે નહોતું"
+    },
+    "total": "કુલ રિફંડ",
+    "confirm": "રિફંડ કરો",
+    "done": "ક્રેડિટ નોટ {{number}} બની",
+    "complete": "રિફંડ પૂર્ણ થયું",
+    "payBack": "{{method}} માં પરત કરો",
+    "toAccount": "ગ્રાહકના ખાતામાં જમા થયું"
+  },
+  "void": {
+    "action": "રદ કરો",
+    "title": "{{number}} રદ કરો",
+    "hint": "રદ કરવાથી આખું વેચાણ કેન્સલ થાય છે અને તેની આઈટમ પાછી સ્ટોકમાં આવે છે. ભૂલ સુધારવા માટે આ વાપરો; માલ પરત આવે ત્યારે રિફંડ વાપરો.",
+    "reason": "કારણ",
+    "reasons": {
+      "mistake": "ભૂલથી બિલ બન્યું",
+      "duplicate": "ડુપ્લિકેટ વેચાણ",
+      "testSale": "ટેસ્ટ વેચાણ",
+      "customerLeft": "ગ્રાહકે પેમેન્ટ કર્યું નહીં"
+    },
+    "confirmTitle": "{{number}} રદ કરવું છે?",
+    "confirmMessage": "{{amount}} નું વેચાણ રદ કરવામાં આવશે અને તેનો સ્ટોક પાછો આવશે. આ પાછું લઈ શકાશે નહીં.",
+    "done": "{{number}} રદ થયું",
+    "voided": "રદ"
+  }
+}

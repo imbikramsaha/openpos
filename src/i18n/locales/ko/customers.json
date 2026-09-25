@@ -1,0 +1,191 @@
+{
+  "title": "고객",
+  "subtitle_other": "{{count}}명의 고객",
+  "name": "이름",
+  "phone": "전화번호",
+  "email": "이메일",
+  "taxNumber": "사업자번호",
+  "address": "주소",
+  "city": "도시",
+  "state": "주/지역",
+  "notes": "메모",
+  "discountPercent": "자동 할인",
+  "creditLimit": "외상 한도",
+  "openingBalance": "기초 잔액",
+  "newCustomer": "신규 고객",
+  "searchPlaceholder": "이름, 전화번호, 이메일 또는 사업자번호 검색",
+  "createNamed": "“{{name}}” 만들기",
+  "showing": "전체 {{total}}명 중 {{shown}}명 표시",
+  "loadMore": "더 보기",
+  "totalDue": "총 미수금",
+  "balanceDue": "미수 잔액",
+  "advance": "선수금(대변 잔액)",
+  "noBalance": "미수금 없음",
+  "dueBadge": "미수 {{amount}}",
+  "advanceBadge": "선수금 {{amount}}",
+  "pointsBadge_other": "{{count}}점",
+  "discountBadge": "{{value}} 할인",
+  "limitInfo": "한도 {{limit}} · 사용 가능 {{available}}",
+  "overLimit": "외상 한도 {{limit}} 초과",
+  "receivePayment": "입금 처리",
+  "sendReminder": "WhatsApp 알림",
+  "adjustBalance": "잔액 조정",
+  "printStatement": "명세서",
+  "filter": {
+    "all": "전체",
+    "due": "미수금 있음",
+    "points": "포인트 보유"
+  },
+  "sort": {
+    "label": "정렬",
+    "name": "정렬: 이름(A–Z)",
+    "balance": "정렬: 잔액 많은 순",
+    "recent": "정렬: 최근 방문순"
+  },
+  "col": {
+    "customer": "고객",
+    "balance": "잔액",
+    "points": "포인트",
+    "spent": "총 구매액",
+    "visits": "방문 횟수",
+    "lastVisit": "최근 방문"
+  },
+  "empty": {
+    "title": "등록된 고객이 없습니다",
+    "hint": "고객을 추가하면 구매 내역, 포인트, 외상(장부) 잔액을 관리할 수 있습니다.",
+    "filtered": "일치하는 고객이 없습니다",
+    "filteredHint": "다른 이름, 전화번호 또는 필터를 시도해 보세요."
+  },
+  "csv": {
+    "template": "CSV 템플릿 다운로드",
+    "nothing": "내보낼 고객이 없습니다",
+    "exported_other": "{{count}}명의 고객을 내보냈습니다",
+    "noRows": "파일에서 고객 데이터를 찾을 수 없습니다. 첫 번째 행에 name, phone, email 같은 열 이름이 있어야 합니다.",
+    "confirmTitle_other": "{{count}}명의 고객을 가져오시겠습니까?",
+    "confirmMessage": "신규 {{creates}}건, 수정 {{updates}}건(전화번호 또는 이메일로 매칭), 이름 없어 건너뛴 행 {{skipped}}건. 가져오기로 잔액이 변경되지는 않습니다.",
+    "imported": "가져오기 완료: 신규 {{creates}}건, 수정 {{updates}}건",
+    "failed": "가져오기 실패: {{error}}"
+  },
+  "form": {
+    "newTitle": "신규 고객",
+    "editTitle": "고객 수정",
+    "contact": "연락처",
+    "addressSection": "주소",
+    "account": "계정",
+    "selectState": "주 선택",
+    "nameRequired": "고객 이름을 입력하세요",
+    "emailInvalid": "이메일 주소 형식이 올바르지 않습니다",
+    "discountRange": "0에서 100 사이의 비율을 입력하세요",
+    "limitNegative": "한도는 음수가 될 수 없습니다",
+    "discountHint": "이 고객을 주문에 추가하면 자동으로 적용됩니다.",
+    "creditLimitHint": "외상 판매가 이 금액을 초과하면 담당자에게 경고합니다.",
+    "noLimit": "한도 없음",
+    "openingHint": "고객이 이전부터 이미 갚아야 할 금액입니다.",
+    "openingAdvance": "이 고객은 {{amount}}의 선수금이 있습니다.",
+    "balanceReadonly": "잔액은 판매와 입금 내역으로 자동 계산됩니다. 수정하려면 잔액 조정을 사용하세요.",
+    "duplicateTitle": "이미 사용 중인 전화번호입니다",
+    "duplicatePhone": "{{name}}이(가) 이미 이 전화번호를 사용하고 있습니다. 그래도 저장하시겠습니까?",
+    "saveAnyway": "그래도 저장",
+    "created": "{{name}}이(가) 추가되었습니다",
+    "saved": "고객 정보가 저장되었습니다"
+  },
+  "detail": {
+    "title": "고객",
+    "notFound": "고객을 찾을 수 없습니다",
+    "notFoundHint": "이 고객은 삭제되었을 수 있습니다.",
+    "newSale": "새 주문"
+  },
+  "stats": {
+    "spent": "총 구매액",
+    "visits": "방문 횟수",
+    "average": "평균 구매액",
+    "lastVisit": "최근 방문",
+    "points": "적립 포인트",
+    "pointsWorth": "{{value}} 상당",
+    "since": "고객 등록일",
+    "visitsLast": "방문 횟수(90일)"
+  },
+  "tabs": {
+    "purchases": "구매 내역",
+    "statement": "계정",
+    "info": "상세정보"
+  },
+  "purchases": {
+    "empty": "아직 구매 내역이 없습니다",
+    "emptyHint": "이 고객의 판매 내역이 여기에 표시됩니다.",
+    "lines_other": "{{count}}개 상품"
+  },
+  "statement": {
+    "empty": "계정 활동 내역이 없습니다",
+    "emptyHint": "외상 판매, 입금, 조정 내역이 여기에 표시됩니다.",
+    "balanceAfter": "잔액 {{amount}}",
+    "printReceipt": "입금 영수증 인쇄",
+    "deleteTitle": "이 항목을 삭제하시겠습니까?",
+    "deleteMessage": "{{amount}} 항목이 삭제되고 잔액이 다시 계산됩니다.",
+    "deleted": "항목이 삭제되었습니다"
+  },
+  "kind": {
+    "sale": "외상 판매",
+    "refund": "계정으로 환불",
+    "payment": "입금",
+    "charge": "청구"
+  },
+  "pay": {
+    "title": "입금 처리",
+    "receiptTitle": "입금이 기록되었습니다",
+    "method": "수령 방법",
+    "fullBalance": "전체 잔액 {{amount}}",
+    "showQr": "UPI QR 코드 표시",
+    "notePlaceholder": "선택 사항, 예: 수표 번호 또는 UPI 참조번호",
+    "after": "입금 후 잔액: {{amount}}",
+    "overpaid": "{{amount}}은(는) 선수금으로 보관됩니다.",
+    "confirm": "{{amount}} 입금",
+    "done": "{{name}}으로부터 {{amount}}을(를) 수령했습니다",
+    "received": "입금이 완료되었습니다"
+  },
+  "adjust": {
+    "title": "잔액 조정",
+    "addCharge": "청구 추가",
+    "reduce": "잔액 줄이기",
+    "chargeHint": "고객이 갚아야 할 금액을 늘립니다. 예: 이전 청구서나 서비스 요금.",
+    "reduceHint": "입금 없이 고객이 갚아야 할 금액을 줄입니다. 예: 대손 처리나 호의적 할인.",
+    "chargePlaceholder": "예: 장부상의 이전 청구",
+    "reducePlaceholder": "예: 정산 할인",
+    "newBalance": "새 잔액",
+    "done": "잔액이 조정되었습니다"
+  },
+  "delete": {
+    "title": "{{name}}을(를) 삭제하시겠습니까?",
+    "message": "이 고객은 목록에서 제거됩니다. 과거 판매 내역에는 정보가 그대로 남습니다.",
+    "balanceWarning": "이 고객에게는 아직 {{amount}}의 미수 잔액이 있습니다. 삭제하면 고객 목록과 알림에서 숨겨집니다. 과거 판매 내역에는 정보가 그대로 남습니다.",
+    "done": "{{name}}이(가) 삭제되었습니다"
+  },
+  "reminder": {
+    "text": "안녕하세요 {{name}}님, {{business}}에서 알려드립니다. 계정에 {{amount}}이(가) 미납되었습니다.",
+    "upi": "{{upi}}(으)로 UPI 결제가 가능합니다.",
+    "contact": "문의사항은 {{phone}}으로 연락 주세요.",
+    "thanks": "감사합니다!"
+  },
+  "print": {
+    "paymentReceipt": "입금 영수증",
+    "receiptNo": "영수증 번호",
+    "date": "날짜",
+    "customer": "고객",
+    "receivedBy": "수령 담당자",
+    "amountReceived": "입금액",
+    "previousBalance": "이전 잔액",
+    "paid": "결제됨",
+    "balanceDue": "미수 잔액",
+    "advance": "선수금",
+    "thanksText": "{{name}}님, {{method}}(으)로 {{amount}}을(를) 수령했습니다. 감사합니다.",
+    "statement": "거래 명세서",
+    "generated": "생성일 {{date}}",
+    "totalCharges": "총 청구액",
+    "totalPayments": "입금 및 대변 합계",
+    "description": "내용",
+    "debit": "청구",
+    "credit": "입금",
+    "balance": "잔액",
+    "pleasePay": "미수 잔액 {{amount}}을(를) 결제해 주세요"
+  }
+}

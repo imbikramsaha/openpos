@@ -1,0 +1,137 @@
+{
+  "title": "売上",
+  "searchPlaceholder": "レシート番号、名前、電話番号",
+  "walkIn": "一般客",
+  "itemsCount_other": "{{count}} 明細",
+  "allDatesHint": "すべての日付から一致するレシート番号を検索",
+  "clearFilters": "絞り込みを解除",
+  "loadMore": "もっと見る",
+  "showing": "{{total}} 件中 {{shown}} 件を表示",
+  "range": {
+    "today": "今日",
+    "yesterday": "昨日",
+    "last7": "過去7日間",
+    "thisMonth": "今月",
+    "last30": "過去30日間",
+    "custom": "カスタム"
+  },
+  "filter": {
+    "period": "期間",
+    "type": "種類",
+    "allTypes": "すべての種類",
+    "sales": "売上のみ",
+    "refunds": "返金のみ",
+    "status": "ステータス",
+    "allStatuses": "すべてのステータス",
+    "method": "支払い方法",
+    "allMethods": "すべての支払い方法",
+    "cashier": "レジ担当",
+    "allCashiers": "すべてのレジ担当"
+  },
+  "col": {
+    "number": "レシート",
+    "time": "時刻",
+    "payment": "支払い方法"
+  },
+  "type": {
+    "sale": "売上",
+    "refund": "返金"
+  },
+  "status": {
+    "completed": "完了",
+    "voided": "取消済み"
+  },
+  "badge": {
+    "refund": "返金",
+    "voided": "取消済み",
+    "partiallyRefunded": "一部返金",
+    "refunded": "返金済み"
+  },
+  "summary": {
+    "count": "取引件数",
+    "voided_other": "{{count}} 件取消",
+    "net": "純売上",
+    "sales_other": "{{count}} 件の売上",
+    "refunds_other": "{{count}} 件の返金"
+  },
+  "empty": {
+    "title": "この期間の売上はありません",
+    "hint": "レジで会計した売上がここに表示されます。",
+    "filtered": "この条件に一致する取引がありません",
+    "filteredHint": "別の期間、検索語、または絞り込み条件をお試しください。"
+  },
+  "export": {
+    "sales": "売上(レシート1件につき1行)",
+    "items": "明細行(商品1点につき1行)",
+    "empty": "この条件でエクスポートできる内容がありません",
+    "done_other": "{{count}} 件のレシートをエクスポートしました"
+  },
+  "detail": {
+    "title": "取引",
+    "notFound": "取引が見つかりません",
+    "notFoundHint": "削除されたか、まだこの端末に同期されていない可能性があります。",
+    "details": "詳細",
+    "receipt": "レシート",
+    "a4": "A4 請求書",
+    "refundOf": "返金元",
+    "cashier": "レジ担当",
+    "terminal": "端末",
+    "orderType": "注文タイプ",
+    "supply": "供給",
+    "interState": "州をまたぐ取引(IGST)",
+    "intraState": "同一州内の取引(CGST + SGST)",
+    "items": "商品",
+    "taxIncluded": "価格に {{amount}} の税が含まれています",
+    "taxBreakdown": "税の内訳",
+    "payments": "支払い",
+    "refundedVia": "返金方法",
+    "noPayments": "支払い記録がありません",
+    "pointsEarned_other": "{{count}} ポイント獲得",
+    "pointsRedeemed_other": "{{count}} ポイント使用",
+    "linked": "この取引に対する返金"
+  },
+  "refund": {
+    "action": "返金",
+    "title": "{{number}} を返金",
+    "pickItems": "顧客が返品する商品を選択してください。",
+    "everything": "すべて返金",
+    "clearAll": "選択を解除",
+    "nothingLeft": "この取引の商品はすべて返金済みです。",
+    "voided": "この取引は取り消されているため返金できません。",
+    "returnedQty": "{{qty}} 返品済み",
+    "method": "返金方法",
+    "creditHint": "{{name}} の掛け売り残高を減らします。",
+    "restock": "商品を在庫に戻す",
+    "restockHint": "返品された商品は在庫に戻されます。",
+    "noRestockHint": "在庫はそのままにします — 破損品や期限切れ品はこちらを使用してください。",
+    "reason": "理由",
+    "reasons": {
+      "damaged": "破損",
+      "wrongItem": "商品違い",
+      "changedMind": "気が変わった",
+      "notAsDescribed": "説明と異なる"
+    },
+    "total": "返金合計",
+    "confirm": "返金",
+    "done": "返金伝票 {{number}} を作成しました",
+    "complete": "返金完了",
+    "payBack": "{{method}} で返金",
+    "toAccount": "顧客の会計に入金しました"
+  },
+  "void": {
+    "action": "取り消す",
+    "title": "{{number}} を取り消す",
+    "hint": "取り消すと取引全体がキャンセルされ、商品は在庫に戻ります。入力ミスの訂正に使ってください。商品が返品された場合は返金を使用してください。",
+    "reason": "理由",
+    "reasons": {
+      "mistake": "誤って入力した",
+      "duplicate": "重複した取引",
+      "testSale": "テスト取引",
+      "customerLeft": "顧客が支払わなかった"
+    },
+    "confirmTitle": "{{number}} を取り消しますか?",
+    "confirmMessage": "{{amount}} の取引が取り消され、在庫が戻されます。この操作は取り消せません。",
+    "done": "{{number}} を取り消しました",
+    "voided": "取消済み"
+  }
+}

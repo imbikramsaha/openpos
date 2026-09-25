@@ -1,0 +1,137 @@
+{
+  "title": "판매",
+  "searchPlaceholder": "영수증 번호, 이름 또는 전화번호",
+  "walkIn": "비회원",
+  "itemsCount_other": "{{count}}줄",
+  "allDatesHint": "모든 날짜에서 일치하는 영수증 번호 검색",
+  "clearFilters": "필터 초기화",
+  "loadMore": "더 보기",
+  "showing": "전체 {{total}}건 중 {{shown}}건 표시",
+  "range": {
+    "today": "오늘",
+    "yesterday": "어제",
+    "last7": "최근 7일",
+    "thisMonth": "이번 달",
+    "last30": "최근 30일",
+    "custom": "사용자 지정"
+  },
+  "filter": {
+    "period": "기간",
+    "type": "유형",
+    "allTypes": "모든 유형",
+    "sales": "판매만",
+    "refunds": "환불만",
+    "status": "상태",
+    "allStatuses": "모든 상태",
+    "method": "결제 방법",
+    "allMethods": "모든 결제 방법",
+    "cashier": "담당자",
+    "allCashiers": "모든 담당자"
+  },
+  "col": {
+    "number": "영수증",
+    "time": "시간",
+    "payment": "결제 방법"
+  },
+  "type": {
+    "sale": "판매",
+    "refund": "환불"
+  },
+  "status": {
+    "completed": "완료",
+    "voided": "취소됨"
+  },
+  "badge": {
+    "refund": "환불",
+    "voided": "취소됨",
+    "partiallyRefunded": "부분 환불",
+    "refunded": "환불됨"
+  },
+  "summary": {
+    "count": "거래 건수",
+    "voided_other": "{{count}}건 취소",
+    "net": "순매출",
+    "sales_other": "{{count}}건 판매",
+    "refunds_other": "{{count}}건 환불"
+  },
+  "empty": {
+    "title": "이 기간에 판매 내역이 없습니다",
+    "hint": "단말기에서 등록한 판매 내역이 여기에 표시됩니다.",
+    "filtered": "이 필터와 일치하는 내역이 없습니다",
+    "filteredHint": "다른 기간, 검색어 또는 필터를 시도해 보세요."
+  },
+  "export": {
+    "sales": "판매 내역(영수증 1건당 1행)",
+    "items": "상품 내역(상품 1개당 1행)",
+    "empty": "이 필터로 내보낼 내용이 없습니다",
+    "done_other": "{{count}}건의 영수증을 내보냈습니다"
+  },
+  "detail": {
+    "title": "판매 상세",
+    "notFound": "판매 내역을 찾을 수 없습니다",
+    "notFoundHint": "삭제되었거나 아직 이 단말기에 동기화되지 않았을 수 있습니다.",
+    "details": "상세정보",
+    "receipt": "영수증",
+    "a4": "A4 청구서",
+    "refundOf": "환불 대상",
+    "cashier": "담당자",
+    "terminal": "단말기",
+    "orderType": "주문 유형",
+    "supply": "공급",
+    "interState": "주 간 거래(IGST)",
+    "intraState": "동일 주 내 거래(CGST + SGST)",
+    "items": "상품",
+    "taxIncluded": "가격에 세금 {{amount}} 포함",
+    "taxBreakdown": "세금 내역",
+    "payments": "결제 내역",
+    "refundedVia": "환불 방법",
+    "noPayments": "결제 내역이 없습니다",
+    "pointsEarned_other": "{{count}} 포인트 적립",
+    "pointsRedeemed_other": "{{count}} 포인트 사용",
+    "linked": "이 판매에 대한 환불"
+  },
+  "refund": {
+    "action": "환불",
+    "title": "{{number}} 환불",
+    "pickItems": "고객이 반품할 상품을 선택하세요.",
+    "everything": "전체 환불",
+    "clearAll": "선택 해제",
+    "nothingLeft": "이 판매의 모든 상품이 이미 환불되었습니다.",
+    "voided": "이 판매는 취소되어 환불할 수 없습니다.",
+    "returnedQty": "{{qty}} 반품됨",
+    "method": "환불 방법",
+    "creditHint": "{{name}}의 외상 잔액이 줄어듭니다.",
+    "restock": "재고에 반영",
+    "restockHint": "반품된 상품이 재고에 다시 추가됩니다.",
+    "noRestockHint": "재고를 변경하지 않습니다 — 파손품이나 유통기한 만료 상품에 사용하세요.",
+    "reason": "사유",
+    "reasons": {
+      "damaged": "파손",
+      "wrongItem": "잘못된 상품",
+      "changedMind": "단순 변심",
+      "notAsDescribed": "설명과 다름"
+    },
+    "total": "환불 총액",
+    "confirm": "환불",
+    "done": "환불전표 {{number}}이(가) 생성되었습니다",
+    "complete": "환불 완료",
+    "payBack": "{{method}}(으)로 환불",
+    "toAccount": "고객 계정으로 적립되었습니다"
+  },
+  "void": {
+    "action": "취소",
+    "title": "{{number}} 취소",
+    "hint": "취소하면 판매 전체가 취소되고 상품이 재고로 반영됩니다. 잘못 등록된 판매를 바로잡을 때 사용하세요. 상품이 반품된 경우에는 환불을 사용하세요.",
+    "reason": "사유",
+    "reasons": {
+      "mistake": "잘못 등록함",
+      "duplicate": "중복 판매",
+      "testSale": "테스트 판매",
+      "customerLeft": "고객이 결제하지 않음"
+    },
+    "confirmTitle": "{{number}}을(를) 취소하시겠습니까?",
+    "confirmMessage": "{{amount}}의 판매가 취소되고 재고가 복원됩니다. 이 작업은 되돌릴 수 없습니다.",
+    "done": "{{number}}이(가) 취소되었습니다",
+    "voided": "취소됨"
+  }
+}

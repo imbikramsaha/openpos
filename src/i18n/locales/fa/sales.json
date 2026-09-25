@@ -1,0 +1,144 @@
+{
+  "title": "فروش‌ها",
+  "searchPlaceholder": "شماره رسید، نام یا تلفن",
+  "walkIn": "بدون ثبت",
+  "itemsCount_one": "{{count}} ردیف",
+  "itemsCount_other": "{{count}} ردیف",
+  "allDatesHint": "شماره‌های رسید مطابق از همه تاریخ‌ها",
+  "clearFilters": "پاک کردن فیلترها",
+  "loadMore": "نمایش موارد بیشتر",
+  "showing": "نمایش {{shown}} از {{total}}",
+  "range": {
+    "today": "امروز",
+    "yesterday": "دیروز",
+    "last7": "7 روز گذشته",
+    "thisMonth": "این ماه",
+    "last30": "30 روز گذشته",
+    "custom": "سفارشی"
+  },
+  "filter": {
+    "period": "بازه زمانی",
+    "type": "نوع",
+    "allTypes": "همه انواع",
+    "sales": "فقط فروش",
+    "refunds": "فقط استرداد",
+    "status": "وضعیت",
+    "allStatuses": "هر وضعیتی",
+    "method": "روش پرداخت",
+    "allMethods": "هر پرداختی",
+    "cashier": "صندوقدار",
+    "allCashiers": "همه صندوقداران"
+  },
+  "col": {
+    "number": "رسید",
+    "time": "زمان",
+    "payment": "پرداخت با"
+  },
+  "type": {
+    "sale": "فروش",
+    "refund": "استرداد"
+  },
+  "status": {
+    "completed": "تکمیل‌شده",
+    "voided": "ابطال‌شده"
+  },
+  "badge": {
+    "refund": "استرداد",
+    "voided": "ابطال‌شده",
+    "partiallyRefunded": "استرداد جزئی",
+    "refunded": "مسترد شده"
+  },
+  "summary": {
+    "count": "تراکنش‌ها",
+    "voided_one": "{{count}} ابطال‌شده",
+    "voided_other": "{{count}} ابطال‌شده",
+    "net": "جمع خالص",
+    "sales_one": "{{count}} فروش",
+    "sales_other": "{{count}} فروش",
+    "refunds_one": "{{count}} استرداد",
+    "refunds_other": "{{count}} استرداد"
+  },
+  "empty": {
+    "title": "فروشی در این بازه نیست",
+    "hint": "فروش‌هایی که در صندوق ثبت می‌کنید اینجا نمایش داده می‌شود.",
+    "filtered": "چیزی با این فیلترها مطابقت ندارد",
+    "filteredHint": "بازه تاریخ، جستجو یا فیلتر دیگری را امتحان کنید."
+  },
+  "export": {
+    "sales": "فروش‌ها (هر رسید یک ردیف)",
+    "items": "اقلام (هر کالا یک ردیف)",
+    "empty": "چیزی برای خروجی گرفتن با این فیلترها نیست",
+    "done_one": "{{count}} رسید خروجی گرفته شد",
+    "done_other": "{{count}} رسید خروجی گرفته شد"
+  },
+  "detail": {
+    "title": "فروش",
+    "notFound": "فروش یافت نشد",
+    "notFoundHint": "ممکن است حذف شده یا هنوز با این دستگاه همگام‌سازی نشده باشد.",
+    "details": "جزئیات",
+    "receipt": "رسید",
+    "a4": "فاکتور A4",
+    "refundOf": "استرداد برای",
+    "cashier": "صندوقدار",
+    "terminal": "ترمینال",
+    "orderType": "نوع سفارش",
+    "supply": "عرضه",
+    "interState": "بین‌استانی (IGST)",
+    "intraState": "درون‌استانی (CGST + SGST)",
+    "items": "اقلام",
+    "taxIncluded": "قیمت‌ها شامل {{amount}} مالیات است",
+    "taxBreakdown": "ریز مالیات",
+    "payments": "پرداخت‌ها",
+    "refundedVia": "بازپرداخت‌شده از طریق",
+    "noPayments": "پرداختی ثبت نشده",
+    "pointsEarned_one": "+{{count}} امتیاز کسب شد",
+    "pointsEarned_other": "+{{count}} امتیاز کسب شد",
+    "pointsRedeemed_one": "{{count}} امتیاز استفاده شد",
+    "pointsRedeemed_other": "{{count}} امتیاز استفاده شد",
+    "linked": "استردادهای مرتبط با این فروش"
+  },
+  "refund": {
+    "action": "استرداد",
+    "title": "استرداد {{number}}",
+    "pickItems": "انتخاب کنید مشتری چه چیزی را برمی‌گرداند.",
+    "everything": "استرداد همه",
+    "clearAll": "پاک کردن انتخاب",
+    "nothingLeft": "همه اقلام این فروش قبلاً مسترد شده است.",
+    "voided": "این فروش ابطال شده و قابل استرداد نیست.",
+    "returnedQty": "{{qty}} برگردانده شد",
+    "method": "بازپرداخت با",
+    "creditHint": "بدهی {{name}} در حساب را کاهش می‌دهد.",
+    "restock": "بازگرداندن کالاها به موجودی",
+    "restockHint": "کالاهای برگشتی دوباره به موجودی افزوده می‌شوند.",
+    "noRestockHint": "موجودی بدون تغییر می‌ماند — برای کالاهای آسیب‌دیده یا تاریخ‌گذشته از این استفاده کنید.",
+    "reason": "دلیل",
+    "reasons": {
+      "damaged": "آسیب‌دیده",
+      "wrongItem": "کالای اشتباه",
+      "changedMind": "انصراف مشتری",
+      "notAsDescribed": "مطابق توضیحات نیست"
+    },
+    "total": "جمع استرداد",
+    "confirm": "استرداد",
+    "done": "برگه اعتباری {{number}} ایجاد شد",
+    "complete": "استرداد کامل شد",
+    "payBack": "بازپرداخت با {{method}}",
+    "toAccount": "به حساب مشتری اعتبار داده شد"
+  },
+  "void": {
+    "action": "ابطال",
+    "title": "ابطال {{number}}",
+    "hint": "ابطال کل فروش را لغو می‌کند و کالاهای آن را به موجودی بازمی‌گرداند. از آن برای اصلاح اشتباه استفاده کنید؛ برای بازگشت کالا از استرداد استفاده کنید.",
+    "reason": "دلیل",
+    "reasons": {
+      "mistake": "به‌اشتباه ثبت شد",
+      "duplicate": "فروش تکراری",
+      "testSale": "فروش آزمایشی",
+      "customerLeft": "مشتری پرداخت نکرد"
+    },
+    "confirmTitle": "{{number}} ابطال شود؟",
+    "confirmMessage": "فروش به مبلغ {{amount}} لغو و موجودی آن بازگردانده می‌شود. این عملیات قابل بازگشت نیست.",
+    "done": "{{number}} ابطال شد",
+    "voided": "ابطال‌شده"
+  }
+}

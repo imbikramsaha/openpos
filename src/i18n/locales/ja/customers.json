@@ -1,0 +1,191 @@
+{
+  "title": "顧客",
+  "subtitle_other": "{{count}} 名の顧客",
+  "name": "名前",
+  "phone": "電話番号",
+  "email": "メール",
+  "taxNumber": "税番号",
+  "address": "住所",
+  "city": "市区町村",
+  "state": "州/地域",
+  "notes": "備考",
+  "discountPercent": "自動割引",
+  "creditLimit": "与信限度額",
+  "openingBalance": "期首残高",
+  "newCustomer": "新規顧客",
+  "searchPlaceholder": "名前、電話番号、メール、税番号で検索",
+  "createNamed": "「{{name}}」を作成",
+  "showing": "{{total}} 件中 {{shown}} 件を表示",
+  "loadMore": "もっと見る",
+  "totalDue": "未収金合計",
+  "balanceDue": "未払い残高",
+  "advance": "前受金(貸方残高)",
+  "noBalance": "未払いなし",
+  "dueBadge": "未払い {{amount}}",
+  "advanceBadge": "前受金 {{amount}}",
+  "pointsBadge_other": "{{count}} ポイント",
+  "discountBadge": "{{value}} 引き",
+  "limitInfo": "限度額 {{limit}} ・残り {{available}}",
+  "overLimit": "与信限度額 {{limit}} を超えています",
+  "receivePayment": "入金を記録",
+  "sendReminder": "WhatsApp でリマインド",
+  "adjustBalance": "残高を調整",
+  "printStatement": "明細書",
+  "filter": {
+    "all": "すべて",
+    "due": "未払いあり",
+    "points": "ポイントあり"
+  },
+  "sort": {
+    "label": "並び替え",
+    "name": "並び替え:名前(A–Z)",
+    "balance": "並び替え:残高が多い順",
+    "recent": "並び替え:最近の来店順"
+  },
+  "col": {
+    "customer": "顧客",
+    "balance": "残高",
+    "points": "ポイント",
+    "spent": "購入合計",
+    "visits": "来店回数",
+    "lastVisit": "最終来店"
+  },
+  "empty": {
+    "title": "顧客がまだいません",
+    "hint": "顧客を追加すると、購入履歴・ポイント・掛け売り残高を管理できます。",
+    "filtered": "一致する顧客がいません",
+    "filteredHint": "別の名前、電話番号、または絞り込み条件をお試しください。"
+  },
+  "csv": {
+    "template": "CSV テンプレートをダウンロード",
+    "nothing": "エクスポートする顧客がいません",
+    "exported_other": "{{count}} 名の顧客をエクスポートしました",
+    "noRows": "ファイルに顧客データが見つかりません。1行目には name、phone、email などの列名が必要です。",
+    "confirmTitle_other": "{{count}} 名の顧客をインポートしますか?",
+    "confirmMessage": "新規 {{creates}} 件、更新 {{updates}} 件(電話番号またはメールで照合)、名前がなく {{skipped}} 件をスキップします。インポートで残高が変わることはありません。",
+    "imported": "インポート完了:新規 {{creates}} 件、更新 {{updates}} 件",
+    "failed": "インポートに失敗しました:{{error}}"
+  },
+  "form": {
+    "newTitle": "新規顧客",
+    "editTitle": "顧客を編集",
+    "contact": "連絡先",
+    "addressSection": "住所",
+    "account": "会計",
+    "selectState": "州を選択",
+    "nameRequired": "顧客の名前を入力してください",
+    "emailInvalid": "メールアドレスの形式が正しくありません",
+    "discountRange": "0から100の間でパーセントを入力してください",
+    "limitNegative": "限度額をマイナスにはできません",
+    "discountHint": "この顧客を会計に追加すると自動的に適用されます。",
+    "creditLimitHint": "掛け売りがこの額を超えるとレジ担当者に警告します。",
+    "noLimit": "上限なし",
+    "openingHint": "この顧客が以前から抱えている未払い額です。",
+    "openingAdvance": "この顧客には {{amount}} の前受金があります。",
+    "balanceReadonly": "残高は売上と入金から自動計算されます。修正するには「残高を調整」を使ってください。",
+    "duplicateTitle": "この電話番号は既に使われています",
+    "duplicatePhone": "{{name}} がこの電話番号を使っています。このまま保存しますか?",
+    "saveAnyway": "このまま保存",
+    "created": "{{name}} を追加しました",
+    "saved": "顧客を保存しました"
+  },
+  "detail": {
+    "title": "顧客",
+    "notFound": "顧客が見つかりません",
+    "notFoundHint": "この顧客は削除された可能性があります。",
+    "newSale": "新しい会計"
+  },
+  "stats": {
+    "spent": "購入合計",
+    "visits": "来店回数",
+    "average": "平均購入額",
+    "lastVisit": "最終来店",
+    "points": "ポイント",
+    "pointsWorth": "価値 {{value}}",
+    "since": "顧客登録日",
+    "visitsLast": "来店回数(90日間)"
+  },
+  "tabs": {
+    "purchases": "購入履歴",
+    "statement": "会計",
+    "info": "詳細"
+  },
+  "purchases": {
+    "empty": "まだ購入履歴がありません",
+    "emptyHint": "この顧客の売上がここに表示されます。",
+    "lines_other": "{{count}} 点"
+  },
+  "statement": {
+    "empty": "取引履歴がありません",
+    "emptyHint": "掛け売り、入金、調整の記録がここに表示されます。",
+    "balanceAfter": "残高 {{amount}}",
+    "printReceipt": "入金レシートを印刷",
+    "deleteTitle": "この記録を削除しますか?",
+    "deleteMessage": "{{amount}} の記録が削除され、残高が再計算されます。",
+    "deleted": "記録を削除しました"
+  },
+  "kind": {
+    "sale": "掛け売り",
+    "refund": "返金(会計へ)",
+    "payment": "入金",
+    "charge": "請求"
+  },
+  "pay": {
+    "title": "入金を記録",
+    "receiptTitle": "入金を記録しました",
+    "method": "受取方法",
+    "fullBalance": "残高全額 {{amount}}",
+    "showQr": "UPI QR コードを表示",
+    "notePlaceholder": "任意。小切手番号や UPI 参照番号など",
+    "after": "入金後の残高:{{amount}}",
+    "overpaid": "{{amount}} は前受金として保持されます。",
+    "confirm": "{{amount}} を入金",
+    "done": "{{name}} から {{amount}} を受け取りました",
+    "received": "入金を受け取りました"
+  },
+  "adjust": {
+    "title": "残高を調整",
+    "addCharge": "請求を追加",
+    "reduce": "残高を減らす",
+    "chargeHint": "顧客の未払い額を増やします。例:以前の請求や手数料。",
+    "reduceHint": "入金なしで顧客の未払い額を減らします。例:貸倒れ処理や好意的な割引。",
+    "chargePlaceholder": "例:ノートに記載の旧勘定",
+    "reducePlaceholder": "例:精算時の割引",
+    "newBalance": "新しい残高",
+    "done": "残高を調整しました"
+  },
+  "delete": {
+    "title": "{{name}} を削除しますか?",
+    "message": "この顧客は一覧から削除されます。過去の売上には情報が残ります。",
+    "balanceWarning": "この顧客にはまだ {{amount}} の未払い残高があります。削除すると顧客一覧やリマインドから非表示になります。過去の売上には情報が残ります。",
+    "done": "{{name}} を削除しました"
+  },
+  "reminder": {
+    "text": "{{name}} 様、{{business}} からのお知らせです。ご利用金額 {{amount}} のお支払い期限が近づいています。",
+    "upi": "{{upi}} 宛に UPI でお支払いいただけます。",
+    "contact": "ご不明な点は {{phone}} までお電話ください。",
+    "thanks": "ありがとうございました!"
+  },
+  "print": {
+    "paymentReceipt": "入金レシート",
+    "receiptNo": "レシート番号",
+    "date": "日付",
+    "customer": "顧客",
+    "receivedBy": "受取担当",
+    "amountReceived": "入金額",
+    "previousBalance": "以前の残高",
+    "paid": "支払済み",
+    "balanceDue": "未払い残高",
+    "advance": "前受金",
+    "thanksText": "{{name}} 様、{{method}} にて {{amount}} をお預かりしました。ありがとうございました。",
+    "statement": "明細書",
+    "generated": "発行日 {{date}}",
+    "totalCharges": "請求合計",
+    "totalPayments": "入金・貸方合計",
+    "description": "内容",
+    "debit": "請求",
+    "credit": "入金",
+    "balance": "残高",
+    "pleasePay": "未払い残高 {{amount}} のお支払いをお願いします"
+  }
+}
