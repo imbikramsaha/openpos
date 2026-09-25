@@ -1,0 +1,158 @@
+{
+  "title": "Продажи",
+  "searchPlaceholder": "Номер чека, имя или телефон",
+  "walkIn": "Разовый",
+  "itemsCount_one": "{{count}} строка",
+  "itemsCount_few": "{{count}} строки",
+  "itemsCount_many": "{{count}} строк",
+  "itemsCount_other": "{{count}} строки",
+  "allDatesHint": "Совпадающие номера чеков за все даты",
+  "clearFilters": "Сбросить фильтры",
+  "loadMore": "Показать ещё",
+  "showing": "Показано {{shown}} из {{total}}",
+  "range": {
+    "today": "Сегодня",
+    "yesterday": "Вчера",
+    "last7": "Последние 7 дней",
+    "thisMonth": "Этот месяц",
+    "last30": "Последние 30 дней",
+    "custom": "Другое"
+  },
+  "filter": {
+    "period": "Период",
+    "type": "Тип",
+    "allTypes": "Все типы",
+    "sales": "Только продажи",
+    "refunds": "Только возвраты",
+    "status": "Статус",
+    "allStatuses": "Любой статус",
+    "method": "Способ оплаты",
+    "allMethods": "Любая оплата",
+    "cashier": "Кассир",
+    "allCashiers": "Все кассиры"
+  },
+  "col": {
+    "number": "Чек",
+    "time": "Время",
+    "payment": "Способ оплаты"
+  },
+  "type": {
+    "sale": "Продажа",
+    "refund": "Возврат"
+  },
+  "status": {
+    "completed": "Завершена",
+    "voided": "Аннулирована"
+  },
+  "badge": {
+    "refund": "Возврат",
+    "voided": "Аннулирована",
+    "partiallyRefunded": "Частично возвращена",
+    "refunded": "Возвращена"
+  },
+  "summary": {
+    "count": "Транзакции",
+    "voided_one": "{{count}} аннулирована",
+    "voided_few": "{{count}} аннулированы",
+    "voided_many": "{{count}} аннулированы",
+    "voided_other": "{{count}} аннулированы",
+    "net": "Чистый итог",
+    "sales_one": "{{count}} продажа",
+    "sales_few": "{{count}} продажи",
+    "sales_many": "{{count}} продаж",
+    "sales_other": "{{count}} продажи",
+    "refunds_one": "{{count}} возврат",
+    "refunds_few": "{{count}} возврата",
+    "refunds_many": "{{count}} возвратов",
+    "refunds_other": "{{count}} возврата"
+  },
+  "empty": {
+    "title": "Нет продаж за этот период",
+    "hint": "Здесь будут отображаться продажи, оформленные на кассе.",
+    "filtered": "Ничего не соответствует этим фильтрам",
+    "filteredHint": "Попробуйте другой период, запрос или фильтр."
+  },
+  "export": {
+    "sales": "Продажи (одна строка на чек)",
+    "items": "Позиции чеков (одна строка на товар)",
+    "empty": "Нечего экспортировать по этим фильтрам",
+    "done_one": "Экспортирован {{count}} чек",
+    "done_few": "Экспортированы {{count}} чека",
+    "done_many": "Экспортированы {{count}} чеков",
+    "done_other": "Экспортированы {{count}} чека"
+  },
+  "detail": {
+    "title": "Продажа",
+    "notFound": "Продажа не найдена",
+    "notFoundHint": "Возможно, она была удалена или ещё не синхронизирована с этим терминалом.",
+    "details": "Подробности",
+    "receipt": "Чек",
+    "a4": "Накладная A4",
+    "refundOf": "Возврат по продаже",
+    "cashier": "Кассир",
+    "terminal": "Терминал",
+    "orderType": "Тип заказа",
+    "supply": "Поставка",
+    "interState": "Межштатная (IGST)",
+    "intraState": "Внутриштатная (CGST + SGST)",
+    "items": "Товары",
+    "taxIncluded": "Цены включают налог {{amount}}",
+    "taxBreakdown": "Разбивка по налогу",
+    "payments": "Платежи",
+    "refundedVia": "Возвращено",
+    "noPayments": "Платежи не зафиксированы",
+    "pointsEarned_one": "+{{count}} балл начислен",
+    "pointsEarned_few": "+{{count}} балла начислены",
+    "pointsEarned_many": "+{{count}} баллов начислены",
+    "pointsEarned_other": "+{{count}} балла начислены",
+    "pointsRedeemed_one": "{{count}} балл списан",
+    "pointsRedeemed_few": "{{count}} балла списаны",
+    "pointsRedeemed_many": "{{count}} баллов списаны",
+    "pointsRedeemed_other": "{{count}} балла списаны",
+    "linked": "Возвраты по этой продаже"
+  },
+  "refund": {
+    "action": "Возврат",
+    "title": "Возврат {{number}}",
+    "pickItems": "Выберите, что возвращает покупатель.",
+    "everything": "Вернуть всё",
+    "clearAll": "Снять выделение",
+    "nothingLeft": "Всё по этой продаже уже возвращено.",
+    "voided": "Эта продажа аннулирована, оформить возврат нельзя.",
+    "returnedQty": "Возвращено {{qty}}",
+    "method": "Вернуть с помощью",
+    "creditHint": "Уменьшает долг {{name}} на счёте.",
+    "restock": "Вернуть товары на склад",
+    "restockHint": "Возвращённые товары добавляются обратно на склад.",
+    "noRestockHint": "Остаток не меняется — используйте для повреждённых или просроченных товаров.",
+    "reason": "Причина",
+    "reasons": {
+      "damaged": "Повреждён",
+      "wrongItem": "Не тот товар",
+      "changedMind": "Передумал",
+      "notAsDescribed": "Не соответствует описанию"
+    },
+    "total": "Сумма возврата",
+    "confirm": "Вернуть",
+    "done": "Возвратная накладная {{number}} создана",
+    "complete": "Возврат завершён",
+    "payBack": "Вернуть через {{method}}",
+    "toAccount": "Зачислено на счёт покупателя"
+  },
+  "void": {
+    "action": "Аннулировать",
+    "title": "Аннулирование {{number}}",
+    "hint": "Аннулирование отменяет всю продажу и возвращает её товары на склад. Используйте это для исправления ошибок; для возврата товара используйте возврат.",
+    "reason": "Причина",
+    "reasons": {
+      "mistake": "Пробито по ошибке",
+      "duplicate": "Повторная продажа",
+      "testSale": "Тестовая продажа",
+      "customerLeft": "Покупатель не оплатил"
+    },
+    "confirmTitle": "Аннулировать {{number}}?",
+    "confirmMessage": "Продажа на сумму {{amount}} будет отменена, а её товары возвращены на склад. Это действие нельзя отменить.",
+    "done": "{{number}} аннулирован",
+    "voided": "Аннулирована"
+  }
+}
