@@ -1,0 +1,191 @@
+{
+  "title": "Khách hàng",
+  "subtitle_other": "{{count}} khách hàng",
+  "name": "Tên",
+  "phone": "Số điện thoại",
+  "email": "Email",
+  "taxNumber": "Mã số thuế",
+  "address": "Địa chỉ",
+  "city": "Thành phố",
+  "state": "Bang / khu vực",
+  "notes": "Ghi chú",
+  "discountPercent": "Giảm giá tự động",
+  "creditLimit": "Hạn mức công nợ",
+  "openingBalance": "Số dư đầu kỳ",
+  "newCustomer": "Khách hàng mới",
+  "searchPlaceholder": "Tìm tên, số điện thoại, email hoặc mã số thuế",
+  "createNamed": "Tạo “{{name}}”",
+  "showing": "Hiển thị {{shown}} trong {{total}}",
+  "loadMore": "Hiển thị thêm",
+  "totalDue": "Tổng còn nợ",
+  "balanceDue": "Số dư còn nợ",
+  "advance": "Ứng trước (dư có)",
+  "noBalance": "Không có nợ",
+  "dueBadge": "Nợ {{amount}}",
+  "advanceBadge": "Ứng trước {{amount}}",
+  "pointsBadge_other": "{{count}} điểm",
+  "discountBadge": "Giảm {{value}}",
+  "limitInfo": "Hạn mức {{limit}} · còn {{available}}",
+  "overLimit": "Vượt hạn mức công nợ {{limit}}",
+  "receivePayment": "Nhận thanh toán",
+  "sendReminder": "Nhắc nợ qua WhatsApp",
+  "adjustBalance": "Điều chỉnh số dư",
+  "printStatement": "Sao kê",
+  "filter": {
+    "all": "Tất cả",
+    "due": "Còn nợ",
+    "points": "Có điểm thưởng"
+  },
+  "sort": {
+    "label": "Sắp xếp",
+    "name": "Sắp xếp: Tên (A–Z)",
+    "balance": "Sắp xếp: Nợ cao nhất",
+    "recent": "Sắp xếp: Ghé thăm gần đây"
+  },
+  "col": {
+    "customer": "Khách hàng",
+    "balance": "Số dư",
+    "points": "Điểm",
+    "spent": "Tổng chi tiêu",
+    "visits": "Lượt ghé",
+    "lastVisit": "Lần ghé gần nhất"
+  },
+  "empty": {
+    "title": "Chưa có khách hàng nào",
+    "hint": "Thêm khách hàng để theo dõi lượt mua, điểm thưởng và số dư công nợ (sổ ghi nợ).",
+    "filtered": "Không có khách hàng phù hợp",
+    "filteredHint": "Thử tên, số điện thoại hoặc bộ lọc khác."
+  },
+  "csv": {
+    "template": "Tải mẫu CSV",
+    "nothing": "Không có khách hàng để xuất",
+    "exported_other": "Đã xuất {{count}} khách hàng",
+    "noRows": "Không tìm thấy khách hàng nào trong tệp đó. Dòng đầu tiên phải chứa tên cột như name, phone, email.",
+    "confirmTitle_other": "Nhập {{count}} khách hàng?",
+    "confirmMessage": "{{creates}} mới, {{updates}} đã cập nhật (khớp theo số điện thoại hoặc email), {{skipped}} dòng bị bỏ qua vì thiếu tên. Số dư không bao giờ bị thay đổi khi nhập.",
+    "imported": "Đã nhập: {{creates}} mới, {{updates}} đã cập nhật",
+    "failed": "Nhập thất bại: {{error}}"
+  },
+  "form": {
+    "newTitle": "Khách hàng mới",
+    "editTitle": "Sửa khách hàng",
+    "contact": "Liên hệ",
+    "addressSection": "Địa chỉ",
+    "account": "Tài khoản",
+    "selectState": "Chọn bang",
+    "nameRequired": "Nhập tên khách hàng",
+    "emailInvalid": "Địa chỉ email này có vẻ không hợp lệ",
+    "discountRange": "Nhập tỷ lệ phần trăm từ 0 đến 100",
+    "limitNegative": "Hạn mức không được âm",
+    "discountHint": "Được áp dụng tự động khi khách hàng này được thêm vào đơn bán.",
+    "creditLimitHint": "Cảnh báo thu ngân khi một đơn bán công nợ vượt quá mức này.",
+    "noLimit": "Không giới hạn",
+    "openingHint": "Số tiền khách hàng đã nợ bạn từ trước.",
+    "openingAdvance": "Khách hàng đang có {{amount}} dư có với bạn.",
+    "balanceReadonly": "Số dư được tính từ các đơn bán và khoản thanh toán. Dùng Điều chỉnh số dư để sửa lại.",
+    "duplicateTitle": "Số điện thoại đã được sử dụng",
+    "duplicatePhone": "{{name}} đã dùng số điện thoại này. Vẫn lưu?",
+    "saveAnyway": "Vẫn lưu",
+    "created": "Đã thêm {{name}}",
+    "saved": "Đã lưu khách hàng"
+  },
+  "detail": {
+    "title": "Khách hàng",
+    "notFound": "Không tìm thấy khách hàng",
+    "notFoundHint": "Khách hàng này có thể đã bị xóa.",
+    "newSale": "Đơn bán mới"
+  },
+  "stats": {
+    "spent": "Tổng chi tiêu",
+    "visits": "Lượt ghé",
+    "average": "Đơn bán trung bình",
+    "lastVisit": "Lần ghé gần nhất",
+    "points": "Điểm thưởng",
+    "pointsWorth": "Trị giá {{value}}",
+    "since": "Là khách hàng từ",
+    "visitsLast": "Lượt ghé (90 ngày)"
+  },
+  "tabs": {
+    "purchases": "Lượt mua",
+    "statement": "Tài khoản",
+    "info": "Chi tiết"
+  },
+  "purchases": {
+    "empty": "Chưa có lượt mua nào",
+    "emptyHint": "Các đơn bán cho khách hàng này sẽ hiện ở đây.",
+    "lines_other": "{{count}} mặt hàng"
+  },
+  "statement": {
+    "empty": "Chưa có hoạt động tài khoản",
+    "emptyHint": "Các đơn bán công nợ, khoản thanh toán và điều chỉnh sẽ hiện ở đây.",
+    "balanceAfter": "Số dư {{amount}}",
+    "printReceipt": "In biên nhận thanh toán",
+    "deleteTitle": "Xóa mục này?",
+    "deleteMessage": "Mục {{amount}} sẽ bị xóa và số dư sẽ được tính lại.",
+    "deleted": "Đã xóa mục"
+  },
+  "kind": {
+    "sale": "Bán công nợ",
+    "refund": "Hoàn tiền vào tài khoản",
+    "payment": "Đã nhận thanh toán",
+    "charge": "Khoản phí"
+  },
+  "pay": {
+    "title": "Nhận thanh toán",
+    "receiptTitle": "Đã ghi nhận thanh toán",
+    "method": "Nhận bằng",
+    "fullBalance": "Toàn bộ số dư {{amount}}",
+    "showQr": "Hiện mã QR UPI",
+    "notePlaceholder": "Không bắt buộc, VD: số séc hoặc mã tham chiếu UPI",
+    "after": "Số dư sau thanh toán: {{amount}}",
+    "overpaid": "{{amount}} sẽ được giữ lại làm khoản ứng trước.",
+    "confirm": "Nhận {{amount}}",
+    "done": "Đã nhận {{amount}} từ {{name}}",
+    "received": "Đã nhận thanh toán"
+  },
+  "adjust": {
+    "title": "Điều chỉnh số dư",
+    "addCharge": "Thêm khoản phí",
+    "reduce": "Giảm số dư",
+    "chargeHint": "Tăng số tiền khách hàng đang nợ, VD: hóa đơn cũ hoặc phí dịch vụ.",
+    "reduceHint": "Giảm số tiền khách hàng đang nợ mà không thu tiền, VD: xóa nợ hoặc giảm giá thiện chí.",
+    "chargePlaceholder": "VD: Hóa đơn cũ ghi sổ tay",
+    "reducePlaceholder": "VD: Giảm giá tất toán",
+    "newBalance": "Số dư mới",
+    "done": "Đã điều chỉnh số dư"
+  },
+  "delete": {
+    "title": "Xóa {{name}}?",
+    "message": "Khách hàng sẽ bị xóa khỏi danh sách. Các đơn bán trước đó vẫn giữ nguyên thông tin.",
+    "balanceWarning": "Khách hàng này vẫn còn số dư nợ {{amount}}. Xóa sẽ ẩn khách hàng khỏi danh sách và nhắc nợ. Các đơn bán trước đó vẫn giữ nguyên thông tin.",
+    "done": "Đã xóa {{name}}"
+  },
+  "reminder": {
+    "text": "Xin chào {{name}}, đây là lời nhắc từ {{business}} rằng tài khoản của bạn còn nợ {{amount}}.",
+    "upi": "Bạn có thể thanh toán qua UPI đến {{upi}}.",
+    "contact": "Có thắc mắc? Gọi cho chúng tôi theo số {{phone}}.",
+    "thanks": "Xin cảm ơn!"
+  },
+  "print": {
+    "paymentReceipt": "Biên nhận thanh toán",
+    "receiptNo": "Số biên nhận",
+    "date": "Ngày",
+    "customer": "Khách hàng",
+    "receivedBy": "Người nhận",
+    "amountReceived": "Số tiền đã nhận",
+    "previousBalance": "Số dư trước đó",
+    "paid": "Đã trả",
+    "balanceDue": "Còn phải trả",
+    "advance": "Ứng trước",
+    "thanksText": "Cảm ơn {{name}}, chúng tôi đã nhận {{amount}} qua {{method}}.",
+    "statement": "Sao kê tài khoản",
+    "generated": "Tạo lúc {{date}}",
+    "totalCharges": "Tổng khoản phí",
+    "totalPayments": "Tổng thanh toán & khoản ghi có",
+    "description": "Diễn giải",
+    "debit": "Ghi nợ",
+    "credit": "Ghi có",
+    "balance": "Số dư",
+    "pleasePay": "Vui lòng thanh toán số dư còn lại {{amount}}"
+  }
+}

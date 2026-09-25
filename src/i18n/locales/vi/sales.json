@@ -1,0 +1,137 @@
+{
+  "title": "Đơn bán",
+  "searchPlaceholder": "Số hóa đơn, tên hoặc số điện thoại",
+  "walkIn": "Khách lẻ",
+  "itemsCount_other": "{{count}} dòng",
+  "allDatesHint": "Khớp số hóa đơn từ mọi ngày",
+  "clearFilters": "Xóa bộ lọc",
+  "loadMore": "Hiển thị thêm",
+  "showing": "Hiển thị {{shown}} trong {{total}}",
+  "range": {
+    "today": "Hôm nay",
+    "yesterday": "Hôm qua",
+    "last7": "7 ngày qua",
+    "thisMonth": "Tháng này",
+    "last30": "30 ngày qua",
+    "custom": "Tùy chỉnh"
+  },
+  "filter": {
+    "period": "Khoảng thời gian",
+    "type": "Loại",
+    "allTypes": "Tất cả loại",
+    "sales": "Chỉ bán hàng",
+    "refunds": "Chỉ hoàn tiền",
+    "status": "Trạng thái",
+    "allStatuses": "Mọi trạng thái",
+    "method": "Hình thức thanh toán",
+    "allMethods": "Mọi hình thức",
+    "cashier": "Thu ngân",
+    "allCashiers": "Tất cả thu ngân"
+  },
+  "col": {
+    "number": "Hóa đơn",
+    "time": "Giờ",
+    "payment": "Thanh toán bằng"
+  },
+  "type": {
+    "sale": "Bán hàng",
+    "refund": "Hoàn tiền"
+  },
+  "status": {
+    "completed": "Hoàn tất",
+    "voided": "Đã hủy"
+  },
+  "badge": {
+    "refund": "Hoàn tiền",
+    "voided": "Đã hủy",
+    "partiallyRefunded": "Hoàn tiền một phần",
+    "refunded": "Đã hoàn tiền"
+  },
+  "summary": {
+    "count": "Giao dịch",
+    "voided_other": "{{count}} đã hủy",
+    "net": "Tổng thực thu",
+    "sales_other": "{{count}} đơn bán",
+    "refunds_other": "{{count}} lượt hoàn tiền"
+  },
+  "empty": {
+    "title": "Không có đơn bán nào trong khoảng thời gian này",
+    "hint": "Các đơn bán bạn thực hiện tại quầy sẽ hiện ở đây.",
+    "filtered": "Không có gì khớp với bộ lọc này",
+    "filteredHint": "Thử khoảng ngày, tìm kiếm hoặc bộ lọc khác."
+  },
+  "export": {
+    "sales": "Đơn bán (mỗi dòng một hóa đơn)",
+    "items": "Chi tiết mặt hàng (mỗi dòng một mặt hàng)",
+    "empty": "Không có gì để xuất với bộ lọc này",
+    "done_other": "Đã xuất {{count}} hóa đơn"
+  },
+  "detail": {
+    "title": "Đơn bán",
+    "notFound": "Không tìm thấy đơn bán",
+    "notFoundHint": "Đơn bán này có thể đã bị xóa hoặc chưa đồng bộ đến máy này.",
+    "details": "Chi tiết",
+    "receipt": "Hóa đơn",
+    "a4": "Hóa đơn khổ A4",
+    "refundOf": "Hoàn tiền của",
+    "cashier": "Thu ngân",
+    "terminal": "Máy bán hàng",
+    "orderType": "Loại đơn hàng",
+    "supply": "Cung cấp",
+    "interState": "Liên bang (IGST)",
+    "intraState": "Nội bang (CGST + SGST)",
+    "items": "Mặt hàng",
+    "taxIncluded": "Giá đã gồm {{amount}} tiền thuế",
+    "taxBreakdown": "Chi tiết thuế",
+    "payments": "Thanh toán",
+    "refundedVia": "Đã hoàn lại",
+    "noPayments": "Chưa ghi nhận thanh toán nào",
+    "pointsEarned_other": "+{{count}} điểm đã nhận",
+    "pointsRedeemed_other": "{{count}} điểm đã dùng",
+    "linked": "Các lượt hoàn tiền cho đơn bán này"
+  },
+  "refund": {
+    "action": "Hoàn tiền",
+    "title": "Hoàn tiền {{number}}",
+    "pickItems": "Chọn mặt hàng khách đang trả lại.",
+    "everything": "Hoàn toàn bộ",
+    "clearAll": "Bỏ chọn",
+    "nothingLeft": "Toàn bộ đơn bán này đã được hoàn tiền.",
+    "voided": "Đơn bán này đã bị hủy nên không thể hoàn tiền.",
+    "returnedQty": "Đã trả {{qty}}",
+    "method": "Hoàn lại bằng",
+    "creditHint": "Giảm số tiền {{name}} đang nợ.",
+    "restock": "Nhập lại hàng vào kho",
+    "restockHint": "Mặt hàng trả lại sẽ được cộng lại vào tồn kho.",
+    "noRestockHint": "Tồn kho giữ nguyên — dùng cho hàng hư hỏng hoặc hết hạn.",
+    "reason": "Lý do",
+    "reasons": {
+      "damaged": "Hư hỏng",
+      "wrongItem": "Sai mặt hàng",
+      "changedMind": "Đổi ý",
+      "notAsDescribed": "Không đúng như mô tả"
+    },
+    "total": "Tổng hoàn tiền",
+    "confirm": "Hoàn tiền",
+    "done": "Đã tạo phiếu ghi có {{number}}",
+    "complete": "Đã hoàn tất hoàn tiền",
+    "payBack": "Hoàn lại bằng {{method}}",
+    "toAccount": "Đã ghi có vào tài khoản khách hàng"
+  },
+  "void": {
+    "action": "Hủy",
+    "title": "Hủy {{number}}",
+    "hint": "Hủy sẽ hủy toàn bộ đơn bán và nhập lại hàng vào kho. Dùng để sửa sai sót; dùng hoàn tiền khi khách trả hàng lại.",
+    "reason": "Lý do",
+    "reasons": {
+      "mistake": "Lên đơn nhầm",
+      "duplicate": "Đơn bán trùng lặp",
+      "testSale": "Đơn bán thử",
+      "customerLeft": "Khách không thanh toán"
+    },
+    "confirmTitle": "Hủy {{number}}?",
+    "confirmMessage": "Đơn bán {{amount}} sẽ bị hủy và hàng được nhập lại vào kho. Không thể hoàn tác thao tác này.",
+    "done": "Đã hủy {{number}}",
+    "voided": "Đã hủy"
+  }
+}

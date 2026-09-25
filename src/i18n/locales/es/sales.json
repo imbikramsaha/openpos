@@ -1,0 +1,144 @@
+{
+  "title": "Ventas",
+  "searchPlaceholder": "N.º de recibo, nombre o teléfono",
+  "walkIn": "Ocasional",
+  "itemsCount_one": "{{count}} línea",
+  "itemsCount_other": "{{count}} líneas",
+  "allDatesHint": "Coincidencias de número de recibo en todas las fechas",
+  "clearFilters": "Borrar filtros",
+  "loadMore": "Mostrar más",
+  "showing": "Mostrando {{shown}} de {{total}}",
+  "range": {
+    "today": "Hoy",
+    "yesterday": "Ayer",
+    "last7": "Últimos 7 días",
+    "thisMonth": "Este mes",
+    "last30": "Últimos 30 días",
+    "custom": "Personalizado"
+  },
+  "filter": {
+    "period": "Período",
+    "type": "Tipo",
+    "allTypes": "Todos los tipos",
+    "sales": "Solo ventas",
+    "refunds": "Solo reembolsos",
+    "status": "Estado",
+    "allStatuses": "Cualquier estado",
+    "method": "Método de pago",
+    "allMethods": "Cualquier pago",
+    "cashier": "Cajero",
+    "allCashiers": "Todos los cajeros"
+  },
+  "col": {
+    "number": "Recibo",
+    "time": "Hora",
+    "payment": "Pagado con"
+  },
+  "type": {
+    "sale": "Venta",
+    "refund": "Reembolso"
+  },
+  "status": {
+    "completed": "Completada",
+    "voided": "Anulada"
+  },
+  "badge": {
+    "refund": "Reembolso",
+    "voided": "Anulada",
+    "partiallyRefunded": "Parcialmente reembolsada",
+    "refunded": "Reembolsada"
+  },
+  "summary": {
+    "count": "Transacciones",
+    "voided_one": "{{count}} anulada",
+    "voided_other": "{{count}} anuladas",
+    "net": "Total neto",
+    "sales_one": "{{count}} venta",
+    "sales_other": "{{count}} ventas",
+    "refunds_one": "{{count}} reembolso",
+    "refunds_other": "{{count}} reembolsos"
+  },
+  "empty": {
+    "title": "No hay ventas en este período",
+    "hint": "Aquí aparecerán las ventas que registres en la caja.",
+    "filtered": "Nada coincide con estos filtros",
+    "filteredHint": "Prueba con otro rango de fechas, búsqueda o filtro."
+  },
+  "export": {
+    "sales": "Ventas (una fila por recibo)",
+    "items": "Artículos (una fila por artículo)",
+    "empty": "Nada para exportar con estos filtros",
+    "done_one": "Se exportó {{count}} recibo",
+    "done_other": "Se exportaron {{count}} recibos"
+  },
+  "detail": {
+    "title": "Venta",
+    "notFound": "Venta no encontrada",
+    "notFoundHint": "Es posible que se haya eliminado o que aún no se haya sincronizado con esta terminal.",
+    "details": "Detalles",
+    "receipt": "Recibo",
+    "a4": "Factura A4",
+    "refundOf": "Reembolso de",
+    "cashier": "Cajero",
+    "terminal": "Terminal",
+    "orderType": "Tipo de pedido",
+    "supply": "Suministro",
+    "interState": "Interestatal (IGST)",
+    "intraState": "Intraestatal (CGST + SGST)",
+    "items": "Artículos",
+    "taxIncluded": "Los precios incluyen {{amount}} de impuesto",
+    "taxBreakdown": "Desglose de impuestos",
+    "payments": "Pagos",
+    "refundedVia": "Reembolsado con",
+    "noPayments": "No hay pagos registrados",
+    "pointsEarned_one": "+{{count}} punto ganado",
+    "pointsEarned_other": "+{{count}} puntos ganados",
+    "pointsRedeemed_one": "{{count}} punto canjeado",
+    "pointsRedeemed_other": "{{count}} puntos canjeados",
+    "linked": "Reembolsos de esta venta"
+  },
+  "refund": {
+    "action": "Reembolsar",
+    "title": "Reembolsar {{number}}",
+    "pickItems": "Elige lo que el cliente está devolviendo.",
+    "everything": "Reembolsar todo",
+    "clearAll": "Borrar selección",
+    "nothingLeft": "Todo lo de esta venta ya se ha reembolsado.",
+    "voided": "Esta venta fue anulada y no se puede reembolsar.",
+    "returnedQty": "{{qty}} devuelto",
+    "method": "Reembolsar con",
+    "creditHint": "Reduce lo que {{name}} debe a cuenta.",
+    "restock": "Devolver artículos al stock",
+    "restockHint": "Los artículos devueltos se añaden de nuevo al inventario.",
+    "noRestockHint": "El stock no cambia — úsalo para artículos dañados o caducados.",
+    "reason": "Motivo",
+    "reasons": {
+      "damaged": "Dañado",
+      "wrongItem": "Artículo equivocado",
+      "changedMind": "Cambió de opinión",
+      "notAsDescribed": "No es como se describía"
+    },
+    "total": "Total a reembolsar",
+    "confirm": "Reembolsar",
+    "done": "Nota de crédito {{number}} creada",
+    "complete": "Reembolso completado",
+    "payBack": "Devolver en {{method}}",
+    "toAccount": "Abonado a la cuenta del cliente"
+  },
+  "void": {
+    "action": "Anular",
+    "title": "Anular {{number}}",
+    "hint": "Anular cancela toda la venta y devuelve sus artículos al stock. Úsalo para corregir errores; usa un reembolso cuando se devuelvan productos.",
+    "reason": "Motivo",
+    "reasons": {
+      "mistake": "Registrada por error",
+      "duplicate": "Venta duplicada",
+      "testSale": "Venta de prueba",
+      "customerLeft": "El cliente no pagó"
+    },
+    "confirmTitle": "¿Anular {{number}}?",
+    "confirmMessage": "La venta de {{amount}} se cancelará y su stock se repondrá. Esta acción no se puede deshacer.",
+    "done": "{{number}} anulada",
+    "voided": "Anulada"
+  }
+}
