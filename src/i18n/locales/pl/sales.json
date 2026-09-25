@@ -1,0 +1,158 @@
+{
+  "title": "Historia sprzedaży",
+  "searchPlaceholder": "Nr paragonu, nazwa lub telefon",
+  "walkIn": "Anonimowy",
+  "itemsCount_one": "{{count}} pozycja",
+  "itemsCount_few": "{{count}} pozycje",
+  "itemsCount_many": "{{count}} pozycji",
+  "itemsCount_other": "{{count}} pozycji",
+  "allDatesHint": "Pasujące numery paragonów ze wszystkich dat",
+  "clearFilters": "Wyczyść filtry",
+  "loadMore": "Pokaż więcej",
+  "showing": "Wyświetlono {{shown}} z {{total}}",
+  "range": {
+    "today": "Dziś",
+    "yesterday": "Wczoraj",
+    "last7": "Ostatnie 7 dni",
+    "thisMonth": "Ten miesiąc",
+    "last30": "Ostatnie 30 dni",
+    "custom": "Niestandardowy"
+  },
+  "filter": {
+    "period": "Okres",
+    "type": "Typ",
+    "allTypes": "Wszystkie typy",
+    "sales": "Tylko sprzedaż",
+    "refunds": "Tylko zwroty",
+    "status": "Status",
+    "allStatuses": "Dowolny status",
+    "method": "Metoda płatności",
+    "allMethods": "Dowolna płatność",
+    "cashier": "Kasjer",
+    "allCashiers": "Wszyscy kasjerzy"
+  },
+  "col": {
+    "number": "Paragon",
+    "time": "Godzina",
+    "payment": "Płatność"
+  },
+  "type": {
+    "sale": "Sprzedaż",
+    "refund": "Zwrot"
+  },
+  "status": {
+    "completed": "Zakończona",
+    "voided": "Anulowana"
+  },
+  "badge": {
+    "refund": "Zwrot",
+    "voided": "Anulowana",
+    "partiallyRefunded": "Częściowo zwrócona",
+    "refunded": "Zwrócona"
+  },
+  "summary": {
+    "count": "Transakcje",
+    "voided_one": "{{count}} anulowana",
+    "voided_few": "{{count}} anulowane",
+    "voided_many": "{{count}} anulowanych",
+    "voided_other": "{{count}} anulowanej",
+    "net": "Suma netto",
+    "sales_one": "{{count}} sprzedaż",
+    "sales_few": "{{count}} sprzedaże",
+    "sales_many": "{{count}} sprzedaży",
+    "sales_other": "{{count}} sprzedaży",
+    "refunds_one": "{{count}} zwrot",
+    "refunds_few": "{{count}} zwroty",
+    "refunds_many": "{{count}} zwrotów",
+    "refunds_other": "{{count}} zwrotu"
+  },
+  "empty": {
+    "title": "Brak sprzedaży w tym okresie",
+    "hint": "Sprzedaż zarejestrowana w kasie pojawi się tutaj.",
+    "filtered": "Nic nie pasuje do tych filtrów",
+    "filteredHint": "Spróbuj innego zakresu dat, wyszukiwania lub filtra."
+  },
+  "export": {
+    "sales": "Sprzedaż (jeden wiersz na paragon)",
+    "items": "Pozycje (jeden wiersz na pozycję)",
+    "empty": "Brak danych do wyeksportowania dla tych filtrów",
+    "done_one": "Wyeksportowano {{count}} paragon",
+    "done_few": "Wyeksportowano {{count}} paragony",
+    "done_many": "Wyeksportowano {{count}} paragonów",
+    "done_other": "Wyeksportowano {{count}} paragonu"
+  },
+  "detail": {
+    "title": "Sprzedaż",
+    "notFound": "Nie znaleziono sprzedaży",
+    "notFoundHint": "Mogła zostać usunięta lub jeszcze nie zsynchronizowana z tym terminalem.",
+    "details": "Szczegóły",
+    "receipt": "Paragon",
+    "a4": "Faktura A4",
+    "refundOf": "Zwrot do",
+    "cashier": "Kasjer",
+    "terminal": "Terminal",
+    "orderType": "Typ zamówienia",
+    "supply": "Dostawa",
+    "interState": "Międzystanowa (IGST)",
+    "intraState": "Wewnątrzstanowa (CGST + SGST)",
+    "items": "Pozycje",
+    "taxIncluded": "Ceny zawierają podatek {{amount}}",
+    "taxBreakdown": "Podział podatku",
+    "payments": "Płatności",
+    "refundedVia": "Zwrócono przez",
+    "noPayments": "Brak zarejestrowanych płatności",
+    "pointsEarned_one": "+{{count}} zdobyty punkt",
+    "pointsEarned_few": "+{{count}} zdobyte punkty",
+    "pointsEarned_many": "+{{count}} zdobytych punktów",
+    "pointsEarned_other": "+{{count}} zdobytego punktu",
+    "pointsRedeemed_one": "{{count}} wykorzystany punkt",
+    "pointsRedeemed_few": "{{count}} wykorzystane punkty",
+    "pointsRedeemed_many": "{{count}} wykorzystanych punktów",
+    "pointsRedeemed_other": "{{count}} wykorzystanego punktu",
+    "linked": "Zwroty do tej sprzedaży"
+  },
+  "refund": {
+    "action": "Zwrot",
+    "title": "Zwrot {{number}}",
+    "pickItems": "Wybierz, co klient zwraca.",
+    "everything": "Zwróć wszystko",
+    "clearAll": "Wyczyść zaznaczenie",
+    "nothingLeft": "Wszystko z tej sprzedaży zostało już zwrócone.",
+    "voided": "Ta sprzedaż została anulowana i nie można jej zwrócić.",
+    "returnedQty": "Zwrócono {{qty}}",
+    "method": "Zwróć przez",
+    "creditHint": "Zmniejsza zadłużenie {{name}} na koncie.",
+    "restock": "Zwróć pozycje do magazynu",
+    "restockHint": "Zwrócone pozycje są dodawane z powrotem do magazynu.",
+    "noRestockHint": "Stan magazynowy pozostaje bez zmian — użyj tego dla towarów uszkodzonych lub przeterminowanych.",
+    "reason": "Powód",
+    "reasons": {
+      "damaged": "Uszkodzony",
+      "wrongItem": "Niewłaściwy produkt",
+      "changedMind": "Zmiana decyzji",
+      "notAsDescribed": "Niezgodny z opisem"
+    },
+    "total": "Suma zwrotu",
+    "confirm": "Zwróć",
+    "done": "Utworzono korektę {{number}}",
+    "complete": "Zwrot zakończony",
+    "payBack": "Zwrot w formie: {{method}}",
+    "toAccount": "Zaksięgowano na koncie klienta"
+  },
+  "void": {
+    "action": "Anuluj",
+    "title": "Anuluj {{number}}",
+    "hint": "Anulowanie kasuje całą sprzedaż i zwraca pozycje do magazynu. Użyj tego do poprawiania pomyłek; zwrotu użyj, gdy towar wraca.",
+    "reason": "Powód",
+    "reasons": {
+      "mistake": "Wybito przez pomyłkę",
+      "duplicate": "Zduplikowana sprzedaż",
+      "testSale": "Sprzedaż testowa",
+      "customerLeft": "Klient nie zapłacił"
+    },
+    "confirmTitle": "Anulować {{number}}?",
+    "confirmMessage": "Sprzedaż na kwotę {{amount}} zostanie anulowana, a towar wróci do magazynu. Tej operacji nie można cofnąć.",
+    "done": "Anulowano {{number}}",
+    "voided": "Anulowana"
+  }
+}
