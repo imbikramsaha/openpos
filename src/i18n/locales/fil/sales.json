@@ -1,0 +1,144 @@
+{
+  "title": "Mga Benta",
+  "searchPlaceholder": "Receipt no., pangalan o telepono",
+  "walkIn": "Walk-in",
+  "itemsCount_one": "{{count}} linya",
+  "itemsCount_other": "{{count}} linya",
+  "allDatesHint": "Tumutugmang receipt number mula sa lahat ng petsa",
+  "clearFilters": "I-clear ang mga filter",
+  "loadMore": "Ipakita pa",
+  "showing": "Ipinapakita ang {{shown}} sa {{total}}",
+  "range": {
+    "today": "Ngayon",
+    "yesterday": "Kahapon",
+    "last7": "Huling 7 araw",
+    "thisMonth": "Ngayong buwan",
+    "last30": "Huling 30 araw",
+    "custom": "Custom"
+  },
+  "filter": {
+    "period": "Panahon",
+    "type": "Uri",
+    "allTypes": "Lahat ng uri",
+    "sales": "Benta lang",
+    "refunds": "Refund lang",
+    "status": "Status",
+    "allStatuses": "Kahit anong status",
+    "method": "Paraan ng bayad",
+    "allMethods": "Kahit anong bayad",
+    "cashier": "Cashier",
+    "allCashiers": "Lahat ng cashier"
+  },
+  "col": {
+    "number": "Resibo",
+    "time": "Oras",
+    "payment": "Binayaran gamit"
+  },
+  "type": {
+    "sale": "Benta",
+    "refund": "Refund"
+  },
+  "status": {
+    "completed": "Kumpleto",
+    "voided": "Na-void"
+  },
+  "badge": {
+    "refund": "Refund",
+    "voided": "Na-void",
+    "partiallyRefunded": "Bahagyang na-refund",
+    "refunded": "Na-refund"
+  },
+  "summary": {
+    "count": "Transaksyon",
+    "voided_one": "{{count}} na-void",
+    "voided_other": "{{count}} na-void",
+    "net": "Net na kabuuan",
+    "sales_one": "{{count}} benta",
+    "sales_other": "{{count}} benta",
+    "refunds_one": "{{count}} refund",
+    "refunds_other": "{{count}} refund"
+  },
+  "empty": {
+    "title": "Walang benta sa panahong ito",
+    "hint": "Lalabas dito ang mga bentang isasagawa mo sa counter.",
+    "filtered": "Walang tugma sa mga filter na ito",
+    "filteredHint": "Subukan ang ibang date range, paghahanap o filter."
+  },
+  "export": {
+    "sales": "Benta (isang row bawat resibo)",
+    "items": "Line item (isang row bawat item)",
+    "empty": "Walang i-eexport para sa mga filter na ito",
+    "done_one": "{{count}} resibo ang na-export",
+    "done_other": "{{count}} resibo ang na-export"
+  },
+  "detail": {
+    "title": "Benta",
+    "notFound": "Hindi nahanap ang benta",
+    "notFoundHint": "Baka naalis na ito o hindi pa na-sync sa terminal na ito.",
+    "details": "Detalye",
+    "receipt": "Resibo",
+    "a4": "A4 invoice",
+    "refundOf": "Refund ng",
+    "cashier": "Cashier",
+    "terminal": "Terminal",
+    "orderType": "Uri ng order",
+    "supply": "Supply",
+    "interState": "Sa ibang state (IGST)",
+    "intraState": "Sa loob ng state (CGST + SGST)",
+    "items": "Mga Item",
+    "taxIncluded": "Kasama na ang {{amount}} na buwis sa presyo",
+    "taxBreakdown": "Breakdown ng buwis",
+    "payments": "Mga Bayad",
+    "refundedVia": "Ibinalik sa pamamagitan ng",
+    "noPayments": "Walang naka-record na bayad",
+    "pointsEarned_one": "+{{count}} point ang nakuha",
+    "pointsEarned_other": "+{{count}} points ang nakuha",
+    "pointsRedeemed_one": "{{count}} point ang na-redeem",
+    "pointsRedeemed_other": "{{count}} points ang na-redeem",
+    "linked": "Mga refund laban sa bentang ito"
+  },
+  "refund": {
+    "action": "Refund",
+    "title": "I-refund ang {{number}}",
+    "pickItems": "Piliin kung ano ang isinasauli ng customer.",
+    "everything": "I-refund lahat",
+    "clearAll": "I-clear ang pinili",
+    "nothingLeft": "Na-refund na lahat sa bentang ito.",
+    "voided": "Na-void ang bentang ito at hindi na puwedeng i-refund.",
+    "returnedQty": "{{qty}} ang isinauli",
+    "method": "Ibalik gamit ang",
+    "creditHint": "Binabawasan ang utang ni {{name}} sa account.",
+    "restock": "Ibalik ang mga item sa stock",
+    "restockHint": "Idadagdag pabalik sa inventory ang mga isinaulíng item.",
+    "noRestockHint": "Mananatili ang stock — gamitin ito para sa sirang o expired na produkto.",
+    "reason": "Dahilan",
+    "reasons": {
+      "damaged": "Sira",
+      "wrongItem": "Maling item",
+      "changedMind": "Nagbago ng isip",
+      "notAsDescribed": "Hindi tulad ng inilarawan"
+    },
+    "total": "Kabuuang irerefund",
+    "confirm": "I-refund",
+    "done": "Nagawa ang credit note {{number}}",
+    "complete": "Kumpleto ang refund",
+    "payBack": "Ibalik sa pamamagitan ng {{method}}",
+    "toAccount": "Na-credit sa account ng customer"
+  },
+  "void": {
+    "action": "I-void",
+    "title": "I-void ang {{number}}",
+    "hint": "Kinakansela ng pag-void ang buong benta at ibinabalik sa stock ang mga item nito. Gamitin ito para itama ang mga pagkakamali; gumamit ng refund kapag ibinabalik ang mga produkto.",
+    "reason": "Dahilan",
+    "reasons": {
+      "mistake": "Nagkamaling pag-ring up",
+      "duplicate": "Duplicate na benta",
+      "testSale": "Test na benta",
+      "customerLeft": "Hindi nagbayad ang customer"
+    },
+    "confirmTitle": "I-void ang {{number}}?",
+    "confirmMessage": "Kakanselahin ang bentang {{amount}} at ibabalik ang stock nito. Hindi na ito maibabalik pa.",
+    "done": "Na-void ang {{number}}",
+    "voided": "Na-void"
+  }
+}
