@@ -1,0 +1,144 @@
+{
+  "title": "Ventes",
+  "searchPlaceholder": "N° de reçu, nom ou téléphone",
+  "walkIn": "Passage",
+  "itemsCount_one": "{{count}} ligne",
+  "itemsCount_other": "{{count}} lignes",
+  "allDatesHint": "Numéros de reçu correspondants sur toutes les dates",
+  "clearFilters": "Effacer les filtres",
+  "loadMore": "Afficher plus",
+  "showing": "Affichage de {{shown}} sur {{total}}",
+  "range": {
+    "today": "Aujourd'hui",
+    "yesterday": "Hier",
+    "last7": "7 derniers jours",
+    "thisMonth": "Ce mois-ci",
+    "last30": "30 derniers jours",
+    "custom": "Personnalisé"
+  },
+  "filter": {
+    "period": "Période",
+    "type": "Type",
+    "allTypes": "Tous les types",
+    "sales": "Ventes uniquement",
+    "refunds": "Remboursements uniquement",
+    "status": "Statut",
+    "allStatuses": "Tous les statuts",
+    "method": "Mode de paiement",
+    "allMethods": "Tous les paiements",
+    "cashier": "Caissier",
+    "allCashiers": "Tous les caissiers"
+  },
+  "col": {
+    "number": "Reçu",
+    "time": "Heure",
+    "payment": "Payé par"
+  },
+  "type": {
+    "sale": "Vente",
+    "refund": "Remboursement"
+  },
+  "status": {
+    "completed": "Terminée",
+    "voided": "Annulée"
+  },
+  "badge": {
+    "refund": "Remboursement",
+    "voided": "Annulée",
+    "partiallyRefunded": "Partiellement remboursée",
+    "refunded": "Remboursée"
+  },
+  "summary": {
+    "count": "Transactions",
+    "voided_one": "{{count}} annulée",
+    "voided_other": "{{count}} annulées",
+    "net": "Total net",
+    "sales_one": "{{count}} vente",
+    "sales_other": "{{count}} ventes",
+    "refunds_one": "{{count}} remboursement",
+    "refunds_other": "{{count}} remboursements"
+  },
+  "empty": {
+    "title": "Aucune vente sur cette période",
+    "hint": "Les ventes enregistrées en caisse apparaîtront ici.",
+    "filtered": "Rien ne correspond à ces filtres",
+    "filteredHint": "Essayez une autre période, recherche ou un autre filtre."
+  },
+  "export": {
+    "sales": "Ventes (une ligne par reçu)",
+    "items": "Articles (une ligne par article)",
+    "empty": "Rien à exporter avec ces filtres",
+    "done_one": "{{count}} reçu exporté",
+    "done_other": "{{count}} reçus exportés"
+  },
+  "detail": {
+    "title": "Vente",
+    "notFound": "Vente introuvable",
+    "notFoundHint": "Elle a peut-être été supprimée ou pas encore synchronisée sur ce terminal.",
+    "details": "Détails",
+    "receipt": "Reçu",
+    "a4": "Facture A4",
+    "refundOf": "Remboursement de",
+    "cashier": "Caissier",
+    "terminal": "Terminal",
+    "orderType": "Type de commande",
+    "supply": "Livraison",
+    "interState": "Inter-états (IGST)",
+    "intraState": "Intra-état (CGST + SGST)",
+    "items": "Articles",
+    "taxIncluded": "Les prix incluent {{amount}} de taxe",
+    "taxBreakdown": "Détail des taxes",
+    "payments": "Paiements",
+    "refundedVia": "Remboursé via",
+    "noPayments": "Aucun paiement enregistré",
+    "pointsEarned_one": "+{{count}} point gagné",
+    "pointsEarned_other": "+{{count}} points gagnés",
+    "pointsRedeemed_one": "{{count}} point utilisé",
+    "pointsRedeemed_other": "{{count}} points utilisés",
+    "linked": "Remboursements liés à cette vente"
+  },
+  "refund": {
+    "action": "Rembourser",
+    "title": "Rembourser {{number}}",
+    "pickItems": "Choisissez ce que le client retourne.",
+    "everything": "Tout rembourser",
+    "clearAll": "Effacer la sélection",
+    "nothingLeft": "Tout ce qui concerne cette vente a déjà été remboursé.",
+    "voided": "Cette vente a été annulée et ne peut pas être remboursée.",
+    "returnedQty": "{{qty}} retourné(s)",
+    "method": "Rembourser avec",
+    "creditHint": "Réduit ce que {{name}} doit sur son compte.",
+    "restock": "Remettre les articles en stock",
+    "restockHint": "Les articles retournés sont réintégrés au stock.",
+    "noRestockHint": "Le stock reste inchangé — utilisez ceci pour les articles endommagés ou périmés.",
+    "reason": "Motif",
+    "reasons": {
+      "damaged": "Endommagé",
+      "wrongItem": "Mauvais article",
+      "changedMind": "A changé d'avis",
+      "notAsDescribed": "Non conforme à la description"
+    },
+    "total": "Total à rembourser",
+    "confirm": "Rembourser",
+    "done": "Note de crédit {{number}} créée",
+    "complete": "Remboursement terminé",
+    "payBack": "Rembourser en {{method}}",
+    "toAccount": "Crédité sur le compte client"
+  },
+  "void": {
+    "action": "Annuler",
+    "title": "Annuler {{number}}",
+    "hint": "Annuler annule toute la vente et remet ses articles en stock. Utilisez-le pour corriger des erreurs ; utilisez un remboursement lorsque des marchandises reviennent.",
+    "reason": "Motif",
+    "reasons": {
+      "mistake": "Enregistrée par erreur",
+      "duplicate": "Vente en double",
+      "testSale": "Vente de test",
+      "customerLeft": "Le client n'a pas payé"
+    },
+    "confirmTitle": "Annuler {{number}} ?",
+    "confirmMessage": "La vente de {{amount}} sera annulée et son stock restitué. Cette action est irréversible.",
+    "done": "{{number}} annulée",
+    "voided": "Annulée"
+  }
+}
