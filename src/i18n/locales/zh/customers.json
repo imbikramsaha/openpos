@@ -1,0 +1,191 @@
+{
+  "title": "顾客",
+  "subtitle_other": "{{count}} 位顾客",
+  "name": "姓名",
+  "phone": "电话",
+  "email": "邮箱",
+  "taxNumber": "税号",
+  "address": "地址",
+  "city": "城市",
+  "state": "省/邦",
+  "notes": "备注",
+  "discountPercent": "自动折扣",
+  "creditLimit": "信用额度",
+  "openingBalance": "期初余额",
+  "newCustomer": "新建顾客",
+  "searchPlaceholder": "搜索姓名、电话、邮箱或税号",
+  "createNamed": "创建“{{name}}”",
+  "showing": "显示 {{total}} 项中的 {{shown}} 项",
+  "loadMore": "显示更多",
+  "totalDue": "欠款总额",
+  "balanceDue": "欠款余额",
+  "advance": "预付款余额",
+  "noBalance": "无欠款",
+  "dueBadge": "欠款 {{amount}}",
+  "advanceBadge": "预付 {{amount}}",
+  "pointsBadge_other": "{{count}} 积分",
+  "discountBadge": "优惠 {{value}}",
+  "limitInfo": "额度 {{limit}} · 剩余可用 {{available}}",
+  "overLimit": "超出信用额度 {{limit}}",
+  "receivePayment": "收款",
+  "sendReminder": "WhatsApp 提醒",
+  "adjustBalance": "调整余额",
+  "printStatement": "对账单",
+  "filter": {
+    "all": "全部",
+    "due": "有欠款",
+    "points": "有积分"
+  },
+  "sort": {
+    "label": "排序",
+    "name": "排序:姓名(A–Z)",
+    "balance": "排序:欠款最多",
+    "recent": "排序:最近到店"
+  },
+  "col": {
+    "customer": "顾客",
+    "balance": "余额",
+    "points": "积分",
+    "spent": "消费总额",
+    "visits": "到店次数",
+    "lastVisit": "最近到店"
+  },
+  "empty": {
+    "title": "暂无顾客",
+    "hint": "添加顾客以跟踪消费记录、积分和信用(挂账)余额。",
+    "filtered": "没有匹配的顾客",
+    "filteredHint": "请尝试其他姓名、电话号码或筛选条件。"
+  },
+  "csv": {
+    "template": "下载 CSV 模板",
+    "nothing": "没有可导出的顾客",
+    "exported_other": "已导出 {{count}} 位顾客",
+    "noRows": "文件中未找到顾客数据。第一行必须包含列名,例如 name、phone、email。",
+    "confirmTitle_other": "导入 {{count}} 位顾客?",
+    "confirmMessage": "新增 {{creates}} 位,更新 {{updates}} 位(按电话或邮箱匹配),跳过 {{skipped}} 行(缺少姓名)。导入不会更改余额。",
+    "imported": "已导入:新增 {{creates}} 位,更新 {{updates}} 位",
+    "failed": "导入失败:{{error}}"
+  },
+  "form": {
+    "newTitle": "新建顾客",
+    "editTitle": "编辑顾客",
+    "contact": "联系方式",
+    "addressSection": "地址",
+    "account": "账户",
+    "selectState": "选择省/邦",
+    "nameRequired": "请输入顾客姓名",
+    "emailInvalid": "这不像是有效的邮箱地址",
+    "discountRange": "请输入 0 到 100 之间的百分比",
+    "limitNegative": "额度不能为负数",
+    "discountHint": "将该顾客加入订单时自动应用。",
+    "creditLimitHint": "当挂账销售超过此额度时提醒收银员。",
+    "noLimit": "无限额",
+    "openingHint": "顾客此前已欠您的金额。",
+    "openingAdvance": "该顾客有 {{amount}} 的预付款余额。",
+    "balanceReadonly": "余额根据销售和付款自动计算。请使用“调整余额”进行更正。",
+    "duplicateTitle": "该电话号码已被使用",
+    "duplicatePhone": "{{name}} 已使用此电话号码。仍要保存?",
+    "saveAnyway": "仍要保存",
+    "created": "{{name}} 已添加",
+    "saved": "顾客已保存"
+  },
+  "detail": {
+    "title": "顾客",
+    "notFound": "未找到该顾客",
+    "notFoundHint": "该顾客可能已被删除。",
+    "newSale": "新建订单"
+  },
+  "stats": {
+    "spent": "消费总额",
+    "visits": "到店次数",
+    "average": "平均单笔金额",
+    "lastVisit": "最近到店",
+    "points": "积分",
+    "pointsWorth": "价值 {{value}}",
+    "since": "成为顾客时间",
+    "visitsLast": "到店次数(90 天)"
+  },
+  "tabs": {
+    "purchases": "消费记录",
+    "statement": "账户",
+    "info": "详情"
+  },
+  "purchases": {
+    "empty": "暂无消费记录",
+    "emptyHint": "该顾客的销售记录将显示在这里。",
+    "lines_other": "{{count}} 项商品"
+  },
+  "statement": {
+    "empty": "暂无账户活动",
+    "emptyHint": "挂账销售、付款和调整记录将显示在这里。",
+    "balanceAfter": "余额 {{amount}}",
+    "printReceipt": "打印付款凭证",
+    "deleteTitle": "删除此条记录?",
+    "deleteMessage": "{{amount}} 的记录将被删除,余额将重新计算。",
+    "deleted": "记录已删除"
+  },
+  "kind": {
+    "sale": "挂账销售",
+    "refund": "退款至账户",
+    "payment": "已收款",
+    "charge": "收费"
+  },
+  "pay": {
+    "title": "收款",
+    "receiptTitle": "已记录付款",
+    "method": "收款方式",
+    "fullBalance": "全部余额 {{amount}}",
+    "showQr": "显示 UPI 二维码",
+    "notePlaceholder": "选填,例如支票号或 UPI 参考号",
+    "after": "付款后余额:{{amount}}",
+    "overpaid": "{{amount}} 将作为预付款保留。",
+    "confirm": "收款 {{amount}}",
+    "done": "已从 {{name}} 收到 {{amount}}",
+    "received": "已收款"
+  },
+  "adjust": {
+    "title": "调整余额",
+    "addCharge": "增加欠款",
+    "reduce": "减少余额",
+    "chargeHint": "增加顾客的欠款,例如旧账或服务费。",
+    "reduceHint": "在不收款的情况下减少顾客的欠款,例如坏账核销或人情折扣。",
+    "chargePlaceholder": "例如:笔记本上的旧账",
+    "reducePlaceholder": "例如:结算折扣",
+    "newBalance": "新余额",
+    "done": "余额已调整"
+  },
+  "delete": {
+    "title": "删除 {{name}}?",
+    "message": "该顾客将从列表中移除。历史销售记录将保留其信息。",
+    "balanceWarning": "该顾客仍有 {{amount}} 的未结余额。删除操作会将其从顾客列表和提醒中隐藏。历史销售记录将保留其信息。",
+    "done": "{{name}} 已删除"
+  },
+  "reminder": {
+    "text": "您好{{name}},这是来自 {{business}} 的友情提醒:您的账户有 {{amount}} 待支付。",
+    "upi": "您可以通过 UPI 支付至 {{upi}}。",
+    "contact": "有疑问?请致电 {{phone}}。",
+    "thanks": "谢谢!"
+  },
+  "print": {
+    "paymentReceipt": "付款凭证",
+    "receiptNo": "凭证编号",
+    "date": "日期",
+    "customer": "顾客",
+    "receivedBy": "收款人",
+    "amountReceived": "已收金额",
+    "previousBalance": "此前余额",
+    "paid": "已付",
+    "balanceDue": "欠款余额",
+    "advance": "预付款",
+    "thanksText": "感谢您,{{name}},我们已通过 {{method}} 收到 {{amount}}。",
+    "statement": "对账单",
+    "generated": "生成于 {{date}}",
+    "totalCharges": "费用总额",
+    "totalPayments": "付款及贷记总额",
+    "description": "说明",
+    "debit": "费用",
+    "credit": "付款",
+    "balance": "余额",
+    "pleasePay": "请支付未结余额 {{amount}}"
+  }
+}

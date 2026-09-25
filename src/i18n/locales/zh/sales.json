@@ -1,0 +1,137 @@
+{
+  "title": "销售",
+  "searchPlaceholder": "小票号、姓名或电话",
+  "walkIn": "散客",
+  "itemsCount_other": "{{count}} 行",
+  "allDatesHint": "匹配所有日期的小票号",
+  "clearFilters": "清除筛选",
+  "loadMore": "显示更多",
+  "showing": "显示 {{total}} 项中的 {{shown}} 项",
+  "range": {
+    "today": "今天",
+    "yesterday": "昨天",
+    "last7": "最近 7 天",
+    "thisMonth": "本月",
+    "last30": "最近 30 天",
+    "custom": "自定义"
+  },
+  "filter": {
+    "period": "时间段",
+    "type": "类型",
+    "allTypes": "所有类型",
+    "sales": "仅销售",
+    "refunds": "仅退款",
+    "status": "状态",
+    "allStatuses": "任意状态",
+    "method": "支付方式",
+    "allMethods": "任意支付方式",
+    "cashier": "收银员",
+    "allCashiers": "所有收银员"
+  },
+  "col": {
+    "number": "小票号",
+    "time": "时间",
+    "payment": "支付方式"
+  },
+  "type": {
+    "sale": "销售",
+    "refund": "退款"
+  },
+  "status": {
+    "completed": "已完成",
+    "voided": "已作废"
+  },
+  "badge": {
+    "refund": "退款",
+    "voided": "已作废",
+    "partiallyRefunded": "部分退款",
+    "refunded": "已退款"
+  },
+  "summary": {
+    "count": "交易笔数",
+    "voided_other": "{{count}} 笔已作废",
+    "net": "净额",
+    "sales_other": "{{count}} 笔销售",
+    "refunds_other": "{{count}} 笔退款"
+  },
+  "empty": {
+    "title": "该时间段内无销售记录",
+    "hint": "您在收银台完成的销售将显示在这里。",
+    "filtered": "没有匹配这些筛选条件的记录",
+    "filteredHint": "请尝试其他日期范围、搜索词或筛选条件。"
+  },
+  "export": {
+    "sales": "销售记录(每张小票一行)",
+    "items": "明细行(每件商品一行)",
+    "empty": "此筛选条件下没有可导出的内容",
+    "done_other": "已导出 {{count}} 张小票"
+  },
+  "detail": {
+    "title": "销售详情",
+    "notFound": "未找到该销售记录",
+    "notFoundHint": "该记录可能已被删除,或尚未同步到本终端。",
+    "details": "详情",
+    "receipt": "小票",
+    "a4": "A4 发票",
+    "refundOf": "退款自",
+    "cashier": "收银员",
+    "terminal": "终端",
+    "orderType": "订单类型",
+    "supply": "供应",
+    "interState": "跨邦(IGST)",
+    "intraState": "邦内(CGST + SGST)",
+    "items": "商品",
+    "taxIncluded": "价格已含税 {{amount}}",
+    "taxBreakdown": "税费明细",
+    "payments": "支付记录",
+    "refundedVia": "退款方式",
+    "noPayments": "暂无支付记录",
+    "pointsEarned_other": "获得 {{count}} 积分",
+    "pointsRedeemed_other": "已使用 {{count}} 积分",
+    "linked": "针对此销售单的退款"
+  },
+  "refund": {
+    "action": "退款",
+    "title": "退款 {{number}}",
+    "pickItems": "请选择顾客要退回的商品。",
+    "everything": "全部退款",
+    "clearAll": "清除选择",
+    "nothingLeft": "此销售单中的所有商品均已退款。",
+    "voided": "该销售单已作废,无法退款。",
+    "returnedQty": "已退 {{qty}}",
+    "method": "退款方式",
+    "creditHint": "将减少 {{name}} 的挂账余额。",
+    "restock": "将商品放回库存",
+    "restockHint": "退回的商品将重新计入库存。",
+    "noRestockHint": "库存保持不变——适用于破损或过期商品。",
+    "reason": "原因",
+    "reasons": {
+      "damaged": "破损",
+      "wrongItem": "商品有误",
+      "changedMind": "顾客改变主意",
+      "notAsDescribed": "与描述不符"
+    },
+    "total": "退款总额",
+    "confirm": "退款",
+    "done": "已生成贷记单 {{number}}",
+    "complete": "退款完成",
+    "payBack": "以{{method}}退还",
+    "toAccount": "已计入顾客账户"
+  },
+  "void": {
+    "action": "作废",
+    "title": "作废 {{number}}",
+    "hint": "作废将取消整张销售单,并将其商品放回库存。用于更正错误;如商品被退回,请使用退款。",
+    "reason": "原因",
+    "reasons": {
+      "mistake": "误操作录入",
+      "duplicate": "重复销售",
+      "testSale": "测试销售",
+      "customerLeft": "顾客未付款"
+    },
+    "confirmTitle": "作废 {{number}}?",
+    "confirmMessage": "金额为 {{amount}} 的销售单将被取消,其库存将被返还。此操作无法撤销。",
+    "done": "{{number}} 已作废",
+    "voided": "已作废"
+  }
+}
