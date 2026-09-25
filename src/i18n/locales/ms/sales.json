@@ -1,0 +1,137 @@
+{
+  "title": "Jualan",
+  "searchPlaceholder": "No. resit, nama atau telefon",
+  "walkIn": "Tanpa akaun",
+  "itemsCount_other": "{{count}} baris",
+  "allDatesHint": "Padanan nombor resit daripada semua tarikh",
+  "clearFilters": "Kosongkan penapis",
+  "loadMore": "Tunjukkan lagi",
+  "showing": "Menunjukkan {{shown}} daripada {{total}}",
+  "range": {
+    "today": "Hari ini",
+    "yesterday": "Semalam",
+    "last7": "7 hari lepas",
+    "thisMonth": "Bulan ini",
+    "last30": "30 hari lepas",
+    "custom": "Tersuai"
+  },
+  "filter": {
+    "period": "Tempoh",
+    "type": "Jenis",
+    "allTypes": "Semua jenis",
+    "sales": "Jualan sahaja",
+    "refunds": "Pemulangan sahaja",
+    "status": "Status",
+    "allStatuses": "Semua status",
+    "method": "Kaedah bayaran",
+    "allMethods": "Semua bayaran",
+    "cashier": "Juruwang",
+    "allCashiers": "Semua juruwang"
+  },
+  "col": {
+    "number": "Resit",
+    "time": "Masa",
+    "payment": "Dibayar melalui"
+  },
+  "type": {
+    "sale": "Jualan",
+    "refund": "Pemulangan"
+  },
+  "status": {
+    "completed": "Selesai",
+    "voided": "Dibatalkan"
+  },
+  "badge": {
+    "refund": "Pemulangan",
+    "voided": "Dibatalkan",
+    "partiallyRefunded": "Dipulangkan sebahagian",
+    "refunded": "Dipulangkan"
+  },
+  "summary": {
+    "count": "Transaksi",
+    "voided_other": "{{count}} dibatalkan",
+    "net": "Jumlah bersih",
+    "sales_other": "{{count}} jualan",
+    "refunds_other": "{{count}} pemulangan"
+  },
+  "empty": {
+    "title": "Tiada jualan dalam tempoh ini",
+    "hint": "Jualan yang anda buat di kaunter akan dipaparkan di sini.",
+    "filtered": "Tiada padanan dengan penapis ini",
+    "filteredHint": "Cuba julat tarikh, carian atau penapis lain."
+  },
+  "export": {
+    "sales": "Jualan (satu baris setiap resit)",
+    "items": "Item baris (satu baris setiap item)",
+    "empty": "Tiada apa untuk dieksport bagi penapis ini",
+    "done_other": "{{count}} resit dieksport"
+  },
+  "detail": {
+    "title": "Jualan",
+    "notFound": "Jualan tidak ditemui",
+    "notFoundHint": "Ia mungkin telah dialih keluar atau belum diselaraskan ke terminal ini.",
+    "details": "Butiran",
+    "receipt": "Resit",
+    "a4": "Invois A4",
+    "refundOf": "Pemulangan bagi",
+    "cashier": "Juruwang",
+    "terminal": "Terminal",
+    "orderType": "Jenis pesanan",
+    "supply": "Bekalan",
+    "interState": "Antara negeri (IGST)",
+    "intraState": "Dalam negeri (CGST + SGST)",
+    "items": "Item",
+    "taxIncluded": "Harga termasuk cukai {{amount}}",
+    "taxBreakdown": "Pecahan cukai",
+    "payments": "Pembayaran",
+    "refundedVia": "Dibayar balik melalui",
+    "noPayments": "Tiada bayaran direkodkan",
+    "pointsEarned_other": "+{{count}} mata diperoleh",
+    "pointsRedeemed_other": "{{count}} mata ditebus",
+    "linked": "Pemulangan bagi jualan ini"
+  },
+  "refund": {
+    "action": "Bayaran balik",
+    "title": "Bayaran balik {{number}}",
+    "pickItems": "Pilih apa yang pelanggan pulangkan.",
+    "everything": "Pulangkan semua",
+    "clearAll": "Kosongkan pilihan",
+    "nothingLeft": "Semua dalam jualan ini telah dipulangkan.",
+    "voided": "Jualan ini telah dibatalkan dan tidak boleh dipulangkan.",
+    "returnedQty": "{{qty}} dipulangkan",
+    "method": "Bayar balik dengan",
+    "creditHint": "Mengurangkan apa yang {{name}} terhutang pada akaun.",
+    "restock": "Kembalikan item ke stok",
+    "restockHint": "Item dipulangkan ditambah semula ke inventori.",
+    "noRestockHint": "Stok kekal seperti sedia ada — guna untuk barang rosak atau luput.",
+    "reason": "Sebab",
+    "reasons": {
+      "damaged": "Rosak",
+      "wrongItem": "Item salah",
+      "changedMind": "Tukar fikiran",
+      "notAsDescribed": "Tidak seperti diterangkan"
+    },
+    "total": "Jumlah bayaran balik",
+    "confirm": "Bayaran balik",
+    "done": "Nota kredit {{number}} dicipta",
+    "complete": "Bayaran balik selesai",
+    "payBack": "Bayar balik dalam {{method}}",
+    "toAccount": "Dikreditkan ke akaun pelanggan"
+  },
+  "void": {
+    "action": "Batalkan",
+    "title": "Batalkan {{number}}",
+    "hint": "Membatalkan membatalkan keseluruhan jualan dan mengembalikan item ke stok. Guna untuk membetulkan kesilapan; guna bayaran balik apabila barang dipulangkan.",
+    "reason": "Sebab",
+    "reasons": {
+      "mistake": "Tersalah cas",
+      "duplicate": "Jualan pendua",
+      "testSale": "Jualan ujian",
+      "customerLeft": "Pelanggan tidak bayar"
+    },
+    "confirmTitle": "Batalkan {{number}}?",
+    "confirmMessage": "Jualan {{amount}} akan dibatalkan dan stoknya dikembalikan. Ini tidak boleh dibuat asal.",
+    "done": "{{number}} dibatalkan",
+    "voided": "Dibatalkan"
+  }
+}

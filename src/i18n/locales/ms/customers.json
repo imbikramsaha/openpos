@@ -1,0 +1,191 @@
+{
+  "title": "Pelanggan",
+  "subtitle_other": "{{count}} pelanggan",
+  "name": "Nama",
+  "phone": "Telefon",
+  "email": "E-mel",
+  "taxNumber": "Nombor cukai",
+  "address": "Alamat",
+  "city": "Bandar",
+  "state": "Negeri / wilayah",
+  "notes": "Nota",
+  "discountPercent": "Diskaun automatik",
+  "creditLimit": "Had kredit",
+  "openingBalance": "Baki pembukaan",
+  "newCustomer": "Pelanggan baharu",
+  "searchPlaceholder": "Cari nama, telefon, e-mel atau ID cukai",
+  "createNamed": "Cipta “{{name}}”",
+  "showing": "Menunjukkan {{shown}} daripada {{total}}",
+  "loadMore": "Tunjukkan lagi",
+  "totalDue": "Jumlah tertunggak",
+  "balanceDue": "Baki tertunggak",
+  "advance": "Pendahuluan (dalam kredit)",
+  "noBalance": "Tiada baki tertunggak",
+  "dueBadge": "Tertunggak {{amount}}",
+  "advanceBadge": "Pendahuluan {{amount}}",
+  "pointsBadge_other": "{{count}} mata",
+  "discountBadge": "Diskaun {{value}}",
+  "limitInfo": "Had {{limit}} · {{available}} tersedia",
+  "overLimit": "Melebihi had kredit {{limit}}",
+  "receivePayment": "Terima bayaran",
+  "sendReminder": "Peringatan WhatsApp",
+  "adjustBalance": "Laraskan baki",
+  "printStatement": "Penyata",
+  "filter": {
+    "all": "Semua",
+    "due": "Baki tertunggak",
+    "points": "Ada mata"
+  },
+  "sort": {
+    "label": "Susun",
+    "name": "Susun: Nama (A–Z)",
+    "balance": "Susun: Baki tertinggi",
+    "recent": "Susun: Lawatan terkini"
+  },
+  "col": {
+    "customer": "Pelanggan",
+    "balance": "Baki",
+    "points": "Mata",
+    "spent": "Jumlah dibelanjakan",
+    "visits": "Lawatan",
+    "lastVisit": "Lawatan terakhir"
+  },
+  "empty": {
+    "title": "Belum ada pelanggan",
+    "hint": "Tambah pelanggan untuk menjejaki belian, mata ganjaran dan baki kredit.",
+    "filtered": "Tiada pelanggan sepadan",
+    "filteredHint": "Cuba nama, nombor telefon atau penapis lain."
+  },
+  "csv": {
+    "template": "Muat turun templat CSV",
+    "nothing": "Tiada pelanggan untuk dieksport",
+    "exported_other": "{{count}} pelanggan dieksport",
+    "noRows": "Tiada pelanggan ditemui dalam fail itu. Baris pertama mesti mengandungi nama lajur seperti name, phone, email.",
+    "confirmTitle_other": "Import {{count}} pelanggan?",
+    "confirmMessage": "{{creates}} baharu, {{updates}} dikemas kini (dipadankan mengikut telefon atau e-mel), {{skipped}} baris dilangkau kerana tiada nama. Baki tidak pernah diubah oleh import.",
+    "imported": "Diimport: {{creates}} baharu, {{updates}} dikemas kini",
+    "failed": "Import gagal: {{error}}"
+  },
+  "form": {
+    "newTitle": "Pelanggan baharu",
+    "editTitle": "Edit pelanggan",
+    "contact": "Hubungan",
+    "addressSection": "Alamat",
+    "account": "Akaun",
+    "selectState": "Pilih negeri",
+    "nameRequired": "Masukkan nama pelanggan",
+    "emailInvalid": "Ini tidak kelihatan seperti alamat e-mel",
+    "discountRange": "Masukkan peratusan antara 0 dan 100",
+    "limitNegative": "Had tidak boleh negatif",
+    "discountHint": "Digunakan secara automatik apabila pelanggan ini ditambah ke jualan.",
+    "creditLimitHint": "Beri amaran kepada juruwang apabila jualan akaun kredit melebihi had ini.",
+    "noLimit": "Tiada had",
+    "openingHint": "Amaun yang pelanggan sudah terhutang kepada anda sebelum ini.",
+    "openingAdvance": "Pelanggan mempunyai {{amount}} kredit dengan anda.",
+    "balanceReadonly": "Baki dikira daripada jualan dan bayaran. Guna Laraskan baki untuk membetulkannya.",
+    "duplicateTitle": "Nombor telefon telah digunakan",
+    "duplicatePhone": "{{name}} sudah mempunyai nombor telefon ini. Simpan juga?",
+    "saveAnyway": "Simpan juga",
+    "created": "{{name}} ditambah",
+    "saved": "Pelanggan disimpan"
+  },
+  "detail": {
+    "title": "Pelanggan",
+    "notFound": "Pelanggan tidak ditemui",
+    "notFoundHint": "Pelanggan ini mungkin telah dipadam.",
+    "newSale": "Jualan baharu"
+  },
+  "stats": {
+    "spent": "Jumlah dibelanjakan",
+    "visits": "Lawatan",
+    "average": "Purata jualan",
+    "lastVisit": "Lawatan terakhir",
+    "points": "Mata ganjaran",
+    "pointsWorth": "Bernilai {{value}}",
+    "since": "Pelanggan sejak",
+    "visitsLast": "Lawatan (90 hari)"
+  },
+  "tabs": {
+    "purchases": "Belian",
+    "statement": "Akaun",
+    "info": "Butiran"
+  },
+  "purchases": {
+    "empty": "Belum ada belian",
+    "emptyHint": "Jualan kepada pelanggan ini akan dipaparkan di sini.",
+    "lines_other": "{{count}} item"
+  },
+  "statement": {
+    "empty": "Tiada aktiviti akaun",
+    "emptyHint": "Jualan akaun kredit, bayaran dan pelarasan akan dipaparkan di sini.",
+    "balanceAfter": "Baki {{amount}}",
+    "printReceipt": "Cetak resit bayaran",
+    "deleteTitle": "Padam entri ini?",
+    "deleteMessage": "Entri {{amount}} akan dialih keluar dan baki dikira semula.",
+    "deleted": "Entri dipadam"
+  },
+  "kind": {
+    "sale": "Jualan akaun kredit",
+    "refund": "Pemulangan ke akaun",
+    "payment": "Bayaran diterima",
+    "charge": "Caj"
+  },
+  "pay": {
+    "title": "Terima bayaran",
+    "receiptTitle": "Bayaran direkodkan",
+    "method": "Diterima melalui",
+    "fullBalance": "Baki penuh {{amount}}",
+    "showQr": "Tunjukkan kod QR UPI",
+    "notePlaceholder": "Pilihan, cth. no. cek atau rujukan UPI",
+    "after": "Baki selepas bayaran: {{amount}}",
+    "overpaid": "{{amount}} akan disimpan sebagai pendahuluan.",
+    "confirm": "Terima {{amount}}",
+    "done": "{{amount}} diterima daripada {{name}}",
+    "received": "Bayaran diterima"
+  },
+  "adjust": {
+    "title": "Laraskan baki",
+    "addCharge": "Tambah caj",
+    "reduce": "Kurangkan baki",
+    "chargeHint": "Menambah apa yang pelanggan terhutang, cth. bil lama atau caj perkhidmatan.",
+    "reduceHint": "Mengurangkan apa yang pelanggan terhutang tanpa mengambil wang, cth. hapus kira atau diskaun muhibah.",
+    "chargePlaceholder": "cth. Bil lama daripada buku nota",
+    "reducePlaceholder": "cth. Diskaun penyelesaian",
+    "newBalance": "Baki baharu",
+    "done": "Baki dilaraskan"
+  },
+  "delete": {
+    "title": "Padam {{name}}?",
+    "message": "Pelanggan dialih keluar daripada senarai. Jualan lepas mengekalkan butirannya.",
+    "balanceWarning": "Pelanggan ini masih mempunyai baki terbuka {{amount}}. Memadamnya menyembunyikannya daripada senarai pelanggan dan peringatan. Jualan lepas mengekalkan butirannya.",
+    "done": "{{name}} dipadam"
+  },
+  "reminder": {
+    "text": "Salam {{name}}, ini peringatan mesra daripada {{business}} bahawa {{amount}} tertunggak pada akaun anda.",
+    "upi": "Anda boleh bayar melalui UPI ke {{upi}}.",
+    "contact": "Ada soalan? Hubungi kami di {{phone}}.",
+    "thanks": "Terima kasih!"
+  },
+  "print": {
+    "paymentReceipt": "Resit bayaran",
+    "receiptNo": "No. resit",
+    "date": "Tarikh",
+    "customer": "Pelanggan",
+    "receivedBy": "Diterima oleh",
+    "amountReceived": "Amaun diterima",
+    "previousBalance": "Baki sebelumnya",
+    "paid": "Dibayar",
+    "balanceDue": "Baki tertunggak",
+    "advance": "Pendahuluan",
+    "thanksText": "Terima kasih {{name}}, kami telah menerima {{amount}} melalui {{method}}.",
+    "statement": "Penyata akaun",
+    "generated": "Dijana {{date}}",
+    "totalCharges": "Jumlah caj",
+    "totalPayments": "Jumlah bayaran & kredit",
+    "description": "Keterangan",
+    "debit": "Caj",
+    "credit": "Bayaran",
+    "balance": "Baki",
+    "pleasePay": "Sila bayar baki tertunggak sebanyak {{amount}}"
+  }
+}

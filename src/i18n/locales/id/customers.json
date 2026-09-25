@@ -1,0 +1,191 @@
+{
+  "title": "Pelanggan",
+  "subtitle_other": "{{count}} pelanggan",
+  "name": "Nama",
+  "phone": "Telepon",
+  "email": "Email",
+  "taxNumber": "Nomor pajak",
+  "address": "Alamat",
+  "city": "Kota",
+  "state": "Provinsi / wilayah",
+  "notes": "Catatan",
+  "discountPercent": "Diskon otomatis",
+  "creditLimit": "Batas kredit",
+  "openingBalance": "Saldo awal",
+  "newCustomer": "Pelanggan baru",
+  "searchPlaceholder": "Cari nama, telepon, email atau ID pajak",
+  "createNamed": "Buat “{{name}}”",
+  "showing": "Menampilkan {{shown}} dari {{total}}",
+  "loadMore": "Tampilkan lagi",
+  "totalDue": "Total terutang",
+  "balanceDue": "Saldo terutang",
+  "advance": "Kelebihan bayar (kredit)",
+  "noBalance": "Tidak ada saldo terutang",
+  "dueBadge": "Terutang {{amount}}",
+  "advanceBadge": "Kelebihan bayar {{amount}}",
+  "pointsBadge_other": "{{count}} poin",
+  "discountBadge": "Diskon {{value}}",
+  "limitInfo": "Batas {{limit}} · {{available}} tersedia",
+  "overLimit": "Melebihi batas kredit {{limit}}",
+  "receivePayment": "Terima pembayaran",
+  "sendReminder": "Pengingat WhatsApp",
+  "adjustBalance": "Sesuaikan saldo",
+  "printStatement": "Rekening koran",
+  "filter": {
+    "all": "Semua",
+    "due": "Saldo terutang",
+    "points": "Punya poin"
+  },
+  "sort": {
+    "label": "Urutkan",
+    "name": "Urutkan: Nama (A–Z)",
+    "balance": "Urutkan: Saldo tertinggi",
+    "recent": "Urutkan: Kunjungan terbaru"
+  },
+  "col": {
+    "customer": "Pelanggan",
+    "balance": "Saldo",
+    "points": "Poin",
+    "spent": "Total belanja",
+    "visits": "Kunjungan",
+    "lastVisit": "Kunjungan terakhir"
+  },
+  "empty": {
+    "title": "Belum ada pelanggan",
+    "hint": "Tambahkan pelanggan untuk melacak pembelian, poin loyalitas dan saldo kredit (bon).",
+    "filtered": "Tidak ada pelanggan yang cocok",
+    "filteredHint": "Coba nama, nomor telepon atau filter lain."
+  },
+  "csv": {
+    "template": "Unduh templat CSV",
+    "nothing": "Tidak ada pelanggan untuk diekspor",
+    "exported_other": "{{count}} pelanggan diekspor",
+    "noRows": "Tidak ada pelanggan ditemukan pada file itu. Baris pertama harus berisi nama kolom seperti name, phone, email.",
+    "confirmTitle_other": "Impor {{count}} pelanggan?",
+    "confirmMessage": "{{creates}} baru, {{updates}} diperbarui (dicocokkan berdasarkan telepon atau email), {{skipped}} baris dilewati karena tanpa nama. Saldo tidak pernah diubah oleh impor.",
+    "imported": "Diimpor: {{creates}} baru, {{updates}} diperbarui",
+    "failed": "Impor gagal: {{error}}"
+  },
+  "form": {
+    "newTitle": "Pelanggan baru",
+    "editTitle": "Edit pelanggan",
+    "contact": "Kontak",
+    "addressSection": "Alamat",
+    "account": "Akun",
+    "selectState": "Pilih provinsi",
+    "nameRequired": "Masukkan nama pelanggan",
+    "emailInvalid": "Ini tidak tampak seperti alamat email",
+    "discountRange": "Masukkan persentase antara 0 dan 100",
+    "limitNegative": "Batas tidak boleh negatif",
+    "discountHint": "Diterapkan secara otomatis saat pelanggan ini ditambahkan ke penjualan.",
+    "creditLimitHint": "Memberi peringatan ke kasir saat penjualan kredit melebihi batas ini.",
+    "noLimit": "Tanpa batas",
+    "openingHint": "Jumlah yang sudah terutang oleh pelanggan ini dari sebelumnya.",
+    "openingAdvance": "Pelanggan memiliki kelebihan bayar {{amount}} pada akun Anda.",
+    "balanceReadonly": "Saldo dihitung dari penjualan dan pembayaran. Gunakan Sesuaikan saldo untuk mengoreksinya.",
+    "duplicateTitle": "Nomor telepon sudah digunakan",
+    "duplicatePhone": "{{name}} sudah memiliki nomor telepon ini. Tetap simpan?",
+    "saveAnyway": "Tetap simpan",
+    "created": "{{name}} ditambahkan",
+    "saved": "Pelanggan tersimpan"
+  },
+  "detail": {
+    "title": "Pelanggan",
+    "notFound": "Pelanggan tidak ditemukan",
+    "notFoundHint": "Pelanggan ini mungkin sudah dihapus.",
+    "newSale": "Penjualan baru"
+  },
+  "stats": {
+    "spent": "Total belanja",
+    "visits": "Kunjungan",
+    "average": "Rata-rata penjualan",
+    "lastVisit": "Kunjungan terakhir",
+    "points": "Poin loyalitas",
+    "pointsWorth": "Senilai {{value}}",
+    "since": "Pelanggan sejak",
+    "visitsLast": "Kunjungan (90 hari)"
+  },
+  "tabs": {
+    "purchases": "Pembelian",
+    "statement": "Akun",
+    "info": "Detail"
+  },
+  "purchases": {
+    "empty": "Belum ada pembelian",
+    "emptyHint": "Penjualan kepada pelanggan ini akan muncul di sini.",
+    "lines_other": "{{count}} item"
+  },
+  "statement": {
+    "empty": "Belum ada aktivitas akun",
+    "emptyHint": "Penjualan kredit, pembayaran dan penyesuaian akan muncul di sini.",
+    "balanceAfter": "Saldo {{amount}}",
+    "printReceipt": "Cetak struk pembayaran",
+    "deleteTitle": "Hapus entri ini?",
+    "deleteMessage": "Entri {{amount}} akan dihapus dan saldo dihitung ulang.",
+    "deleted": "Entri dihapus"
+  },
+  "kind": {
+    "sale": "Penjualan kredit",
+    "refund": "Refund ke akun",
+    "payment": "Pembayaran diterima",
+    "charge": "Tagihan"
+  },
+  "pay": {
+    "title": "Terima pembayaran",
+    "receiptTitle": "Pembayaran tercatat",
+    "method": "Diterima melalui",
+    "fullBalance": "Saldo penuh {{amount}}",
+    "showQr": "Tampilkan kode QR UPI",
+    "notePlaceholder": "Opsional, mis. no. cek atau referensi UPI",
+    "after": "Saldo setelah pembayaran: {{amount}}",
+    "overpaid": "{{amount}} akan disimpan sebagai kelebihan bayar.",
+    "confirm": "Terima {{amount}}",
+    "done": "{{amount}} diterima dari {{name}}",
+    "received": "Pembayaran diterima"
+  },
+  "adjust": {
+    "title": "Sesuaikan saldo",
+    "addCharge": "Tambah tagihan",
+    "reduce": "Kurangi saldo",
+    "chargeHint": "Menambah jumlah yang terutang pelanggan, mis. tagihan lama atau biaya layanan.",
+    "reduceHint": "Mengurangi jumlah yang terutang pelanggan tanpa menerima uang, mis. penghapusan piutang atau diskon goodwill.",
+    "chargePlaceholder": "mis. Tagihan lama dari buku catatan",
+    "reducePlaceholder": "mis. Diskon pelunasan",
+    "newBalance": "Saldo baru",
+    "done": "Saldo disesuaikan"
+  },
+  "delete": {
+    "title": "Hapus {{name}}?",
+    "message": "Pelanggan dihapus dari daftar. Penjualan sebelumnya tetap menyimpan detailnya.",
+    "balanceWarning": "Pelanggan ini masih memiliki saldo terbuka {{amount}}. Menghapus akan menyembunyikannya dari daftar pelanggan dan pengingat. Penjualan sebelumnya tetap menyimpan detailnya.",
+    "done": "{{name}} dihapus"
+  },
+  "reminder": {
+    "text": "Halo {{name}}, ini pengingat ramah dari {{business}} bahwa {{amount}} jatuh tempo pada akun Anda.",
+    "upi": "Anda bisa membayar melalui UPI ke {{upi}}.",
+    "contact": "Ada pertanyaan? Hubungi kami di {{phone}}.",
+    "thanks": "Terima kasih!"
+  },
+  "print": {
+    "paymentReceipt": "Struk pembayaran",
+    "receiptNo": "No. struk",
+    "date": "Tanggal",
+    "customer": "Pelanggan",
+    "receivedBy": "Diterima oleh",
+    "amountReceived": "Jumlah diterima",
+    "previousBalance": "Saldo sebelumnya",
+    "paid": "Dibayar",
+    "balanceDue": "Saldo terutang",
+    "advance": "Kelebihan bayar",
+    "thanksText": "Terima kasih {{name}}, kami telah menerima {{amount}} melalui {{method}}.",
+    "statement": "Rekening koran",
+    "generated": "Dibuat {{date}}",
+    "totalCharges": "Total tagihan",
+    "totalPayments": "Total pembayaran & kredit",
+    "description": "Keterangan",
+    "debit": "Tagihan",
+    "credit": "Pembayaran",
+    "balance": "Saldo",
+    "pleasePay": "Mohon lunasi sisa saldo {{amount}}"
+  }
+}

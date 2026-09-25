@@ -1,0 +1,144 @@
+{
+  "title": "विक्री",
+  "searchPlaceholder": "पावती नंबर, नाव किंवा फोन",
+  "walkIn": "साधारण ग्राहक",
+  "itemsCount_one": "{{count}} लाइन",
+  "itemsCount_other": "{{count}} लाइन",
+  "allDatesHint": "सर्व तारखांमधील जुळणारे पावती नंबर",
+  "clearFilters": "फिल्टर क्लिअर करा",
+  "loadMore": "आणखी दाखवा",
+  "showing": "{{total}} पैकी {{shown}} दाखवत आहे",
+  "range": {
+    "today": "आज",
+    "yesterday": "काल",
+    "last7": "मागील 7 दिवस",
+    "thisMonth": "या महिन्यात",
+    "last30": "मागील 30 दिवस",
+    "custom": "कस्टम"
+  },
+  "filter": {
+    "period": "कालावधी",
+    "type": "प्रकार",
+    "allTypes": "सर्व प्रकार",
+    "sales": "फक्त विक्री",
+    "refunds": "फक्त रिफंड",
+    "status": "स्थिती",
+    "allStatuses": "कोणतीही स्थिती",
+    "method": "पेमेंटची पद्धत",
+    "allMethods": "कोणतेही पेमेंट",
+    "cashier": "कॅशियर",
+    "allCashiers": "सर्व कॅशियर"
+  },
+  "col": {
+    "number": "पावती",
+    "time": "वेळ",
+    "payment": "पेमेंट"
+  },
+  "type": {
+    "sale": "विक्री",
+    "refund": "रिफंड"
+  },
+  "status": {
+    "completed": "पूर्ण झाले",
+    "voided": "रद्द"
+  },
+  "badge": {
+    "refund": "रिफंड",
+    "voided": "रद्द",
+    "partiallyRefunded": "अंशतः रिफंड",
+    "refunded": "रिफंड झाले"
+  },
+  "summary": {
+    "count": "ट्रान्झॅक्शन",
+    "voided_one": "{{count}} रद्द",
+    "voided_other": "{{count}} रद्द",
+    "net": "नेट टोटल",
+    "sales_one": "{{count}} विक्री",
+    "sales_other": "{{count}} विक्री",
+    "refunds_one": "{{count}} रिफंड",
+    "refunds_other": "{{count}} रिफंड"
+  },
+  "empty": {
+    "title": "या कालावधीत कोणतीही विक्री नाही",
+    "hint": "काउंटरवर केलेली विक्री इथे दिसेल.",
+    "filtered": "या फिल्टरशी काहीही जुळत नाही",
+    "filteredHint": "वेगळी तारीख श्रेणी, शोध किंवा फिल्टर वापरून पाहा."
+  },
+  "export": {
+    "sales": "विक्री (प्रत्येक पावतीची एक ओळ)",
+    "items": "लाइन आयटम (प्रत्येक आयटमची एक ओळ)",
+    "empty": "या फिल्टरसाठी एक्सपोर्ट करण्यासारखे काही नाही",
+    "done_one": "{{count}} पावती एक्सपोर्ट केली",
+    "done_other": "{{count}} पावत्या एक्सपोर्ट केल्या"
+  },
+  "detail": {
+    "title": "विक्री",
+    "notFound": "विक्री सापडली नाही",
+    "notFoundHint": "ती कदाचित काढली गेली असेल किंवा अजून या टर्मिनलवर सिंक झाली नसेल.",
+    "details": "तपशील",
+    "receipt": "पावती",
+    "a4": "A4 इनव्हॉइस",
+    "refundOf": "याचा रिफंड",
+    "cashier": "कॅशियर",
+    "terminal": "टर्मिनल",
+    "orderType": "ऑर्डर टाइप",
+    "supply": "पुरवठा",
+    "interState": "आंतर-राज्य (IGST)",
+    "intraState": "राज्यांतर्गत (CGST + SGST)",
+    "items": "आयटम",
+    "taxIncluded": "किमतींमध्ये {{amount}} टॅक्स समाविष्ट",
+    "taxBreakdown": "टॅक्सचा तपशील",
+    "payments": "पेमेंट",
+    "refundedVia": "परत केले",
+    "noPayments": "कोणतेही पेमेंट नोंदवलेले नाही",
+    "pointsEarned_one": "+{{count}} पॉइंट मिळाला",
+    "pointsEarned_other": "+{{count}} पॉइंट्स मिळाले",
+    "pointsRedeemed_one": "{{count}} पॉइंट वापरला",
+    "pointsRedeemed_other": "{{count}} पॉइंट्स वापरले",
+    "linked": "या विक्रीचे रिफंड"
+  },
+  "refund": {
+    "action": "रिफंड",
+    "title": "{{number}} रिफंड करा",
+    "pickItems": "ग्राहक काय परत करत आहे ते निवडा.",
+    "everything": "सर्व काही रिफंड करा",
+    "clearAll": "निवड रद्द करा",
+    "nothingLeft": "या विक्रीतील सर्व काही आधीच रिफंड झाले आहे.",
+    "voided": "ही विक्री रद्द केली गेली आहे आणि तिचा रिफंड करता येणार नाही.",
+    "returnedQty": "{{qty}} परत केले",
+    "method": "याने परत करा",
+    "creditHint": "{{name}} ची उधारी रक्कम कमी करते.",
+    "restock": "आयटम परत स्टॉकमध्ये टाका",
+    "restockHint": "परत केलेले आयटम इन्व्हेंटरीमध्ये परत जोडले जातात.",
+    "noRestockHint": "स्टॉक जसाच्या तसा राहतो — खराब किंवा एक्सपायर झालेल्या मालासाठी हे वापरा.",
+    "reason": "कारण",
+    "reasons": {
+      "damaged": "खराब",
+      "wrongItem": "चुकीचा आयटम",
+      "changedMind": "मन बदलले",
+      "notAsDescribed": "सांगितल्याप्रमाणे नव्हते"
+    },
+    "total": "एकूण रिफंड",
+    "confirm": "रिफंड करा",
+    "done": "क्रेडिट नोट {{number}} तयार झाली",
+    "complete": "रिफंड पूर्ण झाले",
+    "payBack": "{{method}} मध्ये परत करा",
+    "toAccount": "ग्राहकाच्या खात्यात जमा झाले"
+  },
+  "void": {
+    "action": "रद्द करा",
+    "title": "{{number}} रद्द करा",
+    "hint": "रद्द केल्याने संपूर्ण विक्री कॅन्सल होते आणि तिचे आयटम परत स्टॉकमध्ये येतात. चूक दुरुस्त करण्यासाठी हे वापरा; माल परत आल्यावर रिफंड वापरा.",
+    "reason": "कारण",
+    "reasons": {
+      "mistake": "चुकून बिल तयार झाले",
+      "duplicate": "डुप्लिकेट विक्री",
+      "testSale": "टेस्ट विक्री",
+      "customerLeft": "ग्राहकाने पेमेंट केले नाही"
+    },
+    "confirmTitle": "{{number}} रद्द करायचे?",
+    "confirmMessage": "{{amount}} ची विक्री रद्द केली जाईल आणि तिचा स्टॉक परत येईल. हे पूर्ववत करता येणार नाही.",
+    "done": "{{number}} रद्द झाले",
+    "voided": "रद्द"
+  }
+}

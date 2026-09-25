@@ -1,0 +1,144 @@
+{
+  "title": "Satışlar",
+  "searchPlaceholder": "Fiş no., ad veya telefon",
+  "walkIn": "Anonim",
+  "itemsCount_one": "{{count}} kalem",
+  "itemsCount_other": "{{count}} kalem",
+  "allDatesHint": "Tüm tarihlerden eşleşen fiş numaraları",
+  "clearFilters": "Filtreleri temizle",
+  "loadMore": "Daha fazla göster",
+  "showing": "{{total}} kayıttan {{shown}} tanesi gösteriliyor",
+  "range": {
+    "today": "Bugün",
+    "yesterday": "Dün",
+    "last7": "Son 7 gün",
+    "thisMonth": "Bu ay",
+    "last30": "Son 30 gün",
+    "custom": "Özel"
+  },
+  "filter": {
+    "period": "Dönem",
+    "type": "Tür",
+    "allTypes": "Tüm türler",
+    "sales": "Yalnızca satışlar",
+    "refunds": "Yalnızca iadeler",
+    "status": "Durum",
+    "allStatuses": "Tüm durumlar",
+    "method": "Ödeme yöntemi",
+    "allMethods": "Tüm ödemeler",
+    "cashier": "Kasiyer",
+    "allCashiers": "Tüm kasiyerler"
+  },
+  "col": {
+    "number": "Fiş",
+    "time": "Saat",
+    "payment": "Ödeme"
+  },
+  "type": {
+    "sale": "Satış",
+    "refund": "İade"
+  },
+  "status": {
+    "completed": "Tamamlandı",
+    "voided": "İptal edildi"
+  },
+  "badge": {
+    "refund": "İade",
+    "voided": "İptal edildi",
+    "partiallyRefunded": "Kısmen iade edildi",
+    "refunded": "İade edildi"
+  },
+  "summary": {
+    "count": "İşlemler",
+    "voided_one": "{{count}} iptal",
+    "voided_other": "{{count}} iptal",
+    "net": "Net toplam",
+    "sales_one": "{{count}} satış",
+    "sales_other": "{{count}} satış",
+    "refunds_one": "{{count}} iade",
+    "refunds_other": "{{count}} iade"
+  },
+  "empty": {
+    "title": "Bu dönemde satış yok",
+    "hint": "Kasada yaptığınız satışlar burada görünür.",
+    "filtered": "Bu filtrelerle eşleşen bir şey yok",
+    "filteredHint": "Başka bir tarih aralığı, arama veya filtre deneyin."
+  },
+  "export": {
+    "sales": "Satışlar (fiş başına bir satır)",
+    "items": "Satış kalemleri (ürün başına bir satır)",
+    "empty": "Bu filtreler için dışa aktarılacak bir şey yok",
+    "done_one": "{{count}} fiş dışa aktarıldı",
+    "done_other": "{{count}} fiş dışa aktarıldı"
+  },
+  "detail": {
+    "title": "Satış",
+    "notFound": "Satış bulunamadı",
+    "notFoundHint": "Kaldırılmış veya henüz bu terminale senkronize edilmemiş olabilir.",
+    "details": "Ayrıntılar",
+    "receipt": "Fiş",
+    "a4": "A4 fatura",
+    "refundOf": "İadesi",
+    "cashier": "Kasiyer",
+    "terminal": "Terminal",
+    "orderType": "Sipariş türü",
+    "supply": "Teslim türü",
+    "interState": "Eyaletler arası (IGST)",
+    "intraState": "Eyalet içi (CGST + SGST)",
+    "items": "Ürünler",
+    "taxIncluded": "Fiyatlara {{amount}} vergi dahildir",
+    "taxBreakdown": "Vergi dökümü",
+    "payments": "Ödemeler",
+    "refundedVia": "Geri ödendi",
+    "noPayments": "Kayıtlı ödeme yok",
+    "pointsEarned_one": "+{{count}} puan kazanıldı",
+    "pointsEarned_other": "+{{count}} puan kazanıldı",
+    "pointsRedeemed_one": "{{count}} puan kullanıldı",
+    "pointsRedeemed_other": "{{count}} puan kullanıldı",
+    "linked": "Bu satışa ait iadeler"
+  },
+  "refund": {
+    "action": "İade",
+    "title": "{{number}} iade et",
+    "pickItems": "Müşterinin iade ettiği ürünleri seçin.",
+    "everything": "Tümünü iade et",
+    "clearAll": "Seçimi temizle",
+    "nothingLeft": "Bu satıştaki her şey zaten iade edildi.",
+    "voided": "Bu satış iptal edildi ve iade edilemez.",
+    "returnedQty": "{{qty}} iade edildi",
+    "method": "Geri ödeme yöntemi",
+    "creditHint": "{{name}}'nin hesabındaki borcunu azaltır.",
+    "restock": "Ürünleri stoğa geri koy",
+    "restockHint": "İade edilen ürünler stoğa geri eklenir.",
+    "noRestockHint": "Stok olduğu gibi kalır — hasarlı veya süresi dolmuş ürünler için kullanın.",
+    "reason": "Sebep",
+    "reasons": {
+      "damaged": "Hasarlı",
+      "wrongItem": "Yanlış ürün",
+      "changedMind": "Fikir değişti",
+      "notAsDescribed": "Tarif edildiği gibi değil"
+    },
+    "total": "İade toplamı",
+    "confirm": "İade et",
+    "done": "{{number}} iade faturası oluşturuldu",
+    "complete": "İade tamamlandı",
+    "payBack": "{{method}} ile geri öde",
+    "toAccount": "Müşteri hesabına alacak kaydedildi"
+  },
+  "void": {
+    "action": "İptal",
+    "title": "{{number}} iptal et",
+    "hint": "İptal, tüm satışı geçersiz kılar ve ürünlerini stoğa geri koyar. Hataları düzeltmek için kullanın; ürünler geri geldiğinde iade kullanın.",
+    "reason": "Sebep",
+    "reasons": {
+      "mistake": "Yanlışlıkla girildi",
+      "duplicate": "Mükerrer satış",
+      "testSale": "Deneme satışı",
+      "customerLeft": "Müşteri ödeme yapmadı"
+    },
+    "confirmTitle": "{{number}} iptal edilsin mi?",
+    "confirmMessage": "{{amount}} tutarındaki satış iptal edilecek ve stoğu iade edilecek. Bu işlem geri alınamaz.",
+    "done": "{{number}} iptal edildi",
+    "voided": "İptal edildi"
+  }
+}

@@ -1,0 +1,137 @@
+{
+  "title": "Penjualan",
+  "searchPlaceholder": "No. struk, nama atau telepon",
+  "walkIn": "Tanpa nama",
+  "itemsCount_other": "{{count}} baris",
+  "allDatesHint": "Nomor struk yang cocok dari semua tanggal",
+  "clearFilters": "Hapus filter",
+  "loadMore": "Tampilkan lagi",
+  "showing": "Menampilkan {{shown}} dari {{total}}",
+  "range": {
+    "today": "Hari ini",
+    "yesterday": "Kemarin",
+    "last7": "7 hari terakhir",
+    "thisMonth": "Bulan ini",
+    "last30": "30 hari terakhir",
+    "custom": "Kustom"
+  },
+  "filter": {
+    "period": "Periode",
+    "type": "Jenis",
+    "allTypes": "Semua jenis",
+    "sales": "Hanya penjualan",
+    "refunds": "Hanya refund",
+    "status": "Status",
+    "allStatuses": "Semua status",
+    "method": "Metode pembayaran",
+    "allMethods": "Semua pembayaran",
+    "cashier": "Kasir",
+    "allCashiers": "Semua kasir"
+  },
+  "col": {
+    "number": "Struk",
+    "time": "Waktu",
+    "payment": "Dibayar dengan"
+  },
+  "type": {
+    "sale": "Penjualan",
+    "refund": "Refund"
+  },
+  "status": {
+    "completed": "Selesai",
+    "voided": "Dibatalkan"
+  },
+  "badge": {
+    "refund": "Refund",
+    "voided": "Dibatalkan",
+    "partiallyRefunded": "Sebagian di-refund",
+    "refunded": "Di-refund"
+  },
+  "summary": {
+    "count": "Transaksi",
+    "voided_other": "{{count}} dibatalkan",
+    "net": "Total bersih",
+    "sales_other": "{{count}} penjualan",
+    "refunds_other": "{{count}} refund"
+  },
+  "empty": {
+    "title": "Tidak ada penjualan pada periode ini",
+    "hint": "Penjualan yang Anda catat di kasir akan muncul di sini.",
+    "filtered": "Tidak ada yang cocok dengan filter ini",
+    "filteredHint": "Coba rentang tanggal, pencarian atau filter lain."
+  },
+  "export": {
+    "sales": "Penjualan (satu baris per struk)",
+    "items": "Detail item (satu baris per item)",
+    "empty": "Tidak ada yang bisa diekspor untuk filter ini",
+    "done_other": "{{count}} struk diekspor"
+  },
+  "detail": {
+    "title": "Penjualan",
+    "notFound": "Penjualan tidak ditemukan",
+    "notFoundHint": "Mungkin sudah dihapus atau belum tersinkron ke terminal ini.",
+    "details": "Detail",
+    "receipt": "Struk",
+    "a4": "Faktur A4",
+    "refundOf": "Refund dari",
+    "cashier": "Kasir",
+    "terminal": "Terminal",
+    "orderType": "Jenis pesanan",
+    "supply": "Pasokan",
+    "interState": "Antarnegara bagian (IGST)",
+    "intraState": "Dalam negara bagian (CGST + SGST)",
+    "items": "Item",
+    "taxIncluded": "Harga sudah termasuk pajak {{amount}}",
+    "taxBreakdown": "Rincian pajak",
+    "payments": "Pembayaran",
+    "refundedVia": "Dikembalikan melalui",
+    "noPayments": "Tidak ada pembayaran tercatat",
+    "pointsEarned_other": "+{{count}} poin didapat",
+    "pointsRedeemed_other": "{{count}} poin ditukar",
+    "linked": "Refund pada penjualan ini"
+  },
+  "refund": {
+    "action": "Refund",
+    "title": "Refund {{number}}",
+    "pickItems": "Pilih barang yang dikembalikan pelanggan.",
+    "everything": "Refund semua",
+    "clearAll": "Hapus pilihan",
+    "nothingLeft": "Semua item pada penjualan ini sudah di-refund.",
+    "voided": "Penjualan ini sudah dibatalkan dan tidak bisa di-refund.",
+    "returnedQty": "{{qty}} dikembalikan",
+    "method": "Kembalikan dengan",
+    "creditHint": "Mengurangi jumlah yang terutang {{name}} pada akun.",
+    "restock": "Kembalikan item ke stok",
+    "restockHint": "Item yang dikembalikan ditambahkan kembali ke stok.",
+    "noRestockHint": "Stok tetap seperti semula — gunakan ini untuk barang rusak atau kedaluwarsa.",
+    "reason": "Alasan",
+    "reasons": {
+      "damaged": "Rusak",
+      "wrongItem": "Barang salah",
+      "changedMind": "Berubah pikiran",
+      "notAsDescribed": "Tidak sesuai deskripsi"
+    },
+    "total": "Total refund",
+    "confirm": "Refund",
+    "done": "Nota kredit {{number}} dibuat",
+    "complete": "Refund selesai",
+    "payBack": "Kembalikan dengan {{method}}",
+    "toAccount": "Dikreditkan ke akun pelanggan"
+  },
+  "void": {
+    "action": "Batalkan",
+    "title": "Batalkan {{number}}",
+    "hint": "Membatalkan akan membatalkan seluruh penjualan dan mengembalikan itemnya ke stok. Gunakan ini untuk membetulkan kesalahan; gunakan refund saat barang dikembalikan.",
+    "reason": "Alasan",
+    "reasons": {
+      "mistake": "Salah input",
+      "duplicate": "Penjualan ganda",
+      "testSale": "Penjualan uji coba",
+      "customerLeft": "Pelanggan tidak membayar"
+    },
+    "confirmTitle": "Batalkan {{number}}?",
+    "confirmMessage": "Penjualan senilai {{amount}} akan dibatalkan dan stoknya dikembalikan. Tindakan ini tidak dapat dibatalkan.",
+    "done": "{{number}} dibatalkan",
+    "voided": "Dibatalkan"
+  }
+}

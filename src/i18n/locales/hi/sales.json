@@ -1,0 +1,144 @@
+{
+  "title": "बिक्री",
+  "searchPlaceholder": "रसीद नंबर, नाम या फ़ोन",
+  "walkIn": "सामान्य ग्राहक",
+  "itemsCount_one": "{{count}} लाइन",
+  "itemsCount_other": "{{count}} लाइन",
+  "allDatesHint": "सभी तारीखों में मेल खाते रसीद नंबर",
+  "clearFilters": "फ़िल्टर हटाएं",
+  "loadMore": "और दिखाएं",
+  "showing": "{{total}} में से {{shown}} दिखाए जा रहे हैं",
+  "range": {
+    "today": "आज",
+    "yesterday": "कल",
+    "last7": "पिछले 7 दिन",
+    "thisMonth": "इस महीने",
+    "last30": "पिछले 30 दिन",
+    "custom": "कस्टम"
+  },
+  "filter": {
+    "period": "अवधि",
+    "type": "प्रकार",
+    "allTypes": "सभी प्रकार",
+    "sales": "सिर्फ़ बिक्री",
+    "refunds": "सिर्फ़ रिफंड",
+    "status": "स्थिति",
+    "allStatuses": "कोई भी स्थिति",
+    "method": "भुगतान का तरीका",
+    "allMethods": "कोई भी भुगतान",
+    "cashier": "कैशियर",
+    "allCashiers": "सभी कैशियर"
+  },
+  "col": {
+    "number": "रसीद",
+    "time": "समय",
+    "payment": "भुगतान"
+  },
+  "type": {
+    "sale": "बिक्री",
+    "refund": "रिफंड"
+  },
+  "status": {
+    "completed": "पूरी हुई",
+    "voided": "रद्द"
+  },
+  "badge": {
+    "refund": "रिफंड",
+    "voided": "रद्द",
+    "partiallyRefunded": "आंशिक रिफंड",
+    "refunded": "रिफंड हुआ"
+  },
+  "summary": {
+    "count": "ट्रांज़ैक्शन",
+    "voided_one": "{{count}} रद्द",
+    "voided_other": "{{count}} रद्द",
+    "net": "नेट टोटल",
+    "sales_one": "{{count}} बिक्री",
+    "sales_other": "{{count}} बिक्री",
+    "refunds_one": "{{count}} रिफंड",
+    "refunds_other": "{{count}} रिफंड"
+  },
+  "empty": {
+    "title": "इस अवधि में कोई बिक्री नहीं",
+    "hint": "काउंटर पर की गई बिक्री यहां दिखेगी।",
+    "filtered": "इन फ़िल्टर से कुछ मेल नहीं खाता",
+    "filteredHint": "कोई दूसरी तारीख सीमा, खोज या फ़िल्टर आज़माएं।"
+  },
+  "export": {
+    "sales": "बिक्री (हर रसीद की एक पंक्ति)",
+    "items": "लाइन आइटम (हर आइटम की एक पंक्ति)",
+    "empty": "इन फ़िल्टर के लिए एक्सपोर्ट करने को कुछ नहीं",
+    "done_one": "{{count}} रसीद एक्सपोर्ट की गई",
+    "done_other": "{{count}} रसीदें एक्सपोर्ट की गईं"
+  },
+  "detail": {
+    "title": "बिक्री",
+    "notFound": "बिक्री नहीं मिली",
+    "notFoundHint": "हो सकता है यह हटाई गई हो या अभी इस टर्मिनल पर सिंक न हुई हो।",
+    "details": "विवरण",
+    "receipt": "रसीद",
+    "a4": "A4 इनवॉइस",
+    "refundOf": "रिफंड, इसका",
+    "cashier": "कैशियर",
+    "terminal": "टर्मिनल",
+    "orderType": "ऑर्डर टाइप",
+    "supply": "आपूर्ति",
+    "interState": "अंतर-राज्यीय (IGST)",
+    "intraState": "राज्य के अंदर (CGST + SGST)",
+    "items": "आइटम",
+    "taxIncluded": "कीमतों में {{amount}} टैक्स शामिल है",
+    "taxBreakdown": "टैक्स का ब्यौरा",
+    "payments": "भुगतान",
+    "refundedVia": "वापस किया गया",
+    "noPayments": "कोई भुगतान दर्ज नहीं",
+    "pointsEarned_one": "+{{count}} पॉइंट मिला",
+    "pointsEarned_other": "+{{count}} पॉइंट मिले",
+    "pointsRedeemed_one": "{{count}} पॉइंट इस्तेमाल हुआ",
+    "pointsRedeemed_other": "{{count}} पॉइंट इस्तेमाल हुए",
+    "linked": "इस बिक्री के रिफंड"
+  },
+  "refund": {
+    "action": "रिफंड",
+    "title": "{{number}} रिफंड करें",
+    "pickItems": "चुनें कि ग्राहक क्या वापस कर रहा है।",
+    "everything": "सब कुछ रिफंड करें",
+    "clearAll": "चयन हटाएं",
+    "nothingLeft": "इस बिक्री की हर चीज़ पहले ही रिफंड हो चुकी है।",
+    "voided": "यह बिक्री रद्द की जा चुकी है और इसका रिफंड नहीं हो सकता।",
+    "returnedQty": "{{qty}} वापस की गई",
+    "method": "इससे वापस करें",
+    "creditHint": "{{name}} की उधार राशि कम करता है।",
+    "restock": "आइटम वापस स्टॉक में डालें",
+    "restockHint": "वापस किए गए आइटम इन्वेंट्री में वापस जुड़ जाते हैं।",
+    "noRestockHint": "स्टॉक जस का तस रहता है — इसे खराब या एक्सपायर हो चुके सामान के लिए इस्तेमाल करें।",
+    "reason": "कारण",
+    "reasons": {
+      "damaged": "खराब",
+      "wrongItem": "गलत आइटम",
+      "changedMind": "मन बदल गया",
+      "notAsDescribed": "बताए अनुसार नहीं था"
+    },
+    "total": "कुल रिफंड",
+    "confirm": "रिफंड करें",
+    "done": "क्रेडिट नोट {{number}} बन गया",
+    "complete": "रिफंड पूरा हुआ",
+    "payBack": "{{method}} में वापस करें",
+    "toAccount": "ग्राहक के खाते में जमा हुआ"
+  },
+  "void": {
+    "action": "रद्द करें",
+    "title": "{{number}} रद्द करें",
+    "hint": "रद्द करने से पूरी बिक्री कैंसल हो जाती है और उसके आइटम वापस स्टॉक में आ जाते हैं। गलती सुधारने के लिए इसका इस्तेमाल करें; जब सामान वापस आए तो रिफंड का इस्तेमाल करें।",
+    "reason": "कारण",
+    "reasons": {
+      "mistake": "गलती से बिल बन गया",
+      "duplicate": "डुप्लीकेट बिक्री",
+      "testSale": "टेस्ट बिक्री",
+      "customerLeft": "ग्राहक ने भुगतान नहीं किया"
+    },
+    "confirmTitle": "{{number}} रद्द करें?",
+    "confirmMessage": "{{amount}} की बिक्री रद्द कर दी जाएगी और उसका स्टॉक वापस आ जाएगा। इसे वापस नहीं लिया जा सकता।",
+    "done": "{{number}} रद्द हो गया",
+    "voided": "रद्द"
+  }
+}
