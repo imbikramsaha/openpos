@@ -1,0 +1,144 @@
+{
+  "title": "Verkäufe",
+  "searchPlaceholder": "Belegnr., Name oder Telefon",
+  "walkIn": "Laufkunde",
+  "itemsCount_one": "{{count}} Position",
+  "itemsCount_other": "{{count}} Positionen",
+  "allDatesHint": "Passende Belegnummern aus allen Zeiträumen",
+  "clearFilters": "Filter zurücksetzen",
+  "loadMore": "Mehr anzeigen",
+  "showing": "{{shown}} von {{total}} angezeigt",
+  "range": {
+    "today": "Heute",
+    "yesterday": "Gestern",
+    "last7": "Letzte 7 Tage",
+    "thisMonth": "Diesen Monat",
+    "last30": "Letzte 30 Tage",
+    "custom": "Benutzerdefiniert"
+  },
+  "filter": {
+    "period": "Zeitraum",
+    "type": "Typ",
+    "allTypes": "Alle Typen",
+    "sales": "Nur Verkäufe",
+    "refunds": "Nur Erstattungen",
+    "status": "Status",
+    "allStatuses": "Jeder Status",
+    "method": "Zahlungsmethode",
+    "allMethods": "Jede Zahlung",
+    "cashier": "Kassierer",
+    "allCashiers": "Alle Kassierer"
+  },
+  "col": {
+    "number": "Beleg",
+    "time": "Uhrzeit",
+    "payment": "Bezahlt mit"
+  },
+  "type": {
+    "sale": "Verkauf",
+    "refund": "Erstattung"
+  },
+  "status": {
+    "completed": "Abgeschlossen",
+    "voided": "Storniert"
+  },
+  "badge": {
+    "refund": "Erstattung",
+    "voided": "Storniert",
+    "partiallyRefunded": "Teilweise erstattet",
+    "refunded": "Erstattet"
+  },
+  "summary": {
+    "count": "Transaktionen",
+    "voided_one": "{{count}} storniert",
+    "voided_other": "{{count}} storniert",
+    "net": "Nettosumme",
+    "sales_one": "{{count}} Verkauf",
+    "sales_other": "{{count}} Verkäufe",
+    "refunds_one": "{{count}} Erstattung",
+    "refunds_other": "{{count}} Erstattungen"
+  },
+  "empty": {
+    "title": "Keine Verkäufe in diesem Zeitraum",
+    "hint": "An der Kasse abgewickelte Verkäufe erscheinen hier.",
+    "filtered": "Nichts entspricht diesen Filtern",
+    "filteredHint": "Versuche einen anderen Zeitraum, eine andere Suche oder einen anderen Filter."
+  },
+  "export": {
+    "sales": "Verkäufe (eine Zeile pro Beleg)",
+    "items": "Positionen (eine Zeile pro Artikel)",
+    "empty": "Nichts für diese Filter zu exportieren",
+    "done_one": "{{count}} Beleg exportiert",
+    "done_other": "{{count}} Belege exportiert"
+  },
+  "detail": {
+    "title": "Verkauf",
+    "notFound": "Verkauf nicht gefunden",
+    "notFoundHint": "Er wurde möglicherweise entfernt oder ist noch nicht mit dieser Kasse synchronisiert.",
+    "details": "Details",
+    "receipt": "Beleg",
+    "a4": "A4-Rechnung",
+    "refundOf": "Erstattung zu",
+    "cashier": "Kassierer",
+    "terminal": "Terminal",
+    "orderType": "Bestellart",
+    "supply": "Lieferung",
+    "interState": "Bundesstaatenübergreifend (IGST)",
+    "intraState": "Innerhalb des Bundesstaats (CGST + SGST)",
+    "items": "Artikel",
+    "taxIncluded": "Preise enthalten {{amount}} Steuer",
+    "taxBreakdown": "Steueraufschlüsselung",
+    "payments": "Zahlungen",
+    "refundedVia": "Zurückgezahlt über",
+    "noPayments": "Keine Zahlungen erfasst",
+    "pointsEarned_one": "+{{count}} Punkt gesammelt",
+    "pointsEarned_other": "+{{count}} Punkte gesammelt",
+    "pointsRedeemed_one": "{{count}} Punkt eingelöst",
+    "pointsRedeemed_other": "{{count}} Punkte eingelöst",
+    "linked": "Erstattungen zu diesem Verkauf"
+  },
+  "refund": {
+    "action": "Rückgabe",
+    "title": "{{number}} erstatten",
+    "pickItems": "Wähle aus, was der Kunde zurückgibt.",
+    "everything": "Alles erstatten",
+    "clearAll": "Auswahl aufheben",
+    "nothingLeft": "Alles an diesem Verkauf wurde bereits erstattet.",
+    "voided": "Dieser Verkauf wurde storniert und kann nicht erstattet werden.",
+    "returnedQty": "{{qty}} zurückgegeben",
+    "method": "Zurückzahlen mit",
+    "creditHint": "Verringert, was {{name}} auf Rechnung schuldet.",
+    "restock": "Artikel zurück in den Bestand legen",
+    "restockHint": "Zurückgegebene Artikel werden wieder dem Bestand hinzugefügt.",
+    "noRestockHint": "Der Bestand bleibt unverändert — verwende dies für beschädigte oder abgelaufene Waren.",
+    "reason": "Grund",
+    "reasons": {
+      "damaged": "Beschädigt",
+      "wrongItem": "Falscher Artikel",
+      "changedMind": "Meinung geändert",
+      "notAsDescribed": "Nicht wie beschrieben"
+    },
+    "total": "Erstattungssumme",
+    "confirm": "Erstatten",
+    "done": "Gutschrift {{number}} erstellt",
+    "complete": "Rückgabe abgeschlossen",
+    "payBack": "Rückzahlung per {{method}}",
+    "toAccount": "Dem Kundenkonto gutgeschrieben"
+  },
+  "void": {
+    "action": "Stornieren",
+    "title": "{{number}} stornieren",
+    "hint": "Das Stornieren annulliert den gesamten Verkauf und legt seine Artikel zurück in den Bestand. Nutze dies, um Fehler zu korrigieren; nutze eine Erstattung, wenn Waren zurückkommen.",
+    "reason": "Grund",
+    "reasons": {
+      "mistake": "Versehentlich erfasst",
+      "duplicate": "Doppelter Verkauf",
+      "testSale": "Testverkauf",
+      "customerLeft": "Kunde hat nicht bezahlt"
+    },
+    "confirmTitle": "{{number}} stornieren?",
+    "confirmMessage": "Der Verkauf über {{amount}} wird storniert und sein Bestand zurückgebucht. Das kann nicht rückgängig gemacht werden.",
+    "done": "{{number}} storniert",
+    "voided": "Storniert"
+  }
+}

@@ -1,0 +1,144 @@
+{
+  "title": "Transacties",
+  "searchPlaceholder": "Bonnr., naam of telefoon",
+  "walkIn": "Onbekend",
+  "itemsCount_one": "{{count}} regel",
+  "itemsCount_other": "{{count}} regels",
+  "allDatesHint": "Overeenkomende bonnummers uit alle datums",
+  "clearFilters": "Filters wissen",
+  "loadMore": "Meer tonen",
+  "showing": "{{shown}} van {{total}} getoond",
+  "range": {
+    "today": "Vandaag",
+    "yesterday": "Gisteren",
+    "last7": "Laatste 7 dagen",
+    "thisMonth": "Deze maand",
+    "last30": "Laatste 30 dagen",
+    "custom": "Aangepast"
+  },
+  "filter": {
+    "period": "Periode",
+    "type": "Type",
+    "allTypes": "Alle types",
+    "sales": "Alleen verkopen",
+    "refunds": "Alleen terugbetalingen",
+    "status": "Status",
+    "allStatuses": "Elke status",
+    "method": "Betaalmethode",
+    "allMethods": "Elke betaling",
+    "cashier": "Kassamedewerker",
+    "allCashiers": "Alle kassamedewerkers"
+  },
+  "col": {
+    "number": "Bon",
+    "time": "Tijd",
+    "payment": "Betaald met"
+  },
+  "type": {
+    "sale": "Verkoop",
+    "refund": "Terugbetaling"
+  },
+  "status": {
+    "completed": "Voltooid",
+    "voided": "Geannuleerd"
+  },
+  "badge": {
+    "refund": "Terugbetaling",
+    "voided": "Geannuleerd",
+    "partiallyRefunded": "Deels terugbetaald",
+    "refunded": "Terugbetaald"
+  },
+  "summary": {
+    "count": "Transacties",
+    "voided_one": "{{count}} geannuleerd",
+    "voided_other": "{{count}} geannuleerd",
+    "net": "Nettototaal",
+    "sales_one": "{{count}} verkoop",
+    "sales_other": "{{count}} verkopen",
+    "refunds_one": "{{count}} terugbetaling",
+    "refunds_other": "{{count}} terugbetalingen"
+  },
+  "empty": {
+    "title": "Geen verkopen in deze periode",
+    "hint": "Verkopen die je bij de kassa afrekent, verschijnen hier.",
+    "filtered": "Niets komt overeen met deze filters",
+    "filteredHint": "Probeer een andere periode, zoekopdracht of filter."
+  },
+  "export": {
+    "sales": "Verkopen (één rij per bon)",
+    "items": "Regels (één rij per artikel)",
+    "empty": "Niets te exporteren voor deze filters",
+    "done_one": "{{count}} bon geëxporteerd",
+    "done_other": "{{count}} bonnen geëxporteerd"
+  },
+  "detail": {
+    "title": "Verkoop",
+    "notFound": "Verkoop niet gevonden",
+    "notFoundHint": "Deze is mogelijk verwijderd of nog niet gesynchroniseerd naar deze kassa.",
+    "details": "Details",
+    "receipt": "Bon",
+    "a4": "A4-factuur",
+    "refundOf": "Terugbetaling van",
+    "cashier": "Kassamedewerker",
+    "terminal": "Terminal",
+    "orderType": "Ordertype",
+    "supply": "Levering",
+    "interState": "Tussen deelstaten (IGST)",
+    "intraState": "Binnen de deelstaat (CGST + SGST)",
+    "items": "Artikelen",
+    "taxIncluded": "Prijzen zijn inclusief {{amount}} belasting",
+    "taxBreakdown": "Belastingoverzicht",
+    "payments": "Betalingen",
+    "refundedVia": "Terugbetaald via",
+    "noPayments": "Geen betalingen geregistreerd",
+    "pointsEarned_one": "+{{count}} punt verdiend",
+    "pointsEarned_other": "+{{count}} punten verdiend",
+    "pointsRedeemed_one": "{{count}} punt verzilverd",
+    "pointsRedeemed_other": "{{count}} punten verzilverd",
+    "linked": "Terugbetalingen bij deze verkoop"
+  },
+  "refund": {
+    "action": "Retour",
+    "title": "{{number}} terugbetalen",
+    "pickItems": "Kies wat de klant retourneert.",
+    "everything": "Alles terugbetalen",
+    "clearAll": "Selectie wissen",
+    "nothingLeft": "Alles op deze verkoop is al terugbetaald.",
+    "voided": "Deze verkoop is geannuleerd en kan niet worden terugbetaald.",
+    "returnedQty": "{{qty}} geretourneerd",
+    "method": "Terugbetalen met",
+    "creditHint": "Verlaagt wat {{name}} op rekening verschuldigd is.",
+    "restock": "Artikelen terug in voorraad zetten",
+    "restockHint": "Geretourneerde artikelen worden weer aan de voorraad toegevoegd.",
+    "noRestockHint": "De voorraad blijft ongewijzigd — gebruik dit voor beschadigde of verlopen goederen.",
+    "reason": "Reden",
+    "reasons": {
+      "damaged": "Beschadigd",
+      "wrongItem": "Verkeerd artikel",
+      "changedMind": "Van gedachten veranderd",
+      "notAsDescribed": "Niet zoals beschreven"
+    },
+    "total": "Totaal terug te betalen",
+    "confirm": "Terugbetalen",
+    "done": "Creditnota {{number}} aangemaakt",
+    "complete": "Retour voltooid",
+    "payBack": "Terugbetalen via {{method}}",
+    "toAccount": "Bijgeschreven op klantaccount"
+  },
+  "void": {
+    "action": "Annuleren",
+    "title": "{{number}} annuleren",
+    "hint": "Annuleren maakt de hele verkoop ongedaan en zet de artikelen terug in voorraad. Gebruik dit om fouten te herstellen; gebruik een terugbetaling wanneer goederen worden geretourneerd.",
+    "reason": "Reden",
+    "reasons": {
+      "mistake": "Per ongeluk aangeslagen",
+      "duplicate": "Dubbele verkoop",
+      "testSale": "Testverkoop",
+      "customerLeft": "Klant heeft niet betaald"
+    },
+    "confirmTitle": "{{number}} annuleren?",
+    "confirmMessage": "De verkoop van {{amount}} wordt geannuleerd en de voorraad wordt teruggezet. Dit kan niet ongedaan worden gemaakt.",
+    "done": "{{number}} geannuleerd",
+    "voided": "Geannuleerd"
+  }
+}
