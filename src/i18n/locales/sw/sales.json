@@ -1,0 +1,144 @@
+{
+  "title": "Mauzo",
+  "searchPlaceholder": "Namba ya risiti, jina au simu",
+  "walkIn": "Mteja wa kawaida",
+  "itemsCount_one": "Mstari {{count}}",
+  "itemsCount_other": "Mistari {{count}}",
+  "allDatesHint": "Namba za risiti zinazofanana kutoka tarehe zote",
+  "clearFilters": "Futa vichujio",
+  "loadMore": "Onyesha zaidi",
+  "showing": "Inaonyesha {{shown}} kati ya {{total}}",
+  "range": {
+    "today": "Leo",
+    "yesterday": "Jana",
+    "last7": "Siku 7 zilizopita",
+    "thisMonth": "Mwezi huu",
+    "last30": "Siku 30 zilizopita",
+    "custom": "Maalum"
+  },
+  "filter": {
+    "period": "Kipindi",
+    "type": "Aina",
+    "allTypes": "Aina zote",
+    "sales": "Mauzo tu",
+    "refunds": "Marejesho tu",
+    "status": "Hali",
+    "allStatuses": "Hali yoyote",
+    "method": "Njia ya malipo",
+    "allMethods": "Malipo yoyote",
+    "cashier": "Mtunza fedha",
+    "allCashiers": "Watunza fedha wote"
+  },
+  "col": {
+    "number": "Risiti",
+    "time": "Muda",
+    "payment": "Imelipwa kwa"
+  },
+  "type": {
+    "sale": "Mauzo",
+    "refund": "Marejesho"
+  },
+  "status": {
+    "completed": "Imekamilika",
+    "voided": "Imebatilishwa"
+  },
+  "badge": {
+    "refund": "Marejesho",
+    "voided": "Imebatilishwa",
+    "partiallyRefunded": "Imerejeshwa kiasi",
+    "refunded": "Imerejeshwa"
+  },
+  "summary": {
+    "count": "Miamala",
+    "voided_one": "{{count}} imebatilishwa",
+    "voided_other": "{{count}} zimebatilishwa",
+    "net": "Jumla halisi",
+    "sales_one": "Muuzo {{count}}",
+    "sales_other": "Mauzo {{count}}",
+    "refunds_one": "Marejesho {{count}}",
+    "refunds_other": "Marejesho {{count}}"
+  },
+  "empty": {
+    "title": "Hakuna mauzo kwenye kipindi hiki",
+    "hint": "Mauzo unayofanya kwenye kaunta yataonekana hapa.",
+    "filtered": "Hakuna kinachofanana na vichujio hivi",
+    "filteredHint": "Jaribu kipindi kingine cha tarehe, utafutaji au kichujio kingine."
+  },
+  "export": {
+    "sales": "Mauzo (mstari mmoja kwa kila risiti)",
+    "items": "Bidhaa za mstari (mstari mmoja kwa kila bidhaa)",
+    "empty": "Hakuna cha kuhamisha kwa vichujio hivi",
+    "done_one": "Risiti {{count}} imehamishwa",
+    "done_other": "Risiti {{count}} zimehamishwa"
+  },
+  "detail": {
+    "title": "Muuzo",
+    "notFound": "Muuzo haukupatikana",
+    "notFoundHint": "Huenda umeondolewa au bado haujasawazishwa kwenye terminal hii.",
+    "details": "Taarifa",
+    "receipt": "Risiti",
+    "a4": "Ankara ya A4",
+    "refundOf": "Marejesho ya",
+    "cashier": "Mtunza fedha",
+    "terminal": "Terminal",
+    "orderType": "Aina ya oda",
+    "supply": "Usambazaji",
+    "interState": "Nje ya jimbo (IGST)",
+    "intraState": "Ndani ya jimbo (CGST + SGST)",
+    "items": "Bidhaa",
+    "taxIncluded": "Bei zinajumuisha kodi ya {{amount}}",
+    "taxBreakdown": "Mgawanyo wa kodi",
+    "payments": "Malipo",
+    "refundedVia": "Imerejeshwa kwa",
+    "noPayments": "Hakuna malipo yaliyorekodiwa",
+    "pointsEarned_one": "+Pointi {{count}} imepatikana",
+    "pointsEarned_other": "+Pointi {{count}} zimepatikana",
+    "pointsRedeemed_one": "Pointi {{count}} imetumika",
+    "pointsRedeemed_other": "Pointi {{count}} zimetumika",
+    "linked": "Marejesho kwa muuzo huu"
+  },
+  "refund": {
+    "action": "Rejesha",
+    "title": "Rejesha {{number}}",
+    "pickItems": "Chagua kile mteja anachorudisha.",
+    "everything": "Rejesha kila kitu",
+    "clearAll": "Futa uchaguzi",
+    "nothingLeft": "Kila kitu kwenye muuzo huu tayari kimerejeshwa.",
+    "voided": "Muuzo huu ulibatilishwa na hauwezi kurejeshwa.",
+    "returnedQty": "{{qty}} zimerudishwa",
+    "method": "Rejesha kwa",
+    "creditHint": "Inapunguza deni la {{name}} kwenye akaunti.",
+    "restock": "Rudisha bidhaa hisani",
+    "restockHint": "Bidhaa zilizorudishwa zinaongezwa tena kwenye hisa.",
+    "noRestockHint": "Hisa inabaki kama ilivyo — tumia hii kwa bidhaa zilizoharibika au zilizoisha muda.",
+    "reason": "Sababu",
+    "reasons": {
+      "damaged": "Imeharibika",
+      "wrongItem": "Bidhaa isiyo sahihi",
+      "changedMind": "Amebadili mawazo",
+      "notAsDescribed": "Si kama ilivyoelezwa"
+    },
+    "total": "Jumla ya kurejesha",
+    "confirm": "Rejesha",
+    "done": "Hati ya mkopo {{number}} imeundwa",
+    "complete": "Marejesho yamekamilika",
+    "payBack": "Rejesha kwa {{method}}",
+    "toAccount": "Imewekwa kwenye akaunti ya mteja"
+  },
+  "void": {
+    "action": "Batilisha",
+    "title": "Batilisha {{number}}",
+    "hint": "Kubatilisha kunaghairi muuzo wote na kurudisha bidhaa zake hisani. Itumie kusahihisha makosa; tumia marejesho wakati bidhaa zinarudishwa.",
+    "reason": "Sababu",
+    "reasons": {
+      "mistake": "Imepigwa kimakosa",
+      "duplicate": "Muuzo unaofanana",
+      "testSale": "Muuzo wa majaribio",
+      "customerLeft": "Mteja hakulipa"
+    },
+    "confirmTitle": "Batilisha {{number}}?",
+    "confirmMessage": "Muuzo wa {{amount}} utaghairiwa na hisa yake kurudishwa. Hili haliwezi kutenduliwa.",
+    "done": "{{number}} imebatilishwa",
+    "voided": "Imebatilishwa"
+  }
+}
