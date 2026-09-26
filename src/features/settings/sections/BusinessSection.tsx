@@ -11,11 +11,11 @@ import { pickFile, readFileDataUrl } from '@/lib/download'
 import { uuid } from '@/lib/uuid'
 import { toast } from '@/stores/ui'
 import { useSettings } from '@/stores/settings'
-import { Button, Input, Modal, Select, Textarea } from '@/components/ui'
+import { Button, EmailInput, Input, Modal, PhoneInput, Select, TaxIdInput, Textarea } from '@/components/ui'
+import { LIMITS } from '@/lib/validate'
 import { Group, Row, Stack } from '../ui'
 import { TYPING_DELAY, notifySaved, useSettingsDraft } from '../hooks'
 
-const EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
 
 export function BusinessSection() {
   const { t } = useTranslation('settings')
@@ -41,7 +41,7 @@ export function BusinessSection() {
     <Stack>
       <Group title={t('business.identity')} description={t('business.identityHint')}>
         <Row id="business.name">
-          <Input label={t('business.name')} {...text('businessName')} error={!draft.businessName.trim() ? t('business.nameRequired') : undefined} maxLength={80} />
+          <Input label={t('business.name')} {...text('businessName')} error={!draft.businessName.trim() ? t('business.nameRequired') : undefined} maxLength={LIMITS.businessName} />
         </Row>
         <Row id="business.legalName">
           <Input label={t('business.legalName')} hint={t('business.legalNameHint')} {...text('legalName')} maxLength={120} />
@@ -71,15 +71,15 @@ export function BusinessSection() {
 
       <Group title={t('business.contact')}>
         <Row id="business.address">
-          <Textarea label={t('business.address')} rows={2} {...text('address')} />
+          <Textarea label={t('business.address')} rows={2} {...text('address')} maxLength={LIMITS.address} />
         </Row>
         <Row>
           <div className="grid gap-4 sm:grid-cols-2">
             <div data-setting="business.phone">
-              <Input label={t('business.phone')} type="tel" autoComplete="tel" {...text('phone')} />
+              <PhoneInput label={t('business.phone')} value={draft.phone} onChange={(v) => set({ phone: v }, TYPING_DELAY)} onBlur={() => void flush()} />
             </div>
             <div data-setting="business.email">
-              <Input label={t('business.email')} type="email" dir="ltr" autoComplete="email" {...text('email')} error={draft.email && !EMAIL.test(draft.email) ? t('business.emailInvalid') : undefined} />
+              <EmailInput label={t('business.email')} value={draft.email} onChange={(v) => set({ email: v }, TYPING_DELAY)} onBlur={() => void flush()} />
             </div>
           </div>
         </Row>
@@ -119,13 +119,12 @@ export function BusinessSection() {
               <Input label={t('business.taxLabel')} hint={t('business.taxLabelHint')} {...text('taxLabel')} maxLength={30} />
             </div>
             <div data-setting="business.taxNumber">
-              <Input
+              <TaxIdInput
                 label={t('business.taxNumber', { label: draft.taxLabel || t('business.taxLabel') })}
                 value={draft.taxNumber}
-                onChange={(e) => set({ taxNumber: e.target.value.toUpperCase() }, TYPING_DELAY)}
+                country={draft.country}
+                onChange={(v) => set({ taxNumber: v }, TYPING_DELAY)}
                 onBlur={() => void flush()}
-                error={draft.country === 'IN' && draft.taxNumber && !/^\d{2}[A-Z]{5}\d{4}[A-Z][1-9A-Z]Z[0-9A-Z]$/.test(draft.taxNumber) ? t('business.gstinInvalid') : undefined}
-                maxLength={30}
               />
             </div>
           </div>

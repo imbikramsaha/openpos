@@ -10,7 +10,8 @@ import { formatMoney } from '@/lib/money'
 import { navigate } from '@/router'
 import { useSettings } from '@/stores/settings'
 import { confirmDialog, toast } from '@/stores/ui'
-import { Avatar, Button, DataTable, EmptyState, FullScreenLoader, Input, Modal, SearchInput, Textarea, type Column } from '@/components/ui'
+import { Avatar, Button, DataTable, EmailInput, EmptyState, FullScreenLoader, Input, Modal, PhoneInput, SearchInput, TaxIdInput, Textarea, type Column } from '@/components/ui'
+import { emailError, hasErrors, LIMITS, phoneError, taxIdError } from '@/lib/validate'
 import { Metric } from '@/features/products/shared'
 import { byName } from '@/features/products/util'
 import { saveSupplier } from './service'
@@ -117,6 +118,7 @@ const EMPTY = { name: '', phone: '', email: '', taxNumber: '', address: '', note
 export function SupplierDialog({ open, supplier, onClose, onSaved }: { open: boolean; supplier?: Supplier; onClose: () => void; onSaved?: (s: Supplier) => void }) {
   const { t } = useTranslation('inventory')
   const taxLabel = useSettings((s) => s.settings.taxLabel)
+  const country = useSettings((s) => s.settings.country)
   const [form, setForm] = useState(EMPTY)
   const [tried, setTried] = useState(false)
   const [busy, setBusy] = useState(false)
@@ -136,7 +138,8 @@ export function SupplierDialog({ open, supplier, onClose, onSaved }: { open: boo
   const set = (k: keyof typeof EMPTY, v: string) => setForm((f) => ({ ...f, [k]: v }))
   const save = async () => {
     setTried(true)
-    if (!form.name.trim() || busy) return
+    const invalid = hasErrors({ phone: phoneError(form.phone), email: emailError(form.email), tax: taxIdError(form.taxNumber, country) })
+    if (!form.name.trim() || invalid || busy) return
     setBusy(true)
     try {
       const clean = Object.fromEntries(Object.entries(form).map(([k, v]) => [k, v.trim() || undefined])) as Partial<Supplier>
@@ -185,14 +188,14 @@ export function SupplierDialog({ open, supplier, onClose, onSaved }: { open: boo
             <Metric label={t('suppliers.due')} value={formatMoney(due)} tone={due > 0 ? 'danger' : undefined} />
           </div>
         )}
-        <Input label={`${t('common:name')} *`} value={form.name} onChange={(e) => set('name', e.target.value)} error={tried && !form.name.trim() ? t('suppliers.nameRequired') : undefined} autoFocus={!supplier} maxLength={120} />
+        <Input label={`${t('common:name')} *`} value={form.name} onChange={(e) => set('name', e.target.value)} error={tried && !form.name.trim() ? t('suppliers.nameRequired') : undefined} autoFocus={!supplier} maxLength={LIMITS.name} />
         <div className="grid gap-4 sm:grid-cols-2">
-          <Input label={t('common:phone')} type="tel" value={form.phone} onChange={(e) => set('phone', e.target.value)} left={<Phone className="size-4" />} />
-          <Input label={t('common:email')} type="email" value={form.email} onChange={(e) => set('email', e.target.value)} left={<Mail className="size-4" />} />
+          <PhoneInput label={t('common:phone')} value={form.phone} onChange={(v) => set('phone', v)} left={<Phone className="size-4" />} showErrors={tried} />
+          <EmailInput label={t('common:email')} value={form.email} onChange={(v) => set('email', v)} left={<Mail className="size-4" />} showErrors={tried} />
         </div>
-        <Input label={taxLabel} value={form.taxNumber} onChange={(e) => set('taxNumber', e.target.value.toUpperCase())} />
-        <Textarea label={t('common:address')} value={form.address} onChange={(e) => set('address', e.target.value)} rows={2} />
-        <Textarea label={t('common:notes')} value={form.notes} onChange={(e) => set('notes', e.target.value)} rows={2} />
+        <TaxIdInput label={taxLabel} value={form.taxNumber} onChange={(v) => set('taxNumber', v)} country={country} showErrors={tried} />
+        <Textarea label={t('common:address')} value={form.address} onChange={(e) => set('address', e.target.value)} rows={2} maxLength={LIMITS.address} />
+        <Textarea label={t('common:notes')} value={form.notes} onChange={(e) => set('notes', e.target.value)} rows={2} maxLength={LIMITS.notes} />
         {supplier && !!history?.length && (
           <div>
             <div className="mb-2 text-xs font-semibold tracking-wide text-subtle uppercase">{t('suppliers.recent')}</div>

@@ -13,7 +13,8 @@ import { useSession } from '@/stores/session'
 import { useDevice } from '@/stores/device'
 import { toast } from '@/stores/ui'
 import { joinStore, testConnection } from '@/sync/engine'
-import { Button, Input, Select, Toggle } from '@/components/ui'
+import { Button, Input, PhoneInput, Select, TaxIdInput, Toggle } from '@/components/ui'
+import { hasErrors, LIMITS, phoneError, taxIdError } from '@/lib/validate'
 import { LanguageGrid, useChangeLanguage } from '@/components/LanguagePicker'
 import { createUser } from '@/features/auth/users'
 import { cn } from '@/lib/cn'
@@ -128,7 +129,7 @@ export function SetupWizard() {
                 <h2 className="text-lg font-semibold">{t('business')}</h2>
                 <p className="text-sm text-muted">{t('businessHint')}</p>
               </div>
-              <Input label={t('businessName')} value={biz.name} onChange={(e) => setBiz({ ...biz, name: e.target.value })} placeholder={t('businessNamePlaceholder')} autoFocus />
+              <Input label={t('businessName')} value={biz.name} onChange={(e) => setBiz({ ...biz, name: e.target.value })} placeholder={t('businessNamePlaceholder')} autoFocus maxLength={LIMITS.businessName} />
               <Select
                 label={t('country')}
                 value={biz.country}
@@ -140,10 +141,10 @@ export function SetupWizard() {
                 <Select label={t('state')} value={biz.state} onChange={(e) => setBiz({ ...biz, state: e.target.value })} placeholder={t('selectState')} options={INDIAN_STATES.map(([code, name]) => ({ value: code, label: `${code} · ${name}` }))} />
               )}
               <div className="grid gap-4 sm:grid-cols-2">
-                <Input label={t('phone')} type="tel" value={biz.phone} onChange={(e) => setBiz({ ...biz, phone: e.target.value })} />
-                <Input label={preset.taxLabel} value={biz.taxNumber} onChange={(e) => setBiz({ ...biz, taxNumber: e.target.value.toUpperCase() })} hint={t('optional')} />
+                <PhoneInput label={t('phone')} value={biz.phone} onChange={(v) => setBiz({ ...biz, phone: v })} />
+                <TaxIdInput label={preset.taxLabel} value={biz.taxNumber} country={biz.country} onChange={(v) => setBiz({ ...biz, taxNumber: v })} hint={t('optional')} />
               </div>
-              <Input label={t('address')} value={biz.address} onChange={(e) => setBiz({ ...biz, address: e.target.value })} hint={t('optional')} />
+              <Input label={t('address')} value={biz.address} onChange={(e) => setBiz({ ...biz, address: e.target.value })} hint={t('optional')} maxLength={LIMITS.address} />
             </div>
           )}
 
@@ -153,7 +154,7 @@ export function SetupWizard() {
                 <h2 className="text-lg font-semibold">{t('admin')}</h2>
                 <p className="text-sm text-muted">{t('adminHint')}</p>
               </div>
-              <Input label={t('yourName')} value={admin.name} onChange={(e) => setAdmin({ ...admin, name: e.target.value })} autoFocus />
+              <Input label={t('yourName')} value={admin.name} onChange={(e) => setAdmin({ ...admin, name: e.target.value })} autoFocus maxLength={LIMITS.name} />
               <div className="grid gap-4 sm:grid-cols-2">
                 <Input label={t('pin')} type="password" inputMode="numeric" maxLength={6} value={admin.pin} onChange={(e) => setAdmin({ ...admin, pin: e.target.value.replace(/\D/g, '') })} hint={t('pinHint')} />
                 <Input label={t('confirmPin')} type="password" inputMode="numeric" maxLength={6} value={admin.pin2} onChange={(e) => setAdmin({ ...admin, pin2: e.target.value.replace(/\D/g, '') })} error={pinError} />
@@ -217,7 +218,10 @@ export function SetupWizard() {
               variant="primary"
               size="lg"
               iconRight={<ArrowRight className="size-5 rtl:rotate-180" />}
-              disabled={step === 'admin' && (!admin.name.trim() || !/^\d{4,6}$/.test(admin.pin) || admin.pin !== admin.pin2)}
+              disabled={
+                (step === 'business' && hasErrors({ phone: phoneError(biz.phone), tax: taxIdError(biz.taxNumber, biz.country) })) ||
+                (step === 'admin' && (!admin.name.trim() || !/^\d{4,6}$/.test(admin.pin) || admin.pin !== admin.pin2))
+              }
               onClick={() => setStep(steps[idx + 1])}
             >
               {t('common:next')}

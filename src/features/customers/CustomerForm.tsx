@@ -9,7 +9,8 @@ import { formatMoney } from '@/lib/money'
 import { session } from '@/stores/session'
 import { useSettings } from '@/stores/settings'
 import { confirmDialog, toast } from '@/stores/ui'
-import { Button, Input, Modal, MoneyInput, NumberInput, Select, Textarea } from '@/components/ui'
+import { Button, EmailInput, Input, Modal, MoneyInput, NumberInput, PhoneInput, Select, TaxIdInput, Textarea } from '@/components/ui'
+import { emailError, LIMITS, phoneError, taxIdError } from '@/lib/validate'
 import { requirePermission } from '@/features/auth/permission'
 import { phoneKey } from './ledger'
 
@@ -39,7 +40,6 @@ const fromCustomer = (c?: Customer | null): FormState => ({
   creditLimit: c?.creditLimit || undefined,
 })
 
-const EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
 const opt = (v: string) => v.trim() || undefined
 
 export function CustomerForm({ open, customer, initialName, onClose, onSaved }: { open: boolean; customer?: Customer | null; initialName?: string; onClose: () => void; onSaved?: (c: Customer, created: boolean) => void }) {
@@ -62,7 +62,9 @@ export function CustomerForm({ open, customer, initialName, onClose, onSaved }: 
   const set = <K extends keyof FormState>(k: K, v: FormState[K]) => setForm((f) => ({ ...f, [k]: v }))
   const errors = {
     name: !form.name.trim() ? t('form.nameRequired') : '',
-    email: form.email.trim() && !EMAIL.test(form.email.trim()) ? t('form.emailInvalid') : '',
+    phone: phoneError(form.phone) ? t(`common:${phoneError(form.phone)}`) : '',
+    email: emailError(form.email) ? t(`common:${emailError(form.email)}`) : '',
+    taxNumber: taxIdError(form.taxNumber, settings.country) ? t(`common:${taxIdError(form.taxNumber, settings.country)}`) : '',
     discountPercent: form.discountPercent !== undefined && (form.discountPercent < 0 || form.discountPercent > 100) ? t('form.discountRange') : '',
     creditLimit: form.creditLimit !== undefined && form.creditLimit < 0 ? t('form.limitNegative') : '',
   }
@@ -143,10 +145,10 @@ export function CustomerForm({ open, customer, initialName, onClose, onSaved }: 
       <form className="space-y-6" onSubmit={(e) => (e.preventDefault(), void save())}>
         <fieldset className="grid gap-4 sm:grid-cols-2">
           <legend className="mb-3 text-xs font-semibold tracking-wide text-muted uppercase">{t('form.contact')}</legend>
-          <Input label={`${t('name')} *`} value={form.name} onChange={(e) => set('name', e.target.value)} error={err('name')} autoFocus={isNew} autoComplete="off" maxLength={120} wrapperClassName="sm:col-span-2" />
-          <Input label={t('phone')} type="tel" inputMode="tel" value={form.phone} onChange={(e) => set('phone', e.target.value)} autoComplete="off" maxLength={30} />
-          <Input label={t('email')} type="email" inputMode="email" value={form.email} onChange={(e) => set('email', e.target.value)} error={err('email')} autoComplete="off" maxLength={120} />
-          <Input label={settings.taxLabel || t('taxNumber')} value={form.taxNumber} onChange={(e) => set('taxNumber', e.target.value.toUpperCase())} autoComplete="off" maxLength={30} />
+          <Input label={`${t('name')} *`} value={form.name} onChange={(e) => set('name', e.target.value)} error={err('name')} autoFocus={isNew} autoComplete="off" maxLength={LIMITS.name} wrapperClassName="sm:col-span-2" />
+          <PhoneInput label={t('phone')} value={form.phone} onChange={(v) => set('phone', v)} showErrors={submitted} />
+          <EmailInput label={t('email')} value={form.email} onChange={(v) => set('email', v)} showErrors={submitted} />
+          <TaxIdInput label={settings.taxLabel || t('taxNumber')} value={form.taxNumber} onChange={(v) => set('taxNumber', v)} country={settings.country} showErrors={submitted} />
           <NumberInput label={t('discountPercent')} hint={t('form.discountHint')} value={form.discountPercent} onChange={(v) => set('discountPercent', v)} error={err('discountPercent')} right={<span className="pe-2 text-sm text-subtle">%</span>} />
         </fieldset>
 

@@ -13,7 +13,8 @@ import { useSession } from '@/stores/session'
 import { useSettings } from '@/stores/settings'
 import { device } from '@/stores/device'
 import { toast, confirmDialog } from '@/stores/ui'
-import { Avatar, Badge, Button, EmptyState, Input, Modal, NumPad, SearchInput, Segmented, Select, applyNumKey } from '@/components/ui'
+import { Avatar, Badge, Button, EmailInput, EmptyState, Input, Modal, NumPad, PhoneInput, SearchInput, Segmented, Select, TaxIdInput, applyNumKey } from '@/components/ui'
+import { emailError, hasErrors, LIMITS, phoneError, sanitizePhone, taxIdError } from '@/lib/validate'
 import { calcCart } from './checkout'
 
 // ---- Numeric entry (quantity / price) ---------------------------------------
@@ -337,8 +338,10 @@ export function CustomerPicker({ open, onClose }: { open: boolean; onClose: () =
     onClose()
   }
 
+  const settings = useSettings((s) => s.settings)
+  const formInvalid = hasErrors({ phone: phoneError(form.phone), email: emailError(form.email), tax: taxIdError(form.taxNumber, settings.country) })
   const create = async () => {
-    if (!form.name.trim()) return
+    if (!form.name.trim() || formInvalid) return
     const c = await put<Customer>('customers', { ...form, name: form.name.trim(), loyaltyPoints: 0, balance: 0 })
     toast(t('customerAdded'))
     pick(c)
@@ -348,13 +351,13 @@ export function CustomerPicker({ open, onClose }: { open: boolean; onClose: () =
     <Modal open={open} onClose={onClose} title={creating ? t('newCustomer') : t('selectCustomer')} size="md" flush>
       {creating ? (
         <form className="space-y-4 p-5" onSubmit={(e) => (e.preventDefault(), void create())}>
-          <Input label={t('customers:name')} value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} autoFocus />
-          <Input label={t('customers:phone')} type="tel" value={form.phone} onChange={(e) => setForm({ ...form, phone: e.target.value })} />
-          <Input label={t('customers:email')} type="email" value={form.email} onChange={(e) => setForm({ ...form, email: e.target.value })} />
-          <Input label={useSettings.getState().settings.taxLabel} value={form.taxNumber} onChange={(e) => setForm({ ...form, taxNumber: e.target.value.toUpperCase() })} />
+          <Input label={t('customers:name')} value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} autoFocus maxLength={LIMITS.name} />
+          <PhoneInput label={t('customers:phone')} value={form.phone} onChange={(v) => setForm({ ...form, phone: v })} />
+          <EmailInput label={t('customers:email')} value={form.email} onChange={(v) => setForm({ ...form, email: v })} />
+          <TaxIdInput label={settings.taxLabel} value={form.taxNumber} country={settings.country} onChange={(v) => setForm({ ...form, taxNumber: v })} />
           <div className="flex justify-end gap-2">
             <Button onClick={() => setCreating(false)}>{t('common:back')}</Button>
-            <Button type="submit" variant="primary" disabled={!form.name.trim()}>
+            <Button type="submit" variant="primary" disabled={!form.name.trim() || formInvalid}>
               {t('common:save')}
             </Button>
           </div>
@@ -369,7 +372,7 @@ export function CustomerPicker({ open, onClose }: { open: boolean; onClose: () =
               aria-label={t('newCustomer')}
               onClick={() => {
                 const digits = q.replace(/[^\d+]/g, '')
-                setForm({ name: digits.length >= 6 ? '' : q, phone: digits.length >= 6 ? q : '', email: '', taxNumber: '' })
+                setForm({ name: digits.length >= 6 ? '' : q.slice(0, LIMITS.name), phone: digits.length >= 6 ? sanitizePhone(q) : '', email: '', taxNumber: '' })
                 setCreating(true)
               }}
             >
