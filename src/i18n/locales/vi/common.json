@@ -171,5 +171,11 @@
     "dozen": "tá",
     "hour": "giờ",
     "service": "dịch vụ"
+  },
+  "validation": {
+    "phone": "Nhập số điện thoại hợp lệ (7–15 chữ số)",
+    "email": "Nhập email hợp lệ, ví dụ name@example.com",
+    "gstin": "Nhập GSTIN hợp lệ gồm 15 ký tự, ví dụ 27AAPFU0939F1ZV",
+    "taxId": "Dùng 3–20 chữ cái hoặc chữ số"
   }
 }

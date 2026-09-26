@@ -171,5 +171,11 @@
     "dozen": "打",
     "hour": "小时",
     "service": "服务"
+  },
+  "validation": {
+    "phone": "请输入有效的电话号码（7–15 位数字）",
+    "email": "请输入有效的邮箱，例如 name@example.com",
+    "gstin": "请输入有效的 15 位 GSTIN，例如 27AAPFU0939F1ZV",
+    "taxId": "请使用 3–20 个字母或数字"
   }
 }

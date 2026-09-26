@@ -172,5 +172,11 @@
     "dozen": "dosena",
     "hour": "oras",
     "service": "serbisyo"
+  },
+  "validation": {
+    "phone": "Maglagay ng valid na phone number (7–15 digit)",
+    "email": "Maglagay ng valid na email, hal. name@example.com",
+    "gstin": "Maglagay ng valid na 15-character na GSTIN, hal. 27AAPFU0939F1ZV",
+    "taxId": "Gumamit ng 3–20 letra o numero"
   }
 }

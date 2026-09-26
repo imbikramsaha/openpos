@@ -171,5 +171,11 @@
     "dozen": "다스",
     "hour": "시간",
     "service": "서비스"
+  },
+  "validation": {
+    "phone": "올바른 전화번호를 입력하세요(7–15자리)",
+    "email": "올바른 이메일을 입력하세요(예: name@example.com)",
+    "gstin": "올바른 15자리 GSTIN을 입력하세요(예: 27AAPFU0939F1ZV)",
+    "taxId": "3–20자의 영문자 또는 숫자를 사용하세요"
   }
 }

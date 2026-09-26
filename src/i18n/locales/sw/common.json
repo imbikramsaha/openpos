@@ -172,5 +172,11 @@
     "dozen": "dazani",
     "hour": "saa",
     "service": "huduma"
+  },
+  "validation": {
+    "phone": "Weka nambari halali ya simu (tarakimu 7–15)",
+    "email": "Weka barua pepe halali, kama name@example.com",
+    "gstin": "Weka GSTIN halali ya herufi 15, kama 27AAPFU0939F1ZV",
+    "taxId": "Tumia herufi au tarakimu 3–20"
   }
 }

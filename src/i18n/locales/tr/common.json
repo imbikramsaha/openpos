@@ -172,5 +172,11 @@
     "dozen": "düzine",
     "hour": "saat",
     "service": "hizmet"
+  },
+  "validation": {
+    "phone": "Geçerli bir telefon numarası girin (7–15 hane)",
+    "email": "Geçerli bir e-posta girin, ör. name@example.com",
+    "gstin": "Geçerli 15 karakterli bir GSTIN girin, ör. 27AAPFU0939F1ZV",
+    "taxId": "3–20 harf veya rakam kullanın"
   }
 }

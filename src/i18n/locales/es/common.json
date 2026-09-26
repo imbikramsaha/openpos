@@ -172,5 +172,11 @@
     "dozen": "docena",
     "hour": "hora",
     "service": "servicio"
+  },
+  "validation": {
+    "phone": "Introduce un teléfono válido (7–15 dígitos)",
+    "email": "Introduce un correo válido, como name@example.com",
+    "gstin": "Introduce un GSTIN válido de 15 caracteres, como 27AAPFU0939F1ZV",
+    "taxId": "Usa entre 3 y 20 letras o números"
   }
 }

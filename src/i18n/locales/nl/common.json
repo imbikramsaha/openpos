@@ -172,5 +172,11 @@
     "dozen": "Dozijn",
     "hour": "Uur",
     "service": "Dienst"
+  },
+  "validation": {
+    "phone": "Voer een geldig telefoonnummer in (7–15 cijfers)",
+    "email": "Voer een geldig e-mailadres in, zoals name@example.com",
+    "gstin": "Voer een geldig GSTIN van 15 tekens in, zoals 27AAPFU0939F1ZV",
+    "taxId": "Gebruik 3–20 letters of cijfers"
   }
 }

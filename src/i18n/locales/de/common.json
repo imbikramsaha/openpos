@@ -172,5 +172,11 @@
     "dozen": "Dutzend",
     "hour": "Stunde",
     "service": "Leistung"
+  },
+  "validation": {
+    "phone": "Gib eine gültige Telefonnummer ein (7–15 Ziffern)",
+    "email": "Gib eine gültige E-Mail-Adresse ein, z. B. name@example.com",
+    "gstin": "Gib eine gültige 15-stellige GSTIN ein, z. B. 27AAPFU0939F1ZV",
+    "taxId": "Verwende 3–20 Buchstaben oder Ziffern"
   }
 }

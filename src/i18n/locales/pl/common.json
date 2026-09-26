@@ -174,5 +174,11 @@
     "dozen": "tuzin",
     "hour": "godzina",
     "service": "usługa"
+  },
+  "validation": {
+    "phone": "Wpisz prawidłowy numer telefonu (7–15 cyfr)",
+    "email": "Wpisz prawidłowy e-mail, np. name@example.com",
+    "gstin": "Wpisz prawidłowy 15-znakowy GSTIN, np. 27AAPFU0939F1ZV",
+    "taxId": "Użyj od 3 do 20 liter lub cyfr"
   }
 }

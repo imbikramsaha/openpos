@@ -171,5 +171,11 @@
     "dozen": "lusin",
     "hour": "jam",
     "service": "perkhidmatan"
+  },
+  "validation": {
+    "phone": "Masukkan nombor telefon yang sah (7–15 digit)",
+    "email": "Masukkan e-mel yang sah, cth. name@example.com",
+    "gstin": "Masukkan GSTIN 15 aksara yang sah, cth. 27AAPFU0939F1ZV",
+    "taxId": "Gunakan 3–20 huruf atau nombor"
   }
 }
