@@ -47,7 +47,6 @@ export default function SellScreen() {
   const { t } = useTranslation('sell')
   const cart = useCart()
   const settings = useSettings((s) => s.settings)
-  const shift = useSession((s) => s.shift)
   const logout = useSession((s) => s.logout)
   const cartSide = useDevice((s) => s.cartSide)
   const sound = useDevice((s) => s.sound)
@@ -177,7 +176,8 @@ export default function SellScreen() {
     if (paying.current) return
     const c = useCart.getState()
     if (!c.lines.length) return
-    if (settings.requireShift && !shift) return setDialog({ kind: 'openShift' })
+    // Read the live shift: pay() also runs right after the shift dialog opens one.
+    if (settings.requireShift && !useSession.getState().shift) return setDialog({ kind: 'openShift' })
     paying.current = true
     try {
       const current = calcCart(c)
@@ -354,7 +354,7 @@ export default function SellScreen() {
       <HeldOrdersDialog open={dialog?.kind === 'held'} onClose={close} />
       <CustomItemDialog open={dialog?.kind === 'custom'} onClose={close} />
       <CameraScanner open={dialog?.kind === 'camera'} onClose={close} onScan={onScan} />
-      <OpenShiftDialog open={dialog?.kind === 'openShift'} onClose={close} />
+      <OpenShiftDialog open={dialog?.kind === 'openShift'} onClose={close} onOpened={() => setTimeout(() => void pay(), 0)} />
       <RefundLookup open={dialog?.kind === 'refund'} onClose={close} />
       <PaymentDialog
         open={dialog?.kind === 'pay'}

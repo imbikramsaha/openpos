@@ -125,7 +125,12 @@
     "done": "Credit note {{number}} created",
     "complete": "Refund complete",
     "payBack": "Give back in {{method}}",
-    "toAccount": "Credited to customer account"
+    "toAccount": "Credited to customer account",
+    "nothing": "Select at least one item to refund",
+    "pointsBack_one": "+ {{count}} loyalty point returned",
+    "pointsBack_other": "+ {{count}} loyalty points returned",
+    "pointsBackHint_one": "{{count}} loyalty point ({{amount}}) goes back to the customer's points instead of money",
+    "pointsBackHint_other": "{{count}} loyalty points ({{amount}}) go back to the customer's points instead of money"
   },
   "void": {
     "action": "Void",
@@ -143,6 +148,7 @@
     "done": "{{number}} voided",
     "voided": "Voided",
     "notAllowed": "This sale is already voided or can't be voided.",
-    "hasRefunds": "This sale has refunds, so it can't be voided. Refund the remaining items instead."
+    "hasRefunds": "This sale has refunds, so it can't be voided. Refund the remaining items instead.",
+    "otherShift": "This sale belongs to a closed shift. Refund it instead."
   }
 }

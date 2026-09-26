@@ -19,6 +19,7 @@
   "apply": "Apply",
   "reset": "Reset",
   "clear": "Clear",
+  "backspace": "Delete last digit",
   "search": "Search",
   "filter": "Filter",
   "all": "All",
@@ -90,8 +91,12 @@
   "noAccess": "You don't have access to this screen",
   "noAccessHint": "Ask an administrator to grant you permission.",
   "updateAvailable": "A new version of Kasa POS is ready.",
+  "offlineReady": "Kasa POS is ready to work offline",
   "reload": "Reload",
+  "later": "Later",
   "somethingWentWrong": "Something went wrong",
+  "storageError": "This browser won't let Kasa POS save data",
+  "storageErrorHint": "Kasa POS keeps your sales on this device. A private or incognito window, blocked site data or a full disk can prevent that. Open the app in a normal window, allow site data for this site, then reload.",
   "tryAgain": "Try again",
   "areYouSure": "Are you sure?",
   "cannotUndo": "This cannot be undone.",
@@ -178,5 +183,6 @@
     "email": "Enter a valid email, like name@example.com",
     "gstin": "Enter a valid 15-character GSTIN, like 27AAPFU0939F1ZV",
     "taxId": "Use 3–20 letters or numbers"
-  }
+  },
+  "notSignedIn": "Sign in first"
 }

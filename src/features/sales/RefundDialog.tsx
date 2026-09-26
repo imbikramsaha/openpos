@@ -10,7 +10,7 @@ import { session } from '@/stores/session'
 import { useSettings } from '@/stores/settings'
 import { toast } from '@/stores/ui'
 import { Badge, Button, Input, Modal, Toggle } from '@/components/ui'
-import { refundContext, refundSale } from '@/features/sell/checkout'
+import { loyaltyReturn, refundContext, refundSale } from '@/features/sell/checkout'
 import { ReceiptPreview, emailReceipt, printSale, shareNative, shareWhatsApp } from '@/features/sell/ReceiptDialog'
 import { METHOD_ICONS } from '@/features/sell/PaymentDialog'
 import { OpenShiftDialog } from '@/features/shifts/OpenShiftDialog'
@@ -33,6 +33,7 @@ export function RefundDialog({ sale, open, onClose, customerEmail }: { sale: Sal
   const settings = useSettings((s) => s.settings)
   const [already, setAlready] = useState<Record<string, number> | null>(null)
   const [roundingDone, setRoundingDone] = useState(0)
+  const [pointsDone, setPointsDone] = useState(0)
   const [qty, setQty] = useState<Record<string, number>>({})
   const [restock, setRestock] = useState(true)
   const [method, setMethod] = useState<PaymentMethod>('cash')
@@ -56,6 +57,7 @@ export function RefundDialog({ sale, open, onClose, customerEmail }: { sale: Sal
     void refundContext(sale.id).then((ctx) => {
       setAlready(ctx.done)
       setRoundingDone(ctx.rounding)
+      setPointsDone(ctx.points)
     })
     // Only when (re)opened or a different sale is shown; live updates must not wipe the selection.
   }, [open, sale.id])
@@ -68,6 +70,7 @@ export function RefundDialog({ sale, open, onClose, customerEmail }: { sale: Sal
     // The last refund of a sale also returns the invoice's cash rounding.
     return { ...base, total: base.total + refundRounding(sale, lines, already ?? {}, roundingDone) }
   }, [lines, sale, already, roundingDone])
+  const pointsBack = loyaltyReturn(sale, sum.total, pointsDone, settings.loyaltyPointValue)
   const byLine = useMemo(() => new Map(lines.map((l) => [l.refLineId!, l])), [lines])
   const everything = refundable.every((l) => (qty[l.id] ?? 0) >= available(l.id, l.qty))
   const nothingLeft = already !== null && refundable.every((l) => available(l.id, l.qty) <= 0)
@@ -105,7 +108,8 @@ export function RefundDialog({ sale, open, onClose, customerEmail }: { sale: Sal
             <CheckCircle2 className="size-16 text-success" strokeWidth={1.6} />
             <div>
               <div className="text-sm font-semibold text-muted">{method === 'credit' ? t('refund.toAccount') : t('refund.payBack', { method: t(`common:payment.${method}`) })}</div>
-              <div className="tnum text-5xl font-extrabold text-success">{formatMoney(-done.total)}</div>
+              <div className="tnum text-5xl font-extrabold text-success">{formatMoney(-done.payments.filter((p) => p.method !== 'loyalty').reduce((a, p) => a + p.amount, 0))}</div>
+              {!!done.loyaltyRedeemed && <div className="mt-1 text-sm text-muted">{t('refund.pointsBack', { count: -done.loyaltyRedeemed })}</div>}
             </div>
             <ActionTiles
               cols={2}
@@ -209,6 +213,7 @@ export function RefundDialog({ sale, open, onClose, customerEmail }: { sale: Sal
               })}
             </div>
             {method === 'credit' && <p className="mt-2 text-xs text-muted">{t('refund.creditHint', { name: sale.customerName })}</p>}
+            {pointsBack.points > 0 && <p className="mt-2 text-xs text-muted">{t('refund.pointsBackHint', { count: pointsBack.points, amount: formatMoney(pointsBack.value) })}</p>}
           </div>
           <Toggle
             checked={restock}

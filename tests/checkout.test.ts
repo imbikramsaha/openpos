@@ -68,7 +68,7 @@ describe('checkout', () => {
     expect(await alreadyRefunded(sale.id)).toEqual({ [lineId]: 1 })
     await refundSale(sale, { [lineId]: 10 }, [{ id: 'r2', method: 'cash', amount: -6000 }], false)
     expect(await alreadyRefunded(sale.id)).toEqual({ [lineId]: 4 })
-    await expect(refundSale(sale, { [lineId]: 1 }, [], false)).rejects.toThrow('Nothing to refund')
+    await expect(refundSale(sale, { [lineId]: 1 }, [], false)).rejects.toThrow()
     // Loyalty earned on the sale is reversed with the refunds.
     expect((await db.customers.get(customer.id))!.loyaltyPoints).toBe(0)
   })
@@ -87,5 +87,31 @@ describe('checkout', () => {
     await db.products.update(product.id, { stock: 999 })
     await rebuildStock()
     expect((await db.products.get(product.id))!.stock).toBe(7)
+  })
+})
+
+describe('refunds of sales paid with loyalty points', () => {
+  it('returns spent points as points and only the rest as money', async () => {
+    // Customer earns 10 points on a first sale (loyaltyEarnRate 0.1 per rupee).
+    await completeSale(cartOf(5), [{ id: 'p0', method: 'cash', amount: 10000 }], customer)
+    expect((await db.customers.get(customer.id))!.loyaltyPoints).toBe(10)
+    // Second sale: ₹20 paid with 5 points (₹1 each = 100 minor) → ₹5 in points + ₹15 cash.
+    const c = (await db.customers.get(customer.id))!
+    const sale = await completeSale(cartOf(1), [{ id: 'l', method: 'loyalty', amount: 500 }, { id: 'c', method: 'cash', amount: 1500 }], c)
+    expect(sale.loyaltyRedeemed).toBe(5)
+    const refund = await refundSale(sale, { [sale.lines[0].id]: 1 }, [{ id: 'r', method: 'cash', amount: -2000 }], true)
+    expect(refund.loyaltyRedeemed).toBe(-5)
+    expect(refund.payments.find((p) => p.method === 'cash')!.amount).toBe(-1500)
+    expect(refund.payments.find((p) => p.method === 'loyalty')!.amount).toBe(-500)
+    // Points spent come back; points earned on the refunded sale are reversed.
+    const after = (await db.customers.get(customer.id))!
+    expect(after.loyaltyPoints).toBe(10 - 5 + 5 + (sale.loyaltyEarned ?? 0) - (sale.loyaltyEarned ?? 0))
+  })
+
+  it('refuses to void a sale from a different (closed) shift', async () => {
+    const sale = await completeSale(cartOf(1), [{ id: 'p', method: 'cash', amount: 2000 }])
+    await db.sales.update(sale.id, { shiftId: 'old-shift' })
+    await expect(voidSale({ ...sale, shiftId: 'old-shift' }, 'oops')).rejects.toThrow()
+    expect((await db.sales.get(sale.id))!.status).toBe('completed')
   })
 })

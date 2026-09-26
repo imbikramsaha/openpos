@@ -43,7 +43,7 @@ export function CartPanel({ actions, className }: { actions: CartActions; classN
   const settings = useSettings((s) => s.settings)
   const shift = useSession((s) => s.shift)
   const calc = useMemo(() => calcCart(cart), [cart])
-  const customer = useLiveQuery(() => (cart.customerId ? db.customers.get(cart.customerId) : undefined), [cart.customerId])
+  const customer = useLiveQuery(() => (cart.customerId ? db.customers.get(cart.customerId).then((c) => (c && !c.deleted ? c : undefined)) : undefined), [cart.customerId])
   const heldCount = useLiveQuery(async () => (await db.heldOrders.toArray()).filter((h) => !h.deleted).length, []) ?? 0
   const listRef = useRef<HTMLUListElement>(null)
   const [menu, setMenu] = useState(false)

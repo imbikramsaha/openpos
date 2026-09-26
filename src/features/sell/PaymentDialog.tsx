@@ -33,7 +33,7 @@ export function PaymentDialog({ open, onClose, onComplete, onNeedCustomer }: { o
   const cart = useCart()
   const settings = useSettings((s) => s.settings)
   const calc = useMemo(() => calcCart(cart), [cart])
-  const customer = useLiveQuery(() => (cart.customerId ? db.customers.get(cart.customerId) : undefined), [cart.customerId])
+  const customer = useLiveQuery(() => (cart.customerId ? db.customers.get(cart.customerId).then((c) => (c && !c.deleted ? c : undefined)) : undefined), [cart.customerId])
   const [payments, setPayments] = useState<Payment[]>([])
   const [text, setText] = useState('')
   const [upi, setUpi] = useState<{ amount: number; qr: string } | null>(null)

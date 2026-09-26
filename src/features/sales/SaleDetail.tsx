@@ -36,6 +36,7 @@ export function printA4(sale: Sale) {
 
 export function SaleDetail({ id, autoRefund, onClose }: { id?: string; autoRefund: boolean; onClose: () => void }) {
   const { t } = useTranslation('sales')
+  const currentShift = useSession((st) => st.shift)
   const sale = useLiveQuery(async () => (id ? ((await db.sales.get(id)) ?? null) : null), [id])
   const refunds = useLiveQuery(
     async () => (id ? (await db.sales.where('refundOf').equals(id).toArray()).filter((r) => !r.deleted).sort((a, b) => a.createdAt - b.createdAt) : []),
@@ -52,7 +53,8 @@ export function SaleDetail({ id, autoRefund, onClose }: { id?: string; autoRefun
 
   const state = sale && refunds ? refundState(sale, refunds) : 'none'
   const canRefund = !!sale && sale.type === 'sale' && sale.status === 'completed' && state !== 'full' && sale.lines.some((l) => l.qty > 0)
-  const canVoid = !!sale && sale.type === 'sale' && sale.status === 'completed' && refunds?.length === 0
+  // Only sales from the current (or no) shift can be voided; older ones are refunded.
+  const canVoid = !!sale && sale.type === 'sale' && sale.status === 'completed' && refunds?.length === 0 && (!sale.shiftId || sale.shiftId === currentShift?.id)
 
   const startRefund = async () => {
     if (!sale || !canRefund) return
