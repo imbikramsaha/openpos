@@ -211,17 +211,20 @@ export function refundLines(original: SaleLine[], qtyByLine: Record<string, numb
   for (const l of original) {
     const q = qtyByLine[l.id]
     if (!q || q <= 0 || !l.qty) continue
-    const qty = Math.min(q, l.qty - (alreadyRefunded[l.id] ?? 0))
+    const done = alreadyRefunded[l.id] ?? 0
+    const qty = Math.min(q, l.qty - done)
     if (qty <= 0) continue
-    const ratio = qty / l.qty
-    const total = -round(l.total * ratio)
-    const tax = -round(l.tax * ratio)
+    // Cumulative rounding: take the share of (done + qty) minus the share earlier refunds
+    // took, so a line refunded in several parts adds up to exactly its original amount.
+    const part = (v: number) => (done + qty >= l.qty - 1e-9 ? v : round((v * (done + qty)) / l.qty)) - round((v * done) / l.qty)
+    const total = -part(l.total)
+    const tax = -part(l.tax)
     out.push({
       ...l,
       id: `${l.id}:r${Math.random().toString(36).slice(2, 8)}`,
       refLineId: l.id,
       qty: -qty,
-      discount: -round(l.discount * ratio),
+      discount: -part(l.discount),
       net: total - tax,
       tax,
       total,
@@ -238,6 +241,19 @@ export function refundedQuantities(refunds: Array<{ status: string; lines: SaleL
     for (const l of r.lines) if (l.refLineId) out[l.refLineId] = (out[l.refLineId] ?? 0) - l.qty
   }
   return out
+}
+
+/**
+ * Cash rounding for a refund: the credit note that returns everything still left on the sale
+ * also gives back the invoice rounding, so all refunds add up to exactly what was paid.
+ * `roundingRefunded` is the rounding already carried by earlier credit notes.
+ */
+export function refundRounding(original: { lines: SaleLine[]; rounding: Minor }, lines: SaleLine[], alreadyRefunded: Record<string, number> = {}, roundingRefunded: Minor = 0): Minor {
+  if (!original.rounding || !lines.length) return 0
+  const now: Record<string, number> = {}
+  for (const l of lines) if (l.refLineId) now[l.refLineId] = (now[l.refLineId] ?? 0) - l.qty
+  const complete = original.lines.every((l) => l.qty <= 0 || (alreadyRefunded[l.id] ?? 0) + (now[l.id] ?? 0) >= l.qty - 1e-9)
+  return complete ? -original.rounding - roundingRefunded : 0
 }
 
 export function summarizeLines(lines: SaleLine[]) {
