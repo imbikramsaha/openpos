@@ -29,7 +29,13 @@ export default function CustomerDisplay() {
   const [qr, setQr] = useState('')
 
   useEffect(() => {
-    const onStorage = (e: StorageEvent) => e.key === 'kasa.cart' && setCart(readCart())
+    const onStorage = (e: StorageEvent) => {
+      if (e.key !== 'kasa.cart') return
+      const next = readCart()
+      setCart(next)
+      // The next customer's items replace the "thank you" screen right away.
+      if (next.lines.length) setMsg((cur) => (cur.type === 'paid' ? { type: 'idle' } : cur))
+    }
     window.addEventListener('storage', onStorage)
     const off = onDisplayMessage((m) => {
       setMsg(m)

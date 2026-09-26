@@ -11,7 +11,9 @@ export function verifyPin(user: User, pin: string): boolean {
 
 export function pinFields(pin: string) {
   const pinSalt = randomHex(16)
-  return { pinSalt, pinHash: hashPin(pin, pinSalt) }
+  // pinPrefixHash lets the user editor detect PINs that start with each other (1234 / 123456)
+  // without brute-forcing extensions: the lock screen accepts a PIN as soon as it matches.
+  return { pinSalt, pinHash: hashPin(pin, pinSalt), pinPrefixHash: hashPin(pin.slice(0, 4), pinSalt) }
 }
 
 export async function createUser(name: string, role: Role, pin: string, extra: Partial<User> = {}): Promise<User> {

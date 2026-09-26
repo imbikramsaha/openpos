@@ -11,9 +11,10 @@ import { cn } from '@/lib/cn'
 import { useCart } from '@/stores/cart'
 import { useSettings } from '@/stores/settings'
 import { confirmDialog, toast } from '@/stores/ui'
-import { Button, Modal, NumPad, applyNumKey } from '@/components/ui'
+import { Button, Modal, NumPad } from '@/components/ui'
 import { requirePermission } from '@/features/auth/permission'
 import { calcCart, completeSale } from './checkout'
+import { MAX_MONEY_DIGITS, numKey, useDialogKeys } from './dialogs'
 import { sendToDisplay } from '@/features/display/channel'
 
 export const METHOD_ICONS: Record<PaymentMethod, typeof Banknote> = {
@@ -38,6 +39,7 @@ export function PaymentDialog({ open, onClose, onComplete, onNeedCustomer }: { o
   const [upi, setUpi] = useState<{ amount: number; qr: string } | null>(null)
   const [busy, setBusy] = useState(false)
   const busyRef = useRef(false)
+  const adding = useRef(false)
 
   useEffect(() => {
     if (open) {
@@ -61,7 +63,9 @@ export function PaymentDialog({ open, onClose, onComplete, onNeedCustomer }: { o
     }
   }, [open])
   const typed = text ? toMinor(parseDecimal(text)) : 0
-  const pointsValue = customer ? customer.loyaltyPoints * (settings.loyaltyPointValue || 0) : 0
+  const pointValue = settings.loyaltyPointValue || 0
+  const pointsValue = customer ? customer.loyaltyPoints * pointValue : 0
+  const typeKey = (k: string) => setText((s) => numKey(s, k, moneyConfig().decimals, MAX_MONEY_DIGITS))
 
   const methods = useMemo(() => {
     const list = [...settings.enabledPayments]
@@ -87,6 +91,17 @@ export function PaymentDialog({ open, onClose, onComplete, onNeedCustomer }: { o
   }
 
   const add = async (method: PaymentMethod, amount?: number, reference?: string) => {
+    // Ignore taps while a previous tender is still awaiting approval or completing the sale.
+    if (adding.current || busyRef.current) return
+    adding.current = true
+    try {
+      await addTender(method, amount, reference)
+    } finally {
+      adding.current = false
+    }
+  }
+
+  const addTender = async (method: PaymentMethod, amount?: number, reference?: string) => {
     let amt = amount ?? (typed > 0 ? typed : due)
     if (amt <= 0 && due > 0) return
     if (method !== 'cash') amt = Math.min(amt, due)
@@ -105,7 +120,8 @@ export function PaymentDialog({ open, onClose, onComplete, onNeedCustomer }: { o
       }
     }
     if (method === 'loyalty') {
-      amt = Math.min(amt, pointsValue)
+      // Redeem whole points only, so the value credited always matches the points deducted.
+      amt = pointValue > 0 ? Math.floor(Math.min(amt, pointsValue) / pointValue) * pointValue : 0
       if (amt <= 0) return
     }
     if (method === 'upi' && !reference && settings.upiId) {
@@ -121,27 +137,23 @@ export function PaymentDialog({ open, onClose, onComplete, onNeedCustomer }: { o
     if (computeChange(total, next).due <= 0) await finalize(next)
   }
 
-  useEffect(() => {
-    if (!open || upi) return
-    const onKey = (e: KeyboardEvent) => {
-      if (e.target instanceof HTMLInputElement) return
-      if (/^[\d.]$/.test(e.key)) setText((s) => applyNumKey(s, e.key, moneyConfig().decimals))
-      else if (e.key === ',') setText((s) => applyNumKey(s, '.'))
-      else if (e.key === 'Backspace') setText((s) => s.slice(0, -1))
-      else if (e.key === 'Enter') {
-        e.preventDefault()
-        if (due <= 0) void finalize(payments)
-        else void add('cash')
-      } else if (/^F([1-8])$/.test(e.key)) {
-        const m = methods[Number(e.key.slice(1)) - 1]
-        if (m) {
-          e.preventDefault()
-          void add(m)
-        }
-      }
+  const keysRef = useDialogKeys(open, (e) => {
+    if (/^F([1-8])$/.test(e.key)) {
+      // Always swallow F1–F8 here: unused ones would otherwise reload the page (F5) or open help.
+      e.preventDefault()
+      const m = methods[Number(e.key.slice(1)) - 1]
+      if (m && !upi && (due > 0 || m === 'cash')) void add(m)
+      return
     }
-    window.addEventListener('keydown', onKey)
-    return () => window.removeEventListener('keydown', onKey)
+    if (upi) return
+    if (/^[\d.]$/.test(e.key)) typeKey(e.key)
+    else if (e.key === ',') typeKey('.')
+    else if (e.key === 'Backspace') setText((s) => s.slice(0, -1))
+    else if (e.key === 'Enter') {
+      e.preventDefault()
+      if (due <= 0) void finalize(payments)
+      else void add('cash')
+    }
   })
 
   const notes = settings.quickCash.map((n) => toMinor(n))
@@ -151,7 +163,7 @@ export function PaymentDialog({ open, onClose, onComplete, onNeedCustomer }: { o
     <Modal open={open} onClose={() => !busy && onClose()} title={t('payment')} size="xl" flush dismissible={!busy}>
       <div className="grid min-h-0 lg:grid-cols-[1fr_1.15fr]">
         {/* Summary */}
-        <div className="flex flex-col gap-4 border-b border-border bg-surface-2 p-5 lg:border-e lg:border-b-0">
+        <div ref={keysRef} className="flex flex-col gap-4 border-b border-border bg-surface-2 p-5 lg:border-e lg:border-b-0">
           <div>
             <div className="text-sm font-medium text-muted">{t('totalToPay')}</div>
             <div className="tnum text-4xl font-extrabold tracking-tight sm:text-5xl">{formatMoney(total)}</div>
@@ -242,7 +254,10 @@ export function PaymentDialog({ open, onClose, onComplete, onNeedCustomer }: { o
                 </div>
               )}
               <div className="grid gap-4 sm:grid-cols-[1fr_auto]">
-                <NumPad onKey={(k) => setText((s) => applyNumKey(s, k, moneyConfig().decimals))} size="md" />
+                {/* Keypads keep the 7-8-9 layout in right-to-left languages too. */}
+                <div dir="ltr">
+                  <NumPad onKey={typeKey} size="md" decimal={moneyConfig().decimals > 0} />
+                </div>
                 <div className="order-first grid grid-cols-2 content-start gap-2 sm:order-none sm:w-44 sm:grid-cols-1">
                   {methods.map((m, i) => {
                     const Icon = METHOD_ICONS[m]

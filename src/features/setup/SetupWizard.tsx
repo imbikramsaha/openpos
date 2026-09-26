@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useRef, useState, type KeyboardEvent } from 'react'
 import { useTranslation } from 'react-i18next'
 import { ArrowLeft, ArrowRight, Check, CloudDownload, Rocket, Store } from 'lucide-react'
 import type { Settings, Tax } from '@/core/types'
@@ -28,6 +28,8 @@ export function SetupWizard() {
   const updateDevice = useDevice((s) => s.update)
   const [step, setStep] = useState<Step>('language')
   const [busy, setBusy] = useState(false)
+  // A ref, not state: a fast double-click fires twice before `busy` re-renders the button.
+  const running = useRef(false)
   const [biz, setBiz] = useState({ name: '', country: guessCountry(), phone: '', address: '', taxNumber: '', state: '' })
   const [admin, setAdmin] = useState({ name: '', pin: '', pin2: '' })
   const [demo, setDemo] = useState(true)
@@ -39,6 +41,8 @@ export function SetupWizard() {
   const pinError = admin.pin && !/^\d{4,6}$/.test(admin.pin) ? t('pinFormat') : admin.pin2 && admin.pin !== admin.pin2 ? t('pinMismatch') : ''
 
   const finish = async () => {
+    if (running.current) return
+    running.current = true
     setBusy(true)
     try {
       const now = Date.now()
@@ -52,7 +56,7 @@ export function SetupWizard() {
         taxNumber: biz.taxNumber,
         taxLabel: preset.taxLabel,
         country: preset.code,
-        state: biz.state || undefined,
+        state: preset.code === 'IN' ? biz.state || undefined : undefined,
         currency: preset.currency,
         numberLocale: preset.locale,
         pricesIncludeTax: preset.pricesIncludeTax,
@@ -65,19 +69,24 @@ export function SetupWizard() {
       }
       await putMany('taxes', taxes)
       await putMany('settings', [s])
-      const user = await createUser(admin.name.trim() || 'Admin', 'admin', admin.pin)
       if (demo) await seedDemoData(preset.currency, taxes)
+      // The first user is created last: as soon as a user exists the app leaves the wizard, so a
+      // failure above must not leave a half-configured store behind the lock screen.
+      const user = await createUser(admin.name.trim() || 'Admin', 'admin', admin.pin)
       login(user)
       await audit('setup', 'settings', s.id)
       toast(t('ready'))
     } catch (e) {
-      toast(String(e), 'error')
+      toast(e instanceof Error ? e.message : String(e), 'error')
     } finally {
+      running.current = false
       setBusy(false)
     }
   }
 
   const doJoin = async () => {
+    if (running.current || !join.url || !join.key) return
+    running.current = true
     setBusy(true)
     try {
       const res = await testConnection(join.url, join.key)
@@ -91,8 +100,21 @@ export function SetupWizard() {
     } catch (e) {
       toast(e instanceof Error ? e.message : String(e), 'error')
     } finally {
+      running.current = false
       setBusy(false)
     }
+  }
+
+  const nextDisabled =
+    (step === 'business' && hasErrors({ phone: phoneError(biz.phone), tax: taxIdError(biz.taxNumber, biz.country) })) ||
+    (step === 'admin' && (!admin.name.trim() || !/^\d{4,6}$/.test(admin.pin) || admin.pin !== admin.pin2))
+
+  // Enter in a text field moves to the next step (or joins), like submitting a form.
+  const onEnter = (e: KeyboardEvent) => {
+    if (e.key !== 'Enter' || !(e.target instanceof HTMLInputElement)) return
+    e.preventDefault()
+    if (step === 'join') void doJoin()
+    else if ((step === 'business' || step === 'admin') && !nextDisabled) setStep(steps[idx + 1])
   }
 
   return (
@@ -114,7 +136,7 @@ export function SetupWizard() {
           </ol>
         )}
 
-        <div className="flex-1 rounded-3xl border border-border bg-surface p-5 shadow-card sm:p-7">
+        <div className="flex-1 rounded-3xl border border-border bg-surface p-5 shadow-card sm:p-7" onKeyDown={onEnter}>
           {step === 'language' && (
             <>
               <h2 className="mb-1 text-lg font-semibold">{t('chooseLanguage')}</h2>
@@ -218,10 +240,7 @@ export function SetupWizard() {
               variant="primary"
               size="lg"
               iconRight={<ArrowRight className="size-5 rtl:rotate-180" />}
-              disabled={
-                (step === 'business' && hasErrors({ phone: phoneError(biz.phone), tax: taxIdError(biz.taxNumber, biz.country) })) ||
-                (step === 'admin' && (!admin.name.trim() || !/^\d{4,6}$/.test(admin.pin) || admin.pin !== admin.pin2))
-              }
+              disabled={nextDisabled}
               onClick={() => setStep(steps[idx + 1])}
             >
               {t('common:next')}

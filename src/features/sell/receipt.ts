@@ -28,7 +28,8 @@ function barcodeSvg(value: string): string {
 }
 
 function docTitle(sale: Sale, s: Settings) {
-  if (sale.type === 'refund') return t('receipt.creditNote')
+  // Refunds, and returns rung up at the till without a receipt (negative total), are credit notes.
+  if (sale.type === 'refund' || sale.total < 0) return t('receipt.creditNote')
   return s.gstMode || s.taxNumber ? t('receipt.taxInvoice') : t('receipt.receipt')
 }
 
@@ -58,7 +59,8 @@ function thermal(sale: Sale, s: Settings): string {
   if (sale.discountTotal) totals.push([t('receipt.discount'), -sale.discountTotal])
   if (!sale.pricesIncludeTax) totals.push([t('receipt.taxable'), sale.netTotal])
   if (r.showTaxBreakdown) for (const [label, amount] of taxRows(sale, s)) totals.push([label, amount, 'meta'])
-  else if (sale.taxTotal) totals.push([t('receipt.tax'), sale.taxTotal])
+  // With tax-inclusive prices the tax is part of the subtotal, not added on top: label it so.
+  else if (sale.taxTotal) totals.push([sale.pricesIncludeTax ? t('receipt.taxIncluded') : t('receipt.tax'), sale.taxTotal, sale.pricesIncludeTax ? 'meta' : undefined])
   if (sale.pricesIncludeTax && sale.taxTotal && r.showTaxBreakdown) totals.push([t('receipt.taxIncluded'), sale.taxTotal, 'meta'])
   if (sale.rounding) totals.push([t('receipt.rounding'), sale.rounding])
 
@@ -78,7 +80,7 @@ function thermal(sale: Sale, s: Settings): string {
   .bc { display: flex; justify-content: center; margin-top: 8px } .bc svg { max-width: 100% }
   .title { letter-spacing: .08em; font-weight: 700; margin: 4px 0 }
 </style></head><body>
-  ${r.showLogo && r.logo ? `<img class="logo" src="${r.logo}" alt="">` : ''}
+  ${r.showLogo && r.logo ? `<img class="logo" src="${e(r.logo)}" alt="">` : ''}
   <div class="c"><h1>${e(s.businessName)}</h1>
   ${s.legalName ? `<div class="meta">${e(s.legalName)}</div>` : ''}
   ${s.address ? `<div class="meta">${e(s.address)}</div>` : ''}
@@ -144,7 +146,7 @@ function invoiceA4(sale: Sale, s: Settings): string {
   .foot { margin-top: 28px; display: flex; justify-content: space-between; align-items: flex-end }
   .logo { max-height: 64px; max-width: 180px }
 </style></head><body>
-  <div class="head"><div>${s.receipt.showLogo && s.receipt.logo ? `<img class="logo" src="${s.receipt.logo}" alt=""><br>` : ''}
+  <div class="head"><div>${s.receipt.showLogo && s.receipt.logo ? `<img class="logo" src="${e(s.receipt.logo)}" alt=""><br>` : ''}
     <h1>${e(s.legalName || s.businessName)}</h1>
     <div class="m">${e(s.address)}${state ? `, ${e(state[1])} (${e(state[0])})` : ''}</div>
     <div class="m">${[s.phone, s.email, s.website].filter(Boolean).map(e).join(' · ')}</div>
@@ -181,8 +183,9 @@ export function receiptText(sale: Sale, s: Settings): string {
   const out: string[] = [`*${s.businessName}*`, `${docTitle(sale, s)} ${sale.number}`, formatDateTime(sale.createdAt), '']
   for (const l of sale.lines) out.push(`${l.name}\n  ${formatQty(l.qty)} × ${formatMoney(l.price)} = ${formatMoney(l.total)}`)
   out.push('')
-  if (sale.discountTotal) out.push(`${t('receipt.discount')}: -${formatMoney(sale.discountTotal)}`)
-  if (sale.taxTotal) out.push(`${t('receipt.tax')}: ${formatMoney(sale.taxTotal)}`)
+  if (sale.discountTotal) out.push(`${t('receipt.discount')}: ${formatMoney(-sale.discountTotal)}`)
+  if (sale.taxTotal) out.push(`${sale.pricesIncludeTax ? t('receipt.taxIncluded') : t('receipt.tax')}: ${formatMoney(sale.taxTotal)}`)
+  if (sale.rounding) out.push(`${t('receipt.rounding')}: ${formatMoney(sale.rounding)}`)
   out.push(`*${t('receipt.total')}: ${formatMoney(sale.total)}*`)
   for (const p of sale.payments) out.push(`${methodLabel(p.method)}: ${formatMoney(p.amount)}`)
   if (sale.change) out.push(`${t('receipt.change')}: ${formatMoney(sale.change)}`)

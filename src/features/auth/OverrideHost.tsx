@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { ShieldCheck } from 'lucide-react'
-import type { User } from '@/core/types'
+import type { Permission, User } from '@/core/types'
+import { can } from '@/core/permissions'
 import { useUI } from '@/stores/ui'
 import { Modal } from '@/components/ui'
 import { PinPad } from './PinPad'
@@ -12,10 +13,18 @@ export function OverrideHost() {
   const { t } = useTranslation('auth')
   const req = useUI((s) => s.override)
   const setOverride = useUI((s) => s.setOverride)
-  const [approvers, setApprovers] = useState<User[]>([])
+  // Approvers are tagged with the permission they were loaded for: a PIN typed before the
+  // list for *this* request has loaded must not be checked against the previous request's.
+  const [approvers, setApprovers] = useState<{ perm: Permission; users: User[] } | null>(null)
 
   useEffect(() => {
-    if (req) void usersWith(req.permission).then(setApprovers)
+    setApprovers(null)
+    if (!req) return
+    let live = true
+    void usersWith(req.permission).then((users) => live && setApprovers({ perm: req.permission, users }))
+    return () => {
+      live = false
+    }
   }, [req])
 
   const close = (u: { id: string; name: string } | null) => {
@@ -30,8 +39,10 @@ export function OverrideHost() {
         <span>{t('approvalHint', { permission: req ? t(`common:perm.${req.permission}`) : '' })}</span>
       </div>
       <PinPad
+        disabled={!req || approvers?.perm !== req.permission}
         onPin={(pin) => {
-          const u = approvers.find((a) => verifyPin(a, pin))
+          if (!req || approvers?.perm !== req.permission) return false
+          const u = approvers.users.find((a) => a.active && !a.deleted && can(a, req.permission) && verifyPin(a, pin))
           if (u) close({ id: u.id, name: u.name })
           return !!u
         }}

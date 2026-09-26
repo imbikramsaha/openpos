@@ -26,6 +26,8 @@ export interface CartActions {
   onCustomer: () => void
   onDiscount: (lineId?: string) => void
   onQty: (lineId: string) => void
+  /** ± buttons: step the quantity (stock-checked, never crosses zero). */
+  onStep: (lineId: string, delta: number) => void
   onPrice: (lineId: string) => void
   onLineNote: (lineId: string) => void
   onNote: () => void
@@ -194,7 +196,7 @@ function CartRow({ line, total, discount, selected, actions }: { line: CartLine;
         <span className="min-w-0 flex-1">
           <span className="block truncate text-sm font-semibold">{line.name}</span>
           <span className="block truncate text-xs text-muted">
-            {formatQty(line.qty)} {line.unit !== 'pcs' ? line.unit : ''} × {formatMoney(line.price)}
+            <bdi>{formatQty(line.qty)}{line.unit !== 'pcs' ? ` ${line.unit}` : ''}</bdi> × <bdi>{formatMoney(line.price)}</bdi>
             {line.note && ` · ${line.note}`}
           </span>
         </span>
@@ -206,13 +208,13 @@ function CartRow({ line, total, discount, selected, actions }: { line: CartLine;
       {selected && (
         <div className="animate-fade flex items-center gap-1.5 px-4 pb-3">
           <div className="flex items-center rounded-xl border border-border bg-surface">
-            <button onClick={() => cart.incQty(line.id, -1)} className="flex size-10 items-center justify-center rounded-s-xl hover:bg-surface-3" aria-label={t('decrease')}>
+            <button onClick={() => actions.onStep(line.id, -1)} className="flex size-10 items-center justify-center rounded-s-xl hover:bg-surface-3" aria-label={t('decrease')}>
               <Minus className="size-4" />
             </button>
             <button onClick={() => actions.onQty(line.id)} className="tnum h-10 min-w-12 border-x border-border px-2 text-sm font-bold hover:bg-surface-3" title={`${t('quantity')} (F5)`}>
               {formatQty(line.qty)}
             </button>
-            <button onClick={() => cart.incQty(line.id, 1)} className="flex size-10 items-center justify-center rounded-e-xl hover:bg-surface-3" aria-label={t('increase')}>
+            <button onClick={() => actions.onStep(line.id, 1)} className="flex size-10 items-center justify-center rounded-e-xl hover:bg-surface-3" aria-label={t('increase')}>
               <Plus className="size-4" />
             </button>
           </div>
@@ -250,7 +252,7 @@ function OrderTypeBar() {
         {types.map((ty) => (
           <button
             key={ty.id}
-            onClick={() => cart.setOrderType(ty.id, cart.table)}
+            onClick={() => cart.setOrderType(ty.id, ty.id === 'dinein' ? cart.table : undefined)}
             className={cn('flex h-8 items-center gap-1.5 rounded-lg px-2.5 text-xs font-medium whitespace-nowrap', (cart.orderType ?? 'walkin') === ty.id ? 'bg-primary-soft text-primary' : 'text-muted hover:bg-surface-3')}
           >
             {ty.icon} {t(`orderType.${ty.id}`)}
@@ -258,7 +260,7 @@ function OrderTypeBar() {
         ))}
       </div>
       {cart.orderType === 'dinein' && (
-        <input value={cart.table ?? ''} onChange={(e) => cart.setOrderType('dinein', e.target.value)} placeholder={t('table')} className="h-8 w-20 rounded-lg border border-border bg-surface px-2 text-sm" />
+        <input value={cart.table ?? ''} onChange={(e) => cart.setOrderType('dinein', e.target.value)} placeholder={t('table')} aria-label={t('table')} maxLength={20} className="h-8 w-20 rounded-lg border border-border bg-surface px-2 text-sm" />
       )}
     </div>
   )
@@ -301,7 +303,7 @@ function CartMenu({ onClose, actions, onClear }: { onClose: () => void; actions:
         })}
       {item(<MonitorSmartphone />, t('customerDisplay'), openCustomerDisplay)}
       {item(<Keyboard />, t('shortcuts.title'), actions.onShortcuts, 'F1')}
-      {item(<Ban />, t('clearSale'), onClear, undefined, true)}
+      {item(<Ban />, t('clear'), onClear, undefined, true)}
       {cart.interState && gstMode && <div className="px-4 pb-2"><Badge tone="primary">IGST</Badge></div>}
     </div>
   )

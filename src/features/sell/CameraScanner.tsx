@@ -45,8 +45,10 @@ export function CameraScanner({ open, onClose, onScan }: { open: boolean; onClos
     ;(async () => {
       try {
         const detector = await createDetector()
-        stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: 'environment', width: { ideal: 1280 } }, audio: false })
         if (stopped) return
+        stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: 'environment', width: { ideal: 1280 } }, audio: false })
+        // Closed while the permission prompt was up: release the camera instead of leaving it on.
+        if (stopped) return stream.getTracks().forEach((tr) => tr.stop())
         const v = video.current!
         v.srcObject = stream
         await v.play()
@@ -57,11 +59,12 @@ export function CameraScanner({ open, onClose, onScan }: { open: boolean; onClos
             const codes = await detector.detect(v)
             const code = codes[0]?.rawValue
             const now = Date.now()
-            // Debounce: the same code must not be added repeatedly while held in view.
-            if (code && (code !== lastCode || now - lastAt > 1800)) {
+            // Debounce: the same code must not be added repeatedly while held in view. It is
+            // added again only after it has been out of view for a moment (scan the next one).
+            if (code) {
+              if (code !== lastCode || now - lastAt > 1800) onScan(code)
               lastCode = code
               lastAt = now
-              onScan(code)
             }
           } catch {
             /* frame not ready */

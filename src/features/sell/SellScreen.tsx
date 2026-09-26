@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { ChevronUp, Keyboard } from 'lucide-react'
-import type { Product, Sale } from '@/core/types'
+import type { CartLine, Product, Sale } from '@/core/types'
 import { db } from '@/db/db'
 import { formatMoney } from '@/lib/money'
 import { uuid } from '@/lib/uuid'
@@ -21,7 +21,7 @@ import { PaymentDialog } from './PaymentDialog'
 import { ReceiptDialog } from './ReceiptDialog'
 import { CameraScanner } from './CameraScanner'
 import { RefundLookup } from './RefundLookup'
-import { CustomItemDialog, CustomerPicker, DiscountDialog, HeldOrdersDialog, NoteDialog, NumberDialog, holdCurrentCart } from './dialogs'
+import { CustomItemDialog, CustomerPicker, DiscountDialog, HeldOrdersDialog, NoteDialog, NumberDialog, holdCurrentCart, isCountUnit } from './dialogs'
 import { calcCart, completeSale } from './checkout'
 import { findByCode } from './lookup'
 import { beep, useScanner } from './useScanner'
@@ -29,7 +29,7 @@ import { beep, useScanner } from './useScanner'
 type Dialog =
   | { kind: 'qty'; lineId: string }
   | { kind: 'price'; lineId: string }
-  | { kind: 'weigh'; product: Product }
+  | { kind: 'weigh'; product: Product; price?: number }
   | { kind: 'openPrice'; product: Product }
   | { kind: 'discount'; lineId?: string }
   | { kind: 'note' }
@@ -55,26 +55,87 @@ export default function SellScreen() {
   const [receipt, setReceipt] = useState<Sale | null>(null)
   const [mobileCart, setMobileCart] = useState(false)
   const searchRef = useRef<HTMLInputElement>(null)
+  const paying = useRef(false)
+  const lastCharAt = useRef(0)
   const calc = useMemo(() => calcCart(cart), [cart])
   const close = useCallback(() => setDialog(null), [])
+
+  const stockError = useCallback(
+    (name: string) => {
+      if (sound) beep(false)
+      toast(t('outOfStock', { name }), 'error')
+    },
+    [sound, t],
+  )
+
+  /** With negative stock disallowed, checks the cart (optionally with one line's new qty) against stock. */
+  const fitsStock = useCallback(
+    async (lines: CartLine[]): Promise<boolean> => {
+      if (useSettings.getState().settings.allowNegativeStock) return true
+      const want = new Map<string, number>()
+      for (const l of lines) if (l.productId) want.set(l.productId, (want.get(l.productId) ?? 0) + l.qty)
+      for (const [id, qty] of want) {
+        if (qty <= 0) continue
+        const p = await db.products.get(id)
+        if (p?.trackStock && qty > p.stock + 1e-9) {
+          stockError(p.name)
+          return false
+        }
+      }
+      return true
+    },
+    [stockError],
+  )
+
+  // Quantity changes run one after another: the stock check is async, and pressing + five
+  // times quickly must add five, not read the same starting quantity five times.
+  const qtyQueue = useRef<Promise<unknown>>(Promise.resolve())
+  const queueQty = useCallback((fn: () => Promise<void> | void) => {
+    const next = qtyQueue.current.then(fn)
+    qtyQueue.current = next.catch(() => undefined)
+    return next
+  }, [])
+
+  const applyQty = useCallback(
+    async (lineId: string, qty: number) => {
+      const lines = useCart.getState().lines
+      const line = lines.find((l) => l.id === lineId)
+      if (!line || qty === line.qty) return
+      if (qty > line.qty && !(await fitsStock(lines.map((l) => (l.id === lineId ? { ...l, qty } : l))))) return
+      useCart.getState().setQty(lineId, qty)
+    },
+    [fitsStock],
+  )
+
+  const setLineQty = useCallback((lineId: string, qty: number) => queueQty(() => applyQty(lineId, qty)), [queueQty, applyQty])
+
+  const stepQty = useCallback(
+    (lineId: string, delta: number) =>
+      void queueQty(async () => {
+        const line = useCart.getState().lines.find((l) => l.id === lineId)
+        if (!line) return
+        const next = Math.round((line.qty + delta) * 1000) / 1000
+        // Stepping down stops at zero (removes the line): 0.5 kg − 1 must not become a −0.5 kg return.
+        if (line.qty > 0 && next <= 0) return useCart.getState().removeLine(lineId)
+        await applyQty(lineId, next)
+      }),
+    [queueQty, applyQty],
+  )
 
   const addProduct = useCallback(
     (p: Product, qty?: number, price?: number) => {
       const s = useSettings.getState().settings
       if (p.openPrice && price === undefined) return setDialog({ kind: 'openPrice', product: p })
-      if (p.weighed && qty === undefined) return setDialog({ kind: 'weigh', product: p })
+      if (p.weighed && qty === undefined) return setDialog({ kind: 'weigh', product: p, price })
       const want = qty ?? 1
       if (p.trackStock && !s.allowNegativeStock && want > 0) {
         const inCart = useCart.getState().lines.filter((l) => l.productId === p.id).reduce((a, l) => a + l.qty, 0)
-        if (p.stock - inCart < want) {
-          if (sound) beep(false)
-          return toast(t('outOfStock', { name: p.name }), 'error')
-        }
+        if (p.stock - inCart < want - 1e-9) return stockError(p.name)
       }
       useCart.getState().addProduct(p, want, price)
       if (sound) beep(true)
     },
-    [sound, t],
+    [sound, stockError],
   )
 
   // Unknown code: offer to create the product with this barcode (if allowed).
@@ -112,20 +173,35 @@ export default function SellScreen() {
   }
 
   const pay = async () => {
-    if (!cart.lines.length) return
+    // One checkout at a time: F12 pressed again while a prompt is resolving must not sell twice.
+    if (paying.current) return
+    const c = useCart.getState()
+    if (!c.lines.length) return
     if (settings.requireShift && !shift) return setDialog({ kind: 'openShift' })
-    if (calc.total < 0) {
-      // Return without receipt: pay the customer back in cash.
-      if (!(await requirePermission('refund'))) return
-      if (!(await confirmDialog({ title: t('refundCash', { amount: formatMoney(-calc.total) }), confirmLabel: t('refund') }))) return
-      const customer = cart.customerId ? await db.customers.get(cart.customerId) : undefined
-      const sale = await completeSale(cart.snapshot(), [{ id: uuid(), method: 'cash', amount: calc.total }], customer)
-      cart.clear()
-      setReceipt(sale)
-      return
+    paying.current = true
+    try {
+      const current = calcCart(c)
+      if (!Number.isSafeInteger(current.total)) return toast(t('amountTooLarge'), 'error')
+      // Stock may have been sold elsewhere (or quantities raised) since the items were added.
+      if (!(await fitsStock(c.lines))) return
+      // Returned items (negative quantities) are a refund, even inside a positive sale.
+      if (c.lines.some((l) => l.qty < 0) && !(await requirePermission('refund'))) return
+      if (current.total < 0) {
+        // Return without receipt: pay the customer back in cash.
+        if (!(await confirmDialog({ title: t('refundCash', { amount: formatMoney(-current.total) }), confirmLabel: t('refund') }))) return
+        const customer = c.customerId ? await db.customers.get(c.customerId) : undefined
+        const sale = await completeSale(useCart.getState().snapshot(), [{ id: uuid(), method: 'cash', amount: current.total }], customer)
+        useCart.getState().clear()
+        setReceipt(sale)
+        return
+      }
+      setMobileCart(false)
+      setDialog({ kind: 'pay' })
+    } catch (e) {
+      toast(e instanceof Error ? e.message : String(e), 'error')
+    } finally {
+      paying.current = false
     }
-    setMobileCart(false)
-    setDialog({ kind: 'pay' })
   }
 
   const actions: CartActions = {
@@ -133,6 +209,7 @@ export default function SellScreen() {
     onCustomer: () => setDialog({ kind: 'customer' }),
     onDiscount: async (lineId) => (await requirePermission('discount')) && setDialog({ kind: 'discount', lineId }),
     onQty: (lineId) => setDialog({ kind: 'qty', lineId }),
+    onStep: stepQty,
     onPrice: async (lineId) => (await requirePermission('price_override')) && setDialog({ kind: 'price', lineId }),
     onLineNote: (lineId) => setDialog({ kind: 'lineNote', lineId }),
     onNote: () => setDialog({ kind: 'note' }),
@@ -152,6 +229,11 @@ export default function SellScreen() {
       const inField = e.target instanceof HTMLInputElement || e.target instanceof HTMLTextAreaElement
       const searchEmpty = !searchRef.current?.value
       const sel = s.selectedId
+      // Barcode scanners "type" a whole code within milliseconds. A "-" or "+" inside such a burst
+      // (e.g. SKU-0017) is part of the code, not a quantity shortcut on the selected line.
+      const now = performance.now()
+      const inBurst = !e.repeat && now - lastCharAt.current < 35
+      if (e.key.length === 1) lastCharAt.current = now
       const handled = (fn: () => void) => {
         e.preventDefault()
         fn()
@@ -161,7 +243,7 @@ export default function SellScreen() {
         case 'F2': return handled(() => searchRef.current?.focus())
         case 'F3': return handled(actions.onCustomer)
         case 'F4': return handled(() => void actions.onDiscount(sel))
-        case 'F5': return sel && handled(() => actions.onQty(sel))
+        case 'F5': return handled(() => sel && actions.onQty(sel))
         case 'F6': return handled(() => void actions.onHold())
         case 'F7': return handled(actions.onRecall)
         case 'F8': return handled(actions.onNote)
@@ -170,16 +252,16 @@ export default function SellScreen() {
         case 'F12': return handled(() => void pay())
       }
       if (e.key === 'Enter' && (e.ctrlKey || e.metaKey)) return handled(() => void pay())
-      if (e.key === 'l' && (e.ctrlKey || e.metaKey)) return handled(logout)
+      if (e.key.toLowerCase() === 'l' && (e.ctrlKey || e.metaKey)) return handled(logout)
       if (inField && !searchEmpty) return
       if (inField && e.target !== searchRef.current) return
       if (!s.lines.length) return
       const idx = s.lines.findIndex((l) => l.id === sel)
       if (e.key === 'ArrowDown') return handled(() => s.select(s.lines[Math.min(idx + 1, s.lines.length - 1)]?.id))
       if (e.key === 'ArrowUp') return handled(() => s.select(s.lines[Math.max(idx < 0 ? s.lines.length - 1 : idx - 1, 0)]?.id))
-      if (!sel) return
-      if (e.key === '+' || (e.key === '=' && e.shiftKey)) return handled(() => s.incQty(sel, 1))
-      if (e.key === '-') return handled(() => s.incQty(sel, -1))
+      if (!sel || inBurst) return
+      if (e.key === '+' || (e.key === '=' && e.shiftKey)) return handled(() => stepQty(sel, 1))
+      if (e.key === '-') return handled(() => stepQty(sel, -1))
       if (e.key === 'Delete') return handled(() => s.removeLine(sel))
       if (e.key === '*') return handled(() => actions.onQty(sel))
     }
@@ -198,7 +280,13 @@ export default function SellScreen() {
   return (
     <div className={cn('flex h-full min-h-0', cartSide === 'left' && 'flex-row-reverse')}>
       <div className="min-w-0 flex-1">
-        <ProductPanel onProduct={(p) => addProduct(p)} onEnter={onEnter} searchRef={searchRef} onCamera={() => setDialog({ kind: 'camera' })} onCustomItem={() => setDialog({ kind: 'custom' })} />
+        <ProductPanel
+          onProduct={(p) => {
+            addProduct(p)
+            // Tapping a tile moves focus to it; on desktop put it back so typing/scanning keeps working.
+            if (!p.openPrice && !p.weighed && matchMedia('(pointer: fine)').matches) searchRef.current?.focus()
+          }}
+          onEnter={onEnter} searchRef={searchRef} onCamera={() => setDialog({ kind: 'camera' })} onCustomItem={() => setDialog({ kind: 'custom' })} />
       </div>
 
       <CartPanel actions={actions} className={cn('hidden w-[380px] shrink-0 border-border lg:flex xl:w-[420px]', cartSide === 'left' ? 'border-e' : 'border-s')} />
@@ -224,7 +312,8 @@ export default function SellScreen() {
         subtitle={dialog?.kind === 'qty' ? line(dialog.lineId)?.name : undefined}
         initial={dialog?.kind === 'qty' ? line(dialog.lineId)?.qty ?? 1 : 1}
         allowNegative
-        onSubmit={(v) => dialog?.kind === 'qty' && cart.setQty(dialog.lineId, v)}
+        integer={dialog?.kind === 'qty' && isCountUnit(line(dialog.lineId)?.unit)}
+        onSubmit={(v) => dialog?.kind === 'qty' && void setLineQty(dialog.lineId, v)}
       />
       <NumberDialog
         open={dialog?.kind === 'price'}
@@ -239,9 +328,9 @@ export default function SellScreen() {
         open={dialog?.kind === 'weigh'}
         onClose={close}
         title={t('enterWeight')}
-        subtitle={dialog?.kind === 'weigh' ? `${dialog.product.name} · ${formatMoney(dialog.product.price)}/${dialog.product.unit}` : undefined}
+        subtitle={dialog?.kind === 'weigh' ? `${dialog.product.name} · ${formatMoney(dialog.price ?? dialog.product.price)}/${dialog.product.unit}` : undefined}
         initial={1}
-        onSubmit={(v) => dialog?.kind === 'weigh' && v > 0 && addProduct(dialog.product, v)}
+        onSubmit={(v) => dialog?.kind === 'weigh' && v > 0 && addProduct(dialog.product, v, dialog.price)}
       />
       <NumberDialog
         open={dialog?.kind === 'openPrice'}
@@ -250,7 +339,7 @@ export default function SellScreen() {
         subtitle={dialog?.kind === 'openPrice' ? dialog.product.name : undefined}
         initial={dialog?.kind === 'openPrice' ? dialog.product.price : 0}
         money
-        onSubmit={(v) => dialog?.kind === 'openPrice' && addProduct(dialog.product, dialog.product.weighed ? undefined : 1, v)}
+        onSubmit={(v) => dialog?.kind === 'openPrice' && addProduct(dialog.product, undefined, v)}
       />
       <DiscountDialog open={dialog?.kind === 'discount'} onClose={close} line={dialog?.kind === 'discount' && dialog.lineId ? line(dialog.lineId) : undefined} />
       <NoteDialog open={dialog?.kind === 'note'} onClose={close} title={t('saleNote')} initial={cart.note} onSave={(v) => cart.setNote(v)} />

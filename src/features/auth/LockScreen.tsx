@@ -27,12 +27,17 @@ export function LockScreen() {
   }, [])
 
   useEffect(() => {
-    if (users?.length === 1) setSelected(users[0])
+    if (!users) return
+    if (users.length === 1) setSelected(users[0])
+    // The picked user was deactivated or deleted (e.g. from another terminal): back to the list.
+    else setSelected((cur) => (cur && users.some((u) => u.id === cur.id) ? cur : null))
   }, [users])
 
   const tryPin = (pin: string) => {
-    // With no user picked, the PIN alone identifies the user (PINs are unique).
-    const candidates = selected ? [selected] : users ?? []
+    // With no user picked, the PIN alone identifies the user (PINs are unique). Always check
+    // against the live record so a PIN changed elsewhere takes effect immediately.
+    const current = selected && users?.find((u) => u.id === selected.id)
+    const candidates = current ? [current] : selected ? [] : users ?? []
     const match = candidates.find((u) => verifyPin(u, pin))
     if (match) {
       login(match)

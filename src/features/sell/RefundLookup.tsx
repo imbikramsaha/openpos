@@ -1,6 +1,7 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Undo2 } from 'lucide-react'
+import type { Sale } from '@/core/types'
 import { db } from '@/db/db'
 import { navigate } from '@/router'
 import { toast } from '@/stores/ui'
@@ -13,14 +14,27 @@ export function RefundLookup({ open, onClose }: { open: boolean; onClose: () => 
   useEffect(() => {
     if (open) setNumber('')
   }, [open])
+  const busy = useRef(false)
   const find = async () => {
     const q = number.trim().toUpperCase()
-    if (!q) return
-    const matches = await db.sales.where('number').equals(q).toArray()
-    const sale = matches.find((s) => s.type === 'sale' && !s.deleted) ?? (await db.sales.filter((s) => s.type === 'sale' && s.number.endsWith(q)).first())
-    if (!sale) return toast(t('receiptNotFound', { number: q }), 'error')
-    onClose()
-    navigate(`sales/${sale.id}?refund=1`)
+    if (!q || busy.current) return
+    busy.current = true
+    try {
+      const usable = (s: Sale) => s.type === 'sale' && !s.deleted
+      let sale = (await db.sales.where('number').equals(q).toArray()).find(usable)
+      if (!sale) {
+        // Typing just the end of the number ("000123") works, but only when it is unambiguous:
+        // "1" must not open whichever sale happens to end in 1.
+        const tail = await db.sales.filter((s) => usable(s) && s.number.endsWith(q)).limit(2).toArray()
+        if (tail.length > 1) return toast(t('receiptAmbiguous', { number: q }), 'error')
+        sale = tail[0]
+      }
+      if (!sale) return toast(t('receiptNotFound', { number: q }), 'error')
+      onClose()
+      navigate(`sales/${sale.id}?refund=1`)
+    } finally {
+      busy.current = false
+    }
   }
   return (
     <Modal
@@ -39,7 +53,7 @@ export function RefundLookup({ open, onClose }: { open: boolean; onClose: () => 
       }
     >
       <form onSubmit={(e) => (e.preventDefault(), void find())}>
-        <Input label={t('receiptNumber')} value={number} onChange={(e) => setNumber(e.target.value)} placeholder="INV-XXXX-000001" autoFocus />
+        <Input label={t('receiptNumber')} value={number} onChange={(e) => setNumber(e.target.value)} placeholder="INV-XXXX-000001" autoFocus maxLength={40} autoComplete="off" />
       </form>
     </Modal>
   )
