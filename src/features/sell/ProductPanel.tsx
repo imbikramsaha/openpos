@@ -1,4 +1,4 @@
-import { useDeferredValue, useMemo, useState, type ReactNode, type RefObject } from 'react'
+import { useDeferredValue, useEffect, useMemo, useRef, useState, type ReactNode, type RefObject } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useLiveQuery } from 'dexie-react-hooks'
 import { LayoutGrid, PackageSearch, Plus, ScanLine, Star } from 'lucide-react'
@@ -30,6 +30,24 @@ export function ProductPanel({ onProduct, onEnter, searchRef, onCamera, onCustom
   const showImages = useDevice((s) => s.showImages)
   const [query, setQuery] = useState('')
   const [category, setCategory] = useState<string>('all')
+  const chipsRef = useRef<HTMLDivElement>(null)
+  const [chipFade, setChipFade] = useState({ start: false, end: false })
+  const updateChipFade = () => {
+    const el = chipsRef.current
+    if (!el) return
+    // scrollLeft is negative in right-to-left layouts, so compare magnitudes.
+    const left = Math.abs(el.scrollLeft)
+    const next = { start: left > 2, end: left + el.clientWidth < el.scrollWidth - 2 }
+    setChipFade((f) => (f.start === next.start && f.end === next.end ? f : next))
+  }
+  useEffect(() => {
+    updateChipFade()
+    const el = chipsRef.current
+    if (!el) return
+    const ro = new ResizeObserver(updateChipFade)
+    ro.observe(el)
+    return () => ro.disconnect()
+  })
   const deferred = useDeferredValue(query)
 
   const products = useLiveQuery(async () => (await db.products.orderBy('name').toArray()).filter((p) => p.active && !p.deleted), [])
@@ -71,7 +89,23 @@ export function ProductPanel({ onProduct, onEnter, searchRef, onCamera, onCustom
       </div>
 
       {!query && (
-        <div className="flex gap-2 overflow-x-auto px-3 pb-2" role="tablist">
+        <div
+          ref={chipsRef}
+          role="tablist"
+          onWheel={(e) => {
+            // Mouse wheels scroll vertically; turn that into sideways scrolling for the chip row.
+            const el = e.currentTarget
+            if (Math.abs(e.deltaY) > Math.abs(e.deltaX) && el.scrollWidth > el.clientWidth) el.scrollLeft += e.deltaY
+          }}
+          onScroll={updateChipFade}
+          className={cn(
+            'flex gap-2 overflow-x-auto px-3 pb-2 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden',
+            // Fade the edge that has more chips beyond it, instead of cutting a chip mid-word.
+            chipFade.end && chipFade.start && '[mask-image:linear-gradient(to_right,transparent,black_2rem,black_calc(100%-3rem),transparent)]',
+            chipFade.end && !chipFade.start && '[mask-image:linear-gradient(to_right,black_calc(100%-3rem),transparent)]',
+            !chipFade.end && chipFade.start && '[mask-image:linear-gradient(to_right,transparent,black_2rem)]',
+          )}
+        >
           <CategoryChip active={category === 'all'} onClick={() => setCategory('all')} icon={<LayoutGrid className="size-4" />}>
             {t('all')}
           </CategoryChip>

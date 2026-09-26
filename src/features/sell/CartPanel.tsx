@@ -141,7 +141,7 @@ export function CartPanel({ actions, className }: { actions: CartActions; classN
       </div>
 
       {/* Actions */}
-      <div className="safe-bottom space-y-2 border-t border-border p-3">
+      <div className="space-y-2 border-t border-border p-3 pb-[calc(0.75rem+env(safe-area-inset-bottom))]">
         <div className="grid grid-cols-4 gap-2">
           <ActionButton icon={<Percent />} label={t('discount')} kbd="F4" onClick={() => actions.onDiscount(cart.selectedId)} disabled={!cart.lines.length} />
           <ActionButton icon={<PauseCircle />} label={t('hold')} kbd="F6" onClick={actions.onHold} disabled={!cart.lines.length} />

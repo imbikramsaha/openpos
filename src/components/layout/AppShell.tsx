@@ -25,7 +25,7 @@ export function AppShell({ children }: { children: ReactNode }) {
   return (
     <div className="flex h-full min-h-0">
       {/* Tablet / desktop rail */}
-      <aside className="safe-top hidden w-[100px] shrink-0 flex-col items-center border-e border-border bg-surface py-3 md:flex">
+      <aside className="hidden w-[100px] shrink-0 flex-col items-center border-e border-border bg-surface py-3 pt-[calc(0.75rem+env(safe-area-inset-top))] md:flex">
         <button onClick={() => navigate('sell')} className="mb-3 rounded-2xl shadow-card" title={businessName} aria-label={t('nav.sell')}>
           <img src="./icons/icon.svg" alt="" className="size-11" />
         </button>
@@ -62,7 +62,7 @@ export function AppShell({ children }: { children: ReactNode }) {
 
       <main className="flex min-w-0 flex-1 flex-col pb-[calc(60px+env(safe-area-inset-bottom))] md:pb-0">
         {/* Phone header */}
-        <div className="safe-top flex items-center gap-2 border-b border-border bg-surface px-3 py-2 md:hidden">
+        <div className="flex items-center gap-2 border-b border-border bg-surface px-3 py-2 pt-[calc(0.5rem+env(safe-area-inset-top))] md:hidden">
           <button onClick={() => setMore(true)} className="flex size-9 items-center justify-center rounded-lg hover:bg-surface-3" aria-label={t('menu')}>
             <Menu className="size-5" />
           </button>

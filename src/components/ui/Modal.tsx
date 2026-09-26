@@ -120,7 +120,7 @@ export function Modal({ open, onClose, title, subtitle, children, footer, size =
           </div>
         )}
         <div className={cn('min-h-0 flex-1 overflow-y-auto', !flush && 'p-5')}>{children}</div>
-        {footer && <div className="safe-bottom flex flex-wrap items-center justify-end gap-2 border-t border-border bg-surface-2 px-5 py-3">{footer}</div>}
+        {footer && <div className="flex flex-wrap items-center justify-end gap-2 border-t border-border bg-surface-2 px-5 py-3 pb-[calc(0.75rem+env(safe-area-inset-bottom))]">{footer}</div>}
       </div>
     </div>,
     document.body,
@@ -155,14 +155,14 @@ export function Sheet({ open, onClose, title, children, footer, side = 'end', wi
         tabIndex={-1}
         className={cn('animate-pop relative flex h-full w-full flex-col border-border bg-surface shadow-pop outline-none', width, side === 'end' ? 'ms-auto border-s' : 'me-auto border-e')}
       >
-        <div className="safe-top flex items-center gap-3 border-b border-border px-5 py-4">
+        <div className="flex items-center gap-3 border-b border-border px-5 py-4 pt-[calc(1rem+env(safe-area-inset-top))]">
           <h2 id={titleId} className="min-w-0 flex-1 truncate text-lg font-semibold">{title}</h2>
           <button onClick={onClose} aria-label={t('close')} className="flex size-9 shrink-0 items-center justify-center rounded-lg text-muted hover:bg-surface-3">
             <X className="size-5" />
           </button>
         </div>
         <div className="min-h-0 flex-1 overflow-y-auto p-5">{children}</div>
-        {footer && <div className="safe-bottom flex flex-wrap items-center justify-end gap-2 border-t border-border bg-surface-2 px-5 py-3">{footer}</div>}
+        {footer && <div className="flex flex-wrap items-center justify-end gap-2 border-t border-border bg-surface-2 px-5 py-3 pb-[calc(0.75rem+env(safe-area-inset-bottom))]">{footer}</div>}
       </div>
     </div>,
     document.body,

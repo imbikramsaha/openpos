@@ -156,11 +156,15 @@
   }
 }
 
-.safe-top {
-  padding-top: env(safe-area-inset-top);
-}
-.safe-bottom {
-  padding-bottom: env(safe-area-inset-bottom);
+/* Only for elements without their own padding on that side: these replace it.
+   Elsewhere use pb-[calc(<base>+env(safe-area-inset-bottom))]. */
+@layer utilities {
+  .safe-top {
+    padding-top: env(safe-area-inset-top);
+  }
+  .safe-bottom {
+    padding-bottom: env(safe-area-inset-bottom);
+  }
 }
 
 /* In dark mode the primary fill is too dark to read as text on dark surfaces. */
