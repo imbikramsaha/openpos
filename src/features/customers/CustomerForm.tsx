@@ -41,6 +41,8 @@ const fromCustomer = (c?: Customer | null): FormState => ({
 })
 
 const opt = (v: string) => v.trim() || undefined
+/** Upper bound for typed amounts (minor units) so absurd inputs can't overflow the ledger maths. */
+const MAX_AMOUNT = 1e12
 
 export function CustomerForm({ open, customer, initialName, onClose, onSaved }: { open: boolean; customer?: Customer | null; initialName?: string; onClose: () => void; onSaved?: (c: Customer, created: boolean) => void }) {
   const { t } = useTranslation('customers')
@@ -66,7 +68,8 @@ export function CustomerForm({ open, customer, initialName, onClose, onSaved }: 
     email: emailError(form.email) ? t(`common:${emailError(form.email)}`) : '',
     taxNumber: taxIdError(form.taxNumber, settings.country) ? t(`common:${taxIdError(form.taxNumber, settings.country)}`) : '',
     discountPercent: form.discountPercent !== undefined && (form.discountPercent < 0 || form.discountPercent > 100) ? t('form.discountRange') : '',
-    creditLimit: form.creditLimit !== undefined && form.creditLimit < 0 ? t('form.limitNegative') : '',
+    creditLimit: form.creditLimit !== undefined && form.creditLimit < 0 ? t('form.limitNegative') : form.creditLimit !== undefined && form.creditLimit > MAX_AMOUNT ? t('form.amountTooLarge') : '',
+    opening: isNew && opening !== undefined && Math.abs(opening) > MAX_AMOUNT ? t('form.amountTooLarge') : '',
   }
   const invalid = Object.values(errors).some(Boolean)
 
@@ -78,7 +81,11 @@ export function CustomerForm({ open, customer, initialName, onClose, onSaved }: 
       const dup = await db.customers.filter((c) => !c.deleted && c.id !== customer?.id && phoneKey(c.phone) === key).first()
       if (dup && !(await confirmDialog({ title: t('form.duplicateTitle'), message: t('form.duplicatePhone', { name: dup.name }), confirmLabel: t('form.saveAnyway') }))) return
     }
-    if (isNew && opening && !(await requirePermission('customers_credit'))) return
+    // Credit terms and standing discounts need the same rights as granting them at the till.
+    const limitChanged = (form.creditLimit || undefined) !== (customer?.creditLimit || undefined)
+    const discountChanged = (form.discountPercent || undefined) !== (customer?.discountPercent || undefined)
+    if (((isNew && opening) || limitChanged) && !(await requirePermission('customers_credit'))) return
+    if (discountChanged && form.discountPercent && !(await requirePermission('discount'))) return
     setBusy(true)
     try {
       // Balance and points are derived from the ledgers; always keep the stored values.
@@ -167,7 +174,7 @@ export function CustomerForm({ open, customer, initialName, onClose, onSaved }: 
           <legend className="mb-3 text-xs font-semibold tracking-wide text-muted uppercase">{t('form.account')}</legend>
           <MoneyInput label={t('creditLimit')} hint={t('form.creditLimitHint')} value={form.creditLimit} onChange={(v) => set('creditLimit', v)} error={err('creditLimit')} placeholder={t('form.noLimit')} />
           {isNew ? (
-            <MoneyInput label={t('openingBalance')} hint={opening && opening < 0 ? t('form.openingAdvance', { amount: formatMoney(-opening) }) : t('form.openingHint')} value={opening} onChange={setOpening} placeholder="0" />
+            <MoneyInput label={t('openingBalance')} hint={opening && opening < 0 ? t('form.openingAdvance', { amount: formatMoney(-opening) }) : t('form.openingHint')} value={opening} onChange={setOpening} error={err('opening')} placeholder="0" />
           ) : (
             <div className="text-sm text-muted sm:pt-7">{t('form.balanceReadonly')}</div>
           )}

@@ -95,7 +95,9 @@
     "pointsEarned_other": "+{{count}} points earned",
     "pointsRedeemed_one": "{{count}} point redeemed",
     "pointsRedeemed_other": "{{count}} points redeemed",
-    "linked": "Refunds against this sale"
+    "linked": "Refunds against this sale",
+    "pointsReversed_one": "{{count}} point taken back",
+    "pointsReversed_other": "{{count}} points taken back"
   },
   "refund": {
     "action": "Refund",
@@ -139,6 +141,8 @@
     "confirmTitle": "Void {{number}}?",
     "confirmMessage": "The sale of {{amount}} will be cancelled and its stock returned. This cannot be undone.",
     "done": "{{number}} voided",
-    "voided": "Voided"
+    "voided": "Voided",
+    "notAllowed": "This sale is already voided or can't be voided.",
+    "hasRefunds": "This sale has refunds, so it can't be voided. Refund the remaining items instead."
   }
 }

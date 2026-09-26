@@ -2,7 +2,7 @@ import { useEffect, useMemo, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { CheckCircle2, ListChecks, Mail, MessageCircle, PackageCheck, PackageX, Printer, Share2, Undo2 } from 'lucide-react'
 import type { PaymentMethod, Sale } from '@/core/types'
-import { refundLines, summarizeLines } from '@/core/cart'
+import { refundLines, refundRounding, summarizeLines } from '@/core/cart'
 import { formatMoney, formatQty } from '@/lib/money'
 import { uuid } from '@/lib/uuid'
 import { cn } from '@/lib/cn'
@@ -10,13 +10,15 @@ import { session } from '@/stores/session'
 import { useSettings } from '@/stores/settings'
 import { toast } from '@/stores/ui'
 import { Badge, Button, Input, Modal, Toggle } from '@/components/ui'
-import { alreadyRefunded, refundSale } from '@/features/sell/checkout'
+import { refundContext, refundSale } from '@/features/sell/checkout'
 import { ReceiptPreview, emailReceipt, printSale, shareNative, shareWhatsApp } from '@/features/sell/ReceiptDialog'
 import { METHOD_ICONS } from '@/features/sell/PaymentDialog'
 import { OpenShiftDialog } from '@/features/shifts/OpenShiftDialog'
-import { ActionTiles, Stepper, waPhone } from './shared'
+import { ActionTiles, Stepper } from './shared'
 
 const REASONS = ['damaged', 'wrongItem', 'changedMind', 'notAsDescribed'] as const
+/** Units sold in whole pieces: refunds of these can't be fractional. */
+const COUNTED = new Set<string>(['pcs', 'box', 'pack', 'dozen'])
 
 /** Methods offered for paying a refund back: cash, the original tenders, and the customer's account. */
 export function refundMethods(sale: Sale): PaymentMethod[] {
@@ -30,6 +32,7 @@ export function RefundDialog({ sale, open, onClose, customerEmail }: { sale: Sal
   const { t } = useTranslation('sales')
   const settings = useSettings((s) => s.settings)
   const [already, setAlready] = useState<Record<string, number> | null>(null)
+  const [roundingDone, setRoundingDone] = useState(0)
   const [qty, setQty] = useState<Record<string, number>>({})
   const [restock, setRestock] = useState(true)
   const [method, setMethod] = useState<PaymentMethod>('cash')
@@ -47,15 +50,24 @@ export function RefundDialog({ sale, open, onClose, customerEmail }: { sale: Sal
     setReason('')
     setDone(null)
     setAlready(null)
-    // Default to paying back on account when the sale was entirely on account.
-    setMethod(sale.customerId && sale.payments.length && sale.payments.every((p) => p.method === 'credit') ? 'credit' : 'cash')
-    void alreadyRefunded(sale.id).then(setAlready)
-  }, [open, sale])
+    // Default to paying back on account when any of the sale went on account, so a
+    // customer who never paid isn't handed cash.
+    setMethod(sale.customerId && sale.payments.some((p) => p.method === 'credit') ? 'credit' : 'cash')
+    void refundContext(sale.id).then((ctx) => {
+      setAlready(ctx.done)
+      setRoundingDone(ctx.rounding)
+    })
+    // Only when (re)opened or a different sale is shown; live updates must not wipe the selection.
+  }, [open, sale.id])
 
   const available = (lineId: string, sold: number) => Math.max(0, Math.round((sold - (already?.[lineId] ?? 0)) * 1000) / 1000)
   const refundable = sale.lines.filter((l) => l.qty > 0)
   const lines = useMemo(() => refundLines(sale.lines, qty, already ?? {}), [sale.lines, qty, already])
-  const sum = useMemo(() => summarizeLines(lines), [lines])
+  const sum = useMemo(() => {
+    const base = summarizeLines(lines)
+    // The last refund of a sale also returns the invoice's cash rounding.
+    return { ...base, total: base.total + refundRounding(sale, lines, already ?? {}, roundingDone) }
+  }, [lines, sale, already, roundingDone])
   const byLine = useMemo(() => new Map(lines.map((l) => [l.refLineId!, l])), [lines])
   const everything = refundable.every((l) => (qty[l.id] ?? 0) >= available(l.id, l.qty))
   const nothingLeft = already !== null && refundable.every((l) => available(l.id, l.qty) <= 0)
@@ -68,7 +80,7 @@ export function RefundDialog({ sale, open, onClose, customerEmail }: { sale: Sal
   }
 
   const submit = async () => {
-    if (!lines.length || busyRef.current) return
+    if (!lines.length || already === null || busyRef.current) return
     if (settings.requireShift && !session().shift) return setNeedShift(true)
     busyRef.current = true
     setBusy(true)
@@ -100,7 +112,7 @@ export function RefundDialog({ sale, open, onClose, customerEmail }: { sale: Sal
               className="w-full max-w-xs"
               actions={[
                 { label: t('common:print'), icon: <Printer />, onClick: () => void printSale(done) },
-                { label: 'WhatsApp', icon: <MessageCircle />, onClick: () => shareWhatsApp(done, waPhone(done.customerPhone)) },
+                { label: 'WhatsApp', icon: <MessageCircle />, onClick: () => shareWhatsApp(done) },
                 { label: t('common:share'), icon: <Share2 />, onClick: () => void shareNative(done) },
                 { label: t('common:email'), icon: <Mail />, onClick: () => emailReceipt(done, customerEmail) },
               ]}
@@ -136,7 +148,7 @@ export function RefundDialog({ sale, open, onClose, customerEmail }: { sale: Sal
             <Button onClick={onClose} disabled={busy}>
               {t('common:cancel')}
             </Button>
-            <Button variant="danger" size="lg" icon={<Undo2 className="size-5" />} loading={busy} disabled={!lines.length} onClick={submit}>
+            <Button variant="danger" size="lg" icon={<Undo2 className="size-5" />} loading={busy} disabled={!lines.length || already === null} onClick={submit}>
               {t('refund.confirm')}
             </Button>
           </div>
@@ -165,7 +177,7 @@ export function RefundDialog({ sale, open, onClose, customerEmail }: { sale: Sal
                   </div>
                 </div>
                 <div className="flex items-center gap-3">
-                  <Stepper value={qty[l.id] ?? 0} max={max} disabled={max <= 0} label={l.name} onChange={(v) => setQty((q) => ({ ...q, [l.id]: v }))} />
+                  <Stepper value={qty[l.id] ?? 0} max={max} disabled={max <= 0} label={l.name} integer={COUNTED.has(l.unit) && Number.isInteger(l.qty)} onChange={(v) => setQty((q) => ({ ...q, [l.id]: v }))} />
                   <div className={cn('tnum w-24 text-end font-semibold', !r && 'text-subtle')}>{formatMoney(r ? -r.total : 0)}</div>
                 </div>
               </li>

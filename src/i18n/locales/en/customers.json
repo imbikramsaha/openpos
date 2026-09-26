@@ -68,7 +68,9 @@
     "confirmTitle_other": "Import {{count}} customers?",
     "confirmMessage": "{{creates}} new, {{updates}} updated (matched by phone or email), {{skipped}} rows skipped without a name. Balances are never changed by an import.",
     "imported": "Imported: {{creates}} new, {{updates}} updated",
-    "failed": "Import failed: {{error}}"
+    "failed": "Import failed: {{error}}",
+    "invalidValues_one": "{{count}} invalid phone, email, tax ID or discount value will be left blank.",
+    "invalidValues_other": "{{count}} invalid phone, email, tax ID or discount values will be left blank."
   },
   "form": {
     "newTitle": "New customer",
@@ -91,7 +93,8 @@
     "duplicatePhone": "{{name}} already has this phone number. Save anyway?",
     "saveAnyway": "Save anyway",
     "created": "{{name}} added",
-    "saved": "Customer saved"
+    "saved": "Customer saved",
+    "amountTooLarge": "That amount is too large"
   },
   "detail": {
     "title": "Customer",
@@ -133,7 +136,8 @@
     "sale": "Sale on account",
     "refund": "Refund to account",
     "payment": "Payment received",
-    "charge": "Charge"
+    "charge": "Charge",
+    "adjust": "Balance reduced"
   },
   "pay": {
     "title": "Receive payment",

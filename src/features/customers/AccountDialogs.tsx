@@ -99,7 +99,7 @@ export function ReceivePaymentDialog({ customer, open, onClose }: { customer: Cu
 
   useEffect(() => setQr(null), [amount, method])
 
-  const valid = !!amount && amount > 0
+  const valid = !!amount && amount > 0 && amount < 1e12
   const after = customer.balance - (amount ?? 0)
 
   const showQr = async () => {
@@ -247,7 +247,7 @@ export function AdjustBalanceDialog({ customer, open, onClose }: { customer: Cus
     setNote('')
   }, [open])
 
-  const valid = !!amount && amount > 0 && !!note.trim()
+  const valid = !!amount && amount > 0 && amount < 1e12 && !!note.trim()
   const after = customer.balance + (kind === 'charge' ? 1 : -1) * (amount ?? 0)
 
   const submit = async () => {

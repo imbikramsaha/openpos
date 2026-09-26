@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Ban } from 'lucide-react'
 import type { Sale } from '@/core/types'
@@ -13,28 +13,32 @@ export function VoidDialog({ sale, open, onClose }: { sale: Sale; open: boolean;
   const { t } = useTranslation('sales')
   const [reason, setReason] = useState('')
   const [busy, setBusy] = useState(false)
+  // Guards the whole confirm + void sequence, so a double click can't void twice.
+  const busyRef = useRef(false)
   useEffect(() => {
     if (open) setReason('')
   }, [open])
 
   const submit = async () => {
     const r = reason.trim()
-    if (!r || busy) return
-    const ok = await confirmDialog({
-      title: t('void.confirmTitle', { number: sale.number }),
-      message: t('void.confirmMessage', { amount: formatMoney(sale.total) }),
-      confirmLabel: t('void.action'),
-      danger: true,
-    })
-    if (!ok) return
-    setBusy(true)
+    if (!r || busyRef.current) return
+    busyRef.current = true
     try {
+      const ok = await confirmDialog({
+        title: t('void.confirmTitle', { number: sale.number }),
+        message: t('void.confirmMessage', { amount: formatMoney(sale.total) }),
+        confirmLabel: t('void.action'),
+        danger: true,
+      })
+      if (!ok) return
+      setBusy(true)
       await voidSale(sale, r)
       toast(t('void.done', { number: sale.number }))
       onClose()
     } catch (e) {
       toast(e instanceof Error ? e.message : String(e), 'error')
     } finally {
+      busyRef.current = false
       setBusy(false)
     }
   }

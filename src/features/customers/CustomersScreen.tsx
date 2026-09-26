@@ -119,7 +119,7 @@ export default function CustomersScreen() {
       if (!plan.creates.length && !plan.updates.length) return toast(t('csv.noRows'), 'warning')
       const ok = await confirmDialog({
         title: t('csv.confirmTitle', { count: plan.creates.length + plan.updates.length }),
-        message: t('csv.confirmMessage', { creates: plan.creates.length, updates: plan.updates.length, skipped: plan.skipped }),
+        message: [t('csv.confirmMessage', { creates: plan.creates.length, updates: plan.updates.length, skipped: plan.skipped }), plan.invalid ? t('csv.invalidValues', { count: plan.invalid }) : ''].filter(Boolean).join(' '),
         confirmLabel: t('common:import'),
       })
       if (!ok) return
@@ -183,8 +183,9 @@ export default function CustomersScreen() {
                 { label: t('csv.template'), icon: <Download />, onClick: template },
               ]}
             />
-            <Button variant="primary" icon={<UserPlus className="size-4" />} onClick={() => setForm({ open: true, name: q && !/\d{4,}/.test(q) ? q : undefined })}>
-              {t('newCustomer')}
+            <Button variant="primary" icon={<UserPlus className="size-4" />} onClick={() => setForm({ open: true, name: q && !/\d{4,}/.test(q) ? q : undefined })} aria-label={t('newCustomer')} title={t('newCustomer')}>
+              {/* Icon-only on small phones so the page title isn't squeezed. */}
+              <span className="max-[399px]:hidden">{t('newCustomer')}</span>
             </Button>
           </>
         }

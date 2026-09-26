@@ -67,7 +67,11 @@ export function CustomerDetail({ id, onClose, onEdit }: { id?: string; onClose: 
       danger: true,
     })
     if (!ok) return
+    // Hiding an open balance is a credit decision.
+    if (c.balance && !(await requirePermission('customers_credit'))) return
     await remove('customers', c.id)
+    // Don't leave the deleted customer on the sale in progress.
+    if (useCart.getState().customerId === c.id) useCart.getState().setCustomer(undefined)
     void audit('customer.delete', 'customer', c.id, `${c.name} ${c.balance}`)
     toast(t('delete.done', { name: c.name }))
     onClose()
@@ -151,7 +155,7 @@ export function CustomerDetail({ id, onClose, onEdit }: { id?: string; onClose: 
             value={tab}
             onChange={setTab}
             tabs={[
-              { id: 'purchases', label: t('tabs.purchases'), count: sales?.filter((s) => s.type === 'sale').length },
+              { id: 'purchases', label: t('tabs.purchases'), count: sales?.length },
               { id: 'statement', label: t('tabs.statement'), count: ledger.length },
               { id: 'info', label: t('tabs.info') },
             ]}
@@ -233,8 +237,8 @@ function Purchases({ sales }: { sales?: Sale[] }) {
                 {s.type === 'refund' ? <Undo2 className="size-4" /> : <ReceiptText className="size-4" />}
               </span>
               <span className="min-w-0 flex-1">
-                <span className="flex items-center gap-1.5">
-                  <span className={cn('truncate font-medium', s.status === 'voided' && 'text-subtle line-through')}>{s.number}</span>
+                <span className="flex flex-wrap items-center gap-x-1.5 gap-y-0.5">
+                  <span className={cn('min-w-0 truncate font-medium', s.status === 'voided' && 'text-subtle line-through')}>{s.number}</span>
                   <SaleBadges sale={s} refund={refunds?.[s.id]} />
                 </span>
                 <span className="block truncate text-xs text-muted">
@@ -263,6 +267,7 @@ const KIND_STYLE: Record<LedgerEntry['kind'], { icon: typeof Plus; cls: string }
   sale: { icon: ShoppingBag, cls: 'bg-danger-soft text-danger' },
   refund: { icon: Undo2, cls: 'bg-success-soft text-success' },
   payment: { icon: HandCoins, cls: 'bg-success-soft text-success' },
+  adjust: { icon: SlidersHorizontal, cls: 'bg-success-soft text-success' },
   charge: { icon: Plus, cls: 'bg-warning-soft text-warning' },
 }
 

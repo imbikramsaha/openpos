@@ -21,7 +21,7 @@ import { receiptHtml } from '@/features/sell/receipt'
 import { refundState } from './query'
 import { RefundDialog } from './RefundDialog'
 import { VoidDialog } from './VoidDialog'
-import { ActionTiles, MethodLabel, SaleBadges, SectionTitle, waPhone } from './shared'
+import { ActionTiles, MethodLabel, SaleBadges, SectionTitle } from './shared'
 
 /** Rewrites the current hash without adding a history entry (drops `?refund=1` once handled). */
 function replaceRoute(path: string) {
@@ -69,6 +69,8 @@ export function SaleDetail({ id, autoRefund, onClose }: { id?: string; autoRefun
     if (!autoRefund || !sale || !refunds || handled.current === sale.id) return
     handled.current = sale.id
     replaceRoute(`sales/${sale.id}`)
+    // A credit note can't itself be refunded; just show it.
+    if (sale.type !== 'sale') return
     if (!canRefund) toast(sale.status === 'voided' ? t('refund.voided') : t('refund.nothingLeft'), 'warning')
     else void startRefund()
   }, [autoRefund, sale, refunds])
@@ -179,7 +181,7 @@ function SaleBody({ sale, refunds, customerEmail }: { sale: Sale; refunds: Sale[
 
   const quick = [
     { label: t('detail.a4'), icon: <FileText />, onClick: () => void printA4(sale) },
-    { label: 'WhatsApp', icon: <MessageCircle />, onClick: () => shareWhatsApp(sale, waPhone(sale.customerPhone)) },
+    { label: 'WhatsApp', icon: <MessageCircle />, onClick: () => shareWhatsApp(sale) },
     { label: t('common:share'), icon: <Share2 />, onClick: () => void shareNative(sale) },
     { label: t('common:email'), icon: <Mail />, onClick: () => emailReceipt(sale, customerEmail) },
   ]
@@ -318,7 +320,8 @@ function SaleBody({ sale, refunds, customerEmail }: { sale: Sale; refunds: Sale[
         </div>
         {(!!sale.loyaltyEarned || !!sale.loyaltyRedeemed) && (
           <div className="mt-2 flex flex-wrap gap-2">
-            {!!sale.loyaltyEarned && <Badge tone="primary">{t('detail.pointsEarned', { count: sale.loyaltyEarned })}</Badge>}
+            {(sale.loyaltyEarned ?? 0) > 0 && <Badge tone="primary">{t('detail.pointsEarned', { count: sale.loyaltyEarned })}</Badge>}
+            {(sale.loyaltyEarned ?? 0) < 0 && <Badge>{t('detail.pointsReversed', { count: -(sale.loyaltyEarned ?? 0) })}</Badge>}
             {!!sale.loyaltyRedeemed && <Badge>{t('detail.pointsRedeemed', { count: sale.loyaltyRedeemed })}</Badge>}
           </div>
         )}

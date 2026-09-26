@@ -35,8 +35,13 @@ export default function SalesScreen() {
   const [exporting, setExporting] = useState(false)
   const searchRef = useRef<HTMLInputElement>(null)
   const dq = useDebounced(q, 200)
-  // Recompute preset ranges when the day rolls over while the screen stays open.
-  const day = startOfDay()
+  // Recompute preset ranges when the day rolls over while the screen stays open
+  // (a till left open overnight must not keep showing yesterday as "Today").
+  const [day, setDay] = useState(() => startOfDay())
+  useEffect(() => {
+    const id = setTimeout(() => setDay(startOfDay()), Math.max(1000, startOfDay(addDays(Date.now(), 1)) - Date.now() + 1000))
+    return () => clearTimeout(id)
+  }, [day])
   const range = useMemo(() => presetRange(preset, custom), [preset, custom, day])
 
   const filter: SalesFilter = useMemo(() => ({ ...range, type, status, method, userId, q: dq }), [range, type, status, method, userId, dq])
@@ -311,8 +316,9 @@ function MobileRow({ sale, refund, multiDay }: { sale: Sale; refund?: 'none' | '
         {sale.type === 'refund' ? <Undo2 className="size-5" /> : <Receipt className="size-5" />}
       </span>
       <div className="min-w-0 flex-1">
-        <div className="flex items-center gap-1.5">
-          <span className={cn('truncate font-semibold', sale.status === 'voided' && 'text-subtle line-through')}>{sale.number}</span>
+        {/* Badges wrap under the number on narrow phones instead of truncating it to "INV…". */}
+        <div className="flex flex-wrap items-center gap-x-1.5 gap-y-0.5">
+          <span className={cn('min-w-0 truncate font-semibold', sale.status === 'voided' && 'text-subtle line-through')}>{sale.number}</span>
           <SaleBadges sale={sale} refund={refund} />
         </div>
         <div className="truncate text-xs text-muted">

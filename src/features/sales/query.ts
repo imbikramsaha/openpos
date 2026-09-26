@@ -86,7 +86,7 @@ function matcher(f: SalesFilter): (s: Sale) => boolean {
 
 function source(f: SalesFilter): { coll: ReturnType<typeof db.sales.toCollection>; allDates: boolean } {
   const q = f.q.trim()
-  if (isNumberSearch(q)) return { coll: db.sales.where('number').startsWith(q.toUpperCase()), allDates: true }
+  if (isNumberSearch(q)) return { coll: db.sales.where('number').startsWith(q.toUpperCase()).reverse(), allDates: true }
   return { coll: db.sales.where('createdAt').between(f.from, f.to, true, true).reverse(), allDates: false }
 }
 
@@ -127,6 +127,15 @@ export interface ScanResult {
   refunds: Record<string, RefundState>
 }
 
+/** Inserts `s` into `rows` (newest first), keeping at most `cap` of the newest sales. */
+function keepNewest(rows: Sale[], s: Sale, cap: number) {
+  if (rows.length >= cap && s.createdAt <= rows[rows.length - 1].createdAt) return
+  let i = rows.length
+  while (i > 0 && rows[i - 1].createdAt < s.createdAt) i--
+  rows.splice(i, 0, s)
+  if (rows.length > cap) rows.pop()
+}
+
 /** Streams the filtered range once: exact summary for every match, but only `limit` rows are kept. */
 export async function scanSales(f: SalesFilter, limit: number): Promise<ScanResult> {
   const match = matcher(f)
@@ -144,10 +153,11 @@ export async function scanSales(f: SalesFilter, limit: number): Promise<ScanResu
       summary.salesCount++
       summary.salesTotal += s.total
     }
-    if (rows.length <= limit) rows.push(s)
+    // Number searches walk the number index, which isn't chronological across terminals.
+    if (allDates) keepNewest(rows, s, limit + 1)
+    else if (rows.length <= limit) rows.push(s)
   })
   summary.net = summary.salesTotal + summary.refundsTotal
-  if (allDates) rows.sort((a, b) => b.createdAt - a.createdAt)
   const more = rows.length > limit
   const shown = rows.slice(0, limit)
   return { rows: shown, more, allDates, summary, refunds: await refundStates(shown) }
@@ -187,12 +197,13 @@ export async function salesCsv(f: SalesFilter): Promise<{ csv: string; count: nu
     subtotal: amount(s.subtotal),
     discount: amount(s.discountTotal),
     tax: amount(s.taxTotal),
+    rounding: amount(s.rounding || 0),
     total: amount(s.total),
     payment_methods: methodText(s),
     cashier: s.userName,
     note: s.note ?? '',
   }))
-  const cols = ['number', 'date', 'type', 'status', 'customer', 'customer_phone', 'subtotal', 'discount', 'tax', 'total', 'payment_methods', 'cashier', 'note']
+  const cols = ['number', 'date', 'type', 'status', 'customer', 'customer_phone', 'subtotal', 'discount', 'tax', 'rounding', 'total', 'payment_methods', 'cashier', 'note']
   return { csv: toCsv(rows, cols), count: rows.length }
 }
 

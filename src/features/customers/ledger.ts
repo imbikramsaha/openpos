@@ -8,6 +8,7 @@ import { currencyDecimals, formatMoney, fromMinor, moneyConfig, parseDecimal, to
 import { parseCsv, toCsv } from '@/lib/csv'
 import { escapeHtml as e } from '@/lib/print'
 import { uuid } from '@/lib/uuid'
+import { emailError, LIMITS, phoneError, taxIdError } from '@/lib/validate'
 import { amountInWords } from '@/lib/words'
 
 // Customer account logic: purchase stats, the credit (khata) ledger, printable
@@ -59,7 +60,7 @@ export function statsOf(sales: Sale[]): CustomerStats & { average: number } {
 
 // ---- Account ledger (khata) -----------------------------------------------------
 
-export type LedgerKind = 'sale' | 'refund' | 'payment' | 'charge'
+export type LedgerKind = 'sale' | 'refund' | 'payment' | 'adjust' | 'charge'
 
 export interface LedgerEntry {
   id: string
@@ -88,7 +89,8 @@ export function buildLedger(sales: Sale[], payments: CustomerPayment[]): LedgerE
   }
   for (const p of payments) {
     if (p.deleted) continue
-    out.push({ id: p.id, at: p.createdAt, kind: p.amount >= 0 ? 'payment' : 'charge', payment: p, note: p.note, debit: Math.max(-p.amount, 0), credit: Math.max(p.amount, 0), balance: 0 })
+    // Non-cash entries (method "credit") are manual adjustments, not money received.
+    out.push({ id: p.id, at: p.createdAt, kind: p.amount < 0 ? 'charge' : p.method === 'credit' ? 'adjust' : 'payment', payment: p, note: p.note, debit: Math.max(-p.amount, 0), credit: Math.max(p.amount, 0), balance: 0 })
   }
   out.sort((a, b) => a.at - b.at)
   let bal = 0
@@ -192,7 +194,7 @@ async function upiQr(s: Settings, amount: number): Promise<string> {
   }
 }
 
-const ENTRY_LABEL: Record<LedgerKind, string> = { sale: 'kind.sale', refund: 'kind.refund', payment: 'kind.payment', charge: 'kind.charge' }
+const ENTRY_LABEL: Record<LedgerKind, string> = { sale: 'kind.sale', refund: 'kind.refund', payment: 'kind.payment', adjust: 'kind.adjust', charge: 'kind.charge' }
 
 export function entryTitle(x: LedgerEntry): string {
   if (x.kind === 'payment') return `${t(ENTRY_LABEL.payment)} · ${method(x.payment!.method)}`
@@ -283,6 +285,9 @@ function normalizeState(v: string, s: Settings): string | undefined {
   return hit ? hit[0] : x
 }
 
+/** toCsv() prefixes cells starting with = + - @ with an apostrophe (formula safety); undo that on import. */
+const uncsvText = (v: string) => (/^'[=+\-@\t\r]/.test(v) ? v.slice(1) : v)
+
 export function customersCsv(list: Customer[], s: Settings): string {
   const d = moneyConfig().decimals
   return toCsv(
@@ -305,6 +310,8 @@ export interface ImportPlan {
   creates: Customer[]
   updates: Customer[]
   skipped: number
+  /** Phone, email, tax ID or discount values that failed validation and were left out. */
+  invalid: number
 }
 
 export const phoneKey = (p?: string) => (p ?? '').replace(/\D/g, '').slice(-10)
@@ -320,32 +327,40 @@ export async function planImport(text: string, s: Settings): Promise<ImportPlan>
     if (c.email) byEmail.set(c.email.toLowerCase(), c)
     if (!c.phone && !c.email) byName.set(c.name.toLowerCase(), c)
   }
-  const plan: ImportPlan = { creates: [], updates: [], skipped: 0 }
+  const plan: ImportPlan = { creates: [], updates: [], skipped: 0, invalid: 0 }
   const touched = new Map<string, Customer>()
   const now = Date.now()
   for (const r of raw) {
     const row: Partial<Record<CsvColumn, string>> = {}
     for (const [k, v] of Object.entries(r)) {
       const col = ALIASES[k.toLowerCase().trim().replace(/[^a-z0-9]+/g, '_').replace(/^_|_$/g, '')]
-      if (col && v && !row[col]) row[col] = v.trim()
+      if (col && v && !row[col]) row[col] = uncsvText(v.trim())
     }
-    const name = row.name?.trim()
+    const name = row.name?.trim().slice(0, LIMITS.name)
     if (!name) {
       plan.skipped++
       continue
     }
+    // Same rules as the customer form; bad values are left out rather than stored.
+    const valid = (v: string | undefined, err: (x: string) => string | undefined) => {
+      if (!v) return undefined
+      if (!err(v)) return v
+      plan.invalid++
+      return undefined
+    }
     const discount = row.discount_percent ? parseDecimal(row.discount_percent.replace('%', '')) : NaN
+    if (row.discount_percent && !(discount >= 0 && discount <= 100)) plan.invalid++
     const limit = row.credit_limit ? parseDecimal(row.credit_limit) : NaN
     const fields: Partial<Customer> = {
       name,
-      phone: row.phone || undefined,
-      email: row.email?.toLowerCase() || undefined,
-      taxNumber: row.tax_number?.toUpperCase() || undefined,
-      address: row.address || undefined,
-      city: row.city || undefined,
-      state: row.state ? normalizeState(row.state, s) : undefined,
-      discountPercent: Number.isFinite(discount) ? Math.min(Math.max(discount, 0), 100) : undefined,
-      creditLimit: Number.isFinite(limit) && limit > 0 ? toMinor(limit) : undefined,
+      phone: valid(row.phone, phoneError),
+      email: valid(row.email?.toLowerCase(), emailError),
+      taxNumber: valid(row.tax_number?.toUpperCase().replace(/\s/g, ''), (v) => taxIdError(v, s.country)),
+      address: row.address?.slice(0, 200) || undefined,
+      city: row.city?.slice(0, 60) || undefined,
+      state: row.state ? normalizeState(row.state.slice(0, 60), s) : undefined,
+      discountPercent: discount >= 0 && discount <= 100 ? discount : undefined,
+      creditLimit: Number.isFinite(limit) && limit > 0 && limit < 1e12 ? toMinor(limit) : undefined,
     }
     const match =
       (phoneKey(fields.phone).length >= 6 && byPhone.get(phoneKey(fields.phone))) ||

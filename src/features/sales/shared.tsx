@@ -4,9 +4,9 @@ import { ChevronDown, Minus, Plus } from 'lucide-react'
 import type { Payment, PaymentMethod, Sale } from '@/core/types'
 import { parseDecimal } from '@/lib/money'
 import { cn } from '@/lib/cn'
-import { settings } from '@/stores/settings'
 import { Badge, Button, type ButtonVariant } from '@/components/ui'
 import { METHOD_ICONS } from '@/features/sell/PaymentDialog'
+import { whatsAppNumber } from '@/features/sell/ReceiptDialog'
 import type { RefundState } from './query'
 
 // Small building blocks shared by the sales history and customer screens.
@@ -20,28 +20,9 @@ export function useDebounced<T>(value: T, ms = 200): T {
   return v
 }
 
-/** International calling codes for the country presets, used to build wa.me links. */
-const CALLING_CODES: Record<string, string> = {
-  IN: '91', US: '1', CA: '1', GB: '44', AE: '971', SA: '966', PK: '92', BD: '880', NP: '977', LK: '94', ID: '62', MY: '60',
-  SG: '65', PH: '63', TH: '66', VN: '84', JP: '81', KR: '82', CN: '86', DE: '49', FR: '33', ES: '34', IT: '39', NL: '31',
-  PL: '48', PT: '351', BR: '55', MX: '52', AU: '61', NZ: '64', ZA: '27', NG: '234', KE: '254', EG: '20', TR: '90', RU: '7', IR: '98',
-}
-
-/** Phone number in the digits-only international form WhatsApp expects (local numbers get the shop's country code). */
-export function waPhone(phone?: string): string {
-  const raw = (phone ?? '').trim()
-  if (!raw) return ''
-  if (raw.startsWith('+')) return raw.replace(/\D/g, '')
-  let d = raw.replace(/\D/g, '')
-  if (d.startsWith('00')) return d.slice(2)
-  const cc = CALLING_CODES[settings().country]
-  if (!cc) return d
-  if (d.startsWith('0')) d = d.replace(/^0+/, '')
-  return d.length <= 10 ? cc + d : d
-}
-
+/** Opens WhatsApp with `text`; local numbers get the shop's calling code (see whatsAppNumber). */
 export function openWhatsApp(phone: string | undefined, text: string) {
-  window.open(`https://wa.me/${waPhone(phone)}?text=${encodeURIComponent(text)}`, '_blank', 'noopener')
+  window.open(`https://wa.me/${whatsAppNumber(phone)}?text=${encodeURIComponent(text)}`, '_blank', 'noopener')
 }
 
 export function PaymentIcons({ payments, className }: { payments: Payment[]; className?: string }) {
@@ -155,11 +136,14 @@ export function MenuButton({ label, icon, items, variant = 'secondary', classNam
   )
 }
 
-/** Touch-friendly − value + control. Accepts typed decimals for weighed items. */
-export function Stepper({ value, max, onChange, disabled, label }: { value: number; max: number; onChange: (v: number) => void; disabled?: boolean; label: string }) {
+/** Touch-friendly − value + control. Accepts typed decimals for weighed items unless `integer`. */
+export function Stepper({ value, max, onChange, disabled, label, integer }: { value: number; max: number; onChange: (v: number) => void; disabled?: boolean; label: string; integer?: boolean }) {
   const [text, setText] = useState(String(value))
   useEffect(() => setText(value ? String(value) : '0'), [value])
-  const clamp = (v: number) => Math.round(Math.min(Math.max(v, 0), max) * 1000) / 1000
+  const clamp = (v: number) => {
+    const n = Math.min(Math.max(v, 0), max)
+    return integer ? Math.floor(n + 1e-9) : Math.round(n * 1000) / 1000
+  }
   const commit = () => {
     const n = parseDecimal(text)
     const v = Number.isNaN(n) ? 0 : clamp(n)
@@ -174,7 +158,7 @@ export function Stepper({ value, max, onChange, disabled, label }: { value: numb
       <input
         value={text}
         disabled={disabled}
-        inputMode="decimal"
+        inputMode={integer ? 'numeric' : 'decimal'}
         aria-label={label}
         onChange={(e) => setText(e.target.value)}
         onBlur={commit}
