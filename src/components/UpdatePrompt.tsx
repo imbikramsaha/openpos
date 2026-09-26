@@ -24,6 +24,15 @@ let registered = false
 export function registerServiceWorker() {
   if (registered || import.meta.env.DEV || isElectron() || isNative() || !location.protocol.startsWith('http') || !('serviceWorker' in navigator)) return
   registered = true
+  // Language packs and the scanner WASM are cached on first use. Anything already loaded
+  // before the worker took control bypassed it, so fetch those again through the worker.
+  const warmOnDemandCache = () => {
+    for (const e of performance.getEntriesByType('resource')) {
+      if (/\/assets\/(locale-[^/]+\.js|[^/]+\.wasm)$/.test(e.name)) void fetch(e.name).catch(() => undefined)
+    }
+  }
+  if (navigator.serviceWorker.controller) warmOnDemandCache()
+  navigator.serviceWorker.addEventListener('controllerchange', warmOnDemandCache)
   void import('virtual:pwa-register').then(({ registerSW }) => {
     const updateSW = registerSW({
       onNeedRefresh: () => usePwa.setState({ update: () => updateSW(true), snoozedUntil: 0 }),

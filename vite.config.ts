@@ -39,6 +39,19 @@ export default defineConfig({
       },
       workbox: {
         globPatterns: ['**/*.{js,css,html,svg,png,ico,wasm,json,woff2}'],
+        // Language packs (~3.8 MB for 33 languages) and the camera-scanner WASM (1 MB) are not
+        // precached: on a slow connection they made the first visit take ~50 s to become
+        // offline-ready. They are cached the first time they're used instead.
+        globIgnores: ['**/assets/locale-*.js', '**/*.wasm'],
+        runtimeCaching: [
+          {
+            urlPattern: ({ url }) => /\/assets\/locale-[^/]+\.js$/.test(url.pathname) || url.pathname.endsWith('.wasm'),
+            handler: 'CacheFirst',
+            // Hashed, immutable files: ignore Vary so a copy cached via fetch() also matches the
+            // module-script request (servers may send `Vary: Origin`).
+            options: { cacheName: 'kasa-on-demand', expiration: { maxEntries: 60 }, matchOptions: { ignoreVary: true } },
+          },
+        ],
         maximumFileSizeToCacheInBytes: 6 * 1024 * 1024,
         navigateFallback: 'index.html',
         // Only the app's own entry URL: with relative asset paths, serving index.html for
