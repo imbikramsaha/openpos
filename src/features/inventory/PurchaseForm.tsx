@@ -173,14 +173,21 @@ export function PurchaseForm({ products, params }: { products: Product[]; params
   const paid = draft.paidInFull ? total : Math.min(draft.paid ?? 0, total)
   const units = draft.lines.reduce((a, l) => a + Math.max(0, l.qty), 0)
   const badLines = draft.lines.filter((l) => !(l.qty > 0))
-  const canSave = draft.lines.length > 0 && !badLines.length
+  const badCost = draft.lines.some((l) => !(l.cost >= 0))
+  // Lines kept in the draft for products deleted since (here or on another terminal).
+  const deletedLines = draft.lines.some((l) => !byId.has(l.productId))
+  const paidError = !draft.paidInFull && draft.paid !== undefined && (draft.paid < 0 || draft.paid > total)
+  const canSave = draft.lines.length > 0 && !badLines.length && !badCost && !deletedLines && !paidError
+  const saveError = !draft.lines.length ? t('purchases.noLines') : badLines.length ? t('purchases.badQty') : badCost ? t('purchases.badCost') : deletedLines ? t('purchases.deletedLines') : paidError ? t('purchases.badPaid') : undefined
 
   const save = async () => {
     setTried(true)
     if (!canSave || busy) return
     setBusy(true)
     try {
-      const doc = await savePurchase({ supplierId: draft.supplierId || undefined, invoiceNo: draft.invoiceNo, note: draft.note, lines: draft.lines, paid, updateCost: draft.updateCost })
+      // Draft lines can be days old: record the products' current names.
+      const lines = draft.lines.map((l) => ({ ...l, name: byId.get(l.productId)?.name ?? l.name }))
+      const doc = await savePurchase({ supplierId: draft.supplierId || undefined, invoiceNo: draft.invoiceNo, note: draft.note, lines, paid, updateCost: draft.updateCost })
       setDraft(EMPTY)
       try {
         localStorage.removeItem(DRAFT_KEY)
@@ -243,8 +250,17 @@ export function PurchaseForm({ products, params }: { products: Product[]; params
         </div>
         <Checkbox checked={draft.updateCost} onChange={(v) => set({ updateCost: v })} label={t('purchases.updateCost')} />
         <Toggle checked={draft.paidInFull} onChange={(v) => set({ paidInFull: v, paid: v ? undefined : draft.paid })} label={t('purchases.paidInFull')} />
-        {!draft.paidInFull && <MoneyInput label={t('purchases.paidAmount')} value={draft.paid} onChange={(v) => set({ paid: v })} placeholder="0" hint={total - paid > 0 ? t('purchases.dueHint', { amount: formatMoney(total - paid) }) : undefined} />}
-        {tried && !canSave && <p className="text-sm font-medium text-danger">{draft.lines.length ? t('purchases.badQty') : t('purchases.noLines')}</p>}
+        {!draft.paidInFull && (
+          <MoneyInput
+            label={t('purchases.paidAmount')}
+            value={draft.paid}
+            onChange={(v) => set({ paid: v })}
+            placeholder="0"
+            error={paidError ? t('purchases.badPaid') : undefined}
+            hint={total - paid > 0 ? t('purchases.dueHint', { amount: formatMoney(total - paid) }) : undefined}
+          />
+        )}
+        {tried && saveError && <p className="text-sm font-medium text-danger">{saveError}</p>}
         <Button variant="primary" size="lg" block onClick={save} loading={busy} icon={<Truck className="size-5" />}>
           {t('purchases.receive')}
         </Button>
@@ -346,7 +362,7 @@ export function PurchaseForm({ products, params }: { products: Product[]; params
                         <div className="col-span-2 min-w-0 md:col-span-1">
                           <div className="truncate font-medium">{l.name}</div>
                           <div className="truncate text-xs text-muted">
-                            {p?.trackStock ? t('purchases.inStock', { qty: formatQty(p.stock) }) : t('products:stock.untracked')}
+                            {!p ? <span className="font-medium text-danger">{t('overview.deletedProduct')}</span> : p.trackStock ? t('purchases.inStock', { qty: formatQty(p.stock) }) : t('products:stock.untracked')}
                             {costChanged && <span className="text-warning"> · {t('purchases.costWas', { cost: formatMoney(p.cost) })}</span>}
                           </div>
                         </div>
@@ -366,7 +382,7 @@ export function PurchaseForm({ products, params }: { products: Product[]; params
                           value={l.cost}
                           onChange={(v) => setLine(l.productId, { cost: v ?? 0 })}
                           onFocus={(e) => e.target.select()}
-                          className="h-10 text-end"
+                          className={cn('h-10 text-end', !(l.cost >= 0) && 'border-danger')}
                           wrapperClassName="md:col-start-3 md:row-start-1"
                         />
                         <div className="tnum min-w-20 text-end text-sm font-semibold md:col-start-4 md:row-start-1">

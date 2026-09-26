@@ -4,7 +4,7 @@ import { moveStock, round3, tx } from '@/db/repo'
 import { parseCsv, toCsv } from '@/lib/csv'
 import { fromMinor, parseDecimal, toMinor } from '@/lib/money'
 import { uuid } from '@/lib/uuid'
-import { MEASURED_UNITS, SERVICE_UNITS, SWATCHES, UNITS } from './util'
+import { MAX_AMOUNT, MAX_QTY, MEASURED_UNITS, SERVICE_UNITS, SWATCHES, UNITS } from './util'
 
 // Product CSV import/export. Amounts in files are major units ("12.50"); the database
 // stores minor units. Import is two-step: planImport() validates every row without
@@ -122,12 +122,26 @@ export interface ImportContext {
   categories: Category[]
   taxes: Tax[]
   defaultTaxId?: string
+  /** When false, stock cells below zero are rejected (unless they equal the current level). */
+  allowNegativeStock?: boolean
 }
 
 function parseAmount(s: string): number {
-  // Tolerate currency symbols and spaces: "₹ 1,250.00", "$3.50", "12,5 €".
-  return parseDecimal(s.replace(/[^\d.,-]/g, ''))
+  // Typographic minus signs ("−5") and accounting negatives "(12.50)" keep their sign.
+  let t = s.trim().replace(/[\u2212\u2012\u2013\u2014\uFE63\uFF0D]/g, '-')
+  const accounting = /^\(.*\)$/.test(t)
+  if (accounting) t = t.slice(1, -1).trim()
+  if (/^[+-]?\d+(?:\.\d+)?e[+-]?\d+$/i.test(t)) return Number(t) * (accounting ? -1 : 1)
+  // Tolerate currency symbols anywhere and currency codes around the number: "₹ 1,250.00",
+  // "$3.50", "12,5 €", "Rs. 40", "-₹5". Anything else (e.g. "12abc34") is not a number.
+  t = t.replace(/\p{Sc}/gu, '').replace(/^\p{L}+\.?/u, '').replace(/\p{L}+\.?$/u, '').trim()
+  if (/[^\d.,\s'+-]/.test(t)) return NaN
+  const n = parseDecimal(t)
+  return accounting ? -Math.abs(n) : n
 }
+
+/** Excel turns long numeric codes into "8.90123E+12", which loses digits. */
+const SCIENTIFIC = /^\d+(?:[.,]\d+)?e\+?\d+$/i
 
 export function planImport(text: string, ctx: ImportContext): ImportPlan {
   const records = parseCsv(text)
@@ -179,6 +193,7 @@ export function planImport(text: string, ctx: ImportContext): ImportPlan {
     row.name = cell('name') || undefined
     row.sku = cell('sku') || undefined
     row.barcode = cell('barcode').replace(/\s/g, '') || undefined
+    if (row.barcode && SCIENTIFIC.test(row.barcode)) err('barcodeScientific', { value: row.barcode })
     row.category = cell('category') || undefined
     row.hsn = cell('hsn') || undefined
     const price = num('price', { min: 0 })
@@ -191,6 +206,9 @@ export function planImport(text: string, ctx: ImportContext): ImportPlan {
     if (stock !== undefined) row.stock = round3(stock)
     const reorder = num('reorder_level', { min: 0 })
     if (reorder !== undefined) row.reorderLevel = round3(reorder)
+    for (const [column, v, max] of [['price', row.price, MAX_AMOUNT], ['cost', row.cost, MAX_AMOUNT], ['mrp', row.mrp, MAX_AMOUNT], ['stock', row.stock, MAX_QTY], ['reorder_level', row.reorderLevel, MAX_QTY]] as const) {
+      if (v !== undefined && Math.abs(v) > max) err('tooLarge', { column })
+    }
 
     const unitRaw = cell('unit').toLowerCase().replace(/\.$/, '')
     if (unitRaw) {
@@ -206,21 +224,23 @@ export function planImport(text: string, ctx: ImportContext): ImportPlan {
       else err('invalidActive', { value: cell('active') })
     }
 
+    // Match existing products by barcode, then SKU.
+    row.match = (row.barcode && byBarcode.get(row.barcode)) || (row.sku && bySku.get(row.sku.toLowerCase())) || undefined
+
     const taxRaw = cell('tax_rate')
     if (taxRaw) {
       if (/^(none|no|-|exempt)$/i.test(taxRaw)) row.taxId = null
       else {
         const rate = parseDecimal(taxRaw.replace(/[^\d.,]/g, ''))
         const candidates = ctx.taxes.filter((t) => !t.deleted && Math.abs(t.rate - rate) < 0.001)
-        const tax = candidates.find((t) => t.id === ctx.defaultTaxId) ?? candidates[0]
+        // Several taxes can share a rate: keep the product's own, else prefer the default.
+        const tax = candidates.find((t) => t.id === row.match?.taxId) ?? candidates.find((t) => t.id === ctx.defaultTaxId) ?? candidates[0]
         if (!Number.isFinite(rate)) err('invalidNumber', { column: 'tax_rate', value: taxRaw })
         else if (!tax) err('taxNotFound', { rate })
         else row.taxId = tax.id
       }
     }
 
-    // Match existing products by barcode, then SKU.
-    row.match = (row.barcode && byBarcode.get(row.barcode)) || (row.sku && bySku.get(row.sku.toLowerCase())) || undefined
     if (row.match) {
       row.status = 'update'
       const prev = seenMatch.get(row.match.id)
@@ -230,16 +250,20 @@ export function planImport(text: string, ctx: ImportContext): ImportPlan {
       if (skuOwner && skuOwner.id !== row.match.id) warn('skuTaken', { name: skuOwner.name })
     } else {
       if (!row.name) err('nameRequired')
+      if (row.price === undefined && !cell('price')) warn('noPrice')
       if (row.barcode) {
         const prev = seenBarcode.get(row.barcode)
         if (prev) err('duplicateBarcode', { line: prev })
         else seenBarcode.set(row.barcode, line)
-      } else if (row.sku) {
+      }
+      if (row.sku) {
         const prev = seenSku.get(row.sku.toLowerCase())
         if (prev) err('duplicateSku', { line: prev })
         else seenSku.set(row.sku.toLowerCase(), line)
       }
     }
+    // Negative stock only when allowed, or when it is simply the current level (export → import round trip).
+    if (row.stock !== undefined && row.stock < 0 && ctx.allowNegativeStock === false && row.stock !== row.match?.stock) err('negative', { column: 'stock' })
 
     const unit = row.unit ?? row.match?.unit ?? 'pcs'
     const tracks = row.match ? row.match.trackStock : !SERVICE_UNITS.includes(unit)

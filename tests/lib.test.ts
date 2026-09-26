@@ -102,3 +102,17 @@ describe('invoice helpers', () => {
     expect(findPreset('ZZ').code).toBe('OTHER')
   })
 })
+
+describe('csv safety', () => {
+  it('neutralises formula cells on export and restores them on import', () => {
+    const csv = toCsv([{ name: '=HYPERLINK("http://x")', qty: -5, note: '@sum', ok: 'Tea' }])
+    expect(csv).toContain(`"'=HYPERLINK(""http://x"")"`)
+    expect(csv).toContain(',-5,')
+    expect(csv).toContain("'@sum")
+    expect(parseCsv(csv)).toEqual([{ name: '=HYPERLINK("http://x")', qty: '-5', note: '@sum', ok: 'Tea' }])
+  })
+
+  it('keeps the first of duplicated header columns', () => {
+    expect(parseCsv('name,price,name\nTea,10,Coffee')).toEqual([{ name: 'Tea', price: '10' }])
+  })
+})

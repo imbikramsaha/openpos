@@ -20,6 +20,14 @@ export const SERVICE_UNITS: Unit[] = ['hour', 'service']
 /** Rows rendered per "page" in long lists; catalogues can have 20k+ products. */
 export const PAGE_SIZE = 100
 
+/** Largest price/cost accepted from forms and imports (minor units). Guards against typos like "1e20". */
+export const MAX_AMOUNT = 1e11
+/** Largest stock quantity / reorder level accepted from forms and imports. */
+export const MAX_QTY = 1e7
+
+/** Keeps characters a barcode scanner can produce (printable ASCII, no spaces). */
+export const sanitizeBarcode = (s: string) => s.replace(/[^\x21-\x7e]/g, '')
+
 export type StockStatus = 'untracked' | 'out' | 'low' | 'ok'
 
 export function stockStatus(p: Pick<Product, 'trackStock' | 'stock' | 'reorderLevel'>): StockStatus {

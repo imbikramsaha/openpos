@@ -54,31 +54,35 @@ export interface LabelItem {
 
 export const barcodeFormat = (code: string) => (isValidEan13(code) ? 'EAN13' : 'CODE128')
 
-/** Bars only; the digits are rendered as HTML text so they stay crisp at any size. */
-function barcodeSvg(code: string): string {
+/** Most labels one print job may contain (hundreds of A4 pages); keeps the document printable. */
+export const MAX_LABELS = 10_000
+
+/**
+ * Bars only, as a reusable `<symbol>` (each label then references it with `<use>`, so thousands
+ * of copies don't repeat the bars). The digits are rendered as HTML text so they stay crisp.
+ */
+function barcodeSymbol(code: string, id: string): string {
   try {
     const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg')
-    JsBarcode(svg, code, { format: barcodeFormat(code), displayValue: false, margin: 0, height: 60, width: 2, flat: true, background: 'transparent' })
-    svg.removeAttribute('width')
-    svg.removeAttribute('height')
-    svg.removeAttribute('style')
-    svg.setAttribute('preserveAspectRatio', 'none')
-    svg.setAttribute('shape-rendering', 'crispEdges')
-    return svg.outerHTML
+    // Quiet zones (blank space either side of the bars) are part of the symbol; without them
+    // scanners often fail on die-cut labels. EAN-13: 11 modules left, 7 right; Code 128: 10 each.
+    const ean = barcodeFormat(code) === 'EAN13'
+    JsBarcode(svg, code, { format: barcodeFormat(code), displayValue: false, margin: 0, marginLeft: ean ? 22 : 20, marginRight: ean ? 14 : 20, height: 60, width: 2, flat: true, background: 'transparent' })
+    return `<symbol id="${id}" viewBox="${svg.getAttribute('viewBox')}" preserveAspectRatio="none">${svg.innerHTML}</symbol>`
   } catch {
     // Characters CODE128 cannot encode, etc. The label still prints name and price.
     return ''
   }
 }
 
-function labelBody(p: Product, svg: string, o: LabelOptions, s: Settings): string {
+function labelBody(p: Product, symbolId: string | undefined, o: LabelOptions, s: Settings): string {
   const mrpLabel = i18n.t('labels.mrpShort', { ns: 'products' }) as string
   const price = o.showPrice && !p.openPrice ? `<b>${e(formatMoney(p.price))}</b>` : ''
   const mrp = o.showMrp && p.mrp ? `<span class="mrp">${e(mrpLabel)} ${e(formatMoney(p.mrp))}</span>` : ''
   return `<div class="label">
     ${o.showBusiness && s.businessName ? `<div class="biz">${e(s.businessName)}</div>` : ''}
     ${o.showName ? `<div class="name">${e(p.name)}</div>` : ''}
-    ${svg ? `<div class="bc">${svg}</div><div class="code">${e(p.barcode)}</div>` : p.sku ? `<div class="code">${e(p.sku)}</div>` : ''}
+    ${symbolId ? `<div class="bc"><svg preserveAspectRatio="none" shape-rendering="crispEdges"><use href="#${symbolId}" width="100%" height="100%"/></svg></div><div class="code">${e(p.barcode)}</div>` : p.sku ? `<div class="code">${e(p.sku)}</div>` : ''}
     ${price || mrp ? `<div class="price">${price}${mrp}</div>` : ''}
   </div>`
 }
@@ -90,12 +94,20 @@ function labelBody(p: Product, svg: string, o: LabelOptions, s: Settings): strin
 export function labelsHtml(items: LabelItem[], o: LabelOptions, s: Settings, preview?: { maxLabels: number }): string {
   const preset = presetById(o.preset)
   const sheet = !!preset.cols
-  const svgs = new Map<string, string>()
+  const symbols: string[] = []
   const labels: string[] = []
-  const limit = preview?.maxLabels ?? Infinity
+  const limit = Math.min(preview?.maxLabels ?? Infinity, MAX_LABELS)
   outer: for (const { product, copies } of items) {
-    if (!svgs.has(product.id)) svgs.set(product.id, product.barcode ? barcodeSvg(product.barcode) : '')
-    const html = labelBody(product, svgs.get(product.id)!, o, s)
+    if (copies <= 0) continue
+    let symbolId: string | undefined
+    if (product.barcode) {
+      const symbol = barcodeSymbol(product.barcode, `bc${symbols.length}`)
+      if (symbol) {
+        symbolId = `bc${symbols.length}`
+        symbols.push(symbol)
+      }
+    }
+    const html = labelBody(product, symbolId, o, s)
     for (let i = 0; i < copies; i++) {
       if (labels.length >= limit) break outer
       labels.push(html)
@@ -120,7 +132,7 @@ export function labelsHtml(items: LabelItem[], o: LabelOptions, s: Settings, pre
        .label { break-after: page } .label:last-child { break-after: auto }`
   const previewCss = preview
     ? sheet
-      ? `html { background: #e5e7eb } body { padding: 12px } .sheet { background: #fff; zoom: .42; box-shadow: 0 2px 8px rgb(0 0 0 / .2); margin: 0 auto } .label { outline: 1px dashed #cbd5e1 }`
+      ? `html { background: #e5e7eb } body { padding: 12px } .sheet { background: #fff; zoom: .38; box-shadow: 0 2px 8px rgb(0 0 0 / .2); margin: 0 auto } .label { outline: 1px dashed #cbd5e1 }`
       : `html { background: #e5e7eb } body { padding: 12px; display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; zoom: 1.6 } .label { background: #fff; border-radius: 1mm; box-shadow: 0 1px 3px rgb(0 0 0 / .25) }`
     : ''
 
@@ -137,7 +149,7 @@ export function labelsHtml(items: LabelItem[], o: LabelOptions, s: Settings, pre
   .price b { font-weight: 800 } .mrp { font-size: .62em; font-weight: 500 }
   ${pageCss}
   ${previewCss}
-</style></head><body>${body}</body></html>`
+</style></head><body><svg width="0" height="0" style="position:absolute" aria-hidden="true">${symbols.join('')}</svg>${body}</body></html>`
 }
 
 /** Offsets that centre a full grid on the sheet, so every cell sits where the physical label is (even on part-filled pages). */

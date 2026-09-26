@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
+import { useLiveQuery } from 'dexie-react-hooks'
 import type { Category } from '@/core/types'
+import { db } from '@/db/db'
 import { toast } from '@/stores/ui'
 import { Button, Input, Label, Modal } from '@/components/ui'
 import { ColorSwatches } from './shared'
@@ -18,6 +20,9 @@ export function CategoryDialog({ open, category, onClose, onSaved }: {
   const [name, setName] = useState('')
   const [color, setColor] = useState(SWATCHES[11])
   const [busy, setBusy] = useState(false)
+  const taken = useLiveQuery(async () => new Set((await db.categories.toArray()).filter((c) => !c.deleted && c.id !== category?.id).map((c) => c.name.trim().toLowerCase())), [category?.id])
+  // Names must be unique: CSV import and reports match categories by name.
+  const duplicate = !!name.trim() && !!taken?.has(name.trim().toLowerCase())
   useEffect(() => {
     if (!open) return
     setName(category?.name ?? '')
@@ -25,7 +30,7 @@ export function CategoryDialog({ open, category, onClose, onSaved }: {
   }, [open, category])
 
   const save = async () => {
-    if (!name.trim() || busy) return
+    if (!name.trim() || duplicate || busy) return
     setBusy(true)
     try {
       const c = await saveCategory({ id: category?.id, name: name.trim(), color })
@@ -46,14 +51,14 @@ export function CategoryDialog({ open, category, onClose, onSaved }: {
       footer={
         <>
           <Button onClick={onClose}>{t('common:cancel')}</Button>
-          <Button variant="primary" onClick={save} disabled={!name.trim()} loading={busy}>
+          <Button variant="primary" onClick={save} disabled={!name.trim() || duplicate} loading={busy}>
             {t('common:save')}
           </Button>
         </>
       }
     >
       <form className="space-y-4" onSubmit={(e) => (e.preventDefault(), void save())}>
-        <Input label={t('categories.name')} value={name} onChange={(e) => setName(e.target.value)} autoFocus maxLength={60} />
+        <Input label={t('categories.name')} value={name} onChange={(e) => setName(e.target.value)} error={duplicate ? t('categories.duplicate') : undefined} autoFocus maxLength={60} />
         <div>
           <Label>{t('categories.color')}</Label>
           <ColorSwatches value={color} onChange={(c) => c && setColor(c)} />

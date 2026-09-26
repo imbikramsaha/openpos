@@ -5,13 +5,13 @@ import { AlertTriangle, Barcode, Minus, Plus, Printer } from 'lucide-react'
 import type { Product } from '@/core/types'
 import { db } from '@/db/db'
 import { audit } from '@/db/repo'
-import { formatQty } from '@/lib/money'
+import { formatNumber, formatQty } from '@/lib/money'
 import { printHtml } from '@/lib/print'
 import { useSettings } from '@/stores/settings'
 import { toast } from '@/stores/ui'
 import { Button, Checkbox, Modal, NumberInput, Select } from '@/components/ui'
 import { assignMissingBarcodes } from './service'
-import { DEFAULT_LABEL_OPTIONS, LABEL_PRESETS, labelCount, labelsHtml, presetById, type LabelOptions } from './labels'
+import { DEFAULT_LABEL_OPTIONS, LABEL_PRESETS, labelCount, labelsHtml, MAX_LABELS, presetById, type LabelOptions } from './labels'
 
 const PREFS_KEY = 'kasa.labelOptions'
 const MAX_LISTED = 200
@@ -60,6 +60,7 @@ export function LabelDialog({ productIds, onClose }: { productIds: string[] | nu
 
   const items = useMemo(() => (products ?? []).map((p) => ({ product: p, copies: copies[p.id] ?? 1 })), [products, copies])
   const total = labelCount(items)
+  const tooMany = total > MAX_LABELS
   const missing = (products ?? []).filter((p) => !p.barcode)
   const preset = presetById(opts.preset)
   const preview = useMemo(() => (open && items.length ? labelsHtml(items, opts, settings, { maxLabels: preset.cols ? preset.cols * preset.rows! : 12 }) : ''), [open, items, opts, settings, preset])
@@ -75,7 +76,7 @@ export function LabelDialog({ productIds, onClose }: { productIds: string[] | nu
   }
 
   const print = async () => {
-    if (!total) return
+    if (!total || tooMany) return
     await printHtml(labelsHtml(items, opts, settings), preset.cols ? undefined : preset.w)
     void audit('labels.print', 'product', undefined, `${total} labels`)
   }
@@ -94,9 +95,11 @@ export function LabelDialog({ productIds, onClose }: { productIds: string[] | nu
       flush
       footer={
         <>
-          <span className="me-auto text-sm text-muted">{t('labels.total', { count: total })}</span>
+          <span className={tooMany ? 'me-auto text-sm font-medium text-danger' : 'me-auto text-sm text-muted'}>
+            {tooMany ? t('labels.tooMany', { max: formatNumber(MAX_LABELS) }) : t('labels.total', { count: total })}
+          </span>
           <Button onClick={onClose}>{t('common:cancel')}</Button>
-          <Button variant="primary" icon={<Printer className="size-4" />} onClick={print} disabled={!total}>
+          <Button variant="primary" icon={<Printer className="size-4" />} onClick={print} disabled={!total || tooMany}>
             {t('common:print')}
           </Button>
         </>

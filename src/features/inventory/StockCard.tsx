@@ -71,10 +71,13 @@ export function StockCard({ productId, categories, onClose }: { productId: strin
       footer={
         product && (
           <>
-            <Button icon={<Pencil className="size-4" />} onClick={() => navigate(`products?edit=${product.id}`)} className="me-auto">
-              {t('card.editProduct')}
-            </Button>
-            <Button variant="primary" icon={<SlidersHorizontal className="size-4" />} onClick={() => setAdjusting(true)} disabled={!product.trackStock}>
+            {/* Deleted products keep their history (reached from old purchases/sales) but can't be edited. */}
+            {!product.deleted && (
+              <Button icon={<Pencil className="size-4" />} onClick={() => navigate(`products?edit=${product.id}`)} className="me-auto">
+                {t('card.editProduct')}
+              </Button>
+            )}
+            <Button variant="primary" icon={<SlidersHorizontal className="size-4" />} onClick={() => setAdjusting(true)} disabled={!product.trackStock || !!product.deleted}>
               {t('card.adjust')}
             </Button>
           </>
@@ -88,7 +91,11 @@ export function StockCard({ productId, categories, onClose }: { productId: strin
             <div className="min-w-0 flex-1">
               <h3 className="truncate text-lg font-semibold">{product.name}</h3>
               <p className="truncate text-sm text-muted">{[product.sku, product.barcode, product.categoryId && categories.get(product.categoryId)?.name].filter(Boolean).join(' · ') || '—'}</p>
-              {!product.trackStock && <Badge className="mt-1">{t('card.untracked')}</Badge>}
+              {product.deleted ? (
+                <Badge tone="danger" className="mt-1">{t('overview.deletedProduct')}</Badge>
+              ) : (
+                !product.trackStock && <Badge className="mt-1">{t('card.untracked')}</Badge>
+              )}
             </div>
           </div>
 

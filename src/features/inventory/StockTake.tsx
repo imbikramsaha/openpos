@@ -41,6 +41,13 @@ export function StockTake({ products, categories }: { products: Product[]; categ
   const [counts, setCounts] = useState<Record<string, string>>(loadCounts)
   const [limit, setLimit] = useState(PAGE_SIZE * 2)
   const [busy, setBusy] = useState(false)
+  // Rows edited since the filters last changed stay listed, so typing a count into a row
+  // under "Not counted yet" / "With differences" doesn't make it vanish mid-entry.
+  const [touched, setTouched] = useState<Set<string>>(() => new Set())
+  // Product whose count box should get focus once it is on screen (after a scan).
+  const [pendingFocus, setPendingFocus] = useState<string | null>(null)
+  // Row reached by scanning: Enter there returns to the search box for the next scan.
+  const scannedRef = useRef<string | null>(null)
   const query = useDeferredValue(q)
   const listRef = useRef<HTMLUListElement>(null)
   const searchRef = useRef<HTMLInputElement>(null)
@@ -62,14 +69,33 @@ export function StockTake({ products, categories }: { products: Product[]; categ
     const terms = splitTerms(query)
     return tracked.filter((p) => {
       if (category === 'none' ? p.categoryId && categories.has(p.categoryId) : category !== 'all' && p.categoryId !== category) return false
-      const c = parse(counts[p.id])
-      if (show === 'uncounted' && c !== undefined) return false
-      if (show === 'counted' && c === undefined) return false
-      if (show === 'diff' && (c === undefined || Number.isNaN(c) || c === p.stock)) return false
+      if (!touched.has(p.id) && !matchesShow(p)) return false
       return !terms.length || matchesTerms(hay.get(p.id) ?? '', terms)
     })
-  }, [tracked, categories, category, show, query, counts, hay])
-  useEffect(() => setLimit(PAGE_SIZE * 2), [category, show, query])
+  }, [tracked, categories, category, show, query, counts, hay, touched])
+  useEffect(() => {
+    setLimit(PAGE_SIZE * 2)
+    setTouched(new Set())
+  }, [category, show, query])
+
+  function matchesShow(p: Product): boolean {
+    const c = parse(counts[p.id])
+    if (show === 'uncounted') return c === undefined
+    if (show === 'counted') return c !== undefined
+    if (show === 'diff') return c !== undefined && !Number.isNaN(c) && c !== p.stock
+    return true
+  }
+
+  // Focus the scanned product's own row once the filtered list contains it.
+  useEffect(() => {
+    if (!pendingFocus) return
+    const el = listRef.current?.querySelector<HTMLInputElement>(`input[data-id="${CSS.escape(pendingFocus)}"]`)
+    if (el) {
+      el.focus()
+      el.select()
+      setPendingFocus(null)
+    }
+  }, [pendingFocus, rows])
 
   const summary = useMemo(() => {
     let counted = 0
@@ -111,8 +137,19 @@ export function StockTake({ products, categories }: { products: Product[]; categ
     if (!code) return focusRow(0)
     const lc = code.toLowerCase()
     const hit = tracked.find((p) => p.barcode === code) ?? tracked.find((p) => p.sku?.toLowerCase() === lc)
-    if (hit && rows[0]?.id !== hit.id) setQ(hit.barcode ?? hit.sku ?? code)
-    setTimeout(() => focusRow(0), 0)
+    if (!hit) {
+      // A name search: go to the first match.
+      setTimeout(() => focusRow(0), 0)
+      return
+    }
+    // A scanned code: other products can contain the same digits (and the list may still be
+    // catching up with fast scanner input), so focus the matching product's row by id — after
+    // lifting any filter that would hide it.
+    const inCategory = category === 'all' || (category === 'none' ? !(hit.categoryId && categories.has(hit.categoryId)) : hit.categoryId === category)
+    if (!inCategory) setCategory('all')
+    if (!matchesShow(hit)) setShow('all')
+    scannedRef.current = hit.id
+    setPendingFocus(hit.id)
   }
 
   const apply = async () => {
@@ -131,6 +168,7 @@ export function StockTake({ products, categories }: { products: Product[]; categ
       })
       const changed = await applyCounts(list, t('count.movementNote'))
       setCounts({})
+      setTouched(new Set())
       toast(t('count.applied', { count: list.length, changed }))
     } finally {
       setBusy(false)
@@ -138,7 +176,10 @@ export function StockTake({ products, categories }: { products: Product[]; categ
   }
 
   const clear = async () => {
-    if (await confirmDialog({ title: t('count.clearTitle'), message: t('count.clearMessage', { count: summary.counted }), danger: true, confirmLabel: t('common:clear') })) setCounts({})
+    if (await confirmDialog({ title: t('count.clearTitle'), message: t('count.clearMessage', { count: summary.counted }), danger: true, confirmLabel: t('common:clear') })) {
+      setCounts({})
+      setTouched(new Set())
+    }
   }
 
   if (!tracked.length) return <EmptyState icon={<ClipboardCheck />} title={t('list.empty')} description={t('list.emptyHint')} />
@@ -222,6 +263,7 @@ export function StockTake({ products, categories }: { products: Product[]; categ
                   </span>
                   <input
                     data-row={i}
+                    data-id={p.id}
                     value={raw}
                     inputMode="decimal"
                     enterKeyHint="next"
@@ -230,6 +272,7 @@ export function StockTake({ products, categories }: { products: Product[]; categ
                     aria-label={t('count.countedFor', { name: p.name })}
                     onChange={(e) => {
                       const v = e.target.value
+                      setTouched((s) => (s.has(p.id) ? s : new Set(s).add(p.id)))
                       setCounts((s) => {
                         const n = { ...s }
                         if (v.trim()) n[p.id] = v
@@ -239,7 +282,12 @@ export function StockTake({ products, categories }: { products: Product[]; categ
                     }}
                     onFocus={(e) => e.target.select()}
                     onKeyDown={(e) => {
-                      if (e.key === 'Enter' || (e.key === 'ArrowDown' && !e.altKey)) {
+                      if (e.key === 'Enter' && scannedRef.current === p.id) {
+                        e.preventDefault()
+                        scannedRef.current = null
+                        searchRef.current?.focus()
+                        searchRef.current?.select()
+                      } else if (e.key === 'Enter' || (e.key === 'ArrowDown' && !e.altKey)) {
                         e.preventDefault()
                         focusRow(i + 1)
                       } else if (e.key === 'ArrowUp') {

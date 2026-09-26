@@ -46,13 +46,13 @@ export default function InventoryScreen() {
   const openCard = (id: string) => navigate(`${base}?product=${id}`)
   const closeCard = () => navigate(base)
 
-  const tracked = useMemo(() => (products ?? []).filter((p) => p.trackStock && p.active).sort(byName), [products])
+  const tracked = useMemo(() => (products ?? []).filter((p) => p.trackStock).sort(byName), [products])
   const exportValuation = () => {
     downloadText(`stock-valuation-${fileDate()}.csv`, valuationCsv(tracked, catMap), 'text/csv')
     toast(t('exported'))
   }
   const exportLow = async () => {
-    const low = tracked.filter((p) => ['low', 'out'].includes(stockStatus(p)))
+    const low = tracked.filter((p) => p.active && ['low', 'out'].includes(stockStatus(p)))
     downloadText(`low-stock-${fileDate()}.csv`, lowStockCsv(low, catMap, await soldSince(30)), 'text/csv')
     toast(t('exported'))
   }

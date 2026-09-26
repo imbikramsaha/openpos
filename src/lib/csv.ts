@@ -11,7 +11,10 @@ export function toCsv(rows: Array<Record<string, unknown>>, columns?: string[]):
     )
   const esc = (v: unknown) => {
     if (v === null || v === undefined) return ''
-    const s = String(v)
+    let s = String(v)
+    // Spreadsheets run cells starting with = + - @ as formulas (CSV injection); a leading
+    // apostrophe makes them plain text. Plain numbers like -5 stay numeric.
+    if (/^[=+\-@\t\r]/.test(s) && !/^[-+]?\d+(\.\d+)?$/.test(s)) s = `'${s}`
     return /[",\n\r]/.test(s) ? `"${s.replace(/"/g, '""')}"` : s
   }
   return [cols.join(','), ...rows.map((r) => cols.map((c) => esc(r[c])).join(','))].join('\r\n')
@@ -53,5 +56,14 @@ export function parseCsv(text: string): Array<Record<string, string>> {
   if (row.some((c) => c !== '')) rows.push(row)
   if (!rows.length) return []
   const header = rows[0].map((h) => h.trim())
-  return rows.slice(1).map((r) => Object.fromEntries(header.map((h, i) => [h, (r[i] ?? '').trim()])))
+  // Undo the export-time apostrophe that neutralises formula-like cells.
+  const clean = (v: string) => v.trim().replace(/^'(?=[=+\-@])/, '')
+  return rows.slice(1).map((r) => {
+    const out: Record<string, string> = {}
+    // With a repeated header the first column wins, rather than silently the last.
+    header.forEach((h, i) => {
+      if (!(h in out)) out[h] = clean(r[i] ?? '')
+    })
+    return out
+  })
 }

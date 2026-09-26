@@ -81,6 +81,11 @@
     "name": "Product name",
     "nameRequired": "Enter a product name",
     "priceRequired": "Enter a selling price (0 is allowed)",
+    "negative": "Can't be negative",
+    "tooLarge": "This number is too large",
+    "discardTitle": "Discard changes?",
+    "discardMessage": "Your changes to this product haven't been saved.",
+    "discard": "Discard",
     "pricing": "Pricing",
     "mrp": "MRP",
     "noTax": "No tax",
@@ -152,6 +157,7 @@
     "deleteMessage_one": "{{count}} product will become uncategorised. The product itself is not deleted.",
     "deleteMessage_other": "{{count}} products will become uncategorised. The products themselves are not deleted.",
     "deleteEmpty": "No products use this category.",
+    "duplicate": "A category with this name already exists",
     "deleted": "Category “{{name}}” deleted"
   },
   "import": {
@@ -195,7 +201,10 @@
       "duplicateSku": "Same SKU as line {{line}}",
       "skuTaken": "SKU also belongs to “{{name}}”",
       "stockIgnored": "Stock is ignored: this product doesn't track stock",
-      "aboveMrp": "Price is above the MRP"
+      "aboveMrp": "Price is above the MRP",
+      "tooLarge": "{{column}} is too large",
+      "noPrice": "No price — it will be added with price 0",
+      "barcodeScientific": "Barcode “{{value}}” was turned into a scientific number by the spreadsheet. Format the column as text and export again."
     }
   },
   "labels": {
@@ -231,6 +240,7 @@
     "preview": "Preview",
     "previewHint": "Label size {{size}}. Use 100% scale / “Actual size” in the print dialog.",
     "nothing": "Nothing to print",
+    "tooMany": "Too many labels: print at most {{max}} at a time.",
     "total_one": "{{count}} label",
     "total_other": "{{count}} labels"
   }

@@ -10,7 +10,8 @@ import { cn } from '@/lib/cn'
 import { useSettings } from '@/stores/settings'
 import { toast } from '@/stores/ui'
 import { Button, Input, Label, Modal, NumberInput, Segmented } from '@/components/ui'
-import { adjustStock, REASONS, type AdjustMode, type AdjustReason } from './service'
+import { MAX_QTY } from '@/features/products/util'
+import { adjustStock, NegativeStockError, REASONS, type AdjustMode, type AdjustReason } from './service'
 import { QtyDelta } from './shared'
 
 /** Add, remove or set the counted quantity of one product, with a reason for the ledger. */
@@ -38,7 +39,7 @@ export function AdjustDialog({ product, onClose }: { product: Product | null; on
   const next = round3(mode === 'add' ? current + q : mode === 'remove' ? current - q : q)
   const delta = round3(next - current)
   const blocked = next < 0 && !allowNegative
-  const valid = qty !== undefined && qty >= 0 && delta !== 0 && !blocked
+  const valid = qty !== undefined && qty >= 0 && qty <= MAX_QTY && delta !== 0 && !blocked
   const unit = product && product.unit !== 'pcs' ? ` ${t(`common:unit.${product.unit}`)}` : ''
 
   const changeMode = (m: AdjustMode) => {
@@ -51,11 +52,11 @@ export function AdjustDialog({ product, onClose }: { product: Product | null; on
     setBusy(true)
     try {
       const text = [t(`reason.${reason}`), note.trim()].filter(Boolean).join(' — ')
-      await adjustStock(product.id, mode, q, reason, text)
+      await adjustStock(product.id, mode, q, reason, text, allowNegative)
       toast(t('adjust.saved', { name: product.name, qty: `${formatQty(next)}${unit}` }))
       onClose()
     } catch (e) {
-      toast(e instanceof Error ? e.message : String(e), 'error')
+      toast(e instanceof NegativeStockError ? t('adjust.negativeBlocked') : e instanceof Error ? e.message : String(e), 'error')
     } finally {
       setBusy(false)
     }

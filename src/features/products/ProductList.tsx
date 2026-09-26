@@ -45,9 +45,12 @@ export function ProductList({ products, categories, filters, onFilters, onEdit, 
   // Search text is precomputed once per catalogue change, not per keystroke.
   const hay = useMemo(() => new Map(products.map((p) => [p.id, searchText(p)])), [products])
 
+  // A category deleted while it was the active filter falls back to "all".
+  const category = filters.category === 'all' || filters.category === 'none' || categories.has(filters.category) ? filters.category : 'all'
+
   const rows = useMemo(() => {
     const terms = splitTerms(query)
-    const { category, status, sort } = filters
+    const { status, sort } = filters
     const list = products.filter((p) => {
       if (category === 'none') {
         if (p.categoryId && categories.has(p.categoryId)) return false
@@ -66,14 +69,25 @@ export function ProductList({ products, categories, filters, onFilters, onEdit, 
       updated: (a, b) => b.updatedAt - a.updatedAt,
     }
     return list.sort(cmp[sort])
-  }, [products, categories, hay, query, filters])
+  }, [products, categories, hay, query, filters, category])
 
-  useEffect(() => setLimit(PAGE_SIZE), [query, filters.category, filters.status, filters.sort])
+  useEffect(() => setLimit(PAGE_SIZE), [query, category, filters.status, filters.sort])
 
   // Drop selections for products that disappeared (deleted here or on another terminal).
   const liveIds = useMemo(() => new Set(products.map((p) => p.id)), [products])
   const selectedIds = useMemo(() => [...selected].filter((id) => liveIds.has(id)), [selected, liveIds])
   const allSelected = rows.length > 0 && rows.every((p) => selected.has(p.id))
+  // The header checkbox works on the rows on screen; "Select all N" extends to every match.
+  const visible = rows.slice(0, limit)
+  const pageSelected = visible.length > 0 && visible.every((p) => selected.has(p.id))
+  const selectPage = (on: boolean) =>
+    on
+      ? setSelected((s) => {
+          const n = new Set(s)
+          for (const p of visible) n.add(p.id)
+          return n
+        })
+      : setSelected(new Set())
   const toggle = (id: string, on: boolean) =>
     setSelected((s) => {
       const n = new Set(s)
@@ -96,13 +110,13 @@ export function ProductList({ products, categories, filters, onFilters, onEdit, 
     clearSelection()
   }
 
+  const categoryOf = (p: Product) => (p.categoryId ? categories.get(p.categoryId) : undefined)
   const margin = (p: Product) => marginPct(p.price, p.cost, p.taxId ? (taxMap.get(p.taxId)?.rate ?? 0) : 0, inclusive)
-  const category = (p: Product) => (p.categoryId ? categories.get(p.categoryId) : undefined)
 
   const columns: Column<Product>[] = [
     {
       key: 'select',
-      header: <TickBox checked={allSelected} indeterminate={selectedIds.length > 0} onChange={selectAll} label={t('bulk.selectAll')} />,
+      header: <TickBox checked={pageSelected} indeterminate={selectedIds.length > 0} onChange={selectPage} label={t('bulk.selectAll')} />,
       render: (p) => <TickBox checked={selected.has(p.id)} onChange={(v) => toggle(p.id, v)} label={t('bulk.select', { name: p.name })} />,
       className: 'w-10 pe-0',
     },
@@ -110,7 +124,7 @@ export function ProductList({ products, categories, filters, onFilters, onEdit, 
       key: 'name',
       header: t('common:product'),
       render: (p) => (
-        <div className="flex min-w-48 items-center gap-3">
+        <div className="flex max-w-[24rem] min-w-48 items-center gap-3">
           <ProductThumb product={p} color={productColor(p, categories)} />
           <div className="min-w-0">
             <div className="flex items-center gap-1.5">
@@ -130,7 +144,7 @@ export function ProductList({ products, categories, filters, onFilters, onEdit, 
       key: 'code',
       header: `${t('sku')} / ${t('barcode')}`,
       render: (p) => (
-        <div className="min-w-0">
+        <div className="max-w-44 min-w-0">
           <div className="truncate text-sm">{p.sku || <span className="text-subtle">—</span>}</div>
           {p.barcode && <div className="truncate font-mono text-xs text-muted">{p.barcode}</div>}
         </div>
@@ -140,7 +154,7 @@ export function ProductList({ products, categories, filters, onFilters, onEdit, 
       key: 'category',
       header: t('common:category'),
       render: (p) => {
-        const c = category(p)
+        const c = categoryOf(p)
         return c ? (
           <span className="inline-flex max-w-40 items-center gap-2">
             <span className="size-2.5 shrink-0 rounded-full" style={{ background: c.color }} />
@@ -202,7 +216,7 @@ export function ProductList({ products, categories, filters, onFilters, onEdit, 
         <SearchInput value={filters.query} onChange={(query) => setF({ query })} placeholder={t('searchPlaceholder')} className="lg:max-w-md lg:flex-1" autoComplete="off" />
         {/* Phones: a swipeable row of compact filters; desktops: fixed-width selects. */}
         <div className="-mx-4 flex gap-2 overflow-x-auto px-4 [scrollbar-width:none] sm:-mx-6 sm:px-6 lg:mx-0 lg:overflow-visible lg:px-0">
-          <Select value={filters.category} onChange={(e) => setF({ category: e.target.value })} options={catOptions} aria-label={t('common:category')} wrapperClassName="shrink-0 lg:w-48" className="max-lg:w-auto" />
+          <Select value={category} onChange={(e) => setF({ category: e.target.value })} options={catOptions} aria-label={t('common:category')} wrapperClassName="shrink-0 lg:w-48" className="max-lg:w-auto" />
           <Select
             value={filters.status}
             onChange={(e) => setF({ status: e.target.value as StatusFilter })}
@@ -256,7 +270,7 @@ export function ProductList({ products, categories, filters, onFilters, onEdit, 
       )}
 
       <DataTable
-        rows={rows.slice(0, limit)}
+        rows={visible}
         columns={columns}
         rowKey={(p) => p.id}
         onRowClick={onEdit}
@@ -277,7 +291,7 @@ export function ProductList({ products, categories, filters, onFilters, onEdit, 
                 <span className={cn('truncate font-medium', !p.active && 'text-muted')}>{p.name}</span>
                 {p.favorite && <Star className="size-3.5 shrink-0 fill-warning text-warning" />}
               </div>
-              <div className="truncate text-xs text-muted">{[p.sku || p.barcode, category(p)?.name, !p.active && t('common:inactive')].filter(Boolean).join(' · ') || '—'}</div>
+              <div className="truncate text-xs text-muted">{[p.sku || p.barcode, categoryOf(p)?.name, !p.active && t('common:inactive')].filter(Boolean).join(' · ') || '—'}</div>
             </div>
             <div className="flex shrink-0 flex-col items-end gap-0.5">
               <span className="tnum text-sm font-semibold">{p.openPrice ? t('editor.openPrice') : formatMoney(p.price)}</span>

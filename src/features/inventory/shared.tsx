@@ -25,7 +25,8 @@ export function TypeBadge({ type }: { type: StockMovementType }) {
 /** Signed quantity: green for stock in, red for stock out. */
 export function QtyDelta({ qty, className }: { qty: number; className?: string }) {
   return (
-    <span className={cn('tnum font-semibold whitespace-nowrap', qty > 0 ? 'text-success' : qty < 0 ? 'text-danger' : 'text-muted', className)}>
+    // dir="ltr" keeps the sign in front of the number in RTL languages ("+42", not "42+").
+    <span dir="ltr" className={cn('tnum font-semibold whitespace-nowrap', qty > 0 ? 'text-success' : qty < 0 ? 'text-danger' : 'text-muted', className)}>
       {qty > 0 ? '+' : qty < 0 ? '−' : ''}
       {formatQty(Math.abs(qty))}
     </span>

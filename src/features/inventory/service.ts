@@ -29,12 +29,19 @@ export function movementType(mode: AdjustMode, reason: AdjustReason): StockMovem
   return 'adjustment'
 }
 
-/** Applies an adjustment against the stock level at the moment of saving. Returns the movement quantity. */
-export async function adjustStock(productId: string, mode: AdjustMode, qty: number, reason: AdjustReason, note: string): Promise<number> {
+export class NegativeStockError extends Error {}
+
+/**
+ * Applies an adjustment against the stock level at the moment of saving. Returns the movement quantity.
+ * With `allowNegative` false, a removal that would take stock below zero (e.g. because a sale
+ * happened while the dialog was open) throws NegativeStockError.
+ */
+export async function adjustStock(productId: string, mode: AdjustMode, qty: number, reason: AdjustReason, note: string, allowNegative = true): Promise<number> {
   const delta = await tx(['products', 'stockMovements'], async () => {
     const p = await db.products.get(productId)
     if (!p) throw new Error('Product not found')
     const d = round3(mode === 'add' ? qty : mode === 'remove' ? -qty : qty - (p.stock ?? 0))
+    if (!allowNegative && d < 0 && round3((p.stock ?? 0) + d) < 0) throw new NegativeStockError('negative stock')
     if (d) await moveStock(productId, d, movementType(mode, reason), undefined, note || undefined, p.cost)
     return d
   })
@@ -81,6 +88,8 @@ export async function savePurchase(input: PurchaseInput): Promise<Purchase> {
   if (!user) throw new Error('Not logged in')
   const lines = input.lines.filter((l) => l.qty > 0)
   if (!lines.length) throw new Error('No lines')
+  // Negative costs would make negative totals and (with "update cost") negative product costs.
+  if (lines.some((l) => !Number.isFinite(l.cost) || l.cost < 0 || !Number.isFinite(l.qty))) throw new Error('Invalid line')
   const supplier = input.supplierId ? await db.suppliers.get(input.supplierId) : undefined
   const total = purchaseTotal(lines)
   const now = Date.now()

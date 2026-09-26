@@ -64,7 +64,7 @@ export function StockList({ products, categories, state, onState, onOpen }: {
       key: 'name',
       header: t('common:product'),
       render: (p) => (
-        <div className="flex min-w-48 items-center gap-3">
+        <div className="flex max-w-[24rem] min-w-48 items-center gap-3">
           <ProductThumb product={p} color={productColor(p, categories)} size="sm" />
           <div className="min-w-0">
             <div className={cn('truncate font-medium', !p.active && 'text-muted')}>{p.name}</div>
@@ -79,9 +79,9 @@ export function StockList({ products, categories, state, onState, onOpen }: {
       render: (p) => {
         const c = p.categoryId ? categories.get(p.categoryId) : undefined
         return c ? (
-          <span className="inline-flex items-center gap-2">
-            <span className="size-2.5 rounded-full" style={{ background: c.color }} />
-            {c.name}
+          <span className="inline-flex max-w-40 items-center gap-2">
+            <span className="size-2.5 shrink-0 rounded-full" style={{ background: c.color }} />
+            <span className="truncate">{c.name}</span>
           </span>
         ) : (
           <span className="text-subtle">—</span>

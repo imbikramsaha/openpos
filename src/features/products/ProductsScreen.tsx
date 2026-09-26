@@ -28,6 +28,7 @@ export default function ProductsScreen() {
   const taxes = useSettings((s) => s.taxes)
   const taxMap = useSettings((s) => s.taxMap)
   const defaultTaxId = useSettings((s) => s.settings.defaultTaxId)
+  const allowNegativeStock = useSettings((s) => s.settings.allowNegativeStock)
 
   const products = useLiveQuery(async () => (await db.products.toArray()).filter((p) => !p.deleted), [])
   const categories = useLiveQuery(async () => (await db.categories.orderBy('sortOrder').toArray()).filter((c) => !c.deleted), [])
@@ -53,7 +54,7 @@ export default function ProductsScreen() {
     if (editId || wantNew) navigate(tab === 'categories' ? 'products/categories' : 'products')
   }
 
-  const newProduct = () => setEditor({ nonce: Date.now(), template: filters.category !== 'all' && filters.category !== 'none' ? { categoryId: filters.category } : undefined })
+  const newProduct = () => setEditor({ nonce: Date.now(), template: catMap.has(filters.category) ? { categoryId: filters.category } : undefined })
 
   const duplicate = (p: Product) =>
     setEditor({ nonce: Date.now(), template: { ...p, name: t('copyName', { name: p.name }), sku: undefined, barcode: undefined, favorite: false } })
@@ -73,7 +74,7 @@ export default function ProductsScreen() {
     const file = await pickFile('.csv,text/csv,text/plain,.txt')
     if (!file) return
     const text = await readFileText(file)
-    const plan = planImport(text, { products: await db.products.toArray(), categories: await db.categories.toArray(), taxes, defaultTaxId })
+    const plan = planImport(text, { products: await db.products.toArray(), categories: await db.categories.toArray(), taxes, defaultTaxId, allowNegativeStock })
     if (plan.fatal) return toast(t(`import.fatal.${plan.fatal.key}`), 'error')
     setImported({ plan, file: file.name })
   }

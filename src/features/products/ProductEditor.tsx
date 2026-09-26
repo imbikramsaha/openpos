@@ -5,10 +5,11 @@ import { AlertTriangle, Barcode, Boxes, Copy, ImagePlus, Plus, Printer, Trash2, 
 import type { Product, Unit } from '@/core/types'
 import { isValidEan13 } from '@/core/barcode'
 import { db } from '@/db/db'
-import { audit } from '@/db/repo'
+import { audit, round3 } from '@/db/repo'
 import { formatMoney, formatPercent } from '@/lib/money'
 import { pickFile, readFileDataUrl } from '@/lib/download'
 import { cn } from '@/lib/cn'
+import { LIMITS } from '@/lib/validate'
 import { navigate } from '@/router'
 import { useSettings } from '@/stores/settings'
 import { confirmDialog, toast } from '@/stores/ui'
@@ -16,7 +17,7 @@ import { Button, Input, Label, MoneyInput, NumberInput, Select, Textarea, Toggle
 import { CategoryDialog } from './CategoryDialog'
 import { ActionMenu, ColorSwatches, FormSection, ProductThumb, ResponsivePanel, StockQty } from './shared'
 import { deleteProducts, saveProduct, uniqueEan13, type ProductFields } from './service'
-import { blank, byName, MEASURED_UNITS, marginPct, netOfTax, SERVICE_UNITS, UNITS } from './util'
+import { blank, byName, MAX_AMOUNT, MAX_QTY, MEASURED_UNITS, marginPct, netOfTax, sanitizeBarcode, SERVICE_UNITS, UNITS } from './util'
 
 export interface EditorTarget {
   /** Existing product being edited. */
@@ -83,10 +84,10 @@ function fromDraft(d: Draft): ProductFields {
     taxId: d.taxId || undefined,
     unit: d.unit,
     sku: blank(d.sku),
-    barcode: blank(d.barcode)?.replace(/\s/g, ''),
+    barcode: blank(sanitizeBarcode(d.barcode)),
     hsn: blank(d.hsn),
     trackStock: d.trackStock,
-    reorderLevel: d.trackStock ? d.reorderLevel : undefined,
+    reorderLevel: d.trackStock && d.reorderLevel !== undefined ? round3(d.reorderLevel) : undefined,
     color: d.color,
     image: d.image,
     favorite: d.favorite || undefined,
@@ -119,11 +120,14 @@ function EditorPanel({ target, onClose, onDuplicate, onPrintLabel }: {
   const taxMap = useSettings((s) => s.taxMap)
   const existing = target.product
   const [draft, setDraft] = useState<Draft>(() => toDraft(existing ?? target.template, settings.defaultTaxId))
+  // Baseline for "unsaved changes" (reset after Save & add another).
+  const [pristine, setPristine] = useState<Draft>(draft)
   const [initialStock, setInitialStock] = useState<number | undefined>(undefined)
   const [tried, setTried] = useState(false)
   const [busy, setBusy] = useState(false)
   const [newCategory, setNewCategory] = useState(false)
   const nameRef = useRef<HTMLInputElement>(null)
+  const formRef = useRef<HTMLFormElement>(null)
   const set = (changes: Partial<Draft>) => setDraft((d) => ({ ...d, ...changes }))
 
   const categories = useLiveQuery(async () => (await db.categories.orderBy('sortOrder').toArray()).filter((c) => !c.deleted), [])
@@ -141,11 +145,20 @@ function EditorPanel({ target, onClose, onDuplicate, onPrintLabel }: {
     [sku, existing?.id],
   )
 
+  // Amounts: never negative, and capped so typos like "1e20" can't reach the database.
+  const amountError = (v: number | undefined) => (v === undefined ? undefined : v < 0 ? t('editor.negative') : v > MAX_AMOUNT ? t('editor.tooLarge') : undefined)
+  const qtyError = (v: number | undefined) => (v === undefined ? undefined : v < 0 ? t('editor.negative') : v > MAX_QTY ? t('editor.tooLarge') : undefined)
   const errors = {
     name: !draft.name.trim() ? t('editor.nameRequired') : undefined,
-    price: draft.price === undefined && !draft.openPrice ? t('editor.priceRequired') : undefined,
+    price: draft.price === undefined && !draft.openPrice ? t('editor.priceRequired') : amountError(draft.price),
+    cost: amountError(draft.cost),
+    mrp: amountError(draft.mrp),
+    initialStock: !existing && draft.trackStock ? qtyError(initialStock) : undefined,
+    reorderLevel: draft.trackStock ? qtyError(draft.reorderLevel) : undefined,
   }
-  const valid = !errors.name && !errors.price
+  const valid = !Object.values(errors).some(Boolean)
+  const dirty = initialStock !== undefined || JSON.stringify(draft) !== JSON.stringify(pristine)
+  const busyRef = useRef(false)
 
   const rate = taxMap.get(draft.taxId)?.rate ?? 0
   const margin = marginPct(draft.price ?? 0, draft.cost, rate, settings.pricesIncludeTax)
@@ -176,20 +189,40 @@ function EditorPanel({ target, onClose, onDuplicate, onPrintLabel }: {
 
   const save = async (andNew = false) => {
     setTried(true)
-    if (!valid || busy) {
+    if (!valid || busyRef.current) {
       if (errors.name) nameRef.current?.focus()
+      else if (!valid) {
+        // Bring the first invalid field into view (errors render after this state update).
+        setTimeout(() => {
+          const el = formRef.current?.querySelector<HTMLInputElement>('input.border-danger')
+          el?.scrollIntoView({ block: 'center', behavior: 'smooth' })
+          el?.focus({ preventScroll: true })
+        }, 0)
+      }
       return
     }
-    const clashes = [dupBarcode && t('editor.clashBarcode', { name: dupBarcode.name }), dupSku && t('editor.clashSku', { name: dupSku.name })].filter(Boolean)
-    if (clashes.length && !(await confirmDialog({ title: t('editor.clashTitle'), message: clashes.join(' '), confirmLabel: t('editor.saveAnyway') }))) return
+    busyRef.current = true
+    try {
+      const clashes = [dupBarcode && t('editor.clashBarcode', { name: dupBarcode.name }), dupSku && t('editor.clashSku', { name: dupSku.name })].filter(Boolean)
+      if (clashes.length && !(await confirmDialog({ title: t('editor.clashTitle'), message: clashes.join(' '), confirmLabel: t('editor.saveAnyway') }))) return
+      await doSave(andNew)
+    } finally {
+      busyRef.current = false
+    }
+  }
+
+  const doSave = async (andNew: boolean) => {
     setBusy(true)
     try {
-      const p = await saveProduct(fromDraft(draft), existing?.id, existing ? undefined : initialStock)
+      const opening = !existing && draft.trackStock && initialStock ? round3(initialStock) : undefined
+      const p = await saveProduct(fromDraft(draft), existing?.id, opening)
       void audit(existing ? 'product.update' : 'product.create', 'product', p.id, p.name)
       toast(existing ? t('editor.saved', { name: p.name }) : t('editor.created', { name: p.name }))
       if (andNew) {
         // Keep the classification so a run of similar items is quick to enter.
-        setDraft(toDraft({ categoryId: draft.categoryId || undefined, taxId: draft.taxId || undefined, unit: draft.unit, trackStock: draft.trackStock, weighed: draft.weighed }))
+        const next = toDraft({ categoryId: draft.categoryId || undefined, taxId: draft.taxId || undefined, unit: draft.unit, trackStock: draft.trackStock, weighed: draft.weighed })
+        setDraft(next)
+        setPristine(next)
         setInitialStock(undefined)
         setTried(false)
         nameRef.current?.focus()
@@ -198,6 +231,14 @@ function EditorPanel({ target, onClose, onDuplicate, onPrintLabel }: {
       setBusy(false)
     }
   }
+
+  /** Runs `then` (close, navigate…) after confirming that unsaved changes may be dropped. */
+  const leave = async (then: () => void) => {
+    if (busyRef.current) return
+    if (dirty && !(await confirmDialog({ title: t('editor.discardTitle'), message: t('editor.discardMessage'), danger: true, confirmLabel: t('editor.discard') }))) return
+    then()
+  }
+  const requestClose = () => void leave(onClose)
 
   const del = async () => {
     if (!existing) return
@@ -208,14 +249,16 @@ function EditorPanel({ target, onClose, onDuplicate, onPrintLabel }: {
     onClose()
   }
 
-  // Ctrl/⌘+S saves from anywhere in the form.
+  // Ctrl/⌘+S saves from anywhere in the form (not while a dialog is open on top of it).
   const saveRef = useRef(save)
   saveRef.current = save
+  const nestedRef = useRef(false)
+  nestedRef.current = newCategory
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
       if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 's') {
         e.preventDefault()
-        void saveRef.current()
+        if (!nestedRef.current && !e.repeat) void saveRef.current()
       }
     }
     window.addEventListener('keydown', onKey)
@@ -237,12 +280,12 @@ function EditorPanel({ target, onClose, onDuplicate, onPrintLabel }: {
             items={[
               { icon: <Copy />, label: t('editor.duplicate'), onClick: () => onDuplicate({ ...existing, ...fromDraft(draft), stock: 0 } as Product) },
               { icon: <Printer />, label: t('editor.printLabel'), onClick: () => onPrintLabel(existing.id) },
-              { icon: <Boxes />, label: t('editor.stockHistory'), onClick: () => navigate(`inventory/stock?product=${existing.id}`), hidden: !existing.trackStock },
+              { icon: <Boxes />, label: t('editor.stockHistory'), onClick: () => void leave(() => navigate(`inventory/stock?product=${existing.id}`)), hidden: !existing.trackStock },
             ]}
           />
         </div>
       )}
-      <Button onClick={onClose} className="max-sm:hidden">
+      <Button onClick={requestClose} className="max-sm:hidden">
         {t('common:cancel')}
       </Button>
       {!existing && (
@@ -257,8 +300,9 @@ function EditorPanel({ target, onClose, onDuplicate, onPrintLabel }: {
   )
 
   return (
-    <ResponsivePanel open onClose={onClose} title={existing ? t('editor.editTitle') : t('editor.newTitle')} footer={footer}>
+    <ResponsivePanel open onClose={requestClose} title={existing ? t('editor.editTitle') : t('editor.newTitle')} footer={footer}>
       <form
+        ref={formRef}
         className="space-y-7"
         onSubmit={(e) => {
           e.preventDefault()
@@ -314,9 +358,9 @@ function EditorPanel({ target, onClose, onDuplicate, onPrintLabel }: {
         {/* Pricing */}
         <FormSection title={t('editor.pricing')}>
           <div className="grid grid-cols-2 gap-3 sm:grid-cols-3">
-            <MoneyInput label={`${t('common:price')}${draft.openPrice ? '' : ' *'}`} value={draft.price} onChange={(v) => set({ price: v })} error={tried ? errors.price : undefined} placeholder="0" />
-            <MoneyInput label={t('common:cost')} value={draft.cost} onChange={(v) => set({ cost: v })} placeholder="0" />
-            <MoneyInput label={t('editor.mrp')} value={draft.mrp} onChange={(v) => set({ mrp: v })} hint={t('common:optional')} wrapperClassName="col-span-2 sm:col-span-1" />
+            <MoneyInput label={`${t('common:price')}${draft.openPrice ? '' : ' *'}`} value={draft.price} onChange={(v) => set({ price: v })} error={tried || (draft.price !== undefined && errors.price) ? errors.price : undefined} placeholder="0" />
+            <MoneyInput label={t('common:cost')} value={draft.cost} onChange={(v) => set({ cost: v })} placeholder="0" error={errors.cost} />
+            <MoneyInput label={t('editor.mrp')} value={draft.mrp} onChange={(v) => set({ mrp: v })} hint={t('common:optional')} error={errors.mrp} wrapperClassName="col-span-2 sm:col-span-1" />
           </div>
           <div className="grid grid-cols-2 gap-3">
             <Select label={t('common:tax')} value={draft.taxId} onChange={(e) => set({ taxId: e.target.value })} placeholder={t('editor.noTax')} options={taxOptions} />
@@ -348,13 +392,13 @@ function EditorPanel({ target, onClose, onDuplicate, onPrintLabel }: {
         <FormSection title={t('editor.codes')}>
           <div className="grid gap-3 sm:grid-cols-2">
             <div>
-              <Input label={t('sku')} value={draft.sku} onChange={(e) => set({ sku: e.target.value })} autoComplete="off" maxLength={40} />
+              <Input label={t('sku')} value={draft.sku} onChange={(e) => set({ sku: e.target.value })} autoComplete="off" maxLength={LIMITS.sku} />
               {dupSku && <Clash text={t('editor.clashSku', { name: dupSku.name })} />}
             </div>
             <div>
               <Label>{t('barcode')}</Label>
               <div className="flex gap-2">
-                <Input value={draft.barcode} onChange={(e) => set({ barcode: e.target.value })} inputMode="numeric" autoComplete="off" maxLength={48} wrapperClassName="min-w-0 flex-1" aria-label={t('barcode')} className="font-mono" />
+                <Input value={draft.barcode} onChange={(e) => set({ barcode: sanitizeBarcode(e.target.value) })} inputMode="numeric" autoComplete="off" maxLength={LIMITS.barcode} dir="ltr" wrapperClassName="min-w-0 flex-1" aria-label={t('barcode')} className="font-mono" />
                 <Button size="icon-lg" className="size-11" onClick={async () => set({ barcode: await uniqueEan13() })} aria-label={t('editor.generateBarcode')} title={t('editor.generateBarcode')}>
                   <Barcode className="size-5" />
                 </Button>
@@ -365,7 +409,7 @@ function EditorPanel({ target, onClose, onDuplicate, onPrintLabel }: {
                 <Clash text={t('editor.badCheckDigit')} />
               ) : null}
             </div>
-            {settings.gstMode && <Input label={t('hsn')} value={draft.hsn} onChange={(e) => set({ hsn: e.target.value })} inputMode="numeric" maxLength={10} />}
+            {settings.gstMode && <Input label={t('hsn')} value={draft.hsn} onChange={(e) => set({ hsn: e.target.value.replace(/\D/g, '') })} inputMode="numeric" maxLength={10} dir="ltr" />}
           </div>
         </FormSection>
 
@@ -384,15 +428,15 @@ function EditorPanel({ target, onClose, onDuplicate, onPrintLabel }: {
                   <Label>{t('editor.currentStock')}</Label>
                   <div className="flex h-11 items-center justify-between gap-2 rounded-xl border border-border bg-surface-2 ps-3 pe-1">
                     {current && <StockQty product={{ ...current, trackStock: true, reorderLevel: draft.reorderLevel }} className="-ms-1.5" />}
-                    <Button size="sm" variant="ghost" onClick={() => navigate(`inventory/stock?product=${existing.id}`)} className="text-primary">
+                    <Button size="sm" variant="ghost" onClick={() => void leave(() => navigate(`inventory/stock?product=${existing.id}`))} className="text-primary">
                       {t('editor.adjust')}
                     </Button>
                   </div>
                 </div>
               ) : (
-                <NumberInput label={t('editor.initialStock')} value={initialStock} onChange={setInitialStock} placeholder="0" />
+                <NumberInput label={t('editor.initialStock')} value={initialStock} onChange={setInitialStock} placeholder="0" error={errors.initialStock} />
               )}
-              <NumberInput label={t('editor.reorderLevel')} value={draft.reorderLevel} onChange={(v) => set({ reorderLevel: v })} placeholder="0" hint={t('editor.reorderHint')} />
+              <NumberInput label={t('editor.reorderLevel')} value={draft.reorderLevel} onChange={(v) => set({ reorderLevel: v })} placeholder="0" hint={t('editor.reorderHint')} error={errors.reorderLevel} />
             </div>
           )}
         </FormSection>

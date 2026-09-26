@@ -27,11 +27,14 @@ export function Overview({ products, categories, onOpen }: { products: Product[]
     const low: Product[] = []
     let out = 0
     for (const p of products) {
-      if (!p.trackStock || !p.active) continue
+      if (!p.trackStock) continue
+      // Stock on hand is worth the same whether or not the product is on sale, so value
+      // every tracked product (as the stock list and valuation export do); reorder only active ones.
       tracked++
       const qty = Math.max(p.stock, 0)
       cost += qty * p.cost
       retail += qty * p.price
+      if (!p.active) continue
       const s = stockStatus(p)
       if (s === 'out') out++
       if (s === 'out' || s === 'low') low.push(p)
