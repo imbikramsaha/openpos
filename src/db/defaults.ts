@@ -45,3 +45,12 @@ export function defaultSettings(): Settings {
     autoLockMinutes: 0,
   }
 }
+
+/**
+ * Fills in settings added after a record was written (restored backups, records synced from
+ * terminals on an older version), so screens can rely on every field being present.
+ */
+export function withDefaults(s: Partial<Settings>): Settings {
+  const d = defaultSettings()
+  return { ...d, ...s, id: SETTINGS_ID, receipt: { ...d.receipt, ...s.receipt }, scale: { ...d.scale, ...s.scale } }
+}

@@ -1,6 +1,7 @@
 import type { Permission, Role, User } from '@/core/types'
 import { ROLE_PERMISSIONS } from '@/core/permissions'
 import { verifyPin } from '@/features/auth/users'
+import { hashPin } from '@/lib/sha256'
 
 // Guard rails for user management: nobody can lock the store out of itself.
 
@@ -27,15 +28,26 @@ export function extrasFor(role: Role, extras: Iterable<Permission>): Permission[
   return [...new Set(extras)].filter((p) => !base.includes(p))
 }
 
+export type PinConflict = { kind: 'inUse' | 'shadowedBy' | 'prefix'; user: User }
+
 /**
- * The lock screen accepts a PIN as soon as it matches a user, so a new PIN that starts
- * with another user's shorter PIN would sign that user in instead.
+ * The lock screen accepts a PIN as soon as it matches a user, so a PIN that starts with
+ * another user's PIN (or that another PIN starts with) would sign the wrong person in.
+ * Inactive users count too: they can be reactivated without re-entering their PIN.
  */
-export function pinShadowedBy(pin: string, users: User[], exceptId?: string): User | undefined {
-  for (let len = 4; len < pin.length; len++) {
-    const prefix = pin.slice(0, len)
-    const hit = users.find((u) => u.id !== exceptId && u.active && !u.deleted && verifyPin(u, prefix))
-    if (hit) return hit
+export function pinConflict(pin: string, users: User[], exceptId?: string): PinConflict | undefined {
+  const others = users.filter((u) => u.id !== exceptId && !u.deleted)
+  for (const u of others) if (verifyPin(u, pin)) return { kind: 'inUse', user: u }
+  for (const u of others) {
+    if (u.pinPrefixHash) {
+      // Same first four digits: one PIN could be the start of the other.
+      if (hashPin(pin.slice(0, 4), u.pinSalt) === u.pinPrefixHash) return { kind: 'prefix', user: u }
+      continue
+    }
+    // Records created before prefix hashes existed: an existing shorter PIN this one starts with…
+    for (let len = 4; len < pin.length; len++) if (verifyPin(u, pin.slice(0, len))) return { kind: 'shadowedBy', user: u }
+    // …or an existing PIN one digit longer that starts with this one (hashing is slow, so no deeper).
+    if (pin.length < 6) for (let d = 0; d <= 9; d++) if (verifyPin(u, pin + d)) return { kind: 'prefix', user: u }
   }
   return undefined
 }

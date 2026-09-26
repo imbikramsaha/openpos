@@ -25,6 +25,12 @@ const METHOD_ICONS: Record<PaymentMethod, typeof Banknote> = {
 
 const AUTO_LOCK = [0, 1, 2, 5, 10, 15, 30, 60]
 
+/** Largest banknote accepted for quick-cash buttons (major units). */
+const MAX_NOTE = 1e9
+/** Sanity limits for loyalty settings: points per major unit, and a point's value in minor units. */
+const MAX_EARN_RATE = 1000
+const MAX_POINT_VALUE = 1e9
+
 export const UPI_ID = /^[a-zA-Z0-9.\-_]{2,256}@[a-zA-Z][a-zA-Z0-9]{1,63}$/
 
 export function CheckoutSection() {
@@ -43,6 +49,7 @@ export function CheckoutSection() {
         <ToggleRow id="checkout.lockAfterSale" label={t('checkout.lockAfterSale')} description={t('checkout.lockAfterSaleHint')} checked={draft.lockAfterSale} onChange={(v) => set({ lockAfterSale: v })} />
         <ControlRow id="checkout.autoLock" label={t('checkout.autoLock')} description={t('checkout.autoLockHint')}>
           <Select
+            aria-label={t('checkout.autoLock')}
             value={String(draft.autoLockMinutes)}
             onChange={(e) => set({ autoLockMinutes: Number(e.target.value) })}
             options={Array.from(new Set([...AUTO_LOCK, draft.autoLockMinutes])).sort((a, b) => a - b).map((m) => ({ value: String(m), label: m ? t('checkout.minutes', { count: m }) : t('checkout.never') }))}
@@ -97,6 +104,7 @@ function PaymentMethods({ value, onChange }: { value: PaymentMethod[]; onChange:
         )}
         <Toggle
           checked={on}
+          aria-label={t(`common:payment.${m}`)}
           disabled={on && enabled.length === 1}
           onChange={(v) => onChange(v ? [...enabled, m] : enabled.filter((x) => x !== m))}
         />
@@ -118,11 +126,11 @@ function QuickCash({ draft, onChange }: { draft: Settings; onChange: (v: number[
   const [text, setText] = useState('')
   const d = currencyDecimals(draft.currency)
   const notes = [...draft.quickCash].sort((a, b) => a - b)
-  const parsed = parseDecimal(text)
-  const valid = Number.isFinite(parsed) && parsed > 0 && !notes.includes(parsed) && notes.length < 10
+  const parsed = Math.round(parseDecimal(text) * 10 ** d) / 10 ** d
+  const valid = Number.isFinite(parsed) && parsed > 0 && parsed <= MAX_NOTE && !notes.includes(parsed) && notes.length < 10
   const add = () => {
     if (!valid) return
-    onChange([...notes, Math.round(parsed * 10 ** d) / 10 ** d].sort((a, b) => a - b))
+    onChange([...notes, parsed].sort((a, b) => a - b))
     setText('')
   }
   const defaults = findPreset(draft.country).notes
@@ -263,6 +271,10 @@ function Upi({ draft, set, flush }: { draft: Settings; set: SetFn; flush: () => 
 function LoyaltyRates({ draft, set, flush }: { draft: Settings; set: SetFn; flush: () => Promise<void> }) {
   const { t } = useTranslation('settings')
   const d = currencyDecimals(draft.currency)
+  // Invalid entries (blank, negative, absurdly large) are shown as errors and never saved.
+  const [earnError, setEarnError] = useState(false)
+  const [valueError, setValueError] = useState(false)
+  const generous = fromMinor(draft.loyaltyPointValue, d) * draft.loyaltyEarnRate >= 1
   // A round amount that earns at least one point, for the example sentence.
   const spend = useMemo(() => (draft.loyaltyEarnRate > 0 ? 10 ** Math.max(0, Math.ceil(Math.log10(1 / draft.loyaltyEarnRate) - 1e-9)) : 0), [draft.loyaltyEarnRate])
   const points = Math.floor(spend * (draft.loyaltyEarnRate || 0) + 1e-9)
@@ -275,8 +287,13 @@ function LoyaltyRates({ draft, set, flush }: { draft: Settings; set: SetFn; flus
               label={t('checkout.loyaltyEarnRate')}
               hint={t('checkout.loyaltyEarnRateHint')}
               value={draft.loyaltyEarnRate}
-              onChange={(v) => v !== undefined && v >= 0 && set({ loyaltyEarnRate: v }, TYPING_DELAY)}
+              onChange={(v) => {
+                const ok = v !== undefined && v >= 0 && v <= MAX_EARN_RATE
+                setEarnError(!ok)
+                if (ok) set({ loyaltyEarnRate: v }, TYPING_DELAY)
+              }}
               onBlur={() => void flush()}
+              error={earnError ? t('checkout.loyaltyEarnRateRange', { max: formatNumber(MAX_EARN_RATE) }) : undefined}
             />
           </div>
           <div data-setting="checkout.loyaltyPointValue">
@@ -284,8 +301,17 @@ function LoyaltyRates({ draft, set, flush }: { draft: Settings; set: SetFn; flus
               label={t('checkout.loyaltyPointValue')}
               hint={t('checkout.loyaltyPointValueHint')}
               value={draft.loyaltyPointValue}
-              onChange={(v) => v !== undefined && v >= 0 && set({ loyaltyPointValue: v }, TYPING_DELAY)}
-              onBlur={() => void flush()}
+              onChange={(v) => {
+                const ok = v !== undefined && v >= 0 && v <= MAX_POINT_VALUE
+                setValueError(!ok)
+                if (ok) set({ loyaltyPointValue: v }, TYPING_DELAY)
+              }}
+              onBlur={() => {
+                // MoneyInput shows the saved value again on blur, so the error no longer applies.
+                setValueError(false)
+                void flush()
+              }}
+              error={valueError ? t('checkout.loyaltyPointValueRange') : undefined}
             />
           </div>
         </div>
@@ -302,6 +328,11 @@ function LoyaltyRates({ draft, set, flush }: { draft: Settings; set: SetFn; flus
               <span className="text-muted"> {t('checkout.loyaltyReturn', { percent: formatNumber(fromMinor(draft.loyaltyPointValue, d) * draft.loyaltyEarnRate * 100, 2) })}</span>
             )}
           </div>
+        </Row>
+      )}
+      {generous && (
+        <Row>
+          <Notice tone="warning">{t('checkout.loyaltyTooGenerous')}</Notice>
         </Row>
       )}
     </>

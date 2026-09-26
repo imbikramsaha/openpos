@@ -1,4 +1,4 @@
-import type { ReactNode } from 'react'
+import { useSyncExternalStore, type KeyboardEvent, type ReactNode } from 'react'
 import { ArrowLeft } from 'lucide-react'
 import { useTranslation } from 'react-i18next'
 import { cn } from '@/lib/cn'
@@ -17,9 +17,10 @@ export function PageHeader({ title, subtitle, actions, onBack, children }: { tit
             <ArrowLeft className="size-5 rtl:rotate-180" />
           </button>
         )}
-        <div className="min-w-0 flex-1">
+        {/* The title keeps a readable width; actions wrap onto their own line on narrow phones. */}
+        <div className="min-w-[min(10rem,100%)] flex-1">
           <h1 className="truncate text-xl font-bold tracking-tight">{title}</h1>
-          {subtitle && <p className="truncate text-sm text-muted">{subtitle}</p>}
+          {subtitle && <p className="line-clamp-2 text-sm text-muted">{subtitle}</p>}
         </div>
         {actions && <div className="flex flex-wrap items-center gap-2">{actions}</div>}
       </div>
@@ -54,45 +55,70 @@ export interface DataTableProps<T> {
   className?: string
 }
 
+const WIDE = '(min-width: 768px)'
+const subscribeWide = (cb: () => void) => {
+  const mq = matchMedia(WIDE)
+  mq.addEventListener('change', cb)
+  return () => mq.removeEventListener('change', cb)
+}
+
 export function DataTable<T>({ rows, columns, rowKey, onRowClick, mobile, empty, footer, className }: DataTableProps<T>) {
+  // Render only the layout that is visible (not both, hidden with CSS): halves the work on long lists.
+  const wide = useSyncExternalStore(subscribeWide, () => matchMedia(WIDE).matches, () => true)
   if (!rows.length && empty) return <>{empty}</>
+  const cards = !!mobile && !wide
   const align = (a?: string) => (a === 'end' ? 'text-end' : a === 'center' ? 'text-center' : 'text-start')
+  // Clickable rows are reachable with Tab and open with Enter/Space, like buttons.
+  const rowProps = (r: T) =>
+    onRowClick
+      ? {
+          onClick: () => onRowClick(r),
+          tabIndex: 0,
+          onKeyDown: (e: KeyboardEvent<HTMLElement>) => {
+            if (e.target !== e.currentTarget || (e.key !== 'Enter' && e.key !== ' ')) return
+            e.preventDefault()
+            onRowClick(r)
+          },
+        }
+      : {}
   return (
     <div className={cn('overflow-hidden rounded-2xl border border-border bg-surface shadow-card', className)}>
-      {mobile && (
-        <ul className="divide-y divide-border md:hidden">
+      {cards && (
+        <ul className="divide-y divide-border">
           {rows.map((r) => (
-            <li key={rowKey(r)} onClick={() => onRowClick?.(r)} className={cn('px-4 py-3', onRowClick && 'cursor-pointer active:bg-surface-3')}>
+            <li key={rowKey(r)} {...rowProps(r)} className={cn('px-4 py-3', onRowClick && 'cursor-pointer focus-visible:bg-surface-2 focus-visible:outline-offset-[-2px] active:bg-surface-3')}>
               {mobile(r)}
             </li>
           ))}
         </ul>
       )}
-      <div className={cn('overflow-x-auto', mobile && 'hidden md:block')}>
-        <table className="w-full text-sm">
-          <thead className="bg-surface-2 text-xs font-semibold tracking-wide text-muted uppercase">
-            <tr>
-              {columns.map((c) => (
-                <th key={c.key} className={cn('px-4 py-3 whitespace-nowrap', align(c.align), c.hideOnMobile && 'hidden md:table-cell', c.className)}>
-                  {c.header}
-                </th>
-              ))}
-            </tr>
-          </thead>
-          <tbody className="divide-y divide-border">
-            {rows.map((r) => (
-              <tr key={rowKey(r)} onClick={() => onRowClick?.(r)} className={cn(onRowClick && 'cursor-pointer hover:bg-surface-2')}>
+      {!cards && (
+        <div className="overflow-x-auto">
+          <table className="w-full text-sm">
+            <thead className="bg-surface-2 text-xs font-semibold tracking-wide text-muted uppercase">
+              <tr>
                 {columns.map((c) => (
-                  <td key={c.key} className={cn('px-4 py-3', align(c.align), c.hideOnMobile && 'hidden md:table-cell', c.className)}>
-                    {c.render(r)}
-                  </td>
+                  <th key={c.key} className={cn('px-4 py-3 whitespace-nowrap', align(c.align), c.hideOnMobile && 'hidden md:table-cell', c.className)}>
+                    {c.header}
+                  </th>
                 ))}
               </tr>
-            ))}
-          </tbody>
-          {footer && <tfoot className="border-t border-border bg-surface-2 font-semibold">{footer}</tfoot>}
-        </table>
-      </div>
+            </thead>
+            <tbody className="divide-y divide-border">
+              {rows.map((r) => (
+                <tr key={rowKey(r)} {...rowProps(r)} className={cn(onRowClick && 'cursor-pointer hover:bg-surface-2 focus-visible:bg-surface-2 focus-visible:outline-offset-[-2px]')}>
+                  {columns.map((c) => (
+                    <td key={c.key} className={cn('px-4 py-3', align(c.align), c.hideOnMobile && 'hidden md:table-cell', c.className)}>
+                      {c.render(r)}
+                    </td>
+                  ))}
+                </tr>
+              ))}
+            </tbody>
+            {footer && <tfoot className="border-t border-border bg-surface-2 font-semibold">{footer}</tfoot>}
+          </table>
+        </div>
+      )}
     </div>
   )
 }

@@ -1,4 +1,5 @@
 import { Delete } from 'lucide-react'
+import { useTranslation } from 'react-i18next'
 import { cn } from '@/lib/cn'
 
 export interface NumPadProps {
@@ -11,9 +12,11 @@ export interface NumPadProps {
 }
 
 export function NumPad({ onKey, decimal = true, className, size = 'lg', extra }: NumPadProps) {
+  const { t } = useTranslation()
   const keys = ['7', '8', '9', '4', '5', '6', '1', '2', '3', decimal ? '.' : extra ? extra.key : '', '0', 'back']
   return (
-    <div className={cn('grid auto-rows-fr grid-cols-3 gap-2', className)}>
+    // Keypads keep the phone layout (1-2-3, backspace bottom-right) in right-to-left languages too.
+    <div dir="ltr" className={cn('grid auto-rows-fr grid-cols-3 gap-2', className)}>
       {keys.map((k, i) =>
         k === '' ? (
           <span key={`gap-${i}`} />
@@ -26,7 +29,7 @@ export function NumPad({ onKey, decimal = true, className, size = 'lg', extra }:
               'tnum flex items-center justify-center rounded-xl border border-border bg-surface font-semibold text-fg shadow-card transition active:scale-95 active:bg-surface-3',
               size === 'lg' ? 'min-h-14 text-xl' : 'min-h-11 text-lg',
             )}
-            aria-label={k === 'back' ? 'Backspace' : k}
+            aria-label={k === 'back' ? t('backspace') : !decimal && extra && k === extra.key ? extra.label : k}
           >
             {k === 'back' ? <Delete className="size-5" /> : !decimal && extra && k === extra.key ? extra.label : k}
           </button>

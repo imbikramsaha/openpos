@@ -34,6 +34,7 @@
   "pinRequired": "Choose a PIN",
   "pinInUse": "Another user already has this PIN",
   "pinShadowed": "This PIN starts with {{name}}'s PIN, so the lock screen would sign them in instead. Choose another.",
+  "pinPrefixClash": "{{name}}'s PIN starts with the same 4 digits, so the lock screen could sign in the wrong person. Choose a PIN that starts differently.",
   "color": "Colour",
   "colorAuto": "Automatic colour",
   "colorAutoShort": "Auto",

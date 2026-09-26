@@ -89,7 +89,7 @@ export function ScaleSection() {
             inputMode="numeric"
             onChange={(e) => setScale({ prefixes: e.target.value.replace(/[^\d,\s]/g, '') }, TYPING_DELAY)}
             onBlur={() => void flush()}
-            error={!s.prefixes.trim() ? t('scale.prefixesRequired') : undefined}
+            error={!s.prefixes.split(/[\s,]+/).some(Boolean) ? t('scale.prefixesRequired') : undefined}
           />
         </Row>
         <Row>
@@ -124,6 +124,7 @@ export function ScaleSection() {
         </ControlRow>
         <ControlRow id="scale.divisor" label={t('scale.divisor')} description={t('scale.divisorHint', { raw: '01250', value: formatQty(1250 / (s.valueDivisor || 1)) })}>
           <Select
+            aria-label={t('scale.divisor')}
             value={String(s.valueDivisor)}
             onChange={(e) => setScale({ valueDivisor: Number(e.target.value) })}
             options={[1, 10, 100, 1000, 10000].map((n) => ({ value: String(n), label: `÷ ${n}` }))}

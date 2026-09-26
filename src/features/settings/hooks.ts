@@ -85,7 +85,21 @@ export function useSettingsDraft() {
     [set],
   )
 
-  useEffect(() => () => void flush(), [flush])
+  // Save what was typed when the section closes, and when the page is hidden or reloaded
+  // mid-debounce (IndexedDB writes started in pagehide/beforeunload still complete).
+  useEffect(() => {
+    const onHide = () => void flush()
+    const onVisibility = () => document.visibilityState === 'hidden' && onHide()
+    window.addEventListener('pagehide', onHide)
+    window.addEventListener('beforeunload', onHide)
+    document.addEventListener('visibilitychange', onVisibility)
+    return () => {
+      window.removeEventListener('pagehide', onHide)
+      window.removeEventListener('beforeunload', onHide)
+      document.removeEventListener('visibilitychange', onVisibility)
+      void flush()
+    }
+  }, [flush])
 
   return { draft, saved, set, setReceipt, setScale, flush }
 }

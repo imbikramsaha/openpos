@@ -119,14 +119,23 @@ export function currencySymbol(currency = config.currency, locale = config.local
   }
 }
 
+// Creating an Intl.NumberFormat is slow and lists format hundreds of numbers per render: reuse them.
+const numberFormats = new Map<string, Intl.NumberFormat>()
+function numberFormat(locale: string, min: number, max: number): Intl.NumberFormat {
+  const key = `${locale}|${min}|${max}`
+  let f = numberFormats.get(key)
+  if (!f) numberFormats.set(key, (f = new Intl.NumberFormat(locale, { minimumFractionDigits: min, maximumFractionDigits: max })))
+  return f
+}
+
 export function formatQty(qty: number, locale = config.locale): string {
-  return new Intl.NumberFormat(locale, { maximumFractionDigits: 3 }).format(qty)
+  return numberFormat(locale, 0, 3).format(qty)
 }
 
 export function formatNumber(n: number, digits = 0, locale = config.locale): string {
-  return new Intl.NumberFormat(locale, { maximumFractionDigits: digits, minimumFractionDigits: digits }).format(n)
+  return numberFormat(locale, digits, digits).format(n)
 }
 
 export function formatPercent(n: number, locale = config.locale): string {
-  return new Intl.NumberFormat(locale, { maximumFractionDigits: 2 }).format(n) + '%'
+  return numberFormat(locale, 0, 2).format(n) + '%'
 }

@@ -143,11 +143,18 @@ export default function UsersScreen() {
               { key: 'open', header: '', align: 'end', className: 'w-10', render: () => <ChevronRight className="ms-auto size-4 text-subtle rtl:rotate-180" /> },
             ]}
             mobile={(u) => (
+              // Name on its own line so it isn't squeezed by the badges on narrow phones.
               <div className="flex items-center gap-3">
-                <div className="min-w-0 flex-1">{nameCell(u)}</div>
-                <div className="flex shrink-0 flex-col items-end gap-1">
-                  {roleBadge(u)}
-                  <span className="text-xs text-subtle">{u.active ? login(u) : t('common:inactive')}</span>
+                <Avatar name={u.name} color={u.color} />
+                <div className="min-w-0 flex-1">
+                  <div className={cn('flex items-center gap-2 font-medium', !u.active && 'text-muted')}>
+                    <span className="truncate">{u.name}</span>
+                    {u.id === me?.id && <Badge tone="primary">{t('you')}</Badge>}
+                  </div>
+                  <div className="mt-1 flex flex-wrap items-center gap-x-2 gap-y-1">
+                    {roleBadge(u)}
+                    <span className="text-xs text-subtle">{u.active ? login(u) : t('common:inactive')}</span>
+                  </div>
                 </div>
                 <ChevronRight className="size-4 shrink-0 text-subtle rtl:rotate-180" />
               </div>

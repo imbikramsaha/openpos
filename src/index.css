@@ -12,17 +12,18 @@
   --border: #e3e6ee;
   --border-strong: #cfd4e0;
   --fg: #151a2d;
-  --muted: #5d6479;
-  --subtle: #8a91a6;
+  /* Text tokens meet WCAG AA (4.5:1) on every surface, including surface-3. */
+  --muted: #4f5669;
+  --subtle: #666d82;
   --primary: #4f46e5;
   --primary-hover: #4338ca;
   --primary-soft: #eef0ff;
   --primary-fg: #ffffff;
-  --success: #059669;
+  --success: #047857;
   --success-soft: #e7f7f0;
-  --danger: #dc2626;
+  --danger: #c81e1e;
   --danger-soft: #fdeeee;
-  --warning: #d97706;
+  --warning: #b45309;
   --warning-soft: #fdf4e3;
   --ring: rgb(79 70 229 / 0.35);
   --shadow: 0 1px 2px rgb(16 24 40 / 0.05), 0 1px 3px rgb(16 24 40 / 0.06);
@@ -39,10 +40,12 @@
   --border-strong: #334061;
   --fg: #e8ebf4;
   --muted: #a1a8bd;
-  --subtle: #737b93;
-  --primary: #6d66f2;
-  --primary-hover: #7f79f5;
+  --subtle: #8f97ad;
+  /* Darker fill so white button text passes 4.5:1; primary-coloured text uses --primary-text. */
+  --primary: #5b54e8;
+  --primary-hover: #6d66f2;
   --primary-soft: #1e1f47;
+  --primary-text: #9c97f8;
   --primary-fg: #ffffff;
   --success: #10b981;
   --success-soft: #0d2a24;
@@ -80,7 +83,7 @@
   --shadow-pop: var(--shadow-lg);
   --font-sans: 'Inter', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Noto Sans', 'Nirmala UI', 'Helvetica Neue', Arial,
     'Noto Sans Devanagari', 'Noto Sans Bengali', 'Noto Sans Tamil', 'Noto Sans Telugu', 'Noto Sans Kannada', 'Noto Sans Malayalam',
-    'Noto Sans Gujarati', 'Noto Sans Gurmukhi', 'Noto Sans Oriya', 'Noto Nastaliq Urdu', 'Noto Sans Arabic', 'Noto Sans Thai',
+    'Noto Sans Gujarati', 'Noto Sans Gurmukhi', 'Noto Sans Oriya', 'Noto Sans Arabic', 'Noto Naskh Arabic', 'Noto Sans Thai',
     'PingFang SC', 'Hiragino Sans', 'Microsoft YaHei', 'Malgun Gothic', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji';
   --font-mono: ui-monospace, 'SF Mono', 'Cascadia Mono', 'Roboto Mono', Menlo, Consolas, monospace;
 }
@@ -103,6 +106,15 @@
     -webkit-tap-highlight-color: transparent;
     overscroll-behavior: none;
     touch-action: manipulation;
+  }
+
+  /* Han characters are shared by Chinese, Japanese and Korean but drawn differently;
+     pick a font for the UI language so Japanese and Korean don't render with Chinese glyphs. */
+  html:lang(ja) body {
+    font-family: 'Hiragino Sans', 'Yu Gothic UI', Meiryo, 'Noto Sans CJK JP', 'Noto Sans JP', var(--font-sans);
+  }
+  html:lang(ko) body {
+    font-family: 'Apple SD Gothic Neo', 'Malgun Gothic', 'Noto Sans CJK KR', 'Noto Sans KR', var(--font-sans);
   }
 
   /* Tabular figures keep prices aligned in carts, receipts and reports. */
@@ -149,6 +161,13 @@
 }
 .safe-bottom {
   padding-bottom: env(safe-area-inset-bottom);
+}
+
+/* In dark mode the primary fill is too dark to read as text on dark surfaces. */
+@layer utilities {
+  .dark .text-primary {
+    color: var(--primary-text);
+  }
 }
 
 @keyframes pop-in {

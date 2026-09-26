@@ -1,5 +1,7 @@
 import { useMemo } from 'react'
 import { useTranslation } from 'react-i18next'
+import type { TFunction } from 'i18next'
+import { confirmDialog } from '@/stores/ui'
 import { useLiveQuery } from 'dexie-react-hooks'
 import { ArrowRight } from 'lucide-react'
 import { CURRENCIES, COUNTRY_PRESETS } from '@/core/presets'
@@ -17,6 +19,19 @@ const LOCALES = [
   'de-DE', 'de-CH', 'fr-FR', 'fr-CA', 'es-ES', 'es-MX', 'it-IT', 'nl-NL', 'pl-PL', 'pt-PT', 'pt-BR', 'ru-RU', 'tr-TR', 'sv-SE',
   'ja-JP', 'ko-KR', 'zh-CN', 'zh-TW', 'id-ID', 'ms-MY', 'th-TH', 'vi-VN', 'sw-KE',
 ]
+
+/** Explains, with a real example, how existing amounts will look after switching between currencies with different decimals. */
+export function decimalsChangeMessage(t: TFunction, from: string, to: string, locale: string): string {
+  const sample = 12345
+  const show = (currency: string) => {
+    try {
+      return new Intl.NumberFormat(locale, { style: 'currency', currency }).format(sample / 10 ** currencyDecimals(currency))
+    } catch {
+      return `${sample / 10 ** currencyDecimals(currency)} ${currency}`
+    }
+  }
+  return t('settings:formats.decimalsChange', { from, to, before: show(from), after: show(to) })
+}
 
 /** Rounding steps in major units; unusable steps for the currency (e.g. 0.05 JPY) are hidden. */
 const ROUNDING_STEPS = [0, 0.05, 0.1, 0.5, 1, 5, 10]
@@ -93,9 +108,20 @@ export function FormatsSection() {
     })
   }, [d, fmt, t])
 
-  const changeCurrency = (currency: string) => {
+  const changeCurrency = async (currency: string) => {
     const oldD = currencyDecimals(draft.currency)
     const newD = currencyDecimals(currency)
+    // Amounts are stored in minor units, so a different number of decimals changes how big
+    // every existing price and sale looks (₹130.00 → ¥13,000). Make that explicit first.
+    if (hasData && oldD !== newD) {
+      const ok = await confirmDialog({
+        title: t('formats.decimalsChangeTitle', { currency }),
+        message: decimalsChangeMessage(t, draft.currency, currency, draft.numberLocale),
+        confirmLabel: t('formats.decimalsChangeConfirm'),
+        danger: true,
+      })
+      if (!ok) return
+    }
     const convert = (minor: number) => Math.round((minor / 10 ** oldD) * 10 ** newD)
     set({ currency, cashRounding: convert(draft.cashRounding), loyaltyPointValue: convert(draft.loyaltyPointValue) })
   }
@@ -115,7 +141,7 @@ export function FormatsSection() {
 
       <Group title={t('formats.money')}>
         <Row id="formats.currency">
-          <Select label={t('formats.currency')} value={draft.currency} onChange={(e) => changeCurrency(e.target.value)} options={currencyOptions} hint={t('formats.currencyHint')} />
+          <Select label={t('formats.currency')} value={draft.currency} onChange={(e) => void changeCurrency(e.target.value)} options={currencyOptions} hint={t('formats.currencyHint')} />
         </Row>
         {hasData && (
           <Row>

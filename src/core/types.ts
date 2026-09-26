@@ -39,6 +39,8 @@ export interface User extends Base {
   role: Role
   pinHash: string
   pinSalt: string
+  /** Hash of the PIN's first 4 digits (same salt), so new PINs can be checked for prefix clashes. */
+  pinPrefixHash?: string
   /** Extra permissions on top of the role defaults. */
   extraPermissions?: Permission[]
   active: boolean

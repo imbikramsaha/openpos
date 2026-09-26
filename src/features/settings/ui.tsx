@@ -1,4 +1,4 @@
-import type { ReactNode } from 'react'
+import { useId, type ReactNode } from 'react'
 import { AlertTriangle, Info, ShieldAlert, CheckCircle2 } from 'lucide-react'
 import { cn } from '@/lib/cn'
 import { Card, Toggle } from '@/components/ui'
@@ -57,14 +57,25 @@ export function ToggleRow({ id, label, description, checked, onChange, disabled 
 
 /** Label + description on the start side, control on the end side (stacks on phones). */
 export function ControlRow({ id, label, description, children, stack }: { id?: string; label: ReactNode; description?: ReactNode; children: ReactNode; stack?: boolean }) {
+  // The control sits in a group named by the row's label, so screen readers announce what it sets.
+  const labelId = useId()
+  const descId = useId()
   return (
     <Row id={id}>
       <div className={cn('flex gap-3', stack ? 'flex-col' : 'flex-col sm:flex-row sm:items-center')}>
         <div className="min-w-0 flex-1">
-          <div className="text-sm font-medium">{label}</div>
-          {description && <div className="text-xs text-subtle">{description}</div>}
+          <div id={labelId} className="text-sm font-medium">
+            {label}
+          </div>
+          {description && (
+            <div id={descId} className="text-xs text-subtle">
+              {description}
+            </div>
+          )}
         </div>
-        <div className={cn('min-w-0', !stack && 'sm:shrink-0')}>{children}</div>
+        <div role="group" aria-labelledby={labelId} aria-describedby={description ? descId : undefined} className={cn('min-w-0', !stack && 'sm:shrink-0')}>
+          {children}
+        </div>
       </div>
     </Row>
   )
@@ -80,7 +91,7 @@ const noticeTone = {
 export function Notice({ tone = 'info', title, children, action, className }: { tone?: keyof typeof noticeTone; title?: ReactNode; children?: ReactNode; action?: ReactNode; className?: string }) {
   const s = noticeTone[tone]
   return (
-    <div className={cn('flex flex-col gap-3 rounded-2xl border px-4 py-3 sm:flex-row sm:items-center', s.cls, className)} role={tone === 'danger' || tone === 'warning' ? 'alert' : undefined}>
+    <div className={cn('flex flex-col gap-3 rounded-2xl border px-4 py-3 sm:flex-row sm:items-center', s.cls, className)}>
       <div className="flex min-w-0 flex-1 gap-3">
         <span className="mt-0.5 shrink-0">{s.icon}</span>
         <div className="min-w-0 text-sm">

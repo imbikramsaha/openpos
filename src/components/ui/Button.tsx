@@ -11,9 +11,10 @@ const variants: Record<ButtonVariant, string> = {
   outline: 'border border-border-strong text-fg hover:bg-surface-3',
   ghost: 'text-fg hover:bg-surface-3',
   soft: 'bg-primary-soft text-primary hover:brightness-95 dark:hover:brightness-125',
-  danger: 'bg-danger text-white hover:brightness-110 shadow-card',
-  success: 'bg-success text-white hover:brightness-110 shadow-card',
-  warning: 'bg-warning text-white hover:brightness-110 shadow-card',
+  // Dark mode uses bright fills, which need dark text to stay readable.
+  danger: 'bg-danger text-white dark:text-bg hover:brightness-110 shadow-card',
+  success: 'bg-success text-white dark:text-bg hover:brightness-110 shadow-card',
+  warning: 'bg-warning text-white dark:text-bg hover:brightness-110 shadow-card',
 }
 
 const sizes: Record<ButtonSize, string> = {

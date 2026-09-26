@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Check, ImagePlus, Trash2 } from 'lucide-react'
 import type { Settings, Tax } from '@/core/types'
@@ -15,10 +15,28 @@ import { Button, EmailInput, Input, Modal, PhoneInput, Select, TaxIdInput, Texta
 import { LIMITS } from '@/lib/validate'
 import { Group, Row, Stack } from '../ui'
 import { TYPING_DELAY, notifySaved, useSettingsDraft } from '../hooks'
+import { decimalsChangeMessage } from './FormatsSection'
 
+
+function displayName(type: 'currency' | 'language', code: string, lng: string): string {
+  try {
+    return new Intl.DisplayNames([lng, 'en'], { type }).of(code) ?? code
+  } catch {
+    return code
+  }
+}
+
+/** Country name in the UI language (falls back to the preset's English name). */
+function countryName(p: CountryPreset, lng: string): string {
+  try {
+    return new Intl.DisplayNames([lng, 'en'], { type: 'region' }).of(p.code) ?? p.name
+  } catch {
+    return p.name
+  }
+}
 
 export function BusinessSection() {
-  const { t } = useTranslation('settings')
+  const { t, i18n } = useTranslation('settings')
   const { draft, set, setReceipt, flush } = useSettingsDraft()
   const [country, setCountry] = useState<CountryPreset | null>(null)
   const text = (key: keyof Settings) => ({
@@ -41,7 +59,7 @@ export function BusinessSection() {
     <Stack>
       <Group title={t('business.identity')} description={t('business.identityHint')}>
         <Row id="business.name">
-          <Input label={t('business.name')} {...text('businessName')} error={!draft.businessName.trim() ? t('business.nameRequired') : undefined} maxLength={LIMITS.businessName} />
+          <BusinessName value={draft.businessName} onChange={(v) => set({ businessName: v }, TYPING_DELAY)} onBlur={() => void flush()} />
         </Row>
         <Row id="business.legalName">
           <Input label={t('business.legalName')} hint={t('business.legalNameHint')} {...text('legalName')} maxLength={120} />
@@ -97,7 +115,8 @@ export function BusinessSection() {
               const p = findPreset(e.target.value)
               if (p.code !== draft.country) setCountry(p)
             }}
-            options={COUNTRY_PRESETS.map((p) => ({ value: p.code, label: p.code === 'OTHER' ? t('business.otherCountry') : `${p.name} · ${p.currency}` }))}
+            options={COUNTRY_PRESETS.map((p) => ({ value: p.code, label: p.code === 'OTHER' ? t('business.otherCountry') : `${countryName(p, i18n.language)} · ${p.currency}` }))
+              .sort((a, b) => (a.value === 'OTHER' ? 1 : b.value === 'OTHER' ? -1 : a.label.localeCompare(b.label, i18n.language)))}
             hint={t('business.countryHint')}
           />
         </Row>
@@ -149,20 +168,40 @@ export function BusinessSection() {
   )
 }
 
+/** The business name is required: an empty field shows an error and is never saved. */
+function BusinessName({ value, onChange, onBlur }: { value: string; onChange: (v: string) => void; onBlur: () => void }) {
+  const { t } = useTranslation('settings')
+  const [text, setText] = useState(value)
+  useEffect(() => setText((cur) => (cur.trim() ? value : cur)), [value])
+  return (
+    <Input
+      label={t('business.name')}
+      value={text}
+      maxLength={LIMITS.businessName}
+      error={!text.trim() ? t('business.nameRequired') : undefined}
+      onChange={(e) => {
+        setText(e.target.value)
+        if (e.target.value.trim()) onChange(e.target.value)
+      }}
+      onBlur={onBlur}
+    />
+  )
+}
+
 function CountryDialog({ preset, onClose, onApply, onOnlyCountry }: {
   preset: CountryPreset | null
   onClose: () => void
   onApply: (p: CountryPreset) => Promise<void>
   onOnlyCountry: (p: CountryPreset) => Promise<void>
 }) {
-  const { t } = useTranslation('settings')
+  const { t, i18n } = useTranslation('settings')
   const [busy, setBusy] = useState(false)
   const current = useSettings((s) => s.settings)
   if (!preset) return null
   const d = currencyDecimals(preset.currency)
   const rounding = preset.cashRounding ? new Intl.NumberFormat(preset.locale, { style: 'currency', currency: preset.currency }).format(preset.cashRounding / 10 ** d) : t('formats.roundingNone')
   const rows: Array<[string, string]> = [
-    [t('business.presetCurrency'), `${preset.currency} · ${preset.locale}`],
+    [t('business.presetCurrency'), `${displayName('currency', preset.currency, i18n.language)} (${preset.currency}) · ${displayName('language', preset.locale, i18n.language)}`],
     [t('business.presetTaxes'), preset.taxes.map((x) => x.name).join(', ')],
     [t('business.presetPrices'), preset.pricesIncludeTax ? t('taxes.inclusive') : t('taxes.exclusive')],
     [t('business.presetRounding'), rounding],
@@ -173,7 +212,7 @@ function CountryDialog({ preset, onClose, onApply, onOnlyCountry }: {
     <Modal
       open
       onClose={onClose}
-      title={t('business.presetTitle', { country: preset.code === 'OTHER' ? t('business.otherCountry') : preset.name })}
+      title={t('business.presetTitle', { country: preset.code === 'OTHER' ? t('business.otherCountry') : countryName(preset, i18n.language) })}
       subtitle={t('business.presetSubtitle')}
       footer={
         <>
@@ -209,7 +248,11 @@ function CountryDialog({ preset, onClose, onApply, onOnlyCountry }: {
         ))}
       </dl>
       <p className="mt-3 text-xs text-subtle">{t('business.presetNote')}</p>
-      {currencyChanges && <p className="mt-2 text-xs font-medium text-warning">{t('formats.currencyWarning')}</p>}
+      {currencyChanges && (
+        <p className="mt-2 text-xs font-medium text-warning">
+          {currencyDecimals(current.currency) !== d ? decimalsChangeMessage(t, current.currency, preset.currency, preset.locale) : t('formats.currencyWarning')}
+        </p>
+      )}
     </Modal>
   )
 }
@@ -250,7 +293,8 @@ export async function applyCountryPreset(p: CountryPreset): Promise<void> {
       pricesIncludeTax: p.pricesIncludeTax,
       gstMode: !!p.gstMode,
       cashRounding: p.cashRounding,
-      enabledPayments: p.payments,
+      // Loyalty redemption is a store choice, not a country default: keep it if it was on.
+      enabledPayments: current.enabledPayments.includes('loyalty') && !p.payments.includes('loyalty') ? [...p.payments, 'loyalty'] : p.payments,
       quickCash: p.notes,
       defaultTaxId,
       loyaltyPointValue: current.currency === p.currency ? current.loyaltyPointValue : convert(current.loyaltyPointValue),

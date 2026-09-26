@@ -4,12 +4,12 @@ import { Check, Crown, Lock, ShieldCheck, ShoppingCart, Trash2 } from 'lucide-re
 import type { Permission, Role, User } from '@/core/types'
 import { ALL_PERMISSIONS, ROLE_PERMISSIONS } from '@/core/permissions'
 import { audit, put, remove } from '@/db/repo'
-import { pinFields, pinInUse } from '@/features/auth/users'
+import { pinFields } from '@/features/auth/users'
 import { cn } from '@/lib/cn'
 import { useSession } from '@/stores/session'
 import { confirmDialog, toast } from '@/stores/ui'
 import { Avatar, Badge, Button, Input, Sheet, Toggle } from '@/components/ui'
-import { checkUserChange, describeChanges, extrasFor, pinShadowedBy, type RuleError } from './rules'
+import { checkUserChange, describeChanges, extrasFor, pinConflict, type RuleError } from './rules'
 
 /** User colours are data (shown on avatars and receipts), not theme colours. */
 export const USER_COLORS = ['#4f46e5', '#2563eb', '#0891b2', '#059669', '#d97706', '#dc2626', '#db2777', '#7c3aed', '#475569']
@@ -70,9 +70,13 @@ export function UserEditor({ user, users, onClose }: { user: User | 'new' | null
     setBusy(true)
     try {
       if (pin) {
-        if (await pinInUse(pin, existing?.id)) return setPinError(t('pinInUse'))
-        const shadow = pinShadowedBy(pin, users, existing?.id)
-        if (shadow) return setPinError(t('pinShadowed', { name: shadow.name }))
+        // PIN hashing is deliberately slow; let the spinner paint before checking.
+        await new Promise((r) => setTimeout(r, 0))
+        const clash = pinConflict(pin, users, existing?.id)
+        if (clash) {
+          const key = clash.kind === 'inUse' ? 'pinInUse' : clash.kind === 'shadowedBy' ? 'pinShadowed' : 'pinPrefixClash'
+          return setPinError(t(key, { name: clash.user.name }))
+        }
       }
       if (isMe && existing && role !== existing.role) {
         const ok = await confirmDialog({ title: t('selfRoleTitle'), message: t('selfRoleMessage', { role: t(`common:role.${role}`) }) })

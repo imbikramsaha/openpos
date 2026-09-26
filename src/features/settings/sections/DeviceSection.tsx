@@ -113,8 +113,11 @@ function TerminalCode() {
   useEffect(() => {
     if (!valid || value === terminal) return setClash(false)
     let alive = true
+    // Uses the number index, so this stays instant with years of sales on the device.
     void db.sales
-      .filter((s) => s.deviceId !== deviceId && s.number.includes(`-${value}-`))
+      .where('number')
+      .startsWithAnyOf(`INV-${value}-`, `CRN-${value}-`)
+      .filter((s) => s.deviceId !== deviceId)
       .first()
       .then((hit) => alive && setClash(!!hit))
     return () => {

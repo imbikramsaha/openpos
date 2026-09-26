@@ -1,5 +1,6 @@
-import i18n, { type BackendModule, type ResourceKey } from 'i18next'
+import i18n, { type BackendModule, type FormatterModule, type ResourceKey } from 'i18next'
 import { initReactI18next } from 'react-i18next'
+import { moneyConfig } from '@/lib/money'
 import { LANGUAGES, NAMESPACES, detectLanguage } from './languages'
 
 // English ships in the main bundle; every other language is a lazily loaded chunk
@@ -22,6 +23,30 @@ const backend: BackendModule = {
   },
 }
 
+// Numbers interpolated into translations ("{{count}} products") are grouped like every other
+// number in the app, using the store's number format: 20,037 / 1,00,000 (en-IN) / 20.037 (de).
+const numberFormats = new Map<string, Intl.NumberFormat>()
+const formatter: FormatterModule = {
+  type: 'formatter',
+  init() {},
+  add() {},
+  addCached() {},
+  format(value, format, lng) {
+    if (typeof value !== 'number' || !Number.isFinite(value) || (format && format !== 'number')) return value
+    const locale = moneyConfig().locale || lng || 'en'
+    let f = numberFormats.get(locale)
+    if (!f) {
+      try {
+        f = new Intl.NumberFormat(locale)
+      } catch {
+        f = new Intl.NumberFormat('en')
+      }
+      numberFormats.set(locale, f)
+    }
+    return f.format(value)
+  },
+}
+
 export function applyDirection(lng: string) {
   const lang = LANGUAGES.find((l) => l.code === lng)
   document.documentElement.lang = lng
@@ -34,6 +59,7 @@ export function initI18n(preferred?: string) {
   i18n.on('languageChanged', applyDirection)
   return i18n
     .use(backend)
+    .use(formatter)
     .use(initReactI18next)
     .init({
       lng,
@@ -44,7 +70,7 @@ export function initI18n(preferred?: string) {
       fallbackNS: 'common',
       resources: { en: enResources },
       partialBundledLanguages: true,
-      interpolation: { escapeValue: false },
+      interpolation: { escapeValue: false, alwaysFormat: true },
       returnNull: false,
       react: { useSuspense: true },
     })

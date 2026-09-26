@@ -16,7 +16,17 @@ const PAGE = 50
 /** Translated label for an audit action, falling back to the raw code for unknown actions. */
 export function useActionLabel() {
   const { t } = useTranslation('settings')
-  return (action: string) => t(`auditActions.${action.replace(/\./g, '_')}`, { defaultValue: action })
+  // Unknown (newer) actions read as words rather than a code: "stock.transfer" → "Stock transfer".
+  return (action: string) => {
+    const words = action.replace(/[._]+/g, ' ').trim()
+    return t(`auditActions.${action.replace(/\./g, '_')}`, { defaultValue: words.charAt(0).toUpperCase() + words.slice(1) })
+  }
+}
+
+/** Translated record type ("product", "customer"…) where a common word exists. */
+function useEntityLabel() {
+  const { t, i18n } = useTranslation('settings')
+  return (entity?: string) => (entity && i18n.exists(`common:${entity}`) && typeof t(`common:${entity}`) === 'string' ? t(`common:${entity}`) : entity)
 }
 
 function tone(action: string): Tone {
@@ -29,6 +39,7 @@ function tone(action: string): Tone {
 export function AuditSection() {
   const { t } = useTranslation('settings')
   const label = useActionLabel()
+  const entityLabel = useEntityLabel()
   const [action, setAction] = useState('')
   const [user, setUser] = useState('')
   const [from, setFrom] = useState('')
@@ -109,7 +120,7 @@ export function AuditSection() {
             key: 'details',
             header: t('audit.details'),
             className: 'max-w-[320px]',
-            render: (e) => <span className="line-clamp-2 break-words text-muted">{[e.entity, e.details].filter(Boolean).join(' · ') || '—'}</span>,
+            render: (e) => <span className="line-clamp-2 break-words text-muted">{[entityLabel(e.entity), e.details].filter(Boolean).join(' · ') || '—'}</span>,
           },
         ]}
         mobile={(e) => (
@@ -119,7 +130,7 @@ export function AuditSection() {
               <span className="tnum text-xs text-subtle">{formatDateTime(e.createdAt)}</span>
             </div>
             <div className="mt-1 text-sm font-medium">{e.userName ?? t('audit.system')}</div>
-            {(e.entity || e.details) && <div className="line-clamp-2 text-xs break-words text-muted">{[e.entity, e.details].filter(Boolean).join(' · ')}</div>}
+            {(e.entity || e.details) && <div className="line-clamp-2 text-xs break-words text-muted">{[entityLabel(e.entity), e.details].filter(Boolean).join(' · ')}</div>}
           </div>
         )}
       />

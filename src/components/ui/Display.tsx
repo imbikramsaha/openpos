@@ -2,6 +2,7 @@ import type { ComponentProps, ReactNode } from 'react'
 import { Search, X } from 'lucide-react'
 import { useTranslation } from 'react-i18next'
 import { cn } from '@/lib/cn'
+import { formatNumber } from '@/lib/money'
 
 export type Tone = 'neutral' | 'primary' | 'success' | 'danger' | 'warning'
 
@@ -43,7 +44,7 @@ export function Stat({ label, value, hint, icon, tone = 'primary', className }: 
       <div className="flex items-center gap-3">
         {icon && <div className={cn('flex size-10 shrink-0 items-center justify-center rounded-xl [&>svg]:size-5', tones[tone])}>{icon}</div>}
         <div className="min-w-0">
-          <div className="truncate text-xs font-medium text-muted">{label}</div>
+          <div className="line-clamp-2 text-xs font-medium break-words text-muted">{label}</div>
           <div className="tnum truncate text-xl font-bold">{value}</div>
         </div>
       </div>
@@ -85,7 +86,11 @@ export function SearchInput({ value, onChange, className, right, placeholder, ..
         value={value}
         onChange={(e) => onChange(e.target.value)}
         placeholder={placeholder ?? t('search')}
-        className="h-11 w-full rounded-xl border border-border bg-surface ps-10 pe-20 text-fg placeholder:text-subtle focus:border-primary focus:ring-4 focus:ring-[var(--ring)] focus:outline-none [&::-webkit-search-cancel-button]:hidden"
+        className={cn(
+          'h-11 w-full rounded-xl border border-border bg-surface ps-10 text-fg placeholder:text-subtle focus:border-primary focus:ring-4 focus:ring-[var(--ring)] focus:outline-none [&::-webkit-search-cancel-button]:hidden',
+          // Room for the clear button / extra controls only when they are shown, so long placeholders fit.
+          right ? 'pe-20' : value ? 'pe-11' : 'pe-3',
+        )}
         {...rest}
       />
       <div className="absolute end-1.5 flex items-center gap-1">
@@ -123,7 +128,7 @@ export function Tabs<T extends string>({ tabs, value, onChange, className }: { t
         >
           {tab.icon}
           {tab.label}
-          {tab.count !== undefined && <span className="rounded-full bg-surface-3 px-1.5 text-xs text-muted">{tab.count}</span>}
+          {tab.count !== undefined && <span className="tnum rounded-full bg-surface-3 px-1.5 text-xs text-muted">{formatNumber(tab.count)}</span>}
         </button>
       ))}
     </div>

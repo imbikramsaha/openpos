@@ -41,6 +41,8 @@ export function SyncSection() {
 
   const dirty = url.trim() !== dev.serverUrl || key.trim() !== dev.storeKey
   const urlError = url.trim() && !validUrl(url.trim()) ? t('sync.urlInvalid') : undefined
+  // An https:// page (the hosted web app) may not call an http:// server: the browser blocks it.
+  const mixedContent = !urlError && location.protocol === 'https:' && /^http:\/\//i.test(url.trim()) && !/^http:\/\/(localhost|127\.0\.0\.1)(:|\/|$)/i.test(url.trim())
   const canTest = !!url.trim() && !!key.trim() && !urlError
 
   const test = async () => {
@@ -92,6 +94,11 @@ export function SyncSection() {
             error={urlError}
             left={<Network className="size-4.5" />}
           />
+          {mixedContent && (
+            <Notice tone="warning" className="mt-3">
+              {t('sync.mixedContent')}
+            </Notice>
+          )}
         </Row>
         <Row id="sync.storeKey">
           <Input

@@ -7,6 +7,7 @@ import { formatDateTime, relativeTime } from '@/lib/dates'
 import { formatNumber } from '@/lib/money'
 import { pickFile, readFileText } from '@/lib/download'
 import { confirmDialog, toast } from '@/stores/ui'
+import { requirePermission } from '@/features/auth/permission'
 import { Button, Modal } from '@/components/ui'
 import { Group, Notice, Row, Stack } from '../ui'
 import { InvalidBackup, exportBackup, parseBackup, restoreBackup, tableCounts, type BackupSummary } from '../backup'
@@ -48,6 +49,8 @@ export function BackupSection() {
 
   const restore = async () => {
     if (!summary) return
+    // Restoring replaces every user and PIN, so it needs someone who may manage users.
+    if (!(await requirePermission('users_manage'))) return
     const ok = await confirmDialog({
       title: t('backup.confirmTitle'),
       message: t('backup.confirmMessage', { date: summary.exportedAt ? formatDateTime(summary.exportedAt) : '—' }),

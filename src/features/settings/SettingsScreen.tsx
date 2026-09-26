@@ -48,9 +48,16 @@ function useSearch(query: string): SearchHit[] | null {
     if (!q) return null
     // Also match English labels so staff can search with English terms in any UI language.
     const en = i18n.getFixedT('en', 'settings')
+    // Short queries match at the start of a word ("upi" shouldn't find "grouping"); longer ones
+    // anywhere, which also covers compound words and scripts written without spaces.
+    const wordStart = new RegExp(`(^|[^\\p{L}\\p{N}])${q.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}`, 'u')
+    const matches = (text: string) => {
+      const n = normalize(text)
+      return q.length >= 4 || !/\s/.test(n) ? n.includes(q) : wordStart.test(n)
+    }
     const hit = (key: string) => {
       if (!i18n.exists(`settings:${key}`)) return false
-      return normalize(t(key)).includes(q) || normalize(en(key)).includes(q)
+      return matches(t(key)) || matches(en(key))
     }
     return SECTIONS.map((section) => {
       const base = `sections.${section.id}`

@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next'
 import { Archive, Trash2 } from 'lucide-react'
 import { navigate } from '@/router'
 import { toast } from '@/stores/ui'
+import { requirePermission } from '@/features/auth/permission'
 import { Button, Input, Modal } from '@/components/ui'
 import { Group, Row, Stack } from '../ui'
 import { eraseDevice } from '../backup'
@@ -17,6 +18,8 @@ export function DangerSection() {
 
   const erase = async () => {
     if (typed.trim().toUpperCase() !== WORD) return
+    // Wiping the till (and its users) is an administrator decision.
+    if (!(await requirePermission('users_manage'))) return
     setBusy(true)
     try {
       await eraseDevice()
