@@ -4,7 +4,7 @@ import { Vault } from 'lucide-react'
 import { formatMoney } from '@/lib/money'
 import { Button, Modal, MoneyInput } from '@/components/ui'
 import { toast } from '@/stores/ui'
-import { lastClosedShift, openShift } from './service'
+import { amountError, lastClosedShift, openShift } from './service'
 
 export function OpenShiftDialog({ open, onClose, onOpened }: { open: boolean; onClose: () => void; onOpened?: () => void }) {
   const { t } = useTranslation('shifts')
@@ -15,6 +15,7 @@ export function OpenShiftDialog({ open, onClose, onOpened }: { open: boolean; on
   // Offer last shift's float and what was left in the drawer as one-tap amounts.
   useEffect(() => {
     if (!open) return
+    setFloat(0)
     let alive = true
     void lastClosedShift().then((last) => {
       if (!alive || !last) return setSuggest([])
@@ -29,7 +30,9 @@ export function OpenShiftDialog({ open, onClose, onOpened }: { open: boolean; on
     }
   }, [open, t])
 
+  const error = amountError(float)
   const submit = async () => {
+    if (error || busy) return
     setBusy(true)
     try {
       await openShift(float ?? 0)
@@ -49,13 +52,13 @@ export function OpenShiftDialog({ open, onClose, onOpened }: { open: boolean; on
       title={t('openShift')}
       size="sm"
       footer={
-        <Button variant="primary" loading={busy} onClick={submit} icon={<Vault className="size-4" />}>
+        <Button variant="primary" loading={busy} disabled={!!error} onClick={submit} icon={<Vault className="size-4" />}>
           {t('openShift')}
         </Button>
       }
     >
       <form onSubmit={(e) => (e.preventDefault(), void submit())}>
-        <MoneyInput label={t('openingFloat')} hint={t('openingFloatHint')} value={float} onChange={setFloat} autoFocus />
+        <MoneyInput label={t('openingFloat')} hint={t('openingFloatHint')} value={float} onChange={setFloat} error={error ? t(error) : undefined} autoFocus />
         {suggest.length > 0 && (
           <div className="mt-3 flex flex-wrap gap-1.5">
             {suggest.map((s) => (

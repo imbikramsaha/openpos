@@ -116,3 +116,19 @@ describe('csv safety', () => {
     expect(parseCsv('name,price,name\nTea,10,Coffee')).toEqual([{ name: 'Tea', price: '10' }])
   })
 })
+
+describe('money edge cases', () => {
+  it('rounds float noise the way the number was written', () => {
+    expect(toMinor(12.345, 2)).toBe(1235)
+    expect(toMinor(1.005, 2)).toBe(101)
+    expect(toMinor(-12.345, 2)).toBe(-1235)
+    expect(toMinor(0.1 + 0.2, 2)).toBe(30)
+  })
+  it('rejects exponents and junk; accepts typographic minus', () => {
+    expect(Number.isNaN(parseDecimal('1e3'))).toBe(true)
+    expect(Number.isNaN(parseDecimal('Infinity'))).toBe(true)
+    expect(Number.isNaN(parseDecimal('12abc'))).toBe(true)
+    expect(parseDecimal('−5')).toBe(-5)
+    expect(parseDecimal('.5')).toBe(0.5)
+  })
+})

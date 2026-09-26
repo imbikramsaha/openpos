@@ -127,6 +127,7 @@
   "tax": {
     "rate": "Rate",
     "name": "Tax",
+    "taxName": "Tax name",
     "exempt": "Exempt / nil rated",
     "taxable": "Taxable value",
     "totalTax": "Tax",
@@ -139,6 +140,9 @@
     "missingHsn_one": "{{count}} row has no HSN/SAC code — add it to the product.",
     "missingHsn_other": "{{count}} rows have no HSN/SAC code — add them to the products.",
     "noHsn": "No HSN",
+    "andOthers_one": "{{name}} and {{count}} other",
+    "andOthers_other": "{{name}} and {{count}} others",
+    "roundingNote": "invoice values exclude cash rounding of {{amount}}",
     "description": "Description",
     "b2bB2c": "B2B and B2C supplies",
     "b2bHint": "B2B = the customer has a {{label}} on the invoice.",

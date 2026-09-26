@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next'
 import { formatMoney } from '@/lib/money'
 import { Badge, Segmented } from '@/components/ui'
 import { KpiTile } from '../charts'
-import { int, moneyWhole, qty } from '../format'
+import { int, margin, moneyWhole, pct, qty } from '../format'
 import { ReportTable, type RCol } from '../ReportTable'
 import type { TabProps } from '../context'
 import type { Unit } from '@/core/types'
@@ -42,7 +42,7 @@ export function InventoryTab({ report }: TabProps) {
             id: p.id,
             name: p.name,
             sku: p.sku ?? '',
-            category: (p.categoryId && report.categoryMap.get(p.categoryId)?.name) || t('uncategorised'),
+            category: (p.categoryId && report.categories.find((c) => c.id === p.categoryId)?.name) || t('uncategorised'),
             unit: p.unit,
             stock,
             reorder,
@@ -53,7 +53,7 @@ export function InventoryTab({ report }: TabProps) {
             status: stock <= 0 ? 'out' : stock <= reorder ? 'low' : 'ok',
           }
         }),
-    [report.products, report.categoryMap, t],
+    [report.products, report.categories, t],
   )
   const low = rows.filter((r) => r.status === 'low').length
   const out = rows.filter((r) => r.status === 'out').length
@@ -81,7 +81,7 @@ export function InventoryTab({ report }: TabProps) {
       <div className="grid grid-cols-2 gap-3 lg:grid-cols-4">
         <KpiTile label={t('inventory.costValue')} value={moneyWhole(costTotal)} title={formatMoney(costTotal)} sub={t('inventory.products', { count: rows.length })} />
         <KpiTile label={t('inventory.retailValue')} value={moneyWhole(retailTotal)} title={formatMoney(retailTotal)} />
-        <KpiTile label={t('inventory.potentialProfit')} value={moneyWhole(retailTotal - costTotal)} title={formatMoney(retailTotal - costTotal)} sub={retailTotal ? t('kpi.margin', { value: `${Math.round(((retailTotal - costTotal) / retailTotal) * 1000) / 10}%` }) : undefined} />
+        <KpiTile label={t('inventory.potentialProfit')} value={moneyWhole(retailTotal - costTotal)} title={formatMoney(retailTotal - costTotal)} sub={retailTotal ? t('kpi.margin', { value: pct(margin(retailTotal - costTotal, retailTotal)) }) : undefined} />
         <KpiTile label={t('inventory.needsAttention')} value={int(low + out)} sub={`${t('inventory.lowCount', { count: low })} · ${t('inventory.outCount', { count: out })}`} />
       </div>
       <ReportTable

@@ -1,4 +1,4 @@
-import { useMemo, useState, type ReactNode } from 'react'
+import { useMemo, useState, type KeyboardEvent, type ReactNode } from 'react'
 import { useTranslation } from 'react-i18next'
 import { ArrowDown, ArrowUp, ArrowUpDown, Download, Printer } from 'lucide-react'
 import { cn } from '@/lib/cn'
@@ -127,9 +127,15 @@ export function ReportTable<T>({
 
   const fileBase = `${slug(filename)}${meta.fileTag ? `_${meta.fileTag}` : ''}`
   const exportCsv = () => {
-    const head = columns.map((c) => c.label)
-    const data = shown.map((r) => Object.fromEntries(columns.map((c) => [c.label, c.csv ? c.csv(r) : csvByKind(c.kind, c.value(r))])))
-    downloadText(`${fileBase}.csv`, toCsv(data, head), 'text/csv')
+    // Rows are keyed by column key (unique), not label: two columns may share a label.
+    const keys = columns.map((_, i) => String(i))
+    // Text that a spreadsheet would run as a formula (=, +, -, @) is prefixed with an apostrophe.
+    const safe = (v: string | number) => (typeof v === 'string' && /^[=+\-@\t\r]/.test(v) && !/^[-+]?\d/.test(v) ? `'${v}` : v)
+    const data = shown.map((r) => Object.fromEntries(columns.map((c, i) => [keys[i], safe(c.csv ? c.csv(r) : csvByKind(c.kind, c.value(r)))])))
+    const body = toCsv(data, keys)
+    const nl = body.indexOf('\r\n')
+    const esc = (s: string) => (/[",\n\r]/.test(s) ? `"${s.replace(/"/g, '""')}"` : s)
+    downloadText(`${fileBase}.csv`, columns.map((c) => esc(c.label)).join(',') + (nl < 0 ? '' : body.slice(nl)), 'text/csv')
   }
   const cellText = (c: RCol<T>, r: T) => (c.text ? c.text(r) : formatByKind(c.kind, c.value(r)))
   const totalText = (c: RCol<T>) => {
@@ -148,6 +154,19 @@ export function ReportTable<T>({
     )
   }
 
+  // Clickable rows open with Enter/Space too, not only with a pointer.
+  const rowProps = (r: T) =>
+    onRowClick
+      ? {
+          onClick: () => onRowClick(r),
+          tabIndex: 0,
+          onKeyDown: (e: KeyboardEvent) => {
+            if (e.key !== 'Enter' && e.key !== ' ') return
+            e.preventDefault()
+            onRowClick(r)
+          },
+        }
+      : {}
   const align = (c: RCol<T>) => (c.kind && c.kind !== 'text' && c.kind !== 'date' ? 'text-end' : 'text-start')
   const primary = visible.find((c) => c.primary) ?? visible.find((c) => c.kind === 'money')
   const secondary = visible.filter((c, i) => i > 0 && c !== primary).slice(0, 3)
@@ -181,22 +200,24 @@ export function ReportTable<T>({
         <>
           <ul className="divide-y divide-border md:hidden">
             {page.map((r) => (
-              <li key={rowKey(r)} onClick={() => onRowClick?.(r)} className={cn('px-4 py-3', onRowClick && 'cursor-pointer active:bg-surface-3')}>
+              <li key={rowKey(r)} {...rowProps(r)} className={cn('px-4 py-3', onRowClick && 'cursor-pointer active:bg-surface-3 focus-visible:bg-surface-2 focus-visible:outline-none')}>
                 {mobile ? (
                   mobile(r)
                 ) : (
                   <>
                     <div className="flex items-baseline justify-between gap-3">
                       <div className="min-w-0 flex-1 truncate font-medium">{visible[0].render ? visible[0].render(r) : cellText(visible[0], r)}</div>
-                      {primary && <div className="tnum shrink-0 font-semibold">{primary.render ? primary.render(r) : cellText(primary, r)}</div>}
+                      {primary && <div className="tnum shrink-0 font-semibold"><bdi>{primary.render ? primary.render(r) : cellText(primary, r)}</bdi></div>}
                     </div>
                     {secondary.length > 0 && (
                       <div className="mt-0.5 flex flex-wrap gap-x-3 text-xs text-muted">
-                        {secondary.map((c) => (
-                          <span key={c.key} className="tnum">
-                            {c.label}: {c.render ? c.render(r) : cellText(c, r)}
-                          </span>
-                        ))}
+                        {secondary
+                          .filter((c) => cellText(c, r) !== '')
+                          .map((c) => (
+                            <span key={c.key} className="tnum">
+                              {c.label}: <bdi>{c.render ? c.render(r) : cellText(c, r)}</bdi>
+                            </span>
+                          ))}
                       </div>
                     )}
                   </>
@@ -224,10 +245,10 @@ export function ReportTable<T>({
               </thead>
               <tbody className="divide-y divide-border">
                 {page.map((r) => (
-                  <tr key={rowKey(r)} onClick={() => onRowClick?.(r)} className={cn(onRowClick && 'cursor-pointer hover:bg-surface-2')}>
+                  <tr key={rowKey(r)} {...rowProps(r)} className={cn(onRowClick && 'cursor-pointer hover:bg-surface-2 focus-visible:bg-surface-2 focus-visible:outline-none')}>
                     {visible.map((c) => (
-                      <td key={c.key} className={cn('px-4 py-2.5', align(c), align(c) === 'text-end' && 'tnum whitespace-nowrap', c.hideOnMobile && 'hidden lg:table-cell', c.className)}>
-                        {c.render ? c.render(r) : cellText(c, r)}
+                      <td key={c.key} className={cn('px-4 py-2.5', align(c), align(c) === 'text-end' && 'tnum whitespace-nowrap', c.kind === 'date' && 'whitespace-nowrap', c.hideOnMobile && 'hidden lg:table-cell', c.className)}>
+                        {align(c) === 'text-end' ? <bdi>{c.render ? c.render(r) : cellText(c, r)}</bdi> : c.render ? c.render(r) : cellText(c, r)}
                       </td>
                     ))}
                   </tr>
@@ -238,7 +259,7 @@ export function ReportTable<T>({
                   <tr>
                     {visible.map((c, i) => (
                       <td key={c.key} className={cn('px-4 py-2.5', align(c), align(c) === 'text-end' && 'tnum whitespace-nowrap', c.hideOnMobile && 'hidden lg:table-cell')}>
-                        {i === 0 && totals[c.key] === undefined ? t('total') : totalText(c)}
+                        {i === 0 && totals[c.key] === undefined ? t('total') : <bdi>{totalText(c)}</bdi>}
                       </td>
                     ))}
                   </tr>
@@ -249,7 +270,7 @@ export function ReportTable<T>({
           {totals && (
             <div className="flex flex-wrap justify-between gap-x-4 gap-y-1 border-t border-border bg-surface-2 px-4 py-2.5 text-sm font-semibold md:hidden">
               <span>{t('total')}</span>
-              {primary && totals[primary.key] !== undefined && <span className="tnum">{totalText(primary)}</span>}
+              {primary && totals[primary.key] !== undefined && <bdi className="tnum">{totalText(primary)}</bdi>}
             </div>
           )}
           {shown.length > limit && (

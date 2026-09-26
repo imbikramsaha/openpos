@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next'
 import type { PaymentMethod } from '@/core/types'
 import { ChartCard, ColumnChart, ShareBar } from '../charts'
 import { money, moneyCompact, share } from '../format'
-import { bucketLabel, bucketTitle } from '../range'
+import { bucketLabel, bucketRangeTitle } from '../range'
 import { ReportTable, type RCol } from '../ReportTable'
 import { methodColor, methodOrder, useReportMeta, type TabProps } from '../context'
 import type { MethodAgg } from '../compute'
@@ -33,7 +33,7 @@ export function PaymentsTab({ data }: TabProps) {
       data.starts
         .map((s, i) => {
           const b = cur.buckets[i]
-          return { key: String(s), ts: s, title: bucketTitle(s, data.granularity), values: b.methods, total: Object.values(b.methods).reduce((a, v) => a + (v ?? 0), 0) }
+          return { key: String(s), ts: s, title: bucketRangeTitle(data.starts, i, data.granularity, data.from, data.to), values: b.methods, total: Object.values(b.methods).reduce((a, v) => a + (v ?? 0), 0) }
         })
         .filter((r) => r.ts <= now),
     [data, cur, now],
@@ -104,7 +104,7 @@ export function PaymentsTab({ data }: TabProps) {
         columns={methodCols}
         rowKey={(r) => r.method}
         initialSort={{ key: 'net', dir: 'desc' }}
-        totals={{ count: methods.reduce((a, m) => a + m.count, 0), sales: methods.reduce((a, m) => a + m.sales, 0), refunds: methods.reduce((a, m) => a + m.refunds, 0), net: methods.reduce((a, m) => a + m.net, 0) }}
+        totals={{ count: cur.totals.sales, sales: methods.reduce((a, m) => a + m.sales, 0), refunds: methods.reduce((a, m) => a + m.refunds, 0), net: methods.reduce((a, m) => a + m.net, 0) }}
         filename="payments-by-method"
       />
       <ReportTable title={t('payments.byDay')} rows={days} columns={dayCols} rowKey={(r) => r.key} initialSort={{ key: 'date', dir: 'asc' }} totals={dayTotals} filename="payments-by-day" />

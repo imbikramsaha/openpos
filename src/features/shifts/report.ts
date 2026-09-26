@@ -3,6 +3,7 @@ import type { CashMovement, Settings } from '@/core/types'
 import { formatDateTime, formatTime } from '@/lib/dates'
 import { formatMoney, formatPercent } from '@/lib/money'
 import { escapeHtml as e, printHtml } from '@/lib/print'
+import { methodOrder } from '@/features/reports/context'
 import { shiftTerminal, type ShiftRecord, type ShiftSummary } from './service'
 
 // X (interim, shift still open) and Z (end of shift) reports, on thermal paper
@@ -41,8 +42,11 @@ function sections(shift: ShiftRecord, sum: ShiftSummary, moves: CashMovement[], 
   tax.push([t('report.totalTax'), formatMoney(sum.tax)])
   if (sum.netExTax !== undefined) tax.push([t('report.netExTax'), formatMoney(sum.netExTax)])
 
+  // The shop's payment method order (cash first), like the screen, not the order methods were first used.
+  const order: string[] = methodOrder(s)
   const pays: Row[] = Object.entries(sum.byMethod)
     .filter(([, v]) => v !== 0)
+    .sort(([a], [b]) => (order.indexOf(a) + 1 || 99) - (order.indexOf(b) + 1 || 99))
     .map(([m, v]) => [`${method(m)}${sum.countByMethod?.[m] ? ` (${sum.countByMethod[m]})` : ''}`, formatMoney(v)] as Row)
 
   const cash: Row[] = [
@@ -58,7 +62,7 @@ function sections(shift: ShiftRecord, sum: ShiftSummary, moves: CashMovement[], 
     const diff = shift.difference ?? 0
     cash.push([diff > 0 ? t('report.over') : diff < 0 ? t('report.short') : t('report.difference'), formatMoney(diff, { sign: true }), 'b'])
   }
-  const mv: Row[] = moves.map((m) => [`${formatTime(m.createdAt)} ${m.type === 'in' ? t('report.in') : t('report.out')} · ${m.reason}`, formatMoney(m.type === 'in' ? m.amount : -m.amount), 'm'])
+  const mv: Row[] = moves.map((m) => [[`${formatTime(m.createdAt)} ${m.type === 'in' ? t('report.in') : t('report.out')}`, m.reason?.trim()].filter(Boolean).join(' · '), formatMoney(m.type === 'in' ? m.amount : -m.amount), 'm'])
   return { info, sales, tax, pays, cash, mv }
 }
 
@@ -66,7 +70,7 @@ export function shiftReportHtml(shift: ShiftRecord, sum: ShiftSummary, moves: Ca
   const kind = shift.status === 'closed' ? t('report.z') : t('report.x')
   const parts = sections(shift, sum, moves, s)
   const dir = i18n.dir()
-  const table = (rows: Row[]) => `<table>${rows.map(([l, v, c]) => `<tr class="${c ?? ''}"><td>${e(l)}</td><td class="r">${e(v)}</td></tr>`).join('')}</table>`
+  const table = (rows: Row[]) => `<table>${rows.map(([l, v, c]) => `<tr class="${c ?? ''}"><td>${e(l)}</td><td class="r"><bdi>${e(v)}</bdi></td></tr>`).join('')}</table>`
   const block = (title: string, rows: Row[]) => (rows.length ? `<h2>${e(title)}</h2>${table(rows)}` : '')
   const blocks = [
     table(parts.info),

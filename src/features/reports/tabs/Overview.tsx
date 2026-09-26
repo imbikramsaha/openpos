@@ -5,8 +5,8 @@ import { navigate } from '@/router'
 import { Button, EmptyState, Segmented } from '@/components/ui'
 import { formatMoney } from '@/lib/money'
 import { BarList, ChartCard, ColumnChart, Heatmap, KpiTile, LineChart, ShareBar, Sparkline, ACCENT, type LinePoint } from '../charts'
-import { int, intCompact, money, moneyCompact, moneyWhole, pct, qty, share } from '../format'
-import { bucketLabel, bucketTitle, hourLabel, hourRangeLabel, weekdays } from '../range'
+import { int, intCompact, margin, money, moneyCompact, moneyWhole, pct, qty, share, signedPct } from '../format'
+import { bucketLabel, bucketRangeTitle, hourLabel, hourRangeLabel, weekdays } from '../range'
 import { methodColor, methodOrder, terminalLabel, useReportMeta, type TabProps } from '../context'
 import { categoryRows, productRows } from '../rows'
 
@@ -24,7 +24,7 @@ export function OverviewTab({ data, report }: TabProps) {
   const empty = !T.sales && !T.refundsCount && !T.voids
   const avg = T.sales ? T.salesTotal / T.sales : 0
   const prevAvg = P.sales ? P.salesTotal / P.sales : 0
-  const marginPct = T.net ? (T.profit / T.net) * 100 : 0
+  const marginPct = margin(T.profit, T.net)
   const now = Date.now()
 
   const metricFmt = metric === 'count' ? int : money
@@ -37,10 +37,10 @@ export function OverviewTab({ data, report }: TabProps) {
         const v = (x: typeof b) => (metric === 'net' ? x.net : metric === 'count' ? x.count : x.profit)
         return {
           label: bucketLabel(s, data.granularity),
-          title: bucketTitle(s, data.granularity),
+          title: bucketRangeTitle(data.starts, i, data.granularity, data.from, data.to),
           cur: s > now ? null : v(b),
           prev: pb ? v(pb) : null,
-          prevTitle: data.prevStarts[i] !== undefined ? bucketTitle(data.prevStarts[i], data.granularity) : undefined,
+          prevTitle: data.prevStarts[i] !== undefined ? bucketRangeTitle(data.prevStarts, i, data.granularity, data.period.from, data.period.to) : undefined,
         }
       }),
     [data, cur, prev, metric, now],
@@ -100,7 +100,7 @@ export function OverviewTab({ data, report }: TabProps) {
           cur={avg}
           prev={prevAvg}
           prevDisplay={moneyWhole(prevAvg)}
-          spark={<Sparkline values={data.starts.map((s, i) => (s > now || !cur.buckets[i].count ? null : cur.buckets[i].total / cur.buckets[i].count))} />}
+          spark={<Sparkline values={data.starts.map((s, i) => (s > now || !cur.buckets[i].count ? null : cur.buckets[i].salesTotal / cur.buckets[i].count))} />}
         />
         <KpiTile label={t('kpi.grossProfit')} value={moneyWhole(T.profit)} title={formatMoney(T.profit)} cur={T.profit} prev={P.profit} sub={t('kpi.margin', { value: pct(marginPct) })} />
         <KpiTile label={t('kpi.tax')} value={moneyWhole(T.tax)} title={formatMoney(T.tax)} cur={T.tax} prev={P.tax} good="none" prevDisplay={moneyWhole(P.tax)} />
@@ -138,7 +138,7 @@ export function OverviewTab({ data, report }: TabProps) {
         table={{
           head: [t('period'), t('thisPeriod'), t('previousPeriod'), t('change')],
           numeric: [1, 2, 3],
-          rows: points.map((p) => [p.title, p.cur === null ? '—' : metricFmt(p.cur), p.prev === null || p.prev === undefined ? '—' : metricFmt(p.prev), p.cur !== null && p.prev ? `${pct(((p.cur - p.prev) / Math.abs(p.prev)) * 100)}` : '—']),
+          rows: points.map((p) => [p.title, p.cur === null ? '—' : metricFmt(p.cur), p.prev === null || p.prev === undefined ? '—' : metricFmt(p.prev), p.cur !== null && p.prev ? signedPct(((p.cur - p.prev) / Math.abs(p.prev)) * 100) : '—']),
         }}
       >
         <LineChart points={points} format={metricFmt} axis={metricAxis} curLabel={t('thisPeriod')} prevLabel={t('previousPeriod')} ariaLabel={t('trend.aria')} height={260} />

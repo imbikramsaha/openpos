@@ -38,6 +38,8 @@ export interface Totals {
 export interface Bucket {
   net: number
   total: number
+  /** Sale document totals only (no refunds), for the average ticket. */
+  salesTotal: number
   count: number
   profit: number
   methods: Partial<Record<PaymentMethod, number>>
@@ -113,6 +115,8 @@ export interface HsnAgg {
   key: string
   hsn: string
   description: string
+  /** Other product names grouped into this row (the description shows the first). */
+  others: number
   unit: Unit
   rate: number
   qty: number
@@ -174,11 +178,12 @@ const split = () => ({ count: 0, taxable: 0, tax: 0, total: 0 })
 export class Aggregator {
   readonly agg: Aggregate
   private readonly seenCustomers = new Set<string>()
+  private readonly hsnNames = new Map<string, Set<string>>()
 
   constructor(private readonly opts: AggregateOptions) {
     this.agg = {
       totals: emptyTotals(),
-      buckets: opts.starts.map(() => ({ net: 0, total: 0, count: 0, profit: 0, methods: {} })),
+      buckets: opts.starts.map(() => ({ net: 0, total: 0, salesTotal: 0, count: 0, profit: 0, methods: {} })),
       hours: Array.from({ length: 24 }, () => ({ net: 0, count: 0 })),
       heat: Array.from({ length: 7 }, () => new Array<number>(24).fill(0)),
       heatCount: Array.from({ length: 7 }, () => new Array<number>(24).fill(0)),
@@ -239,7 +244,10 @@ export class Aggregator {
       b.net += s.netTotal
       b.total += s.total
       b.profit += profit
-      if (isSale) b.count++
+      if (isSale) {
+        b.count++
+        b.salesTotal += s.total
+      }
       for (const m in methodAmounts) {
         const k = m as PaymentMethod
         b.methods[k] = (b.methods[k] ?? 0) + (methodAmounts[k] ?? 0)
@@ -297,9 +305,10 @@ export class Aggregator {
     const st = this.staffRow(s)
     st.net += s.netTotal
     st.total += s.total
+    // Discounts net of refunded discounts, like the totals and the shift report.
+    st.discounts += s.discountTotal
     if (isSale) {
       st.count++
-      st.discounts += s.discountTotal
     } else {
       st.refundsCount++
       st.refunds += s.total
@@ -359,7 +368,13 @@ export class Aggregator {
       const hsn = (l.hsn ?? '').trim()
       const hk = `${hsn}|${l.taxRate}|${l.unit}`
       let h = a.hsn.get(hk)
-      if (!h) a.hsn.set(hk, (h = { key: hk, hsn, description: l.name, unit: l.unit, rate: l.taxRate, qty: 0, value: 0, taxable: 0, tax: 0, cgst: 0, sgst: 0, igst: 0 }))
+      if (!h) a.hsn.set(hk, (h = { key: hk, hsn, description: l.name, others: 0, unit: l.unit, rate: l.taxRate, qty: 0, value: 0, taxable: 0, tax: 0, cgst: 0, sgst: 0, igst: 0 }))
+      let names = this.hsnNames.get(hk)
+      if (!names) this.hsnNames.set(hk, (names = new Set([l.name.trim().toLowerCase()])))
+      else if (!names.has(l.name.trim().toLowerCase())) {
+        names.add(l.name.trim().toLowerCase())
+        h.others = names.size - 1
+      }
       h.qty += l.qty
       h.value += l.total
       h.taxable += l.net

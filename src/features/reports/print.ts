@@ -25,13 +25,15 @@ export function reportHtml({ title, subtitle, settings, sections }: { title: str
     .map((s) => {
       const num = new Set(s.numeric ?? [])
       const cls = (i: number) => (num.has(i) ? ' class="r"' : '')
+      // Numbers keep their own direction in RTL documents (−₹130.00, not ₹130.00−).
+      const cell = (i: number, c: string) => (num.has(i) ? `<bdi>${e(c)}</bdi>` : e(c))
       const kpis = s.kpis?.length
-        ? `<div class="kpis">${s.kpis.map(([l, v]) => `<div class="kpi"><div class="m">${e(l)}</div><div class="v">${e(v)}</div></div>`).join('')}</div>`
+        ? `<div class="kpis">${s.kpis.map(([l, v]) => `<div class="kpi"><div class="m">${e(l)}</div><div class="v"><bdi>${e(v)}</bdi></div></div>`).join('')}</div>`
         : ''
       const table = s.head
         ? `<table><thead><tr>${s.head.map((h, i) => `<th${cls(i)}>${e(h)}</th>`).join('')}</tr></thead>
-          <tbody>${(s.rows ?? []).map((r) => `<tr>${r.map((c, i) => `<td${cls(i)}>${e(c)}</td>`).join('')}</tr>`).join('') || `<tr><td colspan="${s.head.length}" class="m">${e(t('noData'))}</td></tr>`}</tbody>
-          ${s.foot ? `<tfoot><tr>${s.foot.map((c, i) => `<td${cls(i)}>${e(c)}</td>`).join('')}</tr></tfoot>` : ''}</table>`
+          <tbody>${(s.rows ?? []).map((r) => `<tr>${r.map((c, i) => `<td${cls(i)}>${cell(i, c)}</td>`).join('')}</tr>`).join('') || `<tr><td colspan="${s.head.length}" class="m">${e(t('noData'))}</td></tr>`}</tbody>
+          ${s.foot ? `<tfoot><tr>${s.foot.map((c, i) => `<td${cls(i)}>${cell(i, c)}</td>`).join('')}</tr></tfoot>` : ''}</table>`
         : ''
       return `<section>${s.title ? `<h2>${e(s.title)}</h2>` : ''}${kpis}${table}${s.note ? `<p class="m">${e(s.note)}</p>` : ''}</section>`
     })

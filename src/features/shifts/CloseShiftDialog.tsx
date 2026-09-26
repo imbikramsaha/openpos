@@ -10,7 +10,7 @@ import { confirmDialog, toast } from '@/stores/ui'
 import { Button, Modal, MoneyInput, Segmented, Textarea } from '@/components/ui'
 import { denominations } from './denominations'
 import { DiffBadge, Reconciliation } from './parts'
-import { closeShift, shiftMovements, shiftSummary, type ShiftRecord } from './service'
+import { amountError, closeShift, shiftMovements, shiftSummary, type ShiftRecord } from './service'
 import { printShiftReport } from './report'
 
 type Mode = 'count' | 'total'
@@ -49,6 +49,9 @@ export function CloseShiftDialog({ open, shift, onClose }: { open: boolean; shif
   const hasCount = mode === 'total' ? typed !== undefined : Object.values(counts).some(Boolean) || !!extra
   const expected = sum?.expectedCash ?? 0
   const diff = counted - expected
+  const extraError = amountError(extra)
+  const typedError = amountError(typed)
+  const invalid = !!(mode === 'total' ? typedError : extraError || amountError(counted))
 
   const setCount = (d: number, n: number) => setCounts((c) => ({ ...c, [String(d)]: Math.max(0, Math.min(99999, Math.round(n) || 0)) }))
   const label = (d: number) => {
@@ -61,7 +64,7 @@ export function CloseShiftDialog({ open, shift, onClose }: { open: boolean; shif
   }
 
   const submit = async () => {
-    if (!target || !sum) return
+    if (!target || !sum || invalid || busy) return
     if (diff !== 0) {
       const ok = await confirmDialog({
         title: diff < 0 ? t('confirmShort', { amount: formatMoney(-diff) }) : t('confirmOver', { amount: formatMoney(diff) }),
@@ -130,7 +133,7 @@ export function CloseShiftDialog({ open, shift, onClose }: { open: boolean; shif
       footer={
         <>
           <Button onClick={onClose}>{t('common:cancel')}</Button>
-          <Button variant="primary" loading={busy} disabled={!sum} onClick={submit}>
+          <Button variant="primary" loading={busy} disabled={!sum || invalid} onClick={submit}>
             {t('closeShift')}
           </Button>
         </>
@@ -148,7 +151,7 @@ export function CloseShiftDialog({ open, shift, onClose }: { open: boolean; shif
         <div className="min-w-0">
           <div className="truncate text-xs font-medium text-muted">{t('difference')}</div>
           <div className={cn('tnum truncate text-lg font-semibold', !hasCount ? 'text-subtle' : diff === 0 ? 'text-success' : diff < 0 ? 'text-danger' : 'text-warning')}>
-            {hasCount ? formatMoney(diff, { sign: true }) : '—'}
+            {hasCount ? <bdi>{formatMoney(diff, { sign: true })}</bdi> : '—'}
           </div>
         </div>
         {hasCount && (
@@ -206,10 +209,10 @@ export function CloseShiftDialog({ open, shift, onClose }: { open: boolean; shif
                   )
                 })}
               </ul>
-              <MoneyInput label={t('otherAmount')} hint={t('otherAmountHint')} value={extra} onChange={setExtra} wrapperClassName="mt-3" />
+              <MoneyInput label={t('otherAmount')} hint={t('otherAmountHint')} value={extra} onChange={setExtra} error={extraError ? t(extraError) : undefined} wrapperClassName="mt-3" />
             </div>
           ) : (
-            <MoneyInput label={t('countedCash')} hint={t('countedCashHint')} value={typed} onChange={setTyped} autoFocus className="h-14 text-2xl font-semibold" />
+            <MoneyInput label={t('countedCash')} hint={t('countedCashHint')} value={typed} onChange={setTyped} error={typedError ? t(typedError) : undefined} autoFocus className="h-14 text-2xl font-semibold" />
           )}
         </div>
         <div className="min-w-0 space-y-4">

@@ -159,6 +159,20 @@ export function bucketTitle(ts: number, g: Granularity): string {
   return dtf({ month: 'long', year: 'numeric' }).format(ts)
 }
 
+/**
+ * Tooltip/table title for bucket `i`, clipped to [from, to] when the range covers only part of a
+ * month (a custom range from the 28th must not read as the whole month).
+ */
+export function bucketRangeTitle(starts: number[], i: number, g: Granularity, from: number, to: number): string {
+  const s = starts[i]
+  if (g !== 'month') return bucketTitle(s, g)
+  const next = new Date(s)
+  next.setMonth(next.getMonth() + 1)
+  const end = next.getTime() - 1
+  if (s >= from && end <= to) return bucketTitle(s, g)
+  return rangeLabel(Math.max(s, from), Math.min(end, to))
+}
+
 export function hourLabel(h: number): string {
   return dtf({ hour: 'numeric' }).format(new Date(2000, 0, 1, h))
 }

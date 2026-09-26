@@ -102,7 +102,7 @@ function ChartTooltip({ x, width, top, title, rows, footer }: { x: number; width
       {rows.map((r, i) => (
         <div key={i} className="flex items-center gap-2 py-0.5">
           {r.color && (r.kind === 'rect' ? <span className="size-2.5 shrink-0 rounded-[3px]" style={{ background: r.color }} /> : <span className="h-0.5 w-3 shrink-0 rounded-full" style={{ background: r.color }} />)}
-          <span className={cn('tnum font-semibold whitespace-nowrap', r.muted ? 'text-muted' : 'text-sm text-fg')}>{r.value}</span>
+          <bdi className={cn('tnum font-semibold whitespace-nowrap', r.muted ? 'text-muted' : 'text-sm text-fg')}>{r.value}</bdi>
           {r.label && <span className="truncate text-muted">{r.label}</span>}
         </div>
       ))}
@@ -144,7 +144,7 @@ export function DeltaBadge({ cur, prev, good = 'up', className }: { cur: number;
     <span className={cn('tnum inline-flex items-center gap-0.5 text-xs font-semibold whitespace-nowrap', tone, className)} title={t('comparedToPrevious')}>
       <Icon className="size-3.5 rtl:-scale-x-100" aria-hidden />
       <span className="sr-only">{dir === 'up' ? t('increase') : dir === 'down' ? t('decrease') : t('noChange')}</span>
-      {dir === 'flat' ? '0%' : `${change > 0 ? '+' : '−'}${pct(Math.abs(change))}`}
+      <bdi>{dir === 'flat' ? pct(0) : `${change > 0 ? '+' : '−'}${pct(Math.abs(change))}`}</bdi>
     </span>
   )
 }
@@ -167,7 +167,7 @@ export function KpiTile({ label, value, title, cur, prev, prevDisplay, good = 'u
     <Card className={cn('kviz flex min-w-0 flex-col p-4', hero && 'sm:p-5', className)}>
       <div className="truncate text-sm font-medium text-muted">{label}</div>
       <div className={cn('mt-1 truncate font-semibold tracking-tight', hero ? 'text-[2rem] leading-tight sm:text-5xl' : 'text-2xl')} title={title}>
-        {value}
+        <bdi>{value}</bdi>
       </div>
       {cur !== undefined && prev !== undefined && (
         <div className="mt-1.5 flex flex-wrap items-center gap-x-2 gap-y-0.5 text-xs">
@@ -244,7 +244,7 @@ export function SimpleTable({ head, rows, numeric = [] }: MiniTable) {
             <tr key={ri}>
               {r.map((c, i) => (
                 <td key={i} className={cn('px-3 py-1.5', isNum(i) ? 'tnum text-end whitespace-nowrap' : 'text-start')}>
-                  {c}
+                  {isNum(i) ? <bdi>{c}</bdi> : c}
                 </td>
               ))}
             </tr>
@@ -650,7 +650,7 @@ export function BarList({ rows, color = ACCENT, className }: { rows: BarRow[]; c
               {r.label}
             </span>
             {r.sub && <span className="tnum shrink-0 text-xs text-muted">{r.sub}</span>}
-            <span className="tnum shrink-0 font-semibold">{r.display}</span>
+            <bdi className="tnum shrink-0 font-semibold">{r.display}</bdi>
           </div>
           <div className="mt-1.5 h-2 w-full">
             <div
@@ -714,7 +714,7 @@ export function ShareBar({ items, ariaLabel }: { items: ShareItem[]; ariaLabel: 
             <span className="min-w-0 flex-1 truncate">{i.label}</span>
             {i.sub && <span className="tnum hidden shrink-0 text-xs text-muted sm:inline">{i.sub}</span>}
             <span className="tnum w-14 shrink-0 text-end text-xs text-muted">{i.value > 0 && total ? pct((i.value / total) * 100) : '—'}</span>
-            <span className="tnum shrink-0 text-end font-semibold">{i.display}</span>
+            <bdi className="tnum shrink-0 text-end font-semibold">{i.display}</bdi>
           </li>
         ))}
       </ul>
@@ -742,6 +742,7 @@ export function Heatmap({ rows, cols, colTitles, format, countLabel, lessLabel, 
   ariaLabel: string
 }) {
   const { ref, width } = useWidth<HTMLDivElement>()
+  const rtl = useRtl()
   const [active, setActive] = useState<{ r: number; c: number; x: number; y: number } | null>(null)
   const clear = useMemo(() => () => setActive(null), [])
   useDismiss(ref, active !== null, clear)
@@ -794,7 +795,7 @@ export function Heatmap({ rows, cols, colTitles, format, countLabel, lessLabel, 
       </div>
       <div className="mt-3 flex items-center justify-end gap-2 text-xs text-muted">
         <span>{lessLabel}</span>
-        <span className="h-2.5 w-28 rounded-[3px]" style={{ background: 'linear-gradient(to right, var(--viz-zero), color-mix(in oklab, var(--viz-1) 30%, var(--viz-surface)), var(--viz-1))' }} />
+        <span className="h-2.5 w-28 rounded-[3px]" style={{ background: `linear-gradient(to ${rtl ? 'left' : 'right'}, var(--viz-zero), color-mix(in oklab, var(--viz-1) 30%, var(--viz-surface)), var(--viz-1))` }} />
         <span>{moreLabel}</span>
         {max > 0 && <span className="tnum text-subtle">({format(max)})</span>}
       </div>

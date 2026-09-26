@@ -39,7 +39,10 @@ export const moneyConfig = () => config
 export function toMinor(major: number | string, decimals = config.decimals): Minor {
   const n = typeof major === 'number' ? major : parseDecimal(major)
   if (!Number.isFinite(n)) return 0
-  return Math.round(n * 10 ** decimals)
+  // Scale-relative nudge so float noise (12.345 * 100 = 1234.4999…) rounds as written.
+  const x = n * 10 ** decimals
+  const r = Math.round(Math.abs(x) * (1 + 4 * Number.EPSILON))
+  return x < 0 ? -r : r
 }
 
 export function fromMinor(minor: Minor, decimals = config.decimals): number {
@@ -48,7 +51,7 @@ export function fromMinor(minor: Minor, decimals = config.decimals): number {
 
 /** Accepts "1,234.50", "1.234,50", "12,5" and similar user input. */
 export function parseDecimal(input: string): number {
-  let s = input.trim().replace(/[\s ']/g, '')
+  let s = input.trim().replace(/[\s\u00a0']/g, '').replace(/\u2212/g, '-')
   if (!s) return NaN
   const commas = (s.match(/,/g) || []).length
   const dots = (s.match(/\./g) || []).length
@@ -63,6 +66,8 @@ export function parseDecimal(input: string): number {
   } else if (dots > 1) {
     s = s.replace(/\./g, '')
   }
+  // Plain decimals only: no exponents (1e20), Infinity or stray characters.
+  if (!/^[-+]?(\d+(\.\d*)?|\.\d+)$/.test(s)) return NaN
   return Number(s)
 }
 
@@ -76,8 +81,10 @@ export function formatMoney(minor: Minor, opts: { sign?: boolean; currency?: str
     f = makeFormatter(config.locale, currency)
   }
   const d = currency === config.currency ? config.decimals : currencyDecimals(currency)
-  const s = f.format(minor / 10 ** d)
-  return opts.sign && minor > 0 ? `+${s}` : s
+  let s = f.format(minor / 10 ** d)
+  if (opts.sign && minor > 0) s = `+${s}`
+  // In right-to-left languages an unisolated "-₹120.00" renders as "₹120.00-".
+  return typeof document !== 'undefined' && document.documentElement.dir === 'rtl' ? `\u2066${s}\u2069` : s
 }
 
 function makeFormatter(locale: string, currency: string) {

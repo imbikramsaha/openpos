@@ -1,7 +1,7 @@
 import i18n from 'i18next'
 import type { Settings } from '@/core/types'
 import { printHtml } from '@/lib/print'
-import { int, money, pct, qty, share } from './format'
+import { int, margin, money, pct, qty, share } from './format'
 import { reportHtml, type PrintSection } from './print'
 import { categoryRows, productRows } from './rows'
 import { methodOrder, terminalLabel } from './context'
@@ -30,7 +30,7 @@ export function printSummary(data: ReportData, report: ReportState, settings: Se
         [t('kpi.netSales'), money(T.net)],
         [t('kpi.transactions'), int(T.sales)],
         [t('kpi.avgTicket'), money(T.sales ? Math.round(T.salesTotal / T.sales) : 0)],
-        [t('kpi.grossProfit'), `${money(T.profit)} (${pct(T.net ? (T.profit / T.net) * 100 : 0)})`],
+        [t('kpi.grossProfit'), `${money(T.profit)} (${pct(margin(T.profit, T.net))})`],
         [t('kpi.tax'), money(T.tax)],
         [t('kpi.discounts'), money(T.discounts)],
         [t('kpi.refunds'), `${money(Math.abs(T.refunds))} (${int(T.refundsCount)})`],

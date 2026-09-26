@@ -30,10 +30,12 @@ export function TaxTab({ data }: TabProps) {
   const cn = cur.creditNotes
   const cnTotal = sum(cn, (s) => s.total)
   const missingHsn = hsn.filter((h) => !h.hsn).length
+  // Rate rows add up line values; cash rounding is per invoice, so say where the difference went.
+  const roundNote = cur.totals.rounding ? t('tax.roundingNote', { amount: formatMoney(cur.totals.rounding, { sign: true }) }) : undefined
 
   const rateCols: RCol<RateAgg>[] = [
     { key: 'rate', label: t('tax.rate'), kind: 'pct', value: (r) => r.rate, render: (r) => <span className="font-medium">{pct(r.rate)}</span> },
-    { key: 'name', label: t('tax.name'), value: (r) => r.name || (r.rate ? '' : t('tax.exempt')), hideOnMobile: true },
+    { key: 'name', label: t('tax.taxName'), value: (r) => r.name || (r.rate ? '' : t('tax.exempt')), hideOnMobile: true },
     { key: 'taxable', label: t('tax.taxable'), kind: 'money', value: (r) => r.taxable },
     ...(gst
       ? ([
@@ -48,7 +50,7 @@ export function TaxTab({ data }: TabProps) {
 
   const hsnCols: RCol<HsnAgg>[] = [
     { key: 'hsn', label: 'HSN/SAC', value: (r) => r.hsn, render: (r) => (r.hsn ? <span className="font-medium">{r.hsn}</span> : <Badge tone="warning">{t('tax.noHsn')}</Badge>) },
-    { key: 'description', label: t('tax.description'), value: (r) => r.description, className: 'max-w-56 truncate' },
+    { key: 'description', label: t('tax.description'), value: (r) => (r.others ? t('tax.andOthers', { name: r.description, count: r.others }) : r.description), className: 'max-w-56 truncate' },
     { key: 'uqc', label: 'UQC', value: (r) => uqc(r.unit), hideOnMobile: true },
     { key: 'rate', label: t('tax.rate'), kind: 'pct', value: (r) => r.rate },
     { key: 'qty', label: t('common:qty'), kind: 'qty', value: (r) => r.qty },
@@ -100,7 +102,8 @@ export function TaxTab({ data }: TabProps) {
 
       <ReportTable
         title={t('tax.byRate')}
-        subtitle={t('tax.netOfCredit')}
+        subtitle={roundNote ? `${t('tax.netOfCredit')} · ${roundNote}` : t('tax.netOfCredit')}
+        printNote={roundNote}
         rows={rates}
         columns={rateCols}
         rowKey={(r) => String(r.rate)}

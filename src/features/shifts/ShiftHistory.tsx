@@ -42,7 +42,7 @@ export function ShiftHistory() {
   const diffTotal = closedRows.reduce((a, r) => a + (r.difference ?? 0), 0)
 
   const diffCell = (r: ShiftRecord) =>
-    r.status !== 'closed' ? <Badge tone="success">{t('statusOpen')}</Badge> : <span className={cn('font-semibold', !r.difference ? 'text-success' : r.difference < 0 ? 'text-danger' : 'text-warning')}>{r.difference ? formatMoney(r.difference, { sign: true }) : t('balanced')}</span>
+    r.status !== 'closed' ? <Badge tone="success">{t('statusOpen')}</Badge> : <span className={cn('font-semibold', !r.difference ? 'text-success' : r.difference < 0 ? 'text-danger' : 'text-warning')}>{r.difference ? <bdi>{formatMoney(r.difference, { sign: true })}</bdi> : t('balanced')}</span>
   const columns: RCol<ShiftRecord>[] = [
     { key: 'number', label: t('shift'), value: (r) => r.number, render: (r) => <span className="font-medium whitespace-nowrap">{r.number}</span> },
     { key: 'terminal', label: t('terminal'), value: (r) => shiftTerminal(r), hideOnMobile: true },
@@ -56,7 +56,7 @@ export function ShiftHistory() {
   ]
 
   return (
-    <ReportMetaContext.Provider value={{ rangeLabel: from || to ? `${from || '…'} – ${to || '…'}` : '', prevLabel: '', fileTag: from || to ? `${from}_${to}` : '', settings }}>
+    <ReportMetaContext.Provider value={{ rangeLabel: from || to ? `${from || '…'} – ${to || '…'}` : '', prevLabel: '', fileTag: [from, to].filter(Boolean).join('_'), settings }}>
       <ReportTable
         title={t('history')}
         subtitle={closedRows.length ? t('historyHint', { count: closedRows.length, amount: formatMoney(diffTotal, { sign: true }) }) : undefined}

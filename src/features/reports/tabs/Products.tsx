@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next'
 import { Select } from '@/components/ui'
 import { cn } from '@/lib/cn'
 import { BarList, ChartCard } from '../charts'
-import { money, pct, qty } from '../format'
+import { margin, money, pct, qty } from '../format'
 import { ReportTable, type RCol } from '../ReportTable'
 import { categoryRows, productRows, type CategoryRow, type ProductRow } from '../rows'
 import type { TabProps } from '../context'
@@ -29,7 +29,7 @@ export function ProductsTab({ data, report }: TabProps) {
       s.tax += r.tax
       s.total += r.total
     }
-    return { ...s, margin: s.net ? (s.profit / s.net) * 100 : 0, share: data.cur.totals.net ? (s.net / data.cur.totals.net) * 100 : 0 }
+    return { ...s, margin: margin(s.profit, s.net), share: data.cur.totals.net ? (s.net / data.cur.totals.net) * 100 : 0 }
   }, [filtered, data.cur.totals.net])
   const catOptions = useMemo(() => {
     const seen = new Map<string, string>()
@@ -119,7 +119,7 @@ export function CategoriesTab({ data, report }: TabProps) {
         columns={columns}
         rowKey={(r) => r.key}
         initialSort={{ key: 'net', dir: 'desc' }}
-        totals={{ products: tot.products, qty: tot.qty, net: tot.net, cost: tot.cost, profit: tot.profit, margin: tot.net ? (tot.profit / tot.net) * 100 : 0, share: data.cur.totals.net ? (tot.net / data.cur.totals.net) * 100 : 0 }}
+        totals={{ products: tot.products, qty: tot.qty, net: tot.net, cost: tot.cost, profit: tot.profit, margin: margin(tot.profit, tot.net), share: data.cur.totals.net ? (tot.net / data.cur.totals.net) * 100 : 0 }}
         filename="categories"
       />
     </div>

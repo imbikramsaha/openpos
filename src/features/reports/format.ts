@@ -47,8 +47,11 @@ export const pct = (n: number) => (Number.isFinite(n) ? formatPercent(Math.round
 /** Share of a total as a percentage number (0–100). */
 export const share = (part: number, total: number) => (total ? (part / total) * 100 : 0)
 
-/** Margin % of profit over revenue. */
-export const margin = (profit: number, revenue: number) => (revenue ? (profit / revenue) * 100 : 0)
+/** Margin % of profit over revenue (over its size when refunds make revenue negative, so a loss stays negative). */
+export const margin = (profit: number, revenue: number) => (revenue ? (profit / Math.abs(revenue)) * 100 : 0)
+
+/** Percentage change with an explicit sign: +12.5%, −3%, 0%. */
+export const signedPct = (n: number) => (!Number.isFinite(n) ? '—' : Math.abs(n) < 0.05 ? pct(0) : `${n > 0 ? '+' : '−'}${pct(Math.abs(n))}`)
 
 /** Plain decimal for CSV (no grouping, dot decimal) so spreadsheets parse it. */
 export function csvMoney(minor: number): string {

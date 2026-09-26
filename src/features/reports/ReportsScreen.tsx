@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Boxes, ChartLine, Landmark, LayoutGrid, Package, Printer, Users, UserRound, Wallet } from 'lucide-react'
 import { navigate, useRoute } from '@/router'
@@ -79,6 +79,10 @@ export default function ReportsScreen() {
   )
 
   const terminals = data ? [...data.cur.allTerminals] : []
+  // Keep the selected till listed (with the code seen earlier) even when the new range has no sales from it.
+  const seenTerminals = useRef(new Map<string, string>())
+  for (const [id, code] of terminals) seenTerminals.current.set(id, code)
+  if (terminal && !terminals.some(([id]) => id === terminal)) terminals.push([terminal, seenTerminals.current.get(terminal) ?? ''])
   const tabs: TabItem<TabId>[] = [
     { id: 'overview', label: t('tabs.overview'), icon: <ChartLine /> },
     { id: 'products', label: t('tabs.products'), icon: <Package /> },

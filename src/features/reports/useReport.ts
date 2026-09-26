@@ -14,6 +14,9 @@ export interface ReportData {
   starts: number[]
   prevStarts: number[]
   period: Period
+  /** The range the current figures cover. */
+  from: number
+  to: number
 }
 
 export interface ReportState {
@@ -40,7 +43,7 @@ export function useReport(range: Range, deviceId: string): ReportState {
     const ids = [...new Set(agg.creditNotes.map((c) => c.refundOf).filter((id): id is string => !!id))]
     const originals = new Map<string, string>()
     if (ids.length) for (const d of await db.sales.bulkGet(ids)) if (d) originals.set(d.id, d.number)
-    return { key, agg, originals, granularity, starts }
+    return { key, agg, originals, granularity, starts, from: range.from, to: range.to }
   }, [key])
 
   const before = useLiveQuery(async () => {
@@ -49,15 +52,19 @@ export function useReport(range: Range, deviceId: string): ReportState {
     return { key, agg, starts, period: prev }
   }, [key])
 
-  const products = useLiveQuery(() => db.products.filter((p) => !p.deleted).toArray(), [])
-  const categories = useLiveQuery(() => db.categories.filter((c) => !c.deleted).toArray(), [])
-  const productMap = useMemo(() => new Map((products ?? []).map((p) => [p.id, p])), [products])
-  const categoryMap = useMemo(() => new Map((categories ?? []).map((c) => [c.id, c])), [categories])
+  // Past sales can refer to products/categories deleted since: keep them in the lookup maps so
+  // their revenue stays under the right name and category; lists (inventory) show live ones only.
+  const allProducts = useLiveQuery(() => db.products.toArray(), [])
+  const allCategories = useLiveQuery(() => db.categories.toArray(), [])
+  const products = useMemo(() => (allProducts ?? []).filter((p) => !p.deleted), [allProducts])
+  const categories = useMemo(() => (allCategories ?? []).filter((c) => !c.deleted), [allCategories])
+  const productMap = useMemo(() => new Map((allProducts ?? []).map((p) => [p.id, p])), [allProducts])
+  const categoryMap = useMemo(() => new Map((allCategories ?? []).map((c) => [c.id, c])), [allCategories])
 
   const data = useMemo<ReportData | undefined>(
     () =>
       cur && before && cur.key === before.key
-        ? { cur: cur.agg, prev: before.agg, originals: cur.originals, granularity: cur.granularity, starts: cur.starts, prevStarts: before.starts, period: before.period }
+        ? { cur: cur.agg, prev: before.agg, originals: cur.originals, granularity: cur.granularity, starts: cur.starts, prevStarts: before.starts, period: before.period, from: cur.from, to: cur.to }
         : undefined,
     [cur, before],
   )
@@ -69,8 +76,8 @@ export function useReport(range: Range, deviceId: string): ReportState {
     data: data ?? last.current,
     loading: !cur || !before || cur.key !== key || before.key !== key,
     prev,
-    products: products ?? [],
-    categories: categories ?? [],
+    products,
+    categories,
     productMap,
     categoryMap,
   }

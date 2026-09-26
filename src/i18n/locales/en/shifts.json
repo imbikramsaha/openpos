@@ -35,6 +35,9 @@
   "cashMoveHint": "Record cash put into or taken out of the drawer, with a reason.",
   "cashInDone": "{{amount}} added to the drawer",
   "cashOutDone": "{{amount}} taken out of the drawer",
+  "amountNegative": "Can't be negative",
+  "amountTooLarge": "This amount is too large",
+  "alreadyClosed": "This shift is already closed.",
   "moreThanDrawer": "More than the expected cash in the drawer ({{amount}}).",
   "reasonPlaceholder": "e.g. Milk supplier",
   "reasons": {

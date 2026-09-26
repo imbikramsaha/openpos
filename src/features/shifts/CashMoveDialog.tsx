@@ -5,7 +5,7 @@ import { cn } from '@/lib/cn'
 import { formatMoney } from '@/lib/money'
 import { toast } from '@/stores/ui'
 import { Button, Input, Modal, MoneyInput, Segmented } from '@/components/ui'
-import { addCashMovement } from './service'
+import { addCashMovement, amountError } from './service'
 
 const REASONS = {
   in: ['reasons.float', 'reasons.change', 'reasons.other'],
@@ -27,8 +27,10 @@ export function CashMoveDialog({ open, type: initial, onClose, expected }: { ope
   }, [open, initial])
 
   const tooMuch = type === 'out' && expected !== undefined && (amount ?? 0) > expected
+  const error = amountError(amount)
+  const valid = !!amount && amount > 0 && !error
   const submit = async () => {
-    if (!amount || amount <= 0) return
+    if (!valid || busy) return
     setBusy(true)
     try {
       await addCashMovement(type, amount, reason.trim())
@@ -51,7 +53,7 @@ export function CashMoveDialog({ open, type: initial, onClose, expected }: { ope
       footer={
         <>
           <Button onClick={onClose}>{t('common:cancel')}</Button>
-          <Button variant={type === 'in' ? 'success' : 'danger'} loading={busy} disabled={!amount || amount <= 0} onClick={submit} icon={type === 'in' ? <ArrowDownToLine className="size-4" /> : <ArrowUpFromLine className="size-4" />}>
+          <Button variant={type === 'in' ? 'success' : 'danger'} loading={busy} disabled={!valid} onClick={submit} icon={type === 'in' ? <ArrowDownToLine className="size-4" /> : <ArrowUpFromLine className="size-4" />}>
             {type === 'in' ? t('addCash') : t('removeCash')}
           </Button>
         </>
@@ -67,7 +69,7 @@ export function CashMoveDialog({ open, type: initial, onClose, expected }: { ope
             { value: 'out', label: t('cashOut') },
           ]}
         />
-        <MoneyInput label={t('common:amount')} value={amount} onChange={setAmount} autoFocus className="h-14 text-2xl font-semibold" error={tooMuch ? t('moreThanDrawer', { amount: formatMoney(expected ?? 0) }) : undefined} />
+        <MoneyInput label={t('common:amount')} value={amount} onChange={setAmount} autoFocus className="h-14 text-2xl font-semibold" error={error ? t(error) : tooMuch ? t('moreThanDrawer', { amount: formatMoney(expected ?? 0) }) : undefined} />
         <div>
           <Input label={t('common:reason')} value={reason} onChange={(e) => setReason(e.target.value)} placeholder={t('reasonPlaceholder')} maxLength={120} />
           <div className="mt-2 flex flex-wrap gap-1.5">

@@ -1,3 +1,4 @@
+import i18n from 'i18next'
 import type { CashMovement, Shift, TaxBreakdown } from '@/core/types'
 import { gstSplit, type GstRow } from '@/core/cart'
 import { db } from '@/db/db'
@@ -12,6 +13,22 @@ import { session } from '@/stores/session'
  */
 export type ShiftRecord = Shift & { closedById?: string; closedByName?: string }
 
+/** Largest amount accepted for a float, count or cash movement (minor units, well inside safe integers). */
+export const MAX_AMOUNT = 10_000_000_000_000
+
+/** i18n key (shifts namespace) when a cash amount can't be right, e.g. a negative float. */
+export function amountError(v: number | undefined): 'amountNegative' | 'amountTooLarge' | undefined {
+  if (v === undefined) return undefined
+  if (v < 0) return 'amountNegative'
+  if (!Number.isFinite(v) || v > MAX_AMOUNT) return 'amountTooLarge'
+  return undefined
+}
+
+function checkAmount(v: number) {
+  const err = amountError(v)
+  if (err) throw new Error(i18n.t(`shifts:${err}`))
+}
+
 export async function loadCurrentShift(): Promise<Shift | null> {
   const open = await db.shifts.where('status').equals('open').toArray()
   const mine = open.filter((s) => s.deviceId === device().deviceId && !s.deleted).sort((a, b) => b.openedAt - a.openedAt)
@@ -23,6 +40,7 @@ export async function loadCurrentShift(): Promise<Shift | null> {
 export async function openShift(openingFloat: number, notes?: string): Promise<Shift> {
   const user = session().user
   if (!user) throw new Error('Not logged in')
+  checkAmount(openingFloat)
   const existing = await loadCurrentShift()
   if (existing) return existing
   const now = Date.now()
@@ -155,6 +173,14 @@ export async function shiftSummary(shift: Shift): Promise<ShiftSummary> {
 }
 
 export async function closeShift(shift: Shift, countedCash: number, notes?: string): Promise<Shift> {
+  checkAmount(countedCash)
+  // The copy in memory may be stale (another tab, a double submit): never close twice.
+  const stored = await db.shifts.get(shift.id)
+  if (!stored || stored.deleted || stored.status !== 'open') {
+    if (session().shift?.id === shift.id) session().setShift(null)
+    throw new Error(i18n.t('shifts:alreadyClosed'))
+  }
+  shift = stored
   const summary = await shiftSummary(shift)
   const now = Date.now()
   const user = session().user
@@ -182,6 +208,10 @@ export async function closeShift(shift: Shift, countedCash: number, notes?: stri
 export async function addCashMovement(type: 'in' | 'out', amount: number, reason: string): Promise<CashMovement> {
   const user = session().user
   if (!user) throw new Error('Not logged in')
+  if (!(amount > 0)) throw new Error(i18n.t('shifts:amountNegative'))
+  checkAmount(amount)
+  // Drawer movements belong to a shift; without one they would never be reconciled.
+  if (!session().shift) throw new Error(i18n.t('shifts:noShift'))
   const now = Date.now()
   const m: CashMovement = { id: uuid(), createdAt: now, updatedAt: now, shiftId: session().shift?.id, type, amount, reason, userId: user.id, userName: user.name }
   await tx(['cashMovements'], async () => {

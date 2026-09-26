@@ -29,7 +29,7 @@ export function Line({ label, value, strong, muted, className, sign }: { label: 
         {sign && <span className="tnum w-3 shrink-0 text-center text-subtle">{sign}</span>}
         <span className="min-w-0 break-words">{label}</span>
       </span>
-      <span className="tnum shrink-0 text-end">{formatMoney(value)}</span>
+      <bdi className="tnum shrink-0 text-end">{formatMoney(value)}</bdi>
     </div>
   )
 }
@@ -139,7 +139,7 @@ export function MovementList({ moves }: { moves: CashMovement[] }) {
               {formatTime(m.createdAt)} · {m.userName} · {m.type === 'in' ? t('cashIn') : t('cashOut')}
             </div>
           </div>
-          <span className={cn('tnum shrink-0 font-semibold', m.type === 'in' ? 'text-success' : 'text-danger')}>{formatMoney(m.type === 'in' ? m.amount : -m.amount, { sign: true })}</span>
+          <bdi className={cn('tnum shrink-0 font-semibold', m.type === 'in' ? 'text-success' : 'text-danger')}>{formatMoney(m.type === 'in' ? m.amount : -m.amount, { sign: true })}</bdi>
         </li>
       ))}
     </ul>
