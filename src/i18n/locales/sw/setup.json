@@ -39,5 +39,11 @@
   "join": "Unganisha",
   "joined": "Imeunganishwa na {{name}}",
   "joinFailed": "Imeshindwa kuunganisha na seva",
-  "joinNoData": "Seva bado haina data ya duka. Sanidi kaunta ya kwanza kama kawaida, kisha uiunganishe na seva."
+  "joinNoData": "Seva bado haina data ya duka. Sanidi kaunta ya kwanza kama kawaida, kisha uiunganishe na seva.",
+  "restoreBackup": "Rejesha kutoka kwa nakala ya akiba",
+  "restore": "Rejesha",
+  "restoreConfirmTitle": "Rejesha nakala hii ya akiba?",
+  "restoreConfirmMessage": "Kifaa hiki kitasanidiwa kutoka kwa “{{name}}”, iliyohifadhiwa nakala tarehe {{date}}. Utaingia kwa PIN kutoka nakala hiyo.",
+  "defaultFooter": "Asante! Karibu tena.",
+  "defaultTerminalName": "Kaunta 1"
 }

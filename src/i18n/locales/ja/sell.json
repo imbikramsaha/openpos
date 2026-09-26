@@ -163,5 +163,9 @@
     "scanUpi": "任意の UPI アプリでスキャンしてお支払いください",
     "thankYou": "ご利用ありがとうございました!"
   },
-  "addProduct": "商品を追加"
+  "addProduct": "商品を追加",
+  "invalidPrice": "0 以上の価格を入力してください",
+  "amountTooLarge": "合計金額が大きすぎます。数量と価格を確認してください。",
+  "refundComplete": "返金完了",
+  "receiptAmbiguous": "{{number}} で終わる取引が複数あります。レシート番号をもっと入力してください。"
 }

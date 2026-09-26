@@ -155,7 +155,10 @@
     "saved": "{{number}} を保存しました — 在庫に反映されました",
     "discard": "破棄",
     "discardTitle": "この仕入れを破棄しますか?",
-    "discardMessage": "入力した商品はすべて削除されます。"
+    "discardMessage": "入力した商品はすべて削除されます。",
+    "badCost": "原価はマイナスにできません。",
+    "badPaid": "支払金額はマイナスにしたり、合計を超えたりすることはできません。",
+    "deletedLines": "商品が削除された行は削除してください。"
   },
   "suppliers": {
     "new": "新規仕入先",

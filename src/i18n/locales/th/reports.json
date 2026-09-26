@@ -149,7 +149,10 @@
     "supply": "การจัดหา",
     "intra": "ภายในรัฐ",
     "inter": "ข้ามรัฐ",
-    "interStateSupplies": "การจัดหาข้ามรัฐ"
+    "interStateSupplies": "การจัดหาข้ามรัฐ",
+    "taxName": "ชื่อภาษี",
+    "andOthers_other": "{{name}} และอีก {{count}} รายการ",
+    "roundingNote": "มูลค่าใบกำกับภาษีไม่รวมการปัดเศษเงินสด {{amount}}"
   },
   "inventory": {
     "title": "สต็อก",

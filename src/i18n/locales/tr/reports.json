@@ -159,7 +159,11 @@
     "supply": "Teslim türü",
     "intra": "Eyalet içi",
     "inter": "Eyaletler arası",
-    "interStateSupplies": "Eyaletler arası teslimatlar"
+    "interStateSupplies": "Eyaletler arası teslimatlar",
+    "taxName": "Vergi adı",
+    "andOthers_one": "{{name}} ve bir tane daha",
+    "andOthers_other": "{{name}} ve {{count}} tane daha",
+    "roundingNote": "fatura tutarları {{amount}} nakit yuvarlamayı içermez"
   },
   "inventory": {
     "title": "Stok",

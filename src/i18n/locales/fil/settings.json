@@ -170,7 +170,10 @@
     "cashRoundingHint": "I-round ang kabuuan ng benta sa pinakamaliit na barya na ginagamit.",
     "roundingNone": "Walang rounding",
     "roundingCustom": "Kasalukuyang step: {{value}}",
-    "roundingExample": "Halimbawang kabuuan"
+    "roundingExample": "Halimbawang kabuuan",
+    "decimalsChangeTitle": "Lumipat sa {{currency}}?",
+    "decimalsChange": "Magkaiba ang bilang ng decimal places na ginagamit ng {{from}} at {{to}}. Hindi ico-convert ang mga presyo, benta at balanse, kaya magbabago ang laki ng lahat ng kasalukuyang halaga: lalabas ang {{before}} bilang {{after}}. I-type muli ang iyong mga presyo pagkatapos lumipat.",
+    "decimalsChangeConfirm": "Lumipat ng currency"
   },
   "checkout": {
     "rules": "Mga panuntunan sa pagbenta",
@@ -229,7 +232,10 @@
     "loyaltyPointValue": "Halaga ng 1 point",
     "loyaltyPointValueHint": "Diskwentong makukuha ng customer sa bawat na-redeem na point",
     "loyaltyExample": "Ang paggastos ng {{spend}} ay kumikita ng {{points}} points, na nagkakahalaga ng {{value}}.",
-    "loyaltyReturn": "Iyon ay {{percent}}% na balik."
+    "loyaltyReturn": "Iyon ay {{percent}}% na balik.",
+    "loyaltyEarnRateRange": "Ilagay ang numero mula 0 hanggang {{max}}",
+    "loyaltyPointValueRange": "Ilagay ang halagang 0 o higit pa",
+    "loyaltyTooGenerous": "Sa mga rate na ito, nakukuha ng mga customer ang kasing dami o higit pa sa ginastos nila. Suriin ang points bawat unit at ang halaga ng isang point."
   },
   "receipt": {
     "content": "Nilalaman",
@@ -391,7 +397,8 @@
     "lanHint": "Patakbuhin ang Kasa sync server sa kahit anong PC sa iyong tindahan at gamitin ang local address nito. Patuloy na nagbebenta ang mga counter kahit offline at humahabol pag bumalik ang PC.",
     "cloudTitle": "Cloud",
     "cloudHint": "I-deploy ang parehong server sa kahit anong host na may HTTPS para ikonekta ang mga branch at tingnan ang benta kahit saan.",
-    "readme": "Ang setup, store key at HTTP API ay inilarawan sa"
+    "readme": "Ang setup, store key at HTTP API ay inilarawan sa",
+    "mixedContent": "Bukas ang app na ito sa https://, at hinaharang ng mga browser ang mga koneksyon mula rito papunta sa isang http:// server. Gumamit ng https:// address para sa server, o gamitin ang desktop app sa kahang ito."
   },
   "backup": {
     "staleTitle": "Ang huling backup ay {{time}}",
@@ -473,7 +480,24 @@
     "user_update": "Nabago ang user",
     "user_delete": "Nabura ang user",
     "backup_export": "Na-export ang backup",
-    "backup_restore": "Na-restore ang backup"
+    "backup_restore": "Na-restore ang backup",
+    "category_delete": "Nabura ang kategorya",
+    "customer_adjust": "Na-adjust ang balanse ng customer",
+    "customer_delete": "Nabura ang customer",
+    "customer_import": "Na-import ang mga customer",
+    "customer_payment": "Bayad ng customer",
+    "customer_payment_delete": "Nabura ang bayad ng customer",
+    "customer_reminder": "Naipadala ang paalala sa bayad",
+    "labels_print": "Na-print ang mga label",
+    "product_barcodes": "Nagawa ang mga barcode",
+    "product_delete": "Nabura ang produkto",
+    "product_import": "Na-import ang mga produkto",
+    "purchase_create": "Naitala ang pagbili",
+    "stock_adjust": "Na-adjust ang stock",
+    "stock_count": "Pagbibilang ng stock",
+    "supplier_delete": "Nabura ang supplier",
+    "cash_in": "Nagdagdag ng cash sa drawer",
+    "cash_out": "Kumuha ng cash sa drawer"
   },
   "danger": {
     "erase": "Burahin ang lahat ng data sa device na ito",

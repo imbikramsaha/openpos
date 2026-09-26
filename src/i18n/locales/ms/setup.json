@@ -39,5 +39,11 @@
   "join": "Sambung",
   "joined": "Disambungkan ke {{name}}",
   "joinFailed": "Tidak dapat menyambung ke pelayan",
-  "joinNoData": "Pelayan belum mempunyai data kedai lagi. Sediakan kaunter pertama seperti biasa, kemudian sambungkannya ke pelayan."
+  "joinNoData": "Pelayan belum mempunyai data kedai lagi. Sediakan kaunter pertama seperti biasa, kemudian sambungkannya ke pelayan.",
+  "restoreBackup": "Pulihkan daripada sandaran",
+  "restore": "Pulihkan",
+  "restoreConfirmTitle": "Pulihkan sandaran ini?",
+  "restoreConfirmMessage": "Peranti ini akan disediakan daripada “{{name}}”, disandarkan pada {{date}}. Anda akan log masuk dengan PIN daripada sandaran itu.",
+  "defaultFooter": "Terima kasih! Sila datang lagi.",
+  "defaultTerminalName": "Kaunter 1"
 }

@@ -159,7 +159,11 @@
     "supply": "Usambazaji",
     "intra": "Ndani ya jimbo",
     "inter": "Nje ya jimbo",
-    "interStateSupplies": "Usambazaji wa nje ya jimbo"
+    "interStateSupplies": "Usambazaji wa nje ya jimbo",
+    "taxName": "Jina la kodi",
+    "andOthers_one": "{{name}} na nyingine {{count}}",
+    "andOthers_other": "{{name}} na nyingine {{count}}",
+    "roundingNote": "thamani za ankara hazijumuishi uzungushaji wa fedha wa {{amount}}"
   },
   "inventory": {
     "title": "Hisa",

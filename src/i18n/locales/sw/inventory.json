@@ -159,7 +159,10 @@
     "saved": "{{number}} imehifadhiwa — hisa imeongezwa",
     "discard": "Ondoa",
     "discardTitle": "Ondoa ununuzi huu?",
-    "discardMessage": "Bidhaa ulizoweka zitaondolewa."
+    "discardMessage": "Bidhaa ulizoweka zitaondolewa.",
+    "badCost": "Gharama za kila kipimo haziwezi kuwa hasi.",
+    "badPaid": "Kiasi kilicholipwa hakiwezi kuwa hasi au zaidi ya jumla.",
+    "deletedLines": "Ondoa vitu ambavyo bidhaa yake imefutwa."
   },
   "suppliers": {
     "new": "Msambazaji mpya",

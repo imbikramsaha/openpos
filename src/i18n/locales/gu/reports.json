@@ -159,7 +159,11 @@
     "supply": "પુરવઠો",
     "intra": "રાજ્યની અંદર",
     "inter": "આંતર-રાજ્ય",
-    "interStateSupplies": "આંતર-રાજ્ય પુરવઠો"
+    "interStateSupplies": "આંતર-રાજ્ય પુરવઠો",
+    "taxName": "ટેક્સનું નામ",
+    "andOthers_one": "{{name}} અને {{count}} અન્ય",
+    "andOthers_other": "{{name}} અને {{count}} અન્ય",
+    "roundingNote": "ઇન્વોઇસ વેલ્યુમાં {{amount}}ની કેશ રાઉન્ડિંગનો સમાવેશ થતો નથી"
   },
   "inventory": {
     "title": "સ્ટોક",

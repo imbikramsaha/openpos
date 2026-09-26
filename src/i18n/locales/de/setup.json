@@ -39,5 +39,11 @@
   "join": "Verbinden",
   "joined": "Verbunden mit {{name}}",
   "joinFailed": "Verbindung zum Server nicht möglich",
-  "joinNoData": "Der Server hat noch keine Store-Daten. Richte zuerst die erste Kasse normal ein und verbinde sie dann mit dem Server."
+  "joinNoData": "Der Server hat noch keine Store-Daten. Richte zuerst die erste Kasse normal ein und verbinde sie dann mit dem Server.",
+  "restoreBackup": "Aus einer Sicherung wiederherstellen",
+  "restore": "Wiederherstellen",
+  "restoreConfirmTitle": "Diese Sicherung wiederherstellen?",
+  "restoreConfirmMessage": "Dieses Gerät wird anhand von „{{name}}“ eingerichtet, gesichert am {{date}}. Du meldest dich mit einer PIN aus dieser Sicherung an.",
+  "defaultFooter": "Danke! Komm bald wieder.",
+  "defaultTerminalName": "Kasse 1"
 }

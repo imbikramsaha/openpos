@@ -159,7 +159,11 @@
     "supply": "Supply",
     "intra": "Sa loob ng state",
     "inter": "Sa ibang state",
-    "interStateSupplies": "Mga supply sa ibang state"
+    "interStateSupplies": "Mga supply sa ibang state",
+    "taxName": "Pangalan ng buwis",
+    "andOthers_one": "{{name}} at {{count}} pa",
+    "andOthers_other": "{{name}} at {{count}} pa",
+    "roundingNote": "hindi kasama sa halaga ng invoice ang cash rounding na {{amount}}"
   },
   "inventory": {
     "title": "Stock",

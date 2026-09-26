@@ -39,5 +39,11 @@
   "join": "연결",
   "joined": "{{name}}에 연결되었습니다",
   "joinFailed": "서버에 연결할 수 없습니다",
-  "joinNoData": "서버에 아직 매장 데이터가 없습니다. 먼저 첫 번째 단말기를 일반적인 방식으로 설정한 후 서버에 연결하세요."
+  "joinNoData": "서버에 아직 매장 데이터가 없습니다. 먼저 첫 번째 단말기를 일반적인 방식으로 설정한 후 서버에 연결하세요.",
+  "restoreBackup": "백업에서 복원",
+  "restore": "복원",
+  "restoreConfirmTitle": "이 백업을 복원하시겠습니까?",
+  "restoreConfirmMessage": "이 기기는 “{{name}}”({{date}}에 백업됨)(으)로 설정됩니다. 해당 백업의 PIN으로 로그인하게 됩니다.",
+  "defaultFooter": "감사합니다! 또 방문해 주세요.",
+  "defaultTerminalName": "카운터 1"
 }

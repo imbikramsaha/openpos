@@ -149,7 +149,10 @@
     "supply": "Bekalan",
     "intra": "Dalam negeri",
     "inter": "Antara negeri",
-    "interStateSupplies": "Bekalan antara negeri"
+    "interStateSupplies": "Bekalan antara negeri",
+    "taxName": "Nama cukai",
+    "andOthers_other": "{{name}} dan {{count}} lagi",
+    "roundingNote": "nilai invois tidak termasuk pembundaran tunai sebanyak {{amount}}"
   },
   "inventory": {
     "title": "Stok",

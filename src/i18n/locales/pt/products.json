@@ -131,7 +131,12 @@
     "stockHistory": "Histórico de estoque",
     "deleteTitle": "Excluir “{{name}}”?",
     "deleteMessage": "Será removido do catálogo e do caixa. As vendas anteriores são mantidas.",
-    "deleted": "“{{name}}” excluído"
+    "deleted": "“{{name}}” excluído",
+    "negative": "Não pode ser negativo",
+    "tooLarge": "Esse número é grande demais",
+    "discardTitle": "Descartar as alterações?",
+    "discardMessage": "As alterações feitas neste produto não foram salvas.",
+    "discard": "Descartar"
   },
   "categories": {
     "new": "Nova categoria",
@@ -152,7 +157,8 @@
     "deleteMessage_one": "{{count}} produto ficará sem categoria. O produto em si não será excluído.",
     "deleteMessage_other": "{{count}} produtos ficarão sem categoria. Os produtos em si não serão excluídos.",
     "deleteEmpty": "Nenhum produto usa esta categoria.",
-    "deleted": "Categoria “{{name}}” excluída"
+    "deleted": "Categoria “{{name}}” excluída",
+    "duplicate": "Já existe uma categoria com esse nome"
   },
   "import": {
     "title": "Importar produtos",
@@ -195,7 +201,10 @@
       "duplicateSku": "Mesmo SKU da linha {{line}}",
       "skuTaken": "O SKU também pertence a “{{name}}”",
       "stockIgnored": "O estoque foi ignorado: este produto não controla estoque",
-      "aboveMrp": "O preço está acima do preço máximo (MRP)"
+      "aboveMrp": "O preço está acima do preço máximo (MRP)",
+      "tooLarge": "{{column}} é grande demais",
+      "noPrice": "Sem preço — será adicionado com preço 0",
+      "barcodeScientific": "A planilha transformou o código de barras “{{value}}” em um número científico. Formate a coluna como texto e exporte novamente."
     }
   },
   "labels": {
@@ -232,6 +241,7 @@
     "previewHint": "Tamanho da etiqueta {{size}}. Use escala de 100% / “Tamanho real” na caixa de diálogo de impressão.",
     "nothing": "Nada para imprimir",
     "total_one": "{{count}} etiqueta",
-    "total_other": "{{count}} etiquetas"
+    "total_other": "{{count}} etiquetas",
+    "tooMany": "Etiquetas demais: imprima no máximo {{max}} de cada vez."
   }
 }

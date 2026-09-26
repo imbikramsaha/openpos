@@ -138,5 +138,8 @@
     "out": "Out",
     "notes": "Mga Tala",
     "end": "— Katapusan ng report —"
-  }
+  },
+  "amountNegative": "Hindi puwedeng negative",
+  "amountTooLarge": "Sobrang laki ng halagang ito",
+  "alreadyClosed": "Sarado na ang shift na ito."
 }

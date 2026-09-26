@@ -159,7 +159,11 @@
     "supply": "आपूर्ति",
     "intra": "राज्यभित्र",
     "inter": "अन्तर-राज्य",
-    "interStateSupplies": "अन्तर-राज्य आपूर्तिहरू"
+    "interStateSupplies": "अन्तर-राज्य आपूर्तिहरू",
+    "taxName": "करको नाम",
+    "andOthers_one": "{{name}} र अरू {{count}}",
+    "andOthers_other": "{{name}} र अरू {{count}}",
+    "roundingNote": "इनभ्वाइस मूल्यमा {{amount}} को नगद राउन्डिङ समावेश छैन"
   },
   "inventory": {
     "title": "स्टक",

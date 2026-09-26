@@ -155,7 +155,10 @@
     "saved": "{{number}} disimpan — stok ditambah",
     "discard": "Buang",
     "discardTitle": "Buang belian ini?",
-    "discardMessage": "Item yang telah anda masukkan akan dialih keluar."
+    "discardMessage": "Item yang telah anda masukkan akan dialih keluar.",
+    "badCost": "Kos unit tidak boleh negatif.",
+    "badPaid": "Amaun yang dibayar tidak boleh negatif atau lebih daripada jumlah.",
+    "deletedLines": "Alih keluar item yang produknya telah dipadam."
   },
   "suppliers": {
     "new": "Pembekal baharu",

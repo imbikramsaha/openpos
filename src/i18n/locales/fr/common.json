@@ -178,5 +178,17 @@
     "email": "Saisissez une adresse e-mail valide, par ex. name@example.com",
     "gstin": "Saisissez un GSTIN valide de 15 caractères, par ex. 27AAPFU0939F1ZV",
     "taxId": "Utilisez de 3 à 20 lettres ou chiffres"
-  }
+  },
+  "backspace": "Supprimer le dernier chiffre",
+  "offlineReady": "Kasa POS est prêt à fonctionner hors ligne",
+  "later": "Plus tard",
+  "storageError": "Ce navigateur ne permet pas à Kasa POS d'enregistrer des données",
+  "storageErrorHint": "Kasa POS conserve vos ventes sur cet appareil. Une fenêtre privée ou de navigation privée, des données de site bloquées ou un disque plein peuvent l'en empêcher. Ouvrez l'application dans une fenêtre normale, autorisez les données de site pour ce site, puis rechargez.",
+  "dbClosed": "Rechargez pour continuer",
+  "dbClosedHint": "Les données de cet appareil ont été modifiées depuis l'extérieur de cette fenêtre : les données du site ont été effacées, ou Kasa POS a été effacé, restauré ou mis à jour dans un autre onglet. Rechargez pour éviter que quelque chose ne soit enregistré au mauvais endroit.",
+  "otherTab": "Kasa POS est ouvert dans un autre onglet",
+  "otherTabHint": "La caisse fonctionne dans un seul onglet à la fois afin que le panier et les reçus restent cohérents. Continuez dans l'autre onglet, ou utilisez celui-ci à la place.",
+  "useHere": "Utiliser cet onglet",
+  "notSignedIn": "Connectez-vous d'abord",
+  "storageFull": "Cet appareil n'a plus d'espace de stockage. Libérez de l'espace (ou exportez une sauvegarde et effacez les anciennes données), puis réessayez."
 }

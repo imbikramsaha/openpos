@@ -171,7 +171,12 @@
     "stockHistory": "سجل المخزون",
     "deleteTitle": "حذف “{{name}}”؟",
     "deleteMessage": "سيتم إزالته من الكتالوج ونقطة البيع. تُحفظ المبيعات السابقة.",
-    "deleted": "تم حذف “{{name}}”"
+    "deleted": "تم حذف “{{name}}”",
+    "negative": "لا يمكن أن يكون سالبًا",
+    "tooLarge": "هذا الرقم كبير جدًا",
+    "discardTitle": "تجاهل التغييرات؟",
+    "discardMessage": "لم يتم حفظ تغييراتك على هذا المنتج.",
+    "discard": "تجاهل"
   },
   "categories": {
     "new": "فئة جديدة",
@@ -200,7 +205,8 @@
     "deleteMessage_many": "سيصبح {{count}} منتجًا بلا فئة. المنتجات نفسها لن تُحذف.",
     "deleteMessage_other": "سيصبح {{count}} منتج بلا فئة. المنتجات نفسها لن تُحذف.",
     "deleteEmpty": "لا يستخدم أي منتج هذه الفئة.",
-    "deleted": "تم حذف الفئة “{{name}}”"
+    "deleted": "تم حذف الفئة “{{name}}”",
+    "duplicate": "توجد فئة بهذا الاسم بالفعل"
   },
   "import": {
     "title": "استيراد المنتجات",
@@ -255,7 +261,10 @@
       "duplicateSku": "نفس SKU السطر {{line}}",
       "skuTaken": "الـ SKU يخص أيضًا “{{name}}”",
       "stockIgnored": "تم تجاهل المخزون: هذا المنتج لا يتتبّع المخزون",
-      "aboveMrp": "السعر أعلى من الحد الأقصى (MRP)"
+      "aboveMrp": "السعر أعلى من الحد الأقصى (MRP)",
+      "tooLarge": "{{column}} كبير جدًا",
+      "noPrice": "لا يوجد سعر — سيُضاف بسعر 0",
+      "barcodeScientific": "حوّل جدول البيانات الباركود “{{value}}” إلى رقم علمي. نسّق العمود كنص وصدّره مرة أخرى."
     }
   },
   "labels": {
@@ -308,6 +317,7 @@
     "total_two": "ملصقان",
     "total_few": "{{count}} ملصقات",
     "total_many": "{{count}} ملصقًا",
-    "total_other": "{{count}} ملصق"
+    "total_other": "{{count}} ملصق",
+    "tooMany": "عدد الملصقات كبير جدًا: اطبع {{max}} كحد أقصى في المرة الواحدة."
   }
 }

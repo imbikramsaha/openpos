@@ -156,5 +156,8 @@
     "out": "Wypłata",
     "notes": "Uwagi",
     "end": "— Koniec raportu —"
-  }
+  },
+  "amountNegative": "Nie może być ujemne",
+  "amountTooLarge": "Ta kwota jest zbyt duża",
+  "alreadyClosed": "Ta zmiana jest już zamknięta."
 }

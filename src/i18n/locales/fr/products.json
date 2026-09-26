@@ -131,7 +131,12 @@
     "stockHistory": "Historique du stock",
     "deleteTitle": "Supprimer « {{name}} » ?",
     "deleteMessage": "Il sera retiré du catalogue et de la caisse. Les ventes passées sont conservées.",
-    "deleted": "« {{name}} » supprimé"
+    "deleted": "« {{name}} » supprimé",
+    "negative": "Ne peut pas être négatif",
+    "tooLarge": "Ce nombre est trop élevé",
+    "discardTitle": "Abandonner les modifications ?",
+    "discardMessage": "Vos modifications apportées à ce produit n'ont pas été enregistrées.",
+    "discard": "Abandonner"
   },
   "categories": {
     "new": "Nouvelle catégorie",
@@ -152,7 +157,8 @@
     "deleteMessage_one": "{{count}} produit n'aura plus de catégorie. Le produit lui-même n'est pas supprimé.",
     "deleteMessage_other": "{{count}} produits n'auront plus de catégorie. Les produits eux-mêmes ne sont pas supprimés.",
     "deleteEmpty": "Aucun produit n'utilise cette catégorie.",
-    "deleted": "Catégorie « {{name}} » supprimée"
+    "deleted": "Catégorie « {{name}} » supprimée",
+    "duplicate": "Une catégorie portant ce nom existe déjà"
   },
   "import": {
     "title": "Importer des produits",
@@ -195,7 +201,10 @@
       "duplicateSku": "Même SKU que la ligne {{line}}",
       "skuTaken": "Ce SKU appartient aussi à « {{name}} »",
       "stockIgnored": "Le stock est ignoré : ce produit ne suit pas le stock",
-      "aboveMrp": "Le prix dépasse le prix maximum (MRP)"
+      "aboveMrp": "Le prix dépasse le prix maximum (MRP)",
+      "tooLarge": "{{column}} est trop élevé",
+      "noPrice": "Aucun prix — il sera ajouté avec un prix de 0",
+      "barcodeScientific": "Le tableur a converti le code-barres « {{value}} » en notation scientifique. Formatez la colonne en texte et exportez à nouveau."
     }
   },
   "labels": {
@@ -232,6 +241,7 @@
     "previewHint": "Taille d'étiquette {{size}}. Utilisez une échelle de 100 % / « Taille réelle » dans la boîte de dialogue d'impression.",
     "nothing": "Rien à imprimer",
     "total_one": "{{count}} étiquette",
-    "total_other": "{{count}} étiquettes"
+    "total_other": "{{count}} étiquettes",
+    "tooMany": "Trop d'étiquettes : imprimez au maximum {{max}} à la fois."
   }
 }

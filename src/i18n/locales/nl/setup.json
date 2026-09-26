@@ -39,5 +39,11 @@
   "join": "Verbinden",
   "joined": "Verbonden met {{name}}",
   "joinFailed": "Kon geen verbinding maken met de server",
-  "joinNoData": "De server heeft nog geen winkelgegevens. Stel eerst de eerste kassa normaal in en verbind deze daarna met de server."
+  "joinNoData": "De server heeft nog geen winkelgegevens. Stel eerst de eerste kassa normaal in en verbind deze daarna met de server.",
+  "restoreBackup": "Herstellen vanaf een back-up",
+  "restore": "Herstellen",
+  "restoreConfirmTitle": "Deze back-up herstellen?",
+  "restoreConfirmMessage": "Dit apparaat wordt ingesteld vanuit ‘{{name}}’, geback-upt op {{date}}. Je meldt je aan met een PIN uit die back-up.",
+  "defaultFooter": "Bedankt! Kom snel weer terug.",
+  "defaultTerminalName": "Kassa 1"
 }

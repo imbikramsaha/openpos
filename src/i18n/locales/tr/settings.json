@@ -170,7 +170,10 @@
     "cashRoundingHint": "Satış toplamlarını dolaşımdaki en küçük bozuk paraya yuvarlar.",
     "roundingNone": "Yuvarlama yok",
     "roundingCustom": "Güncel adım: {{value}}",
-    "roundingExample": "Örnek toplam"
+    "roundingExample": "Örnek toplam",
+    "decimalsChangeTitle": "{{currency}} para birimine geçilsin mi?",
+    "decimalsChange": "{{from}} ve {{to}} farklı sayıda ondalık basamak kullanır. Fiyatlar, satışlar ve bakiyeler dönüştürülmez, bu yüzden mevcut her tutarın boyutu değişir: {{before}} artık {{after}} olarak görünecek. Geçiş yaptıktan sonra fiyatlarınızı yeniden girin.",
+    "decimalsChangeConfirm": "Para birimini değiştir"
   },
   "checkout": {
     "rules": "Satış kuralları",
@@ -229,7 +232,10 @@
     "loyaltyPointValue": "1 puanın değeri",
     "loyaltyPointValueHint": "Müşterinin kullandığı her puan için aldığı indirim",
     "loyaltyExample": "{{spend}} harcamak {{points}} puan kazandırır, {{value}} değerinde.",
-    "loyaltyReturn": "Bu, %{{percent}} geri dönüş demek."
+    "loyaltyReturn": "Bu, %{{percent}} geri dönüş demek.",
+    "loyaltyEarnRateRange": "0 ile {{max}} arasında bir sayı girin",
+    "loyaltyPointValueRange": "0 veya daha fazla bir tutar girin",
+    "loyaltyTooGenerous": "Bu oranlarla müşteriler harcadıkları kadar veya daha fazlasını geri alır. Birim başına puanları ve bir puanın değerini kontrol edin."
   },
   "receipt": {
     "content": "İçerik",
@@ -391,7 +397,8 @@
     "lanHint": "Kasa senkronizasyon sunucusunu dükkanınızdaki herhangi bir bilgisayarda çalıştırın ve yerel adresini kullanın. Kasalar çevrimdışıyken satışa devam eder ve bilgisayar geri geldiğinde günceller.",
     "cloudTitle": "Bulut",
     "cloudHint": "Şubeleri bağlamak ve satışları her yerden kontrol etmek için aynı sunucuyu HTTPS destekli herhangi bir sunucuya kurun.",
-    "readme": "Kurulum, mağaza anahtarları ve HTTP API şurada açıklanmıştır:"
+    "readme": "Kurulum, mağaza anahtarları ve HTTP API şurada açıklanmıştır:",
+    "mixedContent": "Bu uygulama https:// üzerinden açık ve tarayıcılar buradan bir http:// sunucusuna bağlantıları engeller. Sunucu için bir https:// adresi kullanın veya bu kasada masaüstü uygulamasını kullanın."
   },
   "backup": {
     "staleTitle": "Son yedekleme {{time}}",
@@ -473,7 +480,24 @@
     "user_update": "Kullanıcı değiştirildi",
     "user_delete": "Kullanıcı silindi",
     "backup_export": "Yedek dışa aktarıldı",
-    "backup_restore": "Yedek geri yüklendi"
+    "backup_restore": "Yedek geri yüklendi",
+    "category_delete": "Kategori silindi",
+    "customer_adjust": "Müşteri bakiyesi düzeltildi",
+    "customer_delete": "Müşteri silindi",
+    "customer_import": "Müşteriler içe aktarıldı",
+    "customer_payment": "Müşteri ödemesi",
+    "customer_payment_delete": "Müşteri ödemesi silindi",
+    "customer_reminder": "Ödeme hatırlatması gönderildi",
+    "labels_print": "Etiketler yazdırıldı",
+    "product_barcodes": "Barkodlar oluşturuldu",
+    "product_delete": "Ürün silindi",
+    "product_import": "Ürünler içe aktarıldı",
+    "purchase_create": "Alış kaydedildi",
+    "stock_adjust": "Stok düzeltildi",
+    "stock_count": "Stok sayımı",
+    "supplier_delete": "Tedarikçi silindi",
+    "cash_in": "Çekmeceye nakit eklendi",
+    "cash_out": "Çekmeceden nakit çıkarıldı"
   },
   "danger": {
     "erase": "Bu cihazdaki tüm verileri sil",

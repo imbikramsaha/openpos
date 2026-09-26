@@ -109,7 +109,11 @@
     "pointsRedeemed_few": "{{count}} wykorzystane punkty",
     "pointsRedeemed_many": "{{count}} wykorzystanych punktów",
     "pointsRedeemed_other": "{{count}} wykorzystanego punktu",
-    "linked": "Zwroty do tej sprzedaży"
+    "linked": "Zwroty do tej sprzedaży",
+    "pointsReversed_one": "{{count}} odebrany punkt",
+    "pointsReversed_few": "{{count}} odebrane punkty",
+    "pointsReversed_many": "{{count}} odebranych punktów",
+    "pointsReversed_other": "{{count}} odebranego punktu"
   },
   "refund": {
     "action": "Zwrot",
@@ -137,7 +141,16 @@
     "done": "Utworzono korektę {{number}}",
     "complete": "Zwrot zakończony",
     "payBack": "Zwrot w formie: {{method}}",
-    "toAccount": "Zaksięgowano na koncie klienta"
+    "toAccount": "Zaksięgowano na koncie klienta",
+    "nothing": "Wybierz co najmniej jedną pozycję do zwrotu",
+    "pointsBack_one": "+ {{count}} zwrócony punkt lojalnościowy",
+    "pointsBack_few": "+ {{count}} zwrócone punkty lojalnościowe",
+    "pointsBack_many": "+ {{count}} zwróconych punktów lojalnościowych",
+    "pointsBack_other": "+ {{count}} zwróconego punktu lojalnościowego",
+    "pointsBackHint_one": "{{count}} punkt lojalnościowy ({{amount}}) wraca do punktów klienta zamiast pieniędzy",
+    "pointsBackHint_few": "{{count}} punkty lojalnościowe ({{amount}}) wracają do punktów klienta zamiast pieniędzy",
+    "pointsBackHint_many": "{{count}} punktów lojalnościowych ({{amount}}) wraca do punktów klienta zamiast pieniędzy",
+    "pointsBackHint_other": "{{count}} punktu lojalnościowego ({{amount}}) wraca do punktów klienta zamiast pieniędzy"
   },
   "void": {
     "action": "Anuluj",
@@ -153,6 +166,9 @@
     "confirmTitle": "Anulować {{number}}?",
     "confirmMessage": "Sprzedaż na kwotę {{amount}} zostanie anulowana, a towar wróci do magazynu. Tej operacji nie można cofnąć.",
     "done": "Anulowano {{number}}",
-    "voided": "Anulowana"
+    "voided": "Anulowana",
+    "notAllowed": "Ta sprzedaż jest już anulowana albo nie można jej anulować.",
+    "hasRefunds": "Ta sprzedaż ma zwroty, więc nie można jej anulować. Zamiast tego zwróć pozostałe pozycje.",
+    "otherShift": "Ta sprzedaż należy do zamkniętej zmiany. Zamiast tego dokonaj zwrotu."
   }
 }

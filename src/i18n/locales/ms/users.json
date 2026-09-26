@@ -54,5 +54,6 @@
   "created": "{{name}} kini boleh log masuk",
   "deleteTitle": "Padam {{name}}?",
   "deleteMessage": "Mereka tidak akan dapat log masuk lagi. Jualan dan aktiviti lepas mereka kekal dalam rekod anda.",
-  "deleted": "{{name}} dipadam"
+  "deleted": "{{name}} dipadam",
+  "pinPrefixClash": "PIN {{name}} bermula dengan 4 digit yang sama, jadi skrin kunci mungkin log masuk sebagai orang yang salah. Pilih PIN yang bermula secara berbeza."
 }

@@ -55,5 +55,6 @@
   "created": "Puwede nang mag-sign in si {{name}}",
   "deleteTitle": "Burahin si {{name}}?",
   "deleteMessage": "Hindi na sila makakapag-sign in. Mananatili sa iyong mga record ang kanilang mga nakaraang benta at aktibidad.",
-  "deleted": "Nabura si {{name}}"
+  "deleted": "Nabura si {{name}}",
+  "pinPrefixClash": "Nagsisimula ang PIN ni {{name}} sa parehong 4 na digit, kaya baka ang taong iyon ang maipasok ng lock screen. Pumili ng PIN na iba ang simula."
 }

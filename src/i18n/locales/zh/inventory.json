@@ -155,7 +155,10 @@
     "saved": "{{number}} 已保存——库存已增加",
     "discard": "放弃",
     "discardTitle": "放弃此采购单?",
-    "discardMessage": "您已录入的商品信息将被清除。"
+    "discardMessage": "您已录入的商品信息将被清除。",
+    "badCost": "单位成本不能为负数。",
+    "badPaid": "已付金额不能为负数,也不能超过总额。",
+    "deletedLines": "请移除对应商品已被删除的项目。"
   },
   "suppliers": {
     "new": "新建供应商",

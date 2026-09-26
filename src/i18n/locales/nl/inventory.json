@@ -159,7 +159,10 @@
     "saved": "{{number}} opgeslagen — voorraad toegevoegd",
     "discard": "Verwerpen",
     "discardTitle": "Deze inkoop verwerpen?",
-    "discardMessage": "De artikelen die je hebt ingevoerd, worden verwijderd."
+    "discardMessage": "De artikelen die je hebt ingevoerd, worden verwijderd.",
+    "badCost": "Eenheidskosten kunnen niet negatief zijn.",
+    "badPaid": "Het betaalde bedrag kan niet negatief zijn of hoger dan het totaal.",
+    "deletedLines": "Verwijder de artikelen waarvan het product is verwijderd."
   },
   "suppliers": {
     "new": "Nieuwe leverancier",

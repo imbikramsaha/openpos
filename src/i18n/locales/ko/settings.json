@@ -165,7 +165,10 @@
     "cashRoundingHint": "유통 중인 최소 화폐 단위로 판매 총액을 반올림합니다.",
     "roundingNone": "단수 처리 안 함",
     "roundingCustom": "현재 단위: {{value}}",
-    "roundingExample": "예시 합계"
+    "roundingExample": "예시 합계",
+    "decimalsChangeTitle": "{{currency}}(으)로 전환하시겠습니까?",
+    "decimalsChange": "{{from}}와(과) {{to}}는 소수점 자릿수가 다릅니다. 가격, 판매 및 잔액은 변환되지 않으므로 기존 금액의 표시가 모두 바뀝니다: {{before}}은(는) {{after}}(으)로 표시됩니다. 전환 후 가격을 다시 입력하세요.",
+    "decimalsChangeConfirm": "통화 전환"
   },
   "checkout": {
     "rules": "판매 규칙",
@@ -223,7 +226,10 @@
     "loyaltyPointValue": "포인트 1점의 가치",
     "loyaltyPointValueHint": "포인트 1점을 사용할 때 고객이 받는 할인 금액",
     "loyaltyExample": "{{spend}} 결제 시 {{points}} 포인트가 적립됩니다({{value}} 상당).",
-    "loyaltyReturn": "{{percent}}% 환급에 해당합니다."
+    "loyaltyReturn": "{{percent}}% 환급에 해당합니다.",
+    "loyaltyEarnRateRange": "0에서 {{max}} 사이의 숫자를 입력하세요",
+    "loyaltyPointValueRange": "0 이상의 금액을 입력하세요",
+    "loyaltyTooGenerous": "이 비율로는 고객이 지출한 만큼 또는 그 이상을 돌려받게 됩니다. 단위당 포인트 수와 포인트 가치를 확인하세요."
   },
   "receipt": {
     "content": "내용",
@@ -383,7 +389,8 @@
     "lanHint": "매장 내 아무 PC에서나 Kasa 동기화 서버를 실행하고 로컬 주소를 사용하세요. 단말기는 오프라인 상태에서도 계속 판매할 수 있고, PC가 복구되면 자동으로 동기화됩니다.",
     "cloudTitle": "클라우드",
     "cloudHint": "동일한 서버를 HTTPS를 지원하는 아무 호스트에나 배포하면 지점을 연결하고 어디서든 판매 현황을 확인할 수 있습니다.",
-    "readme": "설정 방법, 매장 키, HTTP API에 대한 설명은 다음에서 확인하세요"
+    "readme": "설정 방법, 매장 키, HTTP API에 대한 설명은 다음에서 확인하세요",
+    "mixedContent": "이 앱은 https://로 열려 있어 브라우저가 http:// 서버로의 연결을 차단합니다. 서버에 https:// 주소를 사용하거나 이 계산대에서 데스크톱 앱을 사용하세요."
   },
   "backup": {
     "staleTitle": "마지막 백업: {{time}}",
@@ -464,7 +471,24 @@
     "user_update": "직원 변경",
     "user_delete": "직원 삭제",
     "backup_export": "백업 내보내기",
-    "backup_restore": "백업 복원"
+    "backup_restore": "백업 복원",
+    "category_delete": "카테고리 삭제",
+    "customer_adjust": "고객 잔액 조정",
+    "customer_delete": "고객 삭제",
+    "customer_import": "고객 가져오기",
+    "customer_payment": "고객 입금",
+    "customer_payment_delete": "고객 입금 삭제",
+    "customer_reminder": "결제 알림 전송",
+    "labels_print": "라벨 인쇄",
+    "product_barcodes": "바코드 생성",
+    "product_delete": "상품 삭제",
+    "product_import": "상품 가져오기",
+    "purchase_create": "매입 기록",
+    "stock_adjust": "재고 조정",
+    "stock_count": "재고 실사",
+    "supplier_delete": "공급업체 삭제",
+    "cash_in": "서랍에 현금 입금",
+    "cash_out": "서랍에서 현금 출금"
   },
   "danger": {
     "erase": "이 기기의 모든 데이터 삭제",

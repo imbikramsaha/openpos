@@ -166,5 +166,9 @@
     "scanUpi": "Scannez avec n'importe quelle appli UPI pour payer",
     "thankYou": "Merci de votre visite !"
   },
-  "addProduct": "Ajouter un produit"
+  "addProduct": "Ajouter un produit",
+  "invalidPrice": "Saisissez un prix de zéro ou plus",
+  "amountTooLarge": "Le total est trop élevé. Vérifiez les quantités et les prix.",
+  "refundComplete": "Remboursement terminé",
+  "receiptAmbiguous": "Plusieurs ventes se terminent par {{number}}. Saisissez davantage de chiffres du numéro de reçu."
 }

@@ -179,7 +179,13 @@
     "supply": "Dostawa",
     "intra": "Wewnątrzstanowa",
     "inter": "Międzystanowa",
-    "interStateSupplies": "Dostawy międzystanowe"
+    "interStateSupplies": "Dostawy międzystanowe",
+    "taxName": "Nazwa podatku",
+    "andOthers_one": "{{name}} i jeszcze {{count}}",
+    "andOthers_few": "{{name}} i jeszcze {{count}}",
+    "andOthers_many": "{{name}} i jeszcze {{count}}",
+    "andOthers_other": "{{name}} i jeszcze {{count}}",
+    "roundingNote": "wartości na fakturze nie uwzględniają zaokrąglenia gotówki o {{amount}}"
   },
   "inventory": {
     "title": "Magazyn",

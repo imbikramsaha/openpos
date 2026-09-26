@@ -165,7 +165,10 @@
     "cashRoundingHint": "Bulatkan total penjualan ke koin terkecil yang beredar.",
     "roundingNone": "Tanpa pembulatan",
     "roundingCustom": "Langkah saat ini: {{value}}",
-    "roundingExample": "Contoh total"
+    "roundingExample": "Contoh total",
+    "decimalsChangeTitle": "Ganti ke {{currency}}?",
+    "decimalsChange": "{{from}} dan {{to}} menggunakan jumlah desimal yang berbeda. Harga, penjualan dan saldo tidak dikonversi, sehingga setiap nominal yang ada berubah ukuran tampilannya: {{before}} akan tampil sebagai {{after}}. Masukkan ulang harga Anda setelah berganti.",
+    "decimalsChangeConfirm": "Ganti mata uang"
   },
   "checkout": {
     "rules": "Aturan penjualan",
@@ -223,7 +226,10 @@
     "loyaltyPointValue": "Nilai 1 poin",
     "loyaltyPointValueHint": "Diskon yang didapat pelanggan untuk setiap poin yang ditukar",
     "loyaltyExample": "Membelanjakan {{spend}} mendapat {{points}} poin, senilai {{value}}.",
-    "loyaltyReturn": "Itu setara {{percent}}% kembali."
+    "loyaltyReturn": "Itu setara {{percent}}% kembali.",
+    "loyaltyEarnRateRange": "Masukkan angka dari 0 sampai {{max}}",
+    "loyaltyPointValueRange": "Masukkan nominal 0 atau lebih",
+    "loyaltyTooGenerous": "Dengan tarif ini pelanggan mendapatkan kembali sebanyak atau lebih dari yang mereka belanjakan. Periksa poin per satuan dan nilai satu poin."
   },
   "receipt": {
     "content": "Konten",
@@ -383,7 +389,8 @@
     "lanHint": "Jalankan server sinkronisasi Kasa di PC mana pun di toko Anda dan gunakan alamat lokalnya. Kasir tetap bisa berjualan saat offline dan menyusul saat PC kembali aktif.",
     "cloudTitle": "Cloud",
     "cloudHint": "Sebarkan server yang sama ke host mana pun dengan HTTPS untuk menghubungkan cabang dan memeriksa penjualan dari mana saja.",
-    "readme": "Pengaturan, kunci toko dan HTTP API dijelaskan di"
+    "readme": "Pengaturan, kunci toko dan HTTP API dijelaskan di",
+    "mixedContent": "Aplikasi ini dibuka melalui https://, dan browser memblokir koneksi darinya ke server http://. Gunakan alamat https:// untuk server, atau gunakan aplikasi desktop pada kasir ini."
   },
   "backup": {
     "staleTitle": "Cadangan terakhir {{time}}",
@@ -464,7 +471,24 @@
     "user_update": "Pengguna diubah",
     "user_delete": "Pengguna dihapus",
     "backup_export": "Cadangan diekspor",
-    "backup_restore": "Cadangan dipulihkan"
+    "backup_restore": "Cadangan dipulihkan",
+    "category_delete": "Kategori dihapus",
+    "customer_adjust": "Saldo pelanggan disesuaikan",
+    "customer_delete": "Pelanggan dihapus",
+    "customer_import": "Pelanggan diimpor",
+    "customer_payment": "Pembayaran pelanggan",
+    "customer_payment_delete": "Pembayaran pelanggan dihapus",
+    "customer_reminder": "Pengingat pembayaran dikirim",
+    "labels_print": "Label dicetak",
+    "product_barcodes": "Barcode dibuat",
+    "product_delete": "Produk dihapus",
+    "product_import": "Produk diimpor",
+    "purchase_create": "Pembelian dicatat",
+    "stock_adjust": "Stok disesuaikan",
+    "stock_count": "Stok opname",
+    "supplier_delete": "Pemasok dihapus",
+    "cash_in": "Kas ditambahkan ke laci",
+    "cash_out": "Kas diambil dari laci"
   },
   "danger": {
     "erase": "Hapus semua data di perangkat ini",

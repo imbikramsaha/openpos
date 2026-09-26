@@ -177,5 +177,17 @@
     "email": "Masukkan e-mel yang sah, cth. name@example.com",
     "gstin": "Masukkan GSTIN 15 aksara yang sah, cth. 27AAPFU0939F1ZV",
     "taxId": "Gunakan 3–20 huruf atau nombor"
-  }
+  },
+  "backspace": "Padam digit terakhir",
+  "offlineReady": "Kasa POS sedia untuk berfungsi luar talian",
+  "later": "Kemudian",
+  "storageError": "Pelayar ini tidak membenarkan Kasa POS menyimpan data",
+  "storageErrorHint": "Kasa POS menyimpan jualan anda pada peranti ini. Tetingkap peribadi atau penyamaran, data laman disekat atau cakera penuh boleh menghalangnya. Buka aplikasi dalam tetingkap biasa, benarkan data laman untuk laman ini, kemudian muat semula.",
+  "dbClosed": "Muat semula untuk teruskan",
+  "dbClosedHint": "Data pada peranti ini telah diubah dari luar tetingkap ini: data laman telah dikosongkan, atau Kasa POS telah dipadam, dipulihkan atau dikemas kini dalam tab lain. Muat semula supaya tiada apa disimpan ke tempat yang salah.",
+  "otherTab": "Kasa POS terbuka dalam tab lain",
+  "otherTabHint": "Kaunter hanya berfungsi dalam satu tab pada satu masa supaya troli dan resit kekal konsisten. Teruskan dalam tab lain, atau guna tab ini sebaliknya.",
+  "useHere": "Guna tab ini",
+  "notSignedIn": "Log masuk dahulu",
+  "storageFull": "Peranti ini kehabisan storan. Kosongkan ruang (atau eksport sandaran dan kosongkan data lama), kemudian cuba lagi."
 }

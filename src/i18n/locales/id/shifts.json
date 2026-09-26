@@ -129,5 +129,8 @@
     "out": "Keluar",
     "notes": "Catatan",
     "end": "— Akhir laporan —"
-  }
+  },
+  "amountNegative": "Tidak boleh negatif",
+  "amountTooLarge": "Nominal ini terlalu besar",
+  "alreadyClosed": "Shift ini sudah ditutup."
 }

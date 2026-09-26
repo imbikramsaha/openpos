@@ -163,7 +163,10 @@
     "saved": "{{number}} salvato — scorte aggiunte",
     "discard": "Scarta",
     "discardTitle": "Scartare questo acquisto?",
-    "discardMessage": "Gli articoli inseriti verranno rimossi."
+    "discardMessage": "Gli articoli inseriti verranno rimossi.",
+    "badCost": "I costi unitari non possono essere negativi.",
+    "badPaid": "L'importo pagato non può essere negativo né superiore al totale.",
+    "deletedLines": "Rimuovi gli articoli il cui prodotto è stato eliminato."
   },
   "suppliers": {
     "new": "Nuovo fornitore",

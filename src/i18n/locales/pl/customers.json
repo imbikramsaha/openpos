@@ -76,7 +76,11 @@
     "confirmTitle_other": "Zaimportować {{count}} klienta?",
     "confirmMessage": "{{creates}} nowych, {{updates}} zaktualizowanych (dopasowanych po telefonie lub e-mailu), {{skipped}} wierszy pominiętych bez nazwy. Import nigdy nie zmienia sald.",
     "imported": "Zaimportowano: {{creates}} nowych, {{updates}} zaktualizowanych",
-    "failed": "Import nie powiódł się: {{error}}"
+    "failed": "Import nie powiódł się: {{error}}",
+    "invalidValues_one": "{{count}} nieprawidłowa wartość telefonu, e-maila, numeru podatkowego lub rabatu zostanie pozostawiona pusta.",
+    "invalidValues_few": "{{count}} nieprawidłowe wartości telefonu, e-maila, numeru podatkowego lub rabatu zostaną pozostawione puste.",
+    "invalidValues_many": "{{count}} nieprawidłowych wartości telefonu, e-maila, numeru podatkowego lub rabatu zostanie pozostawionych pustych.",
+    "invalidValues_other": "{{count}} nieprawidłowej wartości telefonu, e-maila, numeru podatkowego lub rabatu zostanie pozostawionej pustej."
   },
   "form": {
     "newTitle": "Nowy klient",
@@ -99,7 +103,8 @@
     "duplicatePhone": "{{name}} ma już ten numer telefonu. Zapisać mimo to?",
     "saveAnyway": "Zapisz mimo to",
     "created": "Dodano {{name}}",
-    "saved": "Zapisano klienta"
+    "saved": "Zapisano klienta",
+    "amountTooLarge": "Ta kwota jest zbyt duża"
   },
   "detail": {
     "title": "Klient",
@@ -143,7 +148,8 @@
     "sale": "Sprzedaż na kreskę",
     "refund": "Zwrot na konto",
     "payment": "Płatność otrzymana",
-    "charge": "Obciążenie"
+    "charge": "Obciążenie",
+    "adjust": "Saldo zmniejszone"
   },
   "pay": {
     "title": "Przyjmij płatność",

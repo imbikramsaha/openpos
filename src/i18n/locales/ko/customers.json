@@ -64,7 +64,8 @@
     "confirmTitle_other": "{{count}}명의 고객을 가져오시겠습니까?",
     "confirmMessage": "신규 {{creates}}건, 수정 {{updates}}건(전화번호 또는 이메일로 매칭), 이름 없어 건너뛴 행 {{skipped}}건. 가져오기로 잔액이 변경되지는 않습니다.",
     "imported": "가져오기 완료: 신규 {{creates}}건, 수정 {{updates}}건",
-    "failed": "가져오기 실패: {{error}}"
+    "failed": "가져오기 실패: {{error}}",
+    "invalidValues_other": "{{count}}개의 잘못된 전화번호, 이메일, 사업자번호 또는 할인 값은 비워둡니다."
   },
   "form": {
     "newTitle": "신규 고객",
@@ -87,7 +88,8 @@
     "duplicatePhone": "{{name}}이(가) 이미 이 전화번호를 사용하고 있습니다. 그래도 저장하시겠습니까?",
     "saveAnyway": "그래도 저장",
     "created": "{{name}}이(가) 추가되었습니다",
-    "saved": "고객 정보가 저장되었습니다"
+    "saved": "고객 정보가 저장되었습니다",
+    "amountTooLarge": "금액이 너무 큽니다"
   },
   "detail": {
     "title": "고객",
@@ -128,7 +130,8 @@
     "sale": "외상 판매",
     "refund": "계정으로 환불",
     "payment": "입금",
-    "charge": "청구"
+    "charge": "청구",
+    "adjust": "잔액 감소"
   },
   "pay": {
     "title": "입금 처리",

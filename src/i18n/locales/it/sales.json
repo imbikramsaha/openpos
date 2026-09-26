@@ -102,7 +102,10 @@
     "pointsRedeemed_one": "{{count}} punto riscattato",
     "pointsRedeemed_many": "{{count}} punti riscattati",
     "pointsRedeemed_other": "{{count}} punti riscattati",
-    "linked": "Rimborsi su questa vendita"
+    "linked": "Rimborsi su questa vendita",
+    "pointsReversed_one": "{{count}} punto ripreso",
+    "pointsReversed_other": "{{count}} punti ripresi",
+    "pointsReversed_many": "{{count}} punti ripresi"
   },
   "refund": {
     "action": "Reso",
@@ -130,7 +133,14 @@
     "done": "Nota di credito {{number}} creata",
     "complete": "Reso completato",
     "payBack": "Rimborsa con {{method}}",
-    "toAccount": "Accreditato sul conto cliente"
+    "toAccount": "Accreditato sul conto cliente",
+    "nothing": "Seleziona almeno un articolo da rimborsare",
+    "pointsBack_one": "+ {{count}} punto fedeltà restituito",
+    "pointsBack_other": "+ {{count}} punti fedeltà restituiti",
+    "pointsBack_many": "+ {{count}} punti fedeltà restituiti",
+    "pointsBackHint_one": "{{count}} punto fedeltà ({{amount}}) torna ai punti del cliente invece che in denaro",
+    "pointsBackHint_other": "{{count}} punti fedeltà ({{amount}}) tornano ai punti del cliente invece che in denaro",
+    "pointsBackHint_many": "{{count}} punti fedeltà ({{amount}}) tornano ai punti del cliente invece che in denaro"
   },
   "void": {
     "action": "Annulla",
@@ -146,6 +156,9 @@
     "confirmTitle": "Annullare {{number}}?",
     "confirmMessage": "La vendita di {{amount}} verrà annullata e le sue scorte ripristinate. Questa azione non può essere annullata.",
     "done": "{{number}} annullata",
-    "voided": "Annullata"
+    "voided": "Annullata",
+    "notAllowed": "Questa vendita è già annullata o non può essere annullata.",
+    "hasRefunds": "Questa vendita ha dei rimborsi, quindi non può essere annullata. Rimborsa invece gli articoli rimanenti.",
+    "otherShift": "Questa vendita appartiene a un turno chiuso. Rimborsala invece."
   }
 }

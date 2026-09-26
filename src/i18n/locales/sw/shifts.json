@@ -138,5 +138,8 @@
     "out": "Nje",
     "notes": "Maelezo",
     "end": "— Mwisho wa ripoti —"
-  }
+  },
+  "amountNegative": "Haiwezi kuwa hasi",
+  "amountTooLarge": "Kiasi hiki ni kikubwa mno",
+  "alreadyClosed": "Zamu hii tayari imefungwa."
 }

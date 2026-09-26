@@ -155,7 +155,10 @@
     "saved": "{{number}}이(가) 저장되었습니다 — 재고에 반영됨",
     "discard": "취소",
     "discardTitle": "이 매입을 취소하시겠습니까?",
-    "discardMessage": "입력한 상품 내용이 모두 삭제됩니다."
+    "discardMessage": "입력한 상품 내용이 모두 삭제됩니다.",
+    "badCost": "단위 원가는 음수가 될 수 없습니다.",
+    "badPaid": "결제 금액은 음수가 되거나 총액을 초과할 수 없습니다.",
+    "deletedLines": "상품이 삭제된 항목을 제거하세요."
   },
   "suppliers": {
     "new": "신규 공급업체",

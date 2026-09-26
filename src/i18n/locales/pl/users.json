@@ -57,5 +57,6 @@
   "created": "{{name}} może teraz się zalogować",
   "deleteTitle": "Usunąć {{name}}?",
   "deleteMessage": "Nie będą już mogli się zalogować. Ich wcześniejsza sprzedaż i aktywność pozostają w Twoich rejestrach.",
-  "deleted": "Usunięto {{name}}"
+  "deleted": "Usunięto {{name}}",
+  "pinPrefixClash": "PIN użytkownika {{name}} zaczyna się od tych samych 4 cyfr, więc ekran blokady mógłby zalogować niewłaściwą osobę. Wybierz PIN, który zaczyna się inaczej."
 }

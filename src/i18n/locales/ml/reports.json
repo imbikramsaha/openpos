@@ -159,7 +159,11 @@
     "supply": "സപ്ലൈ",
     "intra": "സംസ്ഥാനത്തിനുള്ളിൽ",
     "inter": "സംസ്ഥാനാന്തരം",
-    "interStateSupplies": "സംസ്ഥാനാന്തര സപ്ലൈകൾ"
+    "interStateSupplies": "സംസ്ഥാനാന്തര സപ്ലൈകൾ",
+    "taxName": "നികുതിയുടെ പേര്",
+    "andOthers_one": "{{name}} കൂടാതെ മറ്റൊന്ന്",
+    "andOthers_other": "{{name}} കൂടാതെ മറ്റ് {{count}}",
+    "roundingNote": "ഇൻവോയ്സ് മൂല്യങ്ങളിൽ {{amount}} കാഷ് റൗണ്ടിംഗ് ഉൾപ്പെടുന്നില്ല"
   },
   "inventory": {
     "title": "സ്റ്റോക്ക്",

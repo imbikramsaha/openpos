@@ -95,7 +95,9 @@
     "pointsEarned_other": "+{{count}} punten verdiend",
     "pointsRedeemed_one": "{{count}} punt verzilverd",
     "pointsRedeemed_other": "{{count}} punten verzilverd",
-    "linked": "Terugbetalingen bij deze verkoop"
+    "linked": "Terugbetalingen bij deze verkoop",
+    "pointsReversed_one": "{{count}} punt teruggenomen",
+    "pointsReversed_other": "{{count}} punten teruggenomen"
   },
   "refund": {
     "action": "Retour",
@@ -123,7 +125,12 @@
     "done": "Creditnota {{number}} aangemaakt",
     "complete": "Retour voltooid",
     "payBack": "Terugbetalen via {{method}}",
-    "toAccount": "Bijgeschreven op klantaccount"
+    "toAccount": "Bijgeschreven op klantaccount",
+    "nothing": "Selecteer minstens één artikel om terug te betalen",
+    "pointsBack_one": "+ {{count}} spaarpunt teruggegeven",
+    "pointsBack_other": "+ {{count}} spaarpunten teruggegeven",
+    "pointsBackHint_one": "{{count}} spaarpunt ({{amount}}) gaat terug naar de punten van de klant in plaats van geld",
+    "pointsBackHint_other": "{{count}} spaarpunten ({{amount}}) gaan terug naar de punten van de klant in plaats van geld"
   },
   "void": {
     "action": "Annuleren",
@@ -139,6 +146,9 @@
     "confirmTitle": "{{number}} annuleren?",
     "confirmMessage": "De verkoop van {{amount}} wordt geannuleerd en de voorraad wordt teruggezet. Dit kan niet ongedaan worden gemaakt.",
     "done": "{{number}} geannuleerd",
-    "voided": "Geannuleerd"
+    "voided": "Geannuleerd",
+    "notAllowed": "Deze verkoop is al geannuleerd of kan niet worden geannuleerd.",
+    "hasRefunds": "Deze verkoop heeft terugbetalingen, dus kan niet worden geannuleerd. Betaal in plaats daarvan de resterende artikelen terug.",
+    "otherShift": "Deze verkoop hoort bij een gesloten dienst. Betaal deze in plaats daarvan terug."
   }
 }

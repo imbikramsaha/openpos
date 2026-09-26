@@ -39,5 +39,11 @@
   "join": "Se connecter",
   "joined": "Connecté à {{name}}",
   "joinFailed": "Impossible de se connecter au serveur",
-  "joinNoData": "Le serveur n'a pas encore de données de boutique. Configurez d'abord la première caisse normalement, puis connectez-la au serveur."
+  "joinNoData": "Le serveur n'a pas encore de données de boutique. Configurez d'abord la première caisse normalement, puis connectez-la au serveur.",
+  "restoreBackup": "Restaurer depuis une sauvegarde",
+  "restore": "Restaurer",
+  "restoreConfirmTitle": "Restaurer cette sauvegarde ?",
+  "restoreConfirmMessage": "Cet appareil sera configuré à partir de « {{name}} », sauvegardée le {{date}}. Vous vous connecterez avec un code PIN de cette sauvegarde.",
+  "defaultFooter": "Merci ! Revenez nous voir.",
+  "defaultTerminalName": "Caisse 1"
 }

@@ -121,7 +121,12 @@
     "stockHistory": "Sejarah stok",
     "deleteTitle": "Padam “{{name}}”?",
     "deleteMessage": "Ia akan dialih keluar daripada katalog dan kaunter. Jualan lepas dikekalkan.",
-    "deleted": "“{{name}}” dipadam"
+    "deleted": "“{{name}}” dipadam",
+    "negative": "Tidak boleh negatif",
+    "tooLarge": "Nombor ini terlalu besar",
+    "discardTitle": "Buang perubahan?",
+    "discardMessage": "Perubahan anda pada produk ini belum disimpan.",
+    "discard": "Buang"
   },
   "categories": {
     "new": "Kategori baharu",
@@ -140,7 +145,8 @@
     "deleteTitle": "Padam kategori “{{name}}”?",
     "deleteMessage_other": "{{count}} produk akan menjadi tiada kategori. Produk itu sendiri tidak dipadam.",
     "deleteEmpty": "Tiada produk menggunakan kategori ini.",
-    "deleted": "Kategori “{{name}}” dipadam"
+    "deleted": "Kategori “{{name}}” dipadam",
+    "duplicate": "Kategori dengan nama ini sudah wujud"
   },
   "import": {
     "title": "Import produk",
@@ -180,7 +186,10 @@
       "duplicateSku": "SKU sama seperti baris {{line}}",
       "skuTaken": "SKU juga milik “{{name}}”",
       "stockIgnored": "Stok diabaikan: produk ini tidak menjejaki stok",
-      "aboveMrp": "Harga melebihi MRP"
+      "aboveMrp": "Harga melebihi MRP",
+      "tooLarge": "{{column}} terlalu besar",
+      "noPrice": "Tiada harga — akan ditambah dengan harga 0",
+      "barcodeScientific": "Barkod “{{value}}” telah ditukar kepada nombor bentuk saintifik oleh hamparan. Format lajur itu sebagai teks dan eksport semula."
     }
   },
   "labels": {
@@ -213,6 +222,7 @@
     "preview": "Pratonton",
     "previewHint": "Saiz label {{size}}. Guna skala 100% / “Saiz sebenar” dalam dialog cetak.",
     "nothing": "Tiada apa untuk dicetak",
-    "total_other": "{{count}} label"
+    "total_other": "{{count}} label",
+    "tooMany": "Terlalu banyak label: cetak paling banyak {{max}} pada satu masa."
   }
 }

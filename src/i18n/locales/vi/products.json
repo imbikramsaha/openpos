@@ -121,7 +121,12 @@
     "stockHistory": "Lịch sử tồn kho",
     "deleteTitle": "Xóa “{{name}}”?",
     "deleteMessage": "Sản phẩm sẽ bị xóa khỏi danh mục và máy bán hàng. Các đơn bán trước đó vẫn được giữ lại.",
-    "deleted": "Đã xóa “{{name}}”"
+    "deleted": "Đã xóa “{{name}}”",
+    "negative": "Không được âm",
+    "tooLarge": "Con số này quá lớn",
+    "discardTitle": "Hủy bỏ thay đổi?",
+    "discardMessage": "Các thay đổi của bạn cho sản phẩm này chưa được lưu.",
+    "discard": "Hủy bỏ"
   },
   "categories": {
     "new": "Danh mục mới",
@@ -140,7 +145,8 @@
     "deleteTitle": "Xóa danh mục “{{name}}”?",
     "deleteMessage_other": "{{count}} sản phẩm sẽ trở thành chưa phân loại. Bản thân sản phẩm không bị xóa.",
     "deleteEmpty": "Không có sản phẩm nào dùng danh mục này.",
-    "deleted": "Đã xóa danh mục “{{name}}”"
+    "deleted": "Đã xóa danh mục “{{name}}”",
+    "duplicate": "Đã tồn tại danh mục có tên này"
   },
   "import": {
     "title": "Nhập sản phẩm",
@@ -180,7 +186,10 @@
       "duplicateSku": "Trùng SKU với dòng {{line}}",
       "skuTaken": "SKU này cũng thuộc về “{{name}}”",
       "stockIgnored": "Bỏ qua tồn kho: sản phẩm này không theo dõi tồn kho",
-      "aboveMrp": "Giá cao hơn MRP"
+      "aboveMrp": "Giá cao hơn MRP",
+      "tooLarge": "{{column}} quá lớn",
+      "noPrice": "Không có giá — sẽ được thêm với giá 0",
+      "barcodeScientific": "Mã vạch “{{value}}” đã bị bảng tính chuyển thành số dạng khoa học. Hãy định dạng cột đó thành văn bản rồi xuất lại."
     }
   },
   "labels": {
@@ -213,6 +222,7 @@
     "preview": "Xem trước",
     "previewHint": "Kích thước nhãn {{size}}. Chọn tỷ lệ 100% / “Actual size” trong hộp thoại in.",
     "nothing": "Không có gì để in",
-    "total_other": "{{count}} nhãn"
+    "total_other": "{{count}} nhãn",
+    "tooMany": "Quá nhiều nhãn: chỉ in tối đa {{max}} nhãn mỗi lần."
   }
 }

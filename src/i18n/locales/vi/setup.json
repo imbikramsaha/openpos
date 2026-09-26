@@ -39,5 +39,11 @@
   "join": "Kết nối",
   "joined": "Đã kết nối với {{name}}",
   "joinFailed": "Không thể kết nối đến máy chủ",
-  "joinNoData": "Máy chủ chưa có dữ liệu cửa hàng. Hãy thiết lập máy bán hàng đầu tiên như bình thường, sau đó kết nối nó với máy chủ."
+  "joinNoData": "Máy chủ chưa có dữ liệu cửa hàng. Hãy thiết lập máy bán hàng đầu tiên như bình thường, sau đó kết nối nó với máy chủ.",
+  "restoreBackup": "Khôi phục từ bản sao lưu",
+  "restore": "Khôi phục",
+  "restoreConfirmTitle": "Khôi phục bản sao lưu này?",
+  "restoreConfirmMessage": "Thiết bị này sẽ được thiết lập từ “{{name}}”, được sao lưu vào {{date}}. Bạn sẽ đăng nhập bằng mã PIN từ bản sao lưu đó.",
+  "defaultFooter": "Cảm ơn quý khách! Hẹn gặp lại.",
+  "defaultTerminalName": "Quầy 1"
 }

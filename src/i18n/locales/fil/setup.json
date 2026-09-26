@@ -39,5 +39,11 @@
   "join": "Kumonekta",
   "joined": "Nakakonekta sa {{name}}",
   "joinFailed": "Hindi makakonekta sa server",
-  "joinNoData": "Wala pang data ng tindahan sa server. I-set up muna nang normal ang unang counter, tapos ikonekta ito sa server."
+  "joinNoData": "Wala pang data ng tindahan sa server. I-set up muna nang normal ang unang counter, tapos ikonekta ito sa server.",
+  "restoreBackup": "I-restore mula sa backup",
+  "restore": "I-restore",
+  "restoreConfirmTitle": "I-restore ang backup na ito?",
+  "restoreConfirmMessage": "Ise-set up ang device na ito mula sa “{{name}}”, na-backup noong {{date}}. Mag-sign in ka gamit ang PIN mula sa backup na iyon.",
+  "defaultFooter": "Salamat po! Bumalik kayo ulit.",
+  "defaultTerminalName": "Counter 1"
 }

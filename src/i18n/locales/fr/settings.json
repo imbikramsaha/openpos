@@ -170,7 +170,10 @@
     "cashRoundingHint": "Arrondit les totaux de vente à la plus petite pièce en circulation.",
     "roundingNone": "Aucun arrondi",
     "roundingCustom": "Pas actuel : {{value}}",
-    "roundingExample": "Total d'exemple"
+    "roundingExample": "Total d'exemple",
+    "decimalsChangeTitle": "Passer à {{currency}} ?",
+    "decimalsChange": "{{from}} et {{to}} n'utilisent pas le même nombre de décimales. Les prix, ventes et soldes ne sont pas convertis, donc chaque montant existant change de taille : {{before}} s'affichera comme {{after}}. Ressaisissez vos prix après le changement.",
+    "decimalsChangeConfirm": "Changer de devise"
   },
   "checkout": {
     "rules": "Règles de vente",
@@ -229,7 +232,10 @@
     "loyaltyPointValue": "Valeur d'un point",
     "loyaltyPointValueHint": "Remise obtenue par le client pour chaque point utilisé",
     "loyaltyExample": "Dépenser {{spend}} rapporte {{points}} points, d'une valeur de {{value}}.",
-    "loyaltyReturn": "Soit {{percent}} % de retour."
+    "loyaltyReturn": "Soit {{percent}} % de retour.",
+    "loyaltyEarnRateRange": "Saisissez un nombre de 0 à {{max}}",
+    "loyaltyPointValueRange": "Saisissez un montant de 0 ou plus",
+    "loyaltyTooGenerous": "Avec ces taux, les clients récupèrent autant qu'ils dépensent, voire plus. Vérifiez les points par unité et la valeur d'un point."
   },
   "receipt": {
     "content": "Contenu",
@@ -391,7 +397,8 @@
     "lanHint": "Exécutez le serveur de synchronisation Kasa sur n'importe quel PC de votre boutique et utilisez son adresse locale. Les caisses continuent de vendre hors ligne et se remettent à jour dès que le PC est de nouveau disponible.",
     "cloudTitle": "Cloud",
     "cloudHint": "Déployez le même serveur sur n'importe quel hébergeur avec HTTPS pour connecter des succursales et consulter les ventes de n'importe où.",
-    "readme": "La configuration, les clés de boutique et l'API HTTP sont décrites dans"
+    "readme": "La configuration, les clés de boutique et l'API HTTP sont décrites dans",
+    "mixedContent": "Cette application est ouverte en https://, et les navigateurs bloquent les connexions depuis celle-ci vers un serveur http://. Utilisez une adresse https:// pour le serveur, ou utilisez l'application de bureau sur cette caisse."
   },
   "backup": {
     "staleTitle": "La dernière sauvegarde date de {{time}}",
@@ -473,7 +480,24 @@
     "user_update": "Utilisateur modifié",
     "user_delete": "Utilisateur supprimé",
     "backup_export": "Sauvegarde exportée",
-    "backup_restore": "Sauvegarde restaurée"
+    "backup_restore": "Sauvegarde restaurée",
+    "category_delete": "Catégorie supprimée",
+    "customer_adjust": "Solde du client ajusté",
+    "customer_delete": "Client supprimé",
+    "customer_import": "Clients importés",
+    "customer_payment": "Paiement client",
+    "customer_payment_delete": "Paiement client supprimé",
+    "customer_reminder": "Rappel de paiement envoyé",
+    "labels_print": "Étiquettes imprimées",
+    "product_barcodes": "Codes-barres générés",
+    "product_delete": "Produit supprimé",
+    "product_import": "Produits importés",
+    "purchase_create": "Achat enregistré",
+    "stock_adjust": "Stock ajusté",
+    "stock_count": "Inventaire",
+    "supplier_delete": "Fournisseur supprimé",
+    "cash_in": "Espèces ajoutées au tiroir-caisse",
+    "cash_out": "Espèces retirées du tiroir-caisse"
   },
   "danger": {
     "erase": "Effacer toutes les données de cet appareil",

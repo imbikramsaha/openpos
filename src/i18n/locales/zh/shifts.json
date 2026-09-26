@@ -129,5 +129,8 @@
     "out": "取出",
     "notes": "备注",
     "end": "——报告结束——"
-  }
+  },
+  "amountNegative": "不能为负数",
+  "amountTooLarge": "该金额过大",
+  "alreadyClosed": "该班次已结束。"
 }

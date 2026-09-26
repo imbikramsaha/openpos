@@ -55,5 +55,6 @@
   "created": "{{name}} sasa anaweza kuingia",
   "deleteTitle": "Futa {{name}}?",
   "deleteMessage": "Hataweza kuingia tena. Mauzo na shughuli zake za awali zitabaki kwenye kumbukumbu zako.",
-  "deleted": "{{name}} amefutwa"
+  "deleted": "{{name}} amefutwa",
+  "pinPrefixClash": "PIN ya {{name}} inaanza na tarakimu zilezile 4, hivyo skrini ya kufunga inaweza kumwingiza mtu asiyefaa. Chagua PIN inayoanza tofauti."
 }

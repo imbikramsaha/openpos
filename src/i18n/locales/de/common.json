@@ -178,5 +178,17 @@
     "email": "Gib eine gültige E-Mail-Adresse ein, z. B. name@example.com",
     "gstin": "Gib eine gültige 15-stellige GSTIN ein, z. B. 27AAPFU0939F1ZV",
     "taxId": "Verwende 3–20 Buchstaben oder Ziffern"
-  }
+  },
+  "backspace": "Letzte Ziffer löschen",
+  "offlineReady": "Kasa POS ist bereit, offline zu arbeiten",
+  "later": "Später",
+  "storageError": "Dieser Browser lässt Kasa POS keine Daten speichern",
+  "storageErrorHint": "Kasa POS speichert deine Verkäufe auf diesem Gerät. Ein privates Fenster oder Inkognito-Fenster, blockierte Websitedaten oder ein voller Speicher können das verhindern. Öffne die App in einem normalen Fenster, erlaube Websitedaten für diese Website und lade dann neu.",
+  "dbClosed": "Zum Fortfahren neu laden",
+  "dbClosedHint": "Die Daten auf diesem Gerät wurden außerhalb dieses Fensters geändert: Websitedaten wurden gelöscht, oder Kasa POS wurde in einem anderen Tab gelöscht, wiederhergestellt oder aktualisiert. Lade neu, damit nichts am falschen Ort gespeichert wird.",
+  "otherTab": "Kasa POS ist in einem anderen Tab geöffnet",
+  "otherTabHint": "Die Kasse funktioniert immer nur in einem Tab, damit Warenkorb und Belege konsistent bleiben. Mache in dem anderen Tab weiter oder verwende stattdessen diesen hier.",
+  "useHere": "Diesen Tab verwenden",
+  "notSignedIn": "Zuerst anmelden",
+  "storageFull": "Auf diesem Gerät ist kein Speicherplatz mehr verfügbar. Schaffe Platz (oder exportiere eine Sicherung und lösche alte Daten) und versuche es dann erneut."
 }

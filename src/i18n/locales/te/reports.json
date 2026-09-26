@@ -159,7 +159,11 @@
     "supply": "సరఫరా",
     "intra": "రాష్ట్రంలోపల",
     "inter": "అంతర్-రాష్ట్ర",
-    "interStateSupplies": "అంతర్-రాష్ట్ర సరఫరాలు"
+    "interStateSupplies": "అంతర్-రాష్ట్ర సరఫరాలు",
+    "taxName": "పన్ను పేరు",
+    "andOthers_one": "{{name}} మరియు మరో ఒకటి",
+    "andOthers_other": "{{name}} మరియు మరో {{count}}",
+    "roundingNote": "ఇన్‌వాయిస్ విలువల్లో {{amount}} నగదు రౌండింగ్ చేర్చబడలేదు"
   },
   "inventory": {
     "title": "స్టాక్",

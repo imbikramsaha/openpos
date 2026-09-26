@@ -95,7 +95,9 @@
     "pointsEarned_other": "+{{count}} points ang nakuha",
     "pointsRedeemed_one": "{{count}} point ang na-redeem",
     "pointsRedeemed_other": "{{count}} points ang na-redeem",
-    "linked": "Mga refund laban sa bentang ito"
+    "linked": "Mga refund laban sa bentang ito",
+    "pointsReversed_one": "{{count}} point ang binawi",
+    "pointsReversed_other": "{{count}} points ang binawi"
   },
   "refund": {
     "action": "Refund",
@@ -123,7 +125,12 @@
     "done": "Nagawa ang credit note {{number}}",
     "complete": "Kumpleto ang refund",
     "payBack": "Ibalik sa pamamagitan ng {{method}}",
-    "toAccount": "Na-credit sa account ng customer"
+    "toAccount": "Na-credit sa account ng customer",
+    "nothing": "Pumili ng kahit isang item na irerefund",
+    "pointsBack_one": "+ {{count}} loyalty point ang ibinalik",
+    "pointsBack_other": "+ {{count}} loyalty points ang ibinalik",
+    "pointsBackHint_one": "{{count}} loyalty point ({{amount}}) ang ibabalik sa points ng customer sa halip na pera",
+    "pointsBackHint_other": "{{count}} loyalty points ({{amount}}) ang ibabalik sa points ng customer sa halip na pera"
   },
   "void": {
     "action": "I-void",
@@ -139,6 +146,9 @@
     "confirmTitle": "I-void ang {{number}}?",
     "confirmMessage": "Kakanselahin ang bentang {{amount}} at ibabalik ang stock nito. Hindi na ito maibabalik pa.",
     "done": "Na-void ang {{number}}",
-    "voided": "Na-void"
+    "voided": "Na-void",
+    "notAllowed": "Na-void na ang bentang ito o hindi na ito puwedeng i-void.",
+    "hasRefunds": "May mga refund na ang bentang ito, kaya hindi na ito puwedeng i-void. I-refund na lang ang mga natitirang item.",
+    "otherShift": "Kabilang ang bentang ito sa isang sarado nang shift. I-refund na lang ito."
   }
 }

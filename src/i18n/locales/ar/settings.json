@@ -170,7 +170,10 @@
     "cashRoundingHint": "تقريب إجمالي البيع إلى أصغر عملة معدنية متداولة.",
     "roundingNone": "بدون تقريب",
     "roundingCustom": "الخطوة الحالية: {{value}}",
-    "roundingExample": "مثال على الإجمالي"
+    "roundingExample": "مثال على الإجمالي",
+    "decimalsChangeTitle": "التبديل إلى {{currency}}؟",
+    "decimalsChange": "يستخدم {{from}} و{{to}} عددًا مختلفًا من الخانات العشرية. لا تُحوَّل الأسعار والمبيعات والأرصدة، لذا يتغيّر حجم كل مبلغ موجود: سيظهر {{before}} كـ {{after}}. أعد إدخال أسعارك بعد التبديل.",
+    "decimalsChangeConfirm": "تبديل العملة"
   },
   "checkout": {
     "rules": "قواعد البيع",
@@ -229,7 +232,10 @@
     "loyaltyPointValue": "قيمة النقطة الواحدة",
     "loyaltyPointValueHint": "الخصم الذي يحصل عليه العميل عن كل نقطة يستبدلها",
     "loyaltyExample": "إنفاق {{spend}} يكسب {{points}} نقطة، بقيمة {{value}}.",
-    "loyaltyReturn": "أي ما يعادل {{percent}}% استردادًا."
+    "loyaltyReturn": "أي ما يعادل {{percent}}% استردادًا.",
+    "loyaltyEarnRateRange": "أدخل رقمًا من 0 إلى {{max}}",
+    "loyaltyPointValueRange": "أدخل مبلغًا يساوي 0 أو أكثر",
+    "loyaltyTooGenerous": "بهذه النسب، يسترد العملاء بقدر ما ينفقونه أو أكثر. تحقق من النقاط لكل وحدة وقيمة النقطة الواحدة."
   },
   "receipt": {
     "content": "المحتوى",
@@ -391,7 +397,8 @@
     "lanHint": "شغّل خادم مزامنة Kasa على أي جهاز كمبيوتر في متجرك واستخدم عنوانه المحلي. تستمر الأجهزة في البيع دون اتصال وتتزامن عند عودة الكمبيوتر.",
     "cloudTitle": "السحابة",
     "cloudHint": "انشر نفس الخادم على أي مضيف يدعم HTTPS لربط الفروع ومتابعة المبيعات من أي مكان.",
-    "readme": "الإعداد ومفاتيح المتجر وواجهة HTTP API موصوفة في"
+    "readme": "الإعداد ومفاتيح المتجر وواجهة HTTP API موصوفة في",
+    "mixedContent": "هذا التطبيق مفتوح عبر https://، والمتصفحات تمنع الاتصالات منه بخادم http://. استخدم عنوان https:// للخادم، أو استخدم تطبيق سطح المكتب على هذا الجهاز."
   },
   "backup": {
     "staleTitle": "كانت آخر نسخة احتياطية {{time}}",
@@ -473,7 +480,24 @@
     "user_update": "تم تغيير مستخدم",
     "user_delete": "تم حذف مستخدم",
     "backup_export": "تم تصدير نسخة احتياطية",
-    "backup_restore": "تمت استعادة نسخة احتياطية"
+    "backup_restore": "تمت استعادة نسخة احتياطية",
+    "category_delete": "تم حذف الفئة",
+    "customer_adjust": "تم تعديل رصيد العميل",
+    "customer_delete": "تم حذف العميل",
+    "customer_import": "تم استيراد العملاء",
+    "customer_payment": "دفعة عميل",
+    "customer_payment_delete": "تم حذف دفعة العميل",
+    "customer_reminder": "تم إرسال تذكير بالدفع",
+    "labels_print": "تمت طباعة الملصقات",
+    "product_barcodes": "تم إنشاء الباركودات",
+    "product_delete": "تم حذف المنتج",
+    "product_import": "تم استيراد المنتجات",
+    "purchase_create": "تم تسجيل عملية الشراء",
+    "stock_adjust": "تم تعديل المخزون",
+    "stock_count": "جرد المخزون",
+    "supplier_delete": "تم حذف المورّد",
+    "cash_in": "تمت إضافة نقد إلى الدرج",
+    "cash_out": "تم سحب نقد من الدرج"
   },
   "danger": {
     "erase": "محو جميع بيانات هذا الجهاز",

@@ -159,7 +159,11 @@
     "supply": "Lieferung",
     "intra": "Innerhalb des Bundesstaats",
     "inter": "Bundesstaatenübergreifend",
-    "interStateSupplies": "Bundesstaatenübergreifende Lieferungen"
+    "interStateSupplies": "Bundesstaatenübergreifende Lieferungen",
+    "taxName": "Steuername",
+    "andOthers_one": "{{name}} und {{count}} weitere",
+    "andOthers_other": "{{name}} und {{count}} weitere",
+    "roundingNote": "Rechnungsbeträge enthalten nicht die Bargeldrundung von {{amount}}"
   },
   "inventory": {
     "title": "Bestand",

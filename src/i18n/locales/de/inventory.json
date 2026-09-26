@@ -159,7 +159,10 @@
     "saved": "{{number}} gespeichert — Bestand hinzugefügt",
     "discard": "Verwerfen",
     "discardTitle": "Diesen Einkauf verwerfen?",
-    "discardMessage": "Die von dir eingegebenen Artikel werden entfernt."
+    "discardMessage": "Die von dir eingegebenen Artikel werden entfernt.",
+    "badCost": "Stückkosten dürfen nicht negativ sein.",
+    "badPaid": "Der bezahlte Betrag darf nicht negativ oder höher als die Summe sein.",
+    "deletedLines": "Entferne die Artikel, deren Produkt gelöscht wurde."
   },
   "suppliers": {
     "new": "Neuer Lieferant",

@@ -131,7 +131,12 @@
     "stockHistory": "Bestandsverlauf",
     "deleteTitle": "„{{name}}“ löschen?",
     "deleteMessage": "Es wird aus dem Katalog und der Kasse entfernt. Vergangene Verkäufe bleiben erhalten.",
-    "deleted": "„{{name}}“ gelöscht"
+    "deleted": "„{{name}}“ gelöscht",
+    "negative": "Darf nicht negativ sein",
+    "tooLarge": "Diese Zahl ist zu groß",
+    "discardTitle": "Änderungen verwerfen?",
+    "discardMessage": "Deine Änderungen an diesem Produkt wurden nicht gespeichert.",
+    "discard": "Verwerfen"
   },
   "categories": {
     "new": "Neue Kategorie",
@@ -152,7 +157,8 @@
     "deleteMessage_one": "{{count}} Produkt wird ohne Kategorie. Das Produkt selbst wird nicht gelöscht.",
     "deleteMessage_other": "{{count}} Produkte werden ohne Kategorie. Die Produkte selbst werden nicht gelöscht.",
     "deleteEmpty": "Keine Produkte verwenden diese Kategorie.",
-    "deleted": "Kategorie „{{name}}“ gelöscht"
+    "deleted": "Kategorie „{{name}}“ gelöscht",
+    "duplicate": "Es gibt bereits eine Kategorie mit diesem Namen"
   },
   "import": {
     "title": "Produkte importieren",
@@ -195,7 +201,10 @@
       "duplicateSku": "Gleiche SKU wie in Zeile {{line}}",
       "skuTaken": "SKU gehört auch zu „{{name}}“",
       "stockIgnored": "Bestand wird ignoriert: Dieses Produkt erfasst keinen Bestand",
-      "aboveMrp": "Preis liegt über der UVP"
+      "aboveMrp": "Preis liegt über der UVP",
+      "tooLarge": "{{column}} ist zu groß",
+      "noPrice": "Kein Preis — wird mit Preis 0 hinzugefügt",
+      "barcodeScientific": "Die Tabellenkalkulation hat den Barcode „{{value}}“ in eine wissenschaftliche Zahl umgewandelt. Formatiere die Spalte als Text und exportiere erneut."
     }
   },
   "labels": {
@@ -232,6 +241,7 @@
     "previewHint": "Etikettengröße {{size}}. Verwende im Druckdialog 100 % Skalierung / „Originalgröße“.",
     "nothing": "Nichts zu drucken",
     "total_one": "{{count}} Etikett",
-    "total_other": "{{count}} Etiketten"
+    "total_other": "{{count}} Etiketten",
+    "tooMany": "Zu viele Etiketten: Drucke höchstens {{max}} auf einmal."
   }
 }

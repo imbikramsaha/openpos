@@ -149,7 +149,10 @@
     "supply": "Cung cấp",
     "intra": "Nội bang",
     "inter": "Liên bang",
-    "interStateSupplies": "Cung cấp liên bang"
+    "interStateSupplies": "Cung cấp liên bang",
+    "taxName": "Tên thuế",
+    "andOthers_other": "{{name}} và {{count}} loại khác",
+    "roundingNote": "giá trị hóa đơn không bao gồm khoản làm tròn tiền mặt {{amount}}"
   },
   "inventory": {
     "title": "Tồn kho",

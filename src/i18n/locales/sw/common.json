@@ -178,5 +178,17 @@
     "email": "Weka barua pepe halali, kama name@example.com",
     "gstin": "Weka GSTIN halali ya herufi 15, kama 27AAPFU0939F1ZV",
     "taxId": "Tumia herufi au tarakimu 3–20"
-  }
+  },
+  "backspace": "Futa tarakimu ya mwisho",
+  "offlineReady": "Kasa POS iko tayari kufanya kazi bila mtandao",
+  "later": "Baadaye",
+  "storageError": "Kivinjari hiki hakiruhusu Kasa POS kuhifadhi data",
+  "storageErrorHint": "Kasa POS huhifadhi mauzo yako kwenye kifaa hiki. Dirisha la faragha au la incognito, data ya tovuti iliyozuiwa, au diski iliyojaa vinaweza kuzuia hilo. Fungua programu kwenye dirisha la kawaida, ruhusu data ya tovuti kwa tovuti hii, kisha upakie upya.",
+  "dbClosed": "Pakia upya ili kuendelea",
+  "dbClosedHint": "Data kwenye kifaa hiki ilibadilishwa kutoka nje ya dirisha hili: data ya tovuti ilifutwa, au Kasa POS ilifutwa, kurejeshwa au kusasishwa kwenye kichupo kingine. Pakia upya ili kusiwe na kitu kinachohifadhiwa mahali pasipofaa.",
+  "otherTab": "Kasa POS imefunguliwa kwenye kichupo kingine",
+  "otherTabHint": "Kaunta hufanya kazi kwenye kichupo kimoja kwa wakati mmoja ili kikapu na risiti zibaki sawa. Endelea kwenye kichupo kingine, au tumia hiki badala yake.",
+  "useHere": "Tumia kichupo hiki",
+  "notSignedIn": "Ingia kwanza",
+  "storageFull": "Kifaa hiki kimeishiwa na nafasi ya kuhifadhi. Achilia nafasi (au hamisha nakala ya akiba kisha ufute data ya zamani), kisha jaribu tena."
 }

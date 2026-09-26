@@ -155,7 +155,10 @@
     "saved": "{{number}} tersimpan — stok ditambahkan",
     "discard": "Buang",
     "discardTitle": "Buang pembelian ini?",
-    "discardMessage": "Item yang sudah Anda masukkan akan dihapus."
+    "discardMessage": "Item yang sudah Anda masukkan akan dihapus.",
+    "badCost": "Harga modal satuan tidak boleh negatif.",
+    "badPaid": "Jumlah yang dibayar tidak boleh negatif atau lebih besar dari total.",
+    "deletedLines": "Hapus item yang produknya sudah dihapus."
   },
   "suppliers": {
     "new": "Pemasok baru",

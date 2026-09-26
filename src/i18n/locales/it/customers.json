@@ -72,7 +72,10 @@
     "confirmTitle_other": "Importare {{count}} clienti?",
     "confirmMessage": "{{creates}} nuovi, {{updates}} aggiornati (abbinati per telefono o email), {{skipped}} righe saltate senza nome. Gli import non modificano mai i saldi.",
     "imported": "Importati: {{creates}} nuovi, {{updates}} aggiornati",
-    "failed": "Importazione non riuscita: {{error}}"
+    "failed": "Importazione non riuscita: {{error}}",
+    "invalidValues_one": "{{count}} valore non valido di telefono, email, partita IVA o sconto verrà lasciato vuoto.",
+    "invalidValues_other": "{{count}} valori non validi di telefono, email, partita IVA o sconto verranno lasciati vuoti.",
+    "invalidValues_many": "{{count}} valori non validi di telefono, email, partita IVA o sconto verranno lasciati vuoti."
   },
   "form": {
     "newTitle": "Nuovo cliente",
@@ -95,7 +98,8 @@
     "duplicatePhone": "{{name}} ha già questo numero di telefono. Salvare comunque?",
     "saveAnyway": "Salva comunque",
     "created": "{{name}} aggiunto",
-    "saved": "Cliente salvato"
+    "saved": "Cliente salvato",
+    "amountTooLarge": "Quell'importo è troppo alto"
   },
   "detail": {
     "title": "Cliente",
@@ -138,7 +142,8 @@
     "sale": "Vendita a credito",
     "refund": "Rimborso sul conto",
     "payment": "Pagamento ricevuto",
-    "charge": "Addebito"
+    "charge": "Addebito",
+    "adjust": "Saldo ridotto"
   },
   "pay": {
     "title": "Ricevi pagamento",

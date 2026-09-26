@@ -159,7 +159,11 @@
     "supply": "Levering",
     "intra": "Binnen de deelstaat",
     "inter": "Tussen deelstaten",
-    "interStateSupplies": "Leveringen tussen deelstaten"
+    "interStateSupplies": "Leveringen tussen deelstaten",
+    "taxName": "Belastingnaam",
+    "andOthers_one": "{{name}} en {{count}} andere",
+    "andOthers_other": "{{name}} en {{count}} andere",
+    "roundingNote": "factuurwaarden zijn exclusief de contante afronding van {{amount}}"
   },
   "inventory": {
     "title": "Voorraad",

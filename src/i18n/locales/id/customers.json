@@ -64,7 +64,8 @@
     "confirmTitle_other": "Impor {{count}} pelanggan?",
     "confirmMessage": "{{creates}} baru, {{updates}} diperbarui (dicocokkan berdasarkan telepon atau email), {{skipped}} baris dilewati karena tanpa nama. Saldo tidak pernah diubah oleh impor.",
     "imported": "Diimpor: {{creates}} baru, {{updates}} diperbarui",
-    "failed": "Impor gagal: {{error}}"
+    "failed": "Impor gagal: {{error}}",
+    "invalidValues_other": "{{count}} nomor telepon, email, ID pajak atau nilai diskon yang tidak valid akan dikosongkan."
   },
   "form": {
     "newTitle": "Pelanggan baru",
@@ -87,7 +88,8 @@
     "duplicatePhone": "{{name}} sudah memiliki nomor telepon ini. Tetap simpan?",
     "saveAnyway": "Tetap simpan",
     "created": "{{name}} ditambahkan",
-    "saved": "Pelanggan tersimpan"
+    "saved": "Pelanggan tersimpan",
+    "amountTooLarge": "Nominal itu terlalu besar"
   },
   "detail": {
     "title": "Pelanggan",
@@ -128,7 +130,8 @@
     "sale": "Penjualan kredit",
     "refund": "Refund ke akun",
     "payment": "Pembayaran diterima",
-    "charge": "Tagihan"
+    "charge": "Tagihan",
+    "adjust": "Saldo dikurangi"
   },
   "pay": {
     "title": "Terima pembayaran",

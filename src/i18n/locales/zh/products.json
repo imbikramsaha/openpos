@@ -121,7 +121,12 @@
     "stockHistory": "库存历史",
     "deleteTitle": "删除“{{name}}”?",
     "deleteMessage": "它将从商品目录和收银台中移除。历史销售记录将保留。",
-    "deleted": "“{{name}}”已删除"
+    "deleted": "“{{name}}”已删除",
+    "negative": "不能为负数",
+    "tooLarge": "此数字过大",
+    "discardTitle": "放弃更改?",
+    "discardMessage": "您对该商品的更改尚未保存。",
+    "discard": "放弃"
   },
   "categories": {
     "new": "新建分类",
@@ -140,7 +145,8 @@
     "deleteTitle": "删除分类“{{name}}”?",
     "deleteMessage_other": "{{count}} 件商品将变为未分类。商品本身不会被删除。",
     "deleteEmpty": "没有商品使用此分类。",
-    "deleted": "分类“{{name}}”已删除"
+    "deleted": "分类“{{name}}”已删除",
+    "duplicate": "已存在同名分类"
   },
   "import": {
     "title": "导入商品",
@@ -180,7 +186,10 @@
       "duplicateSku": "与第 {{line}} 行的 SKU 相同",
       "skuTaken": "该 SKU 也属于“{{name}}”",
       "stockIgnored": "库存已忽略:该商品未启用库存跟踪",
-      "aboveMrp": "价格高于建议零售价"
+      "aboveMrp": "价格高于建议零售价",
+      "tooLarge": "{{column}} 过大",
+      "noPrice": "无价格——将以价格 0 添加",
+      "barcodeScientific": "条码“{{value}}”被电子表格转换成了科学计数法数字。请将该列格式设为文本,然后重新导出。"
     }
   },
   "labels": {
@@ -213,6 +222,7 @@
     "preview": "预览",
     "previewHint": "标签尺寸 {{size}}。请在打印对话框中使用 100% 缩放/“实际大小”。",
     "nothing": "没有可打印的内容",
-    "total_other": "{{count}} 个标签"
+    "total_other": "{{count}} 个标签",
+    "tooMany": "标签过多:每次最多打印 {{max}} 个。"
   }
 }

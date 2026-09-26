@@ -177,5 +177,17 @@
     "email": "Nhập email hợp lệ, ví dụ name@example.com",
     "gstin": "Nhập GSTIN hợp lệ gồm 15 ký tự, ví dụ 27AAPFU0939F1ZV",
     "taxId": "Dùng 3–20 chữ cái hoặc chữ số"
-  }
+  },
+  "backspace": "Xóa chữ số cuối",
+  "offlineReady": "Kasa POS đã sẵn sàng hoạt động ngoại tuyến",
+  "later": "Để sau",
+  "storageError": "Trình duyệt này không cho phép Kasa POS lưu dữ liệu",
+  "storageErrorHint": "Kasa POS lưu dữ liệu bán hàng của bạn trên thiết bị này. Cửa sổ riêng tư hoặc ẩn danh, dữ liệu trang web bị chặn, hoặc ổ đĩa đầy có thể khiến việc lưu bị chặn. Hãy mở ứng dụng trong cửa sổ bình thường, cho phép dữ liệu trang web cho trang này, rồi tải lại.",
+  "dbClosed": "Tải lại để tiếp tục",
+  "dbClosedHint": "Dữ liệu trên thiết bị này đã bị thay đổi từ bên ngoài cửa sổ này: dữ liệu trang web đã bị xóa, hoặc Kasa POS đã bị xóa, khôi phục hay cập nhật ở một tab khác. Hãy tải lại để tránh lưu sai chỗ.",
+  "otherTab": "Kasa POS đang mở ở một tab khác",
+  "otherTabHint": "Máy bán hàng chỉ hoạt động trên một tab tại một thời điểm để giỏ hàng và hóa đơn luôn nhất quán. Hãy tiếp tục ở tab kia, hoặc dùng tab này thay thế.",
+  "useHere": "Dùng tab này",
+  "notSignedIn": "Hãy đăng nhập trước",
+  "storageFull": "Thiết bị này đã hết dung lượng lưu trữ. Hãy giải phóng dung lượng (hoặc xuất bản sao lưu và xóa dữ liệu cũ), rồi thử lại."
 }

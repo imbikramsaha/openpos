@@ -54,5 +54,6 @@
   "created": "{{name}} 现在可以登录了",
   "deleteTitle": "删除 {{name}}?",
   "deleteMessage": "该员工将无法再登录。其历史销售记录和活动将保留在您的记录中。",
-  "deleted": "{{name}} 已删除"
+  "deleted": "{{name}} 已删除",
+  "pinPrefixClash": "{{name}} 的 PIN 前 4 位数字相同,锁屏时可能会误登录到对方账户。请选择开头不同的 PIN。"
 }

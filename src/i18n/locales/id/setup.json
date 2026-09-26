@@ -39,5 +39,11 @@
   "join": "Hubungkan",
   "joined": "Terhubung ke {{name}}",
   "joinFailed": "Tidak dapat terhubung ke server",
-  "joinNoData": "Server belum memiliki data toko. Siapkan kasir pertama secara normal, lalu hubungkan ke server."
+  "joinNoData": "Server belum memiliki data toko. Siapkan kasir pertama secara normal, lalu hubungkan ke server.",
+  "restoreBackup": "Pulihkan dari cadangan",
+  "restore": "Pulihkan",
+  "restoreConfirmTitle": "Pulihkan cadangan ini?",
+  "restoreConfirmMessage": "Perangkat ini akan disiapkan dari “{{name}}”, dicadangkan pada {{date}}. Anda akan masuk dengan PIN dari cadangan tersebut.",
+  "defaultFooter": "Terima kasih! Silakan datang kembali.",
+  "defaultTerminalName": "Kasir 1"
 }

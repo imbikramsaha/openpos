@@ -95,7 +95,10 @@
     "pointsEarned_other": "+{{count}} points gagnés",
     "pointsRedeemed_one": "{{count}} point utilisé",
     "pointsRedeemed_other": "{{count}} points utilisés",
-    "linked": "Remboursements liés à cette vente"
+    "linked": "Remboursements liés à cette vente",
+    "pointsReversed_one": "{{count}} point repris",
+    "pointsReversed_other": "{{count}} points repris",
+    "pointsReversed_many": "{{count}} points repris"
   },
   "refund": {
     "action": "Rembourser",
@@ -123,7 +126,14 @@
     "done": "Note de crédit {{number}} créée",
     "complete": "Remboursement terminé",
     "payBack": "Rembourser en {{method}}",
-    "toAccount": "Crédité sur le compte client"
+    "toAccount": "Crédité sur le compte client",
+    "nothing": "Sélectionnez au moins un article à rembourser",
+    "pointsBack_one": "+ {{count}} point de fidélité rendu",
+    "pointsBack_other": "+ {{count}} points de fidélité rendus",
+    "pointsBack_many": "+ {{count}} points de fidélité rendus",
+    "pointsBackHint_one": "{{count}} point de fidélité ({{amount}}) retourne aux points du client au lieu d'argent",
+    "pointsBackHint_other": "{{count}} points de fidélité ({{amount}}) retournent aux points du client au lieu d'argent",
+    "pointsBackHint_many": "{{count}} points de fidélité ({{amount}}) retournent aux points du client au lieu d'argent"
   },
   "void": {
     "action": "Annuler",
@@ -139,6 +149,9 @@
     "confirmTitle": "Annuler {{number}} ?",
     "confirmMessage": "La vente de {{amount}} sera annulée et son stock restitué. Cette action est irréversible.",
     "done": "{{number}} annulée",
-    "voided": "Annulée"
+    "voided": "Annulée",
+    "notAllowed": "Cette vente est déjà annulée ou ne peut pas être annulée.",
+    "hasRefunds": "Cette vente comporte des remboursements, elle ne peut donc pas être annulée. Remboursez plutôt les articles restants.",
+    "otherShift": "Cette vente appartient à une session fermée. Remboursez-la à la place."
   }
 }

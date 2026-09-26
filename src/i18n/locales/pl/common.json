@@ -180,5 +180,17 @@
     "email": "Wpisz prawidłowy e-mail, np. name@example.com",
     "gstin": "Wpisz prawidłowy 15-znakowy GSTIN, np. 27AAPFU0939F1ZV",
     "taxId": "Użyj od 3 do 20 liter lub cyfr"
-  }
+  },
+  "backspace": "Usuń ostatnią cyfrę",
+  "offlineReady": "Kasa POS jest gotowa do pracy offline",
+  "later": "Później",
+  "storageError": "Ta przeglądarka nie pozwala aplikacji Kasa POS zapisywać danych",
+  "storageErrorHint": "Kasa POS przechowuje Twoją sprzedaż na tym urządzeniu. Może to uniemożliwić okno prywatne lub incognito, zablokowane dane witryny albo pełny dysk. Otwórz aplikację w zwykłym oknie, zezwól na dane witryny dla tej strony, a potem odśwież.",
+  "dbClosed": "Odśwież, aby kontynuować",
+  "dbClosedHint": "Dane na tym urządzeniu zostały zmienione spoza tego okna: wyczyszczono dane witryny albo Kasa POS został usunięty, przywrócony lub zaktualizowany w innej karcie. Odśwież, aby nic nie zapisało się w niewłaściwym miejscu.",
+  "otherTab": "Kasa POS jest otwarta w innej karcie",
+  "otherTabHint": "Kasa działa w jednej karcie naraz, aby koszyk i paragony pozostawały spójne. Kontynuuj w tamtej karcie albo użyj zamiast niej tej.",
+  "useHere": "Użyj tej karty",
+  "notSignedIn": "Najpierw się zaloguj",
+  "storageFull": "Na tym urządzeniu skończyło się miejsce. Zwolnij miejsce (albo wyeksportuj kopię zapasową i usuń stare dane), a potem spróbuj ponownie."
 }

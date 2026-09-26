@@ -68,7 +68,9 @@
     "confirmTitle_other": "I-import ang {{count}} customer?",
     "confirmMessage": "{{creates}} bago, {{updates}} na-update (itinugma sa phone o email), {{skipped}} row ang nalaktawan dahil walang pangalan. Hindi kailanman binabago ng import ang mga balanse.",
     "imported": "Na-import: {{creates}} bago, {{updates}} na-update",
-    "failed": "Nabigo ang import: {{error}}"
+    "failed": "Nabigo ang import: {{error}}",
+    "invalidValues_one": "{{count}} invalid na telepono, email, tax ID o diskwento ang iiwanang blangko.",
+    "invalidValues_other": "{{count}} invalid na telepono, email, tax ID o diskwento ang iiwanang blangko."
   },
   "form": {
     "newTitle": "Bagong customer",
@@ -91,7 +93,8 @@
     "duplicatePhone": "May ganito nang numero ng telepono si {{name}}. I-save pa rin?",
     "saveAnyway": "I-save pa rin",
     "created": "Naidagdag si {{name}}",
-    "saved": "Na-save ang customer"
+    "saved": "Na-save ang customer",
+    "amountTooLarge": "Sobrang laki ng halagang iyon"
   },
   "detail": {
     "title": "Customer",
@@ -133,7 +136,8 @@
     "sale": "Bentang utang",
     "refund": "Refund sa account",
     "payment": "Natanggap na bayad",
-    "charge": "Singil"
+    "charge": "Singil",
+    "adjust": "Binawasan ang balanse"
   },
   "pay": {
     "title": "Tumanggap ng bayad",

@@ -55,5 +55,6 @@
   "created": "{{name}} já pode entrar",
   "deleteTitle": "Excluir {{name}}?",
   "deleteMessage": "Essa pessoa não poderá mais entrar. As vendas e a atividade anteriores permanecem nos seus registros.",
-  "deleted": "{{name}} excluído"
+  "deleted": "{{name}} excluído",
+  "pinPrefixClash": "O PIN de {{name}} começa com os mesmos 4 dígitos, então a tela de bloqueio pode entrar na conta da pessoa errada. Escolha um PIN que comece de forma diferente."
 }

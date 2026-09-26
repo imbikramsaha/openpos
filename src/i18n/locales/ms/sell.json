@@ -163,5 +163,9 @@
     "scanUpi": "Imbas dengan mana-mana aplikasi UPI untuk bayar",
     "thankYou": "Terima kasih kerana membeli-belah dengan kami!"
   },
-  "addProduct": "Tambah produk"
+  "addProduct": "Tambah produk",
+  "invalidPrice": "Masukkan harga sifar atau lebih",
+  "amountTooLarge": "Jumlah terlalu besar. Semak kuantiti dan harga.",
+  "refundComplete": "Bayaran balik selesai",
+  "receiptAmbiguous": "Beberapa jualan berakhir dengan {{number}}. Taip lebih banyak nombor resit."
 }

@@ -166,5 +166,9 @@
     "scanUpi": "Mit einer beliebigen UPI-App scannen, um zu bezahlen",
     "thankYou": "Danke für deinen Einkauf bei uns!"
   },
-  "addProduct": "Produkt hinzufügen"
+  "addProduct": "Produkt hinzufügen",
+  "invalidPrice": "Gib einen Preis von null oder mehr ein",
+  "amountTooLarge": "Die Summe ist zu hoch. Überprüfe die Mengen und Preise.",
+  "refundComplete": "Erstattung abgeschlossen",
+  "receiptAmbiguous": "Mehrere Verkäufe enden auf {{number}}. Gib mehr von der Belegnummer ein."
 }

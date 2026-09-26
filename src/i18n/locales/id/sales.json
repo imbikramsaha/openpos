@@ -88,7 +88,8 @@
     "noPayments": "Tidak ada pembayaran tercatat",
     "pointsEarned_other": "+{{count}} poin didapat",
     "pointsRedeemed_other": "{{count}} poin ditukar",
-    "linked": "Refund pada penjualan ini"
+    "linked": "Refund pada penjualan ini",
+    "pointsReversed_other": "{{count}} poin diambil kembali"
   },
   "refund": {
     "action": "Refund",
@@ -116,7 +117,10 @@
     "done": "Nota kredit {{number}} dibuat",
     "complete": "Refund selesai",
     "payBack": "Kembalikan dengan {{method}}",
-    "toAccount": "Dikreditkan ke akun pelanggan"
+    "toAccount": "Dikreditkan ke akun pelanggan",
+    "nothing": "Pilih setidaknya satu item untuk di-refund",
+    "pointsBack_other": "+ {{count}} poin loyalitas dikembalikan",
+    "pointsBackHint_other": "{{count}} poin loyalitas ({{amount}}) dikembalikan ke poin pelanggan, bukan uang"
   },
   "void": {
     "action": "Batalkan",
@@ -132,6 +136,9 @@
     "confirmTitle": "Batalkan {{number}}?",
     "confirmMessage": "Penjualan senilai {{amount}} akan dibatalkan dan stoknya dikembalikan. Tindakan ini tidak dapat dibatalkan.",
     "done": "{{number}} dibatalkan",
-    "voided": "Dibatalkan"
+    "voided": "Dibatalkan",
+    "notAllowed": "Penjualan ini sudah dibatalkan atau tidak bisa dibatalkan.",
+    "hasRefunds": "Penjualan ini memiliki refund, sehingga tidak bisa dibatalkan. Refund saja item yang tersisa.",
+    "otherShift": "Penjualan ini termasuk shift yang sudah ditutup. Refund saja sebagai gantinya."
   }
 }

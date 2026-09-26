@@ -177,5 +177,17 @@
     "email": "Masukkan email yang valid, mis. name@example.com",
     "gstin": "Masukkan GSTIN 15 karakter yang valid, mis. 27AAPFU0939F1ZV",
     "taxId": "Gunakan 3–20 huruf atau angka"
-  }
+  },
+  "backspace": "Hapus digit terakhir",
+  "offlineReady": "Kasa POS siap digunakan secara offline",
+  "later": "Nanti",
+  "storageError": "Browser ini tidak mengizinkan Kasa POS menyimpan data",
+  "storageErrorHint": "Kasa POS menyimpan data penjualan Anda di perangkat ini. Jendela pribadi atau penyamaran, data situs yang diblokir, atau disk yang penuh dapat mencegah hal itu. Buka aplikasi di jendela normal, izinkan data situs untuk situs ini, lalu muat ulang.",
+  "dbClosed": "Muat ulang untuk melanjutkan",
+  "dbClosedHint": "Data di perangkat ini berubah dari luar jendela ini: data situs telah dihapus, atau Kasa POS dihapus, dipulihkan, atau diperbarui di tab lain. Muat ulang agar tidak ada yang tersimpan ke tempat yang salah.",
+  "otherTab": "Kasa POS terbuka di tab lain",
+  "otherTabHint": "Kasir hanya berfungsi di satu tab dalam satu waktu agar keranjang dan struk tetap konsisten. Lanjutkan di tab lain, atau gunakan tab ini sebagai gantinya.",
+  "useHere": "Gunakan tab ini",
+  "notSignedIn": "Masuk terlebih dahulu",
+  "storageFull": "Penyimpanan perangkat ini penuh. Kosongkan ruang (atau ekspor cadangan dan hapus data lama), lalu coba lagi."
 }

@@ -88,7 +88,8 @@
     "noPayments": "Tiada bayaran direkodkan",
     "pointsEarned_other": "+{{count}} mata diperoleh",
     "pointsRedeemed_other": "{{count}} mata ditebus",
-    "linked": "Pemulangan bagi jualan ini"
+    "linked": "Pemulangan bagi jualan ini",
+    "pointsReversed_other": "{{count}} mata ditarik balik"
   },
   "refund": {
     "action": "Bayaran balik",
@@ -116,7 +117,10 @@
     "done": "Nota kredit {{number}} dicipta",
     "complete": "Bayaran balik selesai",
     "payBack": "Bayar balik dalam {{method}}",
-    "toAccount": "Dikreditkan ke akaun pelanggan"
+    "toAccount": "Dikreditkan ke akaun pelanggan",
+    "nothing": "Pilih sekurang-kurangnya satu item untuk bayaran balik",
+    "pointsBack_other": "+ {{count}} mata ganjaran dikembalikan",
+    "pointsBackHint_other": "{{count}} mata ganjaran ({{amount}}) dikembalikan sebagai mata pelanggan, bukan wang"
   },
   "void": {
     "action": "Batalkan",
@@ -132,6 +136,9 @@
     "confirmTitle": "Batalkan {{number}}?",
     "confirmMessage": "Jualan {{amount}} akan dibatalkan dan stoknya dikembalikan. Ini tidak boleh dibuat asal.",
     "done": "{{number}} dibatalkan",
-    "voided": "Dibatalkan"
+    "voided": "Dibatalkan",
+    "notAllowed": "Jualan ini telah dibatalkan atau tidak boleh dibatalkan.",
+    "hasRefunds": "Jualan ini mempunyai pemulangan, jadi ia tidak boleh dibatalkan. Buat bayaran balik untuk baki item sebaliknya.",
+    "otherShift": "Jualan ini tergolong dalam syif yang telah ditutup. Buat bayaran balik sebaliknya."
   }
 }

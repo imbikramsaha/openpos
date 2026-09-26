@@ -54,5 +54,6 @@
   "created": "{{name}} giờ có thể đăng nhập",
   "deleteTitle": "Xóa {{name}}?",
   "deleteMessage": "Người này sẽ không thể đăng nhập nữa. Các đơn bán và hoạt động trước đó vẫn được lưu trong hồ sơ của bạn.",
-  "deleted": "Đã xóa {{name}}"
+  "deleted": "Đã xóa {{name}}",
+  "pinPrefixClash": "Mã PIN của {{name}} bắt đầu bằng 4 chữ số giống nhau, nên màn hình khóa có thể đăng nhập nhầm người. Hãy chọn mã PIN bắt đầu khác đi."
 }

@@ -199,7 +199,15 @@
     "supply": "التوريد",
     "intra": "داخل الولاية",
     "inter": "بين الولايات",
-    "interStateSupplies": "التوريدات بين الولايات"
+    "interStateSupplies": "التوريدات بين الولايات",
+    "taxName": "اسم الضريبة",
+    "andOthers_zero": "{{name}} فقط",
+    "andOthers_one": "{{name}} وواحد آخر",
+    "andOthers_two": "{{name}} واثنان آخران",
+    "andOthers_few": "{{name}} و{{count}} آخرين",
+    "andOthers_many": "{{name}} و{{count}} آخر",
+    "andOthers_other": "{{name}} و{{count}} آخر",
+    "roundingNote": "لا تشمل قيم الفواتير تقريب النقد البالغ {{amount}}"
   },
   "inventory": {
     "title": "المخزون",

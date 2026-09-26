@@ -138,5 +138,8 @@
     "out": "Saída",
     "notes": "Observações",
     "end": "— Fim do relatório —"
-  }
+  },
+  "amountNegative": "Não pode ser negativo",
+  "amountTooLarge": "Esse valor é grande demais",
+  "alreadyClosed": "Este turno já está fechado."
 }

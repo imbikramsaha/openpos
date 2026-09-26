@@ -166,5 +166,9 @@
     "scanUpi": "Mag-scan gamit ang kahit anong UPI app para magbayad",
     "thankYou": "Salamat sa pamimili sa amin!"
   },
-  "addProduct": "Magdagdag ng produkto"
+  "addProduct": "Magdagdag ng produkto",
+  "invalidPrice": "Ilagay ang presyong zero o higit pa",
+  "amountTooLarge": "Sobrang laki ng kabuuan. Suriin ang mga dami at presyo.",
+  "refundComplete": "Kumpleto ang refund",
+  "receiptAmbiguous": "Maraming bentang nagtatapos sa {{number}}. I-type ang mas kumpletong numero ng resibo."
 }

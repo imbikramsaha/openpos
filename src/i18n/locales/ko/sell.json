@@ -163,5 +163,9 @@
     "scanUpi": "아무 UPI 앱으로나 스캔하여 결제하세요",
     "thankYou": "이용해 주셔서 감사합니다!"
   },
-  "addProduct": "상품 추가"
+  "addProduct": "상품 추가",
+  "invalidPrice": "0 이상의 가격을 입력하세요",
+  "amountTooLarge": "합계 금액이 너무 큽니다. 수량과 가격을 확인하세요.",
+  "refundComplete": "환불 완료",
+  "receiptAmbiguous": "{{number}}(으)로 끝나는 판매가 여러 건 있습니다. 영수증 번호를 더 입력하세요."
 }

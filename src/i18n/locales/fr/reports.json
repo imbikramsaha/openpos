@@ -159,7 +159,12 @@
     "supply": "Livraison",
     "intra": "Intra-état",
     "inter": "Inter-états",
-    "interStateSupplies": "Livraisons inter-états"
+    "interStateSupplies": "Livraisons inter-états",
+    "taxName": "Nom de la taxe",
+    "andOthers_one": "{{name}} et {{count}} autre",
+    "andOthers_other": "{{name}} et {{count}} autres",
+    "andOthers_many": "{{name}} et {{count}} autres",
+    "roundingNote": "les montants de la facture excluent l'arrondi des espèces de {{amount}}"
   },
   "inventory": {
     "title": "Stock",

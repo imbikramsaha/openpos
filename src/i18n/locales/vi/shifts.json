@@ -129,5 +129,8 @@
     "out": "Ra",
     "notes": "Ghi chú",
     "end": "— Hết báo cáo —"
-  }
+  },
+  "amountNegative": "Không được âm",
+  "amountTooLarge": "Số tiền này quá lớn",
+  "alreadyClosed": "Ca này đã đóng rồi."
 }

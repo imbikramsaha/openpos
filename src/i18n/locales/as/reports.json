@@ -159,7 +159,11 @@
     "supply": "যোগান",
     "intra": "ৰাজ্যৰ ভিতৰত",
     "inter": "আন্তঃৰাজ্য",
-    "interStateSupplies": "আন্তঃৰাজ্য যোগান"
+    "interStateSupplies": "আন্তঃৰাজ্য যোগান",
+    "taxName": "কৰৰ নাম",
+    "andOthers_one": "{{name}} আৰু আন {{count}}টা",
+    "andOthers_other": "{{name}} আৰু আন {{count}}টা",
+    "roundingNote": "ইনভইচৰ মূল্যত {{amount}}ৰ কেশ ৰাউণ্ডিং অন্তৰ্ভুক্ত নাই"
   },
   "inventory": {
     "title": "ষ্টক",

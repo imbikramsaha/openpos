@@ -163,5 +163,9 @@
     "scanUpi": "Pindai dengan aplikasi UPI apa pun untuk membayar",
     "thankYou": "Terima kasih telah berbelanja bersama kami!"
   },
-  "addProduct": "Tambah produk"
+  "addProduct": "Tambah produk",
+  "invalidPrice": "Masukkan harga nol atau lebih",
+  "amountTooLarge": "Total terlalu besar. Periksa jumlah dan harga.",
+  "refundComplete": "Refund selesai",
+  "receiptAmbiguous": "Beberapa penjualan berakhiran {{number}}. Masukkan lebih banyak digit nomor struk."
 }

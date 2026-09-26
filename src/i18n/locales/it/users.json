@@ -56,5 +56,6 @@
   "created": "{{name}} può ora accedere",
   "deleteTitle": "Eliminare {{name}}?",
   "deleteMessage": "Questa persona non potrà più accedere. Le sue vendite e attività passate restano nei tuoi archivi.",
-  "deleted": "{{name}} eliminato"
+  "deleted": "{{name}} eliminato",
+  "pinPrefixClash": "Il PIN di {{name}} inizia con le stesse 4 cifre, quindi la schermata di blocco potrebbe far accedere la persona sbagliata. Scegli un PIN che inizi in modo diverso."
 }

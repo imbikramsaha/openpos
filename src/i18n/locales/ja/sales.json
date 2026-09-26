@@ -88,7 +88,8 @@
     "noPayments": "支払い記録がありません",
     "pointsEarned_other": "{{count}} ポイント獲得",
     "pointsRedeemed_other": "{{count}} ポイント使用",
-    "linked": "この取引に対する返金"
+    "linked": "この取引に対する返金",
+    "pointsReversed_other": "{{count}} ポイントを取り消しました"
   },
   "refund": {
     "action": "返金",
@@ -116,7 +117,10 @@
     "done": "返金伝票 {{number}} を作成しました",
     "complete": "返金完了",
     "payBack": "{{method}} で返金",
-    "toAccount": "顧客の会計に入金しました"
+    "toAccount": "顧客の会計に入金しました",
+    "nothing": "返金する商品を1つ以上選択してください",
+    "pointsBack_other": "+ {{count}} ポイントを返却",
+    "pointsBackHint_other": "{{count}} ポイント({{amount}})は現金ではなく顧客のポイントに戻ります"
   },
   "void": {
     "action": "取り消す",
@@ -132,6 +136,9 @@
     "confirmTitle": "{{number}} を取り消しますか?",
     "confirmMessage": "{{amount}} の取引が取り消され、在庫が戻されます。この操作は取り消せません。",
     "done": "{{number}} を取り消しました",
-    "voided": "取消済み"
+    "voided": "取消済み",
+    "notAllowed": "この取引は既に取り消し済みか、取り消すことができません。",
+    "hasRefunds": "この取引には返金があるため取り消せません。代わりに残りの商品を返金してください。",
+    "otherShift": "この取引は終了したシフトに属しています。代わりに返金してください。"
   }
 }

@@ -68,7 +68,9 @@
     "confirmTitle_other": "Ingiza wateja {{count}}?",
     "confirmMessage": "{{creates}} wapya, {{updates}} wamesasishwa (walinganishwa kwa simu au barua pepe), safu {{skipped}} zimerukwa kwa sababu hazina jina. Salio halibadilishwi kamwe na uingizaji.",
     "imported": "Imeingizwa: {{creates}} wapya, {{updates}} wamesasishwa",
-    "failed": "Uingizaji umeshindwa: {{error}}"
+    "failed": "Uingizaji umeshindwa: {{error}}",
+    "invalidValues_one": "Thamani {{count}} isiyo sahihi ya simu, barua pepe, namba ya kodi au punguzo itaachwa wazi.",
+    "invalidValues_other": "Thamani {{count}} zisizo sahihi za simu, barua pepe, namba ya kodi au punguzo zitaachwa wazi."
   },
   "form": {
     "newTitle": "Mteja mpya",
@@ -91,7 +93,8 @@
     "duplicatePhone": "{{name}} tayari ana namba hii ya simu. Hifadhi hata hivyo?",
     "saveAnyway": "Hifadhi hata hivyo",
     "created": "{{name}} ameongezwa",
-    "saved": "Mteja amehifadhiwa"
+    "saved": "Mteja amehifadhiwa",
+    "amountTooLarge": "Kiasi hicho ni kikubwa mno"
   },
   "detail": {
     "title": "Mteja",
@@ -133,7 +136,8 @@
     "sale": "Muuzo wa mkopo",
     "refund": "Marejesho kwenye akaunti",
     "payment": "Malipo yaliyopokelewa",
-    "charge": "Malipo yaliyoongezwa"
+    "charge": "Malipo yaliyoongezwa",
+    "adjust": "Salio limepunguzwa"
   },
   "pay": {
     "title": "Pokea malipo",

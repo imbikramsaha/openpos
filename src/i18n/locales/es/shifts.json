@@ -138,5 +138,8 @@
     "out": "Salida",
     "notes": "Notas",
     "end": "— Fin del informe —"
-  }
+  },
+  "amountNegative": "No puede ser negativo",
+  "amountTooLarge": "Este importe es demasiado grande",
+  "alreadyClosed": "Este turno ya está cerrado."
 }

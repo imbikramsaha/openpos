@@ -55,5 +55,6 @@
   "created": "{{name}} ya puede iniciar sesión",
   "deleteTitle": "¿Eliminar a {{name}}?",
   "deleteMessage": "Ya no podrá iniciar sesión. Sus ventas y actividad pasadas se conservan en tus registros.",
-  "deleted": "{{name}} eliminado"
+  "deleted": "{{name}} eliminado",
+  "pinPrefixClash": "El PIN de {{name}} empieza con los mismos 4 dígitos, así que la pantalla de bloqueo podría iniciar sesión con la persona equivocada. Elige un PIN que empiece de otra forma."
 }

@@ -55,5 +55,6 @@
   "created": "{{name}} kan nu inloggen",
   "deleteTitle": "{{name}} verwijderen?",
   "deleteMessage": "Deze persoon kan niet meer inloggen. Eerdere verkopen en activiteiten blijven in je gegevens bewaard.",
-  "deleted": "{{name}} verwijderd"
+  "deleted": "{{name}} verwijderd",
+  "pinPrefixClash": "De PIN van {{name}} begint met dezelfde 4 cijfers, waardoor het vergrendelscherm mogelijk de verkeerde persoon inlogt. Kies een PIN die anders begint."
 }

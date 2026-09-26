@@ -138,5 +138,8 @@
     "out": "Uit",
     "notes": "Notities",
     "end": "— Einde van het rapport —"
-  }
+  },
+  "amountNegative": "Kan niet negatief zijn",
+  "amountTooLarge": "Dit bedrag is te groot",
+  "alreadyClosed": "Deze dienst is al gesloten."
 }

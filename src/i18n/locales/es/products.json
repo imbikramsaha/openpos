@@ -131,7 +131,12 @@
     "stockHistory": "Historial de stock",
     "deleteTitle": "¿Eliminar “{{name}}”?",
     "deleteMessage": "Se quitará del catálogo y de la caja. Las ventas pasadas se conservan.",
-    "deleted": "“{{name}}” eliminado"
+    "deleted": "“{{name}}” eliminado",
+    "negative": "No puede ser negativo",
+    "tooLarge": "Este número es demasiado grande",
+    "discardTitle": "¿Descartar los cambios?",
+    "discardMessage": "Los cambios en este producto no se han guardado.",
+    "discard": "Descartar"
   },
   "categories": {
     "new": "Nueva categoría",
@@ -152,7 +157,8 @@
     "deleteMessage_one": "{{count}} producto quedará sin categoría. El producto en sí no se elimina.",
     "deleteMessage_other": "{{count}} productos quedarán sin categoría. Los productos en sí no se eliminan.",
     "deleteEmpty": "Ningún producto usa esta categoría.",
-    "deleted": "Categoría “{{name}}” eliminada"
+    "deleted": "Categoría “{{name}}” eliminada",
+    "duplicate": "Ya existe una categoría con este nombre"
   },
   "import": {
     "title": "Importar productos",
@@ -195,7 +201,10 @@
       "duplicateSku": "Mismo SKU que la línea {{line}}",
       "skuTaken": "El SKU también pertenece a “{{name}}”",
       "stockIgnored": "El stock se ignora: este producto no controla stock",
-      "aboveMrp": "El precio supera el PVP máximo"
+      "aboveMrp": "El precio supera el PVP máximo",
+      "tooLarge": "{{column}} es demasiado grande",
+      "noPrice": "Sin precio — se añadirá con precio 0",
+      "barcodeScientific": "La hoja de cálculo convirtió el código de barras “{{value}}” en un número científico. Da formato de texto a la columna y exporta de nuevo."
     }
   },
   "labels": {
@@ -232,6 +241,7 @@
     "previewHint": "Tamaño de etiqueta {{size}}. Usa una escala del 100% / “Tamaño real” en el diálogo de impresión.",
     "nothing": "Nada para imprimir",
     "total_one": "{{count}} etiqueta",
-    "total_other": "{{count}} etiquetas"
+    "total_other": "{{count}} etiquetas",
+    "tooMany": "Demasiadas etiquetas: imprime como máximo {{max}} a la vez."
   }
 }

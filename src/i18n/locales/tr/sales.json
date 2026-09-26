@@ -95,7 +95,9 @@
     "pointsEarned_other": "+{{count}} puan kazanıldı",
     "pointsRedeemed_one": "{{count}} puan kullanıldı",
     "pointsRedeemed_other": "{{count}} puan kullanıldı",
-    "linked": "Bu satışa ait iadeler"
+    "linked": "Bu satışa ait iadeler",
+    "pointsReversed_one": "{{count}} puan geri alındı",
+    "pointsReversed_other": "{{count}} puan geri alındı"
   },
   "refund": {
     "action": "İade",
@@ -123,7 +125,12 @@
     "done": "{{number}} iade faturası oluşturuldu",
     "complete": "İade tamamlandı",
     "payBack": "{{method}} ile geri öde",
-    "toAccount": "Müşteri hesabına alacak kaydedildi"
+    "toAccount": "Müşteri hesabına alacak kaydedildi",
+    "nothing": "İade için en az bir ürün seçin",
+    "pointsBack_one": "+ {{count}} sadakat puanı iade edildi",
+    "pointsBack_other": "+ {{count}} sadakat puanı iade edildi",
+    "pointsBackHint_one": "{{count}} sadakat puanı ({{amount}}) para yerine müşterinin puanlarına geri döner",
+    "pointsBackHint_other": "{{count}} sadakat puanı ({{amount}}) para yerine müşterinin puanlarına geri döner"
   },
   "void": {
     "action": "İptal",
@@ -139,6 +146,9 @@
     "confirmTitle": "{{number}} iptal edilsin mi?",
     "confirmMessage": "{{amount}} tutarındaki satış iptal edilecek ve stoğu iade edilecek. Bu işlem geri alınamaz.",
     "done": "{{number}} iptal edildi",
-    "voided": "İptal edildi"
+    "voided": "İptal edildi",
+    "notAllowed": "Bu satış zaten iptal edildi veya iptal edilemez.",
+    "hasRefunds": "Bu satışta iadeler var, bu yüzden iptal edilemez. Bunun yerine kalan ürünleri iade edin.",
+    "otherShift": "Bu satış kapalı bir vardiyaya ait. Bunun yerine iade edin."
   }
 }

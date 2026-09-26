@@ -131,7 +131,12 @@
     "stockHistory": "Stok geçmişi",
     "deleteTitle": "“{{name}}” silinsin mi?",
     "deleteMessage": "Katalogdan ve kasadan kaldırılacak. Geçmiş satışlar korunur.",
-    "deleted": "“{{name}}” silindi"
+    "deleted": "“{{name}}” silindi",
+    "negative": "Negatif olamaz",
+    "tooLarge": "Bu sayı çok büyük",
+    "discardTitle": "Değişikliklerden vazgeçilsin mi?",
+    "discardMessage": "Bu üründeki değişiklikleriniz kaydedilmedi.",
+    "discard": "Vazgeç"
   },
   "categories": {
     "new": "Yeni kategori",
@@ -152,7 +157,8 @@
     "deleteMessage_one": "{{count}} ürün kategorisiz kalacak. Ürünün kendisi silinmez.",
     "deleteMessage_other": "{{count}} ürün kategorisiz kalacak. Ürünlerin kendisi silinmez.",
     "deleteEmpty": "Bu kategoriyi kullanan ürün yok.",
-    "deleted": "“{{name}}” kategorisi silindi"
+    "deleted": "“{{name}}” kategorisi silindi",
+    "duplicate": "Bu adla bir kategori zaten var"
   },
   "import": {
     "title": "Ürünleri içe aktar",
@@ -195,7 +201,10 @@
       "duplicateSku": "{{line}}. satırla aynı SKU",
       "skuTaken": "SKU ayrıca “{{name}}” adlı ürüne ait",
       "stockIgnored": "Stok yok sayıldı: bu ürün stok takibi yapmıyor",
-      "aboveMrp": "Fiyat MRP'nin üzerinde"
+      "aboveMrp": "Fiyat MRP'nin üzerinde",
+      "tooLarge": "{{column}} çok büyük",
+      "noPrice": "Fiyat yok — 0 fiyatla eklenecek",
+      "barcodeScientific": "“{{value}}” barkodu, e-tablo tarafından bilimsel bir sayıya dönüştürüldü. Sütunu metin olarak biçimlendirip yeniden dışa aktarın."
     }
   },
   "labels": {
@@ -232,6 +241,7 @@
     "previewHint": "Etiket boyutu {{size}}. Yazdırma penceresinde %100 ölçek / “Gerçek boyut” seçeneğini kullanın.",
     "nothing": "Yazdırılacak bir şey yok",
     "total_one": "{{count}} etiket",
-    "total_other": "{{count}} etiket"
+    "total_other": "{{count}} etiket",
+    "tooMany": "Çok fazla etiket: bir seferde en fazla {{max}} yazdırın."
   }
 }

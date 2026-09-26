@@ -178,5 +178,17 @@
     "email": "Geçerli bir e-posta girin, ör. name@example.com",
     "gstin": "Geçerli 15 karakterli bir GSTIN girin, ör. 27AAPFU0939F1ZV",
     "taxId": "3–20 harf veya rakam kullanın"
-  }
+  },
+  "backspace": "Son haneyi sil",
+  "offlineReady": "Kasa POS çevrimdışı çalışmaya hazır",
+  "later": "Sonra",
+  "storageError": "Bu tarayıcı Kasa POS'un veri kaydetmesine izin vermiyor",
+  "storageErrorHint": "Kasa POS satışlarınızı bu cihazda tutar. Gizli veya gizli pencere, engellenmiş site verisi veya dolu bir disk bunu engelleyebilir. Uygulamayı normal bir pencerede açın, bu site için site verisine izin verin, ardından yeniden yükleyin.",
+  "dbClosed": "Devam etmek için yeniden yükleyin",
+  "dbClosedHint": "Bu cihazdaki veriler bu pencerenin dışından değiştirildi: site verisi temizlendi veya Kasa POS başka bir sekmede silindi, geri yüklendi ya da güncellendi. Hiçbir şeyin yanlış yere kaydedilmemesi için yeniden yükleyin.",
+  "otherTab": "Kasa POS başka bir sekmede açık",
+  "otherTabHint": "Sepetin ve fişlerin tutarlı kalması için kasa aynı anda tek bir sekmede çalışır. Diğer sekmede devam edin veya bunun yerine bunu kullanın.",
+  "useHere": "Bu sekmeyi kullan",
+  "notSignedIn": "Önce giriş yapın",
+  "storageFull": "Bu cihazın depolama alanı doldu. Yer açın (veya bir yedek dışa aktarıp eski verileri temizleyin), ardından tekrar deneyin."
 }

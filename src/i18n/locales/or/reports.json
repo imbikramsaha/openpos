@@ -159,7 +159,11 @@
     "supply": "ଯୋଗାଣ",
     "intra": "ରାଜ୍ୟ ମଧ୍ୟରେ",
     "inter": "ଆନ୍ତଃରାଜ୍ୟ",
-    "interStateSupplies": "ଆନ୍ତଃରାଜ୍ୟ ଯୋଗାଣ"
+    "interStateSupplies": "ଆନ୍ତଃରାଜ୍ୟ ଯୋଗାଣ",
+    "taxName": "କରର ନାମ",
+    "andOthers_one": "{{name}} ଏବଂ ଆଉ {{count}}ଟି",
+    "andOthers_other": "{{name}} ଏବଂ ଆଉ {{count}}ଟି",
+    "roundingNote": "ଇନଭଏସ ମୂଲ୍ୟରେ {{amount}}ର କ୍ୟାଶ୍ ରାଉଣ୍ଡିଂ ଅନ୍ତର୍ଭୁକ୍ତ ନାହିଁ"
   },
   "inventory": {
     "title": "ଷ୍ଟକ",

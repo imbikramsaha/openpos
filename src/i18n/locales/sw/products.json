@@ -131,7 +131,12 @@
     "stockHistory": "Historia ya hisa",
     "deleteTitle": "Futa “{{name}}”?",
     "deleteMessage": "Itaondolewa kwenye orodha na kaunta. Mauzo ya awali yatabaki.",
-    "deleted": "“{{name}}” imefutwa"
+    "deleted": "“{{name}}” imefutwa",
+    "negative": "Haiwezi kuwa hasi",
+    "tooLarge": "Nambari hii ni kubwa mno",
+    "discardTitle": "Ondoa mabadiliko?",
+    "discardMessage": "Mabadiliko yako kwenye bidhaa hii hayajahifadhiwa.",
+    "discard": "Ondoa"
   },
   "categories": {
     "new": "Kategoria mpya",
@@ -152,7 +157,8 @@
     "deleteMessage_one": "Bidhaa {{count}} itakuwa haina kategoria. Bidhaa yenyewe haitafutwa.",
     "deleteMessage_other": "Bidhaa {{count}} zitakuwa hazina kategoria. Bidhaa zenyewe hazitafutwa.",
     "deleteEmpty": "Hakuna bidhaa inayotumia kategoria hii.",
-    "deleted": "Kategoria “{{name}}” imefutwa"
+    "deleted": "Kategoria “{{name}}” imefutwa",
+    "duplicate": "Tayari kuna kategoria yenye jina hili"
   },
   "import": {
     "title": "Ingiza bidhaa",
@@ -195,7 +201,10 @@
       "duplicateSku": "SKU sawa na mstari {{line}}",
       "skuTaken": "SKU pia ni ya “{{name}}”",
       "stockIgnored": "Hisa imepuuzwa: bidhaa hii haifuatilii hisa",
-      "aboveMrp": "Bei iko juu ya MRP"
+      "aboveMrp": "Bei iko juu ya MRP",
+      "tooLarge": "{{column}} ni kubwa mno",
+      "noPrice": "Hakuna bei — itaongezwa kwa bei 0",
+      "barcodeScientific": "Lahajedwali limebadilisha bakodi “{{value}}” kuwa namba ya kisayansi. Fanya safu kuwa maandishi (text) kisha uhamishe tena."
     }
   },
   "labels": {
@@ -232,6 +241,7 @@
     "previewHint": "Ukubwa wa lebo {{size}}. Tumia kipimo cha 100% / “Ukubwa halisi” kwenye kisanduku cha kuchapisha.",
     "nothing": "Hakuna cha kuchapisha",
     "total_one": "Lebo {{count}}",
-    "total_other": "Lebo {{count}}"
+    "total_other": "Lebo {{count}}",
+    "tooMany": "Lebo ni nyingi mno: chapisha lebo {{max}} kwa wakati mmoja."
   }
 }

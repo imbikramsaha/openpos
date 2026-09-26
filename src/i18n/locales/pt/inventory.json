@@ -159,7 +159,10 @@
     "saved": "{{number}} salvo — estoque adicionado",
     "discard": "Descartar",
     "discardTitle": "Descartar esta compra?",
-    "discardMessage": "Os itens que você inseriu serão removidos."
+    "discardMessage": "Os itens que você inseriu serão removidos.",
+    "badCost": "Os custos unitários não podem ser negativos.",
+    "badPaid": "O valor pago não pode ser negativo nem maior que o total.",
+    "deletedLines": "Remova os itens cujo produto foi excluído."
   },
   "suppliers": {
     "new": "Novo fornecedor",

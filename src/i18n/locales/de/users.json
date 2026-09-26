@@ -55,5 +55,6 @@
   "created": "{{name}} kann sich jetzt anmelden",
   "deleteTitle": "{{name}} löschen?",
   "deleteMessage": "Diese Person kann sich nicht mehr anmelden. Vergangene Verkäufe und Aktivitäten bleiben in deinen Aufzeichnungen erhalten.",
-  "deleted": "{{name}} gelöscht"
+  "deleted": "{{name}} gelöscht",
+  "pinPrefixClash": "Die PIN von {{name}} beginnt mit denselben 4 Ziffern, daher könnte der Sperrbildschirm die falsche Person anmelden. Wähle eine PIN, die anders beginnt."
 }

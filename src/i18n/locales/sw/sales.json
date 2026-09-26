@@ -95,7 +95,9 @@
     "pointsEarned_other": "+Pointi {{count}} zimepatikana",
     "pointsRedeemed_one": "Pointi {{count}} imetumika",
     "pointsRedeemed_other": "Pointi {{count}} zimetumika",
-    "linked": "Marejesho kwa muuzo huu"
+    "linked": "Marejesho kwa muuzo huu",
+    "pointsReversed_one": "Pointi {{count}} imerudishwa",
+    "pointsReversed_other": "Pointi {{count}} zimerudishwa"
   },
   "refund": {
     "action": "Rejesha",
@@ -123,7 +125,12 @@
     "done": "Hati ya mkopo {{number}} imeundwa",
     "complete": "Marejesho yamekamilika",
     "payBack": "Rejesha kwa {{method}}",
-    "toAccount": "Imewekwa kwenye akaunti ya mteja"
+    "toAccount": "Imewekwa kwenye akaunti ya mteja",
+    "nothing": "Chagua angalau bidhaa moja ya kurejesha",
+    "pointsBack_one": "+ Pointi {{count}} ya uaminifu imerudishwa",
+    "pointsBack_other": "+ Pointi {{count}} za uaminifu zimerudishwa",
+    "pointsBackHint_one": "Pointi {{count}} ya uaminifu ({{amount}}) inarudi kwenye pointi za mteja badala ya fedha",
+    "pointsBackHint_other": "Pointi {{count}} za uaminifu ({{amount}}) zinarudi kwenye pointi za mteja badala ya fedha"
   },
   "void": {
     "action": "Batilisha",
@@ -139,6 +146,9 @@
     "confirmTitle": "Batilisha {{number}}?",
     "confirmMessage": "Muuzo wa {{amount}} utaghairiwa na hisa yake kurudishwa. Hili haliwezi kutenduliwa.",
     "done": "{{number}} imebatilishwa",
-    "voided": "Imebatilishwa"
+    "voided": "Imebatilishwa",
+    "notAllowed": "Muuzo huu tayari umebatilishwa au hauwezi kubatilishwa.",
+    "hasRefunds": "Muuzo huu una marejesho, kwa hivyo hauwezi kubatilishwa. Badala yake, rejesha bidhaa zilizobaki.",
+    "otherShift": "Muuzo huu ni wa zamu iliyofungwa. Badala yake, urejeshe."
   }
 }

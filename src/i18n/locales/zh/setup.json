@@ -39,5 +39,11 @@
   "join": "连接",
   "joined": "已连接到 {{name}}",
   "joinFailed": "无法连接到服务器",
-  "joinNoData": "服务器上还没有店铺数据。请先正常设置第一台收银台,然后再将其连接到服务器。"
+  "joinNoData": "服务器上还没有店铺数据。请先正常设置第一台收银台,然后再将其连接到服务器。",
+  "restoreBackup": "从备份恢复",
+  "restore": "恢复",
+  "restoreConfirmTitle": "恢复此备份?",
+  "restoreConfirmMessage": "本设备将使用“{{name}}”进行设置,该备份创建于 {{date}}。您需要使用该备份中的 PIN 登录。",
+  "defaultFooter": "谢谢惠顾,欢迎再次光临!",
+  "defaultTerminalName": "收银台 1"
 }

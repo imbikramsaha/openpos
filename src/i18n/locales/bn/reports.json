@@ -159,7 +159,11 @@
     "supply": "সরবরাহ",
     "intra": "রাজ্যের মধ্যে",
     "inter": "আন্তঃরাজ্য",
-    "interStateSupplies": "আন্তঃরাজ্য সরবরাহ"
+    "interStateSupplies": "আন্তঃরাজ্য সরবরাহ",
+    "taxName": "ট্যাক্সের নাম",
+    "andOthers_one": "{{name}} এবং আরও {{count}}টি",
+    "andOthers_other": "{{name}} এবং আরও {{count}}টি",
+    "roundingNote": "ইনভয়েসের মূল্যে {{amount}} এর ক্যাশ রাউন্ডিং অন্তর্ভুক্ত নয়"
   },
   "inventory": {
     "title": "স্টক",

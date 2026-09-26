@@ -88,7 +88,8 @@
     "noPayments": "Chưa ghi nhận thanh toán nào",
     "pointsEarned_other": "+{{count}} điểm đã nhận",
     "pointsRedeemed_other": "{{count}} điểm đã dùng",
-    "linked": "Các lượt hoàn tiền cho đơn bán này"
+    "linked": "Các lượt hoàn tiền cho đơn bán này",
+    "pointsReversed_other": "Đã lấy lại {{count}} điểm"
   },
   "refund": {
     "action": "Hoàn tiền",
@@ -116,7 +117,10 @@
     "done": "Đã tạo phiếu ghi có {{number}}",
     "complete": "Đã hoàn tất hoàn tiền",
     "payBack": "Hoàn lại bằng {{method}}",
-    "toAccount": "Đã ghi có vào tài khoản khách hàng"
+    "toAccount": "Đã ghi có vào tài khoản khách hàng",
+    "nothing": "Chọn ít nhất một mặt hàng để hoàn tiền",
+    "pointsBack_other": "+ {{count}} điểm thưởng đã hoàn lại",
+    "pointsBackHint_other": "{{count}} điểm thưởng ({{amount}}) sẽ hoàn lại vào điểm của khách hàng thay vì tiền mặt"
   },
   "void": {
     "action": "Hủy",
@@ -132,6 +136,9 @@
     "confirmTitle": "Hủy {{number}}?",
     "confirmMessage": "Đơn bán {{amount}} sẽ bị hủy và hàng được nhập lại vào kho. Không thể hoàn tác thao tác này.",
     "done": "Đã hủy {{number}}",
-    "voided": "Đã hủy"
+    "voided": "Đã hủy",
+    "notAllowed": "Đơn bán này đã bị hủy hoặc không thể hủy được.",
+    "hasRefunds": "Đơn bán này đã có hoàn tiền nên không thể hủy. Hãy hoàn tiền các mặt hàng còn lại thay vào đó.",
+    "otherShift": "Đơn bán này thuộc về một ca đã đóng. Hãy hoàn tiền thay vào đó."
   }
 }

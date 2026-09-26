@@ -131,7 +131,12 @@
     "stockHistory": "History ng stock",
     "deleteTitle": "Burahin ang “{{name}}”?",
     "deleteMessage": "Aalisin ito sa katalogo at counter. Mananatili ang mga nakaraang benta.",
-    "deleted": "Nabura ang “{{name}}”"
+    "deleted": "Nabura ang “{{name}}”",
+    "negative": "Hindi puwedeng negative",
+    "tooLarge": "Sobrang laki ng numerong ito",
+    "discardTitle": "I-discard ang mga pagbabago?",
+    "discardMessage": "Hindi pa na-save ang mga pagbabago mo sa produktong ito.",
+    "discard": "I-discard"
   },
   "categories": {
     "new": "Bagong kategorya",
@@ -152,7 +157,8 @@
     "deleteMessage_one": "Magiging walang kategorya ang {{count}} produkto. Hindi mabubura ang mga produkto mismo.",
     "deleteMessage_other": "Magiging walang kategorya ang {{count}} produkto. Hindi mabubura ang mga produkto mismo.",
     "deleteEmpty": "Walang produktong gumagamit ng kategoryang ito.",
-    "deleted": "Nabura ang kategoryang “{{name}}”"
+    "deleted": "Nabura ang kategoryang “{{name}}”",
+    "duplicate": "May kategoryang may ganitong pangalan na"
   },
   "import": {
     "title": "I-import ang mga produkto",
@@ -195,7 +201,10 @@
       "duplicateSku": "Kaparehong SKU ng line {{line}}",
       "skuTaken": "Nasa “{{name}}” na rin ang SKU na ito",
       "stockIgnored": "Hindi pinansin ang stock: hindi tinatrack ng produktong ito ang stock",
-      "aboveMrp": "Mas mataas ang presyo kaysa sa MRP"
+      "aboveMrp": "Mas mataas ang presyo kaysa sa MRP",
+      "tooLarge": "Sobrang laki ng {{column}}",
+      "noPrice": "Walang presyo — idaragdag ito nang may presyong 0",
+      "barcodeScientific": "Ginawang scientific number ng spreadsheet ang barcode na “{{value}}”. I-format bilang text ang column at i-export ulit."
     }
   },
   "labels": {
@@ -232,6 +241,7 @@
     "previewHint": "Sukat ng label {{size}}. Gamitin ang 100% scale / “Actual size” sa print dialog.",
     "nothing": "Walang ipi-print",
     "total_one": "{{count}} label",
-    "total_other": "{{count}} label"
+    "total_other": "{{count}} label",
+    "tooMany": "Sobrang dami ng label: mag-print nang hanggang {{max}} lang sa isang beses."
   }
 }

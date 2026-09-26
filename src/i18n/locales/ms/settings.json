@@ -165,7 +165,10 @@
     "cashRoundingHint": "Bundarkan jumlah jualan kepada duit syiling terkecil yang beredar.",
     "roundingNone": "Tiada pembundaran",
     "roundingCustom": "Langkah semasa: {{value}}",
-    "roundingExample": "Contoh jumlah"
+    "roundingExample": "Contoh jumlah",
+    "decimalsChangeTitle": "Tukar kepada {{currency}}?",
+    "decimalsChange": "{{from}} dan {{to}} menggunakan bilangan tempat perpuluhan yang berbeza. Harga, jualan dan baki tidak ditukar, jadi setiap amaun sedia ada berubah saiznya: {{before}} akan dipaparkan sebagai {{after}}. Masukkan semula harga anda selepas menukar.",
+    "decimalsChangeConfirm": "Tukar mata wang"
   },
   "checkout": {
     "rules": "Peraturan jualan",
@@ -223,7 +226,10 @@
     "loyaltyPointValue": "Nilai 1 mata",
     "loyaltyPointValueHint": "Diskaun yang diterima pelanggan bagi setiap mata ditebus",
     "loyaltyExample": "Membelanjakan {{spend}} memperoleh {{points}} mata, bernilai {{value}}.",
-    "loyaltyReturn": "Itu {{percent}}% pulangan."
+    "loyaltyReturn": "Itu {{percent}}% pulangan.",
+    "loyaltyEarnRateRange": "Masukkan nombor dari 0 hingga {{max}}",
+    "loyaltyPointValueRange": "Masukkan amaun 0 atau lebih",
+    "loyaltyTooGenerous": "Dengan kadar ini pelanggan mendapat kembali sebanyak atau lebih daripada perbelanjaan mereka. Semak mata setiap unit dan nilai satu mata."
   },
   "receipt": {
     "content": "Kandungan",
@@ -383,7 +389,8 @@
     "lanHint": "Jalankan pelayan penyelarasan Kasa pada mana-mana PC di kedai anda dan guna alamat tempatannya. Kaunter terus berjualan luar talian dan menyusul apabila PC kembali.",
     "cloudTitle": "Awan",
     "cloudHint": "Sebarkan pelayan yang sama ke mana-mana hos dengan HTTPS untuk menyambungkan cawangan dan semak jualan dari mana-mana sahaja.",
-    "readme": "Persediaan, kunci kedai dan API HTTP diterangkan dalam"
+    "readme": "Persediaan, kunci kedai dan API HTTP diterangkan dalam",
+    "mixedContent": "Aplikasi ini dibuka melalui https://, dan pelayar menyekat sambungan daripadanya ke pelayan http://. Guna alamat https:// untuk pelayan, atau guna aplikasi desktop pada kaunter ini."
   },
   "backup": {
     "staleTitle": "Sandaran terakhir ialah {{time}}",
@@ -464,7 +471,24 @@
     "user_update": "Pengguna diubah",
     "user_delete": "Pengguna dipadam",
     "backup_export": "Sandaran dieksport",
-    "backup_restore": "Sandaran dipulihkan"
+    "backup_restore": "Sandaran dipulihkan",
+    "category_delete": "Kategori dipadam",
+    "customer_adjust": "Baki pelanggan dilaraskan",
+    "customer_delete": "Pelanggan dipadam",
+    "customer_import": "Pelanggan diimport",
+    "customer_payment": "Bayaran pelanggan",
+    "customer_payment_delete": "Bayaran pelanggan dipadam",
+    "customer_reminder": "Peringatan bayaran dihantar",
+    "labels_print": "Label dicetak",
+    "product_barcodes": "Barkod dijana",
+    "product_delete": "Produk dipadam",
+    "product_import": "Produk diimport",
+    "purchase_create": "Belian direkodkan",
+    "stock_adjust": "Stok dilaraskan",
+    "stock_count": "Kiraan stok",
+    "supplier_delete": "Pembekal dipadam",
+    "cash_in": "Tunai ditambah ke laci",
+    "cash_out": "Tunai dialih keluar daripada laci"
   },
   "danger": {
     "erase": "Padam semua data pada peranti ini",

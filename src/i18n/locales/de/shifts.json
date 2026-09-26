@@ -138,5 +138,8 @@
     "out": "Aus",
     "notes": "Notizen",
     "end": "— Ende des Berichts —"
-  }
+  },
+  "amountNegative": "Darf nicht negativ sein",
+  "amountTooLarge": "Dieser Betrag ist zu hoch",
+  "alreadyClosed": "Diese Schicht ist bereits geschlossen."
 }

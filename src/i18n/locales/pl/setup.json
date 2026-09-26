@@ -39,5 +39,11 @@
   "join": "Połącz",
   "joined": "Połączono z {{name}}",
   "joinFailed": "Nie udało się połączyć z serwerem",
-  "joinNoData": "Serwer nie ma jeszcze danych sklepu. Skonfiguruj najpierw pierwszą kasę normalnie, a potem połącz ją z serwerem."
+  "joinNoData": "Serwer nie ma jeszcze danych sklepu. Skonfiguruj najpierw pierwszą kasę normalnie, a potem połącz ją z serwerem.",
+  "restoreBackup": "Przywróć z kopii zapasowej",
+  "restore": "Przywróć",
+  "restoreConfirmTitle": "Przywrócić tę kopię zapasową?",
+  "restoreConfirmMessage": "To urządzenie zostanie skonfigurowane na podstawie „{{name}}”, z kopii zapasowej z {{date}}. Zalogujesz się PIN-em z tamtej kopii.",
+  "defaultFooter": "Dziękujemy! Zapraszamy ponownie.",
+  "defaultTerminalName": "Kasa 1"
 }

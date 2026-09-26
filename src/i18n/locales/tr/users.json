@@ -55,5 +55,6 @@
   "created": "{{name}} artık giriş yapabilir",
   "deleteTitle": "{{name}} silinsin mi?",
   "deleteMessage": "Artık giriş yapamayacaklar. Geçmiş satışları ve etkinlikleri kayıtlarınızda kalır.",
-  "deleted": "{{name}} silindi"
+  "deleted": "{{name}} silindi",
+  "pinPrefixClash": "{{name}} adlı kullanıcının PIN'i aynı 4 haneyle başlıyor, bu yüzden kilit ekranı yanlış kişiyi içeri alabilir. Farklı başlayan bir PIN seçin."
 }

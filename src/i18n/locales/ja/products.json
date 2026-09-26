@@ -121,7 +121,12 @@
     "stockHistory": "在庫履歴",
     "deleteTitle": "「{{name}}」を削除しますか?",
     "deleteMessage": "カタログとレジから削除されます。過去の売上は保持されます。",
-    "deleted": "「{{name}}」を削除しました"
+    "deleted": "「{{name}}」を削除しました",
+    "negative": "マイナスにはできません",
+    "tooLarge": "この数値は大きすぎます",
+    "discardTitle": "変更を破棄しますか?",
+    "discardMessage": "この商品への変更はまだ保存されていません。",
+    "discard": "破棄"
   },
   "categories": {
     "new": "新規カテゴリー",
@@ -140,7 +145,8 @@
     "deleteTitle": "カテゴリー「{{name}}」を削除しますか?",
     "deleteMessage_other": "{{count}} 件の商品が未分類になります。商品自体は削除されません。",
     "deleteEmpty": "このカテゴリーを使用している商品はありません。",
-    "deleted": "カテゴリー「{{name}}」を削除しました"
+    "deleted": "カテゴリー「{{name}}」を削除しました",
+    "duplicate": "この名前のカテゴリーは既に存在します"
   },
   "import": {
     "title": "商品をインポート",
@@ -180,7 +186,10 @@
       "duplicateSku": "{{line}} 行目と同じ SKU です",
       "skuTaken": "この SKU は「{{name}}」にも使われています",
       "stockIgnored": "在庫は無視されます:この商品は在庫管理が無効です",
-      "aboveMrp": "価格が希望小売価格を超えています"
+      "aboveMrp": "価格が希望小売価格を超えています",
+      "tooLarge": "{{column}} が大きすぎます",
+      "noPrice": "価格がありません — 価格 0 で追加されます",
+      "barcodeScientific": "バーコード「{{value}}」は表計算ソフトによって指数表記の数値に変換されました。この列を文字列の書式にしてから、再度エクスポートしてください。"
     }
   },
   "labels": {
@@ -213,6 +222,7 @@
     "preview": "プレビュー",
     "previewHint": "ラベルサイズ {{size}}。印刷ダイアログで拡大縮小を「100%」または「実際のサイズ」にしてください。",
     "nothing": "印刷する内容がありません",
-    "total_other": "{{count}} 枚のラベル"
+    "total_other": "{{count}} 枚のラベル",
+    "tooMany": "ラベルが多すぎます:一度に印刷できるのは最大 {{max}} 枚です。"
   }
 }

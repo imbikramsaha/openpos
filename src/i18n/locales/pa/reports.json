@@ -159,7 +159,11 @@
     "supply": "ਸਪਲਾਈ",
     "intra": "ਰਾਜ ਅੰਦਰੂਨੀ",
     "inter": "ਅੰਤਰ-ਰਾਜੀ",
-    "interStateSupplies": "ਅੰਤਰ-ਰਾਜੀ ਸਪਲਾਈਆਂ"
+    "interStateSupplies": "ਅੰਤਰ-ਰਾਜੀ ਸਪਲਾਈਆਂ",
+    "taxName": "ਟੈਕਸ ਦਾ ਨਾਮ",
+    "andOthers_one": "{{name}} ਅਤੇ {{count}} ਹੋਰ",
+    "andOthers_other": "{{name}} ਅਤੇ {{count}} ਹੋਰ",
+    "roundingNote": "ਇਨਵੌਇਸ ਮੁੱਲ ਵਿੱਚ {{amount}} ਦੀ ਕੈਸ਼ ਰਾਊਂਡਿੰਗ ਸ਼ਾਮਲ ਨਹੀਂ ਹੈ"
   },
   "inventory": {
     "title": "ਸਟਾਕ",

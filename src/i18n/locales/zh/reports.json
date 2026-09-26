@@ -149,7 +149,10 @@
     "supply": "供应",
     "intra": "邦内",
     "inter": "跨邦",
-    "interStateSupplies": "跨邦供应"
+    "interStateSupplies": "跨邦供应",
+    "taxName": "税种名称",
+    "andOthers_other": "{{name}} 及其他 {{count}} 项",
+    "roundingNote": "发票金额不含 {{amount}} 的现金抹零"
   },
   "inventory": {
     "title": "库存",

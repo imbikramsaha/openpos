@@ -163,5 +163,9 @@
     "scanUpi": "使用任意 UPI 应用扫码支付",
     "thankYou": "感谢惠顾!"
   },
-  "addProduct": "添加商品"
+  "addProduct": "添加商品",
+  "invalidPrice": "请输入 0 或以上的价格",
+  "amountTooLarge": "合计金额过大,请检查数量和价格。",
+  "refundComplete": "退款完成",
+  "receiptAmbiguous": "有多笔销售的编号以 {{number}} 结尾,请输入更完整的小票编号。"
 }

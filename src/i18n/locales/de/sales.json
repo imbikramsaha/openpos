@@ -95,7 +95,9 @@
     "pointsEarned_other": "+{{count}} Punkte gesammelt",
     "pointsRedeemed_one": "{{count}} Punkt eingelöst",
     "pointsRedeemed_other": "{{count}} Punkte eingelöst",
-    "linked": "Erstattungen zu diesem Verkauf"
+    "linked": "Erstattungen zu diesem Verkauf",
+    "pointsReversed_one": "{{count}} Punkt zurückgenommen",
+    "pointsReversed_other": "{{count}} Punkte zurückgenommen"
   },
   "refund": {
     "action": "Rückgabe",
@@ -123,7 +125,12 @@
     "done": "Gutschrift {{number}} erstellt",
     "complete": "Rückgabe abgeschlossen",
     "payBack": "Rückzahlung per {{method}}",
-    "toAccount": "Dem Kundenkonto gutgeschrieben"
+    "toAccount": "Dem Kundenkonto gutgeschrieben",
+    "nothing": "Wähle mindestens einen Artikel zum Erstatten aus",
+    "pointsBack_one": "+ {{count}} Treuepunkt zurückgegeben",
+    "pointsBack_other": "+ {{count}} Treuepunkte zurückgegeben",
+    "pointsBackHint_one": "{{count}} Treuepunkt ({{amount}}) geht zurück an die Punkte des Kunden statt an Bargeld",
+    "pointsBackHint_other": "{{count}} Treuepunkte ({{amount}}) gehen zurück an die Punkte des Kunden statt an Bargeld"
   },
   "void": {
     "action": "Stornieren",
@@ -139,6 +146,9 @@
     "confirmTitle": "{{number}} stornieren?",
     "confirmMessage": "Der Verkauf über {{amount}} wird storniert und sein Bestand zurückgebucht. Das kann nicht rückgängig gemacht werden.",
     "done": "{{number}} storniert",
-    "voided": "Storniert"
+    "voided": "Storniert",
+    "notAllowed": "Dieser Verkauf ist bereits storniert oder kann nicht storniert werden.",
+    "hasRefunds": "Dieser Verkauf hat Erstattungen, daher kann er nicht storniert werden. Erstatte stattdessen die verbleibenden Artikel.",
+    "otherShift": "Dieser Verkauf gehört zu einer geschlossenen Schicht. Erstatte ihn stattdessen."
   }
 }

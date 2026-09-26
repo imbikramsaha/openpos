@@ -159,7 +159,10 @@
     "saved": "{{number}} enregistré — stock ajouté",
     "discard": "Abandonner",
     "discardTitle": "Abandonner cet achat ?",
-    "discardMessage": "Les articles saisis seront supprimés."
+    "discardMessage": "Les articles saisis seront supprimés.",
+    "badCost": "Les coûts unitaires ne peuvent pas être négatifs.",
+    "badPaid": "Le montant payé ne peut pas être négatif ni supérieur au total.",
+    "deletedLines": "Supprimez les articles dont le produit a été supprimé."
   },
   "suppliers": {
     "new": "Nouveau fournisseur",

@@ -170,7 +170,10 @@
     "cashRoundingHint": "Rond verkooptotalen af op de kleinste munt in omloop.",
     "roundingNone": "Geen afronding",
     "roundingCustom": "Huidige stap: {{value}}",
-    "roundingExample": "Voorbeeldtotaal"
+    "roundingExample": "Voorbeeldtotaal",
+    "decimalsChangeTitle": "Overschakelen naar {{currency}}?",
+    "decimalsChange": "{{from}} en {{to}} gebruiken een ander aantal decimalen. Prijzen, verkopen en saldi worden niet omgerekend, dus elk bestaand bedrag verandert van grootte: {{before}} wordt weergegeven als {{after}}. Voer je prijzen na het wisselen opnieuw in.",
+    "decimalsChangeConfirm": "Valuta wisselen"
   },
   "checkout": {
     "rules": "Verkoopregels",
@@ -229,7 +232,10 @@
     "loyaltyPointValue": "Waarde van 1 punt",
     "loyaltyPointValueHint": "Korting die een klant krijgt per ingewisseld punt",
     "loyaltyExample": "Bij {{spend}} besteding worden {{points}} punten gespaard, ter waarde van {{value}}.",
-    "loyaltyReturn": "Dat is {{percent}}% terug."
+    "loyaltyReturn": "Dat is {{percent}}% terug.",
+    "loyaltyEarnRateRange": "Voer een getal in van 0 tot {{max}}",
+    "loyaltyPointValueRange": "Voer een bedrag van 0 of hoger in",
+    "loyaltyTooGenerous": "Met deze tarieven krijgen klanten net zoveel terug als ze uitgeven, of meer. Controleer de punten per eenheid en de waarde van een punt."
   },
   "receipt": {
     "content": "Inhoud",
@@ -391,7 +397,8 @@
     "lanHint": "Draai de Kasa-synchronisatieserver op een pc in je winkel en gebruik het lokale adres ervan. Kassa's blijven offline verkopen en halen de achterstand in zodra de pc weer online is.",
     "cloudTitle": "Cloud",
     "cloudHint": "Zet dezelfde server op elke host met HTTPS om vestigingen te verbinden en verkopen overal te controleren.",
-    "readme": "Installatie, winkelsleutels en de HTTP-API staan beschreven in"
+    "readme": "Installatie, winkelsleutels en de HTTP-API staan beschreven in",
+    "mixedContent": "Deze app is geopend via https://, en browsers blokkeren verbindingen daarvandaan naar een http://-server. Gebruik een https://-adres voor de server, of gebruik de desktopapp op deze kassa."
   },
   "backup": {
     "staleTitle": "Laatste back-up was {{time}}",
@@ -473,7 +480,24 @@
     "user_update": "Gebruiker gewijzigd",
     "user_delete": "Gebruiker verwijderd",
     "backup_export": "Back-up geëxporteerd",
-    "backup_restore": "Back-up hersteld"
+    "backup_restore": "Back-up hersteld",
+    "category_delete": "Categorie verwijderd",
+    "customer_adjust": "Klantsaldo aangepast",
+    "customer_delete": "Klant verwijderd",
+    "customer_import": "Klanten geïmporteerd",
+    "customer_payment": "Klantbetaling",
+    "customer_payment_delete": "Klantbetaling verwijderd",
+    "customer_reminder": "Betalingsherinnering verzonden",
+    "labels_print": "Etiketten afgedrukt",
+    "product_barcodes": "Barcodes gegenereerd",
+    "product_delete": "Product verwijderd",
+    "product_import": "Producten geïmporteerd",
+    "purchase_create": "Inkoop geregistreerd",
+    "stock_adjust": "Voorraad aangepast",
+    "stock_count": "Voorraadtelling",
+    "supplier_delete": "Leverancier verwijderd",
+    "cash_in": "Contant geld toegevoegd aan de kassalade",
+    "cash_out": "Contant geld uit de kassalade gehaald"
   },
   "danger": {
     "erase": "Alle gegevens op dit apparaat wissen",

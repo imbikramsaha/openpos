@@ -163,5 +163,9 @@
     "scanUpi": "Quét bằng bất kỳ ứng dụng UPI nào để thanh toán",
     "thankYou": "Cảm ơn quý khách đã mua sắm cùng chúng tôi!"
   },
-  "addProduct": "Thêm sản phẩm"
+  "addProduct": "Thêm sản phẩm",
+  "invalidPrice": "Nhập giá bằng 0 hoặc lớn hơn",
+  "amountTooLarge": "Tổng tiền quá lớn. Kiểm tra lại số lượng và giá.",
+  "refundComplete": "Đã hoàn tiền xong",
+  "receiptAmbiguous": "Có nhiều đơn bán kết thúc bằng {{number}}. Nhập thêm số hóa đơn."
 }

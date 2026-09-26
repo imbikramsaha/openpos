@@ -39,5 +39,11 @@
   "join": "Bağlan",
   "joined": "{{name}} mağazasına bağlanıldı",
   "joinFailed": "Sunucuya bağlanılamadı",
-  "joinNoData": "Sunucuda henüz mağaza verisi yok. Önce ilk kasayı normal şekilde kurun, ardından sunucuya bağlayın."
+  "joinNoData": "Sunucuda henüz mağaza verisi yok. Önce ilk kasayı normal şekilde kurun, ardından sunucuya bağlayın.",
+  "restoreBackup": "Yedekten geri yükle",
+  "restore": "Geri yükle",
+  "restoreConfirmTitle": "Bu yedek geri yüklensin mi?",
+  "restoreConfirmMessage": "“{{name}}” adlı, {{date}} tarihinde yedeklenen dosyadan bu cihaz kurulacak. O yedekteki bir PIN ile giriş yapacaksınız.",
+  "defaultFooter": "Teşekkür ederiz! Tekrar bekleriz.",
+  "defaultTerminalName": "Terminal 1"
 }

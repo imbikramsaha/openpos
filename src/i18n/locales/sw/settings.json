@@ -170,7 +170,10 @@
     "cashRoundingHint": "Zungusha jumla ya mauzo hadi sarafu ndogo zaidi inayotumika.",
     "roundingNone": "Hakuna uzungushaji",
     "roundingCustom": "Hatua ya sasa: {{value}}",
-    "roundingExample": "Mfano wa jumla"
+    "roundingExample": "Mfano wa jumla",
+    "decimalsChangeTitle": "Badilisha kwenda {{currency}}?",
+    "decimalsChange": "{{from}} na {{to}} hutumia idadi tofauti ya nafasi za desimali. Bei, mauzo na salio hazibadilishwi, hivyo kila kiasi kilichopo kinabadilika ukubwa: {{before}} kitaonyeshwa kama {{after}}. Weka upya bei zako baada ya kubadilisha.",
+    "decimalsChangeConfirm": "Badilisha sarafu"
   },
   "checkout": {
     "rules": "Kanuni za mauzo",
@@ -229,7 +232,10 @@
     "loyaltyPointValue": "Thamani ya pointi 1",
     "loyaltyPointValueHint": "Punguzo mteja anapata kwa kila pointi inayotumika",
     "loyaltyExample": "Kutumia {{spend}} kunapata pointi {{points}}, zenye thamani ya {{value}}.",
-    "loyaltyReturn": "Hiyo ni marejesho ya {{percent}}%."
+    "loyaltyReturn": "Hiyo ni marejesho ya {{percent}}%.",
+    "loyaltyEarnRateRange": "Weka namba kutoka 0 hadi {{max}}",
+    "loyaltyPointValueRange": "Weka kiasi cha 0 au zaidi",
+    "loyaltyTooGenerous": "Kwa viwango hivi, wateja hupata kiasi sawa na walichotumia, au zaidi. Angalia pointi kwa kila kipimo na thamani ya pointi moja."
   },
   "receipt": {
     "content": "Yaliyomo",
@@ -391,7 +397,8 @@
     "lanHint": "Endesha seva ya usawazishaji ya Kasa kwenye kompyuta yoyote dukani mwako na tumia anwani yake ya karibu. Kaunta zinaendelea kuuza nje ya mtandao na zinapata mabadiliko kompyuta inaporejea.",
     "cloudTitle": "Wingu",
     "cloudHint": "Sambaza seva ile ile kwenye mwenyeji yeyote mwenye HTTPS ili kuunganisha matawi na kuangalia mauzo popote.",
-    "readme": "Usanidi, funguo za duka na HTTP API zimeelezwa katika"
+    "readme": "Usanidi, funguo za duka na HTTP API zimeelezwa katika",
+    "mixedContent": "Programu hii imefunguliwa kupitia https://, na vivinjari huzuia miunganisho kutoka humo kwenda kwenye seva ya http://. Tumia anwani ya https:// kwa seva, au tumia programu ya eneo-kazi kwenye kaunta hii."
   },
   "backup": {
     "staleTitle": "Nakala ya mwisho ilikuwa {{time}}",
@@ -473,7 +480,24 @@
     "user_update": "Mtumiaji amebadilishwa",
     "user_delete": "Mtumiaji amefutwa",
     "backup_export": "Nakala imehamishwa",
-    "backup_restore": "Nakala imerejeshwa"
+    "backup_restore": "Nakala imerejeshwa",
+    "category_delete": "Kategoria imefutwa",
+    "customer_adjust": "Salio la mteja limerekebishwa",
+    "customer_delete": "Mteja amefutwa",
+    "customer_import": "Wateja wameingizwa",
+    "customer_payment": "Malipo ya mteja",
+    "customer_payment_delete": "Malipo ya mteja yamefutwa",
+    "customer_reminder": "Kikumbusho cha malipo kimetumwa",
+    "labels_print": "Lebo zimechapishwa",
+    "product_barcodes": "Bakodi zimetengenezwa",
+    "product_delete": "Bidhaa imefutwa",
+    "product_import": "Bidhaa zimeingizwa",
+    "purchase_create": "Ununuzi umesajiliwa",
+    "stock_adjust": "Hisa imerekebishwa",
+    "stock_count": "Hesabu ya hisa",
+    "supplier_delete": "Msambazaji amefutwa",
+    "cash_in": "Fedha taslimu zimeongezwa kwenye kidroo",
+    "cash_out": "Fedha taslimu zimetolewa kwenye kidroo"
   },
   "danger": {
     "erase": "Futa data yote kwenye kifaa hiki",

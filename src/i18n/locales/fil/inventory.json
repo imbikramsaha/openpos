@@ -159,7 +159,10 @@
     "saved": "Na-save ang {{number}} — naidagdag ang stock",
     "discard": "I-discard",
     "discardTitle": "I-discard itong pagbili?",
-    "discardMessage": "Aalisin ang mga item na iyong nailagay."
+    "discardMessage": "Aalisin ang mga item na iyong nailagay.",
+    "badCost": "Hindi puwedeng negative ang mga puhunan bawat unit.",
+    "badPaid": "Hindi puwedeng negative o higit sa kabuuan ang halagang binayaran.",
+    "deletedLines": "Alisin ang mga item na ang produkto ay nabura na."
   },
   "suppliers": {
     "new": "Bagong supplier",

@@ -129,5 +129,8 @@
     "out": "出金",
     "notes": "備考",
     "end": "——レポート終了——"
-  }
+  },
+  "amountNegative": "マイナスにはできません",
+  "amountTooLarge": "この金額は大きすぎます",
+  "alreadyClosed": "このシフトは既に終了しています。"
 }

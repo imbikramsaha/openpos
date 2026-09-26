@@ -64,7 +64,8 @@
     "confirmTitle_other": "Nhập {{count}} khách hàng?",
     "confirmMessage": "{{creates}} mới, {{updates}} đã cập nhật (khớp theo số điện thoại hoặc email), {{skipped}} dòng bị bỏ qua vì thiếu tên. Số dư không bao giờ bị thay đổi khi nhập.",
     "imported": "Đã nhập: {{creates}} mới, {{updates}} đã cập nhật",
-    "failed": "Nhập thất bại: {{error}}"
+    "failed": "Nhập thất bại: {{error}}",
+    "invalidValues_other": "{{count}} số điện thoại, email, mã số thuế hoặc giá trị giảm giá không hợp lệ sẽ được để trống."
   },
   "form": {
     "newTitle": "Khách hàng mới",
@@ -87,7 +88,8 @@
     "duplicatePhone": "{{name}} đã dùng số điện thoại này. Vẫn lưu?",
     "saveAnyway": "Vẫn lưu",
     "created": "Đã thêm {{name}}",
-    "saved": "Đã lưu khách hàng"
+    "saved": "Đã lưu khách hàng",
+    "amountTooLarge": "Số tiền đó quá lớn"
   },
   "detail": {
     "title": "Khách hàng",
@@ -128,7 +130,8 @@
     "sale": "Bán công nợ",
     "refund": "Hoàn tiền vào tài khoản",
     "payment": "Đã nhận thanh toán",
-    "charge": "Khoản phí"
+    "charge": "Khoản phí",
+    "adjust": "Giảm số dư"
   },
   "pay": {
     "title": "Nhận thanh toán",

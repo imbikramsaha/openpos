@@ -68,7 +68,9 @@
     "confirmTitle_other": "{{count}} Kunden importieren?",
     "confirmMessage": "{{creates}} neu, {{updates}} aktualisiert (abgeglichen nach Telefon oder E-Mail), {{skipped}} Zeilen ohne Namen übersprungen. Salden werden durch einen Import nie geändert.",
     "imported": "Importiert: {{creates}} neu, {{updates}} aktualisiert",
-    "failed": "Import fehlgeschlagen: {{error}}"
+    "failed": "Import fehlgeschlagen: {{error}}",
+    "invalidValues_one": "{{count}} ungültiger Wert für Telefon, E-Mail, Steuernummer oder Rabatt wird leer gelassen.",
+    "invalidValues_other": "{{count}} ungültige Werte für Telefon, E-Mail, Steuernummer oder Rabatt werden leer gelassen."
   },
   "form": {
     "newTitle": "Neuer Kunde",
@@ -91,7 +93,8 @@
     "duplicatePhone": "{{name}} hat bereits diese Telefonnummer. Trotzdem speichern?",
     "saveAnyway": "Trotzdem speichern",
     "created": "{{name}} hinzugefügt",
-    "saved": "Kunde gespeichert"
+    "saved": "Kunde gespeichert",
+    "amountTooLarge": "Dieser Betrag ist zu hoch"
   },
   "detail": {
     "title": "Kunde",
@@ -133,7 +136,8 @@
     "sale": "Verkauf auf Rechnung",
     "refund": "Erstattung auf Konto",
     "payment": "Zahlung erhalten",
-    "charge": "Belastung"
+    "charge": "Belastung",
+    "adjust": "Saldo verringert"
   },
   "pay": {
     "title": "Zahlung erhalten",

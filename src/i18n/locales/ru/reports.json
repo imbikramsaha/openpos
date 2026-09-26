@@ -179,7 +179,13 @@
     "supply": "Поставка",
     "intra": "Внутриштатная",
     "inter": "Межштатная",
-    "interStateSupplies": "Межштатные поставки"
+    "interStateSupplies": "Межштатные поставки",
+    "taxName": "Название налога",
+    "andOthers_one": "{{name}} и ещё {{count}}",
+    "andOthers_few": "{{name}} и ещё {{count}}",
+    "andOthers_many": "{{name}} и ещё {{count}}",
+    "andOthers_other": "{{name}} и ещё {{count}}",
+    "roundingNote": "суммы в счетах не включают округление наличных на {{amount}}"
   },
   "inventory": {
     "title": "Склад",

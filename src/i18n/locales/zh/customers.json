@@ -64,7 +64,8 @@
     "confirmTitle_other": "导入 {{count}} 位顾客?",
     "confirmMessage": "新增 {{creates}} 位,更新 {{updates}} 位(按电话或邮箱匹配),跳过 {{skipped}} 行(缺少姓名)。导入不会更改余额。",
     "imported": "已导入:新增 {{creates}} 位,更新 {{updates}} 位",
-    "failed": "导入失败:{{error}}"
+    "failed": "导入失败:{{error}}",
+    "invalidValues_other": "{{count}} 项无效的电话、邮箱、税号或折扣值将被留空。"
   },
   "form": {
     "newTitle": "新建顾客",
@@ -87,7 +88,8 @@
     "duplicatePhone": "{{name}} 已使用此电话号码。仍要保存?",
     "saveAnyway": "仍要保存",
     "created": "{{name}} 已添加",
-    "saved": "顾客已保存"
+    "saved": "顾客已保存",
+    "amountTooLarge": "该金额过大"
   },
   "detail": {
     "title": "顾客",
@@ -128,7 +130,8 @@
     "sale": "挂账销售",
     "refund": "退款至账户",
     "payment": "已收款",
-    "charge": "收费"
+    "charge": "收费",
+    "adjust": "余额减少"
   },
   "pay": {
     "title": "收款",

@@ -172,5 +172,9 @@
     "scanUpi": "Zeskanuj dowolną aplikacją UPI, aby zapłacić",
     "thankYou": "Dziękujemy za zakupy u nas!"
   },
-  "addProduct": "Dodaj produkt"
+  "addProduct": "Dodaj produkt",
+  "invalidPrice": "Wpisz cenę zero lub większą",
+  "amountTooLarge": "Suma jest zbyt duża. Sprawdź ilości i ceny.",
+  "refundComplete": "Zwrot zakończony",
+  "receiptAmbiguous": "Kilka sprzedaży kończy się na {{number}}. Wpisz więcej cyfr numeru paragonu."
 }

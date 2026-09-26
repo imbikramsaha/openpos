@@ -149,7 +149,10 @@
     "supply": "공급",
     "intra": "동일 주 내",
     "inter": "주 간",
-    "interStateSupplies": "주 간 공급"
+    "interStateSupplies": "주 간 공급",
+    "taxName": "세금 이름",
+    "andOthers_other": "{{name}} 외 {{count}}건",
+    "roundingNote": "청구서 금액에는 {{amount}}의 현금 단수 처리가 포함되지 않습니다"
   },
   "inventory": {
     "title": "재고",

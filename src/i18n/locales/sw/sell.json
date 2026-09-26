@@ -166,5 +166,9 @@
     "scanUpi": "Changanua kwa programu yoyote ya UPI kulipa",
     "thankYou": "Asante kwa kununua kwetu!"
   },
-  "addProduct": "Ongeza bidhaa"
+  "addProduct": "Ongeza bidhaa",
+  "invalidPrice": "Weka bei ya sifuri au zaidi",
+  "amountTooLarge": "Jumla ni kubwa mno. Angalia idadi na bei.",
+  "refundComplete": "Marejesho yamekamilika",
+  "receiptAmbiguous": "Mauzo kadhaa yanaishia kwa {{number}}. Andika sehemu zaidi ya namba ya risiti."
 }

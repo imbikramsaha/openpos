@@ -68,7 +68,9 @@
     "confirmTitle_other": "{{count}} müşteri içe aktarılsın mı?",
     "confirmMessage": "{{creates}} yeni, {{updates}} güncellendi (telefon veya e-postayla eşleştirilerek), adı olmayan {{skipped}} satır atlandı. Bakiyeler içe aktarmayla asla değişmez.",
     "imported": "İçe aktarıldı: {{creates}} yeni, {{updates}} güncellendi",
-    "failed": "İçe aktarma başarısız: {{error}}"
+    "failed": "İçe aktarma başarısız: {{error}}",
+    "invalidValues_one": "{{count}} geçersiz telefon, e-posta, vergi no veya indirim değeri boş bırakılacak.",
+    "invalidValues_other": "{{count}} geçersiz telefon, e-posta, vergi no veya indirim değeri boş bırakılacak."
   },
   "form": {
     "newTitle": "Yeni müşteri",
@@ -91,7 +93,8 @@
     "duplicatePhone": "{{name}} bu telefon numarasına zaten sahip. Yine de kaydedilsin mi?",
     "saveAnyway": "Yine de kaydet",
     "created": "{{name}} eklendi",
-    "saved": "Müşteri kaydedildi"
+    "saved": "Müşteri kaydedildi",
+    "amountTooLarge": "Bu tutar çok büyük"
   },
   "detail": {
     "title": "Müşteri",
@@ -133,7 +136,8 @@
     "sale": "Veresiye satış",
     "refund": "Hesaba iade",
     "payment": "Ödeme alındı",
-    "charge": "Borç"
+    "charge": "Borç",
+    "adjust": "Bakiye düşürüldü"
   },
   "pay": {
     "title": "Ödeme al",

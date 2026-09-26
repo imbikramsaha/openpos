@@ -88,7 +88,8 @@
     "noPayments": "暂无支付记录",
     "pointsEarned_other": "获得 {{count}} 积分",
     "pointsRedeemed_other": "已使用 {{count}} 积分",
-    "linked": "针对此销售单的退款"
+    "linked": "针对此销售单的退款",
+    "pointsReversed_other": "已收回 {{count}} 积分"
   },
   "refund": {
     "action": "退款",
@@ -116,7 +117,10 @@
     "done": "已生成贷记单 {{number}}",
     "complete": "退款完成",
     "payBack": "以{{method}}退还",
-    "toAccount": "已计入顾客账户"
+    "toAccount": "已计入顾客账户",
+    "nothing": "请至少选择一项要退款的商品",
+    "pointsBack_other": "+{{count}} 积分已退回",
+    "pointsBackHint_other": "{{count}} 积分({{amount}})将退还给顾客的积分,而非现金"
   },
   "void": {
     "action": "作废",
@@ -132,6 +136,9 @@
     "confirmTitle": "作废 {{number}}?",
     "confirmMessage": "金额为 {{amount}} 的销售单将被取消,其库存将被返还。此操作无法撤销。",
     "done": "{{number}} 已作废",
-    "voided": "已作废"
+    "voided": "已作废",
+    "notAllowed": "该销售单已作废,或无法作废。",
+    "hasRefunds": "该销售单已有退款,因此无法作废。请改为退款剩余商品。",
+    "otherShift": "该销售单属于已结束的班次,请改为退款处理。"
   }
 }

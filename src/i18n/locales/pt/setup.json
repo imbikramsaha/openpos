@@ -39,5 +39,11 @@
   "join": "Conectar",
   "joined": "Conectado a {{name}}",
   "joinFailed": "Não foi possível conectar ao servidor",
-  "joinNoData": "O servidor ainda não tem dados da loja. Configure o primeiro caixa normalmente e depois conecte-o ao servidor."
+  "joinNoData": "O servidor ainda não tem dados da loja. Configure o primeiro caixa normalmente e depois conecte-o ao servidor.",
+  "restoreBackup": "Restaurar de um backup",
+  "restore": "Restaurar",
+  "restoreConfirmTitle": "Restaurar este backup?",
+  "restoreConfirmMessage": "Este dispositivo será configurado a partir de “{{name}}”, feita em {{date}}. Você entrará com um PIN dessa cópia de segurança.",
+  "defaultFooter": "Obrigado! Volte sempre.",
+  "defaultTerminalName": "Caixa 1"
 }

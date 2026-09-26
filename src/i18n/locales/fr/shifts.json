@@ -138,5 +138,8 @@
     "out": "Sortie",
     "notes": "Notes",
     "end": "— Fin du rapport —"
-  }
+  },
+  "amountNegative": "Ne peut pas être négatif",
+  "amountTooLarge": "Ce montant est trop élevé",
+  "alreadyClosed": "Cette session est déjà fermée."
 }

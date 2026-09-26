@@ -129,5 +129,8 @@
     "out": "Keluar",
     "notes": "Nota",
     "end": "— Tamat laporan —"
-  }
+  },
+  "amountNegative": "Tidak boleh negatif",
+  "amountTooLarge": "Amaun ini terlalu besar",
+  "alreadyClosed": "Syif ini telah ditutup."
 }

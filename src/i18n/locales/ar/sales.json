@@ -123,7 +123,13 @@
     "pointsRedeemed_few": "تم استبدال {{count}} نقاط",
     "pointsRedeemed_many": "تم استبدال {{count}} نقطة",
     "pointsRedeemed_other": "تم استبدال {{count}} نقطة",
-    "linked": "الاستردادات مقابل هذه العملية"
+    "linked": "الاستردادات مقابل هذه العملية",
+    "pointsReversed_zero": "لم تُسترد أي نقطة",
+    "pointsReversed_one": "تم استرداد نقطة واحدة",
+    "pointsReversed_two": "تم استرداد نقطتين",
+    "pointsReversed_few": "تم استرداد {{count}} نقاط",
+    "pointsReversed_many": "تم استرداد {{count}} نقطة",
+    "pointsReversed_other": "تم استرداد {{count}} نقطة"
   },
   "refund": {
     "action": "استرداد",
@@ -151,7 +157,20 @@
     "done": "تم إنشاء إشعار الدائن {{number}}",
     "complete": "اكتمل الاسترداد",
     "payBack": "إعادة الدفع عبر {{method}}",
-    "toAccount": "تمت إضافته كرصيد إلى حساب العميل"
+    "toAccount": "تمت إضافته كرصيد إلى حساب العميل",
+    "nothing": "اختر صنفًا واحدًا على الأقل للاسترداد.",
+    "pointsBack_zero": "لم تُعَد أي نقطة ولاء",
+    "pointsBack_one": "+ نقطة ولاء واحدة معادة",
+    "pointsBack_two": "+نقطتا ولاء معادتان",
+    "pointsBack_few": "+{{count}} نقاط ولاء معادة",
+    "pointsBack_many": "+{{count}} نقطة ولاء معادة",
+    "pointsBack_other": "+{{count}} نقطة ولاء معادة",
+    "pointsBackHint_zero": "بدلاً من النقود، لا تعود أي نقطة ولاء ({{amount}}) إلى رصيد العميل",
+    "pointsBackHint_one": "بدلاً من النقود، تعود نقطة ولاء واحدة ({{amount}}) إلى رصيد العميل",
+    "pointsBackHint_two": "بدلاً من النقود، تعود نقطتا ولاء ({{amount}}) إلى رصيد العميل",
+    "pointsBackHint_few": "بدلاً من النقود، تعود {{count}} نقاط ولاء ({{amount}}) إلى رصيد العميل",
+    "pointsBackHint_many": "بدلاً من النقود، تعود {{count}} نقطة ولاء ({{amount}}) إلى رصيد العميل",
+    "pointsBackHint_other": "بدلاً من النقود، تعود {{count}} نقطة ولاء ({{amount}}) إلى رصيد العميل"
   },
   "void": {
     "action": "إلغاء",
@@ -167,6 +186,9 @@
     "confirmTitle": "إلغاء {{number}}؟",
     "confirmMessage": "سيتم إلغاء عملية البيع البالغة {{amount}} وإعادة مخزونها. لا يمكن التراجع عن هذا.",
     "done": "تم إلغاء {{number}}",
-    "voided": "ملغاة"
+    "voided": "ملغاة",
+    "notAllowed": "تم إلغاء عملية البيع هذه بالفعل، أو لا يمكن إلغاؤها.",
+    "hasRefunds": "تحتوي عملية البيع هذه على استردادات، لذا لا يمكن إلغاؤها. استرد الأصناف المتبقية بدلًا من ذلك.",
+    "otherShift": "تنتمي عملية البيع هذه إلى وردية مغلقة. استردها بدلًا من ذلك."
   }
 }

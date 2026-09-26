@@ -151,7 +151,12 @@
     "stockHistory": "Historia magazynowa",
     "deleteTitle": "Usunąć „{{name}}”?",
     "deleteMessage": "Zostanie usunięty z katalogu i kasy. Historia sprzedaży zostanie zachowana.",
-    "deleted": "Usunięto „{{name}}”"
+    "deleted": "Usunięto „{{name}}”",
+    "negative": "Nie może być ujemne",
+    "tooLarge": "Ta liczba jest zbyt duża",
+    "discardTitle": "Odrzucić zmiany?",
+    "discardMessage": "Zmiany w tym produkcie nie zostały zapisane.",
+    "discard": "Odrzuć"
   },
   "categories": {
     "new": "Nowa kategoria",
@@ -176,7 +181,8 @@
     "deleteMessage_many": "{{count}} produktów straci kategorię. Produkty nie zostaną usunięte.",
     "deleteMessage_other": "{{count}} produktu straci kategorię. Produkt nie zostanie usunięty.",
     "deleteEmpty": "Żaden produkt nie używa tej kategorii.",
-    "deleted": "Usunięto kategorię „{{name}}”"
+    "deleted": "Usunięto kategorię „{{name}}”",
+    "duplicate": "Kategoria o tej nazwie już istnieje"
   },
   "import": {
     "title": "Importuj produkty",
@@ -225,7 +231,10 @@
       "duplicateSku": "To samo SKU co w wierszu {{line}}",
       "skuTaken": "To SKU należy też do „{{name}}”",
       "stockIgnored": "Stan magazynowy zignorowany: ten produkt nie śledzi stanu",
-      "aboveMrp": "Cena jest wyższa niż MRP"
+      "aboveMrp": "Cena jest wyższa niż MRP",
+      "tooLarge": "{{column}} jest zbyt duże",
+      "noPrice": "Brak ceny — zostanie dodany z ceną 0",
+      "barcodeScientific": "Arkusz kalkulacyjny zamienił kod kreskowy „{{value}}” na zapis naukowy. Sformatuj kolumnę jako tekst i wyeksportuj ponownie."
     }
   },
   "labels": {
@@ -270,6 +279,7 @@
     "total_one": "{{count}} etykieta",
     "total_few": "{{count}} etykiety",
     "total_many": "{{count}} etykiet",
-    "total_other": "{{count}} etykiety"
+    "total_other": "{{count}} etykiety",
+    "tooMany": "Za dużo etykiet: drukuj maksymalnie {{max}} naraz."
   }
 }

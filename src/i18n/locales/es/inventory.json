@@ -159,7 +159,10 @@
     "saved": "{{number}} guardado — stock añadido",
     "discard": "Descartar",
     "discardTitle": "¿Descartar esta compra?",
-    "discardMessage": "Se quitarán los artículos que ingresaste."
+    "discardMessage": "Se quitarán los artículos que ingresaste.",
+    "badCost": "Los costos unitarios no pueden ser negativos.",
+    "badPaid": "El importe pagado no puede ser negativo ni mayor que el total.",
+    "deletedLines": "Quita los artículos cuyo producto se haya eliminado."
   },
   "suppliers": {
     "new": "Nuevo proveedor",

@@ -167,5 +167,9 @@
     "scanUpi": "Scansiona con una qualsiasi app UPI per pagare",
     "thankYou": "Grazie per aver fatto acquisti da noi!"
   },
-  "addProduct": "Aggiungi prodotto"
+  "addProduct": "Aggiungi prodotto",
+  "invalidPrice": "Inserisci un prezzo pari o superiore a zero",
+  "amountTooLarge": "Il totale è troppo alto. Controlla le quantità e i prezzi.",
+  "refundComplete": "Rimborso completato",
+  "receiptAmbiguous": "Più vendite terminano con {{number}}. Digita altre cifre del numero di scontrino."
 }

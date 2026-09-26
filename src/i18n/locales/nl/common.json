@@ -178,5 +178,17 @@
     "email": "Voer een geldig e-mailadres in, zoals name@example.com",
     "gstin": "Voer een geldig GSTIN van 15 tekens in, zoals 27AAPFU0939F1ZV",
     "taxId": "Gebruik 3–20 letters of cijfers"
-  }
+  },
+  "backspace": "Laatste cijfer verwijderen",
+  "offlineReady": "Kasa POS is klaar om offline te werken",
+  "later": "Later",
+  "storageError": "Deze browser staat niet toe dat Kasa POS gegevens opslaat",
+  "storageErrorHint": "Kasa POS bewaart je verkopen op dit apparaat. Een privé- of incognitovenster, geblokkeerde sitegegevens of een volle schijf kunnen dit verhinderen. Open de app in een normaal venster, sta sitegegevens voor deze site toe en vernieuw daarna.",
+  "dbClosed": "Vernieuw om door te gaan",
+  "dbClosedHint": "De gegevens op dit apparaat zijn buiten dit venster gewijzigd: sitegegevens zijn gewist, of Kasa POS is in een ander tabblad gewist, hersteld of bijgewerkt. Vernieuw zodat er niets op de verkeerde plek wordt opgeslagen.",
+  "otherTab": "Kasa POS is open in een ander tabblad",
+  "otherTabHint": "De kassa werkt op één tabblad tegelijk, zodat het winkelwagentje en de bonnen consistent blijven. Ga verder in het andere tabblad, of gebruik in plaats daarvan dit tabblad.",
+  "useHere": "Dit tabblad gebruiken",
+  "notSignedIn": "Meld je eerst aan",
+  "storageFull": "Dit apparaat heeft geen opslagruimte meer. Maak ruimte vrij (of exporteer een back-up en verwijder oude gegevens) en probeer het opnieuw."
 }

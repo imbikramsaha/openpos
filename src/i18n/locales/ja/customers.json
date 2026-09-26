@@ -64,7 +64,8 @@
     "confirmTitle_other": "{{count}} 名の顧客をインポートしますか?",
     "confirmMessage": "新規 {{creates}} 件、更新 {{updates}} 件(電話番号またはメールで照合)、名前がなく {{skipped}} 件をスキップします。インポートで残高が変わることはありません。",
     "imported": "インポート完了:新規 {{creates}} 件、更新 {{updates}} 件",
-    "failed": "インポートに失敗しました:{{error}}"
+    "failed": "インポートに失敗しました:{{error}}",
+    "invalidValues_other": "{{count}} 件の無効な電話番号、メール、税番号または割引値は空欄のままになります。"
   },
   "form": {
     "newTitle": "新規顧客",
@@ -87,7 +88,8 @@
     "duplicatePhone": "{{name}} がこの電話番号を使っています。このまま保存しますか?",
     "saveAnyway": "このまま保存",
     "created": "{{name}} を追加しました",
-    "saved": "顧客を保存しました"
+    "saved": "顧客を保存しました",
+    "amountTooLarge": "その金額は大きすぎます"
   },
   "detail": {
     "title": "顧客",
@@ -128,7 +130,8 @@
     "sale": "掛け売り",
     "refund": "返金(会計へ)",
     "payment": "入金",
-    "charge": "請求"
+    "charge": "請求",
+    "adjust": "残高減額"
   },
   "pay": {
     "title": "入金を記録",

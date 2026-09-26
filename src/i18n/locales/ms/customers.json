@@ -64,7 +64,8 @@
     "confirmTitle_other": "Import {{count}} pelanggan?",
     "confirmMessage": "{{creates}} baharu, {{updates}} dikemas kini (dipadankan mengikut telefon atau e-mel), {{skipped}} baris dilangkau kerana tiada nama. Baki tidak pernah diubah oleh import.",
     "imported": "Diimport: {{creates}} baharu, {{updates}} dikemas kini",
-    "failed": "Import gagal: {{error}}"
+    "failed": "Import gagal: {{error}}",
+    "invalidValues_other": "{{count}} nombor telefon, e-mel, ID cukai atau nilai diskaun yang tidak sah akan dibiarkan kosong."
   },
   "form": {
     "newTitle": "Pelanggan baharu",
@@ -87,7 +88,8 @@
     "duplicatePhone": "{{name}} sudah mempunyai nombor telefon ini. Simpan juga?",
     "saveAnyway": "Simpan juga",
     "created": "{{name}} ditambah",
-    "saved": "Pelanggan disimpan"
+    "saved": "Pelanggan disimpan",
+    "amountTooLarge": "Amaun itu terlalu besar"
   },
   "detail": {
     "title": "Pelanggan",
@@ -128,7 +130,8 @@
     "sale": "Jualan akaun kredit",
     "refund": "Pemulangan ke akaun",
     "payment": "Bayaran diterima",
-    "charge": "Caj"
+    "charge": "Caj",
+    "adjust": "Baki dikurangkan"
   },
   "pay": {
     "title": "Terima bayaran",

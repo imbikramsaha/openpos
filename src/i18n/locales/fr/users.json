@@ -55,5 +55,6 @@
   "created": "{{name}} peut maintenant se connecter",
   "deleteTitle": "Supprimer {{name}} ?",
   "deleteMessage": "Cette personne ne pourra plus se connecter. Ses ventes et son activité passées restent dans vos registres.",
-  "deleted": "{{name}} supprimé"
+  "deleted": "{{name}} supprimé",
+  "pinPrefixClash": "Le code PIN de {{name}} commence par les 4 mêmes chiffres, l'écran de verrouillage pourrait donc connecter la mauvaise personne. Choisissez un code PIN qui commence différemment."
 }

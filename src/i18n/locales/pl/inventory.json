@@ -167,7 +167,10 @@
     "saved": "Zapisano {{number}} — stan zaktualizowany",
     "discard": "Odrzuć",
     "discardTitle": "Odrzucić ten zakup?",
-    "discardMessage": "Wprowadzone pozycje zostaną usunięte."
+    "discardMessage": "Wprowadzone pozycje zostaną usunięte.",
+    "badCost": "Koszty jednostkowe nie mogą być ujemne.",
+    "badPaid": "Zapłacona kwota nie może być ujemna ani wyższa niż suma.",
+    "deletedLines": "Usuń pozycje, których produkt został usunięty."
   },
   "suppliers": {
     "new": "Nowy dostawca",

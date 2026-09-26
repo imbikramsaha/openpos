@@ -159,7 +159,11 @@
     "supply": "ಪೂರೈಕೆ",
     "intra": "ರಾಜ್ಯದೊಳಗೆ",
     "inter": "ರಾಜ್ಯಗಳ ನಡುವೆ",
-    "interStateSupplies": "ರಾಜ್ಯಗಳ ನಡುವಿನ ಪೂರೈಕೆಗಳು"
+    "interStateSupplies": "ರಾಜ್ಯಗಳ ನಡುವಿನ ಪೂರೈಕೆಗಳು",
+    "taxName": "ತೆರಿಗೆ ಹೆಸರು",
+    "andOthers_one": "{{name}} ಮತ್ತು ಇನ್ನೊಂದು",
+    "andOthers_other": "{{name}} ಮತ್ತು ಇನ್ನೂ {{count}}",
+    "roundingNote": "ಇನ್ವಾಯ್ಸ್ ಮೌಲ್ಯಗಳಲ್ಲಿ {{amount}} ನಗದು ರೌಂಡಿಂಗ್ ಸೇರಿಲ್ಲ"
   },
   "inventory": {
     "title": "ಸ್ಟಾಕ್",

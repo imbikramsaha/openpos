@@ -121,7 +121,12 @@
     "stockHistory": "Riwayat stok",
     "deleteTitle": "Hapus “{{name}}”?",
     "deleteMessage": "Produk akan dihapus dari katalog dan kasir. Penjualan sebelumnya tetap disimpan.",
-    "deleted": "“{{name}}” dihapus"
+    "deleted": "“{{name}}” dihapus",
+    "negative": "Tidak boleh negatif",
+    "tooLarge": "Angka ini terlalu besar",
+    "discardTitle": "Buang perubahan?",
+    "discardMessage": "Perubahan Anda pada produk ini belum disimpan.",
+    "discard": "Buang"
   },
   "categories": {
     "new": "Kategori baru",
@@ -140,7 +145,8 @@
     "deleteTitle": "Hapus kategori “{{name}}”?",
     "deleteMessage_other": "{{count}} produk akan menjadi tanpa kategori. Produk itu sendiri tidak dihapus.",
     "deleteEmpty": "Tidak ada produk yang menggunakan kategori ini.",
-    "deleted": "Kategori “{{name}}” dihapus"
+    "deleted": "Kategori “{{name}}” dihapus",
+    "duplicate": "Kategori dengan nama ini sudah ada"
   },
   "import": {
     "title": "Impor produk",
@@ -180,7 +186,10 @@
       "duplicateSku": "SKU sama dengan baris {{line}}",
       "skuTaken": "SKU juga dimiliki oleh “{{name}}”",
       "stockIgnored": "Stok diabaikan: produk ini tidak melacak stok",
-      "aboveMrp": "Harga lebih tinggi dari MRP"
+      "aboveMrp": "Harga lebih tinggi dari MRP",
+      "tooLarge": "{{column}} terlalu besar",
+      "noPrice": "Tidak ada harga — akan ditambahkan dengan harga 0",
+      "barcodeScientific": "Barcode “{{value}}” diubah menjadi notasi ilmiah oleh spreadsheet. Atur format kolom sebagai teks lalu ekspor lagi."
     }
   },
   "labels": {
@@ -213,6 +222,7 @@
     "preview": "Pratinjau",
     "previewHint": "Ukuran label {{size}}. Gunakan skala 100% / “Ukuran asli” pada dialog cetak.",
     "nothing": "Tidak ada yang perlu dicetak",
-    "total_other": "{{count}} label"
+    "total_other": "{{count}} label",
+    "tooMany": "Terlalu banyak label: cetak paling banyak {{max}} sekaligus."
   }
 }

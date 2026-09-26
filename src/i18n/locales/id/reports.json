@@ -149,7 +149,10 @@
     "supply": "Pasokan",
     "intra": "Dalam negara bagian",
     "inter": "Antarnegara bagian",
-    "interStateSupplies": "Pasokan antarnegara bagian"
+    "interStateSupplies": "Pasokan antarnegara bagian",
+    "taxName": "Nama pajak",
+    "andOthers_other": "{{name}} dan {{count}} lainnya",
+    "roundingNote": "nilai faktur tidak termasuk pembulatan tunai sebesar {{amount}}"
   },
   "inventory": {
     "title": "Stok",

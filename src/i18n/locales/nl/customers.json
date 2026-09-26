@@ -68,7 +68,9 @@
     "confirmTitle_other": "{{count}} klanten importeren?",
     "confirmMessage": "{{creates}} nieuw, {{updates}} bijgewerkt (herkend op telefoon of e-mail), {{skipped}} rijen overgeslagen zonder naam. Saldi worden nooit gewijzigd door een import.",
     "imported": "Geïmporteerd: {{creates}} nieuw, {{updates}} bijgewerkt",
-    "failed": "Import mislukt: {{error}}"
+    "failed": "Import mislukt: {{error}}",
+    "invalidValues_one": "{{count}} ongeldige waarde voor telefoon, e-mail, btw-nummer of korting wordt leeg gelaten.",
+    "invalidValues_other": "{{count}} ongeldige waarden voor telefoon, e-mail, btw-nummer of korting worden leeg gelaten."
   },
   "form": {
     "newTitle": "Nieuwe klant",
@@ -91,7 +93,8 @@
     "duplicatePhone": "{{name}} heeft dit telefoonnummer al. Toch opslaan?",
     "saveAnyway": "Toch opslaan",
     "created": "{{name}} toegevoegd",
-    "saved": "Klant opgeslagen"
+    "saved": "Klant opgeslagen",
+    "amountTooLarge": "Dat bedrag is te groot"
   },
   "detail": {
     "title": "Klant",
@@ -133,7 +136,8 @@
     "sale": "Verkoop op rekening",
     "refund": "Terugbetaling op account",
     "payment": "Betaling ontvangen",
-    "charge": "Kosten"
+    "charge": "Kosten",
+    "adjust": "Saldo verlaagd"
   },
   "pay": {
     "title": "Betaling ontvangen",

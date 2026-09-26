@@ -159,7 +159,12 @@
     "supply": "Fornecimento",
     "intra": "Intraestadual",
     "inter": "Interestadual",
-    "interStateSupplies": "Fornecimentos interestaduais"
+    "interStateSupplies": "Fornecimentos interestaduais",
+    "taxName": "Nome do imposto",
+    "andOthers_one": "{{name}} e mais {{count}}",
+    "andOthers_other": "{{name}} e mais {{count}}",
+    "andOthers_many": "{{name}} e mais {{count}}",
+    "roundingNote": "os valores da fatura não incluem o arredondamento de dinheiro de {{amount}}"
   },
   "inventory": {
     "title": "Estoque",

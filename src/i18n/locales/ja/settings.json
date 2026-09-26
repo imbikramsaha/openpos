@@ -165,7 +165,10 @@
     "cashRoundingHint": "流通している最小の貨幣単位に合計金額を丸めます。",
     "roundingNone": "端数調整なし",
     "roundingCustom": "現在の単位:{{value}}",
-    "roundingExample": "合計金額の例"
+    "roundingExample": "合計金額の例",
+    "decimalsChangeTitle": "{{currency}} に切り替えますか?",
+    "decimalsChange": "{{from}} と {{to}} は小数点以下の桁数が異なります。価格・売上・残高は変換されないため、既存の金額はすべて表示が変わります:{{before}} は {{after}} と表示されます。切り替え後は価格を入力し直してください。",
+    "decimalsChangeConfirm": "通貨を切り替える"
   },
   "checkout": {
     "rules": "販売ルール",
@@ -223,7 +226,10 @@
     "loyaltyPointValue": "1ポイントの価値",
     "loyaltyPointValueHint": "ポイント1点と交換で顧客が受け取る割引額",
     "loyaltyExample": "{{spend}} の利用で {{points}} ポイント貯まります(価値 {{value}})。",
-    "loyaltyReturn": "還元率 {{percent}}% に相当します。"
+    "loyaltyReturn": "還元率 {{percent}}% に相当します。",
+    "loyaltyEarnRateRange": "0 から {{max}} までの数値を入力してください",
+    "loyaltyPointValueRange": "0 以上の金額を入力してください",
+    "loyaltyTooGenerous": "この設定では、顧客が使った分と同じかそれ以上のポイントが還元されます。単位あたりのポイント数とポイントの価値を確認してください。"
   },
   "receipt": {
     "content": "内容",
@@ -383,7 +389,8 @@
     "lanHint": "店内のパソコンで Kasa 同期サーバーを実行し、そのローカルアドレスを使います。端末はオフラインでも販売を続けられ、パソコンが復旧すると自動的に同期します。",
     "cloudTitle": "クラウド",
     "cloudHint": "同じサーバーを HTTPS 対応の任意のホストにデプロイすれば、各店舗をつなぎ、どこからでも売上を確認できます。",
-    "readme": "セットアップ方法、ストアキー、HTTP API については以下をご覧ください"
+    "readme": "セットアップ方法、ストアキー、HTTP API については以下をご覧ください",
+    "mixedContent": "このアプリは https:// で開かれているため、ブラウザは http:// サーバーへの接続をブロックします。サーバーには https:// のアドレスを使用するか、このレジではデスクトップアプリを使用してください。"
   },
   "backup": {
     "staleTitle": "前回のバックアップは {{time}}",
@@ -464,7 +471,24 @@
     "user_update": "スタッフを変更",
     "user_delete": "スタッフを削除",
     "backup_export": "バックアップをエクスポート",
-    "backup_restore": "バックアップを復元"
+    "backup_restore": "バックアップを復元",
+    "category_delete": "カテゴリーを削除",
+    "customer_adjust": "顧客残高を調整",
+    "customer_delete": "顧客を削除",
+    "customer_import": "顧客をインポート",
+    "customer_payment": "顧客の入金",
+    "customer_payment_delete": "顧客の入金を削除",
+    "customer_reminder": "支払いリマインダーを送信",
+    "labels_print": "ラベルを印刷",
+    "product_barcodes": "バーコードを生成",
+    "product_delete": "商品を削除",
+    "product_import": "商品をインポート",
+    "purchase_create": "仕入れを記録",
+    "stock_adjust": "在庫を調整",
+    "stock_count": "棚卸し",
+    "supplier_delete": "仕入先を削除",
+    "cash_in": "レジへ入金",
+    "cash_out": "レジから出金"
   },
   "danger": {
     "erase": "この端末の全データを消去",

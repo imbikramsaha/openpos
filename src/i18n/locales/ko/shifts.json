@@ -129,5 +129,8 @@
     "out": "출금",
     "notes": "비고",
     "end": "——리포트 끝——"
-  }
+  },
+  "amountNegative": "음수가 될 수 없습니다",
+  "amountTooLarge": "이 금액은 너무 큽니다",
+  "alreadyClosed": "이 근무는 이미 종료되었습니다."
 }

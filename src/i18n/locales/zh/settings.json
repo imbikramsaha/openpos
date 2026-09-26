@@ -165,7 +165,10 @@
     "cashRoundingHint": "将销售总额四舍五入到流通中最小面值的货币单位。",
     "roundingNone": "不抹零",
     "roundingCustom": "当前步长:{{value}}",
-    "roundingExample": "示例总额"
+    "roundingExample": "示例总额",
+    "decimalsChangeTitle": "切换到{{currency}}?",
+    "decimalsChange": "{{from}} 和 {{to}} 使用不同的小数位数。价格、销售记录和余额不会被转换,因此所有现有金额的显示都会改变:{{before}} 将显示为 {{after}}。切换后请重新录入价格。",
+    "decimalsChangeConfirm": "切换货币"
   },
   "checkout": {
     "rules": "销售规则",
@@ -223,7 +226,10 @@
     "loyaltyPointValue": "每 1 积分的价值",
     "loyaltyPointValueHint": "每兑换一个积分,顾客获得的折扣",
     "loyaltyExample": "消费 {{spend}} 可获得 {{points}} 积分,价值 {{value}}。",
-    "loyaltyReturn": "相当于返还 {{percent}}%。"
+    "loyaltyReturn": "相当于返还 {{percent}}%。",
+    "loyaltyEarnRateRange": "请输入 0 到 {{max}} 之间的数字",
+    "loyaltyPointValueRange": "请输入 0 或以上的金额",
+    "loyaltyTooGenerous": "按照此汇率,顾客获得的返还等于或超过其消费金额。请检查每单位货币获得的积分数及每积分的价值。"
   },
   "receipt": {
     "content": "内容",
@@ -383,7 +389,8 @@
     "lanHint": "在店内任意一台电脑上运行 Kasa 同步服务器,并使用其局域网地址。收银台可离线继续销售,电脑恢复后会自动补上数据。",
     "cloudTitle": "云端",
     "cloudHint": "将同一服务器部署到任意支持 HTTPS 的主机上,即可连接各分店并随时随地查看销售情况。",
-    "readme": "设置方法、店铺密钥和 HTTP API 的说明请参阅"
+    "readme": "设置方法、店铺密钥和 HTTP API 的说明请参阅",
+    "mixedContent": "此应用通过 https:// 打开,浏览器会阻止其连接到 http:// 服务器。请为服务器使用 https:// 地址,或在此收银台使用桌面版应用。"
   },
   "backup": {
     "staleTitle": "上次备份时间为 {{time}}",
@@ -464,7 +471,24 @@
     "user_update": "修改员工",
     "user_delete": "删除员工",
     "backup_export": "导出备份",
-    "backup_restore": "恢复备份"
+    "backup_restore": "恢复备份",
+    "category_delete": "分类已删除",
+    "customer_adjust": "顾客余额已调整",
+    "customer_delete": "顾客已删除",
+    "customer_import": "顾客已导入",
+    "customer_payment": "顾客付款",
+    "customer_payment_delete": "顾客付款已删除",
+    "customer_reminder": "已发送付款提醒",
+    "labels_print": "标签已打印",
+    "product_barcodes": "条码已生成",
+    "product_delete": "商品已删除",
+    "product_import": "商品已导入",
+    "purchase_create": "采购已记录",
+    "stock_adjust": "库存已调整",
+    "stock_count": "库存盘点",
+    "supplier_delete": "供应商已删除",
+    "cash_in": "已向钱箱存入现金",
+    "cash_out": "已从钱箱取出现金"
   },
   "danger": {
     "erase": "清除本设备上的所有数据",

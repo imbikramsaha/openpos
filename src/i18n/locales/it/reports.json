@@ -169,7 +169,12 @@
     "supply": "Fornitura",
     "intra": "Intrastatale",
     "inter": "Interstatale",
-    "interStateSupplies": "Forniture interstatali"
+    "interStateSupplies": "Forniture interstatali",
+    "taxName": "Nome imposta",
+    "andOthers_one": "{{name}} e {{count}} altro",
+    "andOthers_other": "{{name}} e {{count}} altri",
+    "andOthers_many": "{{name}} e {{count}} altri",
+    "roundingNote": "i valori della fattura escludono l'arrotondamento contanti di {{amount}}"
   },
   "inventory": {
     "title": "Magazzino",

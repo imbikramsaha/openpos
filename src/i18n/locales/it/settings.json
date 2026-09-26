@@ -175,7 +175,10 @@
     "cashRoundingHint": "Arrotonda i totali delle vendite alla moneta più piccola in circolazione.",
     "roundingNone": "Nessun arrotondamento",
     "roundingCustom": "Passo attuale: {{value}}",
-    "roundingExample": "Totale di esempio"
+    "roundingExample": "Totale di esempio",
+    "decimalsChangeTitle": "Passare a {{currency}}?",
+    "decimalsChange": "{{from}} e {{to}} usano un numero diverso di decimali. Prezzi, vendite e saldi non vengono convertiti, quindi ogni importo esistente cambia dimensione: {{before}} verrà mostrato come {{after}}. Reinserisci i tuoi prezzi dopo il cambio.",
+    "decimalsChangeConfirm": "Cambia valuta"
   },
   "checkout": {
     "rules": "Regole di vendita",
@@ -235,7 +238,10 @@
     "loyaltyPointValue": "Valore di 1 punto",
     "loyaltyPointValueHint": "Sconto ottenuto dal cliente per ogni punto riscattato",
     "loyaltyExample": "Spendendo {{spend}} si guadagnano {{points}} punti, del valore di {{value}}.",
-    "loyaltyReturn": "Cioè il {{percent}}% indietro."
+    "loyaltyReturn": "Cioè il {{percent}}% indietro.",
+    "loyaltyEarnRateRange": "Inserisci un numero da 0 a {{max}}",
+    "loyaltyPointValueRange": "Inserisci un importo pari o superiore a 0",
+    "loyaltyTooGenerous": "Con queste percentuali i clienti recuperano quanto spendono, o più. Controlla i punti per unità e il valore di un punto."
   },
   "receipt": {
     "content": "Contenuto",
@@ -399,7 +405,8 @@
     "lanHint": "Esegui il server di sincronizzazione Kasa su un qualsiasi PC del tuo negozio e usa il suo indirizzo locale. Le casse continuano a vendere offline e si aggiornano quando il PC torna disponibile.",
     "cloudTitle": "Cloud",
     "cloudHint": "Distribuisci lo stesso server su qualsiasi host con HTTPS per collegare le filiali e controllare le vendite da qualsiasi luogo.",
-    "readme": "La configurazione, le chiavi del negozio e l'API HTTP sono descritte in"
+    "readme": "La configurazione, le chiavi del negozio e l'API HTTP sono descritte in",
+    "mixedContent": "Questa app è aperta tramite https://, e i browser bloccano le connessioni da essa verso un server http://. Usa un indirizzo https:// per il server, oppure usa l'app desktop su questa cassa."
   },
   "backup": {
     "staleTitle": "L'ultimo backup risale a {{time}}",
@@ -482,7 +489,24 @@
     "user_update": "Utente modificato",
     "user_delete": "Utente eliminato",
     "backup_export": "Backup esportato",
-    "backup_restore": "Backup ripristinato"
+    "backup_restore": "Backup ripristinato",
+    "category_delete": "Categoria eliminata",
+    "customer_adjust": "Saldo del cliente modificato",
+    "customer_delete": "Cliente eliminato",
+    "customer_import": "Clienti importati",
+    "customer_payment": "Pagamento cliente",
+    "customer_payment_delete": "Pagamento cliente eliminato",
+    "customer_reminder": "Promemoria di pagamento inviato",
+    "labels_print": "Etichette stampate",
+    "product_barcodes": "Codici a barre generati",
+    "product_delete": "Prodotto eliminato",
+    "product_import": "Prodotti importati",
+    "purchase_create": "Acquisto registrato",
+    "stock_adjust": "Scorte modificate",
+    "stock_count": "Inventario",
+    "supplier_delete": "Fornitore eliminato",
+    "cash_in": "Contanti aggiunti al cassetto",
+    "cash_out": "Contanti prelevati dal cassetto"
   },
   "danger": {
     "erase": "Cancella tutti i dati su questo dispositivo",

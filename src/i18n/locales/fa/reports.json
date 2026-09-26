@@ -159,7 +159,11 @@
     "supply": "عرضه",
     "intra": "درون‌استانی",
     "inter": "بین‌استانی",
-    "interStateSupplies": "عرضه‌های بین‌استانی"
+    "interStateSupplies": "عرضه‌های بین‌استانی",
+    "taxName": "نام مالیات",
+    "andOthers_one": "{{name}} و یکی دیگر",
+    "andOthers_other": "{{name}} و {{count}} مورد دیگر",
+    "roundingNote": "ارزش فاکتورها شامل گرد کردن نقدی {{amount}} نمی‌شود"
   },
   "inventory": {
     "title": "موجودی",

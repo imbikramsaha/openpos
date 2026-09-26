@@ -68,7 +68,10 @@
     "confirmTitle_other": "Importar {{count}} clientes?",
     "confirmMessage": "{{creates}} novos, {{updates}} atualizados (correspondidos por telefone ou e-mail), {{skipped}} linhas ignoradas por falta de nome. Os saldos nunca são alterados por uma importação.",
     "imported": "Importado: {{creates}} novos, {{updates}} atualizados",
-    "failed": "Falha na importação: {{error}}"
+    "failed": "Falha na importação: {{error}}",
+    "invalidValues_one": "{{count}} valor inválido de telefone, e-mail, CPF/CNPJ ou desconto ficará em branco.",
+    "invalidValues_other": "{{count}} valores inválidos de telefone, e-mail, CPF/CNPJ ou desconto ficarão em branco.",
+    "invalidValues_many": "{{count}} valores inválidos de telefone, e-mail, CPF/CNPJ ou desconto ficarão em branco."
   },
   "form": {
     "newTitle": "Novo cliente",
@@ -91,7 +94,8 @@
     "duplicatePhone": "{{name}} já tem esse número de telefone. Salvar mesmo assim?",
     "saveAnyway": "Salvar mesmo assim",
     "created": "{{name}} adicionado",
-    "saved": "Cliente salvo"
+    "saved": "Cliente salvo",
+    "amountTooLarge": "Esse valor é grande demais"
   },
   "detail": {
     "title": "Cliente",
@@ -133,7 +137,8 @@
     "sale": "Venda fiado",
     "refund": "Reembolso na conta",
     "payment": "Pagamento recebido",
-    "charge": "Cobrança"
+    "charge": "Cobrança",
+    "adjust": "Saldo reduzido"
   },
   "pay": {
     "title": "Receber pagamento",

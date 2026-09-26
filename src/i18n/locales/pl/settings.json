@@ -180,7 +180,10 @@
     "cashRoundingHint": "Zaokrąglaj sumy sprzedaży do najmniejszej monety w obiegu.",
     "roundingNone": "Bez zaokrąglania",
     "roundingCustom": "Bieżący krok: {{value}}",
-    "roundingExample": "Przykładowa suma"
+    "roundingExample": "Przykładowa suma",
+    "decimalsChangeTitle": "Przełączyć na {{currency}}?",
+    "decimalsChange": "{{from}} i {{to}} używają innej liczby miejsc po przecinku. Ceny, sprzedaż i salda nie są przeliczane, więc każda istniejąca kwota zmienia rozmiar: {{before}} będzie wyświetlane jako {{after}}. Wprowadź ceny ponownie po zmianie.",
+    "decimalsChangeConfirm": "Zmień walutę"
   },
   "checkout": {
     "rules": "Zasady sprzedaży",
@@ -241,7 +244,10 @@
     "loyaltyPointValue": "Wartość 1 punktu",
     "loyaltyPointValueHint": "Rabat, jaki klient otrzymuje za każdy wykorzystany punkt",
     "loyaltyExample": "Wydanie {{spend}} daje {{points}} punktów o wartości {{value}}.",
-    "loyaltyReturn": "To {{percent}}% zwrotu."
+    "loyaltyReturn": "To {{percent}}% zwrotu.",
+    "loyaltyEarnRateRange": "Wpisz liczbę od 0 do {{max}}",
+    "loyaltyPointValueRange": "Wpisz kwotę 0 lub większą",
+    "loyaltyTooGenerous": "Przy tych stawkach klienci odzyskują tyle, ile wydają, albo więcej. Sprawdź liczbę punktów za jednostkę i wartość punktu."
   },
   "receipt": {
     "content": "Zawartość",
@@ -407,7 +413,8 @@
     "lanHint": "Uruchom serwer synchronizacji Kasa na dowolnym komputerze w sklepie i użyj jego lokalnego adresu. Kasy nadal sprzedają offline i nadrabiają zaległości, gdy komputer wróci.",
     "cloudTitle": "Chmura",
     "cloudHint": "Wdróż ten sam serwer na dowolnym hoście z HTTPS, aby połączyć oddziały i sprawdzać sprzedaż z dowolnego miejsca.",
-    "readme": "Konfiguracja, klucze sklepu i API HTTP są opisane w"
+    "readme": "Konfiguracja, klucze sklepu i API HTTP są opisane w",
+    "mixedContent": "Ta aplikacja jest otwarta przez https://, a przeglądarki blokują z niej połączenia do serwera http://. Użyj adresu https:// dla serwera albo skorzystaj z aplikacji desktopowej na tej kasie."
   },
   "backup": {
     "staleTitle": "Ostatnia kopia zapasowa: {{time}}",
@@ -491,7 +498,24 @@
     "user_update": "Zmieniono użytkownika",
     "user_delete": "Usunięto użytkownika",
     "backup_export": "Wyeksportowano kopię zapasową",
-    "backup_restore": "Przywrócono kopię zapasową"
+    "backup_restore": "Przywrócono kopię zapasową",
+    "category_delete": "Usunięto kategorię",
+    "customer_adjust": "Skorygowano saldo klienta",
+    "customer_delete": "Usunięto klienta",
+    "customer_import": "Zaimportowano klientów",
+    "customer_payment": "Płatność klienta",
+    "customer_payment_delete": "Usunięto płatność klienta",
+    "customer_reminder": "Wysłano przypomnienie o płatności",
+    "labels_print": "Wydrukowano etykiety",
+    "product_barcodes": "Wygenerowano kody kreskowe",
+    "product_delete": "Usunięto produkt",
+    "product_import": "Zaimportowano produkty",
+    "purchase_create": "Zarejestrowano zakup",
+    "stock_adjust": "Skorygowano stan magazynowy",
+    "stock_count": "Inwentaryzacja",
+    "supplier_delete": "Usunięto dostawcę",
+    "cash_in": "Dodano gotówkę do szuflady",
+    "cash_out": "Wyjęto gotówkę z szuflady"
   },
   "danger": {
     "erase": "Usuń wszystkie dane na tym urządzeniu",

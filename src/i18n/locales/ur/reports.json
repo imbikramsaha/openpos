@@ -159,7 +159,11 @@
     "supply": "سپلائی",
     "intra": "اندرون ریاست",
     "inter": "بین الریاستی",
-    "interStateSupplies": "بین الریاستی سپلائیز"
+    "interStateSupplies": "بین الریاستی سپلائیز",
+    "taxName": "ٹیکس کا نام",
+    "andOthers_one": "{{name}} اور ایک اور",
+    "andOthers_other": "{{name}} اور {{count}} مزید",
+    "roundingNote": "انوائس ویلیوز میں {{amount}} کیش راؤنڈنگ شامل نہیں"
   },
   "inventory": {
     "title": "اسٹاک",

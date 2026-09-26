@@ -165,7 +165,10 @@
     "cashRoundingHint": "Làm tròn tổng đơn bán theo đơn vị tiền nhỏ nhất đang lưu hành.",
     "roundingNone": "Không làm tròn",
     "roundingCustom": "Bước hiện tại: {{value}}",
-    "roundingExample": "Tổng ví dụ"
+    "roundingExample": "Tổng ví dụ",
+    "decimalsChangeTitle": "Chuyển sang {{currency}}?",
+    "decimalsChange": "{{from}} và {{to}} dùng số chữ số thập phân khác nhau. Giá, đơn bán và số dư không được chuyển đổi, vì vậy mọi số tiền hiện có sẽ thay đổi cách hiển thị: {{before}} sẽ hiển thị thành {{after}}. Hãy nhập lại giá sau khi chuyển đổi.",
+    "decimalsChangeConfirm": "Chuyển đổi tiền tệ"
   },
   "checkout": {
     "rules": "Quy tắc bán hàng",
@@ -223,7 +226,10 @@
     "loyaltyPointValue": "Giá trị của 1 điểm",
     "loyaltyPointValueHint": "Mức giảm giá khách nhận được cho mỗi điểm đổi",
     "loyaltyExample": "Chi tiêu {{spend}} sẽ nhận {{points}} điểm, trị giá {{value}}.",
-    "loyaltyReturn": "Tương đương hoàn lại {{percent}}%."
+    "loyaltyReturn": "Tương đương hoàn lại {{percent}}%.",
+    "loyaltyEarnRateRange": "Nhập một số từ 0 đến {{max}}",
+    "loyaltyPointValueRange": "Nhập số tiền từ 0 trở lên",
+    "loyaltyTooGenerous": "Với các tỷ lệ này, khách hàng nhận lại bằng hoặc nhiều hơn số tiền họ chi tiêu. Hãy kiểm tra số điểm trên mỗi đơn vị và giá trị của một điểm."
   },
   "receipt": {
     "content": "Nội dung",
@@ -383,7 +389,8 @@
     "lanHint": "Chạy máy chủ đồng bộ Kasa trên bất kỳ máy tính nào trong cửa hàng và dùng địa chỉ mạng nội bộ của nó. Các máy vẫn bán hàng khi mất mạng và tự đồng bộ lại khi máy tính hoạt động trở lại.",
     "cloudTitle": "Đám mây",
     "cloudHint": "Triển khai cùng máy chủ đó lên bất kỳ máy chủ lưu trữ nào có HTTPS để kết nối các chi nhánh và xem doanh thu từ bất kỳ đâu.",
-    "readme": "Cách thiết lập, mã khóa cửa hàng và HTTP API được mô tả trong"
+    "readme": "Cách thiết lập, mã khóa cửa hàng và HTTP API được mô tả trong",
+    "mixedContent": "Ứng dụng này đang mở qua https://, và trình duyệt chặn các kết nối từ đó đến máy chủ http://. Hãy dùng địa chỉ https:// cho máy chủ, hoặc dùng ứng dụng desktop trên máy bán hàng này."
   },
   "backup": {
     "staleTitle": "Lần sao lưu gần nhất là {{time}}",
@@ -464,7 +471,24 @@
     "user_update": "Đã đổi người dùng",
     "user_delete": "Đã xóa người dùng",
     "backup_export": "Đã xuất bản sao lưu",
-    "backup_restore": "Đã khôi phục bản sao lưu"
+    "backup_restore": "Đã khôi phục bản sao lưu",
+    "category_delete": "Đã xóa danh mục",
+    "customer_adjust": "Đã điều chỉnh số dư khách hàng",
+    "customer_delete": "Đã xóa khách hàng",
+    "customer_import": "Đã nhập khách hàng",
+    "customer_payment": "Khách hàng thanh toán",
+    "customer_payment_delete": "Đã xóa khoản thanh toán của khách hàng",
+    "customer_reminder": "Đã gửi lời nhắc thanh toán",
+    "labels_print": "Đã in nhãn",
+    "product_barcodes": "Đã tạo mã vạch",
+    "product_delete": "Đã xóa sản phẩm",
+    "product_import": "Đã nhập sản phẩm",
+    "purchase_create": "Đã ghi nhận phiếu nhập hàng",
+    "stock_adjust": "Đã điều chỉnh tồn kho",
+    "stock_count": "Kiểm kê tồn kho",
+    "supplier_delete": "Đã xóa nhà cung cấp",
+    "cash_in": "Đã thêm tiền vào ngăn kéo",
+    "cash_out": "Đã rút tiền khỏi ngăn kéo"
   },
   "danger": {
     "erase": "Xóa toàn bộ dữ liệu trên thiết bị này",

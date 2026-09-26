@@ -170,7 +170,10 @@
     "cashRoundingHint": "Redondea los totales de venta a la moneda más pequeña en circulación.",
     "roundingNone": "Sin redondeo",
     "roundingCustom": "Paso actual: {{value}}",
-    "roundingExample": "Total de ejemplo"
+    "roundingExample": "Total de ejemplo",
+    "decimalsChangeTitle": "¿Cambiar a {{currency}}?",
+    "decimalsChange": "{{from}} y {{to}} usan una cantidad distinta de decimales. Los precios, ventas y saldos no se convierten, así que todo importe existente cambia de magnitud: {{before}} se mostrará como {{after}}. Vuelve a ingresar tus precios después de cambiar.",
+    "decimalsChangeConfirm": "Cambiar moneda"
   },
   "checkout": {
     "rules": "Reglas de venta",
@@ -229,7 +232,10 @@
     "loyaltyPointValue": "Valor de 1 punto",
     "loyaltyPointValueHint": "Descuento que recibe un cliente por cada punto canjeado",
     "loyaltyExample": "Gastar {{spend}} otorga {{points}} puntos, que valen {{value}}.",
-    "loyaltyReturn": "Eso es un {{percent}}% de vuelta."
+    "loyaltyReturn": "Eso es un {{percent}}% de vuelta.",
+    "loyaltyEarnRateRange": "Ingresa un número de 0 a {{max}}",
+    "loyaltyPointValueRange": "Ingresa un importe de 0 o más",
+    "loyaltyTooGenerous": "Con estas tasas, los clientes recuperan tanto como gastan, o más. Revisa los puntos por unidad y el valor de un punto."
   },
   "receipt": {
     "content": "Contenido",
@@ -391,7 +397,8 @@
     "lanHint": "Ejecuta el servidor de sincronización Kasa en cualquier PC de tu tienda y usa su dirección local. Las cajas siguen vendiendo sin conexión y se ponen al día cuando el PC vuelve a estar disponible.",
     "cloudTitle": "Nube",
     "cloudHint": "Despliega el mismo servidor en cualquier host con HTTPS para conectar sucursales y ver ventas desde cualquier lugar.",
-    "readme": "La configuración, las claves de tienda y la API HTTP se describen en"
+    "readme": "La configuración, las claves de tienda y la API HTTP se describen en",
+    "mixedContent": "Esta app está abierta por https://, y los navegadores bloquean las conexiones desde ahí a un servidor http://. Usa una dirección https:// para el servidor, o usa la app de escritorio en esta caja."
   },
   "backup": {
     "staleTitle": "La última copia de seguridad fue {{time}}",
@@ -473,7 +480,24 @@
     "user_update": "Usuario modificado",
     "user_delete": "Usuario eliminado",
     "backup_export": "Copia de seguridad exportada",
-    "backup_restore": "Copia de seguridad restaurada"
+    "backup_restore": "Copia de seguridad restaurada",
+    "category_delete": "Categoría eliminada",
+    "customer_adjust": "Saldo del cliente ajustado",
+    "customer_delete": "Cliente eliminado",
+    "customer_import": "Clientes importados",
+    "customer_payment": "Pago de cliente",
+    "customer_payment_delete": "Pago de cliente eliminado",
+    "customer_reminder": "Recordatorio de pago enviado",
+    "labels_print": "Etiquetas impresas",
+    "product_barcodes": "Códigos de barras generados",
+    "product_delete": "Producto eliminado",
+    "product_import": "Productos importados",
+    "purchase_create": "Compra registrada",
+    "stock_adjust": "Stock ajustado",
+    "stock_count": "Conteo de stock",
+    "supplier_delete": "Proveedor eliminado",
+    "cash_in": "Efectivo añadido al cajón",
+    "cash_out": "Efectivo retirado del cajón"
   },
   "danger": {
     "erase": "Borrar todos los datos de este dispositivo",

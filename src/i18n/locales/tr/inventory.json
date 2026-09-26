@@ -159,7 +159,10 @@
     "saved": "{{number}} kaydedildi — stok eklendi",
     "discard": "Vazgeç",
     "discardTitle": "Bu alıştan vazgeçilsin mi?",
-    "discardMessage": "Girdiğiniz ürünler kaldırılacak."
+    "discardMessage": "Girdiğiniz ürünler kaldırılacak.",
+    "badCost": "Birim maliyetler negatif olamaz.",
+    "badPaid": "Ödenen tutar negatif olamaz veya toplamdan fazla olamaz.",
+    "deletedLines": "Ürünü silinmiş kalemleri kaldırın."
   },
   "suppliers": {
     "new": "Yeni tedarikçi",

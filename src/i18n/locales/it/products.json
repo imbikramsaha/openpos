@@ -141,7 +141,12 @@
     "stockHistory": "Storico movimenti",
     "deleteTitle": "Eliminare “{{name}}”?",
     "deleteMessage": "Verrà rimosso dal catalogo e dalla cassa. Le vendite passate vengono conservate.",
-    "deleted": "“{{name}}” eliminato"
+    "deleted": "“{{name}}” eliminato",
+    "negative": "Non può essere negativo",
+    "tooLarge": "Questo numero è troppo grande",
+    "discardTitle": "Scartare le modifiche?",
+    "discardMessage": "Le modifiche apportate a questo prodotto non sono state salvate.",
+    "discard": "Scarta"
   },
   "categories": {
     "new": "Nuova categoria",
@@ -164,7 +169,8 @@
     "deleteMessage_many": "{{count}} prodotti diventeranno senza categoria. I prodotti non vengono eliminati.",
     "deleteMessage_other": "{{count}} prodotti diventeranno senza categoria. I prodotti non vengono eliminati.",
     "deleteEmpty": "Nessun prodotto usa questa categoria.",
-    "deleted": "Categoria “{{name}}” eliminata"
+    "deleted": "Categoria “{{name}}” eliminata",
+    "duplicate": "Esiste già una categoria con questo nome"
   },
   "import": {
     "title": "Importa prodotti",
@@ -210,7 +216,10 @@
       "duplicateSku": "Stesso SKU della riga {{line}}",
       "skuTaken": "Lo SKU appartiene anche a “{{name}}”",
       "stockIgnored": "Le scorte vengono ignorate: questo prodotto non monitora le scorte",
-      "aboveMrp": "Il prezzo supera il prezzo consigliato"
+      "aboveMrp": "Il prezzo supera il prezzo consigliato",
+      "tooLarge": "{{column}} è troppo grande",
+      "noPrice": "Nessun prezzo — verrà aggiunto con prezzo 0",
+      "barcodeScientific": "Il foglio di calcolo ha trasformato il codice a barre “{{value}}” in un numero in notazione scientifica. Formatta la colonna come testo ed esporta di nuovo."
     }
   },
   "labels": {
@@ -251,6 +260,7 @@
     "nothing": "Niente da stampare",
     "total_one": "{{count}} etichetta",
     "total_many": "{{count}} etichette",
-    "total_other": "{{count}} etichette"
+    "total_other": "{{count}} etichette",
+    "tooMany": "Troppe etichette: stampane al massimo {{max}} alla volta."
   }
 }

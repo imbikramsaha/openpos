@@ -159,7 +159,11 @@
     "supply": "पुरवठा",
     "intra": "राज्यांतर्गत",
     "inter": "आंतर-राज्य",
-    "interStateSupplies": "आंतर-राज्य पुरवठा"
+    "interStateSupplies": "आंतर-राज्य पुरवठा",
+    "taxName": "टॅक्सचे नाव",
+    "andOthers_one": "{{name}} आणि {{count}} इतर",
+    "andOthers_other": "{{name}} आणि {{count}} इतर",
+    "roundingNote": "इनव्हॉइस व्हॅल्यूमध्ये {{amount}} ची कॅश राउंडिंग समाविष्ट नाही"
   },
   "inventory": {
     "title": "स्टॉक",

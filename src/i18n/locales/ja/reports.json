@@ -149,7 +149,10 @@
     "supply": "供給",
     "intra": "同一州内",
     "inter": "州をまたぐ",
-    "interStateSupplies": "州をまたぐ供給"
+    "interStateSupplies": "州をまたぐ供給",
+    "taxName": "税の名前",
+    "andOthers_other": "{{name}} 他 {{count}} 件",
+    "roundingNote": "請求書の金額には {{amount}} の現金の端数調整分は含まれません"
   },
   "inventory": {
     "title": "在庫",

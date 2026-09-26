@@ -54,5 +54,6 @@
   "created": "{{name}} sekarang bisa masuk",
   "deleteTitle": "Hapus {{name}}?",
   "deleteMessage": "Mereka tidak akan bisa masuk lagi. Penjualan dan aktivitas mereka sebelumnya tetap ada dalam catatan Anda.",
-  "deleted": "{{name}} dihapus"
+  "deleted": "{{name}} dihapus",
+  "pinPrefixClash": "PIN {{name}} dimulai dengan 4 digit yang sama, sehingga layar kunci dapat masuk sebagai orang yang salah. Pilih PIN yang dimulai secara berbeda."
 }

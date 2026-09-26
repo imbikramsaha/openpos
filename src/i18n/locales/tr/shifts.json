@@ -138,5 +138,8 @@
     "out": "Çıkış",
     "notes": "Notlar",
     "end": "— Raporun sonu —"
-  }
+  },
+  "amountNegative": "Negatif olamaz",
+  "amountTooLarge": "Bu tutar çok büyük",
+  "alreadyClosed": "Bu vardiya zaten kapatıldı."
 }

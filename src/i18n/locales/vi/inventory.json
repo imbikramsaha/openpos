@@ -155,7 +155,10 @@
     "saved": "Đã lưu {{number}} — đã thêm tồn kho",
     "discard": "Hủy bỏ",
     "discardTitle": "Hủy bỏ phiếu nhập hàng này?",
-    "discardMessage": "Các mặt hàng bạn đã nhập sẽ bị xóa."
+    "discardMessage": "Các mặt hàng bạn đã nhập sẽ bị xóa.",
+    "badCost": "Giá vốn đơn vị không được âm.",
+    "badPaid": "Số tiền đã trả không được âm hoặc vượt quá tổng số tiền.",
+    "deletedLines": "Hãy xóa các mặt hàng có sản phẩm đã bị xóa."
   },
   "suppliers": {
     "new": "Nhà cung cấp mới",

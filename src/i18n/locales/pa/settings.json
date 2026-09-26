@@ -170,7 +170,10 @@
     "cashRoundingHint": "ਵਿਕਰੀ ਕੁੱਲ ਨੂੰ ਸਭ ਤੋਂ ਛੋਟੇ ਪ੍ਰਚਲਿਤ ਸਿੱਕੇ ਤੱਕ ਰਾਊਂਡ ਕਰੋ।",
     "roundingNone": "ਕੋਈ ਰਾਊਂਡਿੰਗ ਨਹੀਂ",
     "roundingCustom": "ਮੌਜੂਦਾ ਸਟੈੱਪ: {{value}}",
-    "roundingExample": "ਉਦਾਹਰਨ ਕੁੱਲ"
+    "roundingExample": "ਉਦਾਹਰਨ ਕੁੱਲ",
+    "decimalsChangeTitle": "{{currency}} 'ਤੇ ਬਦਲਣਾ ਹੈ?",
+    "decimalsChange": "{{from}} ਅਤੇ {{to}} ਵੱਖ-ਵੱਖ ਗਿਣਤੀ ਦੇ ਦਸ਼ਮਲਵ ਸਥਾਨ ਵਰਤਦੇ ਹਨ। ਕੀਮਤਾਂ, ਵਿਕਰੀ ਅਤੇ ਬਕਾਏ ਬਦਲੇ ਨਹੀਂ ਜਾਂਦੇ, ਇਸ ਲਈ ਹਰ ਮੌਜੂਦਾ ਰਕਮ ਦਾ ਆਕਾਰ ਬਦਲ ਜਾਂਦਾ ਹੈ: {{before}} ਹੁਣ {{after}} ਵਜੋਂ ਦਿਖੇਗਾ। ਬਦਲਣ ਤੋਂ ਬਾਅਦ ਆਪਣੀਆਂ ਕੀਮਤਾਂ ਦੁਬਾਰਾ ਪਾਓ।",
+    "decimalsChangeConfirm": "ਕਰੰਸੀ ਬਦਲੋ"
   },
   "checkout": {
     "rules": "ਵਿਕਰੀ ਨਿਯਮ",
@@ -229,7 +232,10 @@
     "loyaltyPointValue": "1 ਪੁਆਇੰਟ ਦਾ ਮੁੱਲ",
     "loyaltyPointValueHint": "ਹਰ ਭੁਨਾਏ ਪੁਆਇੰਟ ਲਈ ਗਾਹਕ ਨੂੰ ਮਿਲਣ ਵਾਲੀ ਛੂਟ",
     "loyaltyExample": "{{spend}} ਖਰਚ ਕਰਨ 'ਤੇ {{points}} ਪੁਆਇੰਟ ਮਿਲਦੇ ਹਨ, ਜਿਨ੍ਹਾਂ ਦਾ ਮੁੱਲ {{value}} ਹੈ।",
-    "loyaltyReturn": "ਇਹ {{percent}}% ਵਾਪਸੀ ਹੈ।"
+    "loyaltyReturn": "ਇਹ {{percent}}% ਵਾਪਸੀ ਹੈ।",
+    "loyaltyEarnRateRange": "0 ਤੋਂ {{max}} ਦੇ ਵਿਚਕਾਰ ਇੱਕ ਨੰਬਰ ਪਾਓ",
+    "loyaltyPointValueRange": "0 ਜਾਂ ਇਸ ਤੋਂ ਵੱਧ ਰਕਮ ਪਾਓ",
+    "loyaltyTooGenerous": "ਇਹਨਾਂ ਦਰਾਂ ਨਾਲ ਗਾਹਕਾਂ ਨੂੰ ਓਨਾ ਜਾਂ ਇਸ ਤੋਂ ਵੱਧ ਵਾਪਸ ਮਿਲਦਾ ਹੈ ਜਿੰਨਾ ਉਹ ਖਰਚ ਕਰਦੇ ਹਨ। ਪ੍ਰਤੀ ਯੂਨਿਟ ਪੁਆਇੰਟ ਅਤੇ ਇੱਕ ਪੁਆਇੰਟ ਦਾ ਮੁੱਲ ਜਾਂਚੋ।"
   },
   "receipt": {
     "content": "ਸਮੱਗਰੀ",
@@ -391,7 +397,8 @@
     "lanHint": "ਆਪਣੀ ਦੁਕਾਨ ਦੇ ਕਿਸੇ ਵੀ PC 'ਤੇ Kasa ਸਿੰਕ ਸਰਵਰ ਚਲਾਓ ਅਤੇ ਇਸਦਾ ਲੋਕਲ ਪਤਾ ਵਰਤੋ। ਟਿੱਲ ਔਫਲਾਈਨ ਵੀ ਵੇਚਦੇ ਰਹਿੰਦੇ ਹਨ ਅਤੇ PC ਵਾਪਸ ਆਉਣ 'ਤੇ ਅੱਪਡੇਟ ਹੋ ਜਾਂਦੇ ਹਨ।",
     "cloudTitle": "ਕਲਾਊਡ",
     "cloudHint": "ਸ਼ਾਖਾਵਾਂ ਜੋੜਨ ਅਤੇ ਕਿਤੋਂ ਵੀ ਵਿਕਰੀ ਚੈੱਕ ਕਰਨ ਲਈ ਇਹੀ ਸਰਵਰ HTTPS ਵਾਲੇ ਕਿਸੇ ਵੀ ਹੋਸਟ 'ਤੇ ਡਿਪਲਾਇ ਕਰੋ।",
-    "readme": "ਸੈੱਟਅੱਪ, ਸਟੋਰ ਕੀ ਅਤੇ HTTP API ਬਾਰੇ ਇੱਥੇ ਦੱਸਿਆ ਗਿਆ ਹੈ"
+    "readme": "ਸੈੱਟਅੱਪ, ਸਟੋਰ ਕੀ ਅਤੇ HTTP API ਬਾਰੇ ਇੱਥੇ ਦੱਸਿਆ ਗਿਆ ਹੈ",
+    "mixedContent": "ਇਹ ਐਪ https:// 'ਤੇ ਖੁੱਲ੍ਹੀ ਹੈ, ਅਤੇ ਬ੍ਰਾਊਜ਼ਰ ਇਸ ਤੋਂ http:// ਸਰਵਰ ਨਾਲ ਕਨੈਕਸ਼ਨ ਬਲਾਕ ਕਰਦੇ ਹਨ। ਸਰਵਰ ਲਈ https:// ਪਤਾ ਵਰਤੋ, ਜਾਂ ਇਸ ਕਾਊਂਟਰ 'ਤੇ ਡੈਸਕਟਾਪ ਐਪ ਵਰਤੋ।"
   },
   "backup": {
     "staleTitle": "ਆਖਰੀ ਬੈਕਅੱਪ {{time}} ਸੀ",
@@ -473,7 +480,24 @@
     "user_update": "ਯੂਜ਼ਰ ਬਦਲਿਆ",
     "user_delete": "ਯੂਜ਼ਰ ਮਿਟਾਇਆ",
     "backup_export": "ਬੈਕਅੱਪ ਐਕਸਪੋਰਟ ਕੀਤਾ",
-    "backup_restore": "ਬੈਕਅੱਪ ਰੀਸਟੋਰ ਕੀਤਾ"
+    "backup_restore": "ਬੈਕਅੱਪ ਰੀਸਟੋਰ ਕੀਤਾ",
+    "category_delete": "ਸ਼੍ਰੇਣੀ ਮਿਟਾਈ ਗਈ",
+    "customer_adjust": "ਗਾਹਕ ਦਾ ਬਕਾਇਆ ਅਡਜਸਟ ਹੋਇਆ",
+    "customer_delete": "ਗਾਹਕ ਮਿਟਾਇਆ ਗਿਆ",
+    "customer_import": "ਗਾਹਕ ਇੰਪੋਰਟ ਹੋਏ",
+    "customer_payment": "ਗਾਹਕ ਭੁਗਤਾਨ",
+    "customer_payment_delete": "ਗਾਹਕ ਭੁਗਤਾਨ ਮਿਟਾਇਆ ਗਿਆ",
+    "customer_reminder": "ਭੁਗਤਾਨ ਰਿਮਾਈਂਡਰ ਭੇਜਿਆ ਗਿਆ",
+    "labels_print": "ਲੇਬਲ ਪ੍ਰਿੰਟ ਹੋਏ",
+    "product_barcodes": "ਬਾਰਕੋਡ ਬਣਾਏ ਗਏ",
+    "product_delete": "ਉਤਪਾਦ ਮਿਟਾਇਆ ਗਿਆ",
+    "product_import": "ਉਤਪਾਦ ਇੰਪੋਰਟ ਹੋਏ",
+    "purchase_create": "ਖਰੀਦ ਦਰਜ ਹੋਈ",
+    "stock_adjust": "ਸਟਾਕ ਅਡਜਸਟ ਹੋਇਆ",
+    "stock_count": "ਸਟਾਕ ਗਿਣਤੀ",
+    "supplier_delete": "ਸਪਲਾਇਰ ਮਿਟਾਇਆ ਗਿਆ",
+    "cash_in": "ਦਰਾਜ਼ ਵਿੱਚ ਕੈਸ਼ ਜੋੜਿਆ ਗਿਆ",
+    "cash_out": "ਦਰਾਜ਼ ਵਿੱਚੋਂ ਕੈਸ਼ ਕੱਢਿਆ ਗਿਆ"
   },
   "danger": {
     "erase": "ਇਸ ਡਿਵਾਈਸ 'ਤੇ ਸਾਰਾ ਡਾਟਾ ਮਿਟਾਓ",

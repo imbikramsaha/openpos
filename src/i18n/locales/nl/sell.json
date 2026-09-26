@@ -166,5 +166,9 @@
     "scanUpi": "Scan met een willekeurige UPI-app om te betalen",
     "thankYou": "Bedankt voor je aankoop bij ons!"
   },
-  "addProduct": "Product toevoegen"
+  "addProduct": "Product toevoegen",
+  "invalidPrice": "Voer een prijs van nul of hoger in",
+  "amountTooLarge": "Het totaal is te groot. Controleer de aantallen en prijzen.",
+  "refundComplete": "Terugbetaling voltooid",
+  "receiptAmbiguous": "Meerdere verkopen eindigen op {{number}}. Voer meer van het bonnummer in."
 }

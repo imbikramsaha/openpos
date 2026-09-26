@@ -131,7 +131,12 @@
     "stockHistory": "Voorraadgeschiedenis",
     "deleteTitle": "‘{{name}}’ verwijderen?",
     "deleteMessage": "Het wordt verwijderd uit de catalogus en de kassa. Eerdere verkopen blijven bewaard.",
-    "deleted": "‘{{name}}’ verwijderd"
+    "deleted": "‘{{name}}’ verwijderd",
+    "negative": "Kan niet negatief zijn",
+    "tooLarge": "Dit getal is te groot",
+    "discardTitle": "Wijzigingen verwerpen?",
+    "discardMessage": "Je wijzigingen aan dit product zijn niet opgeslagen.",
+    "discard": "Verwerpen"
   },
   "categories": {
     "new": "Nieuwe categorie",
@@ -152,7 +157,8 @@
     "deleteMessage_one": "{{count}} product komt zonder categorie te staan. Het product zelf wordt niet verwijderd.",
     "deleteMessage_other": "{{count}} producten komen zonder categorie te staan. De producten zelf worden niet verwijderd.",
     "deleteEmpty": "Geen producten gebruiken deze categorie.",
-    "deleted": "Categorie ‘{{name}}’ verwijderd"
+    "deleted": "Categorie ‘{{name}}’ verwijderd",
+    "duplicate": "Er bestaat al een categorie met deze naam"
   },
   "import": {
     "title": "Producten importeren",
@@ -195,7 +201,10 @@
       "duplicateSku": "Zelfde SKU als regel {{line}}",
       "skuTaken": "SKU behoort ook toe aan ‘{{name}}’",
       "stockIgnored": "Voorraad wordt genegeerd: dit product houdt geen voorraad bij",
-      "aboveMrp": "Prijs ligt boven de adviesprijs"
+      "aboveMrp": "Prijs ligt boven de adviesprijs",
+      "tooLarge": "{{column}} is te groot",
+      "noPrice": "Geen prijs — wordt toegevoegd met prijs 0",
+      "barcodeScientific": "De spreadsheet heeft de barcode ‘{{value}}’ omgezet in een wetenschappelijke notatie. Geef de kolom de notatie tekst en exporteer opnieuw."
     }
   },
   "labels": {
@@ -232,6 +241,7 @@
     "previewHint": "Etiketformaat {{size}}. Gebruik 100% schaal / ‘Werkelijke grootte’ in het afdrukvenster.",
     "nothing": "Niets om af te drukken",
     "total_one": "{{count}} etiket",
-    "total_other": "{{count}} etiketten"
+    "total_other": "{{count}} etiketten",
+    "tooMany": "Te veel etiketten: druk maximaal {{max}} tegelijk af."
   }
 }
