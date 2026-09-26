@@ -1,0 +1,144 @@
+{
+  "title": "ਸੇਲਸ",
+  "searchPlaceholder": "ਰਸੀਦ ਨੰ., ਨਾਮ ਜਾਂ ਫੋਨ",
+  "walkIn": "ਵਾਕ-ਇਨ",
+  "itemsCount_one": "{{count}} ਲਾਈਨ",
+  "itemsCount_other": "{{count}} ਲਾਈਨਾਂ",
+  "allDatesHint": "ਸਾਰੀਆਂ ਤਾਰੀਖਾਂ ਤੋਂ ਮੇਲ ਖਾਂਦੇ ਰਸੀਦ ਨੰਬਰ",
+  "clearFilters": "ਫਿਲਟਰ ਸਾਫ਼ ਕਰੋ",
+  "loadMore": "ਹੋਰ ਦਿਖਾਓ",
+  "showing": "{{total}} ਵਿੱਚੋਂ {{shown}} ਦਿਖਾ ਰਿਹਾ ਹੈ",
+  "range": {
+    "today": "ਅੱਜ",
+    "yesterday": "ਕੱਲ੍ਹ",
+    "last7": "ਪਿਛਲੇ 7 ਦਿਨ",
+    "thisMonth": "ਇਸ ਮਹੀਨੇ",
+    "last30": "ਪਿਛਲੇ 30 ਦਿਨ",
+    "custom": "ਕਸਟਮ"
+  },
+  "filter": {
+    "period": "ਸਮਾਂ-ਮਿਆਦ",
+    "type": "ਕਿਸਮ",
+    "allTypes": "ਸਾਰੀਆਂ ਕਿਸਮਾਂ",
+    "sales": "ਸਿਰਫ਼ ਵਿਕਰੀਆਂ",
+    "refunds": "ਸਿਰਫ਼ ਰਿਫੰਡ",
+    "status": "ਸਥਿਤੀ",
+    "allStatuses": "ਕੋਈ ਵੀ ਸਥਿਤੀ",
+    "method": "ਭੁਗਤਾਨ ਢੰਗ",
+    "allMethods": "ਕੋਈ ਵੀ ਭੁਗਤਾਨ",
+    "cashier": "ਕੈਸ਼ੀਅਰ",
+    "allCashiers": "ਸਾਰੇ ਕੈਸ਼ੀਅਰ"
+  },
+  "col": {
+    "number": "ਰਸੀਦ",
+    "time": "ਸਮਾਂ",
+    "payment": "ਭੁਗਤਾਨ ਦਾ ਢੰਗ"
+  },
+  "type": {
+    "sale": "ਵਿਕਰੀ",
+    "refund": "ਰਿਫੰਡ"
+  },
+  "status": {
+    "completed": "ਪੂਰਾ ਹੋਇਆ",
+    "voided": "ਰੱਦ ਕੀਤਾ"
+  },
+  "badge": {
+    "refund": "ਰਿਫੰਡ",
+    "voided": "ਰੱਦ ਕੀਤਾ",
+    "partiallyRefunded": "ਅੰਸ਼ਕ ਰਿਫੰਡ ਹੋਇਆ",
+    "refunded": "ਰਿਫੰਡ ਹੋਇਆ"
+  },
+  "summary": {
+    "count": "ਲੈਣ-ਦੇਣ",
+    "voided_one": "{{count}} ਰੱਦ ਕੀਤਾ",
+    "voided_other": "{{count}} ਰੱਦ ਕੀਤੇ",
+    "net": "ਨੈੱਟ ਕੁੱਲ",
+    "sales_one": "{{count}} ਵਿਕਰੀ",
+    "sales_other": "{{count}} ਵਿਕਰੀਆਂ",
+    "refunds_one": "{{count}} ਰਿਫੰਡ",
+    "refunds_other": "{{count}} ਰਿਫੰਡ"
+  },
+  "empty": {
+    "title": "ਇਸ ਸਮੇਂ-ਮਿਆਦ ਵਿੱਚ ਕੋਈ ਵਿਕਰੀ ਨਹੀਂ",
+    "hint": "ਟਿੱਲ 'ਤੇ ਕੀਤੀਆਂ ਵਿਕਰੀਆਂ ਇੱਥੇ ਦਿਖਾਈ ਦੇਣਗੀਆਂ।",
+    "filtered": "ਇਹਨਾਂ ਫਿਲਟਰਾਂ ਨਾਲ ਕੁਝ ਮੇਲ ਨਹੀਂ ਖਾਂਦਾ",
+    "filteredHint": "ਕੋਈ ਹੋਰ ਮਿਤੀ ਰੇਂਜ, ਖੋਜ ਜਾਂ ਫਿਲਟਰ ਅਜ਼ਮਾਓ।"
+  },
+  "export": {
+    "sales": "ਵਿਕਰੀਆਂ (ਹਰ ਰਸੀਦ ਲਈ ਇੱਕ ਕਤਾਰ)",
+    "items": "ਲਾਈਨ ਆਈਟਮਾਂ (ਹਰ ਆਈਟਮ ਲਈ ਇੱਕ ਕਤਾਰ)",
+    "empty": "ਇਹਨਾਂ ਫਿਲਟਰਾਂ ਲਈ ਐਕਸਪੋਰਟ ਕਰਨ ਲਈ ਕੁਝ ਨਹੀਂ",
+    "done_one": "{{count}} ਰਸੀਦ ਐਕਸਪੋਰਟ ਕੀਤੀ",
+    "done_other": "{{count}} ਰਸੀਦਾਂ ਐਕਸਪੋਰਟ ਕੀਤੀਆਂ"
+  },
+  "detail": {
+    "title": "ਵਿਕਰੀ",
+    "notFound": "ਵਿਕਰੀ ਨਹੀਂ ਮਿਲੀ",
+    "notFoundHint": "ਇਹ ਹਟਾਈ ਗਈ ਹੋ ਸਕਦੀ ਹੈ ਜਾਂ ਅਜੇ ਇਸ ਟਰਮੀਨਲ 'ਤੇ ਸਿੰਕ ਨਹੀਂ ਹੋਈ।",
+    "details": "ਵੇਰਵੇ",
+    "receipt": "ਰਸੀਦ",
+    "a4": "A4 ਇਨਵੌਇਸ",
+    "refundOf": "ਇਸਦਾ ਰਿਫੰਡ",
+    "cashier": "ਕੈਸ਼ੀਅਰ",
+    "terminal": "ਟਰਮੀਨਲ",
+    "orderType": "ਆਰਡਰ ਕਿਸਮ",
+    "supply": "ਸਪਲਾਈ",
+    "interState": "ਅੰਤਰ-ਰਾਜੀ (IGST)",
+    "intraState": "ਰਾਜ ਅੰਦਰੂਨੀ (CGST + SGST)",
+    "items": "ਆਈਟਮਾਂ",
+    "taxIncluded": "ਕੀਮਤਾਂ ਵਿੱਚ {{amount}} ਟੈਕਸ ਸ਼ਾਮਲ ਹੈ",
+    "taxBreakdown": "ਟੈਕਸ ਵੰਡ",
+    "payments": "ਭੁਗਤਾਨ",
+    "refundedVia": "ਵਾਪਸ ਕੀਤਾ ਗਿਆ",
+    "noPayments": "ਕੋਈ ਭੁਗਤਾਨ ਦਰਜ ਨਹੀਂ",
+    "pointsEarned_one": "+{{count}} ਪੁਆਇੰਟ ਮਿਲਿਆ",
+    "pointsEarned_other": "+{{count}} ਪੁਆਇੰਟ ਮਿਲੇ",
+    "pointsRedeemed_one": "{{count}} ਪੁਆਇੰਟ ਵਰਤਿਆ",
+    "pointsRedeemed_other": "{{count}} ਪੁਆਇੰਟ ਵਰਤੇ",
+    "linked": "ਇਸ ਵਿਕਰੀ ਵਿਰੁੱਧ ਰਿਫੰਡ"
+  },
+  "refund": {
+    "action": "ਰਿਫੰਡ",
+    "title": "{{number}} ਰਿਫੰਡ ਕਰੋ",
+    "pickItems": "ਗਾਹਕ ਕੀ ਵਾਪਸ ਕਰ ਰਿਹਾ ਹੈ ਚੁਣੋ।",
+    "everything": "ਸਭ ਕੁਝ ਰਿਫੰਡ ਕਰੋ",
+    "clearAll": "ਚੋਣ ਸਾਫ਼ ਕਰੋ",
+    "nothingLeft": "ਇਸ ਵਿਕਰੀ ਦਾ ਸਭ ਕੁਝ ਪਹਿਲਾਂ ਹੀ ਰਿਫੰਡ ਹੋ ਚੁੱਕਾ ਹੈ।",
+    "voided": "ਇਹ ਵਿਕਰੀ ਰੱਦ ਕੀਤੀ ਗਈ ਸੀ ਅਤੇ ਰਿਫੰਡ ਨਹੀਂ ਕੀਤੀ ਜਾ ਸਕਦੀ।",
+    "returnedQty": "{{qty}} ਵਾਪਸ ਕੀਤੇ",
+    "method": "ਇਸ ਨਾਲ ਵਾਪਸ ਕਰੋ",
+    "creditHint": "{{name}} ਦਾ ਬਕਾਇਆ ਘਟਾਉਂਦਾ ਹੈ।",
+    "restock": "ਆਈਟਮਾਂ ਸਟਾਕ ਵਿੱਚ ਵਾਪਸ ਪਾਓ",
+    "restockHint": "ਵਾਪਸ ਕੀਤੀਆਂ ਆਈਟਮਾਂ ਇਨਵੈਂਟਰੀ ਵਿੱਚ ਵਾਪਸ ਜੋੜੀਆਂ ਜਾਂਦੀਆਂ ਹਨ।",
+    "noRestockHint": "ਸਟਾਕ ਉਸੇ ਤਰ੍ਹਾਂ ਰਹਿੰਦਾ ਹੈ — ਖਰਾਬ ਜਾਂ ਮਿਆਦ ਪੁੱਗੇ ਮਾਲ ਲਈ ਇਹ ਵਰਤੋ।",
+    "reason": "ਕਾਰਨ",
+    "reasons": {
+      "damaged": "ਖਰਾਬ",
+      "wrongItem": "ਗਲਤ ਆਈਟਮ",
+      "changedMind": "ਮਨ ਬਦਲ ਗਿਆ",
+      "notAsDescribed": "ਦੱਸੇ ਅਨੁਸਾਰ ਨਹੀਂ"
+    },
+    "total": "ਕੁੱਲ ਰਿਫੰਡ",
+    "confirm": "ਰਿਫੰਡ",
+    "done": "ਕ੍ਰੈਡਿਟ ਨੋਟ {{number}} ਬਣਾਇਆ ਗਿਆ",
+    "complete": "ਰਿਫੰਡ ਪੂਰਾ ਹੋਇਆ",
+    "payBack": "{{method}} ਵਿੱਚ ਵਾਪਸ ਦਿਓ",
+    "toAccount": "ਗਾਹਕ ਖਾਤੇ ਵਿੱਚ ਕ੍ਰੈਡਿਟ ਕੀਤਾ"
+  },
+  "void": {
+    "action": "ਰੱਦ ਕਰੋ",
+    "title": "{{number}} ਰੱਦ ਕਰੋ",
+    "hint": "ਰੱਦ ਕਰਨ ਨਾਲ ਪੂਰੀ ਵਿਕਰੀ ਖਤਮ ਹੁੰਦੀ ਹੈ ਅਤੇ ਇਸ ਦੀਆਂ ਆਈਟਮਾਂ ਸਟਾਕ ਵਿੱਚ ਵਾਪਸ ਚਲੀਆਂ ਜਾਂਦੀਆਂ ਹਨ। ਗਲਤੀਆਂ ਠੀਕ ਕਰਨ ਲਈ ਇਹ ਵਰਤੋ; ਮਾਲ ਵਾਪਸ ਆਉਣ 'ਤੇ ਰਿਫੰਡ ਵਰਤੋ।",
+    "reason": "ਕਾਰਨ",
+    "reasons": {
+      "mistake": "ਗਲਤੀ ਨਾਲ ਬਿਲ ਕੀਤਾ ਗਿਆ",
+      "duplicate": "ਡੁਪਲੀਕੇਟ ਵਿਕਰੀ",
+      "testSale": "ਟੈਸਟ ਵਿਕਰੀ",
+      "customerLeft": "ਗਾਹਕ ਨੇ ਭੁਗਤਾਨ ਨਹੀਂ ਕੀਤਾ"
+    },
+    "confirmTitle": "{{number}} ਰੱਦ ਕਰਨੀ ਹੈ?",
+    "confirmMessage": "{{amount}} ਦੀ ਵਿਕਰੀ ਰੱਦ ਕੀਤੀ ਜਾਵੇਗੀ ਅਤੇ ਇਸਦਾ ਸਟਾਕ ਵਾਪਸ ਕੀਤਾ ਜਾਵੇਗਾ। ਇਹ ਵਾਪਸ ਨਹੀਂ ਕੀਤਾ ਜਾ ਸਕਦਾ।",
+    "done": "{{number}} ਰੱਦ ਕੀਤੀ ਗਈ",
+    "voided": "ਰੱਦ ਕੀਤਾ"
+  }
+}
