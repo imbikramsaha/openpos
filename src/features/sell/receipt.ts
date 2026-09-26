@@ -13,6 +13,10 @@ import { amountInWords } from '@/lib/words'
 
 const t = (key: string, opts?: Record<string, unknown>) => i18n.t(key, { ns: 'sell', ...opts }) as string
 
+/** Keeps numbers, phones and IDs readable inside right-to-left receipts. */
+const ltr = (html: string) => `<bdi dir="ltr">${html}</bdi>`
+const unitLabel = (u: string) => i18n.t(`common:unit.${u}`, { defaultValue: u }) as string
+
 function methodLabel(m: string) {
   return i18n.t(`common:payment.${m}`) as string
 }
@@ -52,7 +56,7 @@ function thermal(sale: Sale, s: Settings): string {
     .map((l) => {
       const meta = [r.showSku && l.sku, s.gstMode && l.hsn && `HSN ${l.hsn}`].filter(Boolean).join(' · ')
       return `<tr><td colspan="2" class="name">${e(l.name)}${meta ? `<div class="meta">${e(meta)}</div>` : ''}${l.note ? `<div class="meta">${e(l.note)}</div>` : ''}</td></tr>
-      <tr><td class="meta">${formatQty(l.qty)} ${e(l.unit === 'pcs' ? '' : l.unit)} × ${formatMoney(l.price)}${l.discount ? ` <span>(−${formatMoney(Math.abs(l.discount))})</span>` : ''}</td><td class="r">${formatMoney(l.total)}</td></tr>`
+      <tr><td class="meta">${ltr(`${formatQty(l.qty)} ${e(l.unit === 'pcs' ? '' : unitLabel(l.unit))} × ${formatMoney(l.price)}`)}${l.discount ? ` <span>(${ltr(`−${formatMoney(Math.abs(l.discount))}`)})</span>` : ''}</td><td class="r">${formatMoney(l.total)}</td></tr>`
     })
     .join('')
   const totals: Array<[string, number, string?]> = [[t('receipt.subtotal'), sale.subtotal]]
@@ -69,7 +73,7 @@ function thermal(sale: Sale, s: Settings): string {
   return `<!doctype html><html dir="${dir}" lang="${i18n.language}"><head><meta charset="utf-8"><title>${e(sale.number)}</title><style>
   @page { size: ${width}mm auto; margin: 0 }
   * { box-sizing: border-box }
-  body { margin: 0; padding: 3mm ${width === 58 ? 2 : 4}mm; width: ${width}mm; font: 12px/1.35 system-ui, 'Segoe UI', Roboto, 'Noto Sans', 'Nirmala UI', Arial, sans-serif; color: #000; background: #fff }
+  body { margin: 0; padding: 3mm ${width === 58 ? 2 : 4}mm; width: ${width}mm; font: 12px/1.35 system-ui, 'Segoe UI', Roboto, 'Noto Sans', 'Nirmala UI', Arial, sans-serif; color: #000; background: #fff; overflow-wrap: anywhere }
   .c { text-align: center } .r { text-align: end; white-space: nowrap; vertical-align: bottom } .b { font-weight: 700 }
   h1 { font-size: 16px; margin: 0 0 2px } .meta { color: #333; font-size: 11px }
   table { width: 100%; border-collapse: collapse } td { padding: 1px 0; vertical-align: top }
@@ -84,8 +88,8 @@ function thermal(sale: Sale, s: Settings): string {
   <div class="c"><h1>${e(s.businessName)}</h1>
   ${s.legalName ? `<div class="meta">${e(s.legalName)}</div>` : ''}
   ${s.address ? `<div class="meta">${e(s.address)}</div>` : ''}
-  ${s.phone ? `<div class="meta">${e(s.phone)}</div>` : ''}
-  ${s.taxNumber ? `<div class="meta">${e(s.taxLabel)}: ${e(s.taxNumber)}</div>` : ''}
+  ${s.phone ? `<div class="meta">${ltr(e(s.phone))}</div>` : ''}
+  ${s.taxNumber ? `<div class="meta">${e(s.taxLabel)}: ${ltr(e(s.taxNumber))}</div>` : ''}
   ${r.header ? `<div class="meta" style="white-space:pre-line;margin-top:4px">${e(r.header)}</div>` : ''}
   <div class="title">${e(docTitle(sale, s))}</div></div>
   <table class="meta">
@@ -93,8 +97,8 @@ function thermal(sale: Sale, s: Settings): string {
     <tr><td>${e(t('receipt.date'))}</td><td class="r">${e(formatDateTime(sale.createdAt))}</td></tr>
     <tr><td>${e(t('receipt.cashier'))}</td><td class="r">${e(sale.userName)}</td></tr>
     ${sale.table ? `<tr><td>${e(t('receipt.table'))}</td><td class="r">${e(sale.table)}</td></tr>` : ''}
-    ${r.showCustomer && sale.customerName ? `<tr><td>${e(t('receipt.customer'))}</td><td class="r">${e(sale.customerName)}${sale.customerPhone ? `<br>${e(sale.customerPhone)}` : ''}</td></tr>` : ''}
-    ${r.showCustomer && sale.customerTaxNumber ? `<tr><td>${e(s.taxLabel)}</td><td class="r">${e(sale.customerTaxNumber)}</td></tr>` : ''}
+    ${r.showCustomer && sale.customerName ? `<tr><td>${e(t('receipt.customer'))}</td><td class="r">${e(sale.customerName)}${sale.customerPhone ? `<br>${ltr(e(sale.customerPhone))}` : ''}</td></tr>` : ''}
+    ${r.showCustomer && sale.customerTaxNumber ? `<tr><td>${e(s.taxLabel)}</td><td class="r">${ltr(e(sale.customerTaxNumber))}</td></tr>` : ''}
   </table>
   <hr><table>${lines}</table><hr>
   <table>${totals.map(([l, v, cls]) => `<tr class="${cls ?? ''}"><td>${e(l)}</td><td class="r">${formatMoney(v)}</td></tr>`).join('')}
@@ -115,7 +119,7 @@ function invoiceA4(sale: Sale, s: Settings): string {
   const rows = sale.lines
     .map(
       (l, i) => `<tr><td>${i + 1}</td><td>${e(l.name)}${l.sku && s.receipt.showSku ? `<div class="m">${e(l.sku)}</div>` : ''}</td>${gst ? `<td>${e(l.hsn ?? '')}</td>` : ''}
-      <td class="r">${formatQty(l.qty)} ${e(l.unit)}</td><td class="r">${formatMoney(l.price)}</td><td class="r">${l.discount ? formatMoney(l.discount) : ''}</td>
+      <td class="r">${ltr(`${formatQty(l.qty)} ${e(unitLabel(l.unit))}`)}</td><td class="r">${formatMoney(l.price)}</td><td class="r">${l.discount ? formatMoney(l.discount) : ''}</td>
       <td class="r">${formatMoney(l.net)}</td><td class="r">${formatPercent(l.taxRate)}</td><td class="r">${formatMoney(l.tax)}</td><td class="r b">${formatMoney(l.total)}</td></tr>`,
     )
     .join('')
@@ -134,7 +138,7 @@ function invoiceA4(sale: Sale, s: Settings): string {
     : ''
   return `<!doctype html><html dir="${dir}" lang="${i18n.language}"><head><meta charset="utf-8"><title>${e(sale.number)}</title><style>
   @page { size: A4; margin: 12mm }
-  body { font: 12px/1.45 system-ui, 'Segoe UI', Roboto, 'Noto Sans', 'Nirmala UI', Arial, sans-serif; color: #111; margin: 0 }
+  body { font: 12px/1.45 system-ui, 'Segoe UI', Roboto, 'Noto Sans', 'Nirmala UI', Arial, sans-serif; color: #111; margin: 0; overflow-wrap: anywhere }
   h1 { font-size: 22px; margin: 0 } h2 { font-size: 15px; letter-spacing: .1em; margin: 0; color: #4f46e5 }
   .m { color: #555; font-size: 11px } .r { text-align: end } .b { font-weight: 700 }
   .head { display: flex; justify-content: space-between; gap: 24px; border-bottom: 2px solid #111; padding-bottom: 12px; margin-bottom: 12px }
@@ -149,8 +153,8 @@ function invoiceA4(sale: Sale, s: Settings): string {
   <div class="head"><div>${s.receipt.showLogo && s.receipt.logo ? `<img class="logo" src="${e(s.receipt.logo)}" alt=""><br>` : ''}
     <h1>${e(s.legalName || s.businessName)}</h1>
     <div class="m">${e(s.address)}${state ? `, ${e(state[1])} (${e(state[0])})` : ''}</div>
-    <div class="m">${[s.phone, s.email, s.website].filter(Boolean).map(e).join(' · ')}</div>
-    ${s.taxNumber ? `<div class="b">${e(s.taxLabel)}: ${e(s.taxNumber)}</div>` : ''}
+    <div class="m">${[s.phone, s.email, s.website].filter(Boolean).map((v) => ltr(e(v))).join(' · ')}</div>
+    ${s.taxNumber ? `<div class="b">${e(s.taxLabel)}: ${ltr(e(s.taxNumber))}</div>` : ''}
     ${s.receipt.header ? `<div class="m" style="white-space:pre-line;margin-top:4px">${e(s.receipt.header)}</div>` : ''}</div>
     <div class="r"><h2>${e(docTitle(sale, s)).toUpperCase()}</h2>
     <div><span class="m">${e(t('receipt.number'))}:</span> <b>${e(sale.number)}</b></div>
@@ -158,8 +162,8 @@ function invoiceA4(sale: Sale, s: Settings): string {
     ${gst ? `<div><span class="m">${e(t('receipt.placeOfSupply'))}:</span> ${sale.interState ? e(t('receipt.interState')) : e(state?.[1] ?? '')}</div>` : ''}</div></div>
   <div class="grid"><div class="box"><div class="m">${e(t('receipt.billTo'))}</div>
     <div class="b">${e(sale.customerName || t('receipt.walkIn'))}</div>
-    ${sale.customerPhone ? `<div>${e(sale.customerPhone)}</div>` : ''}
-    ${sale.customerTaxNumber ? `<div>${e(s.taxLabel)}: ${e(sale.customerTaxNumber)}</div>` : ''}</div>
+    ${sale.customerPhone ? `<div>${ltr(e(sale.customerPhone))}</div>` : ''}
+    ${sale.customerTaxNumber ? `<div>${e(s.taxLabel)}: ${ltr(e(sale.customerTaxNumber))}</div>` : ''}</div>
     <div class="box"><div class="m">${e(t('receipt.cashier'))}</div><div>${e(sale.userName)}</div>
     <div class="m" style="margin-top:4px">${e(t('receipt.paymentMode'))}</div><div>${sale.payments.map((p) => e(methodLabel(p.method))).join(', ')}</div></div></div>
   <table><thead><tr><th>#</th><th>${e(t('receipt.item'))}</th>${gst ? '<th>HSN/SAC</th>' : ''}<th class="r">${e(t('receipt.qty'))}</th><th class="r">${e(t('receipt.rate'))}</th><th class="r">${e(t('receipt.discount'))}</th><th class="r">${e(t('receipt.taxable'))}</th><th class="r">${e(t('receipt.taxRate'))}</th><th class="r">${e(t('receipt.tax'))}</th><th class="r">${e(t('receipt.amount'))}</th></tr></thead><tbody>${rows}</tbody></table>

@@ -1,4 +1,4 @@
-import type { Table } from 'dexie'
+import Dexie, { type Table } from 'dexie'
 import { db, type PosDB } from './db'
 import { uuid } from '@/lib/uuid'
 import type { AuditEntry, Base, Product, StockMovement, StockMovementType, SyncedTable } from '@/core/types'
@@ -128,7 +128,20 @@ const PREFIX: Record<NumberKind, string> = { sale: 'INV', refund: 'CRN', purchas
  */
 export async function nextNumber(kind: NumberKind, terminal: string): Promise<string> {
   const key = `seq:${kind}`
-  const n = (await getMeta<number>(key, 0)) + 1
+  const prefix = `${PREFIX[kind]}-${terminal}-`
+  // Never go below the highest number already used by this terminal: after a backup
+  // restore (older counter) followed by a sync pull, the counter alone could repeat one.
+  const highest = await highestNumber(kind, prefix)
+  const n = Math.max(await getMeta<number>(key, 0), highest) + 1
   await setMeta(key, n)
-  return `${PREFIX[kind]}-${terminal}-${String(n).padStart(6, '0')}`
+  return `${prefix}${String(n).padStart(6, '0')}`
+}
+
+async function highestNumber(kind: NumberKind, prefix: string): Promise<number> {
+  const table = kind === 'sale' || kind === 'refund' ? db.sales : kind === 'purchase' ? db.purchases : null
+  if (!table || !Dexie.currentTransaction?.storeNames.includes(table.name)) return 0
+  // Numbers are zero-padded, so the last one in index order is the highest.
+  const last = await table.where('number').startsWith(prefix).last()
+  const n = last ? Number(last.number.slice(prefix.length)) : 0
+  return Number.isFinite(n) ? n : 0
 }

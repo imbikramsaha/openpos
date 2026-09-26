@@ -115,3 +115,15 @@ describe('refunds of sales paid with loyalty points', () => {
     expect((await db.sales.get(sale.id))!.status).toBe('completed')
   })
 })
+
+describe('document numbering', () => {
+  it('never reuses a number already present for this terminal (e.g. after restore + pull)', async () => {
+    const first = await completeSale(cartOf(1), [{ id: 'p', method: 'cash', amount: 2000 }])
+    // Simulate a restored (older) counter while a later sale from this terminal exists.
+    const later = first.number.replace(/\d{6}$/, '000041')
+    await db.sales.put({ ...first, id: uuid(), number: later })
+    await db.meta.put({ key: 'seq:sale', value: 0 })
+    const next = await completeSale(cartOf(1), [{ id: 'q', method: 'cash', amount: 2000 }])
+    expect(next.number.endsWith('000042')).toBe(true)
+  })
+})

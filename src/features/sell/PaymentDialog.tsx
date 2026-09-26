@@ -7,6 +7,7 @@ import { computeChange, quickCashSuggestions } from '@/core/cart'
 import { db } from '@/db/db'
 import { formatMoney, fromMinor, moneyConfig, parseDecimal, toMinor } from '@/lib/money'
 import { uuid } from '@/lib/uuid'
+import { errorMessage } from '@/lib/errors'
 import { cn } from '@/lib/cn'
 import { useCart } from '@/stores/cart'
 import { useSettings } from '@/stores/settings'
@@ -83,7 +84,7 @@ export function PaymentDialog({ open, onClose, onComplete, onNeedCustomer }: { o
       sendToDisplay({ type: 'paid', total: sale.total, change: sale.change })
       onComplete(sale)
     } catch (e) {
-      toast(e instanceof Error ? e.message : String(e), 'error')
+      toast(errorMessage(e), 'error')
     } finally {
       busyRef.current = false
       setBusy(false)
@@ -247,7 +248,7 @@ export function PaymentDialog({ open, onClose, onComplete, onNeedCustomer }: { o
               {quick.length > 0 && settings.enabledPayments.includes('cash') && (
                 <div className="grid grid-cols-3 gap-2 sm:grid-cols-5">
                   {quick.map((v, i) => (
-                    <Button key={v} variant={i === 0 ? 'soft' : 'secondary'} onClick={() => add('cash', v)} disabled={busy} className="tnum h-11 px-2">
+                    <Button key={v} variant={i === 0 ? 'soft' : 'secondary'} onClick={() => add('cash', v)} disabled={busy} className="tnum h-auto min-h-11 px-2 leading-tight whitespace-normal">
                       {i === 0 ? t('exact') : formatMoney(v)}
                     </Button>
                   ))}
@@ -258,12 +259,12 @@ export function PaymentDialog({ open, onClose, onComplete, onNeedCustomer }: { o
                 <div dir="ltr">
                   <NumPad onKey={typeKey} size="md" decimal={moneyConfig().decimals > 0} />
                 </div>
-                <div className="order-first grid grid-cols-2 content-start gap-2 sm:order-none sm:w-44 sm:grid-cols-1">
+                <div className="order-first grid grid-cols-2 content-start gap-2 sm:order-none sm:w-52 sm:grid-cols-1">
                   {methods.map((m, i) => {
                     const Icon = METHOD_ICONS[m]
                     return (
-                      <Button key={m} variant={m === 'cash' ? 'primary' : 'secondary'} className="h-12 justify-start" icon={<Icon className="size-5" />} onClick={() => add(m)} disabled={busy || (due <= 0 && m !== 'cash')}>
-                        <span className="flex-1 truncate text-start">{t(`common:payment.${m}`)}</span>
+                      <Button key={m} variant={m === 'cash' ? 'primary' : 'secondary'} className="h-auto min-h-12 justify-start py-2 whitespace-normal" icon={<Icon className="size-5" />} onClick={() => add(m)} disabled={busy || (due <= 0 && m !== 'cash')}>
+                        <span className="flex-1 text-start leading-tight">{t(`common:payment.${m}`)}</span>
                         <span className="hidden text-[10px] opacity-60 lg:inline">F{i + 1}</span>
                       </Button>
                     )

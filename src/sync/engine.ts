@@ -3,7 +3,20 @@ import { db } from '@/db/db'
 import { useDevice } from '@/stores/device'
 import { useSyncStatus } from './status'
 import { describeError, fetchStore, normalizeUrl, type Remote } from './api'
-import { joinStoreInto, syncOnce } from './replicate'
+import { joinStoreInto, requeueAll, syncOnce } from './replicate'
+
+// With sync off, every write would still pile up in the outbox forever (hundreds of
+// thousands of rows slow down startup). It is dropped instead, and this flag makes the
+// first cycle after sync is turned on re-queue every record so the server gets it all.
+const FULL_PUSH_KEY = 'sync:fullPush'
+
+async function trimOutboxWhileDisabled(): Promise<void> {
+  if ((await db.outbox.count()) === 0) return
+  await db.transaction('rw', db.outbox, db.meta, async () => {
+    await db.outbox.clear()
+    await db.meta.put({ key: FULL_PUSH_KEY, value: true })
+  })
+}
 
 // Sync scheduler for this terminal. A cycle (push outbox, then pull) runs:
 //   - right away when sync starts, then every 20 s,
@@ -126,7 +139,12 @@ async function runCycle(s: Session): Promise<void> {
   status().set({ state: 'syncing' })
   try {
     await exclusive(async () => {
-      if (!s.stopped) await syncOnce(db, s.remote)
+      if (s.stopped) return
+      if (await db.meta.get(FULL_PUSH_KEY)) {
+        await requeueAll(db)
+        await db.meta.delete(FULL_PUSH_KEY)
+      }
+      await syncOnce(db, s.remote)
     })
     if (s.stopped) return
     s.failures = 0
@@ -169,6 +187,7 @@ export async function startSync(): Promise<void> {
   const c = deviceConfig()
   if (!isConfigured(c)) {
     status().set({ state: 'disabled', error: undefined })
+    void trimOutboxWhileDisabled().then(refreshPending, () => {})
     return
   }
 

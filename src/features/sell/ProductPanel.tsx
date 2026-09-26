@@ -156,7 +156,7 @@ function ProductTile({ p, color, showImage, onClick }: { p: Product; color?: str
           {p.trackStock && (
             <span className={cn('tnum rounded-md px-1.5 text-[11px] font-semibold', out ? 'bg-danger-soft text-danger' : low ? 'bg-warning-soft text-warning' : 'text-subtle')}>
               {formatQty(p.stock)}
-              {p.unit !== 'pcs' && ` ${p.unit}`}
+              {p.unit !== 'pcs' && ` ${t(`common:unit.${p.unit}`)}`}
             </span>
           )}
         </span>

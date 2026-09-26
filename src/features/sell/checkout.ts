@@ -4,7 +4,7 @@ import { calculateCart, loyaltyEarned, refundLines, refundRounding, refundedQuan
 import { db } from '@/db/db'
 import { recomputeCustomer } from '@/db/customers'
 import { audit, moveStock, nextNumber, tx } from '@/db/repo'
-import { currencyDecimals } from '@/lib/money'
+import { currencyDecimals, formatMoney } from '@/lib/money'
 import { uuid } from '@/lib/uuid'
 import { device } from '@/stores/device'
 import { session } from '@/stores/session'
@@ -91,7 +91,7 @@ export async function completeSale(cart: CartState, payments: Payment[], custome
     return doc
   })
   await recomputeCustomer(customer?.id)
-  void audit('sale', 'sale', sale.id, `${sale.number} ${sale.total}`)
+  void audit('sale', 'sale', sale.id, `${sale.number} ${formatMoney(sale.total)}`)
   return sale
 }
 
@@ -171,7 +171,7 @@ export async function refundSale(original: Sale, qtyByLine: Record<string, numbe
     return doc
   })
   await recomputeCustomer(original.customerId)
-  void audit('refund', 'sale', refund.id, `${refund.number} of ${original.number} ${refund.total}`)
+  void audit('refund', 'sale', refund.id, `${refund.number} of ${original.number} ${formatMoney(refund.total)}`)
   return refund
 }
 

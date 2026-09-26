@@ -34,10 +34,15 @@ export function useScanner(onScan: (code: string) => void, enabled = true) {
   }, [enabled])
 }
 
+// One shared context: creating a new AudioContext per beep cost ~150 ms on busy tills.
+let audio: AudioContext | null = null
+
 export function beep(ok = true) {
   try {
     const Ctx = window.AudioContext || (window as unknown as { webkitAudioContext: typeof AudioContext }).webkitAudioContext
-    const ctx = new Ctx()
+    audio ??= new Ctx()
+    const ctx = audio
+    if (ctx.state === 'suspended') void ctx.resume()
     const osc = ctx.createOscillator()
     const gain = ctx.createGain()
     osc.frequency.value = ok ? 1250 : 320
@@ -45,7 +50,10 @@ export function beep(ok = true) {
     osc.connect(gain).connect(ctx.destination)
     osc.start()
     osc.stop(ctx.currentTime + (ok ? 0.07 : 0.25))
-    osc.onended = () => void ctx.close()
+    osc.onended = () => {
+      osc.disconnect()
+      gain.disconnect()
+    }
   } catch {
     /* audio unavailable */
   }

@@ -190,3 +190,21 @@ describe('engine', () => {
     expect(useSyncStatus.getState().state).toBe('disabled')
   })
 })
+
+describe('outbox while sync is off', () => {
+  it('drops the queue while disabled and re-sends everything when enabled', async () => {
+    const fresh = srv.createStore('Offline-first Shop')
+    useDevice.getState().update({ syncEnabled: false, serverUrl: '', storeKey: '' })
+    const cat = await put<Category>('categories', { name: 'Queued while offline', color: '#123456', sortOrder: 9 })
+    expect(await db.outbox.count()).toBeGreaterThan(0)
+
+    await startSync()
+    await waitFor(async () => (await db.outbox.count()) === 0)
+    expect(await db.meta.get('sync:fullPush')).toBeTruthy()
+
+    useDevice.getState().update({ syncEnabled: true, serverUrl: base, storeKey: fresh.key })
+    await startSync()
+    await waitFor(async () => !!(await onServer(fresh.key, 'categories', cat.id)), 10000)
+    expect(await db.meta.get('sync:fullPush')).toBeFalsy()
+  })
+})

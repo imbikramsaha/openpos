@@ -39,5 +39,11 @@
   "join": "Connect",
   "joined": "Connected to {{name}}",
   "joinFailed": "Could not connect to the server",
-  "joinNoData": "The server has no store data yet. Set up the first till normally, then connect it to the server."
+  "joinNoData": "The server has no store data yet. Set up the first till normally, then connect it to the server.",
+  "restoreBackup": "Restore from a backup",
+  "restore": "Restore",
+  "restoreConfirmTitle": "Restore this backup?",
+  "restoreConfirmMessage": "This device will be set up from “{{name}}”, backed up on {{date}}. You'll sign in with a PIN from that backup.",
+  "defaultFooter": "Thank you! Visit again.",
+  "defaultTerminalName": "Till 1"
 }

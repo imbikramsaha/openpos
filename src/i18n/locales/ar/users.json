@@ -9,7 +9,7 @@
   "neverLoggedIn": "أبدًا",
   "you": "أنت",
   "extraCount_zero": "لا صلاحيات إضافية",
-  "extraCount_one": "+{{count}} صلاحية إضافية واحدة",
+  "extraCount_one": "+ صلاحية إضافية واحدة",
   "extraCount_two": "+صلاحيتان إضافيتان",
   "extraCount_few": "+{{count}} صلاحيات إضافية",
   "extraCount_many": "+{{count}} صلاحية إضافية",

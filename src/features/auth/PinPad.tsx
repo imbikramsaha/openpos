@@ -24,21 +24,28 @@ interface LockState {
   until: number
 }
 
+// In-memory copy so the lockout still works when localStorage is unavailable (private mode).
+let memoryLock: LockState = { fails: 0, until: 0 }
+
 function readLock(): LockState {
   try {
     const v = JSON.parse(localStorage.getItem(LOCK_KEY) || 'null')
-    if (v && typeof v.fails === 'number' && typeof v.until === 'number') return v
+    if (v && typeof v.fails === 'number' && typeof v.until === 'number') {
+      // Take whichever is stricter, so clearing storage can't reset the counter mid-session.
+      return v.until >= memoryLock.until && v.fails >= memoryLock.fails ? v : memoryLock
+    }
   } catch {
-    /* ignore */
+    /* storage unavailable */
   }
-  return { fails: 0, until: 0 }
+  return memoryLock
 }
 
 function writeLock(v: LockState) {
+  memoryLock = v
   try {
     localStorage.setItem(LOCK_KEY, JSON.stringify(v))
   } catch {
-    /* ignore */
+    /* storage unavailable: the in-memory copy still applies */
   }
 }
 

@@ -189,5 +189,6 @@
     "gstin": "Enter a valid 15-character GSTIN, like 27AAPFU0939F1ZV",
     "taxId": "Use 3–20 letters or numbers"
   },
-  "notSignedIn": "Sign in first"
+  "notSignedIn": "Sign in first",
+  "storageFull": "This device is out of storage. Free up space (or export a backup and clear old data), then try again."
 }

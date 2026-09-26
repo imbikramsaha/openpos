@@ -1,6 +1,6 @@
 import { useRef, useState, type KeyboardEvent } from 'react'
 import { useTranslation } from 'react-i18next'
-import { ArrowLeft, ArrowRight, Check, CloudDownload, Rocket, Store } from 'lucide-react'
+import { ArrowLeft, ArrowRight, Check, CloudDownload, FileUp, Rocket, Store } from 'lucide-react'
 import type { Settings, Tax } from '@/core/types'
 import { COUNTRY_PRESETS, INDIAN_STATES, findPreset } from '@/core/presets'
 import { db } from '@/db/db'
@@ -11,7 +11,10 @@ import { uuid } from '@/lib/uuid'
 import { currencyDecimals } from '@/lib/money'
 import { useSession } from '@/stores/session'
 import { useDevice } from '@/stores/device'
-import { toast } from '@/stores/ui'
+import { confirmDialog, toast } from '@/stores/ui'
+import { pickFile, readFileText } from '@/lib/download'
+import { formatDateTime } from '@/lib/dates'
+import { InvalidBackup, parseBackup, restoreBackup } from '@/features/settings/backup'
 import { joinStore, testConnection } from '@/sync/engine'
 import { Button, Input, PhoneInput, Select, TaxIdInput, Toggle } from '@/components/ui'
 import { hasErrors, LIMITS, phoneError, taxIdError } from '@/lib/validate'
@@ -40,6 +43,27 @@ export function SetupWizard() {
   const idx = steps.indexOf(step)
   const pinError = admin.pin && !/^\d{4,6}$/.test(admin.pin) ? t('pinFormat') : admin.pin2 && admin.pin !== admin.pin2 ? t('pinMismatch') : ''
 
+  // A brand-new device can be restored straight from a backup file, without first
+  // creating a throwaway store and admin.
+  const restoreFromFile = async () => {
+    const file = await pickFile('.json,application/json')
+    if (!file) return
+    try {
+      const summary = parseBackup(await readFileText(file))
+      const ok = await confirmDialog({
+        title: t('restoreConfirmTitle'),
+        message: t('restoreConfirmMessage', { name: summary.businessName ?? '—', date: summary.exportedAt ? formatDateTime(summary.exportedAt) : '—' }),
+        confirmLabel: t('restore'),
+      })
+      if (!ok) return
+      setBusy(true)
+      await restoreBackup(summary.file)
+    } catch (e) {
+      setBusy(false)
+      toast(e instanceof InvalidBackup ? t(`settings:backup.error.${e.code}`) : e instanceof Error ? e.message : String(e), 'error')
+    }
+  }
+
   const finish = async () => {
     if (running.current) return
     running.current = true
@@ -66,7 +90,12 @@ export function SetupWizard() {
         quickCash: preset.notes,
         defaultTaxId: taxes.find((x) => x.isDefault)?.id,
         loyaltyPointValue: 10 ** d,
+        // Printed on every receipt, so start it in the shop's chosen language.
+        receipt: { ...defaultSettings().receipt, footer: t('defaultFooter') },
       }
+      if (useDevice.getState().terminalName === 'Till 1') updateDevice({ terminalName: t('defaultTerminalName') })
+      // Ask the browser not to evict the till's data under storage pressure.
+      void navigator.storage?.persist?.()
       await putMany('taxes', taxes)
       await putMany('settings', [s])
       if (demo) await seedDemoData(preset.currency, taxes)
@@ -218,9 +247,14 @@ export function SetupWizard() {
 
         <div className="mt-5 flex items-center gap-3">
           {step === 'language' ? (
-            <Button variant="ghost" icon={<CloudDownload className="size-4" />} onClick={() => setStep('join')}>
-              {t('joinExisting')}
-            </Button>
+            <div className="flex flex-wrap gap-1">
+              <Button variant="ghost" icon={<CloudDownload className="size-4" />} onClick={() => setStep('join')}>
+                {t('joinExisting')}
+              </Button>
+              <Button variant="ghost" icon={<FileUp className="size-4" />} onClick={() => void restoreFromFile()} disabled={busy}>
+                {t('restoreBackup')}
+              </Button>
+            </div>
           ) : (
             <Button variant="ghost" icon={<ArrowLeft className="size-4 rtl:rotate-180" />} onClick={() => setStep(step === 'join' ? 'language' : steps[idx - 1])}>
               {t('common:back')}

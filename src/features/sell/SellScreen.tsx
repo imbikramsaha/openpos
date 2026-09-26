@@ -5,6 +5,7 @@ import type { CartLine, Product, Sale } from '@/core/types'
 import { db } from '@/db/db'
 import { formatMoney } from '@/lib/money'
 import { uuid } from '@/lib/uuid'
+import { errorMessage } from '@/lib/errors'
 import { cn } from '@/lib/cn'
 import { useCart } from '@/stores/cart'
 import { useDevice } from '@/stores/device'
@@ -198,7 +199,7 @@ export default function SellScreen() {
       setMobileCart(false)
       setDialog({ kind: 'pay' })
     } catch (e) {
-      toast(e instanceof Error ? e.message : String(e), 'error')
+      toast(errorMessage(e), 'error')
     } finally {
       paying.current = false
     }
@@ -328,7 +329,7 @@ export default function SellScreen() {
         open={dialog?.kind === 'weigh'}
         onClose={close}
         title={t('enterWeight')}
-        subtitle={dialog?.kind === 'weigh' ? `${dialog.product.name} · ${formatMoney(dialog.price ?? dialog.product.price)}/${dialog.product.unit}` : undefined}
+        subtitle={dialog?.kind === 'weigh' ? `${dialog.product.name} · ${formatMoney(dialog.price ?? dialog.product.price)}/${t(`common:unit.${dialog.product.unit}`)}` : undefined}
         initial={1}
         onSubmit={(v) => dialog?.kind === 'weigh' && v > 0 && addProduct(dialog.product, v, dialog.price)}
       />

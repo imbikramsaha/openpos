@@ -196,7 +196,7 @@ function CartRow({ line, total, discount, selected, actions }: { line: CartLine;
         <span className="min-w-0 flex-1">
           <span className="block truncate text-sm font-semibold">{line.name}</span>
           <span className="block truncate text-xs text-muted">
-            <bdi>{formatQty(line.qty)}{line.unit !== 'pcs' ? ` ${line.unit}` : ''}</bdi> × <bdi>{formatMoney(line.price)}</bdi>
+            <bdi>{formatQty(line.qty)}{line.unit !== 'pcs' ? ` ${t(`common:unit.${line.unit}`)}` : ''}</bdi> × <bdi>{formatMoney(line.price)}</bdi>
             {line.note && ` · ${line.note}`}
           </span>
         </span>

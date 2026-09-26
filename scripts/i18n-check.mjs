@@ -97,7 +97,9 @@ if (args.has('--all')) {
           gaps.push(`${ns}:${key}`)
           continue
         }
-        const need = String(value).match(/\{\{\s*\w+\s*\}\}/g) ?? []
+        // Singular/dual/zero forms may spell the number out ("one customer"), so {{count}} is optional there.
+        const countOptional = /_(zero|one|two)$/.test(key)
+        const need = (String(value).match(/\{\{\s*\w+\s*\}\}/g) ?? []).filter((v) => !(countOptional && /^\{\{\s*count\s*\}\}$/.test(v)))
         for (const v of need) if (!String(tr).replace(/\s/g, '').includes(v.replace(/\s/g, ''))) vars.push(`${ns}:${key} lacks ${v}`)
       }
     }
