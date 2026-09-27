@@ -13,7 +13,7 @@ import { useSession } from '@/stores/session'
 import { useDevice, applyTheme } from '@/stores/device'
 import { AppShell } from '@/components/layout/AppShell'
 import { NAV } from '@/components/layout/nav'
-import { ConfirmHost, EmptyState, FullScreenLoader, Toasts, Button } from '@/components/ui'
+import { ConfirmHost, EmptyState, FullScreenLoader, PromptHost, Toasts, Button } from '@/components/ui'
 import { UpdatePrompt } from '@/components/UpdatePrompt'
 import { ErrorBoundary } from '@/components/ErrorBoundary'
 import { LockScreen } from '@/features/auth/LockScreen'
@@ -22,6 +22,7 @@ import { SetupWizard } from '@/features/setup/SetupWizard'
 import { loadCurrentShift } from '@/features/shifts/service'
 import SellScreen from '@/features/sell/SellScreen'
 import { startSync } from '@/sync/engine'
+import { startAutoBackup } from '@/features/backup/runner'
 
 const OPEN_TIMEOUT_MS = 10_000
 
@@ -53,6 +54,7 @@ function useBootstrap() {
     // Ask the browser not to evict the local database under storage pressure.
     void navigator.storage?.persist?.()
     void startSync()
+    startAutoBackup()
     return () => {
       a.unsubscribe()
       b.unsubscribe()
@@ -283,6 +285,7 @@ function Main() {
       {body}
       <Toasts />
       <ConfirmHost />
+      <PromptHost />
       <OverrideHost />
       <UpdatePrompt />
     </>

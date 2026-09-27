@@ -12,9 +12,11 @@ import { currencyDecimals } from '@/lib/money'
 import { useSession } from '@/stores/session'
 import { useDevice } from '@/stores/device'
 import { confirmDialog, toast } from '@/stores/ui'
-import { pickFile, readFileText } from '@/lib/download'
+import { pickFile } from '@/lib/download'
 import { formatDateTime } from '@/lib/dates'
-import { InvalidBackup, parseBackup, restoreBackup } from '@/features/settings/backup'
+import { InvalidBackup, parseBackup, readBackupText, restoreBackup } from '@/features/settings/backup'
+import { WrongPassphrase } from '@/features/backup/crypto'
+import { askBackupPassphrase } from '@/features/backup/ui'
 import { joinStore, testConnection } from '@/sync/engine'
 import { Button, Input, PhoneInput, Select, TaxIdInput, Toggle } from '@/components/ui'
 import { hasErrors, LIMITS, phoneError, taxIdError } from '@/lib/validate'
@@ -46,10 +48,12 @@ export function SetupWizard() {
   // A brand-new device can be restored straight from a backup file, without first
   // creating a throwaway store and admin.
   const restoreFromFile = async () => {
-    const file = await pickFile('.json,application/json')
+    const file = await pickFile('.json,.kasa,application/json,application/octet-stream')
     if (!file) return
     try {
-      const summary = parseBackup(await readFileText(file))
+      const text = await readBackupText(file, askBackupPassphrase)
+      if (text === null) return
+      const summary = parseBackup(text)
       const ok = await confirmDialog({
         title: t('restoreConfirmTitle'),
         message: t('restoreConfirmMessage', { name: summary.businessName ?? '—', date: summary.exportedAt ? formatDateTime(summary.exportedAt) : '—' }),
@@ -60,7 +64,7 @@ export function SetupWizard() {
       await restoreBackup(summary.file)
     } catch (e) {
       setBusy(false)
-      toast(e instanceof InvalidBackup ? t(`settings:backup.error.${e.code}`) : e instanceof Error ? e.message : String(e), 'error')
+      toast(e instanceof WrongPassphrase ? t('settings:autoBackup.wrongPassphrase') : e instanceof InvalidBackup ? t(`settings:backup.error.${e.code}`) : e instanceof Error ? e.message : String(e), 'error')
     }
   }
 

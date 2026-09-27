@@ -46,7 +46,7 @@ One codebase → <b>Web (PWA) · Windows · macOS · Linux · Android · iOS</b>
 - **Cash register:** open and close shifts, cash in/out, cash counting by denomination, over/short, X and Z reports.
 - **Users & roles:** admin, manager and cashier with fine-grained permissions, PIN login, **manager override** prompts, auto-lock, audit log.
 - **Settings:** business profile, taxes, currency and formats, payment methods, receipt designer with live preview, loyalty, scale barcodes, per-device printer, language and theme.
-- **Backup & restore** to a single file, plus optional **multi-terminal sync** through a self-hosted server (LAN or cloud).
+- **Backup & restore** to a single file, **automatic backups** on a schedule and after each shift to this device, a folder, **Google Drive, OneDrive or Dropbox** (optionally encrypted), plus optional **multi-terminal sync** through a self-hosted server (LAN or cloud).
 
 ### Quality
 - Light and dark themes, a responsive layout from 360 px phones to large desktops, and touch-first controls.

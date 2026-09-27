@@ -1,4 +1,4 @@
-import {
+import { CloudUpload,
   Archive, Barcode, Coins, Info, MonitorSmartphone, Percent, Receipt, RefreshCw, ScrollText, ShoppingCart, Store, TriangleAlert,
   type LucideIcon,
 } from 'lucide-react'
@@ -9,7 +9,7 @@ import {
 export type SectionId =
   | 'business' | 'taxes' | 'formats' | 'checkout' | 'receipt' | 'scale'
   | 'device' | 'sync'
-  | 'backup' | 'audit' | 'danger' | 'about'
+  | 'backup' | 'autoBackup' | 'audit' | 'danger' | 'about'
 
 export type SectionGroup = 'store' | 'terminal' | 'system'
 
@@ -45,6 +45,7 @@ export const SECTIONS: SectionDef[] = [
   },
   { id: 'sync', group: 'terminal', icon: RefreshCw, items: ['sync.status', 'sync.serverUrl', 'sync.storeKey', 'sync.enabled', 'sync.test', 'sync.now'] },
   { id: 'backup', group: 'system', icon: Archive, items: ['backup.export', 'backup.import'] },
+  { id: 'autoBackup', group: 'system', icon: CloudUpload, items: ['autoBackup.schedule', 'autoBackup.encrypt', 'autoBackup.device', 'autoBackup.folder', 'autoBackup.gdrive', 'autoBackup.onedrive', 'autoBackup.dropbox'] },
   { id: 'audit', group: 'system', icon: ScrollText, items: ['audit.log'] },
   { id: 'danger', group: 'system', icon: TriangleAlert, items: ['danger.erase'] },
   { id: 'about', group: 'system', icon: Info, items: ['about.version', 'about.storage', 'about.persist', 'about.shortcuts'] },

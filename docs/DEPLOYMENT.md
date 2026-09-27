@@ -173,7 +173,99 @@ and key on each till (*Settings → Sync*). Tagged releases also publish a Docke
 which weakens every connection the app makes and must be justified in App Store review. A LAN server
 doesn't need it, and a cloud server should use HTTPS anyway.
 
-## 7. Hardware
+## 7. Automatic backups (device, folder, Google Drive, OneDrive, Dropbox)
+
+*Settings → Automatic backup* makes a backup on a schedule (every 1, 4, 12 or 24 hours) and after each
+shift is closed, sends it to every destination that's switched on, and deletes copies beyond the
+"keep" count. Browsers can't run code while the app is closed, so backups run while Kasa POS is open:
+the first check is 45 s after launch, then every 10 minutes, and again when the device comes back
+online. A missed backup runs the next time the app opens.
+
+| Destination | Needs setup? | Where the files go |
+|---|---|---|
+| On this device | no | inside the app (`kasa-pos-local` IndexedDB), newest 1–30 copies. Protects against mistakes, not against losing the device |
+| Folder on this computer | no | any folder the user picks (Chrome, Edge, desktop app). Picking the Google Drive / OneDrive / Dropbox **sync folder** gets the files to the cloud through the provider's own desktop client |
+| Google Drive | yes, once per installation | a `Kasa POS Backups` folder. The `drive.file` scope only lets the app see files it created |
+| OneDrive | yes, once per installation | `Apps/<app name>/` (the `Files.ReadWrite.AppFolder` scope) |
+| Dropbox | yes, once per installation | `Apps/<app name>/` (an *App folder* app) |
+
+**Encryption.** With *Encrypt backups* on, files are AES-256-GCM encrypted with a key derived from a
+passphrase (PBKDF2-SHA-256, 310,000 iterations) and saved as `.kasa` instead of `.json`. *Backup & restore*,
+the setup wizard's *Restore* and every destination's *Restore…* ask for the passphrase. The passphrase is
+kept on the device so unattended backups can run. It protects the copies stored elsewhere, and if it's
+lost, those copies can't be opened. Recommend it for cloud destinations: backups contain customer
+details and staff PIN hashes.
+
+### Setting up the cloud destinations
+
+The shop owner only clicks **Connect** and signs in. Before that, whoever hosts the app registers one
+free developer app per provider (about 10 minutes each) and adds its IDs to the host. A provider with no
+ID shows *"Not set up for this installation yet"*.
+
+Sign-in uses OAuth 2.0 with PKCE in a pop-up that returns to `oauth-callback.html`. Dropbox exchanges
+tokens directly from the browser. Google and Microsoft only issue long-lived refresh tokens to clients
+that hold a secret, so their two token calls (code exchange and refresh) go through a small **token
+broker**, `netlify/functions/oauth-token.mjs`. It holds the secrets, stores nothing and answers only the
+site's own origin. Tokens stay on the device.
+
+Register this **redirect URI** everywhere (use your own domain if it differs), plus
+`http://localhost:5173/oauth-callback.html` for local development:
+
+```
+https://appkasapos.netlify.app/oauth-callback.html
+```
+
+**Dropbox**
+1. [dropbox.com/developers/apps](https://www.dropbox.com/developers/apps) → *Create app* → *Scoped access* → **App folder** → a name (it becomes the folder name under *Apps/*).
+2. *Permissions* tab: tick `files.content.write`, `files.content.read` and `files.metadata.read` (`account_info.read` is already on) → *Submit*.
+3. *Settings* tab: add the redirect URI under *OAuth 2 → Redirect URIs*. Leave *Allow public clients (Implicit Grant & PKCE)* on *Allow*.
+4. Copy the **App key** → `VITE_DROPBOX_APP_KEY`. There is no secret to copy.
+5. New apps are in *Development*: only you can connect until you click *Enable additional users* (up to 500), or apply for production.
+
+**Google Drive**
+1. [console.cloud.google.com](https://console.cloud.google.com) → create a project → *APIs & Services → Library* → enable **Google Drive API**.
+2. *Google Auth Platform* → *Branding*: app name and support email. *Audience*: **External**. *Data access*: add the scope `.../auth/drive.file`.
+3. *Audience* → **Publish app**. While it's in *Testing*, only listed test users can sign in and Google expires their refresh tokens after **7 days**, so backups stop. `drive.file` is a non-sensitive scope, so publishing doesn't need Google's security review.
+4. *Clients* → *Create client* → **Web application**. *Authorized JavaScript origins*: `https://appkasapos.netlify.app`. *Authorized redirect URIs*: the redirect URI above.
+5. Copy the **Client ID** → `VITE_GOOGLE_CLIENT_ID` and `GOOGLE_CLIENT_ID`, and the **Client secret** → `GOOGLE_CLIENT_SECRET`.
+
+**OneDrive (Microsoft)**
+1. [entra.microsoft.com](https://entra.microsoft.com) → *App registrations* → *New registration*. You need a work account or a free Azure account, which creates a directory for you.
+   - *Supported account types*: **Accounts in any organizational directory and personal Microsoft accounts**.
+   - *Redirect URI*: platform **Web** (not *Single-page application*: that platform only allows browser-side token calls, and its refresh tokens last 24 h) → the redirect URI above.
+2. *Certificates & secrets* → *New client secret* → copy the **Value** (not the ID) → `MS_CLIENT_SECRET`. It expires after at most 24 months: set a reminder to renew it.
+3. *API permissions* → *Add a permission* → *Microsoft Graph* → *Delegated*: `Files.ReadWrite.AppFolder`, `offline_access` (`User.Read` is already there).
+4. Copy the **Application (client) ID** from *Overview* → `VITE_MS_CLIENT_ID` and `MS_CLIENT_ID`.
+
+**Netlify environment variables** (*Site configuration → Environment variables*):
+
+| Variable | Value | Scope |
+|---|---|---|
+| `VITE_DROPBOX_APP_KEY` | Dropbox App key | Builds |
+| `VITE_GOOGLE_CLIENT_ID` | Google Client ID | Builds |
+| `VITE_MS_CLIENT_ID` | Microsoft Application (client) ID | Builds |
+| `GOOGLE_CLIENT_ID` | Google Client ID | Functions |
+| `GOOGLE_CLIENT_SECRET` | Google Client secret, marked *Contains secret values* | Functions |
+| `MS_CLIENT_ID` | Microsoft Application (client) ID | Functions |
+| `MS_CLIENT_SECRET` | Microsoft client secret Value, marked *Contains secret values* | Functions |
+| `ALLOWED_ORIGINS` | optional, comma-separated extra origins for the broker (default: the site URL) | Functions |
+
+`VITE_*` values are compiled into the app, so after adding or changing them run *Deploys → Trigger deploy
+→ Deploy site*. They are public by design: an OAuth client ID isn't a secret. The two secrets are only
+read by the function.
+
+**Other hosts.** The broker is a standard `fetch(Request) → Response` handler, so it also runs on Cloudflare
+Workers, Deno Deploy or a small Node server. Deploy it there and build the app with
+`VITE_OAUTH_BROKER=https://…/oauth-token`. Dropbox needs no broker.
+
+**Desktop and mobile apps.** Their shells open sign-in pages in the system browser, which can't hand the
+result back to the app, so the cloud cards explain the alternative instead of offering *Connect*:
+- **Desktop:** use *Folder on this computer* with the provider's sync folder.
+- **Mobile:** use a downloaded backup file (*Backup & restore*).
+
+The device and folder destinations work everywhere they're listed.
+
+## 8. Hardware
 
 ### Barcode scanners
 - **USB or Bluetooth scanners** work out of the box in *keyboard (HID) mode*. They type the code
@@ -220,7 +312,7 @@ doesn't need it, and a cloud server should use HTTPS anyway.
   On desktop it opens on the second screen automatically; in browsers, drag the pop-up there.
 - Pole displays (VFD, 2×20 characters on serial/USB) are planned but not supported yet.
 
-## 8. Troubleshooting
+## 9. Troubleshooting
 
 | Symptom | Fix |
 |---|---|
@@ -230,3 +322,8 @@ doesn't need it, and a cloud server should use HTTPS anyway.
 | Camera button missing or denied | Browser: use HTTPS. Android/iOS: allow Camera in the app's system settings. macOS: *Privacy & Security → Camera* |
 | Tablet can't reach the sync server | Same Wi-Fi/VLAN? Firewall on port 8787? Try `http://<server>:8787/api/health` in the tablet's browser |
 | macOS "app is damaged" (unsigned build) | `xattr -cr "/Applications/Kasa POS.app"`, or sign the build (§3) |
+| Cloud backup: "The sign-in window was blocked" | Allow pop-ups for the site. *Connect* must be clicked directly (no keyboard macro) |
+| Cloud backup: `redirect_uri_mismatch` / `invalid redirect_uri` | The redirect URI registered with the provider must match `https://<your-site>/oauth-callback.html` exactly (scheme, host, no trailing slash) |
+| Google Drive backups stop after a week | The Google app is still in *Testing*. Publish it (§7), then *Sign in again* |
+| Google/OneDrive: "not_configured" when connecting | The `GOOGLE_*` / `MS_*` function variables are missing, or weren't scoped to *Functions*. Redeploy after adding them |
+| Folder backup: "Needs permission" | Browsers ask again for folder access after a restart. Press *Allow access* on the card |

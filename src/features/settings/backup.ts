@@ -5,6 +5,8 @@ import { SETTINGS_ID, withDefaults } from '@/db/defaults'
 import { audit, rebuildStock, setMeta } from '@/db/repo'
 import { recomputeAllCustomers } from '@/db/customers'
 import { downloadBlob } from '@/lib/download'
+import { decryptBlob, isEncrypted } from '@/features/backup/crypto'
+import { localDb } from '@/features/backup/store'
 
 // Full-device backup: every local table except the sync outbox, as one JSON file.
 
@@ -25,7 +27,7 @@ const backupTables = (): Table[] => db.tables.filter((t) => !EXCLUDED.has(t.name
 function stamp(ts: number): string {
   const d = new Date(ts)
   const p = (n: number) => String(n).padStart(2, '0')
-  return `${d.getFullYear()}${p(d.getMonth() + 1)}${p(d.getDate())}-${p(d.getHours())}${p(d.getMinutes())}`
+  return `${d.getFullYear()}${p(d.getMonth() + 1)}${p(d.getDate())}-${p(d.getHours())}${p(d.getMinutes())}${p(d.getSeconds())}`
 }
 
 export async function tableCounts(): Promise<Record<string, number>> {
@@ -34,7 +36,15 @@ export async function tableCounts(): Promise<Record<string, number>> {
   return out
 }
 
-export async function exportBackup(): Promise<{ filename: string; records: number }> {
+export interface BuiltBackup {
+  blob: Blob
+  filename: string
+  records: number
+  exportedAt: number
+}
+
+/** Builds the backup file in memory (used by manual export and automatic backups). */
+export async function buildBackup(): Promise<BuiltBackup> {
   const exportedAt = Date.now()
   const tables: Record<string, unknown[]> = {}
   await db.transaction('r', backupTables(), async () => {
@@ -55,9 +65,14 @@ export async function exportBackup(): Promise<{ filename: string; records: numbe
     parts.push(']')
   }
   parts.push('}}')
-  downloadBlob(filename, new Blob(parts, { type: 'application/json;charset=utf-8' }))
-  await setMeta('lastBackup', exportedAt)
   const records = Object.values(tables).reduce((s, rows) => s + rows.length, 0)
+  return { blob: new Blob(parts, { type: 'application/json;charset=utf-8' }), filename, records, exportedAt }
+}
+
+export async function exportBackup(): Promise<{ filename: string; records: number }> {
+  const { blob, filename, records, exportedAt } = await buildBackup()
+  downloadBlob(filename, blob)
+  await setMeta('lastBackup', exportedAt)
   void audit('backup.export', 'backup', undefined, `${filename} (${records})`)
   return { filename, records }
 }
@@ -151,8 +166,21 @@ export async function restoreBackup(file: BackupFile): Promise<void> {
   location.reload()
 }
 
+/**
+ * Reads a backup file's JSON text, decrypting it first when it's an encrypted (.kasa)
+ * backup. `askPassphrase` is called for encrypted files; returning null cancels.
+ */
+export async function readBackupText(file: Blob, askPassphrase: () => Promise<string | null>): Promise<string | null> {
+  if (!(await isEncrypted(file))) return file.text()
+  const passphrase = await askPassphrase()
+  if (passphrase === null) return null
+  return (await decryptBlob(file, passphrase)).text()
+}
+
 export async function eraseDevice(): Promise<void> {
   await db.delete()
+  // Automatic-backup snapshots, cloud sign-ins and the backup folder live in their own database.
+  await localDb.delete()
   try {
     for (const key of Object.keys(localStorage)) if (key.startsWith('kasa.')) localStorage.removeItem(key)
   } catch {

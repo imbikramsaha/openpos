@@ -73,6 +73,11 @@
       "title": "About",
       "desc": "Version, storage and keyboard shortcuts",
       "keywords": "version, storage, shortcuts, keyboard, credits, platform"
+    },
+    "autoBackup": {
+      "title": "Automatic backup",
+      "desc": "Back up on a schedule to this device, a folder, Google Drive, OneDrive or Dropbox",
+      "keywords": "auto, schedule, cloud, google drive, onedrive, dropbox, folder, encrypt, snapshot"
     }
   },
   "business": {
@@ -497,7 +502,8 @@
     "stock_count": "Stock count",
     "supplier_delete": "Supplier deleted",
     "cash_in": "Cash added to drawer",
-    "cash_out": "Cash removed from drawer"
+    "cash_out": "Cash removed from drawer",
+    "backup_auto": "Automatic backup"
   },
   "danger": {
     "erase": "Erase all data on this device",
@@ -537,5 +543,74 @@
     "credits": "Credits",
     "creditsText": "Kasa POS is built on these excellent open-source projects:",
     "license": "Licence"
+  },
+  "autoBackup": {
+    "scheduleTitle": "Schedule",
+    "scheduleHint": "Kasa POS makes a backup whenever one is due and sends it to every destination you switch on below.",
+    "every": "Back up",
+    "interval_one": "Every hour",
+    "interval_other": "Every {{count}} hours",
+    "onlyShift": "Only after closing a shift",
+    "keep": "Copies to keep",
+    "keepHint": "Per folder or cloud account; older ones are deleted",
+    "keepOnDevice": "Copies on this device",
+    "onShiftClose": "Also back up when a shift is closed",
+    "onShiftCloseHint": "The day's takings are final then, so it's a good moment",
+    "encrypt": "Encrypt backups",
+    "encryptHint": "Recommended for cloud backups: they contain customer details and staff PINs",
+    "encryptedOn": "Encrypted",
+    "changePassphrase": "Change passphrase",
+    "passphrase": "Passphrase",
+    "passphraseConfirm": "Confirm passphrase",
+    "passphraseShort": "Use at least 8 characters",
+    "passphraseMismatch": "Passphrases don't match",
+    "passphraseSaved": "Passphrase saved. New backups will be encrypted.",
+    "passphraseWarning": "Write the passphrase down. Without it, encrypted backups can't be restored — not even by us.",
+    "backupNow": "Back up now",
+    "whileOpen": "Backups run while Kasa POS is open. If one is missed, it runs the next time the app opens.",
+    "done": "Backup complete",
+    "someFailed_one": "{{count}} destination failed — see below",
+    "someFailed_other": "{{count}} destinations failed — see below",
+    "noneEnabled": "Switch on at least one destination first",
+    "destinations": "Destinations",
+    "destinationsHint": "Use at least one that isn't this device, so a lost or broken device doesn't take your data with it.",
+    "device": "On this device",
+    "deviceHint": "Recent copies kept inside Kasa POS. Protects against mistakes, not against losing the device.",
+    "folder": "Folder on this computer",
+    "folderHint": "Tip: choose your Google Drive, OneDrive or Dropbox folder and the desktop app will sync it to the cloud.",
+    "folderChosen": "Saving to “{{name}}”",
+    "folderUnsupported": "Available in Chrome, Edge and the Kasa POS desktop app.",
+    "chooseFolder": "Choose folder",
+    "changeFolder": "Change folder",
+    "forgetFolder": "Stop using this folder",
+    "allowFolder": "Allow access",
+    "folderAllowed": "Folder access allowed",
+    "notConfigured": "Not set up for this installation yet. See “Automatic backups” in docs/DEPLOYMENT.md.",
+    "desktopUseFolder": "Not available in the desktop app yet. Use “Folder on this computer” and choose your {{name}} folder instead.",
+    "mobileUseFile": "Not available in the mobile app yet. Download a backup from Backup & restore and save it to {{name}}.",
+    "hint": {
+      "gdrive": "Saved in a “Kasa POS Backups” folder in your Google Drive.",
+      "onedrive": "Saved in this app's own folder under Apps in your OneDrive.",
+      "dropbox": "Saved in this app's own folder under Apps in your Dropbox."
+    },
+    "connect": "Connect {{name}}",
+    "connected": "{{name}} connected",
+    "connectedAs": "Connected as {{account}}",
+    "reconnect": "Sign in again",
+    "disconnect": "Disconnect",
+    "disconnectTitle": "Disconnect {{name}}?",
+    "disconnectHint": "Backups already saved there stay where they are.",
+    "popupBlocked": "The sign-in window was blocked. Allow pop-ups for this site and try again.",
+    "lastSuccess": "Last backup {{time}}",
+    "needs": {
+      "reconnect": "Signed out — sign in again to resume backups",
+      "permission": "Needs permission — press “Allow access”"
+    },
+    "restoreFrom": "Restore…",
+    "restoreTitle": "Restore from {{name}}",
+    "noBackups": "No backups here yet.",
+    "encryptedFileTitle": "Encrypted backup",
+    "encryptedFileHint": "Enter the passphrase this backup was encrypted with.",
+    "wrongPassphrase": "That passphrase doesn't open this backup."
   }
 }

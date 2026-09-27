@@ -17,6 +17,7 @@ import { ScaleSection } from './sections/ScaleSection'
 import { DeviceSection } from './sections/DeviceSection'
 import { SyncSection } from './sections/SyncSection'
 import { BackupSection } from './sections/BackupSection'
+import { AutoBackupSection } from './sections/AutoBackupSection'
 import { AuditSection } from './sections/AuditSection'
 import { DangerSection } from './sections/DangerSection'
 import { AboutSection } from './sections/AboutSection'
@@ -31,6 +32,7 @@ const COMPONENTS: Record<SectionId, ComponentType> = {
   device: DeviceSection,
   sync: SyncSection,
   backup: BackupSection,
+  autoBackup: AutoBackupSection,
   audit: AuditSection,
   danger: DangerSection,
   about: AboutSection,

@@ -5,12 +5,14 @@ import { Download, FileUp, Upload } from 'lucide-react'
 import { db } from '@/db/db'
 import { formatDateTime, relativeTime } from '@/lib/dates'
 import { formatNumber } from '@/lib/money'
-import { pickFile, readFileText } from '@/lib/download'
+import { pickFile } from '@/lib/download'
 import { confirmDialog, toast } from '@/stores/ui'
 import { requirePermission } from '@/features/auth/permission'
 import { Button, Modal } from '@/components/ui'
 import { Group, Notice, Row, Stack } from '../ui'
-import { InvalidBackup, exportBackup, parseBackup, restoreBackup, tableCounts, type BackupSummary } from '../backup'
+import { InvalidBackup, exportBackup, parseBackup, readBackupText, restoreBackup, tableCounts, type BackupSummary } from '../backup'
+import { WrongPassphrase } from '@/features/backup/crypto'
+import { askBackupPassphrase } from '@/features/backup/ui'
 
 const WEEK = 7 * 24 * 3600 * 1000
 const SHOWN = ['products', 'customers', 'sales', 'users', 'stockMovements', 'shifts'] as const
@@ -37,11 +39,14 @@ export function BackupSection() {
   }
 
   const choose = async () => {
-    const file = await pickFile('.json,application/json')
+    const file = await pickFile('.json,.kasa,application/json,application/octet-stream')
     if (!file) return
     try {
-      setSummary(parseBackup(await readFileText(file)))
+      const text = await readBackupText(file, askBackupPassphrase)
+      if (text === null) return
+      setSummary(parseBackup(text))
     } catch (e) {
+      if (e instanceof WrongPassphrase) return toast(t('autoBackup.wrongPassphrase'), 'error')
       const code = e instanceof InvalidBackup ? e.code : 'notJson'
       toast(t(`backup.error.${code}`), 'error')
     }

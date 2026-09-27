@@ -5,6 +5,7 @@ import { useUI } from '@/stores/ui'
 import { cn } from '@/lib/cn'
 import { Button } from './Button'
 import { Modal } from './Modal'
+import { Input } from './Field'
 
 const toastIcon = {
   success: <CheckCircle2 className="size-5 text-success" />,
@@ -65,6 +66,39 @@ export function ConfirmHost() {
       }
     >
       {req?.message && <div className="text-sm text-muted">{req.message}</div>}
+    </Modal>
+  )
+}
+
+export function PromptHost() {
+  const { t } = useTranslation()
+  const req = useUI((s) => s.prompt)
+  const setPrompt = useUI((s) => s.setPrompt)
+  const [value, setValue] = useState('')
+  useEffect(() => setValue(''), [req])
+  const close = (v: string | null) => {
+    req?.resolve(v)
+    setPrompt(null)
+  }
+  return (
+    <Modal
+      open={!!req}
+      onClose={() => close(null)}
+      title={req?.title}
+      size="sm"
+      footer={
+        <>
+          <Button onClick={() => close(null)}>{t('cancel')}</Button>
+          <Button variant="primary" onClick={() => close(value)} disabled={!value}>
+            {req?.confirmLabel ?? t('ok')}
+          </Button>
+        </>
+      }
+    >
+      <form onSubmit={(e) => (e.preventDefault(), value && close(value))} className="space-y-3">
+        {req?.message && <div className="text-sm text-muted">{req.message}</div>}
+        <Input label={req?.label} type={req?.type ?? 'text'} value={value} onChange={(e) => setValue(e.target.value)} autoFocus autoComplete="off" />
+      </form>
     </Modal>
   )
 }

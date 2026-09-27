@@ -252,7 +252,7 @@ function trusted(event) {
 function configurePermissions(ses) {
   // media = camera for barcode scanning; persistent-storage keeps IndexedDB from being evicted;
   // fullscreen/screen-wake-lock are for the customer display. Everything else is denied.
-  const allowed = new Set(['media', 'clipboard-read', 'clipboard-sanitized-write', 'persistent-storage', 'fullscreen', 'screen-wake-lock'])
+  const allowed = new Set(['media', 'clipboard-read', 'clipboard-sanitized-write', 'persistent-storage', 'fullscreen', 'screen-wake-lock', 'fileSystem'])
   ses.setPermissionRequestHandler((_wc, permission, callback, details) => {
     const fromApp = isAppUrl(details.requestingUrl || '')
     let ok = fromApp && allowed.has(permission)

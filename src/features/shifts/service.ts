@@ -4,6 +4,7 @@ import { gstSplit, type GstRow } from '@/core/cart'
 import { db } from '@/db/db'
 import { audit, nextNumber, tx } from '@/db/repo'
 import { uuid } from '@/lib/uuid'
+import { runAutoBackup } from '@/features/backup/runner'
 import { device } from '@/stores/device'
 import { session } from '@/stores/session'
 
@@ -202,6 +203,8 @@ export async function closeShift(shift: Shift, countedCash: number, notes?: stri
   })
   session().setShift(null)
   void audit('shift.close', 'shift', shift.id, `${shift.number} diff ${closed.difference}`)
+  // A good moment for a backup: the day's takings are final.
+  void runAutoBackup('shiftClose').catch(() => undefined)
   return closed
 }
 

@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex" />
+    <title>Kasa POS — connecting…</title>
+    <style>
+      body { margin: 0; display: grid; place-items: center; height: 100vh; font: 15px system-ui, sans-serif; background: #0b1020; color: #e8ebf4 }
+    </style>
+  </head>
+  <body>
+    <p id="msg">Connecting…</p>
+    <script>
+      // Hands the sign-in result (?code=…&state=…) back to Kasa POS. The code alone is useless
+      // without the PKCE verifier held by the app, and it's only posted to this same origin.
+      (function () {
+        var msg = { type: 'kasa-oauth', search: location.search }
+        if (window.opener && !window.opener.closed) {
+          window.opener.postMessage(msg, location.origin)
+          window.close()
+        } else {
+          try { localStorage.setItem('kasa.oauth', JSON.stringify(msg)) } catch (e) {}
+          document.getElementById('msg').textContent = 'Connected. You can close this window and return to Kasa POS.'
+        }
+      })()
+    </script>
+  </body>
+</html>
