@@ -59,10 +59,8 @@ export function DeviceSection() {
           </div>
           <LanguageGrid
             value={i18n.language}
-            onChange={(code) => {
-              changeLanguage(code)
-              notifySaved()
-            }}
+            // Confirm in the language just chosen, not the one being left.
+            onChange={(code) => void changeLanguage(code).then(notifySaved)}
           />
         </Row>
       </Group>

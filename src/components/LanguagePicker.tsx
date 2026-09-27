@@ -9,9 +9,10 @@ import { Button, Modal } from '@/components/ui'
 export function useChangeLanguage() {
   const { i18n } = useTranslation()
   const update = useDevice((s) => s.update)
+  // Resolves once the new language has loaded (i18next resolves even if loading fails).
   return (code: string) => {
     update({ language: code })
-    void i18n.changeLanguage(code)
+    return i18n.changeLanguage(code)
   }
 }
 
