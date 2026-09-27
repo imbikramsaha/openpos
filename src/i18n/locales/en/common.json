@@ -190,5 +190,13 @@
     "taxId": "Use 3–20 letters or numbers"
   },
   "notSignedIn": "Sign in first",
-  "storageFull": "This device is out of storage. Free up space (or export a backup and clear old data), then try again."
+  "storageFull": "This device is out of storage. Free up space (or export a backup and clear old data), then try again.",
+  "install": {
+    "button": "Install app",
+    "title": "Install Kasa POS",
+    "iosShare": "Tap the Share button in the browser toolbar (the square with an arrow pointing up).",
+    "iosAdd": "Scroll down and tap “Add to Home Screen”.",
+    "iosConfirm": "Tap “Add”. Kasa POS then opens from your Home Screen like any other app, full screen, and works offline.",
+    "macSafari": "In Safari’s menu bar, choose File → Add to Dock. Kasa POS then opens from your Dock like any other app and works offline."
+  }
 }

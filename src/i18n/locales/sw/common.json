@@ -190,5 +190,13 @@
   "otherTabHint": "Kaunta hufanya kazi kwenye kichupo kimoja kwa wakati mmoja ili kikapu na risiti zibaki sawa. Endelea kwenye kichupo kingine, au tumia hiki badala yake.",
   "useHere": "Tumia kichupo hiki",
   "notSignedIn": "Ingia kwanza",
-  "storageFull": "Kifaa hiki kimeishiwa na nafasi ya kuhifadhi. Achilia nafasi (au hamisha nakala ya akiba kisha ufute data ya zamani), kisha jaribu tena."
+  "storageFull": "Kifaa hiki kimeishiwa na nafasi ya kuhifadhi. Achilia nafasi (au hamisha nakala ya akiba kisha ufute data ya zamani), kisha jaribu tena.",
+  "install": {
+    "button": "Sakinisha programu",
+    "title": "Sakinisha Kasa POS",
+    "iosShare": "Gusa kitufe cha Shiriki kwenye upau wa vidhibiti wa kivinjari (ikoni ya mraba yenye mshale unaoelekea juu).",
+    "iosAdd": "Sogeza chini kisha ugusa “Ongeza kwenye Skrini ya Mwanzo” (Add to Home Screen).",
+    "iosConfirm": "Gusa “Ongeza” (Add). Kasa POS itafunguka skrini nzima kutoka Skrini ya Mwanzo kama programu nyingine yoyote, na inafanya kazi bila mtandao.",
+    "macSafari": "Kwenye upau wa menyu wa Safari, chagua Faili → Ongeza kwenye Dock (File → Add to Dock). Kasa POS itafunguka kutoka Dock kama programu nyingine yoyote na inafanya kazi bila mtandao."
+  }
 }

@@ -190,5 +190,13 @@
   "otherTabHint": "Gumagana lang ang kaha sa isang tab nang sabay-sabay para manatiling magkatugma ang cart at mga resibo. Magpatuloy sa ibang tab, o gamitin na lang ang tab na ito.",
   "useHere": "Gamitin ang tab na ito",
   "notSignedIn": "Mag-sign in muna",
-  "storageFull": "Naubusan ng storage ang device na ito. Magbakante ng espasyo (o mag-export ng backup at burahin ang lumang data), tapos subukan ulit."
+  "storageFull": "Naubusan ng storage ang device na ito. Magbakante ng espasyo (o mag-export ng backup at burahin ang lumang data), tapos subukan ulit.",
+  "install": {
+    "button": "I-install ang app",
+    "title": "I-install ang Kasa POS",
+    "iosShare": "I-tap ang Share button sa toolbar ng browser (ang parisukat na may arrow na nakaturo pataas).",
+    "iosAdd": "Mag-scroll pababa, tapos i-tap ang “Add to Home Screen”.",
+    "iosConfirm": "I-tap ang “Add”. Bubukas ang Kasa POS mula sa Home Screen na parang ibang app, full screen, at gumagana kahit offline.",
+    "macSafari": "Sa menu bar ng Safari, piliin ang File → Add to Dock. Bubukas ang Kasa POS mula sa Dock na parang ibang app at gumagana kahit offline."
+  }
 }

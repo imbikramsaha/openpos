@@ -191,5 +191,13 @@
   "otherTabHint": "O caixa funciona em uma aba por vez para que o carrinho e os recibos permaneçam consistentes. Continue na outra aba, ou use esta em vez dela.",
   "useHere": "Usar esta aba",
   "notSignedIn": "Faça login primeiro",
-  "storageFull": "Este dispositivo ficou sem espaço de armazenamento. Libere espaço (ou exporte um backup e apague dados antigos) e tente novamente."
+  "storageFull": "Este dispositivo ficou sem espaço de armazenamento. Libere espaço (ou exporte um backup e apague dados antigos) e tente novamente.",
+  "install": {
+    "button": "Instalar app",
+    "title": "Instalar Kasa POS",
+    "iosShare": "Toque no botão Compartilhar na barra de ferramentas do navegador (o quadrado com uma seta apontando para cima).",
+    "iosAdd": "Role para baixo e toque em “Adicionar à Tela de Início”.",
+    "iosConfirm": "Toque em “Adicionar”. O Kasa POS abre então a partir da Tela de Início, como qualquer outro app, em tela cheia, e funciona offline.",
+    "macSafari": "Na barra de menus do Safari, escolha Arquivo → Adicionar ao Dock. O Kasa POS abre então a partir do Dock, como qualquer outro app, e funciona offline."
+  }
 }

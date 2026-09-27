@@ -189,5 +189,13 @@
   "otherTabHint": "Kaunter hanya berfungsi dalam satu tab pada satu masa supaya troli dan resit kekal konsisten. Teruskan dalam tab lain, atau guna tab ini sebaliknya.",
   "useHere": "Guna tab ini",
   "notSignedIn": "Log masuk dahulu",
-  "storageFull": "Peranti ini kehabisan storan. Kosongkan ruang (atau eksport sandaran dan kosongkan data lama), kemudian cuba lagi."
+  "storageFull": "Peranti ini kehabisan storan. Kosongkan ruang (atau eksport sandaran dan kosongkan data lama), kemudian cuba lagi.",
+  "install": {
+    "button": "Pasang aplikasi",
+    "title": "Pasang Kasa POS",
+    "iosShare": "Ketik butang Kongsi pada bar alat pelayar (ikon segi empat dengan anak panah menghala ke atas).",
+    "iosAdd": "Tatal ke bawah, kemudian ketik “Tambah ke Skrin Utama” (Add to Home Screen).",
+    "iosConfirm": "Ketik “Tambah” (Add). Kasa POS kemudian dibuka skrin penuh daripada Skrin Utama seperti aplikasi lain, dan berfungsi luar talian.",
+    "macSafari": "Pada bar menu Safari, pilih Fail → Tambah ke Dock (File → Add to Dock). Kasa POS kemudian dibuka daripada Dock seperti aplikasi lain dan berfungsi luar talian."
+  }
 }

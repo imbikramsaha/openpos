@@ -190,5 +190,13 @@
   "otherTabHint": "Sepetin ve fişlerin tutarlı kalması için kasa aynı anda tek bir sekmede çalışır. Diğer sekmede devam edin veya bunun yerine bunu kullanın.",
   "useHere": "Bu sekmeyi kullan",
   "notSignedIn": "Önce giriş yapın",
-  "storageFull": "Bu cihazın depolama alanı doldu. Yer açın (veya bir yedek dışa aktarıp eski verileri temizleyin), ardından tekrar deneyin."
+  "storageFull": "Bu cihazın depolama alanı doldu. Yer açın (veya bir yedek dışa aktarıp eski verileri temizleyin), ardından tekrar deneyin.",
+  "install": {
+    "button": "Uygulamayı Kur",
+    "title": "Kasa POS'u Kur",
+    "iosShare": "Tarayıcının araç çubuğundaki Paylaş düğmesine dokunun (yukarı ok işaretli kare).",
+    "iosAdd": "Aşağı kaydırın ve “Ana Ekrana Ekle” (Add to Home Screen) seçeneğine dokunun.",
+    "iosConfirm": "“Ekle”ye dokunun. Kasa POS bundan sonra diğer uygulamalar gibi Ana Ekran'dan tam ekran açılır ve çevrimdışı çalışır.",
+    "macSafari": "Safari'nin menü çubuğunda Dosya → Dock'a Ekle (Add to Dock) seçeneğini belirleyin. Kasa POS bundan sonra diğer uygulamalar gibi Dock'tan açılır ve çevrimdışı çalışır."
+  }
 }

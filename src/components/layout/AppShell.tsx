@@ -6,6 +6,7 @@ import { useSession } from '@/stores/session'
 import { useSettings } from '@/stores/settings'
 import { cn } from '@/lib/cn'
 import { Avatar, Modal } from '@/components/ui'
+import { InstallButton } from '@/components/InstallApp'
 import { NAV } from './nav'
 import { SyncIndicator } from './SyncIndicator'
 import { ShiftBadge } from './ShiftBadge'
@@ -50,6 +51,7 @@ export function AppShell({ children }: { children: ReactNode }) {
           })}
         </nav>
         <div className="flex flex-col items-center gap-2 pt-2">
+          <InstallButton />
           <SyncIndicator compact />
           <button onClick={logout} title={t('lock')} className="group relative" aria-label={t('lock')}>
             <Avatar name={user?.name ?? '?'} color={user?.color} size="sm" />
@@ -68,6 +70,7 @@ export function AppShell({ children }: { children: ReactNode }) {
           </button>
           <div className="min-w-0 flex-1 truncate font-semibold">{businessName}</div>
           <ShiftBadge />
+          <InstallButton className="size-9" />
           <SyncIndicator compact />
           <button onClick={logout} aria-label={t('lock')}>
             <Avatar name={user?.name ?? '?'} color={user?.color} size="sm" />

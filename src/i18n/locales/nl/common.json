@@ -190,5 +190,13 @@
   "otherTabHint": "De kassa werkt op één tabblad tegelijk, zodat het winkelwagentje en de bonnen consistent blijven. Ga verder in het andere tabblad, of gebruik in plaats daarvan dit tabblad.",
   "useHere": "Dit tabblad gebruiken",
   "notSignedIn": "Meld je eerst aan",
-  "storageFull": "Dit apparaat heeft geen opslagruimte meer. Maak ruimte vrij (of exporteer een back-up en verwijder oude gegevens) en probeer het opnieuw."
+  "storageFull": "Dit apparaat heeft geen opslagruimte meer. Maak ruimte vrij (of exporteer een back-up en verwijder oude gegevens) en probeer het opnieuw.",
+  "install": {
+    "button": "App installeren",
+    "title": "Kasa POS installeren",
+    "iosShare": "Tik op de knop Delen in de werkbalk van de browser (het vierkantje met een pijl omhoog).",
+    "iosAdd": "Scroll naar beneden en tik op ‘Zet op beginscherm’ (Add to Home Screen).",
+    "iosConfirm": "Tik op ‘Toevoegen’. Kasa POS opent dan vanaf je beginscherm als elke andere app, op volledig scherm, en werkt offline.",
+    "macSafari": "Kies in de menubalk van Safari Archief → Zet in Dock (Add to Dock). Kasa POS opent dan vanaf je Dock als elke andere app en werkt offline."
+  }
 }

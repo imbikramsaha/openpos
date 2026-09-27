@@ -189,5 +189,13 @@
   "otherTabHint": "Kasir hanya berfungsi di satu tab dalam satu waktu agar keranjang dan struk tetap konsisten. Lanjutkan di tab lain, atau gunakan tab ini sebagai gantinya.",
   "useHere": "Gunakan tab ini",
   "notSignedIn": "Masuk terlebih dahulu",
-  "storageFull": "Penyimpanan perangkat ini penuh. Kosongkan ruang (atau ekspor cadangan dan hapus data lama), lalu coba lagi."
+  "storageFull": "Penyimpanan perangkat ini penuh. Kosongkan ruang (atau ekspor cadangan dan hapus data lama), lalu coba lagi.",
+  "install": {
+    "button": "Instal aplikasi",
+    "title": "Instal Kasa POS",
+    "iosShare": "Ketuk tombol Bagikan di toolbar browser (ikon persegi dengan panah menghadap ke atas).",
+    "iosAdd": "Gulir ke bawah, lalu ketuk “Tambahkan ke Layar Utama” (Add to Home Screen).",
+    "iosConfirm": "Ketuk “Tambah” (Add). Kasa POS akan terbuka layar penuh dari Layar Utama seperti aplikasi lain, dan dapat digunakan secara offline.",
+    "macSafari": "Di menu bar Safari, pilih Berkas → Tambahkan ke Dock (File → Add to Dock). Kasa POS akan terbuka dari Dock seperti aplikasi lain dan dapat digunakan secara offline."
+  }
 }

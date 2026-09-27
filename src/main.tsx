@@ -5,12 +5,14 @@ import { initI18n } from './i18n'
 import { applyTheme, device } from './stores/device'
 import { FullScreenLoader } from './components/ui'
 import { registerServiceWorker } from './components/UpdatePrompt'
+import { listenForInstallPrompt } from './components/InstallApp'
 import { ErrorBoundary } from './components/ErrorBoundary'
 import App from './App'
 
 applyTheme(device().theme)
 void initI18n(device().language)
 registerServiceWorker()
+listenForInstallPrompt()
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>

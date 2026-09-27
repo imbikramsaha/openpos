@@ -191,5 +191,13 @@
   "otherTabHint": "La cassa funziona in una scheda alla volta, così il carrello e gli scontrini restano coerenti. Continua nell'altra scheda, oppure usa questa al suo posto.",
   "useHere": "Usa questa scheda",
   "notSignedIn": "Accedi prima",
-  "storageFull": "Lo spazio di archiviazione di questo dispositivo è esaurito. Libera spazio (oppure esporta un backup e cancella i dati vecchi), poi riprova."
+  "storageFull": "Lo spazio di archiviazione di questo dispositivo è esaurito. Libera spazio (oppure esporta un backup e cancella i dati vecchi), poi riprova.",
+  "install": {
+    "button": "Installa l'app",
+    "title": "Installa Kasa POS",
+    "iosShare": "Tocca il pulsante Condividi nella barra degli strumenti del browser (il quadrato con una freccia verso l'alto).",
+    "iosAdd": "Scorri verso il basso e tocca “Aggiungi alla schermata Home” (Add to Home Screen).",
+    "iosConfirm": "Tocca “Aggiungi”. Kasa POS si apre quindi dalla schermata Home come qualsiasi altra app, a schermo intero, e funziona offline.",
+    "macSafari": "Nella barra dei menu di Safari, scegli File → Aggiungi al Dock. Kasa POS si apre quindi dal Dock come qualsiasi altra app e funziona offline."
+  }
 }

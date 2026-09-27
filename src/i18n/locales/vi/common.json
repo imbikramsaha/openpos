@@ -189,5 +189,13 @@
   "otherTabHint": "Máy bán hàng chỉ hoạt động trên một tab tại một thời điểm để giỏ hàng và hóa đơn luôn nhất quán. Hãy tiếp tục ở tab kia, hoặc dùng tab này thay thế.",
   "useHere": "Dùng tab này",
   "notSignedIn": "Hãy đăng nhập trước",
-  "storageFull": "Thiết bị này đã hết dung lượng lưu trữ. Hãy giải phóng dung lượng (hoặc xuất bản sao lưu và xóa dữ liệu cũ), rồi thử lại."
+  "storageFull": "Thiết bị này đã hết dung lượng lưu trữ. Hãy giải phóng dung lượng (hoặc xuất bản sao lưu và xóa dữ liệu cũ), rồi thử lại.",
+  "install": {
+    "button": "Cài đặt ứng dụng",
+    "title": "Cài đặt Kasa POS",
+    "iosShare": "Nhấn nút Chia sẻ trên thanh công cụ của trình duyệt (biểu tượng hình vuông có mũi tên hướng lên).",
+    "iosAdd": "Cuộn xuống rồi nhấn “Thêm vào Màn hình chính” (Add to Home Screen).",
+    "iosConfirm": "Nhấn “Thêm” (Add). Kasa POS sẽ mở toàn màn hình từ Màn hình chính như mọi ứng dụng khác, và hoạt động ngoại tuyến.",
+    "macSafari": "Trong thanh menu của Safari, chọn Tệp → Thêm vào Dock (File → Add to Dock). Kasa POS sẽ mở từ Dock như mọi ứng dụng khác và hoạt động ngoại tuyến."
+  }
 }
