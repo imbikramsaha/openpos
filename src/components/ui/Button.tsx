@@ -33,6 +33,7 @@ export interface ButtonProps extends ComponentProps<'button'> {
   loading?: boolean
   icon?: ReactNode
   iconRight?: ReactNode
+  /** Full width. Buttons never shrink, so next to other buttons in a row use className="flex-1" instead. */
   block?: boolean
 }
 

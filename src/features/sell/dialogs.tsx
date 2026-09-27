@@ -126,7 +126,7 @@ export function NumberDialog({ open, onClose, title, subtitle, initial, onSubmit
         <Button size="lg" variant="ghost" onClick={() => setText('')}>
           {t('clear')}
         </Button>
-        <Button size="lg" variant="primary" block onClick={submit}>
+        <Button size="lg" variant="primary" className="flex-1" onClick={submit}>
           {t('ok')}
         </Button>
       </div>
@@ -217,7 +217,7 @@ export function DiscountDialog({ open, onClose, line }: { open: boolean; onClose
         <Button size="lg" variant="ghost" onClick={() => apply(0)}>
           {t('removeDiscount')}
         </Button>
-        <Button size="lg" variant="primary" block onClick={() => apply()}>
+        <Button size="lg" variant="primary" className="flex-1" onClick={() => apply()}>
           {t('apply')}
         </Button>
       </div>
