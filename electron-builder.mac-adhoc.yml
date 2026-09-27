@@ -1,0 +1,11 @@
+# macOS build without an Apple Developer ID certificate (the release workflow uses this when the
+# MAC_CSC_* secrets are missing):  npx electron-builder --mac --config electron-builder.mac-adhoc.yml
+#
+# An unsigned app whose bundle was modified is reported as "damaged" on Apple Silicon and can't be
+# opened. An ad-hoc signature is valid, so the first launch only needs System Settings → Privacy &
+# Security → Open Anyway. The hardened runtime is off because, with an ad-hoc signature, its library
+# validation rejects Electron's own frameworks. Ad-hoc builds can't be notarised or auto-update.
+extends: ./electron-builder.yml
+mac:
+  identity: "-"
+  hardenedRuntime: false

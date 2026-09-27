@@ -43,11 +43,12 @@ npx vite preview --host       # local test at http://<pc>:4173
   (`http://localhost` is the only exception). Plain `http://192.168.x.x` opens the app, but it can't be installed.
 - The service worker precaches the whole app, so after the first visit it works fully offline. When a new
   version is deployed, the app shows an "update available" prompt.
-- **GitHub Pages**: the Release workflow deploys `dist/` automatically. Enable it once under
-  *Settings → Pages → Source: GitHub Actions*. Because releases run from tags, also add a `v*` rule under
-  *Settings → Environments → github-pages → Deployment branches and tags*. Pages on private repositories needs a paid plan.
-- **Netlify**: set build command `npx vite build` and publish directory `dist`, or drag and drop `dist/`.
-  Every release also attaches `Kasa-POS-<version>-web.zip` for self-hosting.
+- **Installing**: Chrome, Edge and Android show their install prompt from the app's **Install app** button
+  (⬇, next to the sync status). Safari has no prompt, so on iPhone, iPad and Mac the button shows the steps
+  instead (Share → Add to Home Screen, or File → Add to Dock). The button is hidden once the app is
+  installed, and in the desktop and mobile apps.
+- **Netlify** (what https://appkasapos.netlify.app uses): build command `npx vite build`, publish directory
+  `dist`; every push to `main` deploys. Every release also attaches `Kasa-POS-web.zip` for self-hosting.
 
 ## 3. Desktop (Electron)
 
@@ -81,13 +82,34 @@ npm version 1.2.0 --no-git-tag-version && git commit -am "v1.2.0"
 git tag v1.2.0 && git push origin main v1.2.0
 ```
 
-`.github/workflows/release.yml` builds Windows, macOS, Linux, Android, iOS (simulator) and web, uploads
-everything to a draft GitHub Release, and publishes it once the desktop and Android builds succeed. You
-can also start it by hand under *Actions → Release → Run workflow*. Installed desktop apps check GitHub
-Releases 15 s after launch and every 6 h, download updates in the background and install them on quit.
-Auto-update works for the NSIS, AppImage, deb and signed macOS builds, but not for the portable `.exe`.
-For a **private repository**, clients need a token to see releases, so publish releases from a public
-repository, or point `publish` at a generic HTTPS server.
+`.github/workflows/release.yml` builds Windows, Mac, Linux (x64 and ARM64), Android and a zipped web build,
+uploads everything to a draft GitHub Release, adds a download table to the release notes, and publishes it
+once the desktop and Android builds succeed. You can also start it by hand under *Actions → Release → Run
+workflow*. A full run takes about 20 minutes.
+
+| File (same name in every release) | For |
+|---|---|
+| `Kasa-POS-Setup-x64.exe`, `Kasa-POS-Portable-x64.exe` | Windows 10/11 installer, and a portable copy that needs no install |
+| `Kasa-POS-mac-universal.dmg` (`.zip` is for auto-update) | Mac, one build for Apple Silicon and Intel |
+| `kasa-pos-linux-amd64.deb`, `Kasa-POS-linux-x86_64.AppImage` | Linux PCs |
+| `kasa-pos-linux-arm64.deb`, `Kasa-POS-linux-arm64.AppImage` | Raspberry Pi 4/5 and other ARM64 Linux |
+| `Kasa-POS-android.apk` (`.aab` too when signed) | Android 7+ phones and tablets (the `.aab` is for Google Play) |
+| `Kasa-POS-web.zip` | self-hosting the web app |
+
+Because the names never change, `https://github.com/<owner>/<repo>/releases/latest/download/<file>` always
+downloads the newest version; the README's Download section uses these links.
+
+The AppImage uses the static AppImage runtime (`toolsets.appimage` in `electron-builder.yml`), so it starts
+on distributions without `libfuse2`, such as a stock Ubuntu 24.04 or newer.
+
+Installed desktop apps check GitHub Releases 15 s after launch and every 6 h, download updates in the
+background and install them on quit. Auto-update works for the NSIS, AppImage, deb and signed macOS builds,
+but not for the portable `.exe` or the ad-hoc-signed Mac build. For a **private repository**, the links only
+work for people signed in with access, and installed apps can't see releases, so they don't update until
+the repository is public (or `publish` points at a public repository or a generic HTTPS server).
+
+GitHub Actions minutes: on a private repository the Free plan includes 2,000 minutes a month, and macOS
+minutes count 10× and Windows 2×, so one release uses roughly 150–250 of them. Public repositories don't use minutes.
 
 Local builds need to know the GitHub repository for update metadata. They find it in package.json
 `repository` or the `origin` remote. Before either exists, add `-c.publish.owner=<user> -c.publish.repo=kasa-pos`.
@@ -97,7 +119,7 @@ Local builds need to know the GitHub repository for update metadata. They find i
 | Platform | Without signing | Secrets for the Release workflow |
 |---|---|---|
 | Windows | SmartScreen shows "Windows protected your PC" → *More info → Run anyway* | `WIN_CSC_LINK` (base64 `.pfx`), `WIN_CSC_KEY_PASSWORD` |
-| macOS | Right-click → *Open* the first time. **Auto-update requires signing.** | `MAC_CSC_LINK` (base64 Developer ID Application `.p12`), `MAC_CSC_KEY_PASSWORD`, and for notarisation `APPLE_ID`, `APPLE_APP_SPECIFIC_PASSWORD`, `APPLE_TEAM_ID` |
+| macOS | Ad-hoc signed (`electron-builder.mac-adhoc.yml`): the first launch needs *System Settings → Privacy & Security → Open Anyway*. **Auto-update requires signing.** | `MAC_CSC_LINK` (base64 Developer ID Application `.p12`), `MAC_CSC_KEY_PASSWORD`, and for notarisation `APPLE_ID`, `APPLE_APP_SPECIFIC_PASSWORD`, `APPLE_TEAM_ID` |
 | Linux | nothing needed | — |
 
 Encode a certificate with `base64 -w0 cert.p12` (macOS: `base64 -i cert.p12`). The macOS build uses the
@@ -117,16 +139,20 @@ cd android && ./gradlew assembleDebug      # → app/build/outputs/apk/debug/app
 - **Sideload**: copy the APK to the device and allow "Install unknown apps", or run `adb install -r app.apk`.
   A debug-signed APK can't be upgraded by a release-signed one (uninstall first, which **deletes local
   data**, so sync or back up first).
-- **Release signing**: create a keystore once and **keep it safe**. Losing it means you can never
-  update the app again.
+- **Release signing**: create a keystore once and **keep it safe** (password manager plus an offline copy).
+  Every future version must be signed with it; if it's lost, installed apps can never be updated.
   ```bash
-  keytool -genkeypair -v -keystore kasa-release.jks -alias kasa -keyalg RSA -keysize 2048 -validity 10000
-  base64 -w0 kasa-release.jks   # → secret ANDROID_KEYSTORE_BASE64
+  keytool -genkeypair -v -keystore kasa-release.jks -alias kasa -keyalg RSA -keysize 4096 -validity 10000
+  base64 -w0 kasa-release.jks | gh secret set ANDROID_KEYSTORE_BASE64
+  gh secret set ANDROID_KEYSTORE_PASSWORD      # paste the keystore password when asked
+  gh secret set ANDROID_KEY_PASSWORD           # the same password (PKCS12 keystores use one)
+  gh secret set ANDROID_KEY_ALIAS --body kasa
   ```
-  Add the repository secrets `ANDROID_KEYSTORE_BASE64`, `ANDROID_KEYSTORE_PASSWORD`, `ANDROID_KEY_ALIAS`
-  and `ANDROID_KEY_PASSWORD`. CI then builds a signed `app-release.apk` and `.aab`. Without them it builds
-  a debug APK. To sign locally, export `ANDROID_KEYSTORE_FILE` plus the same three variables and run
-  `./gradlew assembleRelease bundleRelease`.
+  (`keytool` comes with any JDK, including Android Studio's: `…/android-studio/jbr/bin/keytool`.)
+  With these secrets CI builds a signed `Kasa-POS-android.apk` and `.aab`. **Without them it signs the APK
+  with a throwaway debug key**, which is fine for testing, but the next release can't update it: phones must
+  uninstall first, which deletes their local data. Set the secrets before shops start using the app. To sign
+  locally, export `ANDROID_KEYSTORE_FILE` plus the same three variables and run `./gradlew assembleRelease bundleRelease`.
 - **Play Store**: upload the `.aab`, enable Play App Signing, and declare camera use (barcode scanning).
   The camera is marked optional, so tablets without one can install the app.
 - **Camera**: the manifest declares `CAMERA`. Capacitor's WebView asks for the runtime permission the
@@ -149,9 +175,11 @@ npx cap open ios        # Xcode → select the "App" target → Signing & Capabi
   and `NSAllowsLocalNetworking` (see §6).
 - **App Store / TestFlight**: in Xcode choose *Product → Archive → Distribute App*. Set the version under
   *General → Identity* (or `MARKETING_VERSION`).
-- CI builds an unsigned simulator app (`Kasa-POS-<v>-ios-simulator.zip`) to prove the project compiles.
-  Signed device builds need certificates and profiles, so they're done on a Mac as described above
-  (or add fastlane match later).
+- **Without an Apple Developer account** (the current setup), iPhone and iPad users install the web app:
+  Safari → Share → Add to Home Screen (the in-app **Install app** button shows these steps). It runs full
+  screen and offline like a native app. Apple doesn't allow installing native apps from a download link, so a
+  native build needs the Apple Developer Program (US$99/year) and then TestFlight (a public beta link) or
+  the App Store. The release workflow doesn't build iOS; add a signed job (e.g. fastlane match) once there is an account.
 
 ## 6. Multi-terminal sync server
 
@@ -322,6 +350,10 @@ The device and folder destinations work everywhere they're listed.
 | Camera button missing or denied | Browser: use HTTPS. Android/iOS: allow Camera in the app's system settings. macOS: *Privacy & Security → Camera* |
 | Tablet can't reach the sync server | Same Wi-Fi/VLAN? Firewall on port 8787? Try `http://<server>:8787/api/health` in the tablet's browser |
 | macOS "app is damaged" (unsigned build) | `xattr -cr "/Applications/Kasa POS.app"`, or sign the build (§3) |
+| Download link shows GitHub's 404 page | The repository is private: sign in with an account that has access, or make it public. Also check that a release has been published (drafts don't count as *latest*) |
+| macOS "Apple could not verify Kasa POS" | Expected for ad-hoc builds: *System Settings → Privacy & Security → Open Anyway*, once |
+| Linux AppImage doesn't start | Make it executable (`chmod +x`). Builds before the static runtime needed `libfuse2` (`sudo apt install libfuse2t64`) |
+| Android "App not installed" / "package conflicts" when updating | The installed APK was signed with a different key (e.g. a debug test build). Back up, uninstall, install the new APK, restore |
 | Cloud backup: "The sign-in window was blocked" | Allow pop-ups for the site. *Connect* must be clicked directly (no keyboard macro) |
 | Cloud backup: `redirect_uri_mismatch` / `invalid redirect_uri` | The redirect URI registered with the provider must match `https://<your-site>/oauth-callback.html` exactly (scheme, host, no trailing slash) |
 | Google Drive backups stop after a week | The Google app is still in *Testing*. Publish it (§7), then *Sign in again* |

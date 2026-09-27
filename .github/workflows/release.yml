@@ -1,14 +1,22 @@
-# Builds every platform and publishes one GitHub Release.
+# Builds installers for every platform and publishes one GitHub Release.
 #   git tag v1.2.3 && git push origin v1.2.3        (or: Actions → Release → Run workflow)
 #
-# Flow: prepare (draft release) → desktop ×3, android, ios, web (in parallel) → publish.
-# The release is only published when desktop + android succeed; iOS and Pages are best effort.
+# Every installer has a fixed file name (no version in it), so links such as
+#   https://github.com/<owner>/<repo>/releases/latest/download/Kasa-POS-Setup-x64.exe
+# (used in README.md) always download the newest release.
 #
-# Optional secrets (unsigned builds are produced when they are missing):
+# Flow: prepare (draft release) → desktop ×3, android, web (in parallel) → publish.
+# iPhone/iPad use the web app (Add to Home Screen); a native iOS build needs an Apple Developer
+# account, see docs/DEPLOYMENT.md §5.
+#
+# Optional secrets (the builds still work without them, see docs/DEPLOYMENT.md):
 #   Android: ANDROID_KEYSTORE_BASE64, ANDROID_KEYSTORE_PASSWORD, ANDROID_KEY_ALIAS, ANDROID_KEY_PASSWORD
+#            (without them the APK is signed with a throwaway key, so it can't update the previous one)
 #   Windows: WIN_CSC_LINK (base64 .pfx), WIN_CSC_KEY_PASSWORD
 #   macOS:   MAC_CSC_LINK (base64 Developer ID .p12), MAC_CSC_KEY_PASSWORD,
 #            APPLE_ID, APPLE_APP_SPECIFIC_PASSWORD, APPLE_TEAM_ID (notarisation)
+#            (without them the app is ad-hoc signed: electron-builder.mac-adhoc.yml)
+# Optional variable: WEB_APP_URL (default https://appkasapos.netlify.app), used in the release notes.
 name: Release
 
 on:
@@ -125,37 +133,43 @@ jobs:
             put CSC_LINK "$link"; put CSC_KEY_PASSWORD "$pass"; echo "Code signing: enabled"
           else
             put CSC_IDENTITY_AUTO_DISCOVERY false; echo "Code signing: not configured — building unsigned"
+            if [ "$RUNNER_OS" = macOS ]; then
+              put EB_CONFIG electron-builder.mac-adhoc.yml; echo "macOS: ad-hoc signature"
+            fi
           fi
           if [ "$RUNNER_OS" = macOS ] && [ -n "$link" ] && [ -n "$APPLE_ID_S" ]; then
             put APPLE_ID "$APPLE_ID_S"; put APPLE_APP_SPECIFIC_PASSWORD "$APPLE_APP_SPECIFIC_PASSWORD_S"; put APPLE_TEAM_ID "$APPLE_TEAM_ID_S"
             echo "Notarisation: enabled"
           fi
 
+      # The files go straight to the draft release (no workflow artifacts: private repos only get
+      # 500 MB of artifact storage on the Free plan, less than one set of installers).
       - name: Build installers and upload to the draft release
+        shell: bash
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: npx electron-builder ${{ matrix.target }} --publish always
+        run: npx electron-builder ${{ matrix.target }} --publish always ${EB_CONFIG:+--config "$EB_CONFIG"}
 
-      - name: Keep installers as workflow artifacts
-        uses: actions/upload-artifact@v7
-        with:
-          name: desktop-${{ runner.os }}
-          path: |
-            release/*.exe
-            release/*.dmg
-            release/*.zip
-            release/*.AppImage
-            release/*.deb
-            release/*.yml
-            release/*.blockmap
-          if-no-files-found: warn
-          retention-days: 14
+      - name: Check the macOS signature
+        if: runner.os == 'macOS'
+        run: |
+          app=$(find release -maxdepth 2 -name '*.app' -type d | head -1)
+          echo "Checking $app"
+          codesign --verify --deep --strict --verbose=2 "$app"
+          codesign -dv "$app" 2>&1 | grep -E '^(Identifier|Format|Signature|TeamIdentifier)'
+          lipo -archs "$app/Contents/MacOS/$(basename "$app" .app)"
+
+      - name: List files
+        shell: bash
+        run: ls -l release | grep -v '^d'
 
   android:
     name: Android
     needs: prepare
     runs-on: ubuntu-latest
     timeout-minutes: 45
+    outputs:
+      signed: ${{ steps.keystore.outputs.signed }}
     steps:
       - uses: actions/checkout@v7
 
@@ -203,7 +217,7 @@ jobs:
             echo "Signing with the release keystore"
           else
             echo "signed=false" >> "$GITHUB_OUTPUT"
-            echo "::warning::ANDROID_KEYSTORE_* secrets not set — building a debug-signed APK (sideload only, not for Play Store)"
+            echo "::warning::ANDROID_KEYSTORE_* secrets not set — the APK is signed with a throwaway debug key (testing only: a later APK can't update it)"
           fi
 
       - name: Gradle build
@@ -217,71 +231,15 @@ jobs:
           fi
 
       - name: Collect APK/AAB
-        env:
-          V: ${{ needs.prepare.outputs.version }}
         run: |
           mkdir -p out
           if [ "${{ steps.keystore.outputs.signed }}" = true ]; then
-            cp android/app/build/outputs/apk/release/app-release.apk "out/Kasa-POS-$V-android.apk"
-            cp android/app/build/outputs/bundle/release/app-release.aab "out/Kasa-POS-$V-android.aab"
+            cp android/app/build/outputs/apk/release/app-release.apk out/Kasa-POS-android.apk
+            cp android/app/build/outputs/bundle/release/app-release.aab out/Kasa-POS-android.aab
           else
-            cp android/app/build/outputs/apk/debug/app-debug.apk "out/Kasa-POS-$V-android-debug.apk"
+            cp android/app/build/outputs/apk/debug/app-debug.apk out/Kasa-POS-android.apk
           fi
           ls -l out
-
-      - uses: actions/upload-artifact@v7
-        with:
-          name: android
-          path: out/*
-          retention-days: 14
-
-      - name: Attach to release
-        env:
-          GH_TOKEN: ${{ github.token }}
-        run: gh release upload "${{ needs.prepare.outputs.tag }}" out/* --clobber
-
-  ios:
-    name: iOS (simulator build, unsigned)
-    needs: prepare
-    runs-on: macos-latest
-    timeout-minutes: 45
-    steps:
-      - uses: actions/checkout@v7
-
-      - uses: actions/setup-node@v7
-        with:
-          node-version: 24
-          cache: npm
-
-      - run: npm ci
-
-      - name: Stamp version ${{ needs.prepare.outputs.version }}
-        run: npm pkg set version="${{ needs.prepare.outputs.version }}"
-
-      - name: Build web app and sync into the iOS project
-        run: |
-          npx vite build
-          [ -d ios ] || npx cap add ios --packagemanager SPM
-          npx cap sync ios
-
-      - name: xcodebuild (iphonesimulator, no signing)
-        env:
-          V: ${{ needs.prepare.outputs.version }}
-        run: |
-          xcodebuild -project ios/App/App.xcodeproj -list
-          xcodebuild -project ios/App/App.xcodeproj -scheme App -configuration Release \
-            -sdk iphonesimulator -destination 'generic/platform=iOS Simulator' \
-            -derivedDataPath "$RUNNER_TEMP/dd" \
-            MARKETING_VERSION="$V" CURRENT_PROJECT_VERSION="${{ github.run_number }}" \
-            CODE_SIGNING_ALLOWED=NO build
-          mkdir -p out
-          ditto -c -k --keepParent "$RUNNER_TEMP/dd/Build/Products/Release-iphonesimulator/App.app" "out/Kasa-POS-$V-ios-simulator.zip"
-
-      - uses: actions/upload-artifact@v7
-        with:
-          name: ios-simulator
-          path: out/*
-          retention-days: 14
 
       - name: Attach to release
         env:
@@ -289,17 +247,10 @@ jobs:
         run: gh release upload "${{ needs.prepare.outputs.tag }}" out/* --clobber
 
   web:
-    name: Web / PWA (GitHub Pages)
+    name: Web build (for self-hosting)
     needs: prepare
     runs-on: ubuntu-latest
     timeout-minutes: 20
-    permissions:
-      contents: write
-      pages: write
-      id-token: write
-    environment:
-      name: github-pages
-      url: ${{ steps.deploy.outputs.page_url }}
     steps:
       - uses: actions/checkout@v7
 
@@ -316,31 +267,54 @@ jobs:
       - name: Build web app
         run: npx vite build
 
-      - name: Attach zipped web build (for self-hosting)
+      - name: Attach zipped web build
         env:
           GH_TOKEN: ${{ github.token }}
-          V: ${{ needs.prepare.outputs.version }}
         run: |
-          (cd dist && zip -qr "../Kasa-POS-$V-web.zip" .)
-          gh release upload "${{ needs.prepare.outputs.tag }}" "Kasa-POS-$V-web.zip" --clobber
-
-      # Needs Settings → Pages → Source: "GitHub Actions" (and, for tag builds, a `v*` rule under
-      # Settings → Environments → github-pages → Deployment branches and tags).
-      - uses: actions/configure-pages@v6
-
-      - uses: actions/upload-pages-artifact@v5
-        with:
-          path: dist
-
-      - id: deploy
-        uses: actions/deploy-pages@v5
+          (cd dist && zip -qr ../Kasa-POS-web.zip .)
+          gh release upload "${{ needs.prepare.outputs.tag }}" Kasa-POS-web.zip --clobber
 
   publish:
     name: Publish release
-    needs: [prepare, desktop, android, ios, web]
+    needs: [prepare, desktop, android, web]
     if: ${{ always() && needs.prepare.result == 'success' && needs.desktop.result == 'success' && needs.android.result == 'success' }}
     runs-on: ubuntu-latest
     steps:
+      - name: Add download links to the release notes
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TAG: ${{ needs.prepare.outputs.tag }}
+          ANDROID_SIGNED: ${{ needs.android.outputs.signed }}
+          WEB_APP_URL: ${{ vars.WEB_APP_URL || 'https://appkasapos.netlify.app' }}
+        run: |
+          if gh release view "$TAG" --json body --jq .body | grep -q '^## Download'; then
+            echo "The notes already have download links (re-run)"; exit 0
+          fi
+          d="https://github.com/$GH_REPO/releases/download/$TAG"
+          {
+            echo "## Download"
+            echo
+            echo "| Device | Download |"
+            echo "|---|---|"
+            echo "| Windows 10 / 11 | [Installer]($d/Kasa-POS-Setup-x64.exe) · [Portable, no install]($d/Kasa-POS-Portable-x64.exe) |"
+            echo "| Mac (Apple Silicon and Intel) | [Kasa-POS-mac-universal.dmg]($d/Kasa-POS-mac-universal.dmg) |"
+            echo "| Linux PC (Ubuntu, Debian, Mint) | [.deb]($d/kasa-pos-linux-amd64.deb) · [AppImage, any distro]($d/Kasa-POS-linux-x86_64.AppImage) |"
+            echo "| Linux ARM (Raspberry Pi 4/5) | [.deb]($d/kasa-pos-linux-arm64.deb) · [AppImage]($d/Kasa-POS-linux-arm64.AppImage) |"
+            echo "| Android phones and tablets | [Kasa-POS-android.apk]($d/Kasa-POS-android.apk) |"
+            echo "| iPhone and iPad | Open $WEB_APP_URL in Safari → Share → **Add to Home Screen** |"
+            echo "| Any device, in the browser | $WEB_APP_URL |"
+            echo
+            if [ "$ANDROID_SIGNED" != true ]; then
+              echo "> [!WARNING]"
+              echo "> The Android APK in this release is a **test build** signed with a temporary key. Installing a later version will need an uninstall first, which deletes the data on that device, so back up first."
+              echo
+            fi
+            echo "First launch: see [installing Kasa POS](https://github.com/$GH_REPO#download) for the one-time security prompts on Windows, Mac and Android."
+            echo
+            gh release view "$TAG" --json body --jq .body
+          } > notes.md
+          gh release edit "$TAG" --notes-file notes.md
+
       - name: Publish the draft
         env:
           GH_TOKEN: ${{ github.token }}
