@@ -73,6 +73,11 @@
       "title": "Over",
       "desc": "Versie, opslag en sneltoetsen",
       "keywords": "versie, opslag, sneltoetsen, toetsenbord, credits, platform"
+    },
+    "autoBackup": {
+      "title": "Automatische back-up",
+      "desc": "Back-up maken volgens planning naar dit apparaat, een map, Google Drive, OneDrive of Dropbox",
+      "keywords": "auto, planning, schedule, cloud, google drive, onedrive, dropbox, map, folder, versleutelen, encrypt, momentopname, snapshot"
     }
   },
   "business": {
@@ -497,7 +502,8 @@
     "stock_count": "Voorraadtelling",
     "supplier_delete": "Leverancier verwijderd",
     "cash_in": "Contant geld toegevoegd aan de kassalade",
-    "cash_out": "Contant geld uit de kassalade gehaald"
+    "cash_out": "Contant geld uit de kassalade gehaald",
+    "backup_auto": "Automatische back-up"
   },
   "danger": {
     "erase": "Alle gegevens op dit apparaat wissen",
@@ -537,5 +543,74 @@
     "credits": "Credits",
     "creditsText": "Kasa POS is gebouwd op deze uitstekende opensource-projecten:",
     "license": "Licentie"
+  },
+  "autoBackup": {
+    "scheduleTitle": "Planning",
+    "scheduleHint": "Kasa POS maakt een back-up zodra die nodig is en stuurt deze naar elke bestemming die je hieronder aanzet.",
+    "every": "Back-uppen",
+    "interval_one": "Elk uur",
+    "interval_other": "Elke {{count}} uur",
+    "onlyShift": "Alleen na het sluiten van een dienst",
+    "keep": "Te bewaren kopieën",
+    "keepHint": "Per map of cloudaccount; oudere worden verwijderd",
+    "keepOnDevice": "Kopieën op dit apparaat",
+    "onShiftClose": "Ook back-uppen bij het sluiten van een dienst",
+    "onShiftCloseHint": "De omzet van de dag ligt dan vast, dus het is een goed moment",
+    "encrypt": "Back-ups versleutelen",
+    "encryptHint": "Aanbevolen voor cloud-back-ups: ze bevatten klantgegevens en pincodes van personeel",
+    "encryptedOn": "Versleuteld",
+    "changePassphrase": "Wachtwoordzin wijzigen",
+    "passphrase": "Wachtwoordzin",
+    "passphraseConfirm": "Wachtwoordzin bevestigen",
+    "passphraseShort": "Gebruik minstens 8 tekens",
+    "passphraseMismatch": "Wachtwoordzinnen komen niet overeen",
+    "passphraseSaved": "Wachtwoordzin opgeslagen. Nieuwe back-ups worden versleuteld.",
+    "passphraseWarning": "Schrijf de wachtwoordzin op. Zonder deze kunnen versleutelde back-ups niet worden hersteld — ook niet door ons.",
+    "backupNow": "Nu back-uppen",
+    "whileOpen": "Back-ups worden gemaakt terwijl Kasa POS open is. Als er een wordt gemist, wordt deze de volgende keer dat de app wordt geopend uitgevoerd.",
+    "done": "Back-up voltooid",
+    "someFailed_one": "{{count}} bestemming mislukt — zie hieronder",
+    "someFailed_other": "{{count}} bestemmingen mislukt — zie hieronder",
+    "noneEnabled": "Zet eerst minstens één bestemming aan",
+    "destinations": "Bestemmingen",
+    "destinationsHint": "Gebruik er minstens één die niet dit apparaat is, zodat een verloren of kapot apparaat niet ook je gegevens meeneemt.",
+    "device": "Op dit apparaat",
+    "deviceHint": "Recente kopieën bewaard in Kasa POS. Beschermt tegen fouten, niet tegen verlies van het apparaat.",
+    "folder": "Map op deze computer",
+    "folderHint": "Tip: kies je Google Drive-, OneDrive- of Dropbox-map en de desktopapp synchroniseert deze met de cloud.",
+    "folderChosen": "Opslaan in ‘{{name}}’",
+    "folderUnsupported": "Beschikbaar in Chrome, Edge en de Kasa POS-desktopapp.",
+    "chooseFolder": "Map kiezen",
+    "changeFolder": "Map wijzigen",
+    "forgetFolder": "Deze map niet meer gebruiken",
+    "allowFolder": "Toegang toestaan",
+    "folderAllowed": "Toegang tot map toegestaan",
+    "notConfigured": "Nog niet ingesteld voor deze installatie. Zie ‘Automatic backups’ in docs/DEPLOYMENT.md.",
+    "desktopUseFolder": "Nog niet beschikbaar in de desktopapp. Gebruik in plaats daarvan ‘Map op deze computer’ en kies je {{name}}-map.",
+    "mobileUseFile": "Nog niet beschikbaar in de mobiele app. Download een back-up via Back-up & herstel en sla deze op in {{name}}.",
+    "hint": {
+      "gdrive": "Opgeslagen in een map ‘Kasa POS Backups’ in je Google Drive.",
+      "onedrive": "Opgeslagen in de eigen map van de app onder Apps in je OneDrive.",
+      "dropbox": "Opgeslagen in de eigen map van de app onder Apps in je Dropbox."
+    },
+    "connect": "{{name}} verbinden",
+    "connected": "{{name}} verbonden",
+    "connectedAs": "Verbonden als {{account}}",
+    "reconnect": "Opnieuw inloggen",
+    "disconnect": "Verbinding verbreken",
+    "disconnectTitle": "Verbinding met {{name}} verbreken?",
+    "disconnectHint": "Back-ups die daar al zijn opgeslagen, blijven staan.",
+    "popupBlocked": "Het inlogvenster is geblokkeerd. Sta pop-ups toe voor deze site en probeer het opnieuw.",
+    "lastSuccess": "Laatste back-up {{time}}",
+    "needs": {
+      "reconnect": "Uitgelogd — log opnieuw in om back-ups te hervatten",
+      "permission": "Toestemming nodig — tik op ‘Toegang toestaan’"
+    },
+    "restoreFrom": "Herstellen…",
+    "restoreTitle": "Herstellen vanaf {{name}}",
+    "noBackups": "Hier nog geen back-ups.",
+    "encryptedFileTitle": "Versleutelde back-up",
+    "encryptedFileHint": "Voer de wachtwoordzin in waarmee deze back-up is versleuteld.",
+    "wrongPassphrase": "Deze wachtwoordzin opent deze back-up niet."
   }
 }

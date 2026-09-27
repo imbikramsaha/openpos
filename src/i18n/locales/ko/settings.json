@@ -72,6 +72,11 @@
       "title": "정보",
       "desc": "버전, 저장공간, 키보드 단축키",
       "keywords": "버전, 저장공간, 단축키, 키보드, 크레딧, 플랫폼"
+    },
+    "autoBackup": {
+      "title": "자동 백업",
+      "desc": "일정에 따라 이 기기, 폴더, Google Drive, OneDrive 또는 Dropbox로 백업합니다",
+      "keywords": "자동, 예약, 일정, 클라우드, google drive, onedrive, dropbox, 폴더, 암호화, 스냅샷"
     }
   },
   "business": {
@@ -488,7 +493,8 @@
     "stock_count": "재고 실사",
     "supplier_delete": "공급업체 삭제",
     "cash_in": "서랍에 현금 입금",
-    "cash_out": "서랍에서 현금 출금"
+    "cash_out": "서랍에서 현금 출금",
+    "backup_auto": "자동 백업"
   },
   "danger": {
     "erase": "이 기기의 모든 데이터 삭제",
@@ -528,5 +534,72 @@
     "credits": "크레딧",
     "creditsText": "Kasa POS는 다음의 훌륭한 오픈소스 프로젝트로 만들어졌습니다:",
     "license": "라이선스"
+  },
+  "autoBackup": {
+    "scheduleTitle": "예약",
+    "scheduleHint": "백업할 시간이 되면 Kasa POS가 자동으로 백업을 만들어 아래에서 켠 모든 백업 위치로 보냅니다.",
+    "every": "백업",
+    "interval_other": "{{count}}시간마다",
+    "onlyShift": "근무 종료 후에만",
+    "keep": "보관할 개수",
+    "keepHint": "폴더 또는 클라우드 계정별로 적용되며, 오래된 백업은 삭제됩니다",
+    "keepOnDevice": "이 기기에 보관할 개수",
+    "onShiftClose": "근무를 종료할 때도 백업",
+    "onShiftCloseHint": "그날의 매출이 확정되는 시점이라 백업하기 좋은 때입니다",
+    "encrypt": "백업 암호화",
+    "encryptHint": "클라우드 백업에는 고객 정보와 직원 PIN이 포함되어 있어 권장됩니다",
+    "encryptedOn": "암호화됨",
+    "changePassphrase": "암호 문구 변경",
+    "passphrase": "암호 문구",
+    "passphraseConfirm": "암호 문구 확인",
+    "passphraseShort": "8자 이상 입력하세요",
+    "passphraseMismatch": "암호 문구가 일치하지 않습니다",
+    "passphraseSaved": "암호 문구가 저장되었습니다. 이제부터 백업이 암호화됩니다.",
+    "passphraseWarning": "암호 문구를 꼭 적어 두세요. 이 문구가 없으면 암호화된 백업은 저희도 복원해 드릴 수 없습니다.",
+    "backupNow": "지금 백업",
+    "whileOpen": "백업은 Kasa POS가 열려 있을 때 실행됩니다. 놓친 백업은 앱을 다음에 열 때 실행됩니다.",
+    "done": "백업 완료",
+    "someFailed_other": "{{count}}개 위치에서 실패했습니다 — 아래를 확인하세요",
+    "noneEnabled": "먼저 백업 위치를 하나 이상 켜세요",
+    "destinations": "백업 위치",
+    "destinationsHint": "이 기기가 아닌 위치를 하나 이상 사용하세요. 기기를 분실하거나 고장 나도 데이터를 지킬 수 있습니다.",
+    "device": "이 기기에 저장",
+    "deviceHint": "Kasa POS 안에 최근 백업을 보관합니다. 실수로부터는 보호되지만 기기 분실에는 대비할 수 없습니다.",
+    "folder": "이 컴퓨터의 폴더",
+    "folderHint": "팁: Google Drive, OneDrive 또는 Dropbox 폴더를 선택하면 데스크톱 앱이 클라우드에 자동으로 동기화합니다.",
+    "folderChosen": "“{{name}}”에 저장 중",
+    "folderUnsupported": "Chrome, Edge, Kasa POS 데스크톱 앱에서 사용할 수 있습니다.",
+    "chooseFolder": "폴더 선택",
+    "changeFolder": "폴더 변경",
+    "forgetFolder": "이 폴더 사용 중지",
+    "allowFolder": "액세스 허용",
+    "folderAllowed": "폴더 액세스가 허용되었습니다",
+    "notConfigured": "이 설치본에는 아직 설정되지 않았습니다. docs/DEPLOYMENT.md의 “Automatic backups”를 참고하세요.",
+    "desktopUseFolder": "데스크톱 앱에서는 아직 사용할 수 없습니다. 대신 “이 컴퓨터의 폴더”를 사용해 {{name}} 폴더를 선택하세요.",
+    "mobileUseFile": "모바일 앱에서는 아직 사용할 수 없습니다. 백업 및 복원에서 백업을 다운로드해 {{name}}에 저장하세요.",
+    "hint": {
+      "gdrive": "Google Drive의 “Kasa POS Backups” 폴더에 저장됩니다.",
+      "onedrive": "OneDrive의 앱 폴더 아래, 이 앱 전용 폴더에 저장됩니다.",
+      "dropbox": "Dropbox의 앱 폴더 아래, 이 앱 전용 폴더에 저장됩니다."
+    },
+    "connect": "{{name}} 연결",
+    "connected": "{{name}} 연결됨",
+    "connectedAs": "{{account}}(으)로 연결됨",
+    "reconnect": "다시 로그인",
+    "disconnect": "연결 해제",
+    "disconnectTitle": "{{name}} 연결을 해제할까요?",
+    "disconnectHint": "이미 저장된 백업은 그대로 남아 있습니다.",
+    "popupBlocked": "로그인 창이 차단되었습니다. 이 사이트의 팝업을 허용한 뒤 다시 시도하세요.",
+    "lastSuccess": "마지막 백업 {{time}}",
+    "needs": {
+      "reconnect": "로그아웃됨 — 백업을 다시 시작하려면 로그인하세요",
+      "permission": "권한이 필요합니다 — “액세스 허용”을 누르세요"
+    },
+    "restoreFrom": "복원…",
+    "restoreTitle": "{{name}}에서 복원",
+    "noBackups": "아직 여기에 백업이 없습니다.",
+    "encryptedFileTitle": "암호화된 백업",
+    "encryptedFileHint": "이 백업을 암호화할 때 사용한 암호 문구를 입력하세요.",
+    "wrongPassphrase": "이 암호 문구로는 백업을 열 수 없습니다."
   }
 }

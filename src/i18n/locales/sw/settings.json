@@ -73,6 +73,11 @@
       "title": "Kuhusu",
       "desc": "Toleo, hifadhi na njia za mkato za kibodi",
       "keywords": "toleo, hifadhi, njia za mkato, kibodi, sifa, jukwaa"
+    },
+    "autoBackup": {
+      "title": "Hifadhi nakala otomatiki",
+      "desc": "Hifadhi nakala kwa ratiba kwenye kifaa hiki, folda, Google Drive, OneDrive au Dropbox",
+      "keywords": "otomatiki, ratiba, wingu, folda, usimbaji fiche, picha ya papo hapo, auto, schedule, cloud, google drive, onedrive, dropbox, folder, encrypt, snapshot"
     }
   },
   "business": {
@@ -497,7 +502,8 @@
     "stock_count": "Hesabu ya hisa",
     "supplier_delete": "Msambazaji amefutwa",
     "cash_in": "Fedha taslimu zimeongezwa kwenye kidroo",
-    "cash_out": "Fedha taslimu zimetolewa kwenye kidroo"
+    "cash_out": "Fedha taslimu zimetolewa kwenye kidroo",
+    "backup_auto": "Hifadhi nakala otomatiki"
   },
   "danger": {
     "erase": "Futa data yote kwenye kifaa hiki",
@@ -537,5 +543,74 @@
     "credits": "Sifa",
     "creditsText": "Kasa POS imejengwa juu ya miradi hii bora ya chanzo huria:",
     "license": "Leseni"
+  },
+  "autoBackup": {
+    "scheduleTitle": "Ratiba",
+    "scheduleHint": "Kasa POS hutengeneza nakala wakati inapohitajika na kuituma kwenye kila eneo la kuhifadhi ulilowasha hapa chini.",
+    "every": "Hifadhi nakala",
+    "interval_one": "Kila saa",
+    "interval_other": "Kila saa {{count}}",
+    "onlyShift": "Baada ya kufunga zamu tu",
+    "keep": "Nakala za kuhifadhi",
+    "keepHint": "Kwa kila folda au akaunti ya wingu; za zamani zinafutwa",
+    "keepOnDevice": "Nakala kwenye kifaa hiki",
+    "onShiftClose": "Hifadhi nakala pia wakati zamu inapofungwa",
+    "onShiftCloseHint": "Mapato ya siku huwa ya mwisho wakati huo, hivyo ni wakati mzuri",
+    "encrypt": "Simba nakala kwa usiri",
+    "encryptHint": "Inapendekezwa kwa nakala za wingu: zina taarifa za wateja na PIN za wafanyakazi",
+    "encryptedOn": "Imesimbwa kwa usiri",
+    "changePassphrase": "Badilisha nenosiri",
+    "passphrase": "Nenosiri",
+    "passphraseConfirm": "Thibitisha nenosiri",
+    "passphraseShort": "Tumia angalau herufi 8",
+    "passphraseMismatch": "Manenosiri hayafanani",
+    "passphraseSaved": "Nenosiri limehifadhiwa. Nakala mpya zitasimbwa kwa usiri.",
+    "passphraseWarning": "Andika nenosiri mahali salama. Bila hilo, nakala zilizosimbwa kwa usiri haziwezi kurejeshwa — hata na sisi.",
+    "backupNow": "Hifadhi nakala sasa",
+    "whileOpen": "Uhifadhi wa nakala hufanyika wakati Kasa POS iko wazi. Ikiwa moja imekosekana, itafanyika programu inapofunguliwa tena.",
+    "done": "Uhifadhi wa nakala umekamilika",
+    "someFailed_one": "Eneo {{count}} la kuhifadhi limeshindwa — angalia hapa chini",
+    "someFailed_other": "Maeneo {{count}} ya kuhifadhi yameshindwa — angalia hapa chini",
+    "noneEnabled": "Washa angalau eneo moja la kuhifadhi kwanza",
+    "destinations": "Maeneo ya kuhifadhi",
+    "destinationsHint": "Tumia angalau moja ambalo si kifaa hiki, ili kifaa kinachopotea au kuharibika kisichukue data yako.",
+    "device": "Kwenye kifaa hiki",
+    "deviceHint": "Nakala za hivi karibuni zinahifadhiwa ndani ya Kasa POS. Inalinda dhidi ya makosa, si dhidi ya kupoteza kifaa.",
+    "folder": "Folda kwenye kompyuta hii",
+    "folderHint": "Kidokezo: chagua folda yako ya Google Drive, OneDrive au Dropbox na programu ya kompyuta itaisawazisha na wingu.",
+    "folderChosen": "Inahifadhi kwenye “{{name}}”",
+    "folderUnsupported": "Inapatikana kwenye Chrome, Edge na programu ya kompyuta ya Kasa POS.",
+    "chooseFolder": "Chagua folda",
+    "changeFolder": "Badilisha folda",
+    "forgetFolder": "Acha kutumia folda hii",
+    "allowFolder": "Ruhusu ufikiaji",
+    "folderAllowed": "Ufikiaji wa folda umeruhusiwa",
+    "notConfigured": "Bado haijasanidiwa kwa usakinishaji huu. Angalia “Automatic backups” katika docs/DEPLOYMENT.md.",
+    "desktopUseFolder": "Bado haipatikani kwenye programu ya kompyuta. Tumia “Folda kwenye kompyuta hii” na uchague folda yako ya {{name}}.",
+    "mobileUseFile": "Bado haipatikani kwenye programu ya simu. Pakua nakala kutoka “Hifadhi nakala & kurejesha” na uihifadhi kwenye {{name}}.",
+    "hint": {
+      "gdrive": "Inahifadhiwa kwenye folda ya “Kasa POS Backups” katika Google Drive yako.",
+      "onedrive": "Inahifadhiwa kwenye folda ya programu hii chini ya Apps katika OneDrive yako.",
+      "dropbox": "Inahifadhiwa kwenye folda ya programu hii chini ya Apps katika Dropbox yako."
+    },
+    "connect": "Unganisha {{name}}",
+    "connected": "{{name}} imeunganishwa",
+    "connectedAs": "Imeunganishwa kama {{account}}",
+    "reconnect": "Ingia tena",
+    "disconnect": "Tenganisha",
+    "disconnectTitle": "Tenganisha {{name}}?",
+    "disconnectHint": "Nakala zilizohifadhiwa huko tayari zitabaki mahali zilipo.",
+    "popupBlocked": "Dirisha la kuingia limezuiwa. Ruhusu madirisha ibukizi kwa tovuti hii kisha ujaribu tena.",
+    "lastSuccess": "Nakala ya mwisho {{time}}",
+    "needs": {
+      "reconnect": "Umetoka — ingia tena ili kuendelea na uhifadhi wa nakala",
+      "permission": "Inahitaji ruhusa — bonyeza “Ruhusu ufikiaji”"
+    },
+    "restoreFrom": "Rejesha…",
+    "restoreTitle": "Rejesha kutoka {{name}}",
+    "noBackups": "Hakuna nakala hapa bado.",
+    "encryptedFileTitle": "Nakala iliyosimbwa kwa usiri",
+    "encryptedFileHint": "Weka nenosiri lililotumika kusimba nakala hii.",
+    "wrongPassphrase": "Nenosiri hilo halifungui nakala hii."
   }
 }

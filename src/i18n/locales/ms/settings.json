@@ -72,6 +72,11 @@
       "title": "Tentang",
       "desc": "Versi, storan dan pintasan papan kekunci",
       "keywords": "versi, storan, pintasan, papan kekunci, kredit, platform"
+    },
+    "autoBackup": {
+      "title": "Sandaran automatik",
+      "desc": "Sandarkan mengikut jadual ke peranti ini, folder, Google Drive, OneDrive atau Dropbox",
+      "keywords": "automatik, jadual, awan, google drive, onedrive, dropbox, folder, enkripsi, snapshot"
     }
   },
   "business": {
@@ -488,7 +493,8 @@
     "stock_count": "Kiraan stok",
     "supplier_delete": "Pembekal dipadam",
     "cash_in": "Tunai ditambah ke laci",
-    "cash_out": "Tunai dialih keluar daripada laci"
+    "cash_out": "Tunai dialih keluar daripada laci",
+    "backup_auto": "Sandaran automatik"
   },
   "danger": {
     "erase": "Padam semua data pada peranti ini",
@@ -528,5 +534,72 @@
     "credits": "Kredit",
     "creditsText": "Kasa POS dibina di atas projek sumber terbuka yang hebat ini:",
     "license": "Lesen"
+  },
+  "autoBackup": {
+    "scheduleTitle": "Jadual",
+    "scheduleHint": "Kasa POS akan membuat sandaran apabila tiba masanya dan menghantarnya ke setiap destinasi yang anda hidupkan di bawah.",
+    "every": "Sandarkan",
+    "interval_other": "Setiap {{count}} jam",
+    "onlyShift": "Hanya selepas menutup syif",
+    "keep": "Bilangan salinan disimpan",
+    "keepHint": "Mengikut setiap folder atau akaun awan; yang lebih lama akan dipadam",
+    "keepOnDevice": "Salinan pada peranti ini",
+    "onShiftClose": "Sandarkan juga apabila syif ditutup",
+    "onShiftCloseHint": "Ketika itu jualan hari ini sudah muktamad, jadi masa yang sesuai",
+    "encrypt": "Enkripsi sandaran",
+    "encryptHint": "Disyorkan untuk sandaran awan: mengandungi butiran pelanggan dan PIN kakitangan",
+    "encryptedOn": "Dienkripsi",
+    "changePassphrase": "Tukar frasa laluan",
+    "passphrase": "Frasa laluan",
+    "passphraseConfirm": "Sahkan frasa laluan",
+    "passphraseShort": "Gunakan sekurang-kurangnya 8 aksara",
+    "passphraseMismatch": "Frasa laluan tidak sepadan",
+    "passphraseSaved": "Frasa laluan disimpan. Sandaran baharu akan dienkripsi.",
+    "passphraseWarning": "Catatkan frasa laluan ini. Tanpanya, sandaran yang dienkripsi tidak dapat dipulihkan — walaupun oleh kami.",
+    "backupNow": "Sandarkan sekarang",
+    "whileOpen": "Sandaran berjalan semasa Kasa POS dibuka. Jika terlepas, ia akan berjalan pada kali seterusnya aplikasi dibuka.",
+    "done": "Sandaran selesai",
+    "someFailed_other": "{{count}} destinasi gagal — lihat di bawah",
+    "noneEnabled": "Hidupkan sekurang-kurangnya satu destinasi dahulu",
+    "destinations": "Destinasi",
+    "destinationsHint": "Gunakan sekurang-kurangnya satu destinasi selain peranti ini, supaya data anda tidak turut hilang jika peranti hilang atau rosak.",
+    "device": "Pada peranti ini",
+    "deviceHint": "Menyimpan salinan terkini di dalam Kasa POS. Melindungi daripada kesilapan, bukan daripada kehilangan peranti.",
+    "folder": "Folder pada komputer ini",
+    "folderHint": "Petua: pilih folder Google Drive, OneDrive atau Dropbox anda dan aplikasi desktop akan menyegerakkannya ke awan.",
+    "folderChosen": "Menyimpan ke “{{name}}”",
+    "folderUnsupported": "Tersedia dalam Chrome, Edge dan aplikasi desktop Kasa POS.",
+    "chooseFolder": "Pilih folder",
+    "changeFolder": "Tukar folder",
+    "forgetFolder": "Berhenti guna folder ini",
+    "allowFolder": "Benarkan akses",
+    "folderAllowed": "Akses folder dibenarkan",
+    "notConfigured": "Belum disediakan untuk pemasangan ini. Lihat “Automatic backups” dalam docs/DEPLOYMENT.md.",
+    "desktopUseFolder": "Belum tersedia dalam aplikasi desktop. Gunakan “Folder pada komputer ini” dan pilih folder {{name}} anda.",
+    "mobileUseFile": "Belum tersedia dalam aplikasi mudah alih. Muat turun sandaran daripada Sandaran & pemulihan dan simpan ke {{name}}.",
+    "hint": {
+      "gdrive": "Disimpan dalam folder “Kasa POS Backups” di Google Drive anda.",
+      "onedrive": "Disimpan dalam folder khusus aplikasi ini, di bawah Apps pada OneDrive anda.",
+      "dropbox": "Disimpan dalam folder khusus aplikasi ini, di bawah Apps pada Dropbox anda."
+    },
+    "connect": "Sambungkan {{name}}",
+    "connected": "{{name}} disambungkan",
+    "connectedAs": "Disambungkan sebagai {{account}}",
+    "reconnect": "Log masuk semula",
+    "disconnect": "Putuskan sambungan",
+    "disconnectTitle": "Putuskan sambungan {{name}}?",
+    "disconnectHint": "Sandaran yang sudah disimpan di sana kekal di situ.",
+    "popupBlocked": "Tetingkap log masuk disekat. Benarkan pop timbul untuk laman ini dan cuba lagi.",
+    "lastSuccess": "Sandaran terakhir {{time}}",
+    "needs": {
+      "reconnect": "Log keluar — log masuk semula untuk sambung sandaran",
+      "permission": "Memerlukan kebenaran — tekan “Benarkan akses”"
+    },
+    "restoreFrom": "Pulihkan…",
+    "restoreTitle": "Pulihkan daripada {{name}}",
+    "noBackups": "Belum ada sandaran di sini.",
+    "encryptedFileTitle": "Sandaran dienkripsi",
+    "encryptedFileHint": "Masukkan frasa laluan yang digunakan untuk mengenkripsi sandaran ini.",
+    "wrongPassphrase": "Frasa laluan ini tidak dapat membuka sandaran ini."
   }
 }

@@ -2,6 +2,7 @@
   "title": "Clientes",
   "subtitle_one": "{{count}} cliente",
   "subtitle_other": "{{count}} clientes",
+  "subtitle_many": "{{count}} clientes",
   "name": "Nome",
   "phone": "Telefone",
   "email": "E-mail",
@@ -26,6 +27,7 @@
   "advanceBadge": "A favor {{amount}}",
   "pointsBadge_one": "{{count}} pt",
   "pointsBadge_other": "{{count}} pts",
+  "pointsBadge_many": "{{count}} pts",
   "discountBadge": "{{value}} de desconto",
   "limitInfo": "Limite {{limit}} · {{available}} disponível",
   "overLimit": "Acima do limite de crédito de {{limit}}",
@@ -63,9 +65,11 @@
     "nothing": "Nenhum cliente para exportar",
     "exported_one": "{{count}} cliente exportado",
     "exported_other": "{{count}} clientes exportados",
+    "exported_many": "{{count}} clientes exportados",
     "noRows": "Nenhum cliente encontrado nesse arquivo. A primeira linha deve conter nomes de colunas como name, phone, email.",
     "confirmTitle_one": "Importar {{count}} cliente?",
     "confirmTitle_other": "Importar {{count}} clientes?",
+    "confirmTitle_many": "Importar {{count}} clientes?",
     "confirmMessage": "{{creates}} novos, {{updates}} atualizados (correspondidos por telefone ou e-mail), {{skipped}} linhas ignoradas por falta de nome. Os saldos nunca são alterados por uma importação.",
     "imported": "Importado: {{creates}} novos, {{updates}} atualizados",
     "failed": "Falha na importação: {{error}}",
@@ -122,7 +126,8 @@
     "empty": "Ainda não há compras",
     "emptyHint": "As vendas feitas a este cliente vão aparecer aqui.",
     "lines_one": "{{count}} item",
-    "lines_other": "{{count}} itens"
+    "lines_other": "{{count}} itens",
+    "lines_many": "{{count}} itens"
   },
   "statement": {
     "empty": "Nenhuma atividade na conta",

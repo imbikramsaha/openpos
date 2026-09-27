@@ -10,6 +10,7 @@
   "you": "Tú",
   "extraCount_one": "+{{count}} permiso adicional",
   "extraCount_other": "+{{count}} permisos adicionales",
+  "extraCount_many": "+{{count}} permisos adicionales",
   "permCount": "{{count}} de {{total}} permisos",
   "empty": "Aún no hay usuarios",
   "noMatches": "Ningún usuario coincide con tu búsqueda",

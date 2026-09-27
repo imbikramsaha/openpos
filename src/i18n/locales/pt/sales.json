@@ -4,6 +4,7 @@
   "walkIn": "Avulso",
   "itemsCount_one": "{{count}} linha",
   "itemsCount_other": "{{count}} linhas",
+  "itemsCount_many": "{{count}} linhas",
   "allDatesHint": "Números de recibo correspondentes em todas as datas",
   "clearFilters": "Limpar filtros",
   "loadMore": "Mostrar mais",
@@ -52,11 +53,14 @@
     "count": "Transações",
     "voided_one": "{{count}} cancelada",
     "voided_other": "{{count}} canceladas",
+    "voided_many": "{{count}} canceladas",
     "net": "Total líquido",
     "sales_one": "{{count}} venda",
     "sales_other": "{{count}} vendas",
+    "sales_many": "{{count}} vendas",
     "refunds_one": "{{count}} reembolso",
-    "refunds_other": "{{count}} reembolsos"
+    "refunds_other": "{{count}} reembolsos",
+    "refunds_many": "{{count}} reembolsos"
   },
   "empty": {
     "title": "Nenhuma venda neste período",
@@ -69,7 +73,8 @@
     "items": "Itens (uma linha por item)",
     "empty": "Nada para exportar com esses filtros",
     "done_one": "{{count}} recibo exportado",
-    "done_other": "{{count}} recibos exportados"
+    "done_other": "{{count}} recibos exportados",
+    "done_many": "{{count}} recibos exportados"
   },
   "detail": {
     "title": "Venda",
@@ -93,8 +98,10 @@
     "noPayments": "Nenhum pagamento registrado",
     "pointsEarned_one": "+{{count}} ponto ganho",
     "pointsEarned_other": "+{{count}} pontos ganhos",
+    "pointsEarned_many": "+{{count}} pontos ganhos",
     "pointsRedeemed_one": "{{count}} ponto resgatado",
     "pointsRedeemed_other": "{{count}} pontos resgatados",
+    "pointsRedeemed_many": "{{count}} pontos resgatados",
     "linked": "Reembolsos desta venda",
     "pointsReversed_one": "{{count}} ponto estornado",
     "pointsReversed_other": "{{count}} pontos estornados",

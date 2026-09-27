@@ -72,6 +72,11 @@
       "title": "Tentang",
       "desc": "Versi, penyimpanan dan pintasan keyboard",
       "keywords": "versi, penyimpanan, pintasan, keyboard, kredit, platform"
+    },
+    "autoBackup": {
+      "title": "Cadangan otomatis",
+      "desc": "Cadangkan sesuai jadwal ke perangkat ini, folder, Google Drive, OneDrive, atau Dropbox",
+      "keywords": "otomatis, jadwal, cloud, google drive, onedrive, dropbox, folder, enkripsi, snapshot"
     }
   },
   "business": {
@@ -488,7 +493,8 @@
     "stock_count": "Stok opname",
     "supplier_delete": "Pemasok dihapus",
     "cash_in": "Kas ditambahkan ke laci",
-    "cash_out": "Kas diambil dari laci"
+    "cash_out": "Kas diambil dari laci",
+    "backup_auto": "Cadangan otomatis"
   },
   "danger": {
     "erase": "Hapus semua data di perangkat ini",
@@ -528,5 +534,72 @@
     "credits": "Kredit",
     "creditsText": "Kasa POS dibangun di atas proyek-proyek sumber terbuka berikut:",
     "license": "Lisensi"
+  },
+  "autoBackup": {
+    "scheduleTitle": "Jadwal",
+    "scheduleHint": "Kasa POS akan membuat cadangan setiap kali sudah waktunya dan mengirimkannya ke setiap tujuan yang Anda aktifkan di bawah.",
+    "every": "Cadangkan",
+    "interval_other": "Setiap {{count}} jam",
+    "onlyShift": "Hanya setelah menutup shift",
+    "keep": "Jumlah salinan yang disimpan",
+    "keepHint": "Berlaku per folder atau akun cloud; yang lebih lama akan dihapus",
+    "keepOnDevice": "Salinan di perangkat ini",
+    "onShiftClose": "Cadangkan juga saat shift ditutup",
+    "onShiftCloseHint": "Saat itu pendapatan hari ini sudah final, jadi momen yang tepat",
+    "encrypt": "Enkripsi cadangan",
+    "encryptHint": "Disarankan untuk cadangan cloud: berisi data pelanggan dan PIN staf",
+    "encryptedOn": "Terenkripsi",
+    "changePassphrase": "Ubah frasa sandi",
+    "passphrase": "Frasa sandi",
+    "passphraseConfirm": "Konfirmasi frasa sandi",
+    "passphraseShort": "Gunakan minimal 8 karakter",
+    "passphraseMismatch": "Frasa sandi tidak cocok",
+    "passphraseSaved": "Frasa sandi tersimpan. Cadangan baru akan dienkripsi.",
+    "passphraseWarning": "Catat frasa sandi ini. Tanpanya, cadangan terenkripsi tidak dapat dipulihkan — bahkan oleh kami sekalipun.",
+    "backupNow": "Cadangkan sekarang",
+    "whileOpen": "Cadangan berjalan selagi Kasa POS terbuka. Jika terlewat, akan berjalan saat aplikasi dibuka lagi.",
+    "done": "Cadangan selesai",
+    "someFailed_other": "{{count}} tujuan gagal — lihat di bawah",
+    "noneEnabled": "Aktifkan minimal satu tujuan terlebih dahulu",
+    "destinations": "Tujuan",
+    "destinationsHint": "Gunakan minimal satu tujuan selain perangkat ini, agar data tidak ikut hilang jika perangkat hilang atau rusak.",
+    "device": "Di perangkat ini",
+    "deviceHint": "Menyimpan salinan terbaru di dalam Kasa POS. Melindungi dari kesalahan, bukan dari kehilangan perangkat.",
+    "folder": "Folder di komputer ini",
+    "folderHint": "Tips: pilih folder Google Drive, OneDrive, atau Dropbox Anda, dan aplikasi desktop akan menyinkronkannya ke cloud.",
+    "folderChosen": "Menyimpan ke “{{name}}”",
+    "folderUnsupported": "Tersedia di Chrome, Edge, dan aplikasi desktop Kasa POS.",
+    "chooseFolder": "Pilih folder",
+    "changeFolder": "Ubah folder",
+    "forgetFolder": "Berhenti gunakan folder ini",
+    "allowFolder": "Izinkan akses",
+    "folderAllowed": "Akses folder diizinkan",
+    "notConfigured": "Belum diatur untuk instalasi ini. Lihat “Automatic backups” di docs/DEPLOYMENT.md.",
+    "desktopUseFolder": "Belum tersedia di aplikasi desktop. Gunakan “Folder di komputer ini” dan pilih folder {{name}} Anda.",
+    "mobileUseFile": "Belum tersedia di aplikasi seluler. Unduh cadangan dari Cadangkan & pulihkan lalu simpan ke {{name}}.",
+    "hint": {
+      "gdrive": "Disimpan di folder “Kasa POS Backups” di Google Drive Anda.",
+      "onedrive": "Disimpan di folder khusus aplikasi ini, di bawah Apps pada OneDrive Anda.",
+      "dropbox": "Disimpan di folder khusus aplikasi ini, di bawah Apps pada Dropbox Anda."
+    },
+    "connect": "Hubungkan {{name}}",
+    "connected": "{{name}} terhubung",
+    "connectedAs": "Terhubung sebagai {{account}}",
+    "reconnect": "Masuk lagi",
+    "disconnect": "Putuskan sambungan",
+    "disconnectTitle": "Putuskan sambungan {{name}}?",
+    "disconnectHint": "Cadangan yang sudah tersimpan di sana tetap ada.",
+    "popupBlocked": "Jendela masuk diblokir. Izinkan pop-up untuk situs ini lalu coba lagi.",
+    "lastSuccess": "Cadangan terakhir {{time}}",
+    "needs": {
+      "reconnect": "Keluar dari akun — masuk lagi untuk melanjutkan cadangan",
+      "permission": "Perlu izin — tekan “Izinkan akses”"
+    },
+    "restoreFrom": "Pulihkan…",
+    "restoreTitle": "Pulihkan dari {{name}}",
+    "noBackups": "Belum ada cadangan di sini.",
+    "encryptedFileTitle": "Cadangan terenkripsi",
+    "encryptedFileHint": "Masukkan frasa sandi yang digunakan untuk mengenkripsi cadangan ini.",
+    "wrongPassphrase": "Frasa sandi ini tidak dapat membuka cadangan ini."
   }
 }

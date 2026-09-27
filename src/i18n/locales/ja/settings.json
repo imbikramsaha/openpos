@@ -72,6 +72,11 @@
       "title": "このアプリについて",
       "desc": "バージョン、ストレージ、キーボードショートカット",
       "keywords": "バージョン, ストレージ, ショートカット, キーボード, クレジット, プラットフォーム"
+    },
+    "autoBackup": {
+      "title": "自動バックアップ",
+      "desc": "スケジュールに従って、この端末、フォルダ、Google Drive、OneDrive、Dropbox のいずれかにバックアップします",
+      "keywords": "自動, スケジュール, クラウド, google drive, onedrive, dropbox, フォルダ, 暗号化, スナップショット"
     }
   },
   "business": {
@@ -488,7 +493,8 @@
     "stock_count": "棚卸し",
     "supplier_delete": "仕入先を削除",
     "cash_in": "レジへ入金",
-    "cash_out": "レジから出金"
+    "cash_out": "レジから出金",
+    "backup_auto": "自動バックアップ"
   },
   "danger": {
     "erase": "この端末の全データを消去",
@@ -528,5 +534,72 @@
     "credits": "クレジット",
     "creditsText": "Kasa POS は以下の優れたオープンソースプロジェクトを基に構築されています:",
     "license": "ライセンス"
+  },
+  "autoBackup": {
+    "scheduleTitle": "スケジュール",
+    "scheduleHint": "Kasa POS は、バックアップが必要になるたびに自動で作成し、以下でオンにしたすべてのバックアップ先に送信します。",
+    "every": "バックアップ",
+    "interval_other": "{{count}}時間ごと",
+    "onlyShift": "シフト終了後のみ",
+    "keep": "保持数",
+    "keepHint": "フォルダやクラウドアカウントごとに適用され、古いものから削除されます",
+    "keepOnDevice": "この端末での保存数",
+    "onShiftClose": "シフトを終了したときにもバックアップする",
+    "onShiftCloseHint": "その日の売上が確定するタイミングなので、ちょうど良い機会です",
+    "encrypt": "バックアップを暗号化",
+    "encryptHint": "クラウドへのバックアップにおすすめです。顧客情報やスタッフの PIN が含まれるためです",
+    "encryptedOn": "暗号化済み",
+    "changePassphrase": "パスフレーズを変更",
+    "passphrase": "パスフレーズ",
+    "passphraseConfirm": "パスフレーズ(確認)",
+    "passphraseShort": "8文字以上で入力してください",
+    "passphraseMismatch": "パスフレーズが一致しません",
+    "passphraseSaved": "パスフレーズを保存しました。今後のバックアップは暗号化されます。",
+    "passphraseWarning": "パスフレーズを控えておいてください。紛失すると、暗号化されたバックアップは(私たちでさえ)復元できません。",
+    "backupNow": "今すぐバックアップ",
+    "whileOpen": "バックアップは Kasa POS を開いている間に実行されます。実行できなかった場合は、次回アプリを開いたときに行われます。",
+    "done": "バックアップ完了",
+    "someFailed_other": "{{count}} 件のバックアップ先で失敗しました — 詳細は下記をご覧ください",
+    "noneEnabled": "まずバックアップ先を1つ以上オンにしてください",
+    "destinations": "バックアップ先",
+    "destinationsHint": "この端末以外のバックアップ先を少なくとも1つ使うと、端末の紛失や故障でデータを失わずに済みます。",
+    "device": "この端末に保存",
+    "deviceHint": "Kasa POS 内に直近のバックアップを保存します。誤操作からは守れますが、端末自体を失った場合は守れません。",
+    "folder": "このパソコンのフォルダ",
+    "folderHint": "ヒント: Google Drive、OneDrive、Dropbox のフォルダを選ぶと、デスクトップアプリが自動でクラウドに同期します。",
+    "folderChosen": "「{{name}}」に保存中",
+    "folderUnsupported": "Chrome、Edge、Kasa POS デスクトップアプリでご利用いただけます。",
+    "chooseFolder": "フォルダを選択",
+    "changeFolder": "フォルダを変更",
+    "forgetFolder": "このフォルダの使用をやめる",
+    "allowFolder": "アクセスを許可",
+    "folderAllowed": "フォルダへのアクセスが許可されました",
+    "notConfigured": "この環境ではまだ設定されていません。docs/DEPLOYMENT.md の「Automatic backups」をご覧ください。",
+    "desktopUseFolder": "デスクトップアプリではまだご利用いただけません。代わりに「このパソコンのフォルダ」から {{name}} のフォルダを選択してください。",
+    "mobileUseFile": "モバイルアプリではまだご利用いただけません。「バックアップと復元」からバックアップをダウンロードし、{{name}} に保存してください。",
+    "hint": {
+      "gdrive": "Google Drive の「Kasa POS Backups」フォルダに保存されます。",
+      "onedrive": "OneDrive の「アプリ」内にある、このアプリ専用フォルダに保存されます。",
+      "dropbox": "Dropbox の「アプリ」内にある、このアプリ専用フォルダに保存されます。"
+    },
+    "connect": "{{name}} に接続",
+    "connected": "{{name}} に接続済み",
+    "connectedAs": "{{account}} として接続中",
+    "reconnect": "再度サインイン",
+    "disconnect": "接続を解除",
+    "disconnectTitle": "{{name}} の接続を解除しますか?",
+    "disconnectHint": "すでに保存されているバックアップはそのまま残ります。",
+    "popupBlocked": "サインイン用のウィンドウがブロックされました。このサイトのポップアップを許可して、もう一度お試しください。",
+    "lastSuccess": "前回のバックアップ {{time}}",
+    "needs": {
+      "reconnect": "サインアウトされています — バックアップを再開するには、もう一度サインインしてください",
+      "permission": "許可が必要です —「アクセスを許可」を押してください"
+    },
+    "restoreFrom": "復元…",
+    "restoreTitle": "{{name}} から復元",
+    "noBackups": "ここにはまだバックアップがありません。",
+    "encryptedFileTitle": "暗号化されたバックアップ",
+    "encryptedFileHint": "このバックアップの暗号化に使ったパスフレーズを入力してください。",
+    "wrongPassphrase": "そのパスフレーズではこのバックアップを開けません。"
   }
 }

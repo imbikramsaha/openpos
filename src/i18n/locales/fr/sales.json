@@ -4,6 +4,7 @@
   "walkIn": "Passage",
   "itemsCount_one": "{{count}} ligne",
   "itemsCount_other": "{{count}} lignes",
+  "itemsCount_many": "{{count}} lignes",
   "allDatesHint": "Numéros de reçu correspondants sur toutes les dates",
   "clearFilters": "Effacer les filtres",
   "loadMore": "Afficher plus",
@@ -52,11 +53,14 @@
     "count": "Transactions",
     "voided_one": "{{count}} annulée",
     "voided_other": "{{count}} annulées",
+    "voided_many": "{{count}} annulées",
     "net": "Total net",
     "sales_one": "{{count}} vente",
     "sales_other": "{{count}} ventes",
+    "sales_many": "{{count}} ventes",
     "refunds_one": "{{count}} remboursement",
-    "refunds_other": "{{count}} remboursements"
+    "refunds_other": "{{count}} remboursements",
+    "refunds_many": "{{count}} remboursements"
   },
   "empty": {
     "title": "Aucune vente sur cette période",
@@ -69,7 +73,8 @@
     "items": "Articles (une ligne par article)",
     "empty": "Rien à exporter avec ces filtres",
     "done_one": "{{count}} reçu exporté",
-    "done_other": "{{count}} reçus exportés"
+    "done_other": "{{count}} reçus exportés",
+    "done_many": "{{count}} reçus exportés"
   },
   "detail": {
     "title": "Vente",
@@ -93,8 +98,10 @@
     "noPayments": "Aucun paiement enregistré",
     "pointsEarned_one": "+{{count}} point gagné",
     "pointsEarned_other": "+{{count}} points gagnés",
+    "pointsEarned_many": "+{{count}} points gagnés",
     "pointsRedeemed_one": "{{count}} point utilisé",
     "pointsRedeemed_other": "{{count}} points utilisés",
+    "pointsRedeemed_many": "{{count}} points utilisés",
     "linked": "Remboursements liés à cette vente",
     "pointsReversed_one": "{{count}} point repris",
     "pointsReversed_other": "{{count}} points repris",

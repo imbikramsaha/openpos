@@ -73,6 +73,11 @@
       "title": "Info",
       "desc": "Version, Speicher und Tastenkombinationen",
       "keywords": "Version, Speicher, Tastenkombinationen, Tastatur, Credits, Plattform"
+    },
+    "autoBackup": {
+      "title": "Automatische Sicherung",
+      "desc": "Sichere nach Zeitplan auf diesem Gerät, in einem Ordner, Google Drive, OneDrive oder Dropbox",
+      "keywords": "auto, Zeitplan, schedule, cloud, google drive, onedrive, dropbox, Ordner, folder, verschlüsseln, encrypt, Schnappschuss, snapshot"
     }
   },
   "business": {
@@ -497,7 +502,8 @@
     "stock_count": "Inventur",
     "supplier_delete": "Lieferant gelöscht",
     "cash_in": "Bargeld in die Kassenschublade gelegt",
-    "cash_out": "Bargeld aus der Kassenschublade entnommen"
+    "cash_out": "Bargeld aus der Kassenschublade entnommen",
+    "backup_auto": "Automatische Sicherung"
   },
   "danger": {
     "erase": "Alle Daten dieses Geräts löschen",
@@ -537,5 +543,74 @@
     "credits": "Credits",
     "creditsText": "Kasa POS basiert auf diesen exzellenten Open-Source-Projekten:",
     "license": "Lizenz"
+  },
+  "autoBackup": {
+    "scheduleTitle": "Zeitplan",
+    "scheduleHint": "Kasa POS erstellt eine Sicherung, sobald sie fällig ist, und sendet sie an jedes unten aktivierte Ziel.",
+    "every": "Sichern",
+    "interval_one": "Stündlich",
+    "interval_other": "Alle {{count}} Stunden",
+    "onlyShift": "Nur nach Schichtende",
+    "keep": "Aufzubewahrende Kopien",
+    "keepHint": "Pro Ordner oder Cloud-Konto; ältere werden gelöscht",
+    "keepOnDevice": "Kopien auf diesem Gerät",
+    "onShiftClose": "Auch bei Schichtende sichern",
+    "onShiftCloseHint": "Die Tageseinnahmen stehen dann fest, das ist ein guter Zeitpunkt",
+    "encrypt": "Sicherungen verschlüsseln",
+    "encryptHint": "Empfohlen für Cloud-Sicherungen: Sie enthalten Kundendaten und Mitarbeiter-PINs",
+    "encryptedOn": "Verschlüsselt",
+    "changePassphrase": "Passphrase ändern",
+    "passphrase": "Passphrase",
+    "passphraseConfirm": "Passphrase bestätigen",
+    "passphraseShort": "Verwende mindestens 8 Zeichen",
+    "passphraseMismatch": "Die Passphrasen stimmen nicht überein",
+    "passphraseSaved": "Passphrase gespeichert. Neue Sicherungen werden verschlüsselt.",
+    "passphraseWarning": "Notiere dir die Passphrase. Ohne sie können verschlüsselte Sicherungen nicht wiederhergestellt werden — auch nicht von uns.",
+    "backupNow": "Jetzt sichern",
+    "whileOpen": "Sicherungen laufen, während Kasa POS geöffnet ist. Wird eine verpasst, läuft sie beim nächsten App-Start.",
+    "done": "Sicherung abgeschlossen",
+    "someFailed_one": "{{count}} Ziel fehlgeschlagen — siehe unten",
+    "someFailed_other": "{{count}} Ziele fehlgeschlagen — siehe unten",
+    "noneEnabled": "Aktiviere zuerst mindestens ein Ziel",
+    "destinations": "Ziele",
+    "destinationsHint": "Verwende mindestens eines, das nicht dieses Gerät ist, damit ein verlorenes oder defektes Gerät nicht deine Daten mitnimmt.",
+    "device": "Auf diesem Gerät",
+    "deviceHint": "Aktuelle Kopien werden in Kasa POS aufbewahrt. Schützt vor Fehlern, nicht vor dem Verlust des Geräts.",
+    "folder": "Ordner auf diesem Computer",
+    "folderHint": "Tipp: Wähle deinen Google Drive-, OneDrive- oder Dropbox-Ordner, die Desktop-App synchronisiert ihn dann mit der Cloud.",
+    "folderChosen": "Speichern in „{{name}}“",
+    "folderUnsupported": "Verfügbar in Chrome, Edge und der Kasa POS Desktop-App.",
+    "chooseFolder": "Ordner wählen",
+    "changeFolder": "Ordner ändern",
+    "forgetFolder": "Diesen Ordner nicht mehr verwenden",
+    "allowFolder": "Zugriff erlauben",
+    "folderAllowed": "Ordnerzugriff erlaubt",
+    "notConfigured": "Für diese Installation noch nicht eingerichtet. Siehe „Automatic backups“ in docs/DEPLOYMENT.md.",
+    "desktopUseFolder": "In der Desktop-App noch nicht verfügbar. Verwende stattdessen „Ordner auf diesem Computer“ und wähle deinen {{name}}-Ordner.",
+    "mobileUseFile": "In der mobilen App noch nicht verfügbar. Lade eine Sicherung unter Sicherung & Wiederherstellung herunter und speichere sie in {{name}}.",
+    "hint": {
+      "gdrive": "Wird in einem Ordner „Kasa POS Backups“ in deinem Google Drive gespeichert.",
+      "onedrive": "Wird im eigenen Ordner der App unter Apps in deinem OneDrive gespeichert.",
+      "dropbox": "Wird im eigenen Ordner der App unter Apps in deiner Dropbox gespeichert."
+    },
+    "connect": "{{name}} verbinden",
+    "connected": "{{name}} verbunden",
+    "connectedAs": "Verbunden als {{account}}",
+    "reconnect": "Erneut anmelden",
+    "disconnect": "Trennen",
+    "disconnectTitle": "{{name}} trennen?",
+    "disconnectHint": "Dort bereits gespeicherte Sicherungen bleiben erhalten.",
+    "popupBlocked": "Das Anmeldefenster wurde blockiert. Erlaube Pop-ups für diese Website und versuche es erneut.",
+    "lastSuccess": "Letzte Sicherung {{time}}",
+    "needs": {
+      "reconnect": "Abgemeldet — melde dich erneut an, um Sicherungen fortzusetzen",
+      "permission": "Berechtigung erforderlich — tippe auf „Zugriff erlauben“"
+    },
+    "restoreFrom": "Wiederherstellen…",
+    "restoreTitle": "Aus {{name}} wiederherstellen",
+    "noBackups": "Hier noch keine Sicherungen.",
+    "encryptedFileTitle": "Verschlüsselte Sicherung",
+    "encryptedFileHint": "Gib die Passphrase ein, mit der diese Sicherung verschlüsselt wurde.",
+    "wrongPassphrase": "Diese Passphrase öffnet diese Sicherung nicht."
   }
 }

@@ -72,6 +72,11 @@
       "title": "Giới thiệu",
       "desc": "Phiên bản, dung lượng lưu trữ và phím tắt",
       "keywords": "phiên bản, lưu trữ, phím tắt, bàn phím, ghi công, nền tảng"
+    },
+    "autoBackup": {
+      "title": "Sao lưu tự động",
+      "desc": "Sao lưu theo lịch đến thiết bị này, một thư mục, Google Drive, OneDrive hoặc Dropbox",
+      "keywords": "tự động, lịch, đám mây, google drive, onedrive, dropbox, thư mục, mã hóa, ảnh chụp nhanh"
     }
   },
   "business": {
@@ -488,7 +493,8 @@
     "stock_count": "Kiểm kê tồn kho",
     "supplier_delete": "Đã xóa nhà cung cấp",
     "cash_in": "Đã thêm tiền vào ngăn kéo",
-    "cash_out": "Đã rút tiền khỏi ngăn kéo"
+    "cash_out": "Đã rút tiền khỏi ngăn kéo",
+    "backup_auto": "Sao lưu tự động"
   },
   "danger": {
     "erase": "Xóa toàn bộ dữ liệu trên thiết bị này",
@@ -528,5 +534,72 @@
     "credits": "Ghi công",
     "creditsText": "Kasa POS được xây dựng trên các dự án mã nguồn mở xuất sắc sau:",
     "license": "Giấy phép"
+  },
+  "autoBackup": {
+    "scheduleTitle": "Lịch sao lưu",
+    "scheduleHint": "Kasa POS sẽ tự động sao lưu khi đến lúc và gửi đến mọi nơi sao lưu bạn bật bên dưới.",
+    "every": "Sao lưu",
+    "interval_other": "Mỗi {{count}} giờ",
+    "onlyShift": "Chỉ sau khi đóng ca",
+    "keep": "Số bản sao giữ lại",
+    "keepHint": "Tính riêng theo từng thư mục hoặc tài khoản đám mây; bản cũ sẽ bị xóa",
+    "keepOnDevice": "Số bản sao trên thiết bị này",
+    "onShiftClose": "Cũng sao lưu khi đóng ca",
+    "onShiftCloseHint": "Lúc này doanh thu trong ngày đã chốt, nên đây là thời điểm thích hợp",
+    "encrypt": "Mã hóa bản sao lưu",
+    "encryptHint": "Nên bật khi sao lưu lên đám mây vì bản sao lưu chứa thông tin khách hàng và mã PIN nhân viên",
+    "encryptedOn": "Đã mã hóa",
+    "changePassphrase": "Đổi cụm mật khẩu",
+    "passphrase": "Cụm mật khẩu",
+    "passphraseConfirm": "Xác nhận cụm mật khẩu",
+    "passphraseShort": "Dùng ít nhất 8 ký tự",
+    "passphraseMismatch": "Cụm mật khẩu không khớp",
+    "passphraseSaved": "Đã lưu cụm mật khẩu. Các bản sao lưu mới sẽ được mã hóa.",
+    "passphraseWarning": "Hãy ghi lại cụm mật khẩu này. Nếu mất, bản sao lưu đã mã hóa sẽ không thể khôi phục được — kể cả chúng tôi cũng không giúp được.",
+    "backupNow": "Sao lưu ngay",
+    "whileOpen": "Sao lưu chỉ chạy khi Kasa POS đang mở. Nếu bị bỏ lỡ, việc sao lưu sẽ chạy vào lần mở ứng dụng tiếp theo.",
+    "done": "Sao lưu hoàn tất",
+    "someFailed_other": "{{count}} nơi sao lưu bị lỗi — xem bên dưới",
+    "noneEnabled": "Hãy bật ít nhất một nơi sao lưu trước",
+    "destinations": "Nơi sao lưu",
+    "destinationsHint": "Hãy dùng ít nhất một nơi không phải là thiết bị này, để dữ liệu không mất theo khi thiết bị bị mất hoặc hỏng.",
+    "device": "Trên thiết bị này",
+    "deviceHint": "Lưu các bản sao gần đây bên trong Kasa POS. Bảo vệ khỏi thao tác nhầm, nhưng không bảo vệ khi mất thiết bị.",
+    "folder": "Thư mục trên máy tính này",
+    "folderHint": "Mẹo: chọn thư mục Google Drive, OneDrive hoặc Dropbox và ứng dụng máy tính sẽ tự đồng bộ lên đám mây.",
+    "folderChosen": "Đang lưu vào “{{name}}”",
+    "folderUnsupported": "Chỉ dùng được trên Chrome, Edge và ứng dụng Kasa POS trên máy tính.",
+    "chooseFolder": "Chọn thư mục",
+    "changeFolder": "Đổi thư mục",
+    "forgetFolder": "Ngừng dùng thư mục này",
+    "allowFolder": "Cho phép truy cập",
+    "folderAllowed": "Đã cho phép truy cập thư mục",
+    "notConfigured": "Bản cài đặt này chưa được cấu hình. Xem mục “Automatic backups” trong docs/DEPLOYMENT.md.",
+    "desktopUseFolder": "Chưa hỗ trợ trên ứng dụng máy tính. Hãy dùng “Thư mục trên máy tính này” và chọn thư mục {{name}} của bạn thay thế.",
+    "mobileUseFile": "Chưa hỗ trợ trên ứng dụng di động. Hãy tải bản sao lưu từ Sao lưu & khôi phục rồi lưu vào {{name}}.",
+    "hint": {
+      "gdrive": "Lưu trong thư mục “Kasa POS Backups” trên Google Drive của bạn.",
+      "onedrive": "Lưu trong thư mục riêng của ứng dụng, dưới mục Apps trên OneDrive của bạn.",
+      "dropbox": "Lưu trong thư mục riêng của ứng dụng, dưới mục Apps trên Dropbox của bạn."
+    },
+    "connect": "Kết nối {{name}}",
+    "connected": "Đã kết nối {{name}}",
+    "connectedAs": "Đã kết nối với {{account}}",
+    "reconnect": "Đăng nhập lại",
+    "disconnect": "Ngắt kết nối",
+    "disconnectTitle": "Ngắt kết nối {{name}}?",
+    "disconnectHint": "Các bản sao lưu đã lưu ở đó vẫn giữ nguyên.",
+    "popupBlocked": "Cửa sổ đăng nhập đã bị chặn. Hãy cho phép cửa sổ bật lên cho trang này rồi thử lại.",
+    "lastSuccess": "Sao lưu gần nhất {{time}}",
+    "needs": {
+      "reconnect": "Đã đăng xuất — đăng nhập lại để tiếp tục sao lưu",
+      "permission": "Cần được cấp quyền — nhấn “Cho phép truy cập”"
+    },
+    "restoreFrom": "Khôi phục…",
+    "restoreTitle": "Khôi phục từ {{name}}",
+    "noBackups": "Chưa có bản sao lưu nào ở đây.",
+    "encryptedFileTitle": "Bản sao lưu đã mã hóa",
+    "encryptedFileHint": "Nhập cụm mật khẩu đã dùng để mã hóa bản sao lưu này.",
+    "wrongPassphrase": "Cụm mật khẩu này không mở được bản sao lưu."
   }
 }

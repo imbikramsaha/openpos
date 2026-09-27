@@ -72,6 +72,11 @@
       "title": "关于",
       "desc": "版本、存储空间和键盘快捷键",
       "keywords": "版本, 存储, 快捷键, 键盘, 致谢, 平台"
+    },
+    "autoBackup": {
+      "title": "自动备份",
+      "desc": "按计划自动备份到本设备、文件夹、Google Drive、OneDrive 或 Dropbox",
+      "keywords": "自动, 计划, 云, 云端, google drive, onedrive, dropbox, 文件夹, 加密, 快照"
     }
   },
   "business": {
@@ -488,7 +493,8 @@
     "stock_count": "库存盘点",
     "supplier_delete": "供应商已删除",
     "cash_in": "已向钱箱存入现金",
-    "cash_out": "已从钱箱取出现金"
+    "cash_out": "已从钱箱取出现金",
+    "backup_auto": "自动备份"
   },
   "danger": {
     "erase": "清除本设备上的所有数据",
@@ -528,5 +534,72 @@
     "credits": "致谢",
     "creditsText": "Kasa POS 构建于以下优秀的开源项目之上:",
     "license": "许可证"
+  },
+  "autoBackup": {
+    "scheduleTitle": "计划",
+    "scheduleHint": "到了备份时间,Kasa POS 就会自动备份,并发送到下方启用的每一个备份目标。",
+    "every": "备份",
+    "interval_other": "每 {{count}} 小时",
+    "onlyShift": "仅在结束班次后",
+    "keep": "保留份数",
+    "keepHint": "每个文件夹或云账户单独计算,较旧的会被删除",
+    "keepOnDevice": "本设备保留份数",
+    "onShiftClose": "班次结束时也备份",
+    "onShiftCloseHint": "此时当天营业额已经确定,是备份的好时机",
+    "encrypt": "加密备份",
+    "encryptHint": "建议在云备份时开启:备份中包含顾客信息和员工 PIN",
+    "encryptedOn": "已加密",
+    "changePassphrase": "更改密码短语",
+    "passphrase": "密码短语",
+    "passphraseConfirm": "确认密码短语",
+    "passphraseShort": "至少使用 8 个字符",
+    "passphraseMismatch": "两次输入的密码短语不一致",
+    "passphraseSaved": "密码短语已保存。新的备份将会加密。",
+    "passphraseWarning": "请将密码短语记录下来。没有它,加密的备份将无法恢复——我们也无法帮您找回。",
+    "backupNow": "立即备份",
+    "whileOpen": "备份仅在 Kasa POS 打开时运行。如果错过了,会在应用下次打开时补上。",
+    "done": "备份完成",
+    "someFailed_other": "{{count}} 个备份目标失败——详见下方",
+    "noneEnabled": "请先启用至少一个备份目标",
+    "destinations": "备份目标",
+    "destinationsHint": "请至少选择一个非本设备的目标,以免设备丢失或损坏导致数据一并丢失。",
+    "device": "保存在本设备",
+    "deviceHint": "在 Kasa POS 内保留最近的备份。可防止误操作,但无法防止设备丢失。",
+    "folder": "本机上的文件夹",
+    "folderHint": "提示:选择您的 Google Drive、OneDrive 或 Dropbox 文件夹,桌面应用会自动同步到云端。",
+    "folderChosen": "正在保存到“{{name}}”",
+    "folderUnsupported": "仅支持 Chrome、Edge 和 Kasa POS 桌面应用。",
+    "chooseFolder": "选择文件夹",
+    "changeFolder": "更改文件夹",
+    "forgetFolder": "停止使用此文件夹",
+    "allowFolder": "允许访问",
+    "folderAllowed": "已允许访问文件夹",
+    "notConfigured": "此安装尚未配置。请参阅 docs/DEPLOYMENT.md 中的“Automatic backups”。",
+    "desktopUseFolder": "桌面应用暂不支持此功能。请改用“本机上的文件夹”,选择您的 {{name}} 文件夹。",
+    "mobileUseFile": "移动应用暂不支持此功能。请从“备份与恢复”下载备份,并保存到 {{name}}。",
+    "hint": {
+      "gdrive": "保存在您 Google Drive 中的“Kasa POS Backups”文件夹。",
+      "onedrive": "保存在您 OneDrive 的“应用”下,本应用专属的文件夹中。",
+      "dropbox": "保存在您 Dropbox 的“应用”下,本应用专属的文件夹中。"
+    },
+    "connect": "连接 {{name}}",
+    "connected": "{{name}} 已连接",
+    "connectedAs": "已连接:{{account}}",
+    "reconnect": "重新登录",
+    "disconnect": "断开连接",
+    "disconnectTitle": "断开 {{name}} 的连接?",
+    "disconnectHint": "已保存在那里的备份不会受影响。",
+    "popupBlocked": "登录窗口被拦截。请允许此网站弹出窗口后重试。",
+    "lastSuccess": "上次备份 {{time}}",
+    "needs": {
+      "reconnect": "已登出——请重新登录以继续备份",
+      "permission": "需要授权——请点击“允许访问”"
+    },
+    "restoreFrom": "恢复……",
+    "restoreTitle": "从 {{name}} 恢复",
+    "noBackups": "这里还没有备份。",
+    "encryptedFileTitle": "加密备份",
+    "encryptedFileHint": "请输入加密此备份时使用的密码短语。",
+    "wrongPassphrase": "该密码短语无法打开此备份。"
   }
 }

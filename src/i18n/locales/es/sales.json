@@ -4,6 +4,7 @@
   "walkIn": "Ocasional",
   "itemsCount_one": "{{count}} línea",
   "itemsCount_other": "{{count}} líneas",
+  "itemsCount_many": "{{count}} líneas",
   "allDatesHint": "Coincidencias de número de recibo en todas las fechas",
   "clearFilters": "Borrar filtros",
   "loadMore": "Mostrar más",
@@ -52,11 +53,14 @@
     "count": "Transacciones",
     "voided_one": "{{count}} anulada",
     "voided_other": "{{count}} anuladas",
+    "voided_many": "{{count}} anuladas",
     "net": "Total neto",
     "sales_one": "{{count}} venta",
     "sales_other": "{{count}} ventas",
+    "sales_many": "{{count}} ventas",
     "refunds_one": "{{count}} reembolso",
-    "refunds_other": "{{count}} reembolsos"
+    "refunds_other": "{{count}} reembolsos",
+    "refunds_many": "{{count}} reembolsos"
   },
   "empty": {
     "title": "No hay ventas en este período",
@@ -69,7 +73,8 @@
     "items": "Artículos (una fila por artículo)",
     "empty": "Nada para exportar con estos filtros",
     "done_one": "Se exportó {{count}} recibo",
-    "done_other": "Se exportaron {{count}} recibos"
+    "done_other": "Se exportaron {{count}} recibos",
+    "done_many": "Se exportaron {{count}} recibos"
   },
   "detail": {
     "title": "Venta",
@@ -93,8 +98,10 @@
     "noPayments": "No hay pagos registrados",
     "pointsEarned_one": "+{{count}} punto ganado",
     "pointsEarned_other": "+{{count}} puntos ganados",
+    "pointsEarned_many": "+{{count}} puntos ganados",
     "pointsRedeemed_one": "{{count}} punto canjeado",
     "pointsRedeemed_other": "{{count}} puntos canjeados",
+    "pointsRedeemed_many": "{{count}} puntos canjeados",
     "linked": "Reembolsos de esta venta",
     "pointsReversed_one": "{{count}} punto retirado",
     "pointsReversed_other": "{{count}} puntos retirados",

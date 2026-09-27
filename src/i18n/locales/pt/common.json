@@ -118,6 +118,7 @@
     "error": "Erro de sincronização",
     "pending_one": "{{count}} alteração pendente",
     "pending_other": "{{count}} alterações pendentes",
+    "pending_many": "{{count}} alterações pendentes",
     "last": "última sincronização {{time}}"
   },
   "shift": {

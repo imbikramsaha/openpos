@@ -74,6 +74,11 @@
       "title": "Informazioni",
       "desc": "Versione, archiviazione e scorciatoie da tastiera",
       "keywords": "versione, archiviazione, scorciatoie, tastiera, crediti, piattaforma"
+    },
+    "autoBackup": {
+      "title": "Backup automatico",
+      "desc": "Esegui il backup in base a una pianificazione su questo dispositivo, una cartella, Google Drive, OneDrive o Dropbox",
+      "keywords": "auto, pianificazione, schedule, cloud, google drive, onedrive, dropbox, cartella, folder, crittografia, encrypt, snapshot"
     }
   },
   "business": {
@@ -506,7 +511,8 @@
     "stock_count": "Inventario",
     "supplier_delete": "Fornitore eliminato",
     "cash_in": "Contanti aggiunti al cassetto",
-    "cash_out": "Contanti prelevati dal cassetto"
+    "cash_out": "Contanti prelevati dal cassetto",
+    "backup_auto": "Backup automatico"
   },
   "danger": {
     "erase": "Cancella tutti i dati su questo dispositivo",
@@ -546,5 +552,76 @@
     "credits": "Crediti",
     "creditsText": "Kasa POS è costruito su questi eccellenti progetti open source:",
     "license": "Licenza"
+  },
+  "autoBackup": {
+    "scheduleTitle": "Pianificazione",
+    "scheduleHint": "Kasa POS esegue un backup ogni volta che è previsto e lo invia a ogni destinazione attivata qui sotto.",
+    "every": "Esegui backup",
+    "interval_one": "Ogni ora",
+    "interval_many": "Ogni {{count}} ore",
+    "interval_other": "Ogni {{count}} ore",
+    "onlyShift": "Solo dopo la chiusura di un turno",
+    "keep": "Copie da conservare",
+    "keepHint": "Per cartella o account cloud; le più vecchie vengono eliminate",
+    "keepOnDevice": "Copie su questo dispositivo",
+    "onShiftClose": "Esegui backup anche alla chiusura di un turno",
+    "onShiftCloseHint": "L'incasso del giorno è ormai definitivo, quindi è un buon momento",
+    "encrypt": "Crittografa i backup",
+    "encryptHint": "Consigliato per i backup cloud: contengono i dati dei clienti e i PIN del personale",
+    "encryptedOn": "Crittografato",
+    "changePassphrase": "Cambia frase segreta",
+    "passphrase": "Frase segreta",
+    "passphraseConfirm": "Conferma frase segreta",
+    "passphraseShort": "Usa almeno 8 caratteri",
+    "passphraseMismatch": "Le frasi segrete non coincidono",
+    "passphraseSaved": "Frase segreta salvata. I nuovi backup saranno crittografati.",
+    "passphraseWarning": "Annota la frase segreta. Senza di essa, i backup crittografati non possono essere ripristinati — nemmeno da noi.",
+    "backupNow": "Esegui backup ora",
+    "whileOpen": "I backup vengono eseguiti mentre Kasa POS è aperto. Se uno viene saltato, viene eseguito alla successiva apertura dell'app.",
+    "done": "Backup completato",
+    "someFailed_one": "{{count}} destinazione non riuscita — vedi sotto",
+    "someFailed_many": "{{count}} destinazioni non riuscite — vedi sotto",
+    "someFailed_other": "{{count}} destinazioni non riuscite — vedi sotto",
+    "noneEnabled": "Attiva prima almeno una destinazione",
+    "destinations": "Destinazioni",
+    "destinationsHint": "Usane almeno una diversa da questo dispositivo, così un dispositivo perso o rotto non porta via i tuoi dati con sé.",
+    "device": "Su questo dispositivo",
+    "deviceHint": "Copie recenti conservate all'interno di Kasa POS. Protegge dagli errori, non dalla perdita del dispositivo.",
+    "folder": "Cartella su questo computer",
+    "folderHint": "Suggerimento: scegli la tua cartella di Google Drive, OneDrive o Dropbox e l'app desktop la sincronizzerà con il cloud.",
+    "folderChosen": "Salvataggio in “{{name}}”",
+    "folderUnsupported": "Disponibile in Chrome, Edge e nell'app desktop di Kasa POS.",
+    "chooseFolder": "Scegli cartella",
+    "changeFolder": "Cambia cartella",
+    "forgetFolder": "Smetti di usare questa cartella",
+    "allowFolder": "Consenti l'accesso",
+    "folderAllowed": "Accesso alla cartella consentito",
+    "notConfigured": "Non ancora configurato per questa installazione. Vedi “Automatic backups” in docs/DEPLOYMENT.md.",
+    "desktopUseFolder": "Non ancora disponibile nell'app desktop. Usa invece “Cartella su questo computer” e scegli la tua cartella {{name}}.",
+    "mobileUseFile": "Non ancora disponibile nell'app mobile. Scarica un backup da Backup e ripristino e salvalo in {{name}}.",
+    "hint": {
+      "gdrive": "Salvato in una cartella “Kasa POS Backups” nel tuo Google Drive.",
+      "onedrive": "Salvato nella cartella dedicata dell'app sotto Apps nel tuo OneDrive.",
+      "dropbox": "Salvato nella cartella dedicata dell'app sotto Apps nel tuo Dropbox."
+    },
+    "connect": "Connetti {{name}}",
+    "connected": "{{name}} connesso",
+    "connectedAs": "Connesso come {{account}}",
+    "reconnect": "Accedi di nuovo",
+    "disconnect": "Disconnetti",
+    "disconnectTitle": "Disconnettere {{name}}?",
+    "disconnectHint": "I backup già salvati lì restano dove sono.",
+    "popupBlocked": "La finestra di accesso è stata bloccata. Consenti i popup per questo sito e riprova.",
+    "lastSuccess": "Ultimo backup {{time}}",
+    "needs": {
+      "reconnect": "Disconnesso — accedi di nuovo per riprendere i backup",
+      "permission": "Richiede autorizzazione — premi “Consenti l'accesso”"
+    },
+    "restoreFrom": "Ripristina…",
+    "restoreTitle": "Ripristina da {{name}}",
+    "noBackups": "Ancora nessun backup qui.",
+    "encryptedFileTitle": "Backup crittografato",
+    "encryptedFileHint": "Inserisci la frase segreta con cui è stato crittografato questo backup.",
+    "wrongPassphrase": "Questa frase segreta non apre questo backup."
   }
 }

@@ -73,6 +73,11 @@
       "title": "حول",
       "desc": "الإصدار والتخزين واختصارات لوحة المفاتيح",
       "keywords": "إصدار، تخزين، اختصارات، لوحة مفاتيح، شكر، منصة"
+    },
+    "autoBackup": {
+      "title": "النسخ الاحتياطي التلقائي",
+      "desc": "انسخ احتياطيًا حسب جدول إلى هذا الجهاز أو مجلد أو Google Drive أو OneDrive أو Dropbox",
+      "keywords": "تلقائي، جدولة، سحابة، مجلد، تشفير، لقطة، auto, schedule, cloud, google drive, onedrive, dropbox, folder, encrypt, snapshot"
     }
   },
   "business": {
@@ -156,7 +161,23 @@
     "gstMode": "وضع GST الهندي",
     "gstModeHint": "يقسّم الضريبة إلى CGST + SGST، أو IGST للمبيعات بين الولايات، ويطبع رموز HSN.",
     "intraState": "داخل منطقتك",
-    "interState": "المناطق الأخرى"
+    "interState": "المناطق الأخرى",
+    "productCount_zero": "{{count}} منتج",
+    "productCount_two": "منتجان",
+    "productCount_few": "{{count}} منتجات",
+    "productCount_many": "{{count}} منتجًا",
+    "rateChangeWarning_zero": "{{count}} منتج يستخدم هذه النسبة. ستُفرض الضريبة على مبيعاتها المستقبلية بالنسبة الجديدة.",
+    "rateChangeWarning_two": "منتجان يستخدمان هذه النسبة. ستُفرض الضريبة على مبيعاتهما المستقبلية بالنسبة الجديدة.",
+    "rateChangeWarning_few": "{{count}} منتجات تستخدم هذه النسبة. ستُفرض الضريبة على مبيعاتها المستقبلية بالنسبة الجديدة.",
+    "rateChangeWarning_many": "{{count}} منتجًا يستخدم هذه النسبة. ستُفرض الضريبة على مبيعاتها المستقبلية بالنسبة الجديدة.",
+    "inUse_zero": "لا تزال {{count}} منتج تستخدم هذه النسبة.",
+    "inUse_two": "لا يزال منتجان يستخدمان هذه النسبة.",
+    "inUse_few": "لا تزال {{count}} منتجات تستخدم هذه النسبة.",
+    "inUse_many": "لا تزال {{count}} منتجًا تستخدم هذه النسبة.",
+    "moveProducts_zero": "نقل {{count}} منتج إلى",
+    "moveProducts_two": "نقل منتجين إلى",
+    "moveProducts_few": "نقل {{count}} منتجات إلى",
+    "moveProducts_many": "نقل {{count}} منتجًا إلى"
   },
   "formats": {
     "preview": "معاينة",
@@ -235,7 +256,11 @@
     "loyaltyReturn": "أي ما يعادل {{percent}}% استردادًا.",
     "loyaltyEarnRateRange": "أدخل رقمًا من 0 إلى {{max}}",
     "loyaltyPointValueRange": "أدخل مبلغًا يساوي 0 أو أكثر",
-    "loyaltyTooGenerous": "بهذه النسب، يسترد العملاء بقدر ما ينفقونه أو أكثر. تحقق من النقاط لكل وحدة وقيمة النقطة الواحدة."
+    "loyaltyTooGenerous": "بهذه النسب، يسترد العملاء بقدر ما ينفقونه أو أكثر. تحقق من النقاط لكل وحدة وقيمة النقطة الواحدة.",
+    "minutes_zero": "بعد {{count}} دقيقة",
+    "minutes_two": "بعد دقيقتين",
+    "minutes_few": "بعد {{count}} دقائق",
+    "minutes_many": "بعد {{count}} دقيقةً"
   },
   "receipt": {
     "content": "المحتوى",
@@ -311,7 +336,11 @@
     "recognised": "تم التعرف على ملصق الميزان",
     "itemCode": "رمز الصنف",
     "product": "المنتج",
-    "noProduct": "لا يوجد منتج بهذا الـ SKU أو الباركود"
+    "noProduct": "لا يوجد منتج بهذا الـ SKU أو الباركود",
+    "digits_zero": "{{count}} رقم",
+    "digits_two": "رقمان",
+    "digits_few": "{{count}} أرقام",
+    "digits_many": "{{count}} رقمًا"
   },
   "device": {
     "intro": "تنطبق هذه الإعدادات على هذا الجهاز فقط. يمكن أن يكون لكل جهاز لغته ومظهره وطابعته الخاصة.",
@@ -398,7 +427,11 @@
     "cloudTitle": "السحابة",
     "cloudHint": "انشر نفس الخادم على أي مضيف يدعم HTTPS لربط الفروع ومتابعة المبيعات من أي مكان.",
     "readme": "الإعداد ومفاتيح المتجر وواجهة HTTP API موصوفة في",
-    "mixedContent": "هذا التطبيق مفتوح عبر https://، والمتصفحات تمنع الاتصالات منه بخادم http://. استخدم عنوان https:// للخادم، أو استخدم تطبيق سطح المكتب على هذا الجهاز."
+    "mixedContent": "هذا التطبيق مفتوح عبر https://، والمتصفحات تمنع الاتصالات منه بخادم http://. استخدم عنوان https:// للخادم، أو استخدم تطبيق سطح المكتب على هذا الجهاز.",
+    "pending_zero": "{{count}} تغيير بانتظار المزامنة",
+    "pending_two": "تغييران بانتظار المزامنة",
+    "pending_few": "{{count}} تغييرات بانتظار المزامنة",
+    "pending_many": "{{count}} تغييرًا بانتظار المزامنة"
   },
   "backup": {
     "staleTitle": "كانت آخر نسخة احتياطية {{time}}",
@@ -456,7 +489,11 @@
     "emptyFiltered": "لا يوجد ما يطابق عوامل التصفية هذه.",
     "prev": "الصفحة السابقة",
     "next": "الصفحة التالية",
-    "page": "صفحة {{page}} من {{pages}}"
+    "page": "صفحة {{page}} من {{pages}}",
+    "count_zero": "{{formatted}} إدخال",
+    "count_two": "إدخالان",
+    "count_few": "{{formatted}} إدخالات",
+    "count_many": "{{formatted}} إدخالًا"
   },
   "auditActions": {
     "login": "تم تسجيل الدخول",
@@ -497,7 +534,8 @@
     "stock_count": "جرد المخزون",
     "supplier_delete": "تم حذف المورّد",
     "cash_in": "تمت إضافة نقد إلى الدرج",
-    "cash_out": "تم سحب نقد من الدرج"
+    "cash_out": "تم سحب نقد من الدرج",
+    "backup_auto": "النسخ الاحتياطي التلقائي"
   },
   "danger": {
     "erase": "محو جميع بيانات هذا الجهاز",
@@ -537,5 +575,86 @@
     "credits": "شكر وتقدير",
     "creditsText": "بُني Kasa POS على هذه المشاريع مفتوحة المصدر الممتازة:",
     "license": "الترخيص"
-  }
+  },
+  "autoBackup": {
+    "scheduleTitle": "الجدولة",
+    "scheduleHint": "يُنشئ Kasa POS نسخة احتياطية كلما حان موعدها ويرسلها إلى كل وجهة فعّلتها أدناه.",
+    "every": "انسخ احتياطيًا",
+    "onlyShift": "فقط بعد إغلاق الوردية",
+    "keep": "عدد النسخ المحتفظ بها",
+    "keepHint": "لكل مجلد أو حساب سحابي؛ يُحذف الأقدم",
+    "keepOnDevice": "النسخ الموجودة على هذا الجهاز",
+    "onShiftClose": "انسخ احتياطيًا أيضًا عند إغلاق الوردية",
+    "onShiftCloseHint": "تكون إيرادات اليوم نهائية حينها، فهي لحظة مناسبة",
+    "encrypt": "تشفير النسخ الاحتياطية",
+    "encryptHint": "يُنصح به للنسخ الاحتياطية السحابية: فهي تحتوي على بيانات العملاء وأرقام PIN للموظفين",
+    "encryptedOn": "مُشفّرة",
+    "changePassphrase": "تغيير عبارة المرور",
+    "passphrase": "عبارة المرور",
+    "passphraseConfirm": "تأكيد عبارة المرور",
+    "passphraseShort": "استخدم 8 أحرف على الأقل",
+    "passphraseMismatch": "عبارتا المرور غير متطابقتين",
+    "passphraseSaved": "تم حفظ عبارة المرور. ستُشفَّر النسخ الاحتياطية الجديدة.",
+    "passphraseWarning": "اكتب عبارة المرور واحتفظ بها. فبدونها، لا يمكن استعادة النسخ الاحتياطية المشفّرة — ولا حتى من قِبلنا.",
+    "backupNow": "انسخ احتياطيًا الآن",
+    "whileOpen": "تعمل النسخ الاحتياطية أثناء فتح Kasa POS. إذا فاتت إحداها، فستُنفَّذ في المرة التالية التي يُفتح فيها التطبيق.",
+    "done": "اكتمل النسخ الاحتياطي",
+    "noneEnabled": "فعّل وجهة واحدة على الأقل أولًا",
+    "destinations": "الوجهات",
+    "destinationsHint": "استخدم وجهة واحدة على الأقل غير هذا الجهاز، حتى لا يأخذ جهاز مفقود أو تالف بياناتك معه.",
+    "device": "على هذا الجهاز",
+    "deviceHint": "نسخ حديثة محفوظة داخل Kasa POS. تحمي من الأخطاء، لا من فقدان الجهاز.",
+    "folder": "مجلد على هذا الكمبيوتر",
+    "folderHint": "نصيحة: اختر مجلد Google Drive أو OneDrive أو Dropbox، وسيُزامنه تطبيق سطح المكتب مع السحابة.",
+    "folderChosen": "الحفظ في “{{name}}”",
+    "folderUnsupported": "متاح في Chrome وEdge وتطبيق Kasa POS لسطح المكتب.",
+    "chooseFolder": "اختيار مجلد",
+    "changeFolder": "تغيير المجلد",
+    "forgetFolder": "التوقف عن استخدام هذا المجلد",
+    "allowFolder": "السماح بالوصول",
+    "folderAllowed": "تم السماح بالوصول إلى المجلد",
+    "notConfigured": "لم يُعدّ هذا بعد لهذا التثبيت. راجع “Automatic backups” في docs/DEPLOYMENT.md.",
+    "desktopUseFolder": "غير متاح بعد في تطبيق سطح المكتب. استخدم “مجلد على هذا الكمبيوتر” واختر مجلد {{name}} بدلًا من ذلك.",
+    "mobileUseFile": "غير متاح بعد في تطبيق الجوال. نزّل نسخة احتياطية من “النسخ الاحتياطي والاستعادة” واحفظها في {{name}}.",
+    "hint": {
+      "gdrive": "تُحفظ في مجلد باسم “Kasa POS Backups” داخل Google Drive الخاص بك.",
+      "onedrive": "تُحفظ في مجلد هذا التطبيق الخاص تحت Apps في OneDrive الخاص بك.",
+      "dropbox": "تُحفظ في مجلد هذا التطبيق الخاص تحت Apps في Dropbox الخاص بك."
+    },
+    "connect": "الاتصال بـ {{name}}",
+    "connected": "تم الاتصال بـ {{name}}",
+    "connectedAs": "متصل باسم {{account}}",
+    "reconnect": "تسجيل الدخول مرة أخرى",
+    "disconnect": "قطع الاتصال",
+    "disconnectTitle": "قطع الاتصال بـ {{name}}؟",
+    "disconnectHint": "تبقى النسخ الاحتياطية المحفوظة هناك في مكانها.",
+    "popupBlocked": "تم حظر نافذة تسجيل الدخول. اسمح بالنوافذ المنبثقة لهذا الموقع وحاول مرة أخرى.",
+    "lastSuccess": "آخر نسخة احتياطية {{time}}",
+    "needs": {
+      "reconnect": "تم تسجيل الخروج — سجّل الدخول مرة أخرى لاستئناف النسخ الاحتياطي",
+      "permission": "بحاجة إلى إذن — اضغط “السماح بالوصول”"
+    },
+    "restoreFrom": "استعادة…",
+    "restoreTitle": "استعادة من {{name}}",
+    "noBackups": "لا توجد نسخ احتياطية هنا بعد.",
+    "encryptedFileTitle": "نسخة احتياطية مشفّرة",
+    "encryptedFileHint": "أدخل عبارة المرور التي شُفّرت بها هذه النسخة الاحتياطية.",
+    "wrongPassphrase": "عبارة المرور هذه لا تفتح هذه النسخة الاحتياطية.",
+    "interval_zero": "كل {{count}} ساعة",
+    "interval_one": "كل ساعة",
+    "interval_two": "كل ساعتين",
+    "interval_few": "كل {{count}} ساعات",
+    "interval_many": "كل {{count}} ساعةً",
+    "interval_other": "كل {{count}} ساعة",
+    "someFailed_zero": "{{count}} وجهة فشلت — انظر أدناه",
+    "someFailed_one": "{{count}} وجهة فشلت — انظر أدناه",
+    "someFailed_two": "وجهتان فشلتا — انظر أدناه",
+    "someFailed_few": "{{count}} وجهات فشلت — انظر أدناه",
+    "someFailed_many": "{{count}} وجهةً فشلت — انظر أدناه",
+    "someFailed_other": "{{count}} وجهة فشلت — انظر أدناه"
+  },
+  "results_zero": "{{count}} نتيجة",
+  "results_two": "نتيجتان",
+  "results_few": "{{count}} نتائج",
+  "results_many": "{{count}} نتيجةً"
 }

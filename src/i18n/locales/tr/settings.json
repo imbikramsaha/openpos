@@ -73,6 +73,11 @@
       "title": "Hakkında",
       "desc": "Sürüm, depolama ve klavye kısayolları",
       "keywords": "sürüm, depolama, kısayollar, klavye, katkıda bulunanlar, platform"
+    },
+    "autoBackup": {
+      "title": "Otomatik yedekleme",
+      "desc": "Bu cihaza, bir klasöre, Google Drive'a, OneDrive'a veya Dropbox'a zamanlanmış şekilde yedekleyin",
+      "keywords": "otomatik, zamanlama, bulut, klasör, şifreleme, anlık görüntü, auto, schedule, cloud, google drive, onedrive, dropbox, folder, encrypt, snapshot"
     }
   },
   "business": {
@@ -497,7 +502,8 @@
     "stock_count": "Stok sayımı",
     "supplier_delete": "Tedarikçi silindi",
     "cash_in": "Çekmeceye nakit eklendi",
-    "cash_out": "Çekmeceden nakit çıkarıldı"
+    "cash_out": "Çekmeceden nakit çıkarıldı",
+    "backup_auto": "Otomatik yedekleme"
   },
   "danger": {
     "erase": "Bu cihazdaki tüm verileri sil",
@@ -537,5 +543,74 @@
     "credits": "Katkıda bulunanlar",
     "creditsText": "Kasa POS şu mükemmel açık kaynak projeleri üzerine inşa edilmiştir:",
     "license": "Lisans"
+  },
+  "autoBackup": {
+    "scheduleTitle": "Zamanlama",
+    "scheduleHint": "Kasa POS, zamanı geldiğinde bir yedekleme yapar ve aşağıda açtığınız her hedefe gönderir.",
+    "every": "Yedekleme",
+    "interval_one": "Her saat",
+    "interval_other": "Her {{count}} saatte bir",
+    "onlyShift": "Yalnızca bir vardiya kapatıldıktan sonra",
+    "keep": "Saklanacak kopya sayısı",
+    "keepHint": "Klasör veya bulut hesabı başına; eskiler silinir",
+    "keepOnDevice": "Bu cihazdaki kopyalar",
+    "onShiftClose": "Bir vardiya kapatıldığında da yedekle",
+    "onShiftCloseHint": "Günün hasılatı o zaman kesinleşir, bu yüzden iyi bir andır",
+    "encrypt": "Yedekleri şifrele",
+    "encryptHint": "Bulut yedekleri için önerilir: müşteri bilgilerini ve personel PIN'lerini içerirler",
+    "encryptedOn": "Şifrelendi",
+    "changePassphrase": "Parolayı değiştir",
+    "passphrase": "Parola",
+    "passphraseConfirm": "Parolayı onaylayın",
+    "passphraseShort": "En az 8 karakter kullanın",
+    "passphraseMismatch": "Parolalar eşleşmiyor",
+    "passphraseSaved": "Parola kaydedildi. Yeni yedekler şifrelenecek.",
+    "passphraseWarning": "Parolayı bir yere yazın. Onsuz, şifrelenmiş yedekler geri yüklenemez — biz bile yapamayız.",
+    "backupNow": "Şimdi yedekle",
+    "whileOpen": "Yedeklemeler Kasa POS açıkken çalışır. Biri atlanırsa, uygulama bir sonraki açılışında çalışır.",
+    "done": "Yedekleme tamamlandı",
+    "someFailed_one": "{{count}} hedef başarısız oldu — aşağıya bakın",
+    "someFailed_other": "{{count}} hedef başarısız oldu — aşağıya bakın",
+    "noneEnabled": "Önce en az bir hedef açın",
+    "destinations": "Hedefler",
+    "destinationsHint": "Bu cihaz dışında en az bir hedef kullanın, böylece kaybolan veya bozulan bir cihaz verilerinizi de götürmez.",
+    "device": "Bu cihazda",
+    "deviceHint": "Son kopyalar Kasa POS içinde saklanır. Hatalara karşı korur, cihaz kaybına karşı korumaz.",
+    "folder": "Bu bilgisayardaki klasör",
+    "folderHint": "İpucu: Google Drive, OneDrive veya Dropbox klasörünüzü seçin; masaüstü uygulaması onu buluta senkronize eder.",
+    "folderChosen": "“{{name}}” içine kaydediliyor",
+    "folderUnsupported": "Chrome, Edge ve Kasa POS masaüstü uygulamasında kullanılabilir.",
+    "chooseFolder": "Klasör seç",
+    "changeFolder": "Klasörü değiştir",
+    "forgetFolder": "Bu klasörü kullanmayı bırak",
+    "allowFolder": "Erişime izin ver",
+    "folderAllowed": "Klasör erişimine izin verildi",
+    "notConfigured": "Bu kurulum için henüz ayarlanmadı. docs/DEPLOYMENT.md içindeki “Automatic backups” bölümüne bakın.",
+    "desktopUseFolder": "Masaüstü uygulamasında henüz kullanılamıyor. Bunun yerine “Bu bilgisayardaki klasör”ü kullanın ve {{name}} klasörünüzü seçin.",
+    "mobileUseFile": "Mobil uygulamada henüz kullanılamıyor. “Yedekleme ve geri yükleme”den bir yedek indirin ve {{name}} konumuna kaydedin.",
+    "hint": {
+      "gdrive": "Google Drive'ınızdaki bir “Kasa POS Backups” klasörüne kaydedilir.",
+      "onedrive": "OneDrive'ınızdaki Uygulamalar altında bu uygulamanın kendi klasörüne kaydedilir.",
+      "dropbox": "Dropbox'ınızdaki Uygulamalar altında bu uygulamanın kendi klasörüne kaydedilir."
+    },
+    "connect": "{{name}} hesabını bağla",
+    "connected": "{{name}} hesabı bağlandı",
+    "connectedAs": "{{account}} olarak bağlandı",
+    "reconnect": "Tekrar giriş yap",
+    "disconnect": "Bağlantıyı kes",
+    "disconnectTitle": "{{name}} bağlantısı kesilsin mi?",
+    "disconnectHint": "Orada zaten kaydedilmiş yedekler oldukları yerde kalır.",
+    "popupBlocked": "Giriş penceresi engellendi. Bu site için açılır pencerelere izin verin ve tekrar deneyin.",
+    "lastSuccess": "Son yedekleme {{time}}",
+    "needs": {
+      "reconnect": "Oturum kapatıldı — yedeklemeye devam etmek için tekrar giriş yapın",
+      "permission": "İzin gerekiyor — “Erişime izin ver”e basın"
+    },
+    "restoreFrom": "Geri yükle…",
+    "restoreTitle": "{{name}} kaynağından geri yükle",
+    "noBackups": "Burada henüz yedek yok.",
+    "encryptedFileTitle": "Şifrelenmiş yedek",
+    "encryptedFileHint": "Bu yedeğin şifrelendiği parolayı girin.",
+    "wrongPassphrase": "Bu parola bu yedeği açmıyor."
   }
 }

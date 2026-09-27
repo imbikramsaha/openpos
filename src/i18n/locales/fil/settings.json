@@ -73,6 +73,11 @@
       "title": "Tungkol dito",
       "desc": "Bersyon, storage at keyboard shortcut",
       "keywords": "bersyon, storage, shortcut, keyboard, credits, platform"
+    },
+    "autoBackup": {
+      "title": "Awtomatikong backup",
+      "desc": "Mag-backup sa iskedyul patungo sa device na ito, isang folder, Google Drive, OneDrive o Dropbox",
+      "keywords": "awtomatiko, iskedyul, folder, auto, schedule, cloud, google drive, onedrive, dropbox, encrypt, snapshot"
     }
   },
   "business": {
@@ -497,7 +502,8 @@
     "stock_count": "Pagbibilang ng stock",
     "supplier_delete": "Nabura ang supplier",
     "cash_in": "Nagdagdag ng cash sa drawer",
-    "cash_out": "Kumuha ng cash sa drawer"
+    "cash_out": "Kumuha ng cash sa drawer",
+    "backup_auto": "Awtomatikong backup"
   },
   "danger": {
     "erase": "Burahin ang lahat ng data sa device na ito",
@@ -537,5 +543,74 @@
     "credits": "Credits",
     "creditsText": "Binuo ang Kasa POS gamit ang mga mahusay na open-source project na ito:",
     "license": "Lisensya"
+  },
+  "autoBackup": {
+    "scheduleTitle": "Schedule",
+    "scheduleHint": "Gumagawa ang Kasa POS ng backup kapag oras na, at ipinapadala ito sa bawat destinasyong naka-on sa ibaba.",
+    "every": "Mag-backup",
+    "interval_one": "Bawat oras",
+    "interval_other": "Bawat {{count}} na oras",
+    "onlyShift": "Pagkatapos lang isara ang shift",
+    "keep": "Mga kopyang itatago",
+    "keepHint": "Bawat folder o cloud account; binubura ang mga mas lumang kopya",
+    "keepOnDevice": "Mga kopya sa device na ito",
+    "onShiftClose": "Mag-backup din kapag isinara ang shift",
+    "onShiftCloseHint": "Tapos na ang kita ng araw sa puntong iyon, kaya magandang oras ito",
+    "encrypt": "I-encrypt ang mga backup",
+    "encryptHint": "Rekomendado para sa cloud backup: may laman itong detalye ng customer at PIN ng staff",
+    "encryptedOn": "Naka-encrypt",
+    "changePassphrase": "Baguhin ang passphrase",
+    "passphrase": "Passphrase",
+    "passphraseConfirm": "Kumpirmahin ang passphrase",
+    "passphraseShort": "Gumamit ng hindi bababa sa 8 na character",
+    "passphraseMismatch": "Hindi tugma ang mga passphrase",
+    "passphraseSaved": "Na-save ang passphrase. Maie-encrypt ang mga bagong backup.",
+    "passphraseWarning": "Isulat ang passphrase sa ligtas na lugar. Kapag nawala ito, hindi na maibabalik ang mga naka-encrypt na backup — kahit kami.",
+    "backupNow": "Mag-backup ngayon",
+    "whileOpen": "Tumatakbo ang mga backup habang bukas ang Kasa POS. Kapag napalampas ang isa, tatakbo ito sa susunod na pagbukas ng app.",
+    "done": "Kumpleto na ang backup",
+    "someFailed_one": "{{count}} destinasyon ang nabigo — tingnan sa ibaba",
+    "someFailed_other": "{{count}} destinasyon ang nabigo — tingnan sa ibaba",
+    "noneEnabled": "Mag-on muna ng kahit isang destinasyon",
+    "destinations": "Mga Destinasyon",
+    "destinationsHint": "Gumamit ng kahit isa na hindi ang device na ito, para hindi mawala ang iyong data kapag nawala o nasira ang device.",
+    "device": "Sa device na ito",
+    "deviceHint": "Naka-store ang mga kamakailang kopya sa loob ng Kasa POS. Proteksyon laban sa pagkakamali, hindi laban sa pagkawala ng device.",
+    "folder": "Folder sa computer na ito",
+    "folderHint": "Tip: piliin ang iyong Google Drive, OneDrive o Dropbox folder at ise-sync ito ng desktop app sa cloud.",
+    "folderChosen": "Sine-save sa “{{name}}”",
+    "folderUnsupported": "Available sa Chrome, Edge at sa desktop app ng Kasa POS.",
+    "chooseFolder": "Pumili ng folder",
+    "changeFolder": "Palitan ang folder",
+    "forgetFolder": "Itigil ang paggamit ng folder na ito",
+    "allowFolder": "Payagan ang access",
+    "folderAllowed": "Pinayagan ang access sa folder",
+    "notConfigured": "Hindi pa naka-set up para sa installation na ito. Tingnan ang “Automatic backups” sa docs/DEPLOYMENT.md.",
+    "desktopUseFolder": "Hindi pa available sa desktop app. Gamitin ang “Folder sa computer na ito” at piliin ang iyong {{name}} folder.",
+    "mobileUseFile": "Hindi pa available sa mobile app. Mag-download ng backup mula sa Backup & restore at i-save ito sa {{name}}.",
+    "hint": {
+      "gdrive": "Naka-save sa isang “Kasa POS Backups” folder sa iyong Google Drive.",
+      "onedrive": "Naka-save sa sariling folder ng app na ito sa ilalim ng Apps sa iyong OneDrive.",
+      "dropbox": "Naka-save sa sariling folder ng app na ito sa ilalim ng Apps sa iyong Dropbox."
+    },
+    "connect": "Ikonekta ang {{name}}",
+    "connected": "Nakakonekta ang {{name}}",
+    "connectedAs": "Nakakonekta bilang {{account}}",
+    "reconnect": "Mag-sign in ulit",
+    "disconnect": "Idiskonekta",
+    "disconnectTitle": "Idiskonekta ang {{name}}?",
+    "disconnectHint": "Mananatili sa kinaroroonan nila ang mga backup na na-save na roon.",
+    "popupBlocked": "Na-block ang sign-in window. Payagan ang mga pop-up para sa site na ito at subukan ulit.",
+    "lastSuccess": "Huling backup {{time}}",
+    "needs": {
+      "reconnect": "Naka-sign out — mag-sign in ulit para ituloy ang mga backup",
+      "permission": "Kailangan ng pahintulot — pindutin ang “Payagan ang access”"
+    },
+    "restoreFrom": "I-restore…",
+    "restoreTitle": "I-restore mula sa {{name}}",
+    "noBackups": "Wala pang backup dito.",
+    "encryptedFileTitle": "Naka-encrypt na backup",
+    "encryptedFileHint": "Ilagay ang passphrase na pinag-encrypt-an ng backup na ito.",
+    "wrongPassphrase": "Hindi mabuksan ng passphrase na iyon ang backup na ito."
   }
 }
