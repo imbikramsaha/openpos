@@ -69,6 +69,6 @@
     "vitest": "^5.0.1",
     "workbox-window": "^7.4.1"
   },
-  "repository": "github:imbikramsaha/kasa-pos",
+  "repository": "github:imbikramsaha/openpos",
   "desktopName": "openpos.desktop"
 }

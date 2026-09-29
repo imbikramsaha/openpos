@@ -106,7 +106,7 @@ deb:
 
 # Auto-update + release assets (GitHub Releases). Owner/repo come from package.json "repository"
 # or the `origin` git remote (scripts/github-setup.sh creates it). Before either exists, local
-# builds need: -c.publish.owner=<github-user> -c.publish.repo=kasa-pos
+# builds need: -c.publish.owner=<github-user> -c.publish.repo=openpos
 # The release workflow uploads into a draft release and publishes it when every job succeeded.
 publish:
   provider: github

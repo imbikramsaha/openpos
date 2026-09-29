@@ -113,7 +113,7 @@ GitHub Actions minutes: on a private repository the Free plan includes 2,000 min
 minutes count 10× and Windows 2×, so one release uses roughly 150–250 of them. Public repositories don't use minutes.
 
 Local builds need to know the GitHub repository for update metadata. They find it in package.json
-`repository` or the `origin` remote. Before either exists, add `-c.publish.owner=<user> -c.publish.repo=kasa-pos`.
+`repository` or the `origin` remote. Before either exists, add `-c.publish.owner=<user> -c.publish.repo=openpos`.
 
 ### Code signing (optional, recommended for shops)
 

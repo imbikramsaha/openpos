@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # One-command GitHub setup for OpenPOS.
 #
-#   bash scripts/github-setup.sh [--name kasa-pos] [--public|--private] [--no-hooks]
+#   bash scripts/github-setup.sh [--name openpos] [--public|--private] [--no-hooks]
 #   (or: npm run github:setup -- --name my-shop-pos)
 #
 # 1. installs the GitHub CLI (gh) into ~/.local/bin if it is missing
@@ -36,7 +36,7 @@ usage() {
 }
 
 # ---------------------------------------------------------------- arguments
-REPO_NAME="${REPO_NAME:-kasa-pos}"
+REPO_NAME="${REPO_NAME:-openpos}"
 VISIBILITY="${VISIBILITY:-private}"
 REPO_DESCRIPTION="${REPO_DESCRIPTION:-OpenPOS - offline-first point of sale for web, Windows, macOS, Linux, Android and iOS}"
 INSTALL_HOOKS=1

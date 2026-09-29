@@ -8,10 +8,10 @@ One codebase → <b>Web (PWA) · Windows · macOS · Linux · Android · iOS</b>
 </p>
 
 <p align="center">
-<a href="https://github.com/imbikramsaha/kasa-pos/releases/latest/download/OpenPOS-Setup-x64.exe"><img alt="Download for Windows" src="https://img.shields.io/badge/Windows-Download-0078D4?style=for-the-badge"></a>
-<a href="https://github.com/imbikramsaha/kasa-pos/releases/latest/download/OpenPOS-mac-universal.dmg"><img alt="Download for Mac" src="https://img.shields.io/badge/Mac-Download-000000?style=for-the-badge&logo=apple&logoColor=white"></a>
-<a href="https://github.com/imbikramsaha/kasa-pos/releases/latest/download/openpos-linux-amd64.deb"><img alt="Download for Linux" src="https://img.shields.io/badge/Linux-Download-E95420?style=for-the-badge&logo=linux&logoColor=white"></a>
-<a href="https://github.com/imbikramsaha/kasa-pos/releases/latest/download/OpenPOS-android.apk"><img alt="Download for Android" src="https://img.shields.io/badge/Android-Download-3DDC84?style=for-the-badge&logo=android&logoColor=white"></a>
+<a href="https://github.com/imbikramsaha/openpos/releases/latest/download/OpenPOS-Setup-x64.exe"><img alt="Download for Windows" src="https://img.shields.io/badge/Windows-Download-0078D4?style=for-the-badge"></a>
+<a href="https://github.com/imbikramsaha/openpos/releases/latest/download/OpenPOS-mac-universal.dmg"><img alt="Download for Mac" src="https://img.shields.io/badge/Mac-Download-000000?style=for-the-badge&logo=apple&logoColor=white"></a>
+<a href="https://github.com/imbikramsaha/openpos/releases/latest/download/openpos-linux-amd64.deb"><img alt="Download for Linux" src="https://img.shields.io/badge/Linux-Download-E95420?style=for-the-badge&logo=linux&logoColor=white"></a>
+<a href="https://github.com/imbikramsaha/openpos/releases/latest/download/OpenPOS-android.apk"><img alt="Download for Android" src="https://img.shields.io/badge/Android-Download-3DDC84?style=for-the-badge&logo=android&logoColor=white"></a>
 <a href="https://appkasapos.netlify.app"><img alt="Open on iPhone and iPad" src="https://img.shields.io/badge/iPhone%20%26%20iPad-Open-555555?style=for-the-badge&logo=apple&logoColor=white"></a>
 <a href="https://appkasapos.netlify.app"><img alt="Open in the browser" src="https://img.shields.io/badge/Web-Open-101012?style=for-the-badge&logo=googlechrome&logoColor=white"></a>
 </p>
@@ -20,16 +20,16 @@ One codebase → <b>Web (PWA) · Windows · macOS · Linux · Android · iOS</b>
 
 ## Download
 
-Every link below downloads the newest version. Older versions are on the [releases page](https://github.com/imbikramsaha/kasa-pos/releases).
+Every link below downloads the newest version. Older versions are on the [releases page](https://github.com/imbikramsaha/openpos/releases).
 
 | Device | Download |
 |---|---|
-| **Windows** 10 and 11 | [Installer (.exe)](https://github.com/imbikramsaha/kasa-pos/releases/latest/download/OpenPOS-Setup-x64.exe) · [Portable, no install needed](https://github.com/imbikramsaha/kasa-pos/releases/latest/download/OpenPOS-Portable-x64.exe) |
-| **Mac**, Apple Silicon and Intel | [OpenPOS-mac-universal.dmg](https://github.com/imbikramsaha/kasa-pos/releases/latest/download/OpenPOS-mac-universal.dmg) |
-| **Linux**: Ubuntu, Debian, Mint, Pop!_OS | [.deb](https://github.com/imbikramsaha/kasa-pos/releases/latest/download/openpos-linux-amd64.deb) |
-| **Linux**: any distribution | [AppImage](https://github.com/imbikramsaha/kasa-pos/releases/latest/download/OpenPOS-linux-x86_64.AppImage) |
-| **Linux ARM**: Raspberry Pi 4 and 5 | [.deb](https://github.com/imbikramsaha/kasa-pos/releases/latest/download/openpos-linux-arm64.deb) · [AppImage](https://github.com/imbikramsaha/kasa-pos/releases/latest/download/OpenPOS-linux-arm64.AppImage) |
-| **Android** phones and tablets (Android 7 or newer) | [OpenPOS-android.apk](https://github.com/imbikramsaha/kasa-pos/releases/latest/download/OpenPOS-android.apk) |
+| **Windows** 10 and 11 | [Installer (.exe)](https://github.com/imbikramsaha/openpos/releases/latest/download/OpenPOS-Setup-x64.exe) · [Portable, no install needed](https://github.com/imbikramsaha/openpos/releases/latest/download/OpenPOS-Portable-x64.exe) |
+| **Mac**, Apple Silicon and Intel | [OpenPOS-mac-universal.dmg](https://github.com/imbikramsaha/openpos/releases/latest/download/OpenPOS-mac-universal.dmg) |
+| **Linux**: Ubuntu, Debian, Mint, Pop!_OS | [.deb](https://github.com/imbikramsaha/openpos/releases/latest/download/openpos-linux-amd64.deb) |
+| **Linux**: any distribution | [AppImage](https://github.com/imbikramsaha/openpos/releases/latest/download/OpenPOS-linux-x86_64.AppImage) |
+| **Linux ARM**: Raspberry Pi 4 and 5 | [.deb](https://github.com/imbikramsaha/openpos/releases/latest/download/openpos-linux-arm64.deb) · [AppImage](https://github.com/imbikramsaha/openpos/releases/latest/download/OpenPOS-linux-arm64.AppImage) |
+| **Android** phones and tablets (Android 7 or newer) | [OpenPOS-android.apk](https://github.com/imbikramsaha/openpos/releases/latest/download/OpenPOS-android.apk) |
 | **iPhone and iPad** | Open **https://appkasapos.netlify.app** in Safari, tap **Share**, then **Add to Home Screen** |
 | **Any device with a browser** (Chromebook, shared PCs) | **https://appkasapos.netlify.app**, then the **Install app** button (⬇) at the top |
 
