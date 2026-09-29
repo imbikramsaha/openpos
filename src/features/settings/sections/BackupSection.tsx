@@ -93,7 +93,7 @@ export function BackupSection() {
           <div className="grid grid-cols-3 gap-2 sm:grid-cols-6">
             {SHOWN.map((name) => (
               <div key={name} className="rounded-xl bg-surface-2 px-3 py-2">
-                <div className="tnum text-lg font-bold">{counts ? formatNumber(counts[name] ?? 0) : '…'}</div>
+                <div className="tnum text-lg font-semibold">{counts ? formatNumber(counts[name] ?? 0) : '…'}</div>
                 <div className="truncate text-xs text-subtle">{t(`backup.tables.${name}`)}</div>
               </div>
             ))}
@@ -147,7 +147,7 @@ export function BackupSection() {
             <div className="grid grid-cols-2 gap-2 sm:grid-cols-3">
               {SHOWN.map((name) => (
                 <div key={name} className="rounded-xl bg-surface-2 px-3 py-2">
-                  <div className="tnum font-bold">{formatNumber(summary.counts[name] ?? 0)}</div>
+                  <div className="tnum font-semibold">{formatNumber(summary.counts[name] ?? 0)}</div>
                   <div className="truncate text-xs text-subtle">{t(`backup.tables.${name}`)}</div>
                 </div>
               ))}

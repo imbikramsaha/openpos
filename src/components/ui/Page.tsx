@@ -19,7 +19,7 @@ export function PageHeader({ title, subtitle, actions, onBack, children }: { tit
         )}
         {/* The title keeps a readable width; actions wrap onto their own line on narrow phones. */}
         <div className="min-w-[min(10rem,100%)] flex-1">
-          <h1 className="truncate text-xl font-bold tracking-tight">{title}</h1>
+          <h1 className="truncate text-xl font-semibold tracking-tight">{title}</h1>
           {subtitle && <p className="line-clamp-2 text-sm text-muted">{subtitle}</p>}
         </div>
         {actions && <div className="flex flex-wrap items-center gap-2">{actions}</div>}
@@ -82,7 +82,7 @@ export function DataTable<T>({ rows, columns, rowKey, onRowClick, mobile, empty,
         }
       : {}
   return (
-    <div className={cn('overflow-hidden rounded-2xl border border-border bg-surface shadow-card', className)}>
+    <div className={cn('overflow-hidden rounded-2xl border border-border bg-surface', className)}>
       {cards && (
         <ul className="divide-y divide-border">
           {rows.map((r) => (

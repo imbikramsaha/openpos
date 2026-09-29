@@ -41,7 +41,7 @@ export function ProductThumb({ product, color, size = 'md' }: { product: Pick<Pr
   return (
     <span
       aria-hidden
-      className={cn(box, 'flex shrink-0 items-center justify-center font-bold', !color && 'bg-surface-3 text-subtle')}
+      className={cn(box, 'flex shrink-0 items-center justify-center font-semibold', !color && 'bg-surface-3 text-subtle')}
       style={color ? { background: `${color}26`, color } : undefined}
     >
       {initial}

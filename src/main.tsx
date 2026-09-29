@@ -1,5 +1,7 @@
 import { StrictMode, Suspense } from 'react'
 import { createRoot } from 'react-dom/client'
+// Inter ships with the app (offline, same look on every OS); other scripts use the system fonts.
+import '@fontsource-variable/inter/opsz.css'
 import './index.css'
 import { initI18n } from './i18n'
 import { applyTheme, device } from './stores/device'

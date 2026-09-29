@@ -240,7 +240,7 @@ export function PurchaseForm({ products, params }: { products: Product[]; params
         <div className="flex items-end justify-between gap-3">
           <div>
             <div className="text-xs font-medium text-muted">{t('common:total')}</div>
-            <div className="tnum text-2xl font-extrabold">{formatMoney(total)}</div>
+            <div className="tnum text-2xl font-semibold tracking-tight">{formatMoney(total)}</div>
           </div>
           <div className="text-end text-xs text-muted">
             {t('purchases.lines', { count: draft.lines.length })}

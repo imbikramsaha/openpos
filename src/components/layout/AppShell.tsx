@@ -27,8 +27,8 @@ export function AppShell({ children }: { children: ReactNode }) {
     <div className="flex h-full min-h-0">
       {/* Tablet / desktop rail */}
       <aside className="hidden w-[100px] shrink-0 flex-col items-center border-e border-border bg-surface py-3 pt-[calc(0.75rem+env(safe-area-inset-top))] md:flex">
-        <button onClick={() => navigate('sell')} className="mb-3 rounded-2xl shadow-card" title={businessName} aria-label={t('nav.sell')}>
-          <img src="./icons/icon.svg" alt="" className="size-11" />
+        <button onClick={() => navigate('sell')} className="mb-4 rounded-xl" title={businessName} aria-label={t('nav.sell')}>
+          <img src="./icons/icon.svg" alt="" className="size-10" />
         </button>
         <nav aria-label={t('menu')} className="flex w-full flex-1 flex-col items-center gap-1 overflow-y-auto px-1.5">
           {items.map((n) => {
@@ -44,7 +44,7 @@ export function AppShell({ children }: { children: ReactNode }) {
                 )}
                 aria-current={active ? 'page' : undefined}
               >
-                <Icon className="size-5.5" strokeWidth={active ? 2.3 : 1.8} />
+                <Icon className={cn('size-5', active && 'stroke-[2.25]')} />
                 <span className="line-clamp-2 w-full text-center leading-tight break-words hyphens-auto">{t(n.labelKey)}</span>
               </button>
             )
@@ -86,7 +86,7 @@ export function AppShell({ children }: { children: ReactNode }) {
           const Icon = n.icon
           return (
             <button key={n.route} onClick={() => navigate(n.route)} aria-current={active ? 'page' : undefined} className={cn('flex h-[60px] min-w-0 flex-1 flex-col items-center justify-center gap-0.5 text-[11px] font-medium', active ? 'text-primary' : 'text-muted')}>
-              <Icon className="size-5.5" strokeWidth={active ? 2.3 : 1.8} />
+              <Icon className={cn('size-5.5', active && 'stroke-[2.25]')} />
               <span className="max-w-full truncate px-1">{t(n.labelKey)}</span>
             </button>
           )

@@ -52,7 +52,6 @@ export function ProductPanel({ onProduct, onEnter, searchRef, onCamera, onCustom
 
   const products = useLiveQuery(async () => (await db.products.orderBy('name').toArray()).filter((p) => p.active && !p.deleted), [])
   const categories = useLiveQuery(async () => (await db.categories.orderBy('sortOrder').toArray()).filter((c) => !c.deleted), [])
-  const catColor = useMemo(() => new Map((categories ?? []).map((c) => [c.id, c.color])), [categories])
   const hasFavorites = useMemo(() => products?.some((p) => p.favorite), [products])
 
   const filtered = useMemo(() => filterProducts(products ?? [], deferred, category), [products, deferred, category])
@@ -128,7 +127,7 @@ export function ProductPanel({ onProduct, onEnter, searchRef, onCamera, onCustom
         ) : (
           <div className={cn('grid gap-2', GRID[gridSize])}>
             {filtered.slice(0, MAX_TILES).map((p) => (
-              <ProductTile key={p.id} p={p} color={p.color || (p.categoryId ? catColor.get(p.categoryId) : undefined)} showImage={showImages} onClick={() => onProduct(p)} />
+              <ProductTile key={p.id} p={p} color={p.color} showImage={showImages} onClick={() => onProduct(p)} />
             ))}
           </div>
         )}
@@ -159,11 +158,11 @@ function CategoryChip({ active, onClick, children, color, icon }: { active: bool
       aria-selected={active}
       onClick={onClick}
       className={cn(
-        'flex h-10 shrink-0 items-center gap-2 rounded-xl border px-3.5 text-sm font-medium whitespace-nowrap transition-colors',
-        active ? 'border-primary bg-primary text-primary-fg shadow-card' : 'border-border bg-surface text-fg hover:bg-surface-3',
+        'flex h-9 shrink-0 items-center gap-2 rounded-full border px-3.5 text-[13px] font-medium whitespace-nowrap transition-colors [&>svg]:size-3.5',
+        active ? 'border-primary bg-primary text-primary-fg' : 'border-border bg-surface text-muted hover:border-border-strong hover:text-fg',
       )}
     >
-      {icon ?? (color && <span className="size-2.5 rounded-full" style={{ background: color }} />)}
+      {icon ?? (color && <span className="size-2 rounded-full" style={{ background: color }} />)}
       {children}
     </button>
   )
@@ -176,26 +175,25 @@ function ProductTile({ p, color, showImage, onClick }: { p: Product; color?: str
   return (
     <button
       onClick={onClick}
-      className="group relative flex min-h-[104px] flex-col overflow-hidden rounded-2xl border border-border bg-surface text-start shadow-card transition-[transform,border-color] duration-75 hover:border-border-strong active:scale-[0.97]"
+      className="group relative flex min-h-[104px] flex-col overflow-hidden rounded-xl border border-border bg-surface text-start transition-[transform,border-color,background-color] duration-100 hover:border-border-strong hover:bg-surface-2 active:scale-[0.98]"
     >
-      {showImage && p.image ? (
-        <img src={p.image} alt="" className="aspect-[4/3] w-full object-cover" loading="lazy" draggable={false} />
-      ) : (
-        <span className="h-1.5 w-full shrink-0" style={{ background: color || 'var(--border-strong)' }} />
-      )}
-      <span className="flex flex-1 flex-col gap-1 p-2.5">
-        <span className="line-clamp-2 text-sm leading-snug font-semibold">{p.name}</span>
+      {showImage && p.image && <img src={p.image} alt="" className="aspect-[4/3] w-full object-cover" loading="lazy" draggable={false} />}
+      <span className="flex flex-1 flex-col gap-1.5 p-3">
+        <span className={cn('flex items-start gap-2', p.favorite && 'pe-4')}>
+          {color && <span className="mt-[0.4rem] size-2 shrink-0 rounded-full" style={{ background: color }} aria-hidden />}
+          <span className="line-clamp-2 min-w-0 text-sm leading-snug font-medium">{p.name}</span>
+        </span>
         <span className="mt-auto flex items-end justify-between gap-1">
-          <span className="tnum text-[15px] font-bold text-primary">{p.openPrice ? t('openPrice') : formatMoney(p.price)}</span>
+          <span className="tnum text-[15px] font-semibold tracking-tight">{p.openPrice ? t('openPrice') : formatMoney(p.price)}</span>
           {p.trackStock && (
-            <span className={cn('tnum rounded-md px-1.5 text-[11px] font-semibold', out ? 'bg-danger-soft text-danger' : low ? 'bg-warning-soft text-warning' : 'text-subtle')}>
+            <span className={cn('tnum rounded-md px-1.5 py-px text-[11px] font-medium', out ? 'bg-danger-soft text-danger' : low ? 'bg-warning-soft text-warning' : 'text-subtle')}>
               {formatQty(p.stock)}
               {p.unit !== 'pcs' && ` ${t(`common:unit.${p.unit}`)}`}
             </span>
           )}
         </span>
       </span>
-      {p.favorite && <Star className="absolute end-2 top-3 size-3.5 fill-warning text-warning" />}
+      {p.favorite && <Star className="absolute end-2.5 top-3 size-3.5 fill-warning text-warning" aria-hidden />}
     </button>
   )
 }

@@ -152,7 +152,7 @@ export default function SettingsScreen() {
     <div className="flex h-full min-h-0">
       <aside className="flex w-72 shrink-0 flex-col border-e border-border bg-surface xl:w-80">
         <div className="space-y-3 px-4 pt-5 pb-3">
-          <h1 className="px-1 text-xl font-bold tracking-tight">{t('title')}</h1>
+          <h1 className="px-1 text-xl font-semibold tracking-tight">{t('title')}</h1>
           {search}
         </div>
         <nav className="min-h-0 flex-1 overflow-y-auto px-3 pb-6" aria-label={t('title')}>
@@ -164,7 +164,7 @@ export default function SettingsScreen() {
           <header className="mb-5 flex items-start gap-3">
             <SectionIcon section={active!} />
             <div className="min-w-0">
-              <h2 className="text-2xl font-bold tracking-tight">{t(`sections.${active!.id}.title`)}</h2>
+              <h2 className="text-2xl font-semibold tracking-tight">{t(`sections.${active!.id}.title`)}</h2>
               <p className="text-sm text-muted">{t(`sections.${active!.id}.desc`)}</p>
             </div>
           </header>

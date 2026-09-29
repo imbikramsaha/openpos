@@ -217,7 +217,7 @@ export default function SalesScreen() {
             <div className="hidden gap-2 lg:grid lg:w-[640px] lg:grid-cols-4">{filters}</div>
             <Button className="relative h-11 lg:hidden" icon={<ListFilter className="size-4" />} onClick={() => setShowFilters((v) => !v)} aria-expanded={showFilters} aria-label={t('common:filter')}>
               <span className="hidden sm:inline">{t('common:filter')}</span>
-              {activeFilters > 0 && <span className="flex size-5 items-center justify-center rounded-full bg-primary text-[11px] font-bold text-primary-fg">{activeFilters}</span>}
+              {activeFilters > 0 && <span className="flex size-5 items-center justify-center rounded-full bg-primary text-[11px] font-semibold text-primary-fg">{activeFilters}</span>}
             </Button>
           </div>
           {showFilters && <div className="grid grid-cols-2 gap-2 lg:hidden">{filters}</div>}
@@ -302,7 +302,7 @@ function SummaryCell({ label, value, hint, strong, tone }: { label: string; valu
   return (
     <div className="min-w-0 bg-surface px-4 py-3">
       <div className="truncate text-xs font-medium text-muted">{label}</div>
-      <div className={cn('tnum truncate text-lg font-bold', strong && 'text-primary', tone === 'danger' && 'text-danger')}>{value}</div>
+      <div className={cn('tnum truncate text-lg font-semibold', strong && 'text-primary', tone === 'danger' && 'text-danger')}>{value}</div>
       {hint && <div className="truncate text-xs text-subtle">{hint}</div>}
     </div>
   )

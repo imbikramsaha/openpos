@@ -133,7 +133,7 @@ export function FormatsSection() {
     <Stack>
       <div className="rounded-2xl border border-border bg-surface-2 p-5 text-center shadow-card">
         <div className="text-xs font-semibold tracking-wide text-subtle uppercase">{t('formats.preview')}</div>
-        <div className="tnum mt-1 text-3xl font-bold tracking-tight break-all sm:text-4xl" dir="auto">{fmt.format(SAMPLE)}</div>
+        <div className="tnum mt-1 text-3xl font-semibold tracking-tight break-all sm:text-4xl" dir="auto">{fmt.format(SAMPLE)}</div>
         <div className="tnum mt-1 text-sm text-muted" dir="auto">
           {fmt.format(49.5)} · {fmt.format(-250)} · {fmt.format(0.99)}
         </div>
@@ -163,7 +163,7 @@ export function FormatsSection() {
             <span className="text-muted">{t('formats.roundingExample')}</span>
             <span className="tnum font-medium" dir="auto">{fmt.format(exampleTotal / 10 ** d)}</span>
             <ArrowRight className="size-4 text-subtle rtl:rotate-180" />
-            <span className="tnum font-bold text-primary" dir="auto">{fmt.format(rounded / 10 ** d)}</span>
+            <span className="tnum font-semibold text-primary" dir="auto">{fmt.format(rounded / 10 ** d)}</span>
           </div>
         </Row>
       </Group>

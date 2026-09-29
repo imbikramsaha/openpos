@@ -95,7 +95,7 @@ export function AdjustDialog({ product, onClose }: { product: Product | null; on
           onChange={(v) => setQty(v === undefined ? undefined : Math.abs(v))}
           autoFocus
           placeholder="0"
-          className="h-14 text-2xl font-bold"
+          className="h-14 text-2xl font-semibold tracking-tight"
           right={unit ? <span className="pe-2 text-sm text-muted">{unit.trim()}</span> : undefined}
         />
         <div className="flex items-center justify-between gap-3 rounded-xl bg-surface-2 px-4 py-3">
@@ -106,7 +106,7 @@ export function AdjustDialog({ product, onClose }: { product: Product | null; on
           <ArrowRight className="size-5 text-subtle rtl:rotate-180" />
           <div className="text-end">
             <div className="text-xs text-muted">{t('adjust.new')}</div>
-            <div className={cn('tnum text-lg font-bold', next < 0 && 'text-danger')}>
+            <div className={cn('tnum text-lg font-semibold', next < 0 && 'text-danger')}>
               {formatQty(next)} {qty !== undefined && delta !== 0 && <QtyDelta qty={delta} className="ms-1 text-sm" />}
             </div>
           </div>

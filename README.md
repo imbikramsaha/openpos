@@ -13,7 +13,7 @@ One codebase → <b>Web (PWA) · Windows · macOS · Linux · Android · iOS</b>
 <a href="https://github.com/imbikramsaha/kasa-pos/releases/latest/download/openpos-linux-amd64.deb"><img alt="Download for Linux" src="https://img.shields.io/badge/Linux-Download-E95420?style=for-the-badge&logo=linux&logoColor=white"></a>
 <a href="https://github.com/imbikramsaha/kasa-pos/releases/latest/download/OpenPOS-android.apk"><img alt="Download for Android" src="https://img.shields.io/badge/Android-Download-3DDC84?style=for-the-badge&logo=android&logoColor=white"></a>
 <a href="https://appkasapos.netlify.app"><img alt="Open on iPhone and iPad" src="https://img.shields.io/badge/iPhone%20%26%20iPad-Open-555555?style=for-the-badge&logo=apple&logoColor=white"></a>
-<a href="https://appkasapos.netlify.app"><img alt="Open in the browser" src="https://img.shields.io/badge/Web-Open-4F46E5?style=for-the-badge&logo=googlechrome&logoColor=white"></a>
+<a href="https://appkasapos.netlify.app"><img alt="Open in the browser" src="https://img.shields.io/badge/Web-Open-101012?style=for-the-badge&logo=googlechrome&logoColor=white"></a>
 </p>
 
 ---

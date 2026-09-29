@@ -127,10 +127,10 @@ export function ReceiptDialog({ sale, onClose, onEdit }: { sale: Sale | null; on
           {sale.change > 0 ? (
             <div>
               <div className="text-sm font-semibold text-muted">{t('changeDue')}</div>
-              <div className="tnum text-5xl font-extrabold text-success">{formatMoney(sale.change)}</div>
+              <div className="tnum text-5xl font-semibold tracking-tight text-success">{formatMoney(sale.change)}</div>
             </div>
           ) : (
-            <div className="tnum text-4xl font-extrabold" dir="ltr">{formatMoney(sale.total)}</div>
+            <div className="tnum text-4xl font-semibold tracking-tight" dir="ltr">{formatMoney(sale.total)}</div>
           )}
           <div className="grid w-full max-w-xs grid-cols-2 gap-2">
             <Button size="lg" icon={<Printer className="size-5" />} onClick={() => printSale(sale)}>

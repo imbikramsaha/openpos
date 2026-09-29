@@ -92,7 +92,7 @@ export default function UsersScreen() {
                 <div className="min-w-0 flex-1">
                   <div className="flex items-baseline justify-between gap-2">
                     <span className="truncate font-semibold">{t(`common:role.${r}`)}</span>
-                    <span className="tnum text-lg font-bold">{users ? count(r) : '…'}</span>
+                    <span className="tnum text-lg font-semibold">{users ? count(r) : '…'}</span>
                   </div>
                   <div className="truncate text-xs text-subtle">{t('permCount', { count: perms, total: ALL_PERMISSIONS.length })}</div>
                 </div>

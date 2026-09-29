@@ -108,7 +108,7 @@ export function RefundDialog({ sale, open, onClose, customerEmail }: { sale: Sal
             <CheckCircle2 className="size-16 text-success" strokeWidth={1.6} />
             <div>
               <div className="text-sm font-semibold text-muted">{method === 'credit' ? t('refund.toAccount') : t('refund.payBack', { method: t(`common:payment.${method}`) })}</div>
-              <div className="tnum text-5xl font-extrabold text-success">{formatMoney(-done.payments.filter((p) => p.method !== 'loyalty').reduce((a, p) => a + p.amount, 0))}</div>
+              <div className="tnum text-5xl font-semibold tracking-tight text-success">{formatMoney(-done.payments.filter((p) => p.method !== 'loyalty').reduce((a, p) => a + p.amount, 0))}</div>
               {!!done.loyaltyRedeemed && <div className="mt-1 text-sm text-muted">{t('refund.pointsBack', { count: -done.loyaltyRedeemed })}</div>}
             </div>
             <ActionTiles
@@ -147,7 +147,7 @@ export function RefundDialog({ sale, open, onClose, customerEmail }: { sale: Sal
           <div className="flex w-full flex-wrap items-center gap-3">
             <div className="me-auto min-w-0">
               <div className="text-xs font-medium text-muted">{t('refund.total')}</div>
-              <div className={cn('tnum text-2xl font-extrabold', sum.total ? 'text-danger' : 'text-subtle')}>{formatMoney(-sum.total || 0)}</div>
+              <div className={cn('tnum text-2xl font-semibold tracking-tight', sum.total ? 'text-danger' : 'text-subtle')}>{formatMoney(-sum.total || 0)}</div>
             </div>
             <Button onClick={onClose} disabled={busy}>
               {t('common:cancel')}

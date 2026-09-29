@@ -12,7 +12,7 @@ import { Avatar, Badge, Button, Input, Sheet, Toggle } from '@/components/ui'
 import { checkUserChange, describeChanges, extrasFor, pinConflict, type RuleError } from './rules'
 
 /** User colours are data (shown on avatars and receipts), not theme colours. */
-export const USER_COLORS = ['#4f46e5', '#2563eb', '#0891b2', '#059669', '#d97706', '#dc2626', '#db2777', '#7c3aed', '#475569']
+export const USER_COLORS = ['#3f3f46', '#1d4ed8', '#0e7490', '#15803d', '#b45309', '#b91c1c', '#be185d', '#6d28d9', '#475569']
 
 const ROLES: Array<{ role: Role; icon: typeof Crown }> = [
   { role: 'admin', icon: Crown },

@@ -58,7 +58,7 @@ export function LockScreen() {
       </div>
       <div className="flex min-h-0 flex-1 flex-col items-center justify-center gap-8 overflow-y-auto px-6 pb-8 lg:flex-row lg:gap-20">
         <div className="text-center lg:text-start">
-          <div className="tnum text-5xl font-bold tracking-tight lg:text-7xl">{formatTime(now)}</div>
+          <div className="tnum text-5xl font-semibold tracking-tight lg:text-7xl">{formatTime(now)}</div>
           <div className="mt-1 text-muted">{formatDate(now)}</div>
         </div>
         <div className="w-full max-w-sm rounded-3xl border border-border bg-surface p-6 shadow-pop">

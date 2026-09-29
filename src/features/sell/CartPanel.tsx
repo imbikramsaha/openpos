@@ -73,7 +73,7 @@ export function CartPanel({ actions, className }: { actions: CartActions; classN
         <button onClick={actions.onCustomer} className="flex min-w-0 flex-1 items-center gap-3 rounded-xl px-2 py-1.5 text-start hover:bg-surface-3">
           {customer ? <Avatar name={customer.name} size="sm" /> : <span className="flex size-8 items-center justify-center rounded-full bg-surface-3 text-muted"><UserRound className="size-4.5" /></span>}
           <span className="min-w-0 flex-1">
-            <span className="block truncate text-sm font-semibold">{customer?.name ?? t('walkIn')}</span>
+            <span className="block truncate text-sm font-medium">{customer?.name ?? t('walkIn')}</span>
             <span className="block truncate text-xs text-muted">
               {customer ? [customer.phone, customer.balance > 0 && `${t('due')}: ${formatMoney(customer.balance)}`, settings.loyaltyEnabled && customer.loyaltyPoints > 0 && t('points', { count: customer.loyaltyPoints })].filter(Boolean).join(' · ') : t('addCustomer')}
             </span>
@@ -150,9 +150,9 @@ export function CartPanel({ actions, className }: { actions: CartActions; classN
         </div>
         <Button variant="primary" size="xl" block onClick={actions.onPay} disabled={!cart.lines.length} className="justify-between">
           <span className="flex items-center gap-2">
-            {t('pay')} <Kbd className="border-white/30 bg-white/10 text-white/80">F12</Kbd>
+            {t('pay')} <Kbd className="border-primary-fg/25 bg-primary-fg/10 text-primary-fg/75">F12</Kbd>
           </span>
-          <span className="tnum text-2xl font-extrabold">{formatMoney(calc.total)}</span>
+          <span className="tnum text-2xl font-semibold tracking-tight">{formatMoney(calc.total)}</span>
         </Button>
       </div>
     </section>
@@ -175,13 +175,13 @@ function ActionButton({ icon, label, kbd, onClick, disabled, badge, danger }: { 
       disabled={disabled}
       title={kbd ? `${label} (${kbd})` : label}
       className={cn(
-        'relative flex h-14 flex-col items-center justify-center gap-0.5 rounded-xl border border-border bg-surface text-[11px] font-medium shadow-card transition active:scale-95 disabled:opacity-40 [&>svg]:size-5',
+        'relative flex h-14 flex-col items-center justify-center gap-1 rounded-xl border border-border bg-surface text-[11px] font-medium transition hover:border-border-strong hover:bg-surface-2 active:scale-95 disabled:opacity-40 [&>svg]:size-[1.15rem]',
         danger ? 'text-danger' : 'text-fg',
       )}
     >
       {icon}
       <span className="max-w-full truncate px-1">{label}</span>
-      {badge ? <span className="absolute -end-1 -top-1 flex h-5 min-w-5 items-center justify-center rounded-full bg-warning px-1 text-[10px] font-bold text-white">{badge}</span> : null}
+      {badge ? <span className="absolute -end-1 -top-1 flex h-5 min-w-5 items-center justify-center rounded-full bg-warning px-1 text-[10px] font-semibold text-white dark:text-bg">{badge}</span> : null}
     </button>
   )
 }
@@ -190,18 +190,18 @@ function CartRow({ line, total, discount, selected, actions }: { line: CartLine;
   const { t } = useTranslation('sell')
   const cart = useCart()
   return (
-    <li data-selected={selected} className={cn('border-b border-border transition-colors', selected ? 'bg-primary-soft/60' : 'hover:bg-surface-2')}>
+    <li data-selected={selected} className={cn('border-b border-border transition-colors', selected ? 'bg-surface-3/70' : 'hover:bg-surface-2')}>
       <button onClick={() => cart.select(selected ? undefined : line.id)} className="flex w-full items-start gap-3 px-4 py-2.5 text-start">
-        <span className={cn('tnum mt-0.5 flex h-6 min-w-6 items-center justify-center rounded-md px-1 text-xs font-bold', line.qty < 0 ? 'bg-danger-soft text-danger' : 'bg-surface-3 text-fg')}>{formatQty(line.qty)}</span>
+        <span className={cn('tnum mt-0.5 flex h-6 min-w-6 items-center justify-center rounded-md px-1 text-xs font-semibold', line.qty < 0 ? 'bg-danger-soft text-danger' : 'border border-border bg-surface text-fg')}>{formatQty(line.qty)}</span>
         <span className="min-w-0 flex-1">
-          <span className="block truncate text-sm font-semibold">{line.name}</span>
+          <span className="block truncate text-sm font-medium">{line.name}</span>
           <span className="block truncate text-xs text-muted">
             <bdi>{formatQty(line.qty)}{line.unit !== 'pcs' ? ` ${t(`common:unit.${line.unit}`)}` : ''}</bdi> × <bdi>{formatMoney(line.price)}</bdi>
             {line.note && ` · ${line.note}`}
           </span>
         </span>
         <span className="flex flex-col items-end">
-          <span className="tnum text-sm font-bold">{formatMoney(total)}</span>
+          <span className="tnum text-sm font-semibold">{formatMoney(total)}</span>
           {discount !== 0 && <span className="tnum text-[11px] font-medium text-success">−{formatMoney(discount)}</span>}
         </span>
       </button>
@@ -211,7 +211,7 @@ function CartRow({ line, total, discount, selected, actions }: { line: CartLine;
             <button onClick={() => actions.onStep(line.id, -1)} className="flex size-10 items-center justify-center rounded-s-xl hover:bg-surface-3" aria-label={t('decrease')}>
               <Minus className="size-4" />
             </button>
-            <button onClick={() => actions.onQty(line.id)} className="tnum h-10 min-w-12 border-x border-border px-2 text-sm font-bold hover:bg-surface-3" title={`${t('quantity')} (F5)`}>
+            <button onClick={() => actions.onQty(line.id)} className="tnum h-10 min-w-12 border-x border-border px-2 text-sm font-semibold hover:bg-surface-3" title={`${t('quantity')} (F5)`}>
               {formatQty(line.qty)}
             </button>
             <button onClick={() => actions.onStep(line.id, 1)} className="flex size-10 items-center justify-center rounded-e-xl hover:bg-surface-3" aria-label={t('increase')}>

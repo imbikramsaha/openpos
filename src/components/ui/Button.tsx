@@ -6,15 +6,15 @@ export type ButtonVariant = 'primary' | 'secondary' | 'outline' | 'ghost' | 'sof
 export type ButtonSize = 'sm' | 'md' | 'lg' | 'xl' | 'icon' | 'icon-sm' | 'icon-lg'
 
 const variants: Record<ButtonVariant, string> = {
-  primary: 'bg-primary text-primary-fg hover:bg-primary-hover shadow-card',
-  secondary: 'bg-surface text-fg border border-border hover:bg-surface-3 shadow-card',
-  outline: 'border border-border-strong text-fg hover:bg-surface-3',
+  primary: 'bg-primary text-primary-fg hover:bg-primary-hover',
+  secondary: 'bg-surface text-fg border border-border hover:border-border-strong hover:bg-surface-2',
+  outline: 'border border-border-strong text-fg hover:bg-surface-2',
   ghost: 'text-fg hover:bg-surface-3',
-  soft: 'bg-primary-soft text-primary hover:brightness-95 dark:hover:brightness-125',
+  soft: 'bg-surface-3 text-fg hover:bg-border',
   // Dark mode uses bright fills, which need dark text to stay readable.
-  danger: 'bg-danger text-white dark:text-bg hover:brightness-110 shadow-card',
-  success: 'bg-success text-white dark:text-bg hover:brightness-110 shadow-card',
-  warning: 'bg-warning text-white dark:text-bg hover:brightness-110 shadow-card',
+  danger: 'bg-danger text-white dark:text-bg hover:brightness-110',
+  success: 'bg-success text-white dark:text-bg hover:brightness-110',
+  warning: 'bg-warning text-white dark:text-bg hover:brightness-110',
 }
 
 const sizes: Record<ButtonSize, string> = {
@@ -43,7 +43,7 @@ export function Button({ variant = 'secondary', size = 'md', loading, icon, icon
       type={type}
       disabled={disabled || loading}
       className={cn(
-        'inline-flex shrink-0 items-center justify-center font-medium whitespace-nowrap [&>svg]:shrink-0 transition-[background,filter,transform,color] duration-100 active:scale-[0.97] disabled:opacity-50 disabled:active:scale-100',
+        'inline-flex shrink-0 items-center justify-center font-medium tracking-[-0.01em] whitespace-nowrap [&>svg]:shrink-0 transition-[background,border-color,filter,transform,color] duration-100 active:scale-[0.97] disabled:opacity-50 disabled:active:scale-100',
         variants[variant],
         sizes[size],
         block && 'w-full',

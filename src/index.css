@@ -5,57 +5,63 @@
 /* Design tokens. Components use semantic names (bg, surface, fg, muted, primary…)
    so light/dark themes only swap these variables. */
 :root {
-  --bg: #f4f5f9;
+  /* Neutral, near-monochrome palette: ink for primary actions, colour only where it means
+     something (money in/out, warnings). Text tokens meet WCAG AA (4.5:1) on every surface. */
+  --bg: #f6f6f7;
   --surface: #ffffff;
-  --surface-2: #f8f9fc;
-  --surface-3: #eef0f6;
-  --border: #e3e6ee;
-  --border-strong: #cfd4e0;
-  --fg: #151a2d;
-  /* Text tokens meet WCAG AA (4.5:1) on every surface, including surface-3. */
-  --muted: #4f5669;
-  --subtle: #666d82;
-  --primary: #4f46e5;
-  --primary-hover: #4338ca;
-  --primary-soft: #eef0ff;
+  --surface-2: #fafafa;
+  --surface-3: #f0f0f2;
+  --border: #e7e7ea;
+  --border-strong: #d4d4d9;
+  --fg: #101012;
+  --muted: #55555d;
+  --subtle: #6b6b73;
+  --primary: #101012;
+  --primary-hover: #2a2a2f;
+  --primary-soft: #f0f0f2;
   --primary-fg: #ffffff;
-  --success: #047857;
-  --success-soft: #e7f7f0;
-  --danger: #c81e1e;
-  --danger-soft: #fdeeee;
-  --warning: #b45309;
-  --warning-soft: #fdf4e3;
-  --ring: rgb(79 70 229 / 0.35);
-  --shadow: 0 1px 2px rgb(16 24 40 / 0.05), 0 1px 3px rgb(16 24 40 / 0.06);
-  --shadow-lg: 0 12px 32px -8px rgb(16 24 40 / 0.18), 0 4px 8px -4px rgb(16 24 40 / 0.08);
+  --success: #0a7a4a;
+  --success-soft: #eaf6ef;
+  --danger: #c42b1c;
+  --danger-soft: #fcefed;
+  --warning: #9a5b00;
+  --warning-soft: #fbf3e3;
+  --ring: rgb(16 16 18 / 0.08);
+  --focus: rgb(16 16 18 / 0.65);
+  --border-focus: rgb(16 16 18 / 0.4);
+  /* Flat surfaces: hairline borders do the separating, shadows are for things that float. */
+  --shadow: 0 1px 1px rgb(16 16 18 / 0.03);
+  --shadow-lg: 0 24px 48px -16px rgb(16 16 18 / 0.2), 0 4px 12px -4px rgb(16 16 18 / 0.08);
   color-scheme: light;
 }
 
 .dark {
-  --bg: #0b1020;
-  --surface: #121829;
-  --surface-2: #171e31;
-  --surface-3: #1f283d;
-  --border: #252e45;
-  --border-strong: #334061;
-  --fg: #e8ebf4;
-  --muted: #a1a8bd;
-  --subtle: #8f97ad;
-  /* Darker fill so white button text passes 4.5:1; primary-coloured text uses --primary-text. */
-  --primary: #5b54e8;
-  --primary-hover: #6d66f2;
-  --primary-soft: #1e1f47;
-  --primary-text: #9c97f8;
-  --primary-fg: #ffffff;
-  --success: #10b981;
-  --success-soft: #0d2a24;
-  --danger: #f05252;
-  --danger-soft: #3a1618;
-  --warning: #f59e0b;
-  --warning-soft: #33250c;
-  --ring: rgb(109 102 242 / 0.45);
-  --shadow: 0 1px 2px rgb(0 0 0 / 0.4);
-  --shadow-lg: 0 16px 40px -8px rgb(0 0 0 / 0.6);
+  --bg: #0a0a0b;
+  --surface: #131315;
+  --surface-2: #17171a;
+  --surface-3: #202024;
+  --border: #242428;
+  --border-strong: #34343a;
+  --fg: #ededf0;
+  --muted: #a4a4ad;
+  --subtle: #8d8d96;
+  /* Light "ink" on dark: primary buttons are near-white with dark text. */
+  --primary: #f2f2f4;
+  --primary-hover: #ffffff;
+  --primary-soft: #232327;
+  --primary-text: #f2f2f4;
+  --primary-fg: #101012;
+  --success: #36bd80;
+  --success-soft: #0f261b;
+  --danger: #ff6b5e;
+  --danger-soft: #2d1512;
+  --warning: #f2b44f;
+  --warning-soft: #2a2210;
+  --ring: rgb(255 255 255 / 0.1);
+  --focus: rgb(255 255 255 / 0.7);
+  --border-focus: rgb(255 255 255 / 0.38);
+  --shadow: 0 0 0 1px rgb(255 255 255 / 0.015);
+  --shadow-lg: 0 24px 64px -16px rgb(0 0 0 / 0.75), 0 0 0 1px rgb(255 255 255 / 0.04);
   color-scheme: dark;
 }
 
@@ -81,7 +87,7 @@
   --color-warning-soft: var(--warning-soft);
   --shadow-card: var(--shadow);
   --shadow-pop: var(--shadow-lg);
-  --font-sans: 'Inter', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Noto Sans', 'Nirmala UI', 'Helvetica Neue', Arial,
+  --font-sans: 'Inter Variable', 'Inter', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Noto Sans', 'Nirmala UI', 'Helvetica Neue', Arial,
     'Noto Sans Devanagari', 'Noto Sans Bengali', 'Noto Sans Tamil', 'Noto Sans Telugu', 'Noto Sans Kannada', 'Noto Sans Malayalam',
     'Noto Sans Gujarati', 'Noto Sans Gurmukhi', 'Noto Sans Oriya', 'Noto Sans Arabic', 'Noto Naskh Arabic', 'Noto Sans Thai',
     'PingFang SC', 'Hiragino Sans', 'Microsoft YaHei', 'Malgun Gothic', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji';
@@ -102,7 +108,10 @@
     color: var(--fg);
     font-family: var(--font-sans);
     font-size: 15px;
+    font-optical-sizing: auto;
     -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
     -webkit-tap-highlight-color: transparent;
     overscroll-behavior: none;
     touch-action: manipulation;
@@ -128,8 +137,23 @@
   }
 
   :focus-visible {
-    outline: 2px solid var(--primary);
+    outline: 2px solid var(--focus);
     outline-offset: 2px;
+  }
+
+  h1,
+  h2,
+  h3 {
+    letter-spacing: -0.015em;
+  }
+
+  /* Finer icon strokes throughout; a utility such as stroke-[2.25] still wins for emphasis. */
+  svg.lucide {
+    stroke-width: 1.75;
+  }
+
+  ::selection {
+    background: color-mix(in srgb, var(--fg) 14%, transparent);
   }
 
   input,

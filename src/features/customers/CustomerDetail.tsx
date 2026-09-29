@@ -110,7 +110,7 @@ export function CustomerDetail({ id, onClose, onEdit }: { id?: string; onClose: 
           <div className="flex items-center gap-4">
             <Avatar name={c.name} size="lg" />
             <div className="min-w-0 flex-1">
-              <h3 className="truncate text-xl font-bold">{c.name}</h3>
+              <h3 className="truncate text-xl font-semibold tracking-tight">{c.name}</h3>
               <div className="flex flex-wrap gap-x-4 gap-y-1 text-sm text-muted">
                 {c.phone && (
                   <a href={`tel:${c.phone}`} className="inline-flex items-center gap-1.5 hover:text-fg">
@@ -182,7 +182,7 @@ function BalanceCard({ customer: c, onPay, onAdjust, onRemind, onStatement }: { 
           <div className={cn('text-sm font-semibold', c.balance > 0 ? 'text-danger' : c.balance < 0 ? 'text-success' : 'text-muted')}>
             {c.balance > 0 ? t('balanceDue') : c.balance < 0 ? t('advance') : t('noBalance')}
           </div>
-          <div className={cn('tnum text-3xl font-extrabold tracking-tight', c.balance > 0 && 'text-danger', c.balance < 0 && 'text-success')}>{formatMoney(Math.abs(c.balance))}</div>
+          <div className={cn('tnum text-3xl font-semibold tracking-tight', c.balance > 0 && 'text-danger', c.balance < 0 && 'text-success')}>{formatMoney(Math.abs(c.balance))}</div>
           {!!c.creditLimit && (
             <div className={cn('text-xs', over ? 'font-semibold text-danger' : 'text-muted')}>
               {over ? t('overLimit', { limit: formatMoney(c.creditLimit) }) : t('limitInfo', { limit: formatMoney(c.creditLimit), available: formatMoney(Math.max(c.creditLimit - c.balance, 0)) })}
@@ -214,7 +214,7 @@ function StatCell({ label, value, hint }: { label: string; value: string; hint?:
   return (
     <div className="min-w-0 bg-surface px-3 py-2.5 sm:px-4 sm:py-3">
       <div className="truncate text-xs font-medium text-muted">{label}</div>
-      <div className="tnum truncate text-base font-bold sm:text-lg">{value}</div>
+      <div className="tnum truncate text-base font-semibold sm:text-lg">{value}</div>
       {hint && <div className="truncate text-xs text-subtle">{hint}</div>}
     </div>
   )

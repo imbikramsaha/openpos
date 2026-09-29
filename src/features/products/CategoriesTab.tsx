@@ -76,7 +76,7 @@ export function CategoriesTab({ categories, products, onBrowse, creating, onCrea
                 return (
                   <li key={c.id} className="flex items-center gap-2 px-3 py-2.5 sm:gap-3 sm:px-4">
                     <button onClick={() => setEditing(c)} className="flex min-w-0 flex-1 items-center gap-3 rounded-xl py-1 text-start">
-                      <span className="flex size-10 shrink-0 items-center justify-center rounded-xl text-sm font-bold" style={{ background: `${c.color}26`, color: c.color }}>
+                      <span className="flex size-10 shrink-0 items-center justify-center rounded-xl text-sm font-semibold" style={{ background: `${c.color}26`, color: c.color }}>
                         {[...c.name.trim()][0]?.toUpperCase() ?? '?'}
                       </span>
                       <span className="min-w-0">

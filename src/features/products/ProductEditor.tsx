@@ -369,13 +369,13 @@ function EditorPanel({ target, onClose, onDuplicate, onPrintLabel }: {
           <div className="grid grid-cols-2 gap-3 rounded-xl bg-surface-2 p-3">
             <div>
               <div className="text-xs font-medium text-muted">{t('common:margin')}</div>
-              <div className={cn('tnum text-lg font-bold', margin === undefined ? 'text-subtle' : margin < 0 ? 'text-danger' : margin < 10 ? 'text-warning' : 'text-success')}>
+              <div className={cn('tnum text-lg font-semibold', margin === undefined ? 'text-subtle' : margin < 0 ? 'text-danger' : margin < 10 ? 'text-warning' : 'text-success')}>
                 {margin === undefined ? '—' : formatPercent(Math.round(margin * 10) / 10)}
               </div>
             </div>
             <div>
               <div className="text-xs font-medium text-muted">{t('editor.profitPerUnit')}</div>
-              <div className={cn('tnum text-lg font-bold', profit !== undefined && profit < 0 && 'text-danger')}>{profit === undefined ? '—' : formatMoney(profit)}</div>
+              <div className={cn('tnum text-lg font-semibold', profit !== undefined && profit < 0 && 'text-danger')}>{profit === undefined ? '—' : formatMoney(profit)}</div>
             </div>
             <p className="col-span-2 text-xs text-subtle">
               {draft.cost === undefined ? t('editor.marginHintNoCost') : settings.pricesIncludeTax && rate ? t('editor.marginHintInclusive') : t('editor.marginHint')}

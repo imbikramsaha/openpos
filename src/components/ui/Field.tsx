@@ -9,11 +9,11 @@ import { fromMinor, parseDecimal, toMinor } from '@/lib/money'
 const textDir = (value: unknown) => (typeof value === 'string' && /\p{L}/u.test(value) ? 'auto' : undefined)
 
 const control =
-  'w-full rounded-xl border border-border bg-surface px-3 text-fg placeholder:text-subtle transition-colors focus:border-primary focus:outline-none focus:ring-4 focus:ring-[var(--ring)] disabled:opacity-60'
+  'w-full rounded-xl border border-border bg-surface px-3 text-fg placeholder:text-subtle transition-colors focus:border-[var(--border-focus)] focus:outline-none focus:ring-4 focus:ring-[var(--ring)] disabled:opacity-60'
 
 export function Label({ children, htmlFor, className }: { children: ReactNode; htmlFor?: string; className?: string }) {
   return (
-    <label htmlFor={htmlFor} className={cn('mb-1.5 block text-sm font-medium text-muted', className)}>
+    <label htmlFor={htmlFor} className={cn('mb-1.5 block text-[13px] font-medium text-muted', className)}>
       {children}
     </label>
   )
@@ -260,7 +260,7 @@ export function Segmented<T extends string>({ value, onChange, options, classNam
           className={cn(
             'flex-1 rounded-lg px-3 font-medium whitespace-nowrap transition-colors',
             size === 'sm' ? 'h-7 text-xs' : 'h-9 text-sm',
-            value === o.value ? 'bg-surface text-fg shadow-card' : 'text-muted hover:text-fg',
+            value === o.value ? 'bg-surface text-fg shadow-[0_1px_2px_rgb(16_16_18/0.08)] ring-1 ring-border' : 'text-muted hover:text-fg',
           )}
         >
           {o.label}

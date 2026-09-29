@@ -174,7 +174,7 @@ export function PaymentDialog({ open, onClose, onComplete, onNeedCustomer }: { o
         !upi && (
           <Button variant="success" size="xl" block loading={busy} disabled={due > 0} onClick={() => finalize(payments)}>
             {t('completeSale')}
-            <kbd className="hidden rounded-md border border-white/40 px-1.5 py-0.5 font-mono text-[11px] font-medium lg:inline-block">Enter</kbd>
+            <kbd className="hidden rounded-md border border-current/35 px-1.5 py-0.5 font-mono text-[11px] font-medium opacity-80 lg:inline-block">Enter</kbd>
           </Button>
         )
       }
@@ -184,7 +184,7 @@ export function PaymentDialog({ open, onClose, onComplete, onNeedCustomer }: { o
         <div ref={keysRef} className="flex flex-col gap-4 border-b border-border bg-surface-2 p-5 lg:border-e lg:border-b-0">
           <div>
             <div className="text-sm font-medium text-muted">{t('totalToPay')}</div>
-            <div className="tnum text-4xl font-extrabold tracking-tight sm:text-5xl">{formatMoney(total)}</div>
+            <div className="tnum text-4xl font-semibold tracking-tight sm:text-5xl">{formatMoney(total)}</div>
             <div className="mt-1 text-sm text-muted">
               {t('itemsCount', { count: cart.lines.length })}
               {customer && ` · ${customer.name}`}
@@ -208,17 +208,17 @@ export function PaymentDialog({ open, onClose, onComplete, onNeedCustomer }: { o
           <div className="mt-auto space-y-2">
             <div className="flex items-center justify-between rounded-2xl bg-surface px-4 py-3">
               <span className="font-medium text-muted">{t('paid')}</span>
-              <span className="tnum text-xl font-bold">{formatMoney(paid)}</span>
+              <span className="tnum text-xl font-semibold tracking-tight">{formatMoney(paid)}</span>
             </div>
             {change > 0 ? (
               <div className="flex items-center justify-between rounded-2xl bg-success-soft px-4 py-3 text-success">
                 <span className="font-semibold">{t('change')}</span>
-                <span className="tnum text-2xl font-extrabold">{formatMoney(change)}</span>
+                <span className="tnum text-2xl font-semibold tracking-tight">{formatMoney(change)}</span>
               </div>
             ) : (
               <div className={cn('flex items-center justify-between rounded-2xl px-4 py-3', due > 0 ? 'bg-warning-soft text-warning' : 'bg-success-soft text-success')}>
                 <span className="font-semibold">{t('remaining')}</span>
-                <span className="tnum text-2xl font-extrabold">{formatMoney(due)}</span>
+                <span className="tnum text-2xl font-semibold tracking-tight">{formatMoney(due)}</span>
               </div>
             )}
             {customer && pointsValue > 0 && settings.loyaltyEnabled && (
@@ -235,7 +235,7 @@ export function PaymentDialog({ open, onClose, onComplete, onNeedCustomer }: { o
                 <QrCode className="size-4" /> {t('scanToPay')}
               </div>
               <img src={upi.qr} alt="UPI QR" className="size-64 rounded-2xl border border-border bg-white p-2" />
-              <div className="tnum text-3xl font-extrabold">{formatMoney(upi.amount)}</div>
+              <div className="tnum text-3xl font-semibold tracking-tight">{formatMoney(upi.amount)}</div>
               <div className="text-xs text-muted">{settings.upiId}</div>
               <div className="flex w-full gap-2">
                 <Button size="lg" onClick={() => setUpi(null)}>
@@ -258,9 +258,9 @@ export function PaymentDialog({ open, onClose, onComplete, onNeedCustomer }: { o
             </div>
           ) : (
             <>
-              <div className="flex items-center gap-3 rounded-2xl border-2 border-primary bg-surface px-4 py-3">
+              <div className="flex items-center gap-3 rounded-2xl border border-border-strong bg-surface-2 px-4 py-3">
                 <span className="text-sm font-medium text-muted">{t('amount')}</span>
-                <span className={cn('tnum flex-1 text-end text-3xl font-bold', !text && 'text-subtle')}>{text ? formatMoney(typed) : formatMoney(Math.max(due, 0))}</span>
+                <span className={cn('tnum flex-1 text-end text-3xl font-semibold tracking-tight', !text && 'text-subtle')}>{text ? formatMoney(typed) : formatMoney(Math.max(due, 0))}</span>
               </div>
               {quick.length > 0 && settings.enabledPayments.includes('cash') && (
                 <div className="grid grid-cols-3 gap-2 sm:grid-cols-5">

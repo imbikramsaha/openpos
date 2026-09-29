@@ -59,7 +59,7 @@ export function ScaleSection() {
                 <span
                   key={i}
                   className={cn(
-                    'tnum flex h-11 w-8 items-center justify-center rounded-lg font-mono text-sm font-bold',
+                    'tnum flex h-11 w-8 items-center justify-center rounded-lg font-mono text-sm font-semibold',
                     kind === 'prefix' && 'bg-surface-3 text-fg',
                     kind === 'item' && 'bg-primary-soft text-primary',
                     kind === 'value' && 'bg-success-soft text-success',

@@ -164,7 +164,7 @@ function Summary({ icon, label, value, tone }: { icon: ReactNode; label: string;
       </span>
       <div className="min-w-0">
         <div className="truncate text-xs font-medium text-muted">{label}</div>
-        <div className="tnum text-xl font-bold">{value}</div>
+        <div className="tnum text-xl font-semibold tracking-tight">{value}</div>
       </div>
     </div>
   )

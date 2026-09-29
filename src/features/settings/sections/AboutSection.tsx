@@ -53,7 +53,7 @@ export function AboutSection() {
       <div className="flex items-center gap-4 rounded-2xl border border-border bg-surface p-5 shadow-card">
         <img src="./icons/icon.svg" alt="" className="size-14 shrink-0" />
         <div className="min-w-0 flex-1">
-          <div className="text-lg font-bold">{t('common:appName')}</div>
+          <div className="text-lg font-semibold">{t('common:appName')}</div>
           <div className="text-sm text-muted">{t('about.tagline')}</div>
         </div>
         <Badge tone="primary">v{pkg.version}</Badge>

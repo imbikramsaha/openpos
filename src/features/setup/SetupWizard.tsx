@@ -156,7 +156,7 @@ export function SetupWizard() {
         <div className="mb-6 flex items-center gap-3">
           <img src="./icons/icon.svg" alt="" className="size-11" />
           <div>
-            <h1 className="text-xl font-bold">{t('title')}</h1>
+            <h1 className="text-xl font-semibold tracking-tight">{t('title')}</h1>
             <p className="text-sm text-muted">{t('subtitle')}</p>
           </div>
         </div>

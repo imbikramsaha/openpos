@@ -66,11 +66,11 @@ export default function CustomerDisplay() {
     return (
       <div className="flex h-full flex-col items-center justify-center gap-6 bg-bg p-10 text-center">
         <CheckCircle2 className="size-28 text-success" strokeWidth={1.4} />
-        <h1 className="text-5xl font-bold">{t('display.thankYou')}</h1>
+        <h1 className="text-5xl font-semibold tracking-tight">{t('display.thankYou')}</h1>
         {msg.change > 0 && (
           <div>
             <div className="text-xl text-muted">{t('change')}</div>
-            <div className="tnum text-7xl font-extrabold text-success">{formatMoney(msg.change)}</div>
+            <div className="tnum text-7xl font-semibold tracking-tight text-success">{formatMoney(msg.change)}</div>
           </div>
         )}
         {settings.receipt.footer && <p className="max-w-xl text-xl whitespace-pre-line text-muted">{settings.receipt.footer}</p>}
@@ -82,7 +82,7 @@ export default function CustomerDisplay() {
     return (
       <div className="flex h-full flex-col items-center justify-center gap-6 bg-bg p-10 text-center">
         {logo ? <img src={logo} alt="" className="max-h-40 max-w-sm object-contain" /> : <img src="./icons/icon.svg" alt="" className="size-28" />}
-        <h1 className="text-5xl font-bold tracking-tight">{settings.businessName}</h1>
+        <h1 className="text-5xl font-semibold tracking-tight">{settings.businessName}</h1>
         <p className="text-2xl text-muted">{t('display.welcome')}</p>
       </div>
     )
@@ -93,7 +93,7 @@ export default function CustomerDisplay() {
       <section className="flex min-h-0 flex-col border-border lg:border-e">
         <header className="flex items-center gap-4 border-b border-border bg-surface px-8 py-5">
           {logo && <img src={logo} alt="" className="h-12 object-contain" />}
-          <h1 className="text-2xl font-bold">{settings.businessName}</h1>
+          <h1 className="text-2xl font-semibold tracking-tight">{settings.businessName}</h1>
         </header>
         <ul className="min-h-0 flex-1 divide-y divide-border overflow-y-auto bg-surface">
           {cart.lines.map((l, i) => (
@@ -104,7 +104,7 @@ export default function CustomerDisplay() {
                   {formatQty(l.qty)} × {formatMoney(l.price)}
                 </span>
               </span>
-              <span className="tnum font-bold">{formatMoney(calc.lines[i]?.total ?? 0)}</span>
+              <span className="tnum font-semibold">{formatMoney(calc.lines[i]?.total ?? 0)}</span>
             </li>
           ))}
         </ul>
@@ -117,7 +117,7 @@ export default function CustomerDisplay() {
         )}
         <div>
           <div className="text-xl text-muted">{msg.type === 'pay' ? t('display.toPay') : t('receipt.total')}</div>
-          <div className="tnum text-7xl font-extrabold tracking-tight">{formatMoney(msg.type === 'pay' ? msg.amount : calc.total)}</div>
+          <div className="tnum text-7xl font-semibold tracking-tight">{formatMoney(msg.type === 'pay' ? msg.amount : calc.total)}</div>
           <div className="mt-2 text-lg text-muted">{t('itemsCount', { count: cart.lines.length })}</div>
         </div>
         {msg.type === 'pay' && qr && (

@@ -20,7 +20,7 @@ export function purchaseHtml(p: Purchase, s: Settings, supplier?: Supplier, user
   return `<!doctype html><html dir="${i18n.dir()}" lang="${i18n.language}"><head><meta charset="utf-8"><title>${e(p.number)}</title><style>
   @page { size: A4; margin: 14mm }
   body { font: 12px/1.45 system-ui, 'Segoe UI', Roboto, 'Noto Sans', 'Nirmala UI', Arial, sans-serif; color: #111; margin: 0 }
-  h1 { font-size: 20px; margin: 0 } h2 { font-size: 14px; letter-spacing: .1em; margin: 0 0 4px; color: #4f46e5 }
+  h1 { font-size: 20px; margin: 0 } h2 { font-size: 14px; letter-spacing: .1em; margin: 0 0 4px; color: #111 }
   .m { color: #555; font-size: 11px } .r { text-align: end } .b { font-weight: 700 }
   .head { display: flex; justify-content: space-between; gap: 24px; border-bottom: 2px solid #111; padding-bottom: 12px; margin-bottom: 14px }
   .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 14px }

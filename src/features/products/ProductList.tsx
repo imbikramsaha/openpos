@@ -9,7 +9,7 @@ import { confirmDialog, toast } from '@/stores/ui'
 import { Badge, Button, DataTable, EmptyState, Modal, SearchInput, Select, type Column } from '@/components/ui'
 import { ActionMenu, ProductThumb, StockQty, TickBox } from './shared'
 import { deleteProducts, patchProducts } from './service'
-import { byName, marginPct, matchesTerms, PAGE_SIZE, productColor, searchText, splitTerms, stockStatus } from './util'
+import { byName, marginPct, matchesTerms, PAGE_SIZE, searchText, splitTerms, stockStatus } from './util'
 
 export type StatusFilter = 'all' | 'active' | 'inactive' | 'low' | 'out'
 export type SortKey = 'name' | 'price_desc' | 'price_asc' | 'stock_asc' | 'updated'
@@ -125,7 +125,7 @@ export function ProductList({ products, categories, filters, onFilters, onEdit, 
       header: t('common:product'),
       render: (p) => (
         <div className="flex max-w-[24rem] min-w-48 items-center gap-3">
-          <ProductThumb product={p} color={productColor(p, categories)} />
+          <ProductThumb product={p} color={p.color} />
           <div className="min-w-0">
             <div className="flex items-center gap-1.5">
               <span className={cn('truncate font-medium', !p.active && 'text-muted')}>{p.name}</span>
@@ -285,7 +285,7 @@ export function ProductList({ products, categories, filters, onFilters, onEdit, 
         mobile={(p) => (
           <div className="flex items-center gap-3">
             <TickBox checked={selected.has(p.id)} onChange={(v) => toggle(p.id, v)} label={t('bulk.select', { name: p.name })} />
-            <ProductThumb product={p} color={productColor(p, categories)} />
+            <ProductThumb product={p} color={p.color} />
             <div className="min-w-0 flex-1">
               <div className="flex items-center gap-1.5">
                 <span className={cn('truncate font-medium', !p.active && 'text-muted')}>{p.name}</span>

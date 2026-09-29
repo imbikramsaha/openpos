@@ -110,7 +110,7 @@ export function NumberDialog({ open, onClose, title, subtitle, initial, onSubmit
   })
   return (
     <Modal open={open} onClose={onClose} title={title} subtitle={subtitle} size="sm">
-      <div ref={keysRef} className={cn('tnum mb-4 rounded-2xl bg-surface-3 px-4 py-4 text-end text-4xl font-bold', !text && 'text-subtle')} dir="ltr">
+      <div ref={keysRef} className={cn('tnum mb-4 rounded-2xl bg-surface-3 px-4 py-4 text-end text-4xl font-semibold tracking-tight', !text && 'text-subtle')} dir="ltr">
         {negative && '−'}
         {display}
       </div>
@@ -206,7 +206,7 @@ export function DiscountDialog({ open, onClose, line }: { open: boolean; onClose
           ))}
         </div>
       )}
-      <div className="tnum mb-3 rounded-2xl bg-surface-3 px-4 py-3 text-end text-3xl font-bold" dir="ltr">
+      <div className="tnum mb-3 rounded-2xl bg-surface-3 px-4 py-3 text-end text-3xl font-semibold tracking-tight" dir="ltr">
         {text || '0'}
         {type === 'percent' ? '%' : ''}
       </div>

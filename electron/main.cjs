@@ -30,7 +30,7 @@ const DEV_URL = process.env.ELECTRON_DEV_URL || ''
 /** OPENPOS_<name>, or the KASA_<name> it replaced. */
 const env = (name) => process.env[`OPENPOS_${name}`] ?? process.env[`KASA_${name}`]
 const KIOSK = env('KIOSK') === '1' || process.argv.includes('--kiosk')
-const BACKGROUND = '#0b1020' // dark theme --bg (src/index.css): no white flash on start
+const BACKGROUND = '#0a0a0b' // dark theme --bg (src/index.css): no white flash on start
 const MIN_WIDTH = 360
 const MIN_HEIGHT = 600
 const CUSTOMER_DISPLAY = 'kasa-customer-display' // window name used by src/features/display

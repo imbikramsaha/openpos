@@ -52,7 +52,7 @@ export function TaxesSection() {
               const count = usage?.get(tax.id) ?? 0
               return (
                 <li key={tax.id} className="flex items-center gap-3 px-4 py-3 sm:px-5">
-                  <span className="tnum flex h-10 min-w-16 shrink-0 items-center justify-center rounded-xl bg-surface-3 px-2 text-sm font-bold">{formatPercent(tax.rate)}</span>
+                  <span className="tnum flex h-10 min-w-16 shrink-0 items-center justify-center rounded-xl bg-surface-3 px-2 text-sm font-semibold">{formatPercent(tax.rate)}</span>
                   <div className="min-w-0 flex-1">
                     <div className="flex flex-wrap items-center gap-2">
                       <span className="truncate font-medium">{tax.name}</span>

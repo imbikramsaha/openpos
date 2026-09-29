@@ -48,12 +48,12 @@ function PaymentDone({ payment, customer, balanceAfter, onClose }: { payment: Cu
       <CheckCircle2 className="size-16 text-success" strokeWidth={1.6} />
       <div>
         <div className="text-sm font-semibold text-muted">{t('pay.received')}</div>
-        <div className="tnum text-5xl font-extrabold text-success">{formatMoney(payment.amount)}</div>
+        <div className="tnum text-5xl font-semibold tracking-tight text-success">{formatMoney(payment.amount)}</div>
         <div className="mt-1 text-sm text-muted">{t(`common:payment.${payment.method}`)}</div>
       </div>
       <div className={cn('w-full max-w-xs rounded-2xl px-4 py-3', balanceAfter > 0 ? 'bg-danger-soft text-danger' : 'bg-success-soft text-success')}>
         <div className="text-xs font-semibold">{balanceAfter < 0 ? t('advance') : balanceAfter === 0 ? t('noBalance') : t('balanceDue')}</div>
-        <div className="tnum text-2xl font-extrabold">{formatMoney(Math.abs(balanceAfter))}</div>
+        <div className="tnum text-2xl font-semibold tracking-tight">{formatMoney(Math.abs(balanceAfter))}</div>
       </div>
       <ActionTiles
         className="w-full max-w-xs"
@@ -167,10 +167,10 @@ export function ReceivePaymentDialog({ customer, open, onClose }: { customer: Cu
           <form className="space-y-5" onSubmit={(e) => (e.preventDefault(), void submit())}>
             <div className="flex items-center justify-between rounded-2xl bg-surface-2 px-4 py-3">
               <span className="text-sm font-medium text-muted">{customer.balance < 0 ? t('advance') : t('balanceDue')}</span>
-              <span className={cn('tnum text-xl font-bold', customer.balance > 0 && 'text-danger')}>{formatMoney(Math.abs(customer.balance))}</span>
+              <span className={cn('tnum text-xl font-semibold tracking-tight', customer.balance > 0 && 'text-danger')}>{formatMoney(Math.abs(customer.balance))}</span>
             </div>
             <div>
-              <MoneyInput label={t('common:amount')} value={amount} onChange={setAmount} autoFocus className="h-14 text-2xl font-bold" />
+              <MoneyInput label={t('common:amount')} value={amount} onChange={setAmount} autoFocus className="h-14 text-2xl font-semibold tracking-tight" />
               <div className="mt-2 flex flex-wrap gap-1.5">
                 {customer.balance > 0 && amount !== customer.balance && (
                   <button type="button" onClick={() => setAmount(customer.balance)} className="rounded-full border border-border bg-surface px-3 py-1.5 text-xs font-medium text-muted hover:bg-surface-3 hover:text-fg">
@@ -307,7 +307,7 @@ export function AdjustBalanceDialog({ customer, open, onClose }: { customer: Cus
         <Input label={`${t('common:reason')} *`} value={note} onChange={(e) => setNote(e.target.value)} placeholder={kind === 'charge' ? t('adjust.chargePlaceholder') : t('adjust.reducePlaceholder')} maxLength={200} />
         <div className="flex items-center justify-between rounded-xl bg-surface-2 px-4 py-3 text-sm">
           <span className="text-muted">{t('adjust.newBalance')}</span>
-          <span className={cn('tnum font-bold', after > 0 && 'text-danger', after < 0 && 'text-success')}>
+          <span className={cn('tnum font-semibold', after > 0 && 'text-danger', after < 0 && 'text-success')}>
             {formatMoney(Math.abs(after))} {after < 0 ? `(${t('advance')})` : ''}
           </span>
         </div>

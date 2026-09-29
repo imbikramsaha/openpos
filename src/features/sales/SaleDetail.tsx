@@ -129,7 +129,7 @@ export function SaleDetail({ id, autoRefund, onClose }: { id?: string; autoRefun
               <div className="mt-1 text-sm text-muted">{formatDateTime(sale.createdAt)}</div>
             </div>
             <div className="text-end">
-              <div className={cn('tnum text-3xl font-extrabold tracking-tight', sale.type === 'refund' && 'text-danger', sale.status === 'voided' && 'text-subtle line-through')}>{formatMoney(sale.total)}</div>
+              <div className={cn('tnum text-3xl font-semibold tracking-tight', sale.type === 'refund' && 'text-danger', sale.status === 'voided' && 'text-subtle line-through')}>{formatMoney(sale.total)}</div>
               <div className="text-xs text-muted">{t('itemsCount', { count: sale.lines.length })}</div>
             </div>
           </div>

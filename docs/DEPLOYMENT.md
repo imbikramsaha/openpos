@@ -159,7 +159,8 @@ cd android && ./gradlew assembleDebug      # → app/build/outputs/apk/debug/app
 - **Camera**: the manifest declares `CAMERA`. Capacitor's WebView asks for the runtime permission the
   first time the scanner opens and then grants `getUserMedia`.
 - The icons and splash screens in `android/app/src/main/res` were generated from `public/icons/icon.svg`
-  (adaptive icon with an indigo gradient background and a monochrome layer for themed icons; dark `#0b1020` splash).
+  (adaptive icon with a graphite gradient background and a monochrome layer for themed icons; dark `#0a0a0b` splash).
+  `node scripts/generate-icons.mjs` renders them all (and the PWA, desktop and iOS icons) from one mark, an open ring with a dot.
 
 ## 5. iOS / iPadOS
 

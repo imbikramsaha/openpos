@@ -83,5 +83,5 @@ export const device = () => useDevice.getState()
 export function applyTheme(theme: DeviceConfig['theme']) {
   const dark = theme === 'dark' || (theme === 'system' && matchMedia('(prefers-color-scheme: dark)').matches)
   document.documentElement.classList.toggle('dark', dark)
-  document.querySelector('meta[name="theme-color"]')?.setAttribute('content', dark ? '#0b1020' : '#4f46e5')
+  document.querySelector('meta[name="theme-color"]')?.setAttribute('content', dark ? '#0a0a0b' : '#f6f6f7')
 }

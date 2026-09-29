@@ -15,12 +15,12 @@ const tones: Record<Tone, string> = {
 }
 
 export function Badge({ tone = 'neutral', children, className }: { tone?: Tone; children: ReactNode; className?: string }) {
-  return <span className={cn('inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-xs font-semibold whitespace-nowrap', tones[tone], className)}>{children}</span>
+  return <span className={cn('inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-xs font-medium whitespace-nowrap', tones[tone], className)}>{children}</span>
 }
 
 export function Card({ className, children, ...rest }: ComponentProps<'div'>) {
   return (
-    <div className={cn('rounded-2xl border border-border bg-surface shadow-card', className)} {...rest}>
+    <div className={cn('rounded-2xl border border-border bg-surface', className)} {...rest}>
       {children}
     </div>
   )
@@ -30,7 +30,7 @@ export function CardHeader({ title, subtitle, actions, className }: { title: Rea
   return (
     <div className={cn('flex items-center gap-3 border-b border-border px-5 py-3.5', className)}>
       <div className="min-w-0 flex-1">
-        <h3 className="truncate font-semibold">{title}</h3>
+        <h3 className="truncate font-semibold tracking-tight">{title}</h3>
         {subtitle && <p className="truncate text-xs text-muted">{subtitle}</p>}
       </div>
       {actions}
@@ -45,7 +45,7 @@ export function Stat({ label, value, hint, icon, tone = 'primary', className }: 
         {icon && <div className={cn('flex size-10 shrink-0 items-center justify-center rounded-xl [&>svg]:size-5', tones[tone])}>{icon}</div>}
         <div className="min-w-0">
           <div className="line-clamp-2 text-xs font-medium break-words text-muted">{label}</div>
-          <div className="tnum truncate text-xl font-bold">{value}</div>
+          <div className="tnum truncate text-xl font-semibold tracking-tight">{value}</div>
         </div>
       </div>
       {hint && <div className="mt-2 text-xs text-subtle">{hint}</div>}
@@ -57,7 +57,8 @@ export function Kbd({ children, className }: { children: ReactNode; className?: 
   return <kbd className={cn('hidden rounded-md border border-border bg-surface-2 px-1.5 py-0.5 font-mono text-[10px] font-medium text-subtle lg:inline-block', className)}>{children}</kbd>
 }
 
-const avatarColors = ['#4f46e5', '#0891b2', '#059669', '#d97706', '#dc2626', '#7c3aed', '#db2777', '#2563eb']
+// Deep, muted tones: white initials stay above 4.5:1 on every one.
+const avatarColors = ['#3f3f46', '#0e7490', '#15803d', '#b45309', '#b91c1c', '#6d28d9', '#be185d', '#1d4ed8']
 
 export function Avatar({ name, color, size = 'md' }: { name: string; color?: string; size?: 'sm' | 'md' | 'lg' | 'xl' }) {
   const initials = name.split(/\s+/).filter(Boolean).slice(0, 2).map((w) => [...w][0]).join('').toUpperCase() || '?'

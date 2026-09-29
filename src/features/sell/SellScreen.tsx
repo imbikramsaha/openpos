@@ -318,9 +318,9 @@ export default function SellScreen() {
       {/* Phone & portrait tablet: floating cart summary */}
       <div className="fixed inset-x-3 bottom-[calc(68px+env(safe-area-inset-bottom))] z-20 md:bottom-4 lg:hidden">
         <button onClick={() => setMobileCart(true)} className="flex w-full items-center gap-3 rounded-2xl bg-primary px-4 py-3 text-primary-fg shadow-pop active:scale-[0.99]">
-          <span className="tnum flex size-9 items-center justify-center rounded-xl bg-white/20 text-sm font-bold">{Math.round(count * 100) / 100}</span>
+          <span className="tnum flex size-9 items-center justify-center rounded-xl bg-white/20 text-sm font-semibold">{Math.round(count * 100) / 100}</span>
           <span className="flex-1 text-start font-semibold">{cart.lines.length ? t('viewCart') : t('emptyCart')}</span>
-          <span className="tnum text-lg font-extrabold">{formatMoney(calc.total)}</span>
+          <span className="tnum text-lg font-semibold">{formatMoney(calc.total)}</span>
           <ChevronUp className="size-5" />
         </button>
       </div>
