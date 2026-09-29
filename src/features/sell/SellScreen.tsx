@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { ChevronUp, Keyboard } from 'lucide-react'
-import type { CartLine, Product, Sale } from '@/core/types'
+import type { CartLine, CartState, Product, Sale } from '@/core/types'
 import { db } from '@/db/db'
 import { formatMoney } from '@/lib/money'
 import { uuid } from '@/lib/uuid'
@@ -23,7 +23,7 @@ import { ReceiptDialog } from './ReceiptDialog'
 import { CameraScanner } from './CameraScanner'
 import { RefundLookup } from './RefundLookup'
 import { CustomItemDialog, CustomerPicker, DiscountDialog, HeldOrdersDialog, NoteDialog, NumberDialog, holdCurrentCart, isCountUnit } from './dialogs'
-import { calcCart, completeSale } from './checkout'
+import { calcCart, completeSale, voidSale } from './checkout'
 import { findByCode } from './lookup'
 import { beep, useScanner } from './useScanner'
 
@@ -53,6 +53,8 @@ export default function SellScreen() {
   const sound = useDevice((s) => s.sound)
   const [dialog, setDialog] = useState<Dialog | null>(null)
   const [receipt, setReceipt] = useState<Sale | null>(null)
+  /** The cart that became `receipt`, for "Back to edit". */
+  const [receiptCart, setReceiptCart] = useState<CartState | null>(null)
   const [mobileCart, setMobileCart] = useState(false)
   const searchRef = useRef<HTMLInputElement>(null)
   const paying = useRef(false)
@@ -157,6 +159,27 @@ export default function SellScreen() {
     [addProduct, notFound],
   )
   useScanner(onScan, !dialog && !receipt)
+
+  // "Back to edit" on the receipt: the sale is already saved (numbered, stock taken), so it is voided,
+  // which keeps the invoice on record as voided, and its cart comes back to fix and charge again.
+  const editLastSale = async () => {
+    const sale = receipt
+    const before = receiptCart
+    if (!sale || !before) return
+    if (!(await requirePermission('void'))) return
+    const ok = await confirmDialog({ title: t('editSaleTitle', { number: sale.number }), message: t('editSaleMessage'), confirmLabel: t('editSaleConfirm'), danger: true })
+    if (!ok) return
+    try {
+      await voidSale(sale, t('sales:void.reasons.mistake'))
+    } catch (e) {
+      toast(errorMessage(e), 'error')
+      return
+    }
+    useCart.getState().load(before)
+    setReceipt(null)
+    setReceiptCart(null)
+    toast(t('editSaleDone', { number: sale.number }))
+  }
 
   const onEnter = async (q: string, matches: Product[]) => {
     const hit = await findByCode(q)
@@ -361,17 +384,20 @@ export default function SellScreen() {
         open={dialog?.kind === 'pay'}
         onClose={close}
         onNeedCustomer={() => setDialog({ kind: 'customer' })}
-        onComplete={(sale) => {
+        onComplete={(sale, before) => {
           setDialog(null)
           setReceipt(sale)
+          setReceiptCart(before)
         }}
       />
       <ReceiptDialog
         sale={receipt}
         onClose={() => {
           setReceipt(null)
+          setReceiptCart(null)
           if (settings.lockAfterSale) logout()
         }}
+        onEdit={receipt && receiptCart && receipt.type === 'sale' ? editLastSale : undefined}
       />
       <ShortcutsDialog open={dialog?.kind === 'shortcuts'} onClose={close} />
     </div>

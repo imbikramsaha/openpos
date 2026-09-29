@@ -167,5 +167,10 @@
   "invalidPrice": "0 이상의 가격을 입력하세요",
   "amountTooLarge": "합계 금액이 너무 큽니다. 수량과 가격을 확인하세요.",
   "refundComplete": "환불 완료",
-  "receiptAmbiguous": "{{number}}(으)로 끝나는 판매가 여러 건 있습니다. 영수증 번호를 더 입력하세요."
+  "receiptAmbiguous": "{{number}}(으)로 끝나는 판매가 여러 건 있습니다. 영수증 번호를 더 입력하세요.",
+  "editSale": "돌아가서 수정",
+  "editSaleTitle": "{{number}}(으)로 돌아가서 수정할까요?",
+  "editSaleMessage": "이 주문은 취소됩니다(취소됨으로 판매 내역에 남습니다). 상품은 화면으로 돌아오므로 수정한 뒤 다시 결제할 수 있습니다.",
+  "editSaleConfirm": "취소하고 수정",
+  "editSaleDone": "{{number}}이(가) 취소되었습니다. 주문을 수정하고 다시 결제하세요."
 }

@@ -167,5 +167,10 @@
   "invalidPrice": "0 以上の価格を入力してください",
   "amountTooLarge": "合計金額が大きすぎます。数量と価格を確認してください。",
   "refundComplete": "返金完了",
-  "receiptAmbiguous": "{{number}} で終わる取引が複数あります。レシート番号をもっと入力してください。"
+  "receiptAmbiguous": "{{number}} で終わる取引が複数あります。レシート番号をもっと入力してください。",
+  "editSale": "戻って修正",
+  "editSaleTitle": "{{number}} に戻って修正しますか？",
+  "editSaleMessage": "この会計は取り消されます（取消済みとして売上一覧に残ります）。商品は画面に戻るので、修正してもう一度会計できます。",
+  "editSaleConfirm": "取り消して修正",
+  "editSaleDone": "{{number}} を取り消しました。修正して、もう一度会計してください。"
 }

@@ -167,5 +167,10 @@
   "invalidPrice": "Nhập giá bằng 0 hoặc lớn hơn",
   "amountTooLarge": "Tổng tiền quá lớn. Kiểm tra lại số lượng và giá.",
   "refundComplete": "Đã hoàn tiền xong",
-  "receiptAmbiguous": "Có nhiều đơn bán kết thúc bằng {{number}}. Nhập thêm số hóa đơn."
+  "receiptAmbiguous": "Có nhiều đơn bán kết thúc bằng {{number}}. Nhập thêm số hóa đơn.",
+  "editSale": "Quay lại để sửa",
+  "editSaleTitle": "Quay lại và sửa {{number}}?",
+  "editSaleMessage": "Đơn bán này sẽ bị hủy (vẫn nằm trong danh sách đơn bán với trạng thái đã hủy) và các mặt hàng sẽ quay lại màn hình để bạn sửa rồi thu tiền lại.",
+  "editSaleConfirm": "Hủy và sửa",
+  "editSaleDone": "Đã hủy {{number}}. Hãy sửa đơn bán rồi thu tiền lại."
 }

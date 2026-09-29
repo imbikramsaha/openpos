@@ -170,5 +170,10 @@
   "invalidPrice": "Enter a price of zero or more",
   "amountTooLarge": "The total is too large. Check the quantities and prices.",
   "refundComplete": "Refund complete",
-  "receiptAmbiguous": "Several sales end in {{number}}. Type more of the receipt number."
+  "receiptAmbiguous": "Several sales end in {{number}}. Type more of the receipt number.",
+  "editSale": "Back to edit",
+  "editSaleTitle": "Go back and edit {{number}}?",
+  "editSaleMessage": "This sale will be voided (it stays in Sales, marked as voided) and its items come back on screen, so you can fix them and charge again.",
+  "editSaleConfirm": "Void and edit",
+  "editSaleDone": "{{number}} voided. Fix the sale and charge again."
 }

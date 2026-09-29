@@ -58,9 +58,27 @@ await run('desktop', { width: 1366, height: 820 }, async (page, shot) => {
   await page.keyboard.press('F12')
   await page.getByText('Total to pay').waitFor()
   await shot('5-payment')
+  // Tendering doesn't finish the sale: the cashier checks the change and confirms.
   await page.getByRole('button', { name: 'Exact' }).click()
+  await page.waitForTimeout(300)
+  if (await page.getByText('Sale complete').count()) throw new Error('Sale completed without "Complete sale"')
+  await page.getByRole('button', { name: /Complete sale/ }).click()
   await page.getByText('Sale complete').waitFor()
   await shot('6-receipt')
+  // "Back to edit" voids the sale and puts the same cart back.
+  const first = await page.getByRole('dialog').locator('p').first().textContent()
+  await page.getByRole('button', { name: 'Back to edit' }).click()
+  await page.getByRole('button', { name: 'Void and edit' }).click()
+  await page.getByText('Sale complete').waitFor({ state: 'detached' })
+  await page.getByText(/Cappuccino/).first().waitFor()
+  // Keyboard checkout: F12 pay, Enter adds cash for the amount due, Enter completes.
+  await page.keyboard.press('F12')
+  await page.getByText('Total to pay').waitFor()
+  await page.keyboard.press('Enter')
+  await page.keyboard.press('Enter')
+  await page.getByText('Sale complete').waitFor()
+  const second = await page.getByRole('dialog').locator('p').first().textContent()
+  if (!first || first === second) throw new Error(`Edited sale should get a new number (${first} → ${second})`)
   await page.getByRole('button', { name: 'New sale' }).click()
   // Every other screen must at least render without crashing.
   for (const r of ['sales', 'products', 'inventory', 'customers', 'reports', 'shifts', 'users', 'settings']) {

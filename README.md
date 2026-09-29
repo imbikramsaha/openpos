@@ -54,7 +54,7 @@ The desktop apps update themselves once the repository is public. The web app al
 
 - **Works offline, always.** Every till keeps a full local database. Internet down? Keep selling. Changes sync automatically when you're back online.
 - **Runs everywhere.** Install it from the browser, or use native desktop and mobile apps built from the same code.
-- **Fast at the counter.** Barcode scanners work anywhere on the sell screen, there are keyboard shortcuts for everything, tiles are touch-friendly and payment is one tap.
+- **Fast at the counter.** Barcode scanners work anywhere on the sell screen, there are keyboard shortcuts for everything, tiles are touch-friendly, and paying is a tap on the method, then **Complete sale** (or Enter, Enter).
 - **Speaks your customers' language.** 34 languages: 13 Indian languages, 20 major world languages and English. Urdu, Arabic and Persian get full right-to-left layout.
 - **Built for India, ready for the world.** GST invoices with CGST/SGST/IGST and HSN codes, a UPI QR with the amount pre-filled, credit ledgers (khata), and lakh/crore formatting. Country presets cover 38 countries' currencies and tax rates.
 
@@ -68,7 +68,7 @@ The desktop apps update themselves once the repository is public. The web app al
 - **Hold / recall** sales to serve the next customer; custom one-off items.
 - **Split payments:** cash with quick-cash buttons and change, card, **UPI QR**, **on account (khata)** with credit limits, loyalty points, bank transfer, vouchers.
 - Customers attached in two taps, with automatic customer discounts and loyalty earning.
-- Returns with or without the original receipt, refunds with restock control, and voids behind manager approval.
+- Returns with or without the original receipt, refunds with restock control, and voids behind manager approval. A mistake spotted right after a sale? **Back to edit** on the receipt voids it and puts the items back in the cart.
 - Restaurant mode: dine-in, takeaway and delivery, plus table numbers.
 - **Customer-facing display** for a second screen, showing items, total, the UPI QR and change due.
 - Keyboard shortcuts (F1 shows them all), and the cart survives crashes and reloads.

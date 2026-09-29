@@ -167,5 +167,10 @@
   "invalidPrice": "Masukkan harga sifar atau lebih",
   "amountTooLarge": "Jumlah terlalu besar. Semak kuantiti dan harga.",
   "refundComplete": "Bayaran balik selesai",
-  "receiptAmbiguous": "Beberapa jualan berakhir dengan {{number}}. Taip lebih banyak nombor resit."
+  "receiptAmbiguous": "Beberapa jualan berakhir dengan {{number}}. Taip lebih banyak nombor resit.",
+  "editSale": "Kembali untuk sunting",
+  "editSaleTitle": "Kembali dan sunting {{number}}?",
+  "editSaleMessage": "Jualan ini akan dibatalkan (kekal dalam senarai jualan, ditanda dibatalkan) dan barangannya kembali ke skrin, supaya anda boleh membetulkannya dan mengenakan bayaran semula.",
+  "editSaleConfirm": "Batalkan dan sunting",
+  "editSaleDone": "{{number}} dibatalkan. Betulkan jualan dan kenakan bayaran semula."
 }

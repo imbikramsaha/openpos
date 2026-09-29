@@ -2,7 +2,7 @@ import { useEffect, useMemo, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useLiveQuery } from 'dexie-react-hooks'
 import { Banknote, BookUser, CreditCard, Gift, Landmark, QrCode, Smartphone, Ticket, Wallet, X } from 'lucide-react'
-import type { Payment, PaymentMethod, Sale } from '@/core/types'
+import type { CartState, Payment, PaymentMethod, Sale } from '@/core/types'
 import { computeChange, quickCashSuggestions } from '@/core/cart'
 import { db } from '@/db/db'
 import { formatMoney, fromMinor, moneyConfig, parseDecimal, toMinor } from '@/lib/money'
@@ -29,7 +29,8 @@ export const METHOD_ICONS: Record<PaymentMethod, typeof Banknote> = {
   other: Wallet,
 }
 
-export function PaymentDialog({ open, onClose, onComplete, onNeedCustomer }: { open: boolean; onClose: () => void; onComplete: (sale: Sale) => void; onNeedCustomer: () => void }) {
+/** `onComplete` also gets the cart as it was, so the receipt screen can void the sale and put it back for editing. */
+export function PaymentDialog({ open, onClose, onComplete, onNeedCustomer }: { open: boolean; onClose: () => void; onComplete: (sale: Sale, cart: CartState) => void; onNeedCustomer: () => void }) {
   const { t } = useTranslation('sell')
   const cart = useCart()
   const settings = useSettings((s) => s.settings)
@@ -79,10 +80,11 @@ export function PaymentDialog({ open, onClose, onComplete, onNeedCustomer }: { o
     busyRef.current = true
     setBusy(true)
     try {
-      const sale = await completeSale(cart.snapshot(), all, customer ?? undefined)
+      const snapshot = cart.snapshot()
+      const sale = await completeSale(snapshot, all, customer ?? undefined)
       cart.clear()
       sendToDisplay({ type: 'paid', total: sale.total, change: sale.change })
-      onComplete(sale)
+      onComplete(sale, snapshot)
     } catch (e) {
       toast(errorMessage(e), 'error')
     } finally {
@@ -133,9 +135,9 @@ export function PaymentDialog({ open, onClose, onComplete, onNeedCustomer }: { o
     }
 
     const next = [...payments, { id: uuid(), method, amount: amt, reference }]
+    // The sale is only completed by "Complete sale" (or Enter), so a wrong tender can still be removed.
     setPayments(next)
     setText('')
-    if (computeChange(total, next).due <= 0) await finalize(next)
   }
 
   const keysRef = useDialogKeys(open, (e) => {
@@ -161,7 +163,22 @@ export function PaymentDialog({ open, onClose, onComplete, onNeedCustomer }: { o
   const quick = quickCashSuggestions(due, notes)
 
   return (
-    <Modal open={open} onClose={() => !busy && onClose()} title={t('payment')} size="xl" flush dismissible={!busy}>
+    <Modal
+      open={open}
+      onClose={() => !busy && onClose()}
+      title={t('payment')}
+      size="xl"
+      flush
+      dismissible={!busy}
+      footer={
+        !upi && (
+          <Button variant="success" size="xl" block loading={busy} disabled={due > 0} onClick={() => finalize(payments)}>
+            {t('completeSale')}
+            <kbd className="hidden rounded-md border border-white/40 px-1.5 py-0.5 font-mono text-[11px] font-medium lg:inline-block">Enter</kbd>
+          </Button>
+        )
+      }
+    >
       <div className="grid min-h-0 lg:grid-cols-[1fr_1.15fr]">
         {/* Summary */}
         <div ref={keysRef} className="flex flex-col gap-4 border-b border-border bg-surface-2 p-5 lg:border-e lg:border-b-0">
@@ -271,11 +288,6 @@ export function PaymentDialog({ open, onClose, onComplete, onNeedCustomer }: { o
                   })}
                 </div>
               </div>
-              {due <= 0 && (
-                <Button variant="success" size="xl" block loading={busy} onClick={() => finalize(payments)}>
-                  {t('completeSale')}
-                </Button>
-              )}
             </>
           )}
         </div>

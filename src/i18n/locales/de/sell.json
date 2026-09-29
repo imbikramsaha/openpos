@@ -170,5 +170,10 @@
   "invalidPrice": "Gib einen Preis von null oder mehr ein",
   "amountTooLarge": "Die Summe ist zu hoch. Überprüfe die Mengen und Preise.",
   "refundComplete": "Erstattung abgeschlossen",
-  "receiptAmbiguous": "Mehrere Verkäufe enden auf {{number}}. Gib mehr von der Belegnummer ein."
+  "receiptAmbiguous": "Mehrere Verkäufe enden auf {{number}}. Gib mehr von der Belegnummer ein.",
+  "editSale": "Zurück zum Bearbeiten",
+  "editSaleTitle": "Zurück und {{number}} bearbeiten?",
+  "editSaleMessage": "Dieser Verkauf wird storniert (er bleibt als storniert in den Verkäufen) und seine Artikel kommen zurück auf den Bildschirm, damit du sie korrigieren und neu kassieren kannst.",
+  "editSaleConfirm": "Stornieren und bearbeiten",
+  "editSaleDone": "{{number}} storniert. Korrigiere den Verkauf und kassiere erneut."
 }

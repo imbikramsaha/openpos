@@ -173,5 +173,10 @@
   "invalidPrice": "Ingresa un precio de cero o más",
   "amountTooLarge": "El total es demasiado grande. Revisa las cantidades y los precios.",
   "refundComplete": "Reembolso completado",
-  "receiptAmbiguous": "Varias ventas terminan en {{number}}. Escribe más dígitos del número de recibo."
+  "receiptAmbiguous": "Varias ventas terminan en {{number}}. Escribe más dígitos del número de recibo.",
+  "editSale": "Volver a editar",
+  "editSaleTitle": "¿Volver y editar {{number}}?",
+  "editSaleMessage": "Esta venta se anulará (quedará en Ventas marcada como anulada) y sus artículos volverán a la pantalla para que puedas corregirlos y cobrar de nuevo.",
+  "editSaleConfirm": "Anular y editar",
+  "editSaleDone": "{{number}} anulada. Corrige la venta y cobra de nuevo."
 }

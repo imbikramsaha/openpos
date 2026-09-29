@@ -1,8 +1,8 @@
-import { useEffect, useMemo } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import i18n from 'i18next'
 import { useTranslation } from 'react-i18next'
 import { useLiveQuery } from 'dexie-react-hooks'
-import { CheckCircle2, Mail, MessageCircle, Printer, Share2 } from 'lucide-react'
+import { ArrowLeft, CheckCircle2, Mail, MessageCircle, Printer, Share2 } from 'lucide-react'
 import type { Sale } from '@/core/types'
 import { db } from '@/db/db'
 import { formatMoney } from '@/lib/money'
@@ -81,8 +81,23 @@ export function ReceiptPreview({ sale, className }: { sale: Sale; className?: st
   )
 }
 
-export function ReceiptDialog({ sale, onClose }: { sale: Sale | null; onClose: () => void }) {
+/** `onEdit`, when given, offers "Back to edit" (void the sale and reopen it in the cart). */
+export function ReceiptDialog({ sale, onClose, onEdit }: { sale: Sale | null; onClose: () => void; onEdit?: () => Promise<void> }) {
   const { t } = useTranslation('sell')
+  const [editing, setEditing] = useState(false)
+  // While "Back to edit" asks for confirmation, Enter belongs to that dialog, not "New sale".
+  const editingRef = useRef(false)
+  const edit = async () => {
+    if (!onEdit || editingRef.current) return
+    editingRef.current = true
+    setEditing(true)
+    try {
+      await onEdit()
+    } finally {
+      editingRef.current = false
+      setEditing(false)
+    }
+  }
   const autoPrint = useSettings((s) => s.settings.receipt.autoPrint)
   const customerEmail = useLiveQuery(async () => (sale?.customerId ? (await db.customers.get(sale.customerId))?.email || undefined : undefined), [sale?.customerId])
 
@@ -93,6 +108,7 @@ export function ReceiptDialog({ sale, onClose }: { sale: Sale | null; onClose: (
   useEffect(() => {
     if (!sale) return
     const onKey = (e: KeyboardEvent) => {
+      if (editingRef.current) return
       if (e.key === 'Enter') {
         e.preventDefault()
         onClose()
@@ -104,7 +120,7 @@ export function ReceiptDialog({ sale, onClose }: { sale: Sale | null; onClose: (
 
   if (!sale) return null
   return (
-    <Modal open onClose={onClose} size="lg" flush title={sale.total < 0 ? t('refundComplete') : t('saleComplete')} subtitle={sale.number}>
+    <Modal open onClose={() => !editingRef.current && onClose()} size="lg" flush title={sale.total < 0 ? t('refundComplete') : t('saleComplete')} subtitle={sale.number}>
       <div className="grid lg:grid-cols-[1fr_auto]">
         <div className="flex flex-col items-center justify-center gap-5 p-6 text-center">
           <CheckCircle2 className="size-16 text-success" strokeWidth={1.6} />
@@ -130,9 +146,14 @@ export function ReceiptDialog({ sale, onClose }: { sale: Sale | null; onClose: (
               {t('email')}
             </Button>
           </div>
-          <Button variant="primary" size="xl" block className="max-w-xs" onClick={onClose} autoFocus>
+          <Button variant="primary" size="xl" block className="max-w-xs" onClick={onClose} disabled={editing} autoFocus>
             {t('newSale')}
           </Button>
+          {onEdit && (
+            <Button variant="ghost" icon={<ArrowLeft className="size-4 rtl:rotate-180" />} loading={editing} onClick={() => void edit()}>
+              {t('editSale')}
+            </Button>
+          )}
         </div>
         <div className="hidden border-s border-border bg-surface-3 p-4 lg:block">
           <ReceiptPreview sale={sale} />

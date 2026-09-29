@@ -176,5 +176,10 @@
   "invalidPrice": "Wpisz cenę zero lub większą",
   "amountTooLarge": "Suma jest zbyt duża. Sprawdź ilości i ceny.",
   "refundComplete": "Zwrot zakończony",
-  "receiptAmbiguous": "Kilka sprzedaży kończy się na {{number}}. Wpisz więcej cyfr numeru paragonu."
+  "receiptAmbiguous": "Kilka sprzedaży kończy się na {{number}}. Wpisz więcej cyfr numeru paragonu.",
+  "editSale": "Wróć do edycji",
+  "editSaleTitle": "Wrócić i edytować {{number}}?",
+  "editSaleMessage": "Ta sprzedaż zostanie anulowana (zostanie w Sprzedaży jako anulowana), a jej pozycje wrócą na ekran, aby można je było poprawić i ponownie przyjąć płatność.",
+  "editSaleConfirm": "Anuluj i edytuj",
+  "editSaleDone": "Anulowano {{number}}. Popraw sprzedaż i przyjmij płatność ponownie."
 }

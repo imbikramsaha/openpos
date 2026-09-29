@@ -173,5 +173,10 @@
   "invalidPrice": "Saisissez un prix de zéro ou plus",
   "amountTooLarge": "Le total est trop élevé. Vérifiez les quantités et les prix.",
   "refundComplete": "Remboursement terminé",
-  "receiptAmbiguous": "Plusieurs ventes se terminent par {{number}}. Saisissez davantage de chiffres du numéro de reçu."
+  "receiptAmbiguous": "Plusieurs ventes se terminent par {{number}}. Saisissez davantage de chiffres du numéro de reçu.",
+  "editSale": "Revenir pour modifier",
+  "editSaleTitle": "Revenir et modifier {{number}} ?",
+  "editSaleMessage": "Cette vente sera annulée (elle reste dans les ventes, marquée comme annulée) et ses articles reviennent à l'écran pour que vous puissiez les corriger et encaisser à nouveau.",
+  "editSaleConfirm": "Annuler et modifier",
+  "editSaleDone": "{{number}} annulée. Corrigez la vente et encaissez à nouveau."
 }

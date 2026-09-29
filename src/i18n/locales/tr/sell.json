@@ -170,5 +170,10 @@
   "invalidPrice": "Sıfır veya daha fazla bir fiyat girin",
   "amountTooLarge": "Toplam çok büyük. Miktarları ve fiyatları kontrol edin.",
   "refundComplete": "İade tamamlandı",
-  "receiptAmbiguous": "Birden fazla satış {{number}} ile bitiyor. Fiş numarasının daha fazlasını yazın."
+  "receiptAmbiguous": "Birden fazla satış {{number}} ile bitiyor. Fiş numarasının daha fazlasını yazın.",
+  "editSale": "Düzenlemeye dön",
+  "editSaleTitle": "Geri dönüp {{number}} düzenlensin mi?",
+  "editSaleMessage": "Bu satış iptal edilecek (Satışlar'da iptal edildi olarak kalır) ve ürünleri ekrana geri gelecek; böylece düzeltip yeniden ödeme alabilirsiniz.",
+  "editSaleConfirm": "İptal et ve düzenle",
+  "editSaleDone": "{{number}} iptal edildi. Satışı düzeltin ve yeniden ödeme alın."
 }

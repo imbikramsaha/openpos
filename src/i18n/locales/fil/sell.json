@@ -170,5 +170,10 @@
   "invalidPrice": "Ilagay ang presyong zero o higit pa",
   "amountTooLarge": "Sobrang laki ng kabuuan. Suriin ang mga dami at presyo.",
   "refundComplete": "Kumpleto ang refund",
-  "receiptAmbiguous": "Maraming bentang nagtatapos sa {{number}}. I-type ang mas kumpletong numero ng resibo."
+  "receiptAmbiguous": "Maraming bentang nagtatapos sa {{number}}. I-type ang mas kumpletong numero ng resibo.",
+  "editSale": "Bumalik para i-edit",
+  "editSaleTitle": "Bumalik at i-edit ang {{number}}?",
+  "editSaleMessage": "Ma-void ang bentang ito (mananatili ito sa listahan ng benta bilang na-void) at babalik sa screen ang mga item nito, para maayos mo at masingil ulit.",
+  "editSaleConfirm": "I-void at i-edit",
+  "editSaleDone": "Na-void ang {{number}}. Ayusin ang benta at maningil ulit."
 }

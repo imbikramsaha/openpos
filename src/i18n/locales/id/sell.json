@@ -167,5 +167,10 @@
   "invalidPrice": "Masukkan harga nol atau lebih",
   "amountTooLarge": "Total terlalu besar. Periksa jumlah dan harga.",
   "refundComplete": "Refund selesai",
-  "receiptAmbiguous": "Beberapa penjualan berakhiran {{number}}. Masukkan lebih banyak digit nomor struk."
+  "receiptAmbiguous": "Beberapa penjualan berakhiran {{number}}. Masukkan lebih banyak digit nomor struk.",
+  "editSale": "Kembali untuk mengedit",
+  "editSaleTitle": "Kembali dan edit {{number}}?",
+  "editSaleMessage": "Penjualan ini akan dibatalkan (tetap ada di Penjualan dengan tanda dibatalkan) dan barangnya kembali ke layar, sehingga Anda bisa memperbaikinya lalu menagih lagi.",
+  "editSaleConfirm": "Batalkan dan edit",
+  "editSaleDone": "{{number}} dibatalkan. Perbaiki penjualan lalu tagih lagi."
 }

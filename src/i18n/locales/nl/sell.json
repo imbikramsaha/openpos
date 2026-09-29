@@ -170,5 +170,10 @@
   "invalidPrice": "Voer een prijs van nul of hoger in",
   "amountTooLarge": "Het totaal is te groot. Controleer de aantallen en prijzen.",
   "refundComplete": "Terugbetaling voltooid",
-  "receiptAmbiguous": "Meerdere verkopen eindigen op {{number}}. Voer meer van het bonnummer in."
+  "receiptAmbiguous": "Meerdere verkopen eindigen op {{number}}. Voer meer van het bonnummer in.",
+  "editSale": "Terug om te bewerken",
+  "editSaleTitle": "Teruggaan en {{number}} bewerken?",
+  "editSaleMessage": "Deze verkoop wordt geannuleerd (hij blijft als geannuleerd in Verkopen staan) en de artikelen komen terug op het scherm, zodat je ze kunt corrigeren en opnieuw kunt afrekenen.",
+  "editSaleConfirm": "Annuleren en bewerken",
+  "editSaleDone": "{{number}} geannuleerd. Corrigeer de verkoop en reken opnieuw af."
 }

@@ -170,5 +170,10 @@
   "invalidPrice": "Weka bei ya sifuri au zaidi",
   "amountTooLarge": "Jumla ni kubwa mno. Angalia idadi na bei.",
   "refundComplete": "Marejesho yamekamilika",
-  "receiptAmbiguous": "Mauzo kadhaa yanaishia kwa {{number}}. Andika sehemu zaidi ya namba ya risiti."
+  "receiptAmbiguous": "Mauzo kadhaa yanaishia kwa {{number}}. Andika sehemu zaidi ya namba ya risiti.",
+  "editSale": "Rudi kuhariri",
+  "editSaleTitle": "Rudi na uhariri {{number}}?",
+  "editSaleMessage": "Muuzo huu utabatilishwa (utabaki kwenye mauzo ukiwa umewekwa alama ya imebatilishwa) na bidhaa zake zitarudi kwenye skrini, ili uzirekebishe na utoze tena.",
+  "editSaleConfirm": "Batilisha na uhariri",
+  "editSaleDone": "{{number}} imebatilishwa. Rekebisha muuzo na utoze tena."
 }
