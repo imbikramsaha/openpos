@@ -4,6 +4,7 @@ import { DEFAULT_CONFIG, clearStatus, dueTargets, runAutoBackup, saveConfig, toP
 import { localDb, kvSet } from '@/features/backup/store'
 import { accessToken } from '@/features/backup/oauth'
 import { BACKUP_NAME, CLOUD } from '@/features/backup/providers'
+import { InvalidBackup, parseBackup } from '@/features/settings/backup'
 import { db } from '@/db/db'
 import { put } from '@/db/repo'
 import type { User } from '@/core/types'
@@ -53,9 +54,19 @@ describe('automatic backup run', () => {
     const snaps = await localDb.snapshots.toArray()
     expect(snaps).toHaveLength(2)
     const file = JSON.parse(await snaps[0].blob.text())
-    expect(file.app).toBe('kasa-pos')
+    expect(file.app).toBe('openpos')
+    expect(snaps[0].filename).toMatch(/^openpos-backup-/)
     expect(file.tables.users).toHaveLength(1)
     expect(useAutoBackup.getState().status.device?.lastSuccess).toBeGreaterThan(0)
+  })
+
+  it('restores backups made before the rename from Kasa POS, and nothing else', async () => {
+    await saveConfig({ targets: { ...DEFAULT_CONFIG.targets, device: true } })
+    await runAutoBackup('manual')
+    const text = await (await localDb.snapshots.toArray())[0].blob.text()
+    expect(parseBackup(text).counts.users).toBe(1)
+    expect(parseBackup(text.replace('"app":"openpos"', '"app":"kasa-pos"')).counts.users).toBe(1)
+    expect(() => parseBackup(text.replace('"app":"openpos"', '"app":"other"'))).toThrow(InvalidBackup)
   })
 
   it('encrypts when a passphrase is set', async () => {
@@ -64,8 +75,8 @@ describe('automatic backup run', () => {
     await runAutoBackup('manual')
     const [snap] = await localDb.snapshots.toArray()
     expect(snap.encrypted).toBe(true)
-    expect(snap.filename.endsWith('.kasa')).toBe(true)
-    expect(JSON.parse(await (await decryptBlob(snap.blob, 'shop secret 123')).text()).app).toBe('kasa-pos')
+    expect(snap.filename.endsWith('.openpos')).toBe(true)
+    expect(JSON.parse(await (await decryptBlob(snap.blob, 'shop secret 123')).text()).app).toBe('openpos')
   })
 
   it('does nothing before the shop is set up', async () => {
@@ -85,7 +96,7 @@ describe('cloud clients (mocked APIs)', () => {
 
   it('refreshes an expired Dropbox token and uploads into the app folder, then prunes', async () => {
     await kvSet('oauth:dropbox', { access_token: 'old', refresh_token: 'r1', expires_at: 0 })
-    const listing = { entries: [3, 2, 1].map((n) => ({ '.tag': 'file', id: `id${n}`, name: `kasa-backup-2026090${n}-1200.json`, size: 10, server_modified: `2026-09-0${n}T12:00:00Z`, path_lower: `/kasa-backup-2026090${n}-1200.json` })) }
+    const listing = { entries: [3, 2, 1].map((n) => ({ '.tag': 'file', id: `id${n}`, name: `openpos-backup-2026090${n}-1200.json`, size: 10, server_modified: `2026-09-0${n}T12:00:00Z`, path_lower: `/openpos-backup-2026090${n}-1200.json` })) }
     vi.stubGlobal('fetch', vi.fn(async (url: string, init?: RequestInit) => {
       calls.push({ url, init })
       if (url.includes('oauth2/token')) return Response.json({ access_token: 'fresh', expires_in: 14400 })
@@ -94,23 +105,26 @@ describe('cloud clients (mocked APIs)', () => {
     }))
     // Dropbox client id comes from the build env; the token call itself is what's tested.
     expect(await accessToken('dropbox')).toBe('fresh')
-    await CLOUD.dropbox.upload('kasa-backup-20260904-1200.json', new Blob(['{}']))
+    await CLOUD.dropbox.upload('openpos-backup-20260904-1200.json', new Blob(['{}']))
     const upload = calls.find((c) => c.url.includes('files/upload'))!
     expect((upload.init!.headers as Record<string, string>).Authorization).toBe('Bearer fresh')
-    expect(JSON.parse((upload.init!.headers as Record<string, string>)['Dropbox-API-Arg']).path).toBe('/kasa-backup-20260904-1200.json')
+    expect(JSON.parse((upload.init!.headers as Record<string, string>)['Dropbox-API-Arg']).path).toBe('/openpos-backup-20260904-1200.json')
     const files = await CLOUD.dropbox.list()
-    expect(files.map((f) => f.name)[0]).toBe('kasa-backup-20260903-1200.json')
+    expect(files.map((f) => f.name)[0]).toBe('openpos-backup-20260903-1200.json')
     for (const f of toPrune(files, 2)) await CLOUD.dropbox.remove(f.id)
     const deletes = calls.filter((c) => c.url.includes('delete_v2')).map((c) => JSON.parse(String(c.init!.body)).path)
-    expect(deletes).toEqual(['/kasa-backup-20260901-1200.json'])
+    expect(deletes).toEqual(['/openpos-backup-20260901-1200.json'])
   })
 })
 
 describe('backup file names', () => {
   it('recognises our backups, including copies a provider renamed', () => {
-    for (const n of ['kasa-backup-20260927-1450.json', 'kasa-backup-20260927-145012.kasa', 'kasa-backup-20260927-145012 (1).kasa', 'kasa-backup-20260927-145012 1.json'])
+    for (const n of ['openpos-backup-20260927-1450.json', 'openpos-backup-20260927-145012.openpos', 'openpos-backup-20260927-145012 (1).openpos', 'openpos-backup-20260927-145012 1.json'])
       expect(BACKUP_NAME.test(n), n).toBe(true)
-    for (const n of ['notes.txt', 'kasa-backup-2026.json', 'kasa-backup-20260927-1450.json.bak']) expect(BACKUP_NAME.test(n), n).toBe(false)
+    // Backups made before the rename from Kasa POS still count (listed, restored and pruned).
+    for (const n of ['kasa-backup-20260927-1450.json', 'kasa-backup-20260927-145012.kasa', 'kasa-backup-20260927-145012 (1).kasa'])
+      expect(BACKUP_NAME.test(n), n).toBe(true)
+    for (const n of ['notes.txt', 'openpos-backup-2026.json', 'openpos-backup-20260927-1450.json.bak', 'other-backup-20260927-1450.json']) expect(BACKUP_NAME.test(n), n).toBe(false)
   })
 })
 

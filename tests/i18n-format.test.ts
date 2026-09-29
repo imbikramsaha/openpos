@@ -20,6 +20,6 @@ describe('i18n number interpolation', () => {
 
   it('keeps plural selection and leaves strings alone', () => {
     expect(i18n.t('sell:itemsCount', { count: 1 })).toMatch(/^1 /)
-    expect(i18n.t('common:appName')).toBe('Kasa POS')
+    expect(i18n.t('common:appName')).toBe('OpenPOS')
   })
 })

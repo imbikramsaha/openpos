@@ -1,15 +1,17 @@
-// Kasa POS — Electron main process (Windows, macOS, Linux).
+// OpenPOS — Electron main process (Windows, macOS, Linux).
 //
-// Serves the Vite build (`dist/`) from the privileged app://kasa/ origin, exposes a tiny
+// Serves the Vite build (`dist/`) from the privileged app://kasa/ origin (the name the app had
+// before it became OpenPOS; the origin owns the local database, so it must never change), exposes a tiny
 // printing / cash-drawer bridge to the renderer (see preload.cjs + src/lib/platform.ts) and
 // keeps the renderer locked down (sandbox, context isolation, no Node, guarded navigation).
 //
 // Environment:
 //   ELECTRON_DEV_URL=http://localhost:5173  load the Vite dev server instead of dist/ (HMR)
-//   KASA_KIOSK=1 (or --kiosk)               full-screen kiosk mode for dedicated tills
-//   KASA_USER_DATA_DIR=<dir>                use a separate profile (e.g. two tills on one PC)
-//   KASA_DEVTOOLS=1                         allow F12 / Ctrl+Shift+I in packaged builds
-//   KASA_DISABLE_UPDATES=1                  never check GitHub Releases for updates
+//   OPENPOS_KIOSK=1 (or --kiosk)            full-screen kiosk mode for dedicated tills
+//   OPENPOS_USER_DATA_DIR=<dir>             use a separate profile (e.g. two tills on one PC)
+//   OPENPOS_DEVTOOLS=1                      allow F12 / Ctrl+Shift+I in packaged builds
+//   OPENPOS_DISABLE_UPDATES=1               never check GitHub Releases for updates
+// The older KASA_* names still work.
 'use strict'
 
 const { app, BrowserWindow, Menu, ipcMain, powerSaveBlocker, protocol, screen, session, shell } = require('electron')
@@ -19,20 +21,22 @@ const fsp = require('node:fs/promises')
 const os = require('node:os')
 const path = require('node:path')
 
-const APP_ID = 'com.kasapos.app'
+const APP_ID = 'com.openpos.app'
 const SCHEME = 'app'
 const HOST = 'kasa'
 const APP_ORIGIN = `${SCHEME}://${HOST}`
 const DIST_DIR = path.resolve(__dirname, '..', 'dist')
 const DEV_URL = process.env.ELECTRON_DEV_URL || ''
-const KIOSK = process.env.KASA_KIOSK === '1' || process.argv.includes('--kiosk')
+/** OPENPOS_<name>, or the KASA_<name> it replaced. */
+const env = (name) => process.env[`OPENPOS_${name}`] ?? process.env[`KASA_${name}`]
+const KIOSK = env('KIOSK') === '1' || process.argv.includes('--kiosk')
 const BACKGROUND = '#0b1020' // dark theme --bg (src/index.css): no white flash on start
 const MIN_WIDTH = 360
 const MIN_HEIGHT = 600
 const CUSTOMER_DISPLAY = 'kasa-customer-display' // window name used by src/features/display
 const IS_MAC = process.platform === 'darwin'
 const IS_WIN = process.platform === 'win32'
-const DEVTOOLS = !app.isPackaged || process.env.KASA_DEVTOOLS === '1'
+const DEVTOOLS = !app.isPackaged || env('DEVTOOLS') === '1'
 const EXTERNAL_PROTOCOLS = new Set(['https:', 'http:', 'mailto:', 'tel:', 'sms:', 'whatsapp:'])
 
 /** @type {BrowserWindow | null} */
@@ -59,7 +63,14 @@ function log(level, ...args) {
 // ---------------------------------------------------------------------------------------------
 // Startup: must run before `ready`.
 // ---------------------------------------------------------------------------------------------
-if (process.env.KASA_USER_DATA_DIR) app.setPath('userData', path.resolve(process.env.KASA_USER_DATA_DIR))
+if (env('USER_DATA_DIR')) app.setPath('userData', path.resolve(env('USER_DATA_DIR')))
+else {
+  // Installs from before the rename keep their sales database in the old "Kasa POS" profile folder.
+  // (Electron creates the new folder at startup, so look for the database, not the folder.)
+  const legacy = path.join(app.getPath('appData'), 'Kasa POS')
+  const hasData = (dir) => fs.existsSync(path.join(dir, 'IndexedDB'))
+  if (!hasData(app.getPath('userData')) && hasData(legacy)) app.setPath('userData', legacy)
+}
 if (IS_WIN) app.setAppUserModelId(APP_ID) // taskbar grouping + update notifications
 
 // A stable, secure, standard origin: IndexedDB/localStorage persist across launches and
@@ -80,8 +91,8 @@ if (!app.requestSingleInstanceLock()) {
 }
 
 function onReady() {
-  logFile = path.join(app.getPath('userData'), 'kasa-main.log')
-  log('info', `Kasa POS ${app.getVersion()} (Electron ${process.versions.electron}) on ${process.platform}-${process.arch}${KIOSK ? ' [kiosk]' : ''}`)
+  logFile = path.join(app.getPath('userData'), 'openpos-main.log')
+  log('info', `OpenPOS ${app.getVersion()} (Electron ${process.versions.electron}) on ${process.platform}-${process.arch}${KIOSK ? ' [kiosk]' : ''}`)
 
   registerAppProtocol()
   configurePermissions(session.defaultSession)
@@ -356,7 +367,7 @@ function createMainWindow() {
     minWidth: MIN_WIDTH,
     minHeight: MIN_HEIGHT,
     show: false,
-    title: 'Kasa POS',
+    title: 'OpenPOS',
     backgroundColor: BACKGROUND,
     icon: devIcon(),
     autoHideMenuBar: true,
@@ -408,9 +419,9 @@ function childWindowOptions(frameName) {
   if (frameName !== CUSTOMER_DISPLAY) return { ...base, width: 1024, height: 768 }
   const tillDisplay = mainWindow && !mainWindow.isDestroyed() ? screen.getDisplayMatching(mainWindow.getBounds()) : screen.getPrimaryDisplay()
   const other = screen.getAllDisplays().find((d) => d.id !== tillDisplay.id)
-  if (!other) return { ...base, title: 'Kasa POS — Customer display', width: 1024, height: 768 }
+  if (!other) return { ...base, title: 'OpenPOS — Customer display', width: 1024, height: 768 }
   const { x, y, width, height } = other.workArea
-  return { ...base, title: 'Kasa POS — Customer display', x, y, width, height, fullscreen: KIOSK }
+  return { ...base, title: 'OpenPOS — Customer display', x, y, width, height, fullscreen: KIOSK }
 }
 
 const attached = new WeakSet()
@@ -671,7 +682,7 @@ async function openCashDrawer(printer) {
       return false
     }
     await fsp.writeFile(file, DRAWER_PULSE)
-    const ok = IS_WIN ? await rawPrintWindows(target, file) : (await run('lp', ['-d', target, '-o', 'raw', '-t', 'Kasa POS drawer', file])).ok
+    const ok = IS_WIN ? await rawPrintWindows(target, file) : (await run('lp', ['-d', target, '-o', 'raw', '-t', 'OpenPOS drawer', file])).ok
     if (!ok) log('warn', `openCashDrawer: could not send pulse to "${target}"`)
     return ok
   } catch (err) {
@@ -715,7 +726,7 @@ public static class KasaRawPrinter {
     if (!OpenPrinter(printer, out h, IntPtr.Zero)) return false;
     try {
       DOCINFOW info = new DOCINFOW();
-      info.pDocName = "Kasa POS drawer";
+      info.pDocName = "OpenPOS drawer";
       info.pDataType = "RAW";
       if (StartDocPrinter(h, 1, info) == 0) return false;
       try {
@@ -751,7 +762,7 @@ async function rawPrintWindows(printer, file) {
 // Auto-update from GitHub Releases (packaged builds only; never fatal).
 // ---------------------------------------------------------------------------------------------
 function setupAutoUpdates() {
-  if (!app.isPackaged || process.env.KASA_DISABLE_UPDATES === '1') return
+  if (!app.isPackaged || env('DISABLE_UPDATES') === '1') return
   if (process.env.PORTABLE_EXECUTABLE_DIR) return // Windows portable .exe cannot self-update
   let autoUpdater
   try {

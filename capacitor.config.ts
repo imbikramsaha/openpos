@@ -3,8 +3,8 @@ import type { CapacitorConfig } from '@capacitor/cli'
 // Capacitor wraps the same Vite build (`dist/`) as native Android and iOS apps.
 // After changing this file or rebuilding the web app run `npx cap sync`.
 const config: CapacitorConfig = {
-  appId: 'com.kasapos.app',
-  appName: 'Kasa POS',
+  appId: 'com.openpos.app',
+  appName: 'OpenPOS',
   webDir: 'dist',
   // Dark theme background: avoids a white flash before the web app paints.
   backgroundColor: '#0b1020',

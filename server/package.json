@@ -1,8 +1,8 @@
 {
-  "name": "kasa-pos-server",
+  "name": "openpos-server",
   "version": "1.0.0",
   "private": true,
-  "description": "Kasa POS sync server: multi-store last-write-wins replication for offline-first tills, backed by SQLite. Zero dependencies.",
+  "description": "OpenPOS sync server: multi-store last-write-wins replication for offline-first tills, backed by SQLite. Zero dependencies.",
   "license": "MIT",
   "type": "module",
   "main": "src/index.js",
@@ -11,7 +11,7 @@
     "./server": "./src/server.js"
   },
   "bin": {
-    "kasa-server": "src/index.js"
+    "openpos-server": "src/index.js"
   },
   "scripts": {
     "start": "node src/index.js",

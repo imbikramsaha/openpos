@@ -1,5 +1,5 @@
 {
-  "appName": "Kasa POS",
+  "appName": "OpenPOS",
   "ok": "好",
   "cancel": "取消",
   "confirm": "确认",
@@ -89,7 +89,7 @@
   "noResults": "无结果",
   "noAccess": "您无权访问此页面",
   "noAccessHint": "请管理员为您授予权限。",
-  "updateAvailable": "Kasa POS 有新版本可用。",
+  "updateAvailable": "OpenPOS 有新版本可用。",
   "reload": "重新加载",
   "somethingWentWrong": "出错了",
   "tryAgain": "重试",
@@ -179,23 +179,23 @@
     "taxId": "请使用 3–20 个字母或数字"
   },
   "backspace": "删除最后一位数字",
-  "offlineReady": "Kasa POS 已可离线使用",
+  "offlineReady": "OpenPOS 已可离线使用",
   "later": "稍后",
-  "storageError": "此浏览器不允许 Kasa POS 保存数据",
-  "storageErrorHint": "Kasa POS 会将您的销售数据保存在本设备上。使用隐私或无痕窗口、屏蔽了本站点数据或磁盘已满都可能导致无法保存。请在普通窗口中打开本应用,允许本站点保存数据,然后重新加载。",
+  "storageError": "此浏览器不允许 OpenPOS 保存数据",
+  "storageErrorHint": "OpenPOS 会将您的销售数据保存在本设备上。使用隐私或无痕窗口、屏蔽了本站点数据或磁盘已满都可能导致无法保存。请在普通窗口中打开本应用,允许本站点保存数据,然后重新加载。",
   "dbClosed": "重新加载以继续",
-  "dbClosedHint": "本设备上的数据已在此窗口之外发生变化:站点数据被清除,或 Kasa POS 在另一个标签页中被清除、恢复或更新。请重新加载,以免数据保存到错误的位置。",
-  "otherTab": "Kasa POS 已在另一个标签页中打开",
+  "dbClosedHint": "本设备上的数据已在此窗口之外发生变化:站点数据被清除,或 OpenPOS 在另一个标签页中被清除、恢复或更新。请重新加载,以免数据保存到错误的位置。",
+  "otherTab": "OpenPOS 已在另一个标签页中打开",
   "otherTabHint": "收银台一次只能在一个标签页中使用,以确保购物车和小票保持一致。请在另一个标签页中继续操作,或改用此标签页。",
   "useHere": "使用此标签页",
   "notSignedIn": "请先登录",
   "storageFull": "本设备存储空间已满。请释放空间(或导出备份并清除旧数据),然后重试。",
   "install": {
     "button": "安装应用",
-    "title": "安装 Kasa POS",
+    "title": "安装 OpenPOS",
     "iosShare": "点按浏览器工具栏中的分享按钮(带有向上箭头的方形图标)。",
     "iosAdd": "向下滑动,然后点按“添加到主屏幕”。",
-    "iosConfirm": "点按“添加”。之后 Kasa POS 会像其他应用一样从主屏幕全屏打开,并可离线使用。",
-    "macSafari": "在 Safari 菜单栏中选择 文件 → 添加到 Dock。之后 Kasa POS 会像其他应用一样从 Dock 打开,并可离线使用。"
+    "iosConfirm": "点按“添加”。之后 OpenPOS 会像其他应用一样从主屏幕全屏打开,并可离线使用。",
+    "macSafari": "在 Safari 菜单栏中选择 文件 → 添加到 Dock。之后 OpenPOS 会像其他应用一样从 Dock 打开,并可离线使用。"
   }
 }

@@ -142,7 +142,7 @@ export async function runAutoBackup(reason: 'schedule' | 'shiftClose' | 'manual'
     const passphrase = config.encrypt ? await kvGet<string>(PASS_KEY, '') : ''
     if (passphrase) {
       blob = await encryptBlob(blob, passphrase)
-      filename = filename.replace(/\.json$/, '.kasa')
+      filename = filename.replace(/\.json$/, '.openpos')
     }
     let offDevice = false
     for (const t of targets) {

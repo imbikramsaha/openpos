@@ -10,11 +10,13 @@ import { localDb } from '@/features/backup/store'
 
 // Full-device backup: every local table except the sync outbox, as one JSON file.
 
-export const BACKUP_APP = 'kasa-pos'
+export const BACKUP_APP = 'openpos'
+/** Backups made before the app was renamed from Kasa POS. */
+const LEGACY_BACKUP_APP = 'kasa-pos'
 export const BACKUP_VERSION = 1
 
 export interface BackupFile {
-  app: typeof BACKUP_APP
+  app: typeof BACKUP_APP | typeof LEGACY_BACKUP_APP
   version: number
   exportedAt: number
   tables: Record<string, unknown[]>
@@ -50,7 +52,7 @@ export async function buildBackup(): Promise<BuiltBackup> {
   await db.transaction('r', backupTables(), async () => {
     for (const t of backupTables()) tables[t.name] = await t.toArray()
   })
-  const filename = `kasa-backup-${stamp(exportedAt)}.json`
+  const filename = `openpos-backup-${stamp(exportedAt)}.json`
   // Built as many small pieces rather than one JSON.stringify: years of sales can exceed the
   // browser's maximum string length, and the pieces avoid a second full copy in memory.
   const parts: string[] = [`{"app":${JSON.stringify(BACKUP_APP)},"version":${BACKUP_VERSION},"exportedAt":${exportedAt},"tables":{`]
@@ -117,7 +119,7 @@ export function parseBackup(text: string): BackupSummary {
     throw new InvalidBackup('notJson')
   }
   const f = raw as Partial<BackupFile>
-  if (!f || typeof f !== 'object' || f.app !== BACKUP_APP || typeof f.tables !== 'object' || !f.tables) throw new InvalidBackup('notKasa')
+  if (!f || typeof f !== 'object' || (f.app !== BACKUP_APP && f.app !== LEGACY_BACKUP_APP) || typeof f.tables !== 'object' || !f.tables) throw new InvalidBackup('notKasa')
   if (typeof f.version !== 'number' || f.version > BACKUP_VERSION) throw new InvalidBackup('newerVersion')
   const known = new Map(backupTables().map((t) => [t.name, t]))
   const counts: Record<string, number> = {}
@@ -167,7 +169,7 @@ export async function restoreBackup(file: BackupFile): Promise<void> {
 }
 
 /**
- * Reads a backup file's JSON text, decrypting it first when it's an encrypted (.kasa)
+ * Reads a backup file's JSON text, decrypting it first when it's an encrypted (.openpos, or .kasa from before the rename)
  * backup. `askPassphrase` is called for encrypted files; returning null cancels.
  */
 export async function readBackupText(file: Blob, askPassphrase: () => Promise<string | null>): Promise<string | null> {

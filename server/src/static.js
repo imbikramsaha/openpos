@@ -62,9 +62,9 @@ const statFile = (p) =>
     () => null,
   )
 
-const NOT_BUILT = `<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Kasa POS sync server</title>
+const NOT_BUILT = `<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>OpenPOS sync server</title>
 <style>body{font:16px/1.5 system-ui,sans-serif;max-width:40rem;margin:3rem auto;padding:0 1rem;color:#1f2937}code{background:#f3f4f6;padding:.1rem .3rem;border-radius:.25rem}</style></head>
-<body><h1>Kasa POS sync server is running</h1><p>The sync API is available at <code>/api</code>.</p>
+<body><h1>OpenPOS sync server is running</h1><p>The sync API is available at <code>/api</code>.</p>
 <p>The web app has not been built, so it is not served from here. Run <code>npm run build</code> in the project root and restart the server to open the POS from this address.</p></body></html>`
 
 /**

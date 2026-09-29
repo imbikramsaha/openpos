@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-// Kasa POS sync server — entry point and command-line interface.
+// OpenPOS sync server — entry point and command-line interface.
 //
 //   node server/src/index.js                      start the server (default command)
 //   node server/src/index.js create-store "Shop"  create a store and print its key
@@ -31,7 +31,7 @@ function lanAddresses() {
 }
 
 function usage() {
-  return `Kasa POS sync server v${VERSION}
+  return `OpenPOS sync server v${VERSION}
 
 Usage:
   node server/src/index.js [serve]              Start the server
@@ -60,7 +60,7 @@ async function serve(config) {
   const stores = app.listStores()
   const webApp = config.staticDir && fs.existsSync(path.join(config.staticDir, 'index.html'))
   const lines = [
-    `Kasa POS sync server v${VERSION}`,
+    `OpenPOS sync server v${VERSION}`,
     `  Listening on ${config.host}:${address.port}`,
     `  Local:       http://localhost:${address.port}`,
   ]

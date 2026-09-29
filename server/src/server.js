@@ -128,7 +128,7 @@ export function createServer(options = {}) {
   // ---- Route handlers ------------------------------------------------------
 
   const handlers = {
-    health: (req, res) => sendJson(req, res, 200, { ok: true, service: 'kasa-pos-sync', version: VERSION, time: Date.now() }),
+    health: (req, res) => sendJson(req, res, 200, { ok: true, service: 'openpos-sync', version: VERSION, time: Date.now() }),
 
     store: (req, res) => {
       const store = requireStore(req)

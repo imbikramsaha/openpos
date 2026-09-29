@@ -27,7 +27,7 @@ if [[ "${1:-}" == --uninstall ]]; then
     if [[ -f "$LOCAL_HOOK" ]]; then mv "$LOCAL_HOOK" "$HOOK"; ok "Restored your previous post-commit hook"; fi
     ok "Auto-push hook removed"
   else
-    warn "No Kasa auto-push hook installed"
+    warn "No OpenPOS auto-push hook installed"
   fi
   exit 0
 fi

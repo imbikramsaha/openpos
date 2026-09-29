@@ -1,5 +1,5 @@
 {
-  "appName": "Kasa POS",
+  "appName": "OpenPOS",
   "ok": "OK",
   "cancel": "Batal",
   "confirm": "Sahkan",
@@ -89,7 +89,7 @@
   "noResults": "Tiada hasil",
   "noAccess": "Anda tidak mempunyai akses ke skrin ini",
   "noAccessHint": "Minta pentadbir memberi anda kebenaran.",
-  "updateAvailable": "Versi baharu Kasa POS sudah sedia.",
+  "updateAvailable": "Versi baharu OpenPOS sudah sedia.",
   "reload": "Muat semula",
   "somethingWentWrong": "Sesuatu tidak kena",
   "tryAgain": "Cuba lagi",
@@ -179,23 +179,23 @@
     "taxId": "Gunakan 3–20 huruf atau nombor"
   },
   "backspace": "Padam digit terakhir",
-  "offlineReady": "Kasa POS sedia untuk berfungsi luar talian",
+  "offlineReady": "OpenPOS sedia untuk berfungsi luar talian",
   "later": "Kemudian",
-  "storageError": "Pelayar ini tidak membenarkan Kasa POS menyimpan data",
-  "storageErrorHint": "Kasa POS menyimpan jualan anda pada peranti ini. Tetingkap peribadi atau penyamaran, data laman disekat atau cakera penuh boleh menghalangnya. Buka aplikasi dalam tetingkap biasa, benarkan data laman untuk laman ini, kemudian muat semula.",
+  "storageError": "Pelayar ini tidak membenarkan OpenPOS menyimpan data",
+  "storageErrorHint": "OpenPOS menyimpan jualan anda pada peranti ini. Tetingkap peribadi atau penyamaran, data laman disekat atau cakera penuh boleh menghalangnya. Buka aplikasi dalam tetingkap biasa, benarkan data laman untuk laman ini, kemudian muat semula.",
   "dbClosed": "Muat semula untuk teruskan",
-  "dbClosedHint": "Data pada peranti ini telah diubah dari luar tetingkap ini: data laman telah dikosongkan, atau Kasa POS telah dipadam, dipulihkan atau dikemas kini dalam tab lain. Muat semula supaya tiada apa disimpan ke tempat yang salah.",
-  "otherTab": "Kasa POS terbuka dalam tab lain",
+  "dbClosedHint": "Data pada peranti ini telah diubah dari luar tetingkap ini: data laman telah dikosongkan, atau OpenPOS telah dipadam, dipulihkan atau dikemas kini dalam tab lain. Muat semula supaya tiada apa disimpan ke tempat yang salah.",
+  "otherTab": "OpenPOS terbuka dalam tab lain",
   "otherTabHint": "Kaunter hanya berfungsi dalam satu tab pada satu masa supaya troli dan resit kekal konsisten. Teruskan dalam tab lain, atau guna tab ini sebaliknya.",
   "useHere": "Guna tab ini",
   "notSignedIn": "Log masuk dahulu",
   "storageFull": "Peranti ini kehabisan storan. Kosongkan ruang (atau eksport sandaran dan kosongkan data lama), kemudian cuba lagi.",
   "install": {
     "button": "Pasang aplikasi",
-    "title": "Pasang Kasa POS",
+    "title": "Pasang OpenPOS",
     "iosShare": "Ketik butang Kongsi pada bar alat pelayar (ikon segi empat dengan anak panah menghala ke atas).",
     "iosAdd": "Tatal ke bawah, kemudian ketik “Tambah ke Skrin Utama” (Add to Home Screen).",
-    "iosConfirm": "Ketik “Tambah” (Add). Kasa POS kemudian dibuka skrin penuh daripada Skrin Utama seperti aplikasi lain, dan berfungsi luar talian.",
-    "macSafari": "Pada bar menu Safari, pilih Fail → Tambah ke Dock (File → Add to Dock). Kasa POS kemudian dibuka daripada Dock seperti aplikasi lain dan berfungsi luar talian."
+    "iosConfirm": "Ketik “Tambah” (Add). OpenPOS kemudian dibuka skrin penuh daripada Skrin Utama seperti aplikasi lain, dan berfungsi luar talian.",
+    "macSafari": "Pada bar menu Safari, pilih Fail → Tambah ke Dock (File → Add to Dock). OpenPOS kemudian dibuka daripada Dock seperti aplikasi lain dan berfungsi luar talian."
   }
 }

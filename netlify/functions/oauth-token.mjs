@@ -1,4 +1,4 @@
-// Token broker for Kasa POS cloud backups (Netlify Function, free tier is plenty).
+// Token broker for OpenPOS cloud backups (Netlify Function, free tier is plenty).
 //
 // Google and Microsoft only issue long-lived refresh tokens to OAuth clients that can keep a
 // secret, which a browser app can't. This function holds the secrets and performs the two

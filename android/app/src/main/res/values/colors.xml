@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- Kasa POS brand colours (match vite.config.ts manifest + src/index.css). -->
+    <!-- OpenPOS brand colours (match vite.config.ts manifest + src/index.css). -->
     <color name="colorPrimary">#4F46E5</color>
     <color name="colorPrimaryDark">#0B1020</color>
     <color name="colorAccent">#4F46E5</color>

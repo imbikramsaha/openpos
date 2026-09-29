@@ -1,5 +1,5 @@
 {
-  "appName": "Kasa POS",
+  "appName": "OpenPOS",
   "ok": "OK",
   "cancel": "Anuluj",
   "confirm": "Potwierdź",
@@ -89,7 +89,7 @@
   "noResults": "Brak wyników",
   "noAccess": "Nie masz dostępu do tego ekranu",
   "noAccessHint": "Poproś administratora o nadanie uprawnień.",
-  "updateAvailable": "Nowa wersja Kasa POS jest gotowa.",
+  "updateAvailable": "Nowa wersja OpenPOS jest gotowa.",
   "reload": "Odśwież",
   "somethingWentWrong": "Coś poszło nie tak",
   "tryAgain": "Spróbuj ponownie",
@@ -182,23 +182,23 @@
     "taxId": "Użyj od 3 do 20 liter lub cyfr"
   },
   "backspace": "Usuń ostatnią cyfrę",
-  "offlineReady": "Kasa POS jest gotowa do pracy offline",
+  "offlineReady": "OpenPOS jest gotowa do pracy offline",
   "later": "Później",
-  "storageError": "Ta przeglądarka nie pozwala aplikacji Kasa POS zapisywać danych",
-  "storageErrorHint": "Kasa POS przechowuje Twoją sprzedaż na tym urządzeniu. Może to uniemożliwić okno prywatne lub incognito, zablokowane dane witryny albo pełny dysk. Otwórz aplikację w zwykłym oknie, zezwól na dane witryny dla tej strony, a potem odśwież.",
+  "storageError": "Ta przeglądarka nie pozwala aplikacji OpenPOS zapisywać danych",
+  "storageErrorHint": "OpenPOS przechowuje Twoją sprzedaż na tym urządzeniu. Może to uniemożliwić okno prywatne lub incognito, zablokowane dane witryny albo pełny dysk. Otwórz aplikację w zwykłym oknie, zezwól na dane witryny dla tej strony, a potem odśwież.",
   "dbClosed": "Odśwież, aby kontynuować",
-  "dbClosedHint": "Dane na tym urządzeniu zostały zmienione spoza tego okna: wyczyszczono dane witryny albo Kasa POS został usunięty, przywrócony lub zaktualizowany w innej karcie. Odśwież, aby nic nie zapisało się w niewłaściwym miejscu.",
-  "otherTab": "Kasa POS jest otwarta w innej karcie",
-  "otherTabHint": "Kasa działa w jednej karcie naraz, aby koszyk i paragony pozostawały spójne. Kontynuuj w tamtej karcie albo użyj zamiast niej tej.",
+  "dbClosedHint": "Dane na tym urządzeniu zostały zmienione spoza tego okna: wyczyszczono dane witryny albo OpenPOS został usunięty, przywrócony lub zaktualizowany w innej karcie. Odśwież, aby nic nie zapisało się w niewłaściwym miejscu.",
+  "otherTab": "OpenPOS jest otwarta w innej karcie",
+  "otherTabHint": "OpenPOS działa w jednej karcie naraz, aby koszyk i paragony pozostawały spójne. Kontynuuj w tamtej karcie albo użyj zamiast niej tej.",
   "useHere": "Użyj tej karty",
   "notSignedIn": "Najpierw się zaloguj",
   "storageFull": "Na tym urządzeniu skończyło się miejsce. Zwolnij miejsce (albo wyeksportuj kopię zapasową i usuń stare dane), a potem spróbuj ponownie.",
   "install": {
     "button": "Zainstaluj aplikację",
-    "title": "Zainstaluj Kasa POS",
+    "title": "Zainstaluj OpenPOS",
     "iosShare": "Stuknij przycisk Udostępnij na pasku narzędzi przeglądarki (kwadrat ze strzałką w górę).",
     "iosAdd": "Przewiń w dół i stuknij „Dodaj do ekranu początkowego” (Add to Home Screen).",
-    "iosConfirm": "Stuknij „Dodaj”. Kasa POS otwiera się wtedy z ekranu początkowego jak każda inna aplikacja, na pełnym ekranie, i działa offline.",
-    "macSafari": "Na pasku menu Safari wybierz Plik → Dodaj do Docka (Add to Dock). Kasa POS otwiera się wtedy z Docka jak każda inna aplikacja i działa offline."
+    "iosConfirm": "Stuknij „Dodaj”. OpenPOS otwiera się wtedy z ekranu początkowego jak każda inna aplikacja, na pełnym ekranie, i działa offline.",
+    "macSafari": "Na pasku menu Safari wybierz Plik → Dodaj do Docka (Add to Dock). OpenPOS otwiera się wtedy z Docka jak każda inna aplikacja i działa offline."
   }
 }

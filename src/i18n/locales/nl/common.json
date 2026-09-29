@@ -1,5 +1,5 @@
 {
-  "appName": "Kasa POS",
+  "appName": "OpenPOS",
   "ok": "OK",
   "cancel": "Annuleren",
   "confirm": "Bevestigen",
@@ -89,7 +89,7 @@
   "noResults": "Geen resultaten",
   "noAccess": "Je hebt geen toegang tot dit scherm",
   "noAccessHint": "Vraag een beheerder om je toestemming te geven.",
-  "updateAvailable": "Er is een nieuwe versie van Kasa POS beschikbaar.",
+  "updateAvailable": "Er is een nieuwe versie van OpenPOS beschikbaar.",
   "reload": "Vernieuwen",
   "somethingWentWrong": "Er is iets misgegaan",
   "tryAgain": "Probeer opnieuw",
@@ -180,23 +180,23 @@
     "taxId": "Gebruik 3–20 letters of cijfers"
   },
   "backspace": "Laatste cijfer verwijderen",
-  "offlineReady": "Kasa POS is klaar om offline te werken",
+  "offlineReady": "OpenPOS is klaar om offline te werken",
   "later": "Later",
-  "storageError": "Deze browser staat niet toe dat Kasa POS gegevens opslaat",
-  "storageErrorHint": "Kasa POS bewaart je verkopen op dit apparaat. Een privé- of incognitovenster, geblokkeerde sitegegevens of een volle schijf kunnen dit verhinderen. Open de app in een normaal venster, sta sitegegevens voor deze site toe en vernieuw daarna.",
+  "storageError": "Deze browser staat niet toe dat OpenPOS gegevens opslaat",
+  "storageErrorHint": "OpenPOS bewaart je verkopen op dit apparaat. Een privé- of incognitovenster, geblokkeerde sitegegevens of een volle schijf kunnen dit verhinderen. Open de app in een normaal venster, sta sitegegevens voor deze site toe en vernieuw daarna.",
   "dbClosed": "Vernieuw om door te gaan",
-  "dbClosedHint": "De gegevens op dit apparaat zijn buiten dit venster gewijzigd: sitegegevens zijn gewist, of Kasa POS is in een ander tabblad gewist, hersteld of bijgewerkt. Vernieuw zodat er niets op de verkeerde plek wordt opgeslagen.",
-  "otherTab": "Kasa POS is open in een ander tabblad",
+  "dbClosedHint": "De gegevens op dit apparaat zijn buiten dit venster gewijzigd: sitegegevens zijn gewist, of OpenPOS is in een ander tabblad gewist, hersteld of bijgewerkt. Vernieuw zodat er niets op de verkeerde plek wordt opgeslagen.",
+  "otherTab": "OpenPOS is open in een ander tabblad",
   "otherTabHint": "De kassa werkt op één tabblad tegelijk, zodat het winkelwagentje en de bonnen consistent blijven. Ga verder in het andere tabblad, of gebruik in plaats daarvan dit tabblad.",
   "useHere": "Dit tabblad gebruiken",
   "notSignedIn": "Meld je eerst aan",
   "storageFull": "Dit apparaat heeft geen opslagruimte meer. Maak ruimte vrij (of exporteer een back-up en verwijder oude gegevens) en probeer het opnieuw.",
   "install": {
     "button": "App installeren",
-    "title": "Kasa POS installeren",
+    "title": "OpenPOS installeren",
     "iosShare": "Tik op de knop Delen in de werkbalk van de browser (het vierkantje met een pijl omhoog).",
     "iosAdd": "Scroll naar beneden en tik op ‘Zet op beginscherm’ (Add to Home Screen).",
-    "iosConfirm": "Tik op ‘Toevoegen’. Kasa POS opent dan vanaf je beginscherm als elke andere app, op volledig scherm, en werkt offline.",
-    "macSafari": "Kies in de menubalk van Safari Archief → Zet in Dock (Add to Dock). Kasa POS opent dan vanaf je Dock als elke andere app en werkt offline."
+    "iosConfirm": "Tik op ‘Toevoegen’. OpenPOS opent dan vanaf je beginscherm als elke andere app, op volledig scherm, en werkt offline.",
+    "macSafari": "Kies in de menubalk van Safari Archief → Zet in Dock (Add to Dock). OpenPOS opent dan vanaf je Dock als elke andere app en werkt offline."
   }
 }

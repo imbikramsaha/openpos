@@ -1,5 +1,5 @@
 {
-  "appName": "Kasa POS",
+  "appName": "OpenPOS",
   "ok": "OK",
   "cancel": "Cancel",
   "confirm": "Confirm",
@@ -90,16 +90,16 @@
   "noResults": "No results",
   "noAccess": "You don't have access to this screen",
   "noAccessHint": "Ask an administrator to grant you permission.",
-  "updateAvailable": "A new version of Kasa POS is ready.",
-  "offlineReady": "Kasa POS is ready to work offline",
+  "updateAvailable": "A new version of OpenPOS is ready.",
+  "offlineReady": "OpenPOS is ready to work offline",
   "reload": "Reload",
   "later": "Later",
   "somethingWentWrong": "Something went wrong",
-  "storageError": "This browser won't let Kasa POS save data",
-  "storageErrorHint": "Kasa POS keeps your sales on this device. A private or incognito window, blocked site data or a full disk can prevent that. Open the app in a normal window, allow site data for this site, then reload.",
+  "storageError": "This browser won't let OpenPOS save data",
+  "storageErrorHint": "OpenPOS keeps your sales on this device. A private or incognito window, blocked site data or a full disk can prevent that. Open the app in a normal window, allow site data for this site, then reload.",
   "dbClosed": "Reload to continue",
-  "dbClosedHint": "The data on this device was changed from outside this window: site data was cleared, or Kasa POS was erased, restored or updated in another tab. Reload so nothing is saved to the wrong place.",
-  "otherTab": "Kasa POS is open in another tab",
+  "dbClosedHint": "The data on this device was changed from outside this window: site data was cleared, or OpenPOS was erased, restored or updated in another tab. Reload so nothing is saved to the wrong place.",
+  "otherTab": "OpenPOS is open in another tab",
   "otherTabHint": "The till works in one tab at a time so the cart and receipts stay consistent. Continue in the other tab, or use this one instead.",
   "useHere": "Use this tab",
   "tryAgain": "Try again",
@@ -193,10 +193,10 @@
   "storageFull": "This device is out of storage. Free up space (or export a backup and clear old data), then try again.",
   "install": {
     "button": "Install app",
-    "title": "Install Kasa POS",
+    "title": "Install OpenPOS",
     "iosShare": "Tap the Share button in the browser toolbar (the square with an arrow pointing up).",
     "iosAdd": "Scroll down and tap “Add to Home Screen”.",
-    "iosConfirm": "Tap “Add”. Kasa POS then opens from your Home Screen like any other app, full screen, and works offline.",
-    "macSafari": "In Safari’s menu bar, choose File → Add to Dock. Kasa POS then opens from your Dock like any other app and works offline."
+    "iosConfirm": "Tap “Add”. OpenPOS then opens from your Home Screen like any other app, full screen, and works offline.",
+    "macSafari": "In Safari’s menu bar, choose File → Add to Dock. OpenPOS then opens from your Dock like any other app and works offline."
   }
 }

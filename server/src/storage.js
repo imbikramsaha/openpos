@@ -18,7 +18,7 @@ function loadSqlite() {
   }
   if (!mod?.DatabaseSync) {
     throw new Error(
-      'The Kasa sync server needs the built-in node:sqlite module: use Node.js 22.13 or newer ' +
+      'The OpenPOS sync server needs the built-in node:sqlite module: use Node.js 22.13 or newer ' +
         '(Node 22.5–22.12 works when started with --experimental-sqlite).',
     )
   }

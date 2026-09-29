@@ -1,9 +1,9 @@
 # syntax=docker/dockerfile:1
-# Kasa POS sync server + web app in one image.
+# OpenPOS sync server + web app in one image.
 # Build from the PROJECT ROOT (the web app is built in the first stage):
-#   docker build -f server/Dockerfile -t kasa-server .
-#   docker run -d --name kasa -p 8787:8787 -v kasa-data:/data -e ADMIN_TOKEN=change-me kasa-server
-#   docker exec kasa node server/src/index.js create-store "My Shop"
+#   docker build -f server/Dockerfile -t openpos-server .
+#   docker run -d --name openpos -p 8787:8787 -v openpos-data:/data -e ADMIN_TOKEN=change-me openpos-server
+#   docker exec openpos node server/src/index.js create-store "My Shop"
 
 # ---- 1. Build the web app (dist/) ------------------------------------------
 FROM node:24-alpine AS web

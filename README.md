@@ -1,6 +1,6 @@
-<p align="center"><img src="public/icons/icon.svg" width="96" alt="Kasa POS"></p>
+<p align="center"><img src="public/icons/icon.svg" width="96" alt="OpenPOS"></p>
 
-<h1 align="center">Kasa POS</h1>
+<h1 align="center">OpenPOS</h1>
 
 <p align="center">
 Fast, offline-first point of sale for shops, supermarkets, cafés, restaurants and service businesses.<br>
@@ -8,10 +8,10 @@ One codebase → <b>Web (PWA) · Windows · macOS · Linux · Android · iOS</b>
 </p>
 
 <p align="center">
-<a href="https://github.com/imbikramsaha/kasa-pos/releases/latest/download/Kasa-POS-Setup-x64.exe"><img alt="Download for Windows" src="https://img.shields.io/badge/Windows-Download-0078D4?style=for-the-badge"></a>
-<a href="https://github.com/imbikramsaha/kasa-pos/releases/latest/download/Kasa-POS-mac-universal.dmg"><img alt="Download for Mac" src="https://img.shields.io/badge/Mac-Download-000000?style=for-the-badge&logo=apple&logoColor=white"></a>
-<a href="https://github.com/imbikramsaha/kasa-pos/releases/latest/download/kasa-pos-linux-amd64.deb"><img alt="Download for Linux" src="https://img.shields.io/badge/Linux-Download-E95420?style=for-the-badge&logo=linux&logoColor=white"></a>
-<a href="https://github.com/imbikramsaha/kasa-pos/releases/latest/download/Kasa-POS-android.apk"><img alt="Download for Android" src="https://img.shields.io/badge/Android-Download-3DDC84?style=for-the-badge&logo=android&logoColor=white"></a>
+<a href="https://github.com/imbikramsaha/kasa-pos/releases/latest/download/OpenPOS-Setup-x64.exe"><img alt="Download for Windows" src="https://img.shields.io/badge/Windows-Download-0078D4?style=for-the-badge"></a>
+<a href="https://github.com/imbikramsaha/kasa-pos/releases/latest/download/OpenPOS-mac-universal.dmg"><img alt="Download for Mac" src="https://img.shields.io/badge/Mac-Download-000000?style=for-the-badge&logo=apple&logoColor=white"></a>
+<a href="https://github.com/imbikramsaha/kasa-pos/releases/latest/download/openpos-linux-amd64.deb"><img alt="Download for Linux" src="https://img.shields.io/badge/Linux-Download-E95420?style=for-the-badge&logo=linux&logoColor=white"></a>
+<a href="https://github.com/imbikramsaha/kasa-pos/releases/latest/download/OpenPOS-android.apk"><img alt="Download for Android" src="https://img.shields.io/badge/Android-Download-3DDC84?style=for-the-badge&logo=android&logoColor=white"></a>
 <a href="https://appkasapos.netlify.app"><img alt="Open on iPhone and iPad" src="https://img.shields.io/badge/iPhone%20%26%20iPad-Open-555555?style=for-the-badge&logo=apple&logoColor=white"></a>
 <a href="https://appkasapos.netlify.app"><img alt="Open in the browser" src="https://img.shields.io/badge/Web-Open-4F46E5?style=for-the-badge&logo=googlechrome&logoColor=white"></a>
 </p>
@@ -24,12 +24,12 @@ Every link below downloads the newest version. Older versions are on the [releas
 
 | Device | Download |
 |---|---|
-| **Windows** 10 and 11 | [Installer (.exe)](https://github.com/imbikramsaha/kasa-pos/releases/latest/download/Kasa-POS-Setup-x64.exe) · [Portable, no install needed](https://github.com/imbikramsaha/kasa-pos/releases/latest/download/Kasa-POS-Portable-x64.exe) |
-| **Mac**, Apple Silicon and Intel | [Kasa-POS-mac-universal.dmg](https://github.com/imbikramsaha/kasa-pos/releases/latest/download/Kasa-POS-mac-universal.dmg) |
-| **Linux**: Ubuntu, Debian, Mint, Pop!_OS | [.deb](https://github.com/imbikramsaha/kasa-pos/releases/latest/download/kasa-pos-linux-amd64.deb) |
-| **Linux**: any distribution | [AppImage](https://github.com/imbikramsaha/kasa-pos/releases/latest/download/Kasa-POS-linux-x86_64.AppImage) |
-| **Linux ARM**: Raspberry Pi 4 and 5 | [.deb](https://github.com/imbikramsaha/kasa-pos/releases/latest/download/kasa-pos-linux-arm64.deb) · [AppImage](https://github.com/imbikramsaha/kasa-pos/releases/latest/download/Kasa-POS-linux-arm64.AppImage) |
-| **Android** phones and tablets (Android 7 or newer) | [Kasa-POS-android.apk](https://github.com/imbikramsaha/kasa-pos/releases/latest/download/Kasa-POS-android.apk) |
+| **Windows** 10 and 11 | [Installer (.exe)](https://github.com/imbikramsaha/kasa-pos/releases/latest/download/OpenPOS-Setup-x64.exe) · [Portable, no install needed](https://github.com/imbikramsaha/kasa-pos/releases/latest/download/OpenPOS-Portable-x64.exe) |
+| **Mac**, Apple Silicon and Intel | [OpenPOS-mac-universal.dmg](https://github.com/imbikramsaha/kasa-pos/releases/latest/download/OpenPOS-mac-universal.dmg) |
+| **Linux**: Ubuntu, Debian, Mint, Pop!_OS | [.deb](https://github.com/imbikramsaha/kasa-pos/releases/latest/download/openpos-linux-amd64.deb) |
+| **Linux**: any distribution | [AppImage](https://github.com/imbikramsaha/kasa-pos/releases/latest/download/OpenPOS-linux-x86_64.AppImage) |
+| **Linux ARM**: Raspberry Pi 4 and 5 | [.deb](https://github.com/imbikramsaha/kasa-pos/releases/latest/download/openpos-linux-arm64.deb) · [AppImage](https://github.com/imbikramsaha/kasa-pos/releases/latest/download/OpenPOS-linux-arm64.AppImage) |
+| **Android** phones and tablets (Android 7 or newer) | [OpenPOS-android.apk](https://github.com/imbikramsaha/kasa-pos/releases/latest/download/OpenPOS-android.apk) |
 | **iPhone and iPad** | Open **https://appkasapos.netlify.app** in Safari, tap **Share**, then **Add to Home Screen** |
 | **Any device with a browser** (Chromebook, shared PCs) | **https://appkasapos.netlify.app**, then the **Install app** button (⬇) at the top |
 
@@ -41,16 +41,16 @@ Every link below downloads the newest version. Older versions are on the [releas
 The installers aren't code-signed yet, so each system asks once whether you trust the app:
 
 - **Windows**: if you see "Windows protected your PC", click **More info**, then **Run anyway**.
-- **Mac**: open the `.dmg` and drag **Kasa POS** into **Applications**, then open it. When macOS says it can't verify the developer, click **Done**, go to **System Settings → Privacy & Security**, scroll down and click **Open Anyway**. After that it opens normally.
-- **Linux**: double-click the `.deb` to install it in your software centre, or run `sudo apt install ./kasa-pos-linux-amd64.deb`. For the AppImage, right-click it → **Properties** → allow it to run as a program, then double-click it.
+- **Mac**: open the `.dmg` and drag **OpenPOS** into **Applications**, then open it. When macOS says it can't verify the developer, click **Done**, go to **System Settings → Privacy & Security**, scroll down and click **Open Anyway**. After that it opens normally.
+- **Linux**: double-click the `.deb` to install it in your software centre, or run `sudo apt install ./openpos-linux-amd64.deb`. For the AppImage, right-click it → **Properties** → allow it to run as a program, then double-click it.
 - **Android**: open the downloaded APK. If asked, allow your browser to **install unknown apps**, then tap **Install**. If Play Protect warns about an unknown app, tap **More details → Install anyway**.
-- **iPhone and iPad**: after **Add to Home Screen**, Kasa POS opens from its icon full screen and works offline. An App Store version needs an Apple Developer account, see [docs/DEPLOYMENT.md](docs/DEPLOYMENT.md#5-ios--ipados).
+- **iPhone and iPad**: after **Add to Home Screen**, OpenPOS opens from its icon full screen and works offline. An App Store version needs an Apple Developer account, see [docs/DEPLOYMENT.md](docs/DEPLOYMENT.md#5-ios--ipados).
 
 The desktop apps update themselves once the repository is public. The web app always runs the latest version.
 
 ---
 
-## Why Kasa POS
+## Why OpenPOS
 
 - **Works offline, always.** Every till keeps a full local database. Internet down? Keep selling. Changes sync automatically when you're back online.
 - **Runs everywhere.** Install it from the browser, or use native desktop and mobile apps built from the same code.

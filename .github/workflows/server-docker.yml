@@ -1,5 +1,5 @@
 # Builds the sync server image (server/Dockerfile, which also bundles the web app) and pushes it
-# to GitHub Container Registry:  ghcr.io/<owner>/kasa-pos-server:<version> (+ :latest for stable tags)
+# to GitHub Container Registry:  ghcr.io/<owner>/openpos-server:<version> (+ :latest for stable tags)
 name: Server image
 
 on:
@@ -27,7 +27,7 @@ jobs:
         run: |
           if [ -f server/Dockerfile ]; then
             echo "present=true" >> "$GITHUB_OUTPUT"
-            echo "image=ghcr.io/${GITHUB_REPOSITORY_OWNER,,}/kasa-pos-server" >> "$GITHUB_OUTPUT"
+            echo "image=ghcr.io/${GITHUB_REPOSITORY_OWNER,,}/openpos-server" >> "$GITHUB_OUTPUT"
           else
             echo "present=false" >> "$GITHUB_OUTPUT"
             echo "::notice::server/Dockerfile not found — nothing to build"
@@ -57,8 +57,8 @@ jobs:
             type=ref,event=branch
             type=sha,format=short
           labels: |
-            org.opencontainers.image.title=Kasa POS sync server
-            org.opencontainers.image.description=Multi-terminal sync server and web app for Kasa POS
+            org.opencontainers.image.title=OpenPOS sync server
+            org.opencontainers.image.description=Multi-terminal sync server and web app for OpenPOS
 
       # Build context is the repository root: the Dockerfile builds dist/ in its first stage.
       - uses: docker/build-push-action@v7

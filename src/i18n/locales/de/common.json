@@ -1,5 +1,5 @@
 {
-  "appName": "Kasa POS",
+  "appName": "OpenPOS",
   "ok": "OK",
   "cancel": "Abbrechen",
   "confirm": "Bestätigen",
@@ -89,7 +89,7 @@
   "noResults": "Keine Ergebnisse",
   "noAccess": "Du hast keinen Zugriff auf diesen Bereich",
   "noAccessHint": "Bitte einen Administrator, dir die Berechtigung zu erteilen.",
-  "updateAvailable": "Eine neue Version von Kasa POS ist bereit.",
+  "updateAvailable": "Eine neue Version von OpenPOS ist bereit.",
   "reload": "Neu laden",
   "somethingWentWrong": "Etwas ist schiefgelaufen",
   "tryAgain": "Erneut versuchen",
@@ -180,23 +180,23 @@
     "taxId": "Verwende 3–20 Buchstaben oder Ziffern"
   },
   "backspace": "Letzte Ziffer löschen",
-  "offlineReady": "Kasa POS ist bereit, offline zu arbeiten",
+  "offlineReady": "OpenPOS ist bereit, offline zu arbeiten",
   "later": "Später",
-  "storageError": "Dieser Browser lässt Kasa POS keine Daten speichern",
-  "storageErrorHint": "Kasa POS speichert deine Verkäufe auf diesem Gerät. Ein privates Fenster oder Inkognito-Fenster, blockierte Websitedaten oder ein voller Speicher können das verhindern. Öffne die App in einem normalen Fenster, erlaube Websitedaten für diese Website und lade dann neu.",
+  "storageError": "Dieser Browser lässt OpenPOS keine Daten speichern",
+  "storageErrorHint": "OpenPOS speichert deine Verkäufe auf diesem Gerät. Ein privates Fenster oder Inkognito-Fenster, blockierte Websitedaten oder ein voller Speicher können das verhindern. Öffne die App in einem normalen Fenster, erlaube Websitedaten für diese Website und lade dann neu.",
   "dbClosed": "Zum Fortfahren neu laden",
-  "dbClosedHint": "Die Daten auf diesem Gerät wurden außerhalb dieses Fensters geändert: Websitedaten wurden gelöscht, oder Kasa POS wurde in einem anderen Tab gelöscht, wiederhergestellt oder aktualisiert. Lade neu, damit nichts am falschen Ort gespeichert wird.",
-  "otherTab": "Kasa POS ist in einem anderen Tab geöffnet",
+  "dbClosedHint": "Die Daten auf diesem Gerät wurden außerhalb dieses Fensters geändert: Websitedaten wurden gelöscht, oder OpenPOS wurde in einem anderen Tab gelöscht, wiederhergestellt oder aktualisiert. Lade neu, damit nichts am falschen Ort gespeichert wird.",
+  "otherTab": "OpenPOS ist in einem anderen Tab geöffnet",
   "otherTabHint": "Die Kasse funktioniert immer nur in einem Tab, damit Warenkorb und Belege konsistent bleiben. Mache in dem anderen Tab weiter oder verwende stattdessen diesen hier.",
   "useHere": "Diesen Tab verwenden",
   "notSignedIn": "Zuerst anmelden",
   "storageFull": "Auf diesem Gerät ist kein Speicherplatz mehr verfügbar. Schaffe Platz (oder exportiere eine Sicherung und lösche alte Daten) und versuche es dann erneut.",
   "install": {
     "button": "App installieren",
-    "title": "Kasa POS installieren",
+    "title": "OpenPOS installieren",
     "iosShare": "Tippe in der Symbolleiste des Browsers auf die Schaltfläche Teilen (das Quadrat mit dem nach oben zeigenden Pfeil).",
     "iosAdd": "Scrolle nach unten und tippe auf „Zum Home-Bildschirm“.",
-    "iosConfirm": "Tippe auf „Hinzufügen“. Kasa POS öffnet sich dann vom Home-Bildschirm aus wie jede andere App, im Vollbild, und funktioniert offline.",
-    "macSafari": "Wähle in der Safari-Menüleiste Ablage → Zum Dock hinzufügen. Kasa POS öffnet sich dann vom Dock aus wie jede andere App und funktioniert offline."
+    "iosConfirm": "Tippe auf „Hinzufügen“. OpenPOS öffnet sich dann vom Home-Bildschirm aus wie jede andere App, im Vollbild, und funktioniert offline.",
+    "macSafari": "Wähle in der Safari-Menüleiste Ablage → Zum Dock hinzufügen. OpenPOS öffnet sich dann vom Dock aus wie jede andere App und funktioniert offline."
   }
 }

@@ -73,7 +73,7 @@ export function AuditSection() {
       rows.map((e) => ({ time: new Date(e.createdAt).toISOString(), user: e.userName ?? '', action: e.action, entity: e.entity ?? '', entityId: e.entityId ?? '', details: e.details ?? '' })),
       ['time', 'user', 'action', 'entity', 'entityId', 'details'],
     )
-    downloadText(`kasa-audit-${toDateInput(Date.now())}.csv`, csv, 'text/csv')
+    downloadText(`openpos-audit-${toDateInput(Date.now())}.csv`, csv, 'text/csv')
   }
 
   const total = data?.total ?? 0

@@ -1,4 +1,4 @@
-// Kasa POS — preload (sandboxed, context-isolated).
+// OpenPOS — preload (sandboxed, context-isolated).
 // Exposes `window.kasa`, matching the `ElectronBridge` interface in src/lib/platform.ts.
 // Only plain data crosses the bridge; ipcRenderer itself is never exposed.
 'use strict'

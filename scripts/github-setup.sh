@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# One-command GitHub setup for Kasa POS.
+# One-command GitHub setup for OpenPOS.
 #
 #   bash scripts/github-setup.sh [--name kasa-pos] [--public|--private] [--no-hooks]
 #   (or: npm run github:setup -- --name my-shop-pos)
@@ -38,7 +38,7 @@ usage() {
 # ---------------------------------------------------------------- arguments
 REPO_NAME="${REPO_NAME:-kasa-pos}"
 VISIBILITY="${VISIBILITY:-private}"
-REPO_DESCRIPTION="${REPO_DESCRIPTION:-Kasa POS - offline-first point of sale for web, Windows, macOS, Linux, Android and iOS}"
+REPO_DESCRIPTION="${REPO_DESCRIPTION:-OpenPOS - offline-first point of sale for web, Windows, macOS, Linux, Android and iOS}"
 INSTALL_HOOKS=1
 
 while [[ $# -gt 0 ]]; do

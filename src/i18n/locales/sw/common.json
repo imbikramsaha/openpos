@@ -1,5 +1,5 @@
 {
-  "appName": "Kasa POS",
+  "appName": "OpenPOS",
   "ok": "Sawa",
   "cancel": "Ghairi",
   "confirm": "Thibitisha",
@@ -89,7 +89,7 @@
   "noResults": "Hakuna matokeo",
   "noAccess": "Huna ruhusa ya skrini hii",
   "noAccessHint": "Muulize msimamizi akupe ruhusa.",
-  "updateAvailable": "Toleo jipya la Kasa POS liko tayari.",
+  "updateAvailable": "Toleo jipya la OpenPOS liko tayari.",
   "reload": "Pakia upya",
   "somethingWentWrong": "Hitilafu imetokea",
   "tryAgain": "Jaribu tena",
@@ -180,23 +180,23 @@
     "taxId": "Tumia herufi au tarakimu 3–20"
   },
   "backspace": "Futa tarakimu ya mwisho",
-  "offlineReady": "Kasa POS iko tayari kufanya kazi bila mtandao",
+  "offlineReady": "OpenPOS iko tayari kufanya kazi bila mtandao",
   "later": "Baadaye",
-  "storageError": "Kivinjari hiki hakiruhusu Kasa POS kuhifadhi data",
-  "storageErrorHint": "Kasa POS huhifadhi mauzo yako kwenye kifaa hiki. Dirisha la faragha au la incognito, data ya tovuti iliyozuiwa, au diski iliyojaa vinaweza kuzuia hilo. Fungua programu kwenye dirisha la kawaida, ruhusu data ya tovuti kwa tovuti hii, kisha upakie upya.",
+  "storageError": "Kivinjari hiki hakiruhusu OpenPOS kuhifadhi data",
+  "storageErrorHint": "OpenPOS huhifadhi mauzo yako kwenye kifaa hiki. Dirisha la faragha au la incognito, data ya tovuti iliyozuiwa, au diski iliyojaa vinaweza kuzuia hilo. Fungua programu kwenye dirisha la kawaida, ruhusu data ya tovuti kwa tovuti hii, kisha upakie upya.",
   "dbClosed": "Pakia upya ili kuendelea",
-  "dbClosedHint": "Data kwenye kifaa hiki ilibadilishwa kutoka nje ya dirisha hili: data ya tovuti ilifutwa, au Kasa POS ilifutwa, kurejeshwa au kusasishwa kwenye kichupo kingine. Pakia upya ili kusiwe na kitu kinachohifadhiwa mahali pasipofaa.",
-  "otherTab": "Kasa POS imefunguliwa kwenye kichupo kingine",
+  "dbClosedHint": "Data kwenye kifaa hiki ilibadilishwa kutoka nje ya dirisha hili: data ya tovuti ilifutwa, au OpenPOS ilifutwa, kurejeshwa au kusasishwa kwenye kichupo kingine. Pakia upya ili kusiwe na kitu kinachohifadhiwa mahali pasipofaa.",
+  "otherTab": "OpenPOS imefunguliwa kwenye kichupo kingine",
   "otherTabHint": "Kaunta hufanya kazi kwenye kichupo kimoja kwa wakati mmoja ili kikapu na risiti zibaki sawa. Endelea kwenye kichupo kingine, au tumia hiki badala yake.",
   "useHere": "Tumia kichupo hiki",
   "notSignedIn": "Ingia kwanza",
   "storageFull": "Kifaa hiki kimeishiwa na nafasi ya kuhifadhi. Achilia nafasi (au hamisha nakala ya akiba kisha ufute data ya zamani), kisha jaribu tena.",
   "install": {
     "button": "Sakinisha programu",
-    "title": "Sakinisha Kasa POS",
+    "title": "Sakinisha OpenPOS",
     "iosShare": "Gusa kitufe cha Shiriki kwenye upau wa vidhibiti wa kivinjari (ikoni ya mraba yenye mshale unaoelekea juu).",
     "iosAdd": "Sogeza chini kisha ugusa “Ongeza kwenye Skrini ya Mwanzo” (Add to Home Screen).",
-    "iosConfirm": "Gusa “Ongeza” (Add). Kasa POS itafunguka skrini nzima kutoka Skrini ya Mwanzo kama programu nyingine yoyote, na inafanya kazi bila mtandao.",
-    "macSafari": "Kwenye upau wa menyu wa Safari, chagua Faili → Ongeza kwenye Dock (File → Add to Dock). Kasa POS itafunguka kutoka Dock kama programu nyingine yoyote na inafanya kazi bila mtandao."
+    "iosConfirm": "Gusa “Ongeza” (Add). OpenPOS itafunguka skrini nzima kutoka Skrini ya Mwanzo kama programu nyingine yoyote, na inafanya kazi bila mtandao.",
+    "macSafari": "Kwenye upau wa menyu wa Safari, chagua Faili → Ongeza kwenye Dock (File → Add to Dock). OpenPOS itafunguka kutoka Dock kama programu nyingine yoyote na inafanya kazi bila mtandao."
   }
 }

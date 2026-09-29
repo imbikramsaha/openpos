@@ -1,11 +1,11 @@
 {
-  "name": "kasa-pos",
-  "productName": "Kasa POS",
+  "name": "openpos",
+  "productName": "OpenPOS",
   "version": "1.0.0",
   "private": true,
   "type": "module",
   "description": "Offline-first, cross-platform point of sale for retail, restaurants and services. Web, Windows, macOS, Linux, Android and iOS from one codebase.",
-  "author": "Kasa POS",
+  "author": "OpenPOS",
   "license": "UNLICENSED",
   "main": "electron/main.cjs",
   "scripts": {
@@ -69,5 +69,5 @@
     "workbox-window": "^7.4.1"
   },
   "repository": "github:imbikramsaha/kasa-pos",
-  "desktopName": "kasa-pos.desktop"
+  "desktopName": "openpos.desktop"
 }

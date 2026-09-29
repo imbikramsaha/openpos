@@ -1,5 +1,5 @@
 {
-  "appName": "Kasa POS",
+  "appName": "OpenPOS",
   "ok": "OK",
   "cancel": "Batal",
   "confirm": "Konfirmasi",
@@ -89,7 +89,7 @@
   "noResults": "Tidak ada hasil",
   "noAccess": "Anda tidak memiliki akses ke halaman ini",
   "noAccessHint": "Minta administrator untuk memberi Anda izin.",
-  "updateAvailable": "Versi baru Kasa POS sudah siap.",
+  "updateAvailable": "Versi baru OpenPOS sudah siap.",
   "reload": "Muat ulang",
   "somethingWentWrong": "Terjadi kesalahan",
   "tryAgain": "Coba lagi",
@@ -179,23 +179,23 @@
     "taxId": "Gunakan 3–20 huruf atau angka"
   },
   "backspace": "Hapus digit terakhir",
-  "offlineReady": "Kasa POS siap digunakan secara offline",
+  "offlineReady": "OpenPOS siap digunakan secara offline",
   "later": "Nanti",
-  "storageError": "Browser ini tidak mengizinkan Kasa POS menyimpan data",
-  "storageErrorHint": "Kasa POS menyimpan data penjualan Anda di perangkat ini. Jendela pribadi atau penyamaran, data situs yang diblokir, atau disk yang penuh dapat mencegah hal itu. Buka aplikasi di jendela normal, izinkan data situs untuk situs ini, lalu muat ulang.",
+  "storageError": "Browser ini tidak mengizinkan OpenPOS menyimpan data",
+  "storageErrorHint": "OpenPOS menyimpan data penjualan Anda di perangkat ini. Jendela pribadi atau penyamaran, data situs yang diblokir, atau disk yang penuh dapat mencegah hal itu. Buka aplikasi di jendela normal, izinkan data situs untuk situs ini, lalu muat ulang.",
   "dbClosed": "Muat ulang untuk melanjutkan",
-  "dbClosedHint": "Data di perangkat ini berubah dari luar jendela ini: data situs telah dihapus, atau Kasa POS dihapus, dipulihkan, atau diperbarui di tab lain. Muat ulang agar tidak ada yang tersimpan ke tempat yang salah.",
-  "otherTab": "Kasa POS terbuka di tab lain",
+  "dbClosedHint": "Data di perangkat ini berubah dari luar jendela ini: data situs telah dihapus, atau OpenPOS dihapus, dipulihkan, atau diperbarui di tab lain. Muat ulang agar tidak ada yang tersimpan ke tempat yang salah.",
+  "otherTab": "OpenPOS terbuka di tab lain",
   "otherTabHint": "Kasir hanya berfungsi di satu tab dalam satu waktu agar keranjang dan struk tetap konsisten. Lanjutkan di tab lain, atau gunakan tab ini sebagai gantinya.",
   "useHere": "Gunakan tab ini",
   "notSignedIn": "Masuk terlebih dahulu",
   "storageFull": "Penyimpanan perangkat ini penuh. Kosongkan ruang (atau ekspor cadangan dan hapus data lama), lalu coba lagi.",
   "install": {
     "button": "Instal aplikasi",
-    "title": "Instal Kasa POS",
+    "title": "Instal OpenPOS",
     "iosShare": "Ketuk tombol Bagikan di toolbar browser (ikon persegi dengan panah menghadap ke atas).",
     "iosAdd": "Gulir ke bawah, lalu ketuk “Tambahkan ke Layar Utama” (Add to Home Screen).",
-    "iosConfirm": "Ketuk “Tambah” (Add). Kasa POS akan terbuka layar penuh dari Layar Utama seperti aplikasi lain, dan dapat digunakan secara offline.",
-    "macSafari": "Di menu bar Safari, pilih Berkas → Tambahkan ke Dock (File → Add to Dock). Kasa POS akan terbuka dari Dock seperti aplikasi lain dan dapat digunakan secara offline."
+    "iosConfirm": "Ketuk “Tambah” (Add). OpenPOS akan terbuka layar penuh dari Layar Utama seperti aplikasi lain, dan dapat digunakan secara offline.",
+    "macSafari": "Di menu bar Safari, pilih Berkas → Tambahkan ke Dock (File → Add to Dock). OpenPOS akan terbuka dari Dock seperti aplikasi lain dan dapat digunakan secara offline."
   }
 }

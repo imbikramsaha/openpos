@@ -1,5 +1,5 @@
 {
-  "appName": "Kasa POS",
+  "appName": "OpenPOS",
   "ok": "OK",
   "cancel": "Annuler",
   "confirm": "Confirmer",
@@ -89,7 +89,7 @@
   "noResults": "Aucun résultat",
   "noAccess": "Vous n'avez pas accès à cet écran",
   "noAccessHint": "Demandez à un administrateur de vous accorder cette autorisation.",
-  "updateAvailable": "Une nouvelle version de Kasa POS est prête.",
+  "updateAvailable": "Une nouvelle version de OpenPOS est prête.",
   "reload": "Recharger",
   "somethingWentWrong": "Une erreur est survenue",
   "tryAgain": "Réessayer",
@@ -181,23 +181,23 @@
     "taxId": "Utilisez de 3 à 20 lettres ou chiffres"
   },
   "backspace": "Supprimer le dernier chiffre",
-  "offlineReady": "Kasa POS est prêt à fonctionner hors ligne",
+  "offlineReady": "OpenPOS est prêt à fonctionner hors ligne",
   "later": "Plus tard",
-  "storageError": "Ce navigateur ne permet pas à Kasa POS d'enregistrer des données",
-  "storageErrorHint": "Kasa POS conserve vos ventes sur cet appareil. Une fenêtre privée ou de navigation privée, des données de site bloquées ou un disque plein peuvent l'en empêcher. Ouvrez l'application dans une fenêtre normale, autorisez les données de site pour ce site, puis rechargez.",
+  "storageError": "Ce navigateur ne permet pas à OpenPOS d'enregistrer des données",
+  "storageErrorHint": "OpenPOS conserve vos ventes sur cet appareil. Une fenêtre privée ou de navigation privée, des données de site bloquées ou un disque plein peuvent l'en empêcher. Ouvrez l'application dans une fenêtre normale, autorisez les données de site pour ce site, puis rechargez.",
   "dbClosed": "Rechargez pour continuer",
-  "dbClosedHint": "Les données de cet appareil ont été modifiées depuis l'extérieur de cette fenêtre : les données du site ont été effacées, ou Kasa POS a été effacé, restauré ou mis à jour dans un autre onglet. Rechargez pour éviter que quelque chose ne soit enregistré au mauvais endroit.",
-  "otherTab": "Kasa POS est ouvert dans un autre onglet",
+  "dbClosedHint": "Les données de cet appareil ont été modifiées depuis l'extérieur de cette fenêtre : les données du site ont été effacées, ou OpenPOS a été effacé, restauré ou mis à jour dans un autre onglet. Rechargez pour éviter que quelque chose ne soit enregistré au mauvais endroit.",
+  "otherTab": "OpenPOS est ouvert dans un autre onglet",
   "otherTabHint": "La caisse fonctionne dans un seul onglet à la fois afin que le panier et les reçus restent cohérents. Continuez dans l'autre onglet, ou utilisez celui-ci à la place.",
   "useHere": "Utiliser cet onglet",
   "notSignedIn": "Connectez-vous d'abord",
   "storageFull": "Cet appareil n'a plus d'espace de stockage. Libérez de l'espace (ou exportez une sauvegarde et effacez les anciennes données), puis réessayez.",
   "install": {
     "button": "Installer l'application",
-    "title": "Installer Kasa POS",
+    "title": "Installer OpenPOS",
     "iosShare": "Appuyez sur le bouton Partager dans la barre d'outils du navigateur (le carré avec une flèche vers le haut).",
     "iosAdd": "Faites défiler vers le bas et appuyez sur « Sur l'écran d'accueil ».",
-    "iosConfirm": "Appuyez sur « Ajouter ». Kasa POS s'ouvre alors depuis votre écran d'accueil comme n'importe quelle autre application, en plein écran, et fonctionne hors ligne.",
-    "macSafari": "Dans la barre de menus de Safari, choisissez Fichier → Ajouter au Dock. Kasa POS s'ouvre alors depuis votre Dock comme n'importe quelle autre application et fonctionne hors ligne."
+    "iosConfirm": "Appuyez sur « Ajouter ». OpenPOS s'ouvre alors depuis votre écran d'accueil comme n'importe quelle autre application, en plein écran, et fonctionne hors ligne.",
+    "macSafari": "Dans la barre de menus de Safari, choisissez Fichier → Ajouter au Dock. OpenPOS s'ouvre alors depuis votre Dock comme n'importe quelle autre application et fonctionne hors ligne."
   }
 }

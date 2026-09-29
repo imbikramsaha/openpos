@@ -1,4 +1,4 @@
-# Kasa POS — Architecture & conventions
+# OpenPOS — Architecture & conventions
 
 One React + TypeScript codebase runs on every platform:
 

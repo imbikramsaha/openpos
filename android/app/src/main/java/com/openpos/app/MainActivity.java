@@ -1,4 +1,4 @@
-package com.kasapos.app;
+package com.openpos.app;
 
 import com.getcapacitor.BridgeActivity;
 

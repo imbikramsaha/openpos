@@ -2,7 +2,7 @@
 #   git tag v1.2.3 && git push origin v1.2.3        (or: Actions → Release → Run workflow)
 #
 # Every installer has a fixed file name (no version in it), so links such as
-#   https://github.com/<owner>/<repo>/releases/latest/download/Kasa-POS-Setup-x64.exe
+#   https://github.com/<owner>/<repo>/releases/latest/download/OpenPOS-Setup-x64.exe
 # (used in README.md) always download the newest release.
 #
 # Flow: prepare (draft release) → desktop ×3, android, web (in parallel) → publish.
@@ -77,7 +77,7 @@ jobs:
           if gh release view "$TAG" >/dev/null 2>&1; then
             echo "Release $TAG already exists — assets will be added/replaced."
           else
-            flags=(--draft --title "Kasa POS $TAG" --generate-notes --target "$GITHUB_SHA")
+            flags=(--draft --title "OpenPOS $TAG" --generate-notes --target "$GITHUB_SHA")
             [ "$PRE" = true ] && flags+=(--prerelease)
             gh release create "$TAG" "${flags[@]}"
           fi
@@ -206,9 +206,9 @@ jobs:
           KEY_PASSWORD: ${{ secrets.ANDROID_KEY_PASSWORD }}
         run: |
           if [ -n "$KEYSTORE_BASE64" ] && [ -n "$KEYSTORE_PASSWORD" ] && [ -n "$KEY_ALIAS" ]; then
-            printf '%s' "$KEYSTORE_BASE64" | base64 -d > "$RUNNER_TEMP/kasa-release.keystore"
+            printf '%s' "$KEYSTORE_BASE64" | base64 -d > "$RUNNER_TEMP/openpos-release.keystore"
             {
-              echo "ANDROID_KEYSTORE_FILE=$RUNNER_TEMP/kasa-release.keystore"
+              echo "ANDROID_KEYSTORE_FILE=$RUNNER_TEMP/openpos-release.keystore"
               echo "ANDROID_KEYSTORE_PASSWORD=$KEYSTORE_PASSWORD"
               echo "ANDROID_KEY_ALIAS=$KEY_ALIAS"
               echo "ANDROID_KEY_PASSWORD=${KEY_PASSWORD:-$KEYSTORE_PASSWORD}"
@@ -234,10 +234,10 @@ jobs:
         run: |
           mkdir -p out
           if [ "${{ steps.keystore.outputs.signed }}" = true ]; then
-            cp android/app/build/outputs/apk/release/app-release.apk out/Kasa-POS-android.apk
-            cp android/app/build/outputs/bundle/release/app-release.aab out/Kasa-POS-android.aab
+            cp android/app/build/outputs/apk/release/app-release.apk out/OpenPOS-android.apk
+            cp android/app/build/outputs/bundle/release/app-release.aab out/OpenPOS-android.aab
           else
-            cp android/app/build/outputs/apk/debug/app-debug.apk out/Kasa-POS-android.apk
+            cp android/app/build/outputs/apk/debug/app-debug.apk out/OpenPOS-android.apk
           fi
           ls -l out
 
@@ -271,8 +271,8 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          (cd dist && zip -qr ../Kasa-POS-web.zip .)
-          gh release upload "${{ needs.prepare.outputs.tag }}" Kasa-POS-web.zip --clobber
+          (cd dist && zip -qr ../OpenPOS-web.zip .)
+          gh release upload "${{ needs.prepare.outputs.tag }}" OpenPOS-web.zip --clobber
 
   publish:
     name: Publish release
@@ -296,11 +296,11 @@ jobs:
             echo
             echo "| Device | Download |"
             echo "|---|---|"
-            echo "| Windows 10 / 11 | [Installer]($d/Kasa-POS-Setup-x64.exe) · [Portable, no install]($d/Kasa-POS-Portable-x64.exe) |"
-            echo "| Mac (Apple Silicon and Intel) | [Kasa-POS-mac-universal.dmg]($d/Kasa-POS-mac-universal.dmg) |"
-            echo "| Linux PC (Ubuntu, Debian, Mint) | [.deb]($d/kasa-pos-linux-amd64.deb) · [AppImage, any distro]($d/Kasa-POS-linux-x86_64.AppImage) |"
-            echo "| Linux ARM (Raspberry Pi 4/5) | [.deb]($d/kasa-pos-linux-arm64.deb) · [AppImage]($d/Kasa-POS-linux-arm64.AppImage) |"
-            echo "| Android phones and tablets | [Kasa-POS-android.apk]($d/Kasa-POS-android.apk) |"
+            echo "| Windows 10 / 11 | [Installer]($d/OpenPOS-Setup-x64.exe) · [Portable, no install]($d/OpenPOS-Portable-x64.exe) |"
+            echo "| Mac (Apple Silicon and Intel) | [OpenPOS-mac-universal.dmg]($d/OpenPOS-mac-universal.dmg) |"
+            echo "| Linux PC (Ubuntu, Debian, Mint) | [.deb]($d/openpos-linux-amd64.deb) · [AppImage, any distro]($d/OpenPOS-linux-x86_64.AppImage) |"
+            echo "| Linux ARM (Raspberry Pi 4/5) | [.deb]($d/openpos-linux-arm64.deb) · [AppImage]($d/OpenPOS-linux-arm64.AppImage) |"
+            echo "| Android phones and tablets | [OpenPOS-android.apk]($d/OpenPOS-android.apk) |"
             echo "| iPhone and iPad | Open $WEB_APP_URL in Safari → Share → **Add to Home Screen** |"
             echo "| Any device, in the browser | $WEB_APP_URL |"
             echo
@@ -309,7 +309,7 @@ jobs:
               echo "> The Android APK in this release is a **test build** signed with a temporary key. Installing a later version will need an uninstall first, which deletes the data on that device, so back up first."
               echo
             fi
-            echo "First launch: see [installing Kasa POS](https://github.com/$GH_REPO#download) for the one-time security prompts on Windows, Mac and Android."
+            echo "First launch: see [installing OpenPOS](https://github.com/$GH_REPO#download) for the one-time security prompts on Windows, Mac and Android."
             echo
             gh release view "$TAG" --json body --jq .body
           } > notes.md

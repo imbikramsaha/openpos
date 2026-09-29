@@ -1,9 +1,9 @@
-# Kasa POS desktop installers (electron-builder). Build the web app first:
+# OpenPOS desktop installers (electron-builder). Build the web app first:
 #   npx vite build && npx electron-builder --win|--mac|--linux [--publish never|always]
 # See docs/DEPLOYMENT.md for signing and the GitHub release workflow.
-appId: com.kasapos.app
-productName: Kasa POS
-copyright: Copyright © Kasa POS
+appId: com.openpos.app
+productName: OpenPOS
+copyright: Copyright © OpenPOS
 
 directories:
   output: release
@@ -39,13 +39,13 @@ nsis:
   allowToChangeInstallationDirectory: true
   createDesktopShortcut: always
   createStartMenuShortcut: true
-  shortcutName: Kasa POS
+  shortcutName: OpenPOS
   # Never delete the local sales database on uninstall.
   deleteAppDataOnUninstall: false
-  artifactName: Kasa-POS-Setup-${arch}.${ext}
+  artifactName: OpenPOS-Setup-${arch}.${ext}
 
 portable:
-  artifactName: Kasa-POS-Portable-${arch}.${ext}
+  artifactName: OpenPOS-Portable-${arch}.${ext}
 
 mac:
   # One universal build runs natively on Apple Silicon and Intel, so there is a single download.
@@ -62,8 +62,8 @@ mac:
   entitlements: electron/entitlements.mac.plist
   entitlementsInherit: electron/entitlements.mac.plist
   extendInfo:
-    NSCameraUsageDescription: Kasa POS uses the camera to scan product barcodes and QR codes.
-  artifactName: Kasa-POS-mac-${arch}.${ext}
+    NSCameraUsageDescription: OpenPOS uses the camera to scan product barcodes and QR codes.
+  artifactName: OpenPOS-mac-${arch}.${ext}
   # Signing/notarisation (optional): CSC_LINK + CSC_KEY_PASSWORD (Developer ID Application .p12)
   # and APPLE_ID + APPLE_APP_SPECIFIC_PASSWORD + APPLE_TEAM_ID. Without a certificate the release
   # workflow ad-hoc signs (-c.mac.identity=- -c.mac.hardenedRuntime=false): Apple Silicon Macs refuse
@@ -71,7 +71,7 @@ mac:
   # → Open Anyway. Ad-hoc builds cannot auto-update.
 
 dmg:
-  artifactName: Kasa-POS-mac-${arch}.${ext}
+  artifactName: OpenPOS-mac-${arch}.${ext}
 
 linux:
   # arm64 covers Raspberry Pi 4/5 and ARM mini PCs used as tills.
@@ -81,14 +81,14 @@ linux:
     - target: deb
       arch: [x64, arm64]
   category: Office
-  executableName: kasa-pos
+  executableName: openpos
   # Matches Electron's app_id (package.json desktopName) so docks show the right icon for the window.
   syncDesktopName: true
   synopsis: Offline-first point of sale
   description: Fast, offline-first point of sale for retail, restaurants and services.
   # Required for .deb when package.json "author" has no email. Format: "Name <email>".
-  maintainer: Kasa POS
-  artifactName: Kasa-POS-linux-${arch}.${ext}
+  maintainer: OpenPOS
+  artifactName: OpenPOS-linux-${arch}.${ext}
 
 # Static AppImage runtime (type2-runtime): starts on distros without libfuse2, e.g. a stock
 # Ubuntu 24.04+, where the legacy runtime fails with "AppImages require FUSE to run".
@@ -96,12 +96,13 @@ toolsets:
   appimage: "1.0.3"
 
 appImage:
-  artifactName: Kasa-POS-linux-${arch}.${ext}
+  artifactName: OpenPOS-linux-${arch}.${ext}
 
 deb:
-  artifactName: kasa-pos-linux-${arch}.${ext}
+  artifactName: openpos-linux-${arch}.${ext}
   # `lp` (cups-client) is used to kick the cash drawer; recommended rather than required.
-  fpm: ["--deb-recommends=cups-client"]
+  # Installing OpenPOS replaces the package from before the rename (the data folder is kept).
+  fpm: ["--deb-recommends=cups-client", "--replaces=kasa-pos", "--conflicts=kasa-pos"]
 
 # Auto-update + release assets (GitHub Releases). Owner/repo come from package.json "repository"
 # or the `origin` git remote (scripts/github-setup.sh creates it). Before either exists, local

@@ -1,4 +1,4 @@
-// HTTP client for the Kasa sync server (see server/README.md for the protocol).
+// HTTP client for the OpenPOS sync server (see server/README.md for the protocol).
 
 /** Where and how to reach a store on a sync server. */
 export interface Remote {
@@ -152,13 +152,13 @@ export async function request<T>(
 
   if (!res.ok) {
     if (res.status === 401) throw new SyncError('auth', 'Invalid store key. Check the key shown when the store was created.', 401)
-    if (res.status === 404 || res.status === 405) throw new SyncError('protocol', `${base} is not a Kasa sync server (or it is an old version).`, res.status)
+    if (res.status === 404 || res.status === 405) throw new SyncError('protocol', `${base} is not an OpenPOS sync server (or it is an old version).`, res.status)
     if (res.status === 413) throw new SyncError('server', serverMessage || 'The server rejected the request as too large.', 413)
     if (res.status >= 500) throw new SyncError('server', `Sync server error (${res.status})${serverMessage ? `: ${serverMessage}` : ''}`, res.status)
     throw new SyncError('server', serverMessage || `Sync request failed (${res.status})`, res.status)
   }
   if (json === undefined || json === null || typeof json !== 'object') {
-    throw new SyncError('protocol', `${base} is not a Kasa sync server.`, res.status)
+    throw new SyncError('protocol', `${base} is not an OpenPOS sync server.`, res.status)
   }
   return json as T
 }
@@ -167,7 +167,7 @@ export async function request<T>(
 export async function fetchStore(remote: Remote, timeoutMs = STORE_TIMEOUT_MS): Promise<StoreInfo> {
   const info = await request<Partial<StoreInfo>>(remote, 'GET', '/api/store', undefined, timeoutMs)
   if (typeof info.id !== 'string' || typeof info.name !== 'string') {
-    throw new SyncError('protocol', `${normalizeUrl(remote.url)} is not a Kasa sync server.`)
+    throw new SyncError('protocol', `${normalizeUrl(remote.url)} is not an OpenPOS sync server.`)
   }
   return { id: info.id, name: info.name }
 }

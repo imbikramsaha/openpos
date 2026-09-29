@@ -22,8 +22,8 @@ export default defineConfig({
       includeManifestIcons: false,
       manifest: {
         id: './',
-        name: 'Kasa POS',
-        short_name: 'Kasa POS',
+        name: 'OpenPOS',
+        short_name: 'OpenPOS',
         description: 'Fast, offline-first point of sale',
         theme_color: '#4f46e5',
         background_color: '#0b1020',

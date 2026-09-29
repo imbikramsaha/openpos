@@ -1,6 +1,6 @@
-# Kasa POS sync server
+# OpenPOS sync server
 
-A small, dependency-free Node.js server that replicates data between Kasa POS tills.
+A small, dependency-free Node.js server that replicates data between OpenPOS tills.
 Every till keeps working offline with its own full copy of the data. When it can reach
 the server, it uploads its changes and downloads everyone else's.
 
@@ -51,7 +51,7 @@ node server/src/index.js
 On startup the server prints the addresses it can be reached on:
 
 ```
-Kasa POS sync server v1.0.0
+OpenPOS sync server v1.0.0
   Listening on 0.0.0.0:8787
   Local:       http://localhost:8787
   Network:     http://192.168.1.10:8787
@@ -118,12 +118,12 @@ The image builds the web app and bundles it with the server. Build it **from the
 root**:
 
 ```bash
-docker build -f server/Dockerfile -t kasa-server .
-docker run -d --name kasa --restart unless-stopped \
-  -p 8787:8787 -v kasa-data:/data -e ADMIN_TOKEN=change-me kasa-server
+docker build -f server/Dockerfile -t openpos-server .
+docker run -d --name openpos --restart unless-stopped \
+  -p 8787:8787 -v openpos-data:/data -e ADMIN_TOKEN=change-me openpos-server
 
-docker exec kasa node server/src/index.js create-store "My Shop"
-docker logs -f kasa
+docker exec openpos node server/src/index.js create-store "My Shop"
+docker logs -f openpos
 ```
 
 The database lives in the `/data` volume. The container runs as the unprivileged `node`
@@ -133,15 +133,15 @@ user and has a health check on `/api/health`.
 
 ```yaml
 services:
-  kasa:
+  openpos:
     build: { context: ., dockerfile: server/Dockerfile }
     ports: ["8787:8787"]
     environment:
       ADMIN_TOKEN: change-me
-    volumes: ["kasa-data:/data"]
+    volumes: ["openpos-data:/data"]
     restart: unless-stopped
 volumes:
-  kasa-data:
+  openpos-data:
 ```
 
 ## Raspberry Pi
@@ -153,24 +153,24 @@ A Raspberry Pi 3/4/5 running 64-bit Raspberry Pi OS makes a good always-on shop 
 curl -fsSL https://deb.nodesource.com/setup_22.x | sudo -E bash -
 sudo apt-get install -y nodejs git
 
-git clone <your-kasa-repo> ~/kasa && cd ~/kasa
+git clone <your-openpos-repo> ~/openpos && cd ~/openpos
 npm install && npm run build   # optional: serve the POS from the Pi
 node server/src/index.js create-store "My Shop"
 ```
 
-Run it as a service with `/etc/systemd/system/kasa.service`:
+Run it as a service with `/etc/systemd/system/openpos.service`:
 
 ```ini
 [Unit]
-Description=Kasa POS sync server
+Description=OpenPOS sync server
 After=network-online.target
 Wants=network-online.target
 
 [Service]
 User=pi
-WorkingDirectory=/home/pi/kasa
+WorkingDirectory=/home/pi/openpos
 Environment=PORT=8787
-Environment=DATA_DIR=/home/pi/kasa-data
+Environment=DATA_DIR=/home/pi/openpos-data
 ExecStart=/usr/bin/node server/src/index.js
 Restart=always
 RestartSec=3
@@ -180,12 +180,12 @@ WantedBy=multi-user.target
 ```
 
 ```bash
-sudo systemctl daemon-reload && sudo systemctl enable --now kasa
-journalctl -u kasa -f
+sudo systemctl daemon-reload && sudo systemctl enable --now openpos
+journalctl -u openpos -f
 ```
 
 If you set `DATA_DIR` in the unit, pass the same value to CLI commands, e.g.
-`DATA_DIR=/home/pi/kasa-data node server/src/index.js list-stores`.
+`DATA_DIR=/home/pi/openpos-data node server/src/index.js list-stores`.
 
 ## Cloud hosting
 
@@ -208,10 +208,10 @@ store, and the host provides HTTPS. Any host that can run the Dockerfile and giv
 
 ```bash
 fly launch --dockerfile server/Dockerfile --no-deploy
-fly volumes create kasa_data --size 1
+fly volumes create openpos_data --size 1
 # in fly.toml:
 #   [mounts]
-#     source = "kasa_data"
+#     source = "openpos_data"
 #     destination = "/data"
 #   [http_service]
 #     internal_port = 8787
@@ -247,7 +247,7 @@ site, and it can apply to the Android/iOS/desktop apps too, depending on how the
 packaged. The fix in every case is to put the sync server behind HTTPS.
 
 [Caddy](https://caddyserver.com) does this in a few lines and renews certificates for
-you. Run the Kasa server on `127.0.0.1:8787` (set `HOST=127.0.0.1`) and Caddy in front of
+you. Run the OpenPOS server on `127.0.0.1:8787` (set `HOST=127.0.0.1`) and Caddy in front of
 it, with `TRUST_PROXY=1` so logs show real client addresses.
 
 **Public domain** (cloud VM, or a shop PC with port 443 forwarded). Caddy gets a Let's
@@ -265,14 +265,14 @@ Caddy's root certificate (`caddy trust`, or copy
 `~/.local/share/caddy/pki/authorities/local/root.crt`) on each tablet once:
 
 ```caddyfile
-https://kasa.lan, https://192.168.1.10 {
+https://openpos.lan, https://192.168.1.10 {
 	tls internal
 	encode gzip
 	reverse_proxy 127.0.0.1:8787
 }
 ```
 
-Then use `https://192.168.1.10` (or `https://kasa.lan` with a local DNS entry) as the
+Then use `https://192.168.1.10` (or `https://openpos.lan` with a local DNS entry) as the
 server address on every till.
 
 ## Configuration
@@ -299,7 +299,7 @@ server is running, `kasa.sqlite-wal` may hold recent changes too. Safe ways to b
 
 ```bash
 # While running: a consistent snapshot (Node's built-in SQLite, no extra tools)
-node -e "new (require('node:sqlite').DatabaseSync)('server/data/kasa.sqlite').exec(\"VACUUM INTO 'kasa-backup-$(date +%F).sqlite'\")"
+node -e "new (require('node:sqlite').DatabaseSync)('server/data/kasa.sqlite').exec(\"VACUUM INTO 'openpos-backup-$(date +%F).sqlite'\")"
 
 # Or with the sqlite3 CLI
 sqlite3 server/data/kasa.sqlite ".backup kasa-backup.sqlite"
@@ -341,7 +341,7 @@ preflight is supported. Responses over 1 KB are gzip-compressed when the client 
 
 ### `GET /api/health`
 
-No auth. Returns `{ "ok": true, "service": "kasa-pos-sync", "version": "1.0.0", "time": 1727000000000 }`.
+No auth. Returns `{ "ok": true, "service": "openpos-sync", "version": "1.0.0", "time": 1727000000000 }`.
 
 ### `GET /api/store`
 
@@ -453,7 +453,7 @@ If the app hasn't been built, `/` shows a short notice instead.
 |---|---|
 | "Can't reach the sync server" | Check the address and port, and that the server is running (`curl http://<ip>:8787/api/health`). Make sure the till is on the same network and the firewall allows port 8787. |
 | "Invalid store key" | Copy the key again; it's case-sensitive. If it was rotated, use the new key. |
-| "is not a Kasa sync server" | The address points to something else, such as a router page or the wrong port. |
+| "is not an OpenPOS sync server" | The address points to something else, such as a router page or the wrong port. |
 | Works in a browser tab but not in the installed app or on an `https://` page | Mixed content: put the server behind HTTPS (see [HTTPS](#https)). |
 | An edit "comes back" after syncing | Another till made a later edit. Last write wins by device clock, so keep every till's date and time set automatically. |
 | `Port 8787 is already in use` | Another copy is running, or set `PORT=8788`. |

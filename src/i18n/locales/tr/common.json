@@ -1,5 +1,5 @@
 {
-  "appName": "Kasa POS",
+  "appName": "OpenPOS",
   "ok": "Tamam",
   "cancel": "İptal",
   "confirm": "Onayla",
@@ -89,7 +89,7 @@
   "noResults": "Sonuç yok",
   "noAccess": "Bu ekrana erişiminiz yok",
   "noAccessHint": "Bir yöneticiden size izin vermesini isteyin.",
-  "updateAvailable": "Kasa POS'un yeni bir sürümü hazır.",
+  "updateAvailable": "OpenPOS'un yeni bir sürümü hazır.",
   "reload": "Yenile",
   "somethingWentWrong": "Bir şeyler ters gitti",
   "tryAgain": "Tekrar dene",
@@ -180,23 +180,23 @@
     "taxId": "3–20 harf veya rakam kullanın"
   },
   "backspace": "Son haneyi sil",
-  "offlineReady": "Kasa POS çevrimdışı çalışmaya hazır",
+  "offlineReady": "OpenPOS çevrimdışı çalışmaya hazır",
   "later": "Sonra",
-  "storageError": "Bu tarayıcı Kasa POS'un veri kaydetmesine izin vermiyor",
-  "storageErrorHint": "Kasa POS satışlarınızı bu cihazda tutar. Gizli veya gizli pencere, engellenmiş site verisi veya dolu bir disk bunu engelleyebilir. Uygulamayı normal bir pencerede açın, bu site için site verisine izin verin, ardından yeniden yükleyin.",
+  "storageError": "Bu tarayıcı OpenPOS'un veri kaydetmesine izin vermiyor",
+  "storageErrorHint": "OpenPOS satışlarınızı bu cihazda tutar. Gizli veya gizli pencere, engellenmiş site verisi veya dolu bir disk bunu engelleyebilir. Uygulamayı normal bir pencerede açın, bu site için site verisine izin verin, ardından yeniden yükleyin.",
   "dbClosed": "Devam etmek için yeniden yükleyin",
-  "dbClosedHint": "Bu cihazdaki veriler bu pencerenin dışından değiştirildi: site verisi temizlendi veya Kasa POS başka bir sekmede silindi, geri yüklendi ya da güncellendi. Hiçbir şeyin yanlış yere kaydedilmemesi için yeniden yükleyin.",
-  "otherTab": "Kasa POS başka bir sekmede açık",
+  "dbClosedHint": "Bu cihazdaki veriler bu pencerenin dışından değiştirildi: site verisi temizlendi veya OpenPOS başka bir sekmede silindi, geri yüklendi ya da güncellendi. Hiçbir şeyin yanlış yere kaydedilmemesi için yeniden yükleyin.",
+  "otherTab": "OpenPOS başka bir sekmede açık",
   "otherTabHint": "Sepetin ve fişlerin tutarlı kalması için kasa aynı anda tek bir sekmede çalışır. Diğer sekmede devam edin veya bunun yerine bunu kullanın.",
   "useHere": "Bu sekmeyi kullan",
   "notSignedIn": "Önce giriş yapın",
   "storageFull": "Bu cihazın depolama alanı doldu. Yer açın (veya bir yedek dışa aktarıp eski verileri temizleyin), ardından tekrar deneyin.",
   "install": {
     "button": "Uygulamayı Kur",
-    "title": "Kasa POS'u Kur",
+    "title": "OpenPOS'u Kur",
     "iosShare": "Tarayıcının araç çubuğundaki Paylaş düğmesine dokunun (yukarı ok işaretli kare).",
     "iosAdd": "Aşağı kaydırın ve “Ana Ekrana Ekle” (Add to Home Screen) seçeneğine dokunun.",
-    "iosConfirm": "“Ekle”ye dokunun. Kasa POS bundan sonra diğer uygulamalar gibi Ana Ekran'dan tam ekran açılır ve çevrimdışı çalışır.",
-    "macSafari": "Safari'nin menü çubuğunda Dosya → Dock'a Ekle (Add to Dock) seçeneğini belirleyin. Kasa POS bundan sonra diğer uygulamalar gibi Dock'tan açılır ve çevrimdışı çalışır."
+    "iosConfirm": "“Ekle”ye dokunun. OpenPOS bundan sonra diğer uygulamalar gibi Ana Ekran'dan tam ekran açılır ve çevrimdışı çalışır.",
+    "macSafari": "Safari'nin menü çubuğunda Dosya → Dock'a Ekle (Add to Dock) seçeneğini belirleyin. OpenPOS bundan sonra diğer uygulamalar gibi Dock'tan açılır ve çevrimdışı çalışır."
   }
 }

@@ -7,7 +7,7 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleDisplayName</key>
-        <string>Kasa POS</string>
+        <string>OpenPOS</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
@@ -44,11 +44,11 @@
     </dict>
 	</dict>
 	<key>NSCameraUsageDescription</key>
-	<string>Kasa POS uses the camera to scan product barcodes and QR codes.</string>
+	<string>OpenPOS uses the camera to scan product barcodes and QR codes.</string>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string>Kasa POS lets you choose product photos and your shop logo from the photo library.</string>
+	<string>OpenPOS lets you choose product photos and your shop logo from the photo library.</string>
 	<key>NSLocalNetworkUsageDescription</key>
-	<string>Kasa POS connects to the sync server and receipt printers on your shop network.</string>
+	<string>OpenPOS connects to the sync server and receipt printers on your shop network.</string>
 	<key>NSAppTransportSecurity</key>
 	<dict>
 		<!-- The optional sync server usually runs on the shop LAN over plain http. -->

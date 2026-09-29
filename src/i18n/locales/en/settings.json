@@ -365,7 +365,7 @@
     "silentPrintHint": "Send receipts straight to the printer (desktop app only)",
     "browserTip1": "For thermal printers, choose paper size 80 mm (or 58 mm) and set margins to None.",
     "browserTip2": "Turn off headers and footers in the print dialog for a clean receipt.",
-    "browserTip3": "Install the Kasa POS desktop app to print silently to a chosen printer.",
+    "browserTip3": "Install the OpenPOS desktop app to print silently to a chosen printer.",
     "testPage": "Print test page",
     "testPageTitle": "Printer test",
     "testPageFooter": "If every line above is clear and fits the paper, your printer is ready."
@@ -382,7 +382,7 @@
     "connection": "Store server",
     "connectionHint": "Terminals connected to the same server share products, customers, sales and users.",
     "serverUrl": "Server address",
-    "serverUrlHint": "The URL of your Kasa sync server",
+    "serverUrlHint": "The URL of your OpenPOS sync server",
     "urlInvalid": "Enter a full address starting with http:// or https://",
     "mixedContent": "This app is open over https://, and browsers block connections from it to an http:// server. Use an https:// address for the server, or use the desktop app on this till.",
     "storeKey": "Store key",
@@ -400,7 +400,7 @@
     "enabledNeedsServer": "Add a server address and store key first",
     "howTitle": "How sync works",
     "lanTitle": "In-store (LAN)",
-    "lanHint": "Run the Kasa sync server on any PC in your shop and use its local address. Tills keep selling offline and catch up when the PC is back.",
+    "lanHint": "Run the OpenPOS sync server on any PC in your shop and use its local address. Tills keep selling offline and catch up when the PC is back.",
     "cloudTitle": "Cloud",
     "cloudHint": "Deploy the same server to any host with HTTPS to connect branches and check sales from anywhere.",
     "readme": "Setup, store keys and the HTTP API are described in"
@@ -438,8 +438,8 @@
     },
     "error": {
       "notJson": "That file is not a valid backup (it isn't JSON).",
-      "notKasa": "That file is not a Kasa POS backup.",
-      "newerVersion": "This backup was made by a newer version of Kasa POS. Update the app first.",
+      "notKasa": "That file is not an OpenPOS backup.",
+      "newerVersion": "This backup was made by a newer version of OpenPOS. Update the app first.",
       "badTables": "The backup file is damaged and cannot be restored.",
       "noUsers": "The backup contains no users, so nobody could sign in after restoring."
     }
@@ -541,12 +541,12 @@
     "shortcutsHint": "Function keys for fast selling on desktop tills",
     "showShortcuts": "Show shortcuts",
     "credits": "Credits",
-    "creditsText": "Kasa POS is built on these excellent open-source projects:",
+    "creditsText": "OpenPOS is built on these excellent open-source projects:",
     "license": "Licence"
   },
   "autoBackup": {
     "scheduleTitle": "Schedule",
-    "scheduleHint": "Kasa POS makes a backup whenever one is due and sends it to every destination you switch on below.",
+    "scheduleHint": "OpenPOS makes a backup whenever one is due and sends it to every destination you switch on below.",
     "every": "Back up",
     "interval_one": "Every hour",
     "interval_other": "Every {{count}} hours",
@@ -567,7 +567,7 @@
     "passphraseSaved": "Passphrase saved. New backups will be encrypted.",
     "passphraseWarning": "Write the passphrase down. Without it, encrypted backups can't be restored — not even by us.",
     "backupNow": "Back up now",
-    "whileOpen": "Backups run while Kasa POS is open. If one is missed, it runs the next time the app opens.",
+    "whileOpen": "Backups run while OpenPOS is open. If one is missed, it runs the next time the app opens.",
     "done": "Backup complete",
     "someFailed_one": "{{count}} destination failed — see below",
     "someFailed_other": "{{count}} destinations failed — see below",
@@ -575,11 +575,11 @@
     "destinations": "Destinations",
     "destinationsHint": "Use at least one that isn't this device, so a lost or broken device doesn't take your data with it.",
     "device": "On this device",
-    "deviceHint": "Recent copies kept inside Kasa POS. Protects against mistakes, not against losing the device.",
+    "deviceHint": "Recent copies kept inside OpenPOS. Protects against mistakes, not against losing the device.",
     "folder": "Folder on this computer",
     "folderHint": "Tip: choose your Google Drive, OneDrive or Dropbox folder and the desktop app will sync it to the cloud.",
     "folderChosen": "Saving to “{{name}}”",
-    "folderUnsupported": "Available in Chrome, Edge and the Kasa POS desktop app.",
+    "folderUnsupported": "Available in Chrome, Edge and the OpenPOS desktop app.",
     "chooseFolder": "Choose folder",
     "changeFolder": "Change folder",
     "forgetFolder": "Stop using this folder",
@@ -589,7 +589,7 @@
     "desktopUseFolder": "Not available in the desktop app yet. Use “Folder on this computer” and choose your {{name}} folder instead.",
     "mobileUseFile": "Not available in the mobile app yet. Download a backup from Backup & restore and save it to {{name}}.",
     "hint": {
-      "gdrive": "Saved in a “Kasa POS Backups” folder in your Google Drive.",
+      "gdrive": "Saved in a “OpenPOS Backups” folder in your Google Drive.",
       "onedrive": "Saved in this app's own folder under Apps in your OneDrive.",
       "dropbox": "Saved in this app's own folder under Apps in your Dropbox."
     },

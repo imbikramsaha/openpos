@@ -96,7 +96,7 @@ describe('testConnection', () => {
     try {
       const notKasa = await testConnection(`http://127.0.0.1:${(other.address() as { port: number }).port}`, store.key)
       expect(notKasa.ok).toBe(false)
-      expect(notKasa.error).toMatch(/not a Kasa sync server/i)
+      expect(notKasa.error).toMatch(/not an OpenPOS sync server/i)
     } finally {
       await new Promise<void>((r) => other.close(() => r()))
     }

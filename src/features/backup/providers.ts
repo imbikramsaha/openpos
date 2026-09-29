@@ -18,9 +18,9 @@ export interface CloudApi {
   remove(id: string): Promise<void>
 }
 
-// kasa-backup-YYYYMMDD-HHMM[SS], plus the suffix a provider adds when it renames a clash:
+// openpos-backup-YYYYMMDD-HHMM[SS] (kasa-backup-… before the rename), plus the suffix a provider adds when it renames a clash:
 // "… (1)" on Dropbox, "… 1" on OneDrive.
-export const BACKUP_NAME = /^kasa-backup-\d{8}-\d{4}(\d{2})?(-\d+| \(\d+\)| \d+)?\.(json|kasa)$/
+export const BACKUP_NAME = /^(openpos|kasa)-backup-\d{8}-\d{4}(\d{2})?(-\d+| \(\d+\)| \d+)?\.(json|openpos|kasa)$/
 
 async function call(p: CloudProvider, url: string, init: RequestInit = {}): Promise<Response> {
   const token = await accessToken(p)
@@ -61,9 +61,9 @@ const dropbox: CloudApi = {
   },
 }
 
-// ---- Google Drive (a "Kasa POS Backups" folder; drive.file scope sees only its own files) ------
+// ---- Google Drive (an "OpenPOS Backups" folder; drive.file scope sees only its own files) ------
 
-const FOLDER_NAME = 'Kasa POS Backups'
+const FOLDER_NAME = 'OpenPOS Backups'
 let folderId: string | null = null
 
 async function gdriveFolder(): Promise<string> {

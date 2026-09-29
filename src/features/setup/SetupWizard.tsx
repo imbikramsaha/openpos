@@ -48,7 +48,7 @@ export function SetupWizard() {
   // A brand-new device can be restored straight from a backup file, without first
   // creating a throwaway store and admin.
   const restoreFromFile = async () => {
-    const file = await pickFile('.json,.kasa,application/json,application/octet-stream')
+    const file = await pickFile('.json,.openpos,.kasa,application/json,application/octet-stream')
     if (!file) return
     try {
       const text = await readBackupText(file, askBackupPassphrase)

@@ -1,4 +1,4 @@
-# Kasa POS — Building, deploying & hardware
+# OpenPOS — Building, deploying & hardware
 
 One web build (`npx vite build` → `dist/`) ships everywhere:
 
@@ -48,7 +48,7 @@ npx vite preview --host       # local test at http://<pc>:4173
   instead (Share → Add to Home Screen, or File → Add to Dock). The button is hidden once the app is
   installed, and in the desktop and mobile apps.
 - **Netlify** (what https://appkasapos.netlify.app uses): build command `npx vite build`, publish directory
-  `dist`; every push to `main` deploys. Every release also attaches `Kasa-POS-web.zip` for self-hosting.
+  `dist`; every push to `main` deploys. Every release also attaches `OpenPOS-web.zip` for self-hosting.
 
 ## 3. Desktop (Electron)
 
@@ -63,13 +63,14 @@ npm run dist:win      # or dist:mac / dist:linux → release/
   and Apple Silicon. Linux produces an `AppImage` and a `.deb`. Build each OS on that OS; cross-building
   Windows or macOS from Linux isn't supported without Wine or a Mac, so let CI do it.
 - The app is served from `app://kasa/` (a stable secure origin). Its IndexedDB database is stored in
-  the OS profile folder (`%APPDATA%\Kasa POS`, `~/Library/Application Support/Kasa POS`, `~/.config/Kasa POS`)
-  and survives updates. The main-process log is `kasa-main.log` in the same folder.
-- **Kiosk mode** for dedicated tills: start with `KASA_KIOSK=1` (or the `--kiosk` argument). The app runs
+  the OS profile folder (`%APPDATA%\OpenPOS`, `~/Library/Application Support/OpenPOS`, `~/.config/OpenPOS`)
+  and survives updates. The main-process log is `openpos-main.log` in the same folder. Installs from before the
+  rename to OpenPOS keep using their existing `Kasa POS` profile folder, so no data moves.
+- **Kiosk mode** for dedicated tills: start with `OPENPOS_KIOSK=1` (or the `--kiosk` argument). The app runs
   full screen with no window chrome and the display never sleeps. On Windows, edit the shortcut target to
-  `"…\Kasa POS.exe" --kiosk` and put it in `shell:startup` to launch on boot.
-- Other switches: `KASA_USER_DATA_DIR=<dir>` (a separate profile, e.g. two tills on one PC),
-  `KASA_DEVTOOLS=1` (F12 in packaged builds), `KASA_DISABLE_UPDATES=1`.
+  `"…\OpenPOS.exe" --kiosk` and put it in `shell:startup` to launch on boot.
+- Other switches: `OPENPOS_USER_DATA_DIR=<dir>` (a separate profile, e.g. two tills on one PC),
+  `OPENPOS_DEVTOOLS=1` (F12 in packaged builds), `OPENPOS_DISABLE_UPDATES=1`.
 - Keys: F11 toggles full screen and Ctrl +/−/0 zoom (these are in the menu on macOS). Only one instance
   runs per profile; opening it again focuses the existing window.
 - The **customer display** (`#/display`) opens as a second window and is placed on the second monitor
@@ -89,12 +90,12 @@ workflow*. A full run takes about 20 minutes.
 
 | File (same name in every release) | For |
 |---|---|
-| `Kasa-POS-Setup-x64.exe`, `Kasa-POS-Portable-x64.exe` | Windows 10/11 installer, and a portable copy that needs no install |
-| `Kasa-POS-mac-universal.dmg` (`.zip` is for auto-update) | Mac, one build for Apple Silicon and Intel |
-| `kasa-pos-linux-amd64.deb`, `Kasa-POS-linux-x86_64.AppImage` | Linux PCs |
-| `kasa-pos-linux-arm64.deb`, `Kasa-POS-linux-arm64.AppImage` | Raspberry Pi 4/5 and other ARM64 Linux |
-| `Kasa-POS-android.apk` (`.aab` too when signed) | Android 7+ phones and tablets (the `.aab` is for Google Play) |
-| `Kasa-POS-web.zip` | self-hosting the web app |
+| `OpenPOS-Setup-x64.exe`, `OpenPOS-Portable-x64.exe` | Windows 10/11 installer, and a portable copy that needs no install |
+| `OpenPOS-mac-universal.dmg` (`.zip` is for auto-update) | Mac, one build for Apple Silicon and Intel |
+| `openpos-linux-amd64.deb`, `OpenPOS-linux-x86_64.AppImage` | Linux PCs |
+| `openpos-linux-arm64.deb`, `OpenPOS-linux-arm64.AppImage` | Raspberry Pi 4/5 and other ARM64 Linux |
+| `OpenPOS-android.apk` (`.aab` too when signed) | Android 7+ phones and tablets (the `.aab` is for Google Play) |
+| `OpenPOS-web.zip` | self-hosting the web app |
 
 Because the names never change, `https://github.com/<owner>/<repo>/releases/latest/download/<file>` always
 downloads the newest version; the README's Download section uses these links.
@@ -142,14 +143,14 @@ cd android && ./gradlew assembleDebug      # → app/build/outputs/apk/debug/app
 - **Release signing**: create a keystore once and **keep it safe** (password manager plus an offline copy).
   Every future version must be signed with it; if it's lost, installed apps can never be updated.
   ```bash
-  keytool -genkeypair -v -keystore kasa-release.jks -alias kasa -keyalg RSA -keysize 4096 -validity 10000
-  base64 -w0 kasa-release.jks | gh secret set ANDROID_KEYSTORE_BASE64
+  keytool -genkeypair -v -keystore openpos-release.jks -alias openpos -keyalg RSA -keysize 4096 -validity 10000
+  base64 -w0 openpos-release.jks | gh secret set ANDROID_KEYSTORE_BASE64
   gh secret set ANDROID_KEYSTORE_PASSWORD      # paste the keystore password when asked
   gh secret set ANDROID_KEY_PASSWORD           # the same password (PKCS12 keystores use one)
-  gh secret set ANDROID_KEY_ALIAS --body kasa
+  gh secret set ANDROID_KEY_ALIAS --body openpos
   ```
   (`keytool` comes with any JDK, including Android Studio's: `…/android-studio/jbr/bin/keytool`.)
-  With these secrets CI builds a signed `Kasa-POS-android.apk` and `.aab`. **Without them it signs the APK
+  With these secrets CI builds a signed `OpenPOS-android.apk` and `.aab`. **Without them it signs the APK
   with a throwaway debug key**, which is fine for testing, but the next release can't update it: phones must
   uninstall first, which deletes their local data. Set the secrets before shops start using the app. To sign
   locally, export `ANDROID_KEYSTORE_FILE` plus the same three variables and run `./gradlew assembleRelease bundleRelease`.
@@ -186,7 +187,7 @@ npx cap open ios        # Xcode → select the "App" target → Signing & Capabi
 Setup, Docker, Raspberry Pi and HTTPS are covered in **[server/README.md](../server/README.md)**. In short:
 run the server on one always-on machine in the shop, create a store key, then enter the server address
 and key on each till (*Settings → Sync*). Tagged releases also publish a Docker image,
-`ghcr.io/<owner>/kasa-pos-server:<version>` (amd64 + arm64), through `.github/workflows/server-docker.yml`.
+`ghcr.io/<owner>/openpos-server:<version>` (amd64 + arm64), through `.github/workflows/server-docker.yml`.
 
 **Plain-http LAN servers** (e.g. `http://192.168.1.10:8787`) work from every shell:
 
@@ -205,7 +206,7 @@ doesn't need it, and a cloud server should use HTTPS anyway.
 
 *Settings → Automatic backup* makes a backup on a schedule (every 1, 4, 12 or 24 hours) and after each
 shift is closed, sends it to every destination that's switched on, and deletes copies beyond the
-"keep" count. Browsers can't run code while the app is closed, so backups run while Kasa POS is open:
+"keep" count. Browsers can't run code while the app is closed, so backups run while OpenPOS is open:
 the first check is 45 s after launch, then every 10 minutes, and again when the device comes back
 online. A missed backup runs the next time the app opens.
 
@@ -213,12 +214,12 @@ online. A missed backup runs the next time the app opens.
 |---|---|---|
 | On this device | no | inside the app (`kasa-pos-local` IndexedDB), newest 1–30 copies. Protects against mistakes, not against losing the device |
 | Folder on this computer | no | any folder the user picks (Chrome, Edge, desktop app). Picking the Google Drive / OneDrive / Dropbox **sync folder** gets the files to the cloud through the provider's own desktop client |
-| Google Drive | yes, once per installation | a `Kasa POS Backups` folder. The `drive.file` scope only lets the app see files it created |
+| Google Drive | yes, once per installation | a `OpenPOS Backups` folder. The `drive.file` scope only lets the app see files it created |
 | OneDrive | yes, once per installation | `Apps/<app name>/` (the `Files.ReadWrite.AppFolder` scope) |
 | Dropbox | yes, once per installation | `Apps/<app name>/` (an *App folder* app) |
 
 **Encryption.** With *Encrypt backups* on, files are AES-256-GCM encrypted with a key derived from a
-passphrase (PBKDF2-SHA-256, 310,000 iterations) and saved as `.kasa` instead of `.json`. *Backup & restore*,
+passphrase (PBKDF2-SHA-256, 310,000 iterations) and saved as `.openpos` instead of `.json`. *Backup & restore*,
 the setup wizard's *Restore* and every destination's *Restore…* ask for the passphrase. The passphrase is
 kept on the device so unattended backups can run. It protects the copies stored elsewhere, and if it's
 lost, those copies can't be opened. Recommend it for cloud destinations: backups contain customer
@@ -345,13 +346,13 @@ The device and folder destinations work everywhere they're listed.
 | Symptom | Fix |
 |---|---|
 | Blank window, "dist/index.html is missing" | Run `npx vite build` before `electron .` |
-| Silent print does nothing | Check the printer name in *Settings → Device*. See `kasa-main.log` ("Invalid deviceName" means the printer was renamed or removed) |
+| Silent print does nothing | Check the printer name in *Settings → Device*. See `openpos-main.log` ("Invalid deviceName" means the printer was renamed or removed) |
 | Drawer doesn't open | Print a test page first. On Linux/macOS run `printf '\x1b\x70\x00\x19\xfa' \| lp -d <printer> -o raw`. On Windows check that the printer is online |
 | Camera button missing or denied | Browser: use HTTPS. Android/iOS: allow Camera in the app's system settings. macOS: *Privacy & Security → Camera* |
 | Tablet can't reach the sync server | Same Wi-Fi/VLAN? Firewall on port 8787? Try `http://<server>:8787/api/health` in the tablet's browser |
-| macOS "app is damaged" (unsigned build) | `xattr -cr "/Applications/Kasa POS.app"`, or sign the build (§3) |
+| macOS "app is damaged" (unsigned build) | `xattr -cr "/Applications/OpenPOS.app"`, or sign the build (§3) |
 | Download link shows GitHub's 404 page | The repository is private: sign in with an account that has access, or make it public. Also check that a release has been published (drafts don't count as *latest*) |
-| macOS "Apple could not verify Kasa POS" | Expected for ad-hoc builds: *System Settings → Privacy & Security → Open Anyway*, once |
+| macOS "Apple could not verify OpenPOS" | Expected for ad-hoc builds: *System Settings → Privacy & Security → Open Anyway*, once |
 | Linux AppImage doesn't start | Make it executable (`chmod +x`). Builds before the static runtime needed `libfuse2` (`sudo apt install libfuse2t64`) |
 | Android "App not installed" / "package conflicts" when updating | The installed APK was signed with a different key (e.g. a debug test build). Back up, uninstall, install the new APK, restore |
 | Cloud backup: "The sign-in window was blocked" | Allow pop-ups for the site. *Connect* must be clicked directly (no keyboard macro) |
