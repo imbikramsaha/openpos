@@ -172,5 +172,8 @@
   "editSaleTitle": "Kembali dan edit {{number}}?",
   "editSaleMessage": "Penjualan ini akan dibatalkan (tetap ada di Penjualan dengan tanda dibatalkan) dan barangnya kembali ke layar, sehingga Anda bisa memperbaikinya lalu menagih lagi.",
   "editSaleConfirm": "Batalkan dan edit",
-  "editSaleDone": "{{number}} dibatalkan. Perbaiki penjualan lalu tagih lagi."
+  "editSaleDone": "{{number}} dibatalkan. Perbaiki penjualan lalu tagih lagi.",
+  "onlyInStock": "Stok {{name}} tinggal {{qty}}",
+  "wholeNumbersOnly": "Barang ini dijual dalam jumlah bulat",
+  "aboveZero": "Masukkan nilai lebih dari nol"
 }

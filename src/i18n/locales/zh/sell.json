@@ -172,5 +172,8 @@
   "editSaleTitle": "返回并修改 {{number}}？",
   "editSaleMessage": "此订单将被作废（仍保留在销售记录中，标记为已作废），商品会回到屏幕上，方便你修改后重新收款。",
   "editSaleConfirm": "作废并修改",
-  "editSaleDone": "{{number}} 已作废。请修改订单后重新收款。"
+  "editSaleDone": "{{number}} 已作废。请修改订单后重新收款。",
+  "onlyInStock": "{{name}} 库存仅剩 {{qty}}",
+  "wholeNumbersOnly": "此商品只能按整数出售",
+  "aboveZero": "请输入大于 0 的值"
 }

@@ -198,5 +198,6 @@
     "iosAdd": "Mag-scroll pababa, tapos i-tap ang “Add to Home Screen”.",
     "iosConfirm": "I-tap ang “Add”. Bubukas ang OpenPOS mula sa Home Screen na parang ibang app, full screen, at gumagana kahit offline.",
     "macSafari": "Sa menu bar ng Safari, piliin ang File → Add to Dock. Bubukas ang OpenPOS mula sa Dock na parang ibang app at gumagana kahit offline."
-  }
+  },
+  "languageOffline": "Kailangan ng internet ang wikang ito sa unang paggamit."
 }

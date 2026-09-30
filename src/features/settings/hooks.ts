@@ -48,12 +48,14 @@ export function useSettingsDraft() {
   const [draft, setDraft] = useState(saved)
   const draftRef = useRef(saved)
   const pending = useRef<Partial<Settings>>({})
+  /** Shown but not saved: values that aren't valid yet (a half-typed GSTIN or email). */
+  const held = useRef<Partial<Settings>>({})
   const timer = useRef<ReturnType<typeof setTimeout> | undefined>(undefined)
 
   // Adopt changes that arrive from elsewhere (other sections, other terminals via sync)
   // without discarding what the user is typing.
   useEffect(() => {
-    draftRef.current = { ...saved, ...pending.current }
+    draftRef.current = { ...saved, ...pending.current, ...held.current }
     setDraft(draftRef.current)
   }, [saved])
 
@@ -68,12 +70,23 @@ export function useSettingsDraft() {
     (changes: Partial<Settings>, delay = 0) => {
       draftRef.current = { ...draftRef.current, ...changes }
       setDraft(draftRef.current)
+      for (const k of Object.keys(changes)) delete held.current[k as keyof Settings]
       pending.current = { ...pending.current, ...changes }
       clearTimeout(timer.current)
       timer.current = setTimeout(() => void flush(), delay)
     },
     [flush],
   )
+
+  /** Shows `changes` in the form without saving them, and drops any unsaved edit of those fields. */
+  const setUnsaved = useCallback((changes: Partial<Settings>) => {
+    draftRef.current = { ...draftRef.current, ...changes }
+    setDraft(draftRef.current)
+    held.current = { ...held.current, ...changes }
+    const next = { ...pending.current }
+    for (const k of Object.keys(changes)) delete next[k as keyof Settings]
+    pending.current = next
+  }, [])
 
   const setReceipt = useCallback(
     (changes: Partial<Settings['receipt']>, delay = 0) => set({ receipt: { ...draftRef.current.receipt, ...changes } }, delay),
@@ -101,7 +114,7 @@ export function useSettingsDraft() {
     }
   }, [flush])
 
-  return { draft, saved, set, setReceipt, setScale, flush }
+  return { draft, saved, set, setUnsaved, setReceipt, setScale, flush }
 }
 
 export function useMediaQuery(query: string): boolean {

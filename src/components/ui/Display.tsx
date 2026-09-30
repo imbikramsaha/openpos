@@ -31,7 +31,7 @@ export function CardHeader({ title, subtitle, actions, className }: { title: Rea
     <div className={cn('flex items-center gap-3 border-b border-border px-5 py-3.5', className)}>
       <div className="min-w-0 flex-1">
         <h3 className="truncate font-semibold tracking-tight">{title}</h3>
-        {subtitle && <p className="truncate text-xs text-muted">{subtitle}</p>}
+        {subtitle && <p className="line-clamp-2 text-xs text-muted">{subtitle}</p>}
       </div>
       {actions}
     </div>

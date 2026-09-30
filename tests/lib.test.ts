@@ -29,6 +29,9 @@ describe('money', () => {
     expect(parseDecimal('1.234.567')).toBe(1234567)
     expect(parseDecimal(' 42 ')).toBe(42)
     expect(Number.isNaN(parseDecimal(''))).toBe(true)
+    // Several dots are only thousands separators; anything else is a typo, not 123.
+    expect(Number.isNaN(parseDecimal('1.2.3'))).toBe(true)
+    expect(Number.isNaN(parseDecimal('12.34.5'))).toBe(true)
   })
 
   it('formats with Indian digit grouping', () => {

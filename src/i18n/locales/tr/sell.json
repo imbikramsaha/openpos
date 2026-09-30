@@ -175,5 +175,8 @@
   "editSaleTitle": "Geri dönüp {{number}} düzenlensin mi?",
   "editSaleMessage": "Bu satış iptal edilecek (Satışlar'da iptal edildi olarak kalır) ve ürünleri ekrana geri gelecek; böylece düzeltip yeniden ödeme alabilirsiniz.",
   "editSaleConfirm": "İptal et ve düzenle",
-  "editSaleDone": "{{number}} iptal edildi. Satışı düzeltin ve yeniden ödeme alın."
+  "editSaleDone": "{{number}} iptal edildi. Satışı düzeltin ve yeniden ödeme alın.",
+  "onlyInStock": "{{name}} stokta yalnızca {{qty}} var",
+  "wholeNumbersOnly": "Bu ürün yalnızca tam sayı olarak satılır",
+  "aboveZero": "Sıfırdan büyük bir değer girin"
 }

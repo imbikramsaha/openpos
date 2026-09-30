@@ -175,5 +175,8 @@
   "editSaleTitle": "Bumalik at i-edit ang {{number}}?",
   "editSaleMessage": "Ma-void ang bentang ito (mananatili ito sa listahan ng benta bilang na-void) at babalik sa screen ang mga item nito, para maayos mo at masingil ulit.",
   "editSaleConfirm": "I-void at i-edit",
-  "editSaleDone": "Na-void ang {{number}}. Ayusin ang benta at maningil ulit."
+  "editSaleDone": "Na-void ang {{number}}. Ayusin ang benta at maningil ulit.",
+  "onlyInStock": "{{qty}} na lang ang stock ng {{name}}",
+  "wholeNumbersOnly": "Buong bilang lang ang benta ng item na ito",
+  "aboveZero": "Ilagay ang halagang higit sa zero"
 }

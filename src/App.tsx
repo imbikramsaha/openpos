@@ -185,15 +185,25 @@ function useSingleTab(enabled: boolean): boolean {
     if (!enabled || typeof BroadcastChannel === 'undefined') return
     const id = Math.random().toString(36).slice(2)
     const channel = new BroadcastChannel('kasa-till')
-    channel.onmessage = (e: MessageEvent<{ type?: string; id?: string }>) => {
-      if (e.data?.type === 'claim' && e.data.id !== id) setBlocked(true)
-    }
     const claim = () => channel.postMessage({ type: 'claim', id })
+    channel.onmessage = (e: MessageEvent<{ type?: string; id?: string }>) => {
+      if (e.data?.id === id) return
+      if (e.data?.type === 'claim') setBlocked(true)
+      // The active tab closed: take the till back without a reload.
+      if (e.data?.type === 'release') {
+        setBlocked(false)
+        claim()
+      }
+    }
     const onShow = (e: PageTransitionEvent) => e.persisted && claim()
+    // Leaving for good (not the back/forward cache) frees the till for the other tabs.
+    const onHide = (e: PageTransitionEvent) => !e.persisted && channel.postMessage({ type: 'release', id })
     claim()
     window.addEventListener('pageshow', onShow)
+    window.addEventListener('pagehide', onHide)
     return () => {
       window.removeEventListener('pageshow', onShow)
+      window.removeEventListener('pagehide', onHide)
       channel.close()
     }
   }, [enabled])

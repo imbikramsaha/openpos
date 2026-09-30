@@ -47,7 +47,12 @@ export function useReport(range: Range, deviceId: string): ReportState {
   }, [key])
 
   const before = useLiveQuery(async () => {
-    const starts = bucketStarts(prev.from, prev.to, granularityFor(range.from, range.to))
+    const g = granularityFor(range.from, range.to)
+    let starts = bucketStarts(prev.from, prev.to, g)
+    // Month buckets of a range that starts mid-month don't line up with the previous period's
+    // calendar months; compare each current bucket with the same span one period earlier instead.
+    const current = bucketStarts(range.from, range.to, g)
+    if (starts.length !== current.length) starts = current.map((s) => s - (range.from - prev.from))
     const agg = await loadAggregate(prev.from, prev.to, { starts, deviceId: deviceId || undefined, cutoff: prev.cutoff, light: true })
     return { key, agg, starts, period: prev }
   }, [key])

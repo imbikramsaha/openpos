@@ -89,8 +89,8 @@ export default function CustomerDisplay() {
   }
 
   return (
-    <div className="grid h-full grid-cols-1 bg-bg lg:grid-cols-[1.4fr_1fr]">
-      <section className="flex min-h-0 flex-col border-border lg:border-e">
+    <div className="grid h-full grid-cols-1 bg-bg lg:grid-cols-[minmax(0,1.4fr)_minmax(0,1fr)]">
+      <section className="flex min-h-0 min-w-0 flex-col border-border lg:border-e">
         <header className="flex items-center gap-4 border-b border-border bg-surface px-8 py-5">
           {logo && <img src={logo} alt="" className="h-12 object-contain" />}
           <h1 className="text-2xl font-semibold tracking-tight">{settings.businessName}</h1>
@@ -109,7 +109,7 @@ export default function CustomerDisplay() {
           ))}
         </ul>
       </section>
-      <aside className="flex flex-col items-center justify-center gap-6 p-10 text-center">
+      <aside className="flex min-w-0 flex-col items-center justify-center gap-6 p-10 text-center">
         {calc.discountTotal > 0 && (
           <div className="tnum text-xl text-success">
             {t('discount')}: −{formatMoney(calc.discountTotal)}

@@ -172,5 +172,8 @@
   "editSaleTitle": "Quay lại và sửa {{number}}?",
   "editSaleMessage": "Đơn bán này sẽ bị hủy (vẫn nằm trong danh sách đơn bán với trạng thái đã hủy) và các mặt hàng sẽ quay lại màn hình để bạn sửa rồi thu tiền lại.",
   "editSaleConfirm": "Hủy và sửa",
-  "editSaleDone": "Đã hủy {{number}}. Hãy sửa đơn bán rồi thu tiền lại."
+  "editSaleDone": "Đã hủy {{number}}. Hãy sửa đơn bán rồi thu tiền lại.",
+  "onlyInStock": "{{name}} chỉ còn {{qty}} trong kho",
+  "wholeNumbersOnly": "Mặt hàng này chỉ bán theo số nguyên",
+  "aboveZero": "Nhập giá trị lớn hơn 0"
 }

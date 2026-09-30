@@ -199,5 +199,6 @@
     "iosAdd": "Faites défiler vers le bas et appuyez sur « Sur l'écran d'accueil ».",
     "iosConfirm": "Appuyez sur « Ajouter ». OpenPOS s'ouvre alors depuis votre écran d'accueil comme n'importe quelle autre application, en plein écran, et fonctionne hors ligne.",
     "macSafari": "Dans la barre de menus de Safari, choisissez Fichier → Ajouter au Dock. OpenPOS s'ouvre alors depuis votre Dock comme n'importe quelle autre application et fonctionne hors ligne."
-  }
+  },
+  "languageOffline": "Cette langue nécessite une connexion Internet lors de sa première utilisation."
 }

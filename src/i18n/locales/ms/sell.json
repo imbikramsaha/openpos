@@ -172,5 +172,8 @@
   "editSaleTitle": "Kembali dan sunting {{number}}?",
   "editSaleMessage": "Jualan ini akan dibatalkan (kekal dalam senarai jualan, ditanda dibatalkan) dan barangannya kembali ke skrin, supaya anda boleh membetulkannya dan mengenakan bayaran semula.",
   "editSaleConfirm": "Batalkan dan sunting",
-  "editSaleDone": "{{number}} dibatalkan. Betulkan jualan dan kenakan bayaran semula."
+  "editSaleDone": "{{number}} dibatalkan. Betulkan jualan dan kenakan bayaran semula.",
+  "onlyInStock": "Stok {{name}} tinggal {{qty}} sahaja",
+  "wholeNumbersOnly": "Barang ini dijual dalam bilangan bulat",
+  "aboveZero": "Masukkan nilai lebih daripada sifar"
 }

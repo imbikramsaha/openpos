@@ -197,5 +197,6 @@
     "iosAdd": "向下滑动,然后点按“添加到主屏幕”。",
     "iosConfirm": "点按“添加”。之后 OpenPOS 会像其他应用一样从主屏幕全屏打开,并可离线使用。",
     "macSafari": "在 Safari 菜单栏中选择 文件 → 添加到 Dock。之后 OpenPOS 会像其他应用一样从 Dock 打开,并可离线使用。"
-  }
+  },
+  "languageOffline": "首次使用此语言时需要连接互联网。"
 }

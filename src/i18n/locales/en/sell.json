@@ -175,5 +175,8 @@
   "editSaleTitle": "Go back and edit {{number}}?",
   "editSaleMessage": "This sale will be voided (it stays in Sales, marked as voided) and its items come back on screen, so you can fix them and charge again.",
   "editSaleConfirm": "Void and edit",
-  "editSaleDone": "{{number}} voided. Fix the sale and charge again."
+  "editSaleDone": "{{number}} voided. Fix the sale and charge again.",
+  "onlyInStock": "Only {{qty}} of {{name}} in stock",
+  "wholeNumbersOnly": "This item is sold in whole numbers",
+  "aboveZero": "Enter an amount above zero"
 }

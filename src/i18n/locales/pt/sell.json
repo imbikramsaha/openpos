@@ -178,5 +178,8 @@
   "editSaleTitle": "Voltar e editar {{number}}?",
   "editSaleMessage": "Esta venda será cancelada (ela continua em Vendas, marcada como cancelada) e os itens voltam para a tela, para você corrigir e cobrar de novo.",
   "editSaleConfirm": "Cancelar e editar",
-  "editSaleDone": "{{number}} cancelada. Corrija a venda e cobre de novo."
+  "editSaleDone": "{{number}} cancelada. Corrija a venda e cobre de novo.",
+  "onlyInStock": "Só restam {{qty}} de {{name}} em estoque",
+  "wholeNumbersOnly": "Este item é vendido em unidades inteiras",
+  "aboveZero": "Digite um valor maior que zero"
 }

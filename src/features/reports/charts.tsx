@@ -175,7 +175,7 @@ export function KpiTile({ label, value, title, cur, prev, prevDisplay, good = 'u
           {prevDisplay !== undefined && <span className="truncate text-subtle">{t('vsValue', { value: prevDisplay })}</span>}
         </div>
       )}
-      {sub && <div className={cn('truncate text-xs text-muted', cur !== undefined ? 'mt-0.5' : 'mt-1.5')}>{sub}</div>}
+      {sub && <div className={cn('text-xs text-muted [overflow-wrap:anywhere]', cur !== undefined ? 'mt-0.5' : 'mt-1.5')}>{sub}</div>}
       {spark && <div className="mt-auto pt-3">{spark}</div>}
     </Card>
   )

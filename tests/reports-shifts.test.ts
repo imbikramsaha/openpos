@@ -165,6 +165,11 @@ describe('date ranges', () => {
     // March 31 compares with the whole of February, not with March 3.
     const mar = presetRange('thisMonth', 'en', new Date(2026, 2, 31, 12).getTime())
     expect(previousPeriod(mar, new Date(2026, 2, 31, 12).getTime()).to).toBe(d(2026, 3, 1) - 1)
+    // A range entirely in the future compares with the whole previous period.
+    const future = customRange(d(2026, 9, 20), d(2026, 9, 24))
+    const fp = previousPeriod(future, now)
+    expect(fp).toMatchObject({ from: d(2026, 9, 15), to: d(2026, 9, 20) - 1 })
+    expect(fp.cutoff).toBe(fp.to)
   })
 
   it('handles swapped custom ranges and picks buckets', () => {

@@ -64,6 +64,8 @@ export function parseDecimal(input: string): number {
     const tail = s.length - s.lastIndexOf(',') - 1
     s = commas === 1 && tail !== 3 ? s.replace(',', '.') : s.replace(/,/g, '')
   } else if (dots > 1) {
+    // Several dots are only valid as thousands separators ("1.234.567"); "1.2.3" is a typo.
+    if (!/^[-+]?\d{1,3}(\.\d{3})+$/.test(s)) return NaN
     s = s.replace(/\./g, '')
   }
   // Plain decimals only: no exponents (1e20), Infinity or stray characters.

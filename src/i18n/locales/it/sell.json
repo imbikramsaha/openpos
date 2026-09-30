@@ -178,5 +178,8 @@
   "editSaleTitle": "Tornare indietro e modificare {{number}}?",
   "editSaleMessage": "Questa vendita verrà annullata (resta tra le vendite, segnata come annullata) e i suoi articoli tornano sullo schermo, così puoi correggerli e incassare di nuovo.",
   "editSaleConfirm": "Annulla e modifica",
-  "editSaleDone": "{{number}} annullata. Correggi la vendita e incassa di nuovo."
+  "editSaleDone": "{{number}} annullata. Correggi la vendita e incassa di nuovo.",
+  "onlyInStock": "Solo {{qty}} di {{name}} disponibili",
+  "wholeNumbersOnly": "Questo articolo si vende solo in unità intere",
+  "aboveZero": "Inserisci un valore maggiore di zero"
 }

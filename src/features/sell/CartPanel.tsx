@@ -37,6 +37,9 @@ export interface CartActions {
   onShortcuts: () => void
 }
 
+/** A discount as it reduces the total: −₹26.00; on a return line it raises it: +₹26.00. */
+const signed = (discount: number) => (discount < 0 ? `+${formatMoney(-discount)}` : `−${formatMoney(discount)}`)
+
 export function CartPanel({ actions, className }: { actions: CartActions; className?: string }) {
   const { t } = useTranslation('sell')
   const cart = useCart()
@@ -120,7 +123,7 @@ export function CartPanel({ actions, className }: { actions: CartActions; classN
                 {cart.discountType === 'percent' && cart.discountValue ? ` (${cart.discountValue}%)` : ''}
               </button>
             }
-            value={<span className="text-success">−{formatMoney(calc.discountTotal)}</span>}
+            value={<span className="text-success">{signed(calc.discountTotal)}</span>}
           />
         )}
         {calc.taxTotal !== 0 && (
@@ -202,7 +205,7 @@ function CartRow({ line, total, discount, selected, actions }: { line: CartLine;
         </span>
         <span className="flex flex-col items-end">
           <span className="tnum text-sm font-semibold">{formatMoney(total)}</span>
-          {discount !== 0 && <span className="tnum text-[11px] font-medium text-success">−{formatMoney(discount)}</span>}
+          {discount !== 0 && <span className="tnum text-[11px] font-medium text-success">{signed(discount)}</span>}
         </span>
       </button>
       {selected && (

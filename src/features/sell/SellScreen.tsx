@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next'
 import { ChevronUp, Keyboard } from 'lucide-react'
 import type { CartLine, CartState, Product, Sale } from '@/core/types'
 import { db } from '@/db/db'
-import { formatMoney } from '@/lib/money'
+import { formatMoney, formatQty } from '@/lib/money'
 import { uuid } from '@/lib/uuid'
 import { errorMessage } from '@/lib/errors'
 import { cn } from '@/lib/cn'
@@ -63,9 +63,10 @@ export default function SellScreen() {
   const close = useCallback(() => setDialog(null), [])
 
   const stockError = useCallback(
-    (name: string) => {
+    (p: Product) => {
       if (sound) beep(false)
-      toast(t('outOfStock', { name }), 'error')
+      const qty = p.stock > 0 ? `${formatQty(p.stock)}${p.unit !== 'pcs' ? ` ${t(`common:unit.${p.unit}`)}` : ''}` : ''
+      toast(qty ? t('onlyInStock', { qty, name: p.name }) : t('outOfStock', { name: p.name }), 'error')
     },
     [sound, t],
   )
@@ -80,7 +81,7 @@ export default function SellScreen() {
         if (qty <= 0) continue
         const p = await db.products.get(id)
         if (p?.trackStock && qty > p.stock + 1e-9) {
-          stockError(p.name)
+          stockError(p)
           return false
         }
       }
@@ -132,7 +133,7 @@ export default function SellScreen() {
       const want = qty ?? 1
       if (p.trackStock && !s.allowNegativeStock && want > 0) {
         const inCart = useCart.getState().lines.filter((l) => l.productId === p.id).reduce((a, l) => a + l.qty, 0)
-        if (p.stock - inCart < want - 1e-9) return stockError(p.name)
+        if (p.stock - inCart < want - 1e-9) return stockError(p)
       }
       useCart.getState().addProduct(p, want, price)
       if (sound) beep(true)
@@ -316,7 +317,7 @@ export default function SellScreen() {
       <CartPanel actions={actions} className={cn('hidden w-[380px] shrink-0 border-border lg:flex xl:w-[420px]', cartSide === 'left' ? 'border-e' : 'border-s')} />
 
       {/* Phone & portrait tablet: floating cart summary */}
-      <div className="fixed inset-x-3 bottom-[calc(68px+env(safe-area-inset-bottom))] z-20 md:bottom-4 lg:hidden">
+      <div className="fixed inset-x-3 bottom-[calc(68px+env(safe-area-inset-bottom))] z-20 md:start-[7.25rem] md:end-4 md:bottom-4 lg:hidden">
         <button onClick={() => setMobileCart(true)} className="flex w-full items-center gap-3 rounded-2xl bg-primary px-4 py-3 text-primary-fg shadow-pop active:scale-[0.99]">
           <span className="tnum flex size-9 items-center justify-center rounded-xl bg-white/20 text-sm font-semibold">{Math.round(count * 100) / 100}</span>
           <span className="flex-1 text-start font-semibold">{cart.lines.length ? t('viewCart') : t('emptyCart')}</span>
@@ -354,6 +355,7 @@ export default function SellScreen() {
         title={t('enterWeight')}
         subtitle={dialog?.kind === 'weigh' ? `${dialog.product.name} · ${formatMoney(dialog.price ?? dialog.product.price)}/${t(`common:unit.${dialog.product.unit}`)}` : undefined}
         initial={1}
+        positive
         onSubmit={(v) => dialog?.kind === 'weigh' && v > 0 && addProduct(dialog.product, v, dialog.price)}
       />
       <NumberDialog

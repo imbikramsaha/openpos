@@ -175,5 +175,8 @@
   "editSaleTitle": "Teruggaan en {{number}} bewerken?",
   "editSaleMessage": "Deze verkoop wordt geannuleerd (hij blijft als geannuleerd in Verkopen staan) en de artikelen komen terug op het scherm, zodat je ze kunt corrigeren en opnieuw kunt afrekenen.",
   "editSaleConfirm": "Annuleren en bewerken",
-  "editSaleDone": "{{number}} geannuleerd. Corrigeer de verkoop en reken opnieuw af."
+  "editSaleDone": "{{number}} geannuleerd. Corrigeer de verkoop en reken opnieuw af.",
+  "onlyInStock": "Nog maar {{qty}} van {{name}} op voorraad",
+  "wholeNumbersOnly": "Dit artikel wordt alleen per stuk verkocht",
+  "aboveZero": "Voer een waarde boven nul in"
 }

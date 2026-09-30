@@ -12,7 +12,7 @@ import { uuid } from '@/lib/uuid'
 import { toast } from '@/stores/ui'
 import { useSettings } from '@/stores/settings'
 import { Button, EmailInput, Input, Modal, PhoneInput, Select, TaxIdInput, Textarea } from '@/components/ui'
-import { LIMITS } from '@/lib/validate'
+import { emailError, LIMITS, taxIdError } from '@/lib/validate'
 import { Group, Row, Stack } from '../ui'
 import { TYPING_DELAY, notifySaved, useSettingsDraft } from '../hooks'
 import { decimalsChangeMessage } from './FormatsSection'
@@ -37,7 +37,7 @@ function countryName(p: CountryPreset, lng: string): string {
 
 export function BusinessSection() {
   const { t, i18n } = useTranslation('settings')
-  const { draft, set, setReceipt, flush } = useSettingsDraft()
+  const { draft, set, setUnsaved, setReceipt, flush } = useSettingsDraft()
   const [country, setCountry] = useState<CountryPreset | null>(null)
   const text = (key: keyof Settings) => ({
     value: (draft[key] as string | undefined) ?? '',
@@ -97,7 +97,8 @@ export function BusinessSection() {
               <PhoneInput label={t('business.phone')} value={draft.phone} onChange={(v) => set({ phone: v }, TYPING_DELAY)} onBlur={() => void flush()} />
             </div>
             <div data-setting="business.email">
-              <EmailInput label={t('business.email')} value={draft.email} onChange={(v) => set({ email: v }, TYPING_DELAY)} onBlur={() => void flush()} />
+              {/* Invalid values stay on screen with their error but aren't saved, so they never reach receipts. */}
+              <EmailInput label={t('business.email')} value={draft.email} onChange={(v) => (emailError(v) ? setUnsaved({ email: v }) : set({ email: v }, TYPING_DELAY))} onBlur={() => void flush()} />
             </div>
           </div>
         </Row>
@@ -142,7 +143,7 @@ export function BusinessSection() {
                 label={t('business.taxNumber', { label: draft.taxLabel || t('business.taxLabel') })}
                 value={draft.taxNumber}
                 country={draft.country}
-                onChange={(v) => set({ taxNumber: v }, TYPING_DELAY)}
+                onChange={(v) => (taxIdError(v, draft.country) ? setUnsaved({ taxNumber: v }) : set({ taxNumber: v }, TYPING_DELAY))}
                 onBlur={() => void flush()}
               />
             </div>

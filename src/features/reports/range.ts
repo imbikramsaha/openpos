@@ -87,7 +87,7 @@ export function previousPeriod(r: Range, now = Date.now()): Period {
     from = addDays(r.from, -days)
     to = r.from - 1
   }
-  const elapsed = Math.min(now, r.to) - r.from
+  const elapsed = now < r.from ? to - from : Math.min(now, r.to) - r.from
   return { from, to, cutoff: Math.min(to, from + Math.max(elapsed, 0)) }
 }
 

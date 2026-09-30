@@ -198,5 +198,6 @@
     "iosAdd": "Scrolle nach unten und tippe auf „Zum Home-Bildschirm“.",
     "iosConfirm": "Tippe auf „Hinzufügen“. OpenPOS öffnet sich dann vom Home-Bildschirm aus wie jede andere App, im Vollbild, und funktioniert offline.",
     "macSafari": "Wähle in der Safari-Menüleiste Ablage → Zum Dock hinzufügen. OpenPOS öffnet sich dann vom Dock aus wie jede andere App und funktioniert offline."
-  }
+  },
+  "languageOffline": "Diese Sprache braucht bei der ersten Nutzung eine Internetverbindung."
 }

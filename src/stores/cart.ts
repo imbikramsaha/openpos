@@ -63,14 +63,20 @@ export const useCart = create<CartStore>((set, get) => {
 
     addProduct: (p, qty = 1, price) => {
       const unitPrice = price ?? p.price
+      // Merge only into a line of the same sign: adding an item next to a return of it is a new line.
       const existing = get().lines.find(
-        (l) => l.productId === p.id && l.price === unitPrice && !l.discountValue && !l.note && !p.weighed,
+        (l) => l.productId === p.id && l.price === unitPrice && !l.discountValue && !l.note && !p.weighed && Math.sign(l.qty) === Math.sign(qty),
       )
       if (existing) {
-        mapLine(existing.id, (l) => ({ ...l, qty: round3(l.qty + qty) }))
-        set({ selectedId: existing.id })
+        const next = round3(existing.qty + qty)
+        if (next === 0) get().removeLine(existing.id)
+        else {
+          mapLine(existing.id, (l) => ({ ...l, qty: next }))
+          set({ selectedId: existing.id })
+        }
         return
       }
+      if (!qty) return
       const line: CartLine = {
         id: uuid(),
         productId: p.id,

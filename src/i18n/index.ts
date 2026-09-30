@@ -4,7 +4,7 @@ import { moneyConfig } from '@/lib/money'
 import { LANGUAGES, NAMESPACES, detectLanguage } from './languages'
 
 // English ships in the main bundle; every other language is a lazily loaded chunk
-// (and is precached by the service worker, so switching works offline).
+// (cached by the service worker once used, so a language stays available offline after its first use).
 const english = import.meta.glob<{ default: ResourceKey }>('./locales/en/*.json', { eager: true })
 const lazy = import.meta.glob<{ default: ResourceKey }>(['./locales/*/*.json', '!./locales/en/*.json'])
 

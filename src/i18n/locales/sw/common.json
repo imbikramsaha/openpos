@@ -198,5 +198,6 @@
     "iosAdd": "Sogeza chini kisha ugusa “Ongeza kwenye Skrini ya Mwanzo” (Add to Home Screen).",
     "iosConfirm": "Gusa “Ongeza” (Add). OpenPOS itafunguka skrini nzima kutoka Skrini ya Mwanzo kama programu nyingine yoyote, na inafanya kazi bila mtandao.",
     "macSafari": "Kwenye upau wa menyu wa Safari, chagua Faili → Ongeza kwenye Dock (File → Add to Dock). OpenPOS itafunguka kutoka Dock kama programu nyingine yoyote na inafanya kazi bila mtandao."
-  }
+  },
+  "languageOffline": "Lugha hii inahitaji intaneti mara ya kwanza inapotumika."
 }

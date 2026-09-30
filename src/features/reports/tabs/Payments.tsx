@@ -104,7 +104,7 @@ export function PaymentsTab({ data }: TabProps) {
         columns={methodCols}
         rowKey={(r) => r.method}
         initialSort={{ key: 'net', dir: 'desc' }}
-        totals={{ count: cur.totals.sales, sales: methods.reduce((a, m) => a + m.sales, 0), refunds: methods.reduce((a, m) => a + m.refunds, 0), net: methods.reduce((a, m) => a + m.net, 0) }}
+        totals={{ count: methods.reduce((a, m) => a + m.count, 0), sales: methods.reduce((a, m) => a + m.sales, 0), refunds: methods.reduce((a, m) => a + m.refunds, 0), net: methods.reduce((a, m) => a + m.net, 0) }}
         filename="payments-by-method"
       />
       <ReportTable title={t('payments.byDay')} rows={days} columns={dayCols} rowKey={(r) => r.key} initialSort={{ key: 'date', dir: 'asc' }} totals={dayTotals} filename="payments-by-day" />

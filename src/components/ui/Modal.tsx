@@ -35,6 +35,9 @@ function useDialog(open: boolean, onClose: () => void, dismissible: boolean, pan
         if (!dismissibleRef.current) return
         e.stopPropagation()
         onCloseRef.current()
+      } else if (/^F([1-9]|10|12)$/.test(e.key)) {
+        // The sell screen's shortcuts are off while a dialog is open; the browser's F5/F12/F1 must be too.
+        e.preventDefault()
       } else if (e.key === 'Tab' && panel.current) {
         const root = panel.current
         const items = [...root.querySelectorAll<HTMLElement>(FOCUSABLE)].filter((el) => el.getClientRects().length > 0)

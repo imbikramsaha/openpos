@@ -197,5 +197,6 @@
     "iosAdd": "Gulir ke bawah, lalu ketuk “Tambahkan ke Layar Utama” (Add to Home Screen).",
     "iosConfirm": "Ketuk “Tambah” (Add). OpenPOS akan terbuka layar penuh dari Layar Utama seperti aplikasi lain, dan dapat digunakan secara offline.",
     "macSafari": "Di menu bar Safari, pilih Berkas → Tambahkan ke Dock (File → Add to Dock). OpenPOS akan terbuka dari Dock seperti aplikasi lain dan dapat digunakan secara offline."
-  }
+  },
+  "languageOffline": "Bahasa ini memerlukan koneksi internet saat pertama kali digunakan."
 }

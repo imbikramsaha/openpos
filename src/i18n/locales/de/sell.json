@@ -175,5 +175,8 @@
   "editSaleTitle": "Zurück und {{number}} bearbeiten?",
   "editSaleMessage": "Dieser Verkauf wird storniert (er bleibt als storniert in den Verkäufen) und seine Artikel kommen zurück auf den Bildschirm, damit du sie korrigieren und neu kassieren kannst.",
   "editSaleConfirm": "Stornieren und bearbeiten",
-  "editSaleDone": "{{number}} storniert. Korrigiere den Verkauf und kassiere erneut."
+  "editSaleDone": "{{number}} storniert. Korrigiere den Verkauf und kassiere erneut.",
+  "onlyInStock": "Nur {{qty}} von {{name}} auf Lager",
+  "wholeNumbersOnly": "Dieser Artikel wird nur in ganzen Stück verkauft",
+  "aboveZero": "Gib einen Wert über null ein"
 }

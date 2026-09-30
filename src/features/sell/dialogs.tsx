@@ -66,7 +66,7 @@ export function useDialogKeys(open: boolean, onKey: (e: KeyboardEvent) => void) 
 
 // ---- Numeric entry (quantity / price) ---------------------------------------
 
-export function NumberDialog({ open, onClose, title, subtitle, initial, onSubmit, money, allowNegative, integer }: {
+export function NumberDialog({ open, onClose, title, subtitle, initial, onSubmit, money, allowNegative, integer, positive }: {
   open: boolean
   onClose: () => void
   title: string
@@ -77,6 +77,8 @@ export function NumberDialog({ open, onClose, title, subtitle, initial, onSubmit
   allowNegative?: boolean
   /** Whole numbers only (quantities of items sold by the piece). */
   integer?: boolean
+  /** Zero is not an answer (weights): the dialog stays open and says so. */
+  positive?: boolean
 }) {
   const { t } = useTranslation()
   const [text, setText] = useState('')
@@ -85,15 +87,27 @@ export function NumberDialog({ open, onClose, title, subtitle, initial, onSubmit
     if (open) {
       setText('')
       setNegative(initial < 0)
+      dotHit.current = false
     }
   }, [open, initial])
   const decimals = money ? moneyConfig().decimals : integer ? 0 : 3
   const maxDigits = money ? MAX_MONEY_DIGITS : MAX_QTY_DIGITS
-  const type = (k: string) => setText((s) => numKey(s, k, decimals, maxDigits))
+  // After a "." on a whole-number item, the digits that follow are ignored ("2.5" must not become 25).
+  const dotHit = useRef(false)
+  const type = (k: string) => {
+    if (k === '.' && decimals <= 0) {
+      dotHit.current = true
+      return toast(t('sell:wholeNumbersOnly'), 'warning')
+    }
+    if (k === 'back' || k === 'clear') dotHit.current = false
+    else if (dotHit.current) return
+    setText((s) => numKey(s, k, decimals, maxDigits))
+  }
   const display = text || String(Math.abs(money ? fromMinor(initial) : initial))
   const submit = () => {
     const n = parseDecimal(display)
     if (!Number.isFinite(n)) return
+    if (positive && n <= 0) return toast(t('sell:aboveZero'), 'warning')
     const v = negative ? -n : n
     // Close first: onSubmit may open a follow-up dialog (open price → weight) that must stay open.
     onClose()
@@ -102,7 +116,7 @@ export function NumberDialog({ open, onClose, title, subtitle, initial, onSubmit
   const keysRef = useDialogKeys(open, (e) => {
     if (/^[\d.]$/.test(e.key)) type(e.key)
     else if (e.key === ',') type('.')
-    else if (e.key === 'Backspace') setText((s) => s.slice(0, -1))
+    else if (e.key === 'Backspace') type('back')
     else if (e.key === 'Enter') {
       e.preventDefault()
       submit()
@@ -123,7 +137,7 @@ export function NumberDialog({ open, onClose, title, subtitle, initial, onSubmit
             ±
           </Button>
         )}
-        <Button size="lg" variant="ghost" onClick={() => setText('')}>
+        <Button size="lg" variant="ghost" onClick={() => type('clear')}>
           {t('clear')}
         </Button>
         <Button size="lg" variant="primary" className="flex-1" onClick={submit}>
@@ -142,12 +156,15 @@ export function DiscountDialog({ open, onClose, line }: { open: boolean; onClose
   const [scope, setScope] = useState<'line' | 'cart'>(line ? 'line' : 'cart')
   const [type, setType] = useState<DiscountType>('percent')
   const [text, setText] = useState('')
+  const [current, setCurrent] = useState('')
   // Show the discount already set on the chosen scope (item or whole sale).
   const load = (sc: 'line' | 'cart') => {
     setScope(sc)
     const current = sc === 'line' ? line : { discountType: cart.discountType, discountValue: cart.discountValue }
     setType(current?.discountType ?? 'percent')
-    setText(current?.discountValue ? String(current.discountType === 'amount' ? fromMinor(current.discountValue) : current.discountValue) : '')
+    // The current discount is shown greyed; typing replaces it (like the quantity dialog).
+    setCurrent(current?.discountValue ? String(current.discountType === 'amount' ? fromMinor(current.discountValue) : current.discountValue) : '')
+    setText('')
   }
   useEffect(() => {
     if (open) load(line ? 'line' : 'cart')
@@ -155,7 +172,7 @@ export function DiscountDialog({ open, onClose, line }: { open: boolean; onClose
   const decimals = type === 'amount' ? moneyConfig().decimals : 2
   const typeKey = (k: string) => setText((s) => numKey(s, k, decimals, type === 'amount' ? MAX_MONEY_DIGITS : 3))
   const apply = (value?: number) => {
-    const n = value ?? parseDecimal(text)
+    const n = value ?? parseDecimal(text || current)
     const v = Number.isFinite(n) ? Math.max(n, 0) : 0
     const stored = type === 'amount' ? toMinor(v) : Math.min(v, 100)
     if (scope === 'line' && line) cart.setLineDiscount(line.id, type, stored)
@@ -206,8 +223,8 @@ export function DiscountDialog({ open, onClose, line }: { open: boolean; onClose
           ))}
         </div>
       )}
-      <div className="tnum mb-3 rounded-2xl bg-surface-3 px-4 py-3 text-end text-3xl font-semibold tracking-tight" dir="ltr">
-        {text || '0'}
+      <div className={cn('tnum mb-3 rounded-2xl bg-surface-3 px-4 py-3 text-end text-3xl font-semibold tracking-tight', !text && 'text-subtle')} dir="ltr">
+        {text || current || '0'}
         {type === 'percent' ? '%' : ''}
       </div>
       <div dir="ltr">
@@ -216,6 +233,9 @@ export function DiscountDialog({ open, onClose, line }: { open: boolean; onClose
       <div className="mt-4 flex gap-2">
         <Button size="lg" variant="ghost" onClick={() => apply(0)}>
           {t('removeDiscount')}
+        </Button>
+        <Button size="lg" variant="ghost" onClick={() => setText('')}>
+          {t('common:clear')}
         </Button>
         <Button size="lg" variant="primary" className="flex-1" onClick={() => apply()}>
           {t('apply')}
@@ -304,7 +324,7 @@ export function CustomItemDialog({ open, onClose }: { open: boolean; onClose: ()
       <form className="space-y-4" onSubmit={(e) => (e.preventDefault(), add())}>
         <Input label={t('itemName')} value={name} onChange={(e) => setName(e.target.value)} autoFocus maxLength={LIMITS.name} />
         <Input label={t('price')} inputMode="decimal" value={price} onChange={(e) => setPrice(e.target.value.replace(/[^\d.,]/g, ''))} error={price.trim() && !priceOk ? t('invalidPrice') : undefined} />
-        <Select label={t('tax')} value={taxId} onChange={(e) => setTaxId(e.target.value)} placeholder={t('noTax')} options={taxes.filter((x) => !x.deleted).map((x) => ({ value: x.id, label: x.name }))} />
+        <Select label={t('tax')} value={taxId} onChange={(e) => setTaxId(e.target.value)} placeholder={t('noTax')} options={taxes.filter((x) => !x.deleted).sort((p, q) => p.rate - q.rate || p.name.localeCompare(q.name)).map((x) => ({ value: x.id, label: x.name }))} />
         <button type="submit" className="hidden" />
       </form>
     </Modal>

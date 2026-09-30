@@ -162,3 +162,21 @@ describe('refunds', () => {
     expect(refundLines(sale.lines, { a: 1 }, { a: 3 })).toEqual([])
   })
 })
+
+describe('cart store — returns next to sales', () => {
+  it('never keeps a zero-quantity line, and a sale next to a return is its own line', async () => {
+    const { useCart } = await import('@/stores/cart')
+    const p = { id: 'p1', name: 'Cappuccino', price: 13000, cost: 8000, unit: 'pcs', stock: 10, trackStock: true } as never
+    const cart = useCart.getState()
+    cart.clear()
+    cart.addProduct(p, -1)
+    cart.addProduct(p, 1)
+    expect(useCart.getState().lines.map((l) => l.qty).sort()).toEqual([-1, 1])
+    cart.addProduct(p, 1)
+    expect(useCart.getState().lines.map((l) => l.qty).sort()).toEqual([-1, 2])
+    cart.addProduct(p, -2)
+    expect(useCart.getState().lines.map((l) => l.qty).sort()).toEqual([-3, 2])
+    expect(useCart.getState().lines.some((l) => l.qty === 0)).toBe(false)
+    cart.clear()
+  })
+})

@@ -3,16 +3,33 @@ import { useTranslation } from 'react-i18next'
 import { Check, Languages } from 'lucide-react'
 import { LANGUAGES } from '@/i18n/languages'
 import { useDevice } from '@/stores/device'
+import { toast } from '@/stores/ui'
 import { cn } from '@/lib/cn'
 import { Button, Modal } from '@/components/ui'
 
 export function useChangeLanguage() {
   const { i18n } = useTranslation()
   const update = useDevice((s) => s.update)
-  // Resolves once the new language has loaded (i18next resolves even if loading fails).
-  return (code: string) => {
+  // Resolves once the new language has loaded. Language packs are downloaded on first use, so
+  // offline the switch can fail: then the app stays in the current language and says why.
+  return async (code: string): Promise<boolean> => {
+    const previous = i18n.language
+    if (code !== 'en' && !i18n.hasResourceBundle(code, 'common')) await i18n.reloadResources(code).catch(() => undefined)
+    await i18n.changeLanguage(code)
+    if (code !== 'en' && !i18n.hasResourceBundle(code, 'common')) {
+      await i18n.changeLanguage(previous)
+      if (navigator.onLine) {
+        // Back online after a failed offline attempt: the browser keeps that failed download for
+        // the life of the page, so save the choice and load it fresh (the cart is kept).
+        update({ language: code })
+        location.reload()
+        return true
+      }
+      toast(i18n.t('common:languageOffline'), 'warning')
+      return false
+    }
     update({ language: code })
-    return i18n.changeLanguage(code)
+    return true
   }
 }
 

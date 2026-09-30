@@ -61,6 +61,8 @@ export const useUI = create<UIStore>((set, get) => ({
   override: null,
   sidebarCollapsed: false,
   toast: (message, kind = 'success', action) => {
+    // The same message again (e.g. tapping an out-of-stock tile repeatedly) shouldn't stack up.
+    if (get().toasts.some((t) => t.message === message && t.kind === kind)) return
     const id = nextId++
     set({ toasts: [...get().toasts.slice(-3), { id, kind, message, action }] })
     setTimeout(() => get().dismiss(id), action ? 6000 : kind === 'error' ? 5000 : 2600)

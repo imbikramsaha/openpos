@@ -42,12 +42,15 @@ export function PaymentDialog({ open, onClose, onComplete, onNeedCustomer }: { o
   const [busy, setBusy] = useState(false)
   const busyRef = useRef(false)
   const adding = useRef(false)
+  // Set when a sale completed: the unmount must not replace the display's "paid" screen with idle.
+  const completed = useRef(false)
 
   useEffect(() => {
     if (open) {
       setPayments([])
       setText('')
       setUpi(null)
+      completed.current = false
     }
   }, [open])
 
@@ -61,7 +64,7 @@ export function PaymentDialog({ open, onClose, onComplete, onNeedCustomer }: { o
   useEffect(() => {
     if (!open) return
     return () => {
-      if (!busyRef.current) sendToDisplay({ type: 'idle' })
+      if (!busyRef.current && !completed.current) sendToDisplay({ type: 'idle' })
     }
   }, [open])
   const typed = text ? toMinor(parseDecimal(text)) : 0
@@ -83,6 +86,7 @@ export function PaymentDialog({ open, onClose, onComplete, onNeedCustomer }: { o
       const snapshot = cart.snapshot()
       const sale = await completeSale(snapshot, all, customer ?? undefined)
       cart.clear()
+      completed.current = true
       sendToDisplay({ type: 'paid', total: sale.total, change: sale.change })
       onComplete(sale, snapshot)
     } catch (e) {
@@ -184,7 +188,7 @@ export function PaymentDialog({ open, onClose, onComplete, onNeedCustomer }: { o
         <div ref={keysRef} className="flex flex-col gap-4 border-b border-border bg-surface-2 p-5 lg:border-e lg:border-b-0">
           <div>
             <div className="text-sm font-medium text-muted">{t('totalToPay')}</div>
-            <div className="tnum text-4xl font-semibold tracking-tight sm:text-5xl">{formatMoney(total)}</div>
+            <div className="tnum text-4xl font-semibold tracking-tight break-all sm:text-5xl">{formatMoney(total)}</div>
             <div className="mt-1 text-sm text-muted">
               {t('itemsCount', { count: cart.lines.length })}
               {customer && ` · ${customer.name}`}
@@ -260,10 +264,10 @@ export function PaymentDialog({ open, onClose, onComplete, onNeedCustomer }: { o
             <>
               <div className="flex items-center gap-3 rounded-2xl border border-border-strong bg-surface-2 px-4 py-3">
                 <span className="text-sm font-medium text-muted">{t('amount')}</span>
-                <span className={cn('tnum flex-1 text-end text-3xl font-semibold tracking-tight', !text && 'text-subtle')}>{text ? formatMoney(typed) : formatMoney(Math.max(due, 0))}</span>
+                <span className={cn('tnum min-w-0 flex-1 text-end text-3xl font-semibold tracking-tight break-all', !text && 'text-subtle')}>{text ? formatMoney(typed) : formatMoney(Math.max(due, 0))}</span>
               </div>
               {quick.length > 0 && settings.enabledPayments.includes('cash') && (
-                <div className="grid grid-cols-3 gap-2 sm:grid-cols-5">
+                <div className="grid grid-cols-[repeat(auto-fit,minmax(6.5rem,1fr))] gap-2">
                   {quick.map((v, i) => (
                     <Button key={v} variant={i === 0 ? 'soft' : 'secondary'} onClick={() => add('cash', v)} disabled={busy} className="tnum h-auto min-h-11 px-2 leading-tight whitespace-normal">
                       {i === 0 ? t('exact') : formatMoney(v)}

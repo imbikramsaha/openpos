@@ -199,5 +199,6 @@
     "iosAdd": "Role para baixo e toque em “Adicionar à Tela de Início”.",
     "iosConfirm": "Toque em “Adicionar”. O OpenPOS abre então a partir da Tela de Início, como qualquer outro app, em tela cheia, e funciona offline.",
     "macSafari": "Na barra de menus do Safari, escolha Arquivo → Adicionar ao Dock. O OpenPOS abre então a partir do Dock, como qualquer outro app, e funciona offline."
-  }
+  },
+  "languageOffline": "Este idioma precisa de conexão com a internet na primeira vez que é usado."
 }

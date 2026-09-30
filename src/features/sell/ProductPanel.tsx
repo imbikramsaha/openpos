@@ -121,7 +121,8 @@ export function ProductPanel({ onProduct, onEnter, searchRef, onCamera, onCustom
         </div>
       )}
 
-      <div className="min-h-0 flex-1 overflow-y-auto px-3 pb-3">
+      {/* Below lg the floating cart bar sits over the grid, so leave room to reach the last row. */}
+      <div className="min-h-0 flex-1 overflow-y-auto px-3 pb-24 lg:pb-3">
         {products && !filtered.length ? (
           <EmptyState icon={<PackageSearch />} title={query ? t('noMatches', { query }) : t('noProducts')} description={query ? t('noMatchesHint') : t('noProductsHint')} />
         ) : (

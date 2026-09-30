@@ -197,5 +197,6 @@
     "iosAdd": "Cuộn xuống rồi nhấn “Thêm vào Màn hình chính” (Add to Home Screen).",
     "iosConfirm": "Nhấn “Thêm” (Add). OpenPOS sẽ mở toàn màn hình từ Màn hình chính như mọi ứng dụng khác, và hoạt động ngoại tuyến.",
     "macSafari": "Trong thanh menu của Safari, chọn Tệp → Thêm vào Dock (File → Add to Dock). OpenPOS sẽ mở từ Dock như mọi ứng dụng khác và hoạt động ngoại tuyến."
-  }
+  },
+  "languageOffline": "Ngôn ngữ này cần kết nối internet ở lần dùng đầu tiên."
 }

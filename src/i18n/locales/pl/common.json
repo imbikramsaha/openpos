@@ -200,5 +200,6 @@
     "iosAdd": "Przewiń w dół i stuknij „Dodaj do ekranu początkowego” (Add to Home Screen).",
     "iosConfirm": "Stuknij „Dodaj”. OpenPOS otwiera się wtedy z ekranu początkowego jak każda inna aplikacja, na pełnym ekranie, i działa offline.",
     "macSafari": "Na pasku menu Safari wybierz Plik → Dodaj do Docka (Add to Dock). OpenPOS otwiera się wtedy z Docka jak każda inna aplikacja i działa offline."
-  }
+  },
+  "languageOffline": "Ten język przy pierwszym użyciu wymaga połączenia z internetem."
 }

@@ -227,7 +227,7 @@ export default function SalesScreen() {
       <PageBody className="space-y-4">
         {summary && (
           <div className="grid grid-cols-2 gap-px overflow-hidden rounded-2xl border border-border bg-border shadow-card sm:grid-cols-4">
-            <SummaryCell label={t('summary.count')} value={formatNumber(summary.count)} hint={summary.voided ? t('summary.voided', { count: summary.voided }) : undefined} />
+            <SummaryCell label={t('summary.count')} value={formatNumber(summary.salesCount)} hint={summary.voided ? t('summary.voided', { count: summary.voided }) : undefined} />
             <SummaryCell label={t('summary.net')} value={formatMoney(summary.net)} strong />
             <SummaryCell label={t('summary.sales', { count: summary.salesCount })} value={formatMoney(summary.salesTotal)} />
             <SummaryCell label={t('summary.refunds', { count: summary.refundsCount })} value={formatMoney(summary.refundsTotal)} tone={summary.refundsTotal ? 'danger' : undefined} />

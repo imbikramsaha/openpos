@@ -198,5 +198,6 @@
     "iosAdd": "Scroll naar beneden en tik op ‘Zet op beginscherm’ (Add to Home Screen).",
     "iosConfirm": "Tik op ‘Toevoegen’. OpenPOS opent dan vanaf je beginscherm als elke andere app, op volledig scherm, en werkt offline.",
     "macSafari": "Kies in de menubalk van Safari Archief → Zet in Dock (Add to Dock). OpenPOS opent dan vanaf je Dock als elke andere app en werkt offline."
-  }
+  },
+  "languageOffline": "Deze taal heeft bij het eerste gebruik een internetverbinding nodig."
 }

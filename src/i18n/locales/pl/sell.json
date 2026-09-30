@@ -181,5 +181,8 @@
   "editSaleTitle": "Wrócić i edytować {{number}}?",
   "editSaleMessage": "Ta sprzedaż zostanie anulowana (zostanie w Sprzedaży jako anulowana), a jej pozycje wrócą na ekran, aby można je było poprawić i ponownie przyjąć płatność.",
   "editSaleConfirm": "Anuluj i edytuj",
-  "editSaleDone": "Anulowano {{number}}. Popraw sprzedaż i przyjmij płatność ponownie."
+  "editSaleDone": "Anulowano {{number}}. Popraw sprzedaż i przyjmij płatność ponownie.",
+  "onlyInStock": "Na stanie tylko {{qty}} — {{name}}",
+  "wholeNumbersOnly": "Ten produkt sprzedaje się tylko w całych sztukach",
+  "aboveZero": "Wpisz wartość większą od zera"
 }

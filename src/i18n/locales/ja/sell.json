@@ -172,5 +172,8 @@
   "editSaleTitle": "{{number}} に戻って修正しますか？",
   "editSaleMessage": "この会計は取り消されます（取消済みとして売上一覧に残ります）。商品は画面に戻るので、修正してもう一度会計できます。",
   "editSaleConfirm": "取り消して修正",
-  "editSaleDone": "{{number}} を取り消しました。修正して、もう一度会計してください。"
+  "editSaleDone": "{{number}} を取り消しました。修正して、もう一度会計してください。",
+  "onlyInStock": "{{name}}の在庫は{{qty}}だけです",
+  "wholeNumbersOnly": "この商品は整数単位で販売します",
+  "aboveZero": "0 より大きい値を入力してください"
 }

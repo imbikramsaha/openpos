@@ -198,5 +198,6 @@
     "iosAdd": "Aşağı kaydırın ve “Ana Ekrana Ekle” (Add to Home Screen) seçeneğine dokunun.",
     "iosConfirm": "“Ekle”ye dokunun. OpenPOS bundan sonra diğer uygulamalar gibi Ana Ekran'dan tam ekran açılır ve çevrimdışı çalışır.",
     "macSafari": "Safari'nin menü çubuğunda Dosya → Dock'a Ekle (Add to Dock) seçeneğini belirleyin. OpenPOS bundan sonra diğer uygulamalar gibi Dock'tan açılır ve çevrimdışı çalışır."
-  }
+  },
+  "languageOffline": "Bu dil ilk kullanımda internet bağlantısı gerektirir."
 }
