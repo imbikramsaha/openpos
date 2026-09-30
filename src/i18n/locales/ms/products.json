@@ -172,7 +172,8 @@
     },
     "fatal": {
       "empty": "Fail ini tiada baris untuk diimport.",
-      "noColumns": "Tiada lajur dikenali. Baris pertama mesti mengandungi pengepala seperti name, sku, barcode, price."
+      "noColumns": "Tiada lajur dikenali. Baris pertama mesti mengandungi pengepala seperti name, sku, barcode, price.",
+      "unclosedQuote": "Tanda petikan (\") pada baris {{line}} tidak pernah ditutup, jadi selebihnya fail tidak dapat dibaca. Betulkan fail dan cuba lagi."
     },
     "issue": {
       "invalidNumber": "“{{value}}” bukan nombor ({{column}})",
@@ -189,7 +190,12 @@
       "aboveMrp": "Harga melebihi MRP",
       "tooLarge": "{{column}} terlalu besar",
       "noPrice": "Tiada harga — akan ditambah dengan harga 0",
-      "barcodeScientific": "Barkod “{{value}}” telah ditukar kepada nombor bentuk saintifik oleh hamparan. Format lajur itu sebagai teks dan eksport semula."
+      "barcodeScientific": "Barkod “{{value}}” telah ditukar kepada nombor bentuk saintifik oleh hamparan. Format lajur itu sebagai teks dan eksport semula.",
+      "tooLong": "{{column}} melebihi {{max}} aksara",
+      "ambiguousName": "Terdapat beberapa produk bernama “{{name}}”. Tambah SKU atau barkod untuk menunjukkan yang mana satu.",
+      "sameName": "Produk bernama “{{name}}” sudah wujud; baris ini menambah satu lagi",
+      "duplicateName": "Nama sama seperti baris {{line}}",
+      "invalidColor": "Warna mestilah seperti #1a2b3c, bukan “{{value}}”"
     }
   },
   "labels": {

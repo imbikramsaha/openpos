@@ -172,7 +172,8 @@
     },
     "fatal": {
       "empty": "Tệp không có dòng nào để nhập.",
-      "noColumns": "Không nhận diện được cột nào. Dòng đầu tiên phải chứa tiêu đề như name, sku, barcode, price."
+      "noColumns": "Không nhận diện được cột nào. Dòng đầu tiên phải chứa tiêu đề như name, sku, barcode, price.",
+      "unclosedQuote": "Dấu ngoặc kép (\") ở dòng {{line}} không bao giờ được đóng, nên không thể đọc phần còn lại của tệp. Hãy sửa tệp rồi thử lại."
     },
     "issue": {
       "invalidNumber": "“{{value}}” không phải là số ({{column}})",
@@ -189,7 +190,12 @@
       "aboveMrp": "Giá cao hơn MRP",
       "tooLarge": "{{column}} quá lớn",
       "noPrice": "Không có giá — sẽ được thêm với giá 0",
-      "barcodeScientific": "Mã vạch “{{value}}” đã bị bảng tính chuyển thành số dạng khoa học. Hãy định dạng cột đó thành văn bản rồi xuất lại."
+      "barcodeScientific": "Mã vạch “{{value}}” đã bị bảng tính chuyển thành số dạng khoa học. Hãy định dạng cột đó thành văn bản rồi xuất lại.",
+      "tooLong": "{{column}} dài quá {{max}} ký tự",
+      "ambiguousName": "Có nhiều sản phẩm tên “{{name}}”. Hãy thêm SKU hoặc mã vạch để chỉ rõ sản phẩm nào.",
+      "sameName": "Đã có sản phẩm tên “{{name}}”; dòng này sẽ thêm một sản phẩm nữa",
+      "duplicateName": "Trùng tên với dòng {{line}}",
+      "invalidColor": "Màu phải có dạng #1a2b3c, không phải “{{value}}”"
     }
   },
   "labels": {

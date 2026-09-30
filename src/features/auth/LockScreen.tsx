@@ -56,43 +56,47 @@ export function LockScreen() {
         </div>
         <LanguagePicker compact />
       </div>
-      <div className="flex min-h-0 flex-1 flex-col items-center justify-center gap-8 overflow-y-auto px-6 pb-8 lg:flex-row lg:gap-20">
-        <div className="text-center lg:text-start">
-          <div className="tnum text-5xl font-semibold tracking-tight lg:text-7xl">{formatTime(now)}</div>
-          <div className="mt-1 text-muted">{formatDate(now)}</div>
-        </div>
-        <div className="w-full max-w-sm rounded-3xl border border-border bg-surface p-6 shadow-pop">
-          {selected ? (
-            <>
-              <div className="mb-4 flex items-center gap-3">
-                {(users?.length ?? 0) > 1 && (
-                  <button onClick={() => setSelected(null)} className="flex size-9 items-center justify-center rounded-lg hover:bg-surface-3" aria-label={t('switchUser')}>
-                    <ArrowLeft className="size-5 rtl:rotate-180" />
-                  </button>
-                )}
-                <Avatar name={selected.name} color={selected.color} />
-                <div className="min-w-0">
-                  <div className="truncate font-semibold">{selected.name}</div>
-                  <div className="text-sm text-muted">{t('enterPin')}</div>
+      {/* Auto margins centre the content but, unlike justify-center, never push it above the
+          top of the scroll area when it is taller than the screen (phone in landscape). */}
+      <div className="flex min-h-0 flex-1 flex-col overflow-y-auto px-6 pb-8">
+        <div className="m-auto flex w-full flex-col items-center gap-8 lg:flex-row lg:justify-center lg:gap-20">
+          <div className="text-center lg:text-start">
+            <div className="tnum text-5xl font-semibold tracking-tight lg:text-7xl">{formatTime(now)}</div>
+            <div className="mt-1 text-muted">{formatDate(now)}</div>
+          </div>
+          <div className="w-full max-w-sm rounded-3xl border border-border bg-surface p-6 shadow-pop">
+            {selected ? (
+              <>
+                <div className="mb-4 flex items-center gap-3">
+                  {(users?.length ?? 0) > 1 && (
+                    <button onClick={() => setSelected(null)} className="flex size-9 items-center justify-center rounded-lg hover:bg-surface-3" aria-label={t('switchUser')}>
+                      <ArrowLeft className="size-5 rtl:rotate-180" />
+                    </button>
+                  )}
+                  <Avatar name={selected.name} color={selected.color} />
+                  <div className="min-w-0">
+                    <div className="truncate font-semibold">{selected.name}</div>
+                    <div className="text-sm text-muted">{t('enterPin')}</div>
+                  </div>
                 </div>
-              </div>
-              <PinPad onPin={tryPin} />
-            </>
-          ) : (
-            <>
-              <h2 className="mb-1 text-lg font-semibold">{t('whoIsWorking')}</h2>
-              <p className="mb-4 text-sm text-muted">{t('pickUserOrPin')}</p>
-              <div className="mb-5 grid max-h-64 grid-cols-3 gap-3 overflow-y-auto">
-                {users?.map((u) => (
-                  <button key={u.id} onClick={() => setSelected(u)} className="flex flex-col items-center gap-2 rounded-2xl p-2 hover:bg-surface-3">
-                    <Avatar name={u.name} color={u.color} size="lg" />
-                    <span className="w-full truncate text-center text-xs font-medium">{u.name}</span>
-                  </button>
-                ))}
-              </div>
-              <PinPad onPin={tryPin} />
-            </>
-          )}
+                <PinPad onPin={tryPin} />
+              </>
+            ) : (
+              <>
+                <h2 className="mb-1 text-lg font-semibold">{t('whoIsWorking')}</h2>
+                <p className="mb-4 text-sm text-muted">{t('pickUserOrPin')}</p>
+                <div className="mb-5 grid max-h-64 grid-cols-3 gap-3 overflow-y-auto">
+                  {users?.map((u) => (
+                    <button key={u.id} onClick={() => setSelected(u)} className="flex flex-col items-center gap-2 rounded-2xl p-2 hover:bg-surface-3">
+                      <Avatar name={u.name} color={u.color} size="lg" />
+                      <span className="w-full truncate text-center text-xs font-medium">{u.name}</span>
+                    </button>
+                  ))}
+                </div>
+                <PinPad onPin={tryPin} />
+              </>
+            )}
+          </div>
         </div>
       </div>
     </div>

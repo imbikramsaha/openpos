@@ -150,6 +150,8 @@
     "change": "પરત રકમ",
     "pointsEarned_one": "તમને {{count}} લોયલ્ટી પોઈન્ટ મળ્યો",
     "pointsEarned_other": "તમને {{count}} લોયલ્ટી પોઈન્ટ મળ્યા",
+    "pointsReversed_one": "{{count}} લોયલ્ટી પોઈન્ટ પાછો લેવાયો",
+    "pointsReversed_other": "{{count}} લોયલ્ટી પોઈન્ટ પાછા લેવાયા",
     "billTo": "બિલ કોને",
     "walkIn": "સામાન્ય ગ્રાહક",
     "paymentMode": "પેમેન્ટ",
@@ -178,5 +180,6 @@
   "editSaleDone": "{{number}} રદ થયું. વેચાણ સુધારીને ફરી ચુકવણી લો.",
   "onlyInStock": "{{name}} માત્ર {{qty}} સ્ટોકમાં છે",
   "wholeNumbersOnly": "આ વસ્તુ પૂર્ણ સંખ્યામાં જ વેચાય છે",
-  "aboveZero": "શૂન્યથી વધુ રકમ નાખો"
+  "aboveZero": "શૂન્યથી વધુ રકમ નાખો",
+  "noDecimals": "{{currency}} માં રકમમાં દશાંશ સ્થાન હોતાં નથી"
 }

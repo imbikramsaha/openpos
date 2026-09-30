@@ -150,6 +150,8 @@
     "change": "Sukli",
     "pointsEarned_one": "Nakakuha ka ng {{count}} loyalty point",
     "pointsEarned_other": "Nakakuha ka ng {{count}} loyalty points",
+    "pointsReversed_one": "{{count}} loyalty point ang binawi",
+    "pointsReversed_other": "{{count}} loyalty points ang binawi",
     "billTo": "I-bill kay",
     "walkIn": "Walk-in na customer",
     "paymentMode": "Bayad",
@@ -178,5 +180,6 @@
   "editSaleDone": "Na-void ang {{number}}. Ayusin ang benta at maningil ulit.",
   "onlyInStock": "{{qty}} na lang ang stock ng {{name}}",
   "wholeNumbersOnly": "Buong bilang lang ang benta ng item na ito",
-  "aboveZero": "Ilagay ang halagang higit sa zero"
+  "aboveZero": "Ilagay ang halagang higit sa zero",
+  "noDecimals": "Walang decimal ang mga halaga sa {{currency}}"
 }

@@ -150,6 +150,8 @@
     "change": "Para üstü",
     "pointsEarned_one": "{{count}} sadakat puanı kazandınız",
     "pointsEarned_other": "{{count}} sadakat puanı kazandınız",
+    "pointsReversed_one": "{{count}} sadakat puanı geri alındı",
+    "pointsReversed_other": "{{count}} sadakat puanı geri alındı",
     "billTo": "Fatura edilen",
     "walkIn": "Anonim müşteri",
     "paymentMode": "Ödeme",
@@ -178,5 +180,6 @@
   "editSaleDone": "{{number}} iptal edildi. Satışı düzeltin ve yeniden ödeme alın.",
   "onlyInStock": "{{name}} stokta yalnızca {{qty}} var",
   "wholeNumbersOnly": "Bu ürün yalnızca tam sayı olarak satılır",
-  "aboveZero": "Sıfırdan büyük bir değer girin"
+  "aboveZero": "Sıfırdan büyük bir değer girin",
+  "noDecimals": "{{currency}} tutarlarında ondalık basamak yoktur"
 }

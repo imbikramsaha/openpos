@@ -202,7 +202,8 @@
     },
     "fatal": {
       "empty": "Il file non contiene righe da importare.",
-      "noColumns": "Nessuna colonna riconosciuta. La prima riga deve contenere intestazioni come name, sku, barcode, price."
+      "noColumns": "Nessuna colonna riconosciuta. La prima riga deve contenere intestazioni come name, sku, barcode, price.",
+      "unclosedQuote": "Le virgolette (\") alla riga {{line}} non vengono mai chiuse, quindi il resto del file non può essere letto. Correggi il file e riprova."
     },
     "issue": {
       "invalidNumber": "“{{value}}” non è un numero ({{column}})",
@@ -219,7 +220,12 @@
       "aboveMrp": "Il prezzo supera il prezzo consigliato",
       "tooLarge": "{{column}} è troppo grande",
       "noPrice": "Nessun prezzo — verrà aggiunto con prezzo 0",
-      "barcodeScientific": "Il foglio di calcolo ha trasformato il codice a barre “{{value}}” in un numero in notazione scientifica. Formatta la colonna come testo ed esporta di nuovo."
+      "barcodeScientific": "Il foglio di calcolo ha trasformato il codice a barre “{{value}}” in un numero in notazione scientifica. Formatta la colonna come testo ed esporta di nuovo.",
+      "tooLong": "{{column}} supera i {{max}} caratteri",
+      "ambiguousName": "Ci sono più prodotti chiamati “{{name}}”. Aggiungi uno SKU o un codice a barre per indicare quale.",
+      "sameName": "Esiste già un prodotto chiamato “{{name}}”; questa riga ne aggiunge un altro",
+      "duplicateName": "Stesso nome della riga {{line}}",
+      "invalidColor": "Il colore deve essere nel formato #1a2b3c, non “{{value}}”"
     }
   },
   "labels": {

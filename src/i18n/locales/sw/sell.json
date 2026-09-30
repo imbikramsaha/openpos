@@ -150,6 +150,8 @@
     "change": "Chenji",
     "pointsEarned_one": "Umepata pointi {{count}} ya uaminifu",
     "pointsEarned_other": "Umepata pointi {{count}} za uaminifu",
+    "pointsReversed_one": "Pointi {{count}} ya uaminifu imeondolewa",
+    "pointsReversed_other": "Pointi {{count}} za uaminifu zimeondolewa",
     "billTo": "Bili kwa",
     "walkIn": "Mteja wa kawaida",
     "paymentMode": "Malipo",
@@ -178,5 +180,6 @@
   "editSaleDone": "{{number}} imebatilishwa. Rekebisha muuzo na utoze tena.",
   "onlyInStock": "{{name}} zimebaki {{qty}} tu kwenye hisa",
   "wholeNumbersOnly": "Bidhaa hii inauzwa kwa idadi kamili tu",
-  "aboveZero": "Weka thamani kubwa kuliko sifuri"
+  "aboveZero": "Weka thamani kubwa kuliko sifuri",
+  "noDecimals": "Kiasi katika {{currency}} hakina desimali"
 }

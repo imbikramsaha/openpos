@@ -62,7 +62,8 @@ export function parseDecimal(input: string): number {
   } else if (commas) {
     // A single comma not followed by exactly three digits is a decimal comma ("12,5").
     const tail = s.length - s.lastIndexOf(',') - 1
-    s = commas === 1 && tail !== 3 ? s.replace(',', '.') : s.replace(/,/g, '')
+    const zeroInt = /^[-+]?0?,/.test(s)
+    s = commas === 1 && (tail !== 3 || zeroInt) ? s.replace(',', '.') : s.replace(/,/g, '')
   } else if (dots > 1) {
     // Several dots are only valid as thousands separators ("1.234.567"); "1.2.3" is a typo.
     if (!/^[-+]?\d{1,3}(\.\d{3})+$/.test(s)) return NaN

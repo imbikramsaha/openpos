@@ -10,6 +10,7 @@ import { escapeHtml as e } from '@/lib/print'
 import { uuid } from '@/lib/uuid'
 import { emailError, LIMITS, phoneError, taxIdError } from '@/lib/validate'
 import { amountInWords } from '@/lib/words'
+import { phoneKey } from '@/lib/validate'
 
 // Customer account logic: purchase stats, the credit (khata) ledger, printable
 // payment receipts / statements and CSV import-export. Balances themselves are
@@ -314,7 +315,8 @@ export interface ImportPlan {
   invalid: number
 }
 
-export const phoneKey = (p?: string) => (p ?? '').replace(/\D/g, '').slice(-10)
+// Kept exported here for existing importers; it lives with the other phone helpers.
+export { phoneKey }
 
 export async function planImport(text: string, s: Settings): Promise<ImportPlan> {
   const raw = parseCsv(text)

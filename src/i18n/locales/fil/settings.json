@@ -161,7 +161,8 @@
     "gstMode": "India GST mode",
     "gstModeHint": "Hinahati ang buwis sa CGST + SGST, o IGST para sa mga bentang sa ibang state, at nagpi-print ng HSN code.",
     "intraState": "Sa loob ng iyong state",
-    "interState": "Ibang mga state"
+    "interState": "Ibang mga state",
+    "nameTaken": "May tax rate na may ganitong pangalan"
   },
   "formats": {
     "preview": "Preview",
@@ -611,6 +612,7 @@
     "noBackups": "Wala pang backup dito.",
     "encryptedFileTitle": "Naka-encrypt na backup",
     "encryptedFileHint": "Ilagay ang passphrase na pinag-encrypt-an ng backup na ito.",
-    "wrongPassphrase": "Hindi mabuksan ng passphrase na iyon ang backup na ito."
+    "wrongPassphrase": "Hindi mabuksan ng passphrase na iyon ang backup na ito.",
+    "countRange": "Maglagay ng buong bilang mula {{min}} hanggang {{max}}"
   }
 }

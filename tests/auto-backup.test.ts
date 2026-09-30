@@ -6,6 +6,7 @@ import { accessToken } from '@/features/backup/oauth'
 import { BACKUP_NAME, CLOUD } from '@/features/backup/providers'
 import { InvalidBackup, parseBackup } from '@/features/settings/backup'
 import { db } from '@/db/db'
+import { defaultSettings, withDefaults } from '@/db/defaults'
 import { put } from '@/db/repo'
 import type { User } from '@/core/types'
 
@@ -133,5 +134,42 @@ describe('destination status', () => {
     useAutoBackup.setState({ status: { dropbox: { lastAttempt: 1, error: 'x', needs: 'reconnect' }, device: { lastSuccess: 1 } } })
     await clearStatus('dropbox')
     expect(useAutoBackup.getState().status).toEqual({ device: { lastSuccess: 1 } })
+  })
+})
+
+describe('settings from a damaged backup or another terminal', () => {
+  it('falls back to the default for each wrong-typed field and keeps the rest', () => {
+    const d = defaultSettings()
+    const s = withDefaults({
+      businessName: 'Saha Store',
+      enabledPayments: null as never,
+      quickCash: '100' as never,
+      cashRounding: 'x' as never,
+      currency: 'not a code',
+      numberLocale: 'en_IN!!',
+      upiId: 42 as never,
+      receipt: { paperWidth: 'a4', copies: '2' } as never,
+      scale: 'broken' as never,
+      futureField: { kept: true },
+    } as never)
+    expect(s.businessName).toBe('Saha Store')
+    expect(s.enabledPayments).toEqual(d.enabledPayments)
+    expect(s.quickCash).toEqual(d.quickCash)
+    expect(s.cashRounding).toBe(0)
+    expect(s.currency).toBe('INR')
+    expect(s.numberLocale).toBe('en-IN')
+    expect(s.upiId).toBeUndefined()
+    expect(s.receipt.paperWidth).toBe('a4')
+    expect(s.receipt.copies).toBe(1)
+    expect(s.receipt.footer).toBe(d.receipt.footer)
+    expect(s.scale).toEqual(d.scale)
+    expect((s as unknown as { futureField: unknown }).futureField).toEqual({ kept: true })
+  })
+
+  it('drops wrong-typed list entries and keeps valid values', () => {
+    const s = withDefaults({ enabledPayments: ['cash', 7, 'upi'] as never, quickCash: [50, 'x', 100] as never, currency: 'JPY', numberLocale: 'ja-JP', receipt: { paperWidth: 58 } as never })
+    expect(s.enabledPayments).toEqual(['cash', 'upi'])
+    expect(s.quickCash).toEqual([50, 100])
+    expect([s.currency, s.numberLocale, s.receipt.paperWidth]).toEqual(['JPY', 'ja-JP', 58])
   })
 })

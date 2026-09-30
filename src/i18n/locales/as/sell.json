@@ -150,6 +150,8 @@
     "change": "ঘূৰতি",
     "pointsEarned_one": "আপুনি {{count}} লয়েল্টি পইণ্ট পালে",
     "pointsEarned_other": "আপুনি {{count}} লয়েল্টি পইণ্ট পালে",
+    "pointsReversed_one": "{{count}}টা লয়েল্টি পইণ্ট ঘূৰাই লোৱা হ'ল",
+    "pointsReversed_other": "{{count}}টা লয়েল্টি পইণ্ট ঘূৰাই লোৱা হ'ল",
     "billTo": "বিল প্ৰাপক",
     "walkIn": "সাধাৰণ গ্ৰাহক",
     "paymentMode": "পেমেণ্ট",
@@ -178,5 +180,6 @@
   "editSaleDone": "{{number}} বাতিল হ'ল। বিক্ৰীটো ঠিক কৰি পুনৰ মূল্য লওক।",
   "onlyInStock": "{{name}}ৰ মাত্ৰ {{qty}} ষ্টকত আছে",
   "wholeNumbersOnly": "এই সামগ্ৰী গোটা সংখ্যাত বিক্ৰী হয়",
-  "aboveZero": "শূন্যতকৈ বেছি পৰিমাণ দিয়ক"
+  "aboveZero": "শূন্যতকৈ বেছি পৰিমাণ দিয়ক",
+  "noDecimals": "{{currency}}ৰ পৰিমাণত দশমিক স্থান নাথাকে"
 }

@@ -156,7 +156,8 @@
     "gstMode": "印度 GST 模式",
     "gstModeHint": "将税费拆分为 CGST + SGST,跨邦销售则为 IGST,并打印 HSN 编码。",
     "intraState": "本省/邦内",
-    "interState": "其他省/邦"
+    "interState": "其他省/邦",
+    "nameTaken": "已存在同名税率"
   },
   "formats": {
     "preview": "预览",
@@ -600,6 +601,7 @@
     "noBackups": "这里还没有备份。",
     "encryptedFileTitle": "加密备份",
     "encryptedFileHint": "请输入加密此备份时使用的密码短语。",
-    "wrongPassphrase": "该密码短语无法打开此备份。"
+    "wrongPassphrase": "该密码短语无法打开此备份。",
+    "countRange": "请输入 {{min}} 到 {{max}} 之间的整数"
   }
 }

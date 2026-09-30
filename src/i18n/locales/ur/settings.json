@@ -161,7 +161,8 @@
     "gstMode": "انڈیا GST موڈ",
     "gstModeHint": "ٹیکس کو CGST + SGST میں تقسیم کرتا ہے، یا بین الریاستی فروخت کے لیے IGST، اور HSN کوڈز پرنٹ کرتا ہے۔",
     "intraState": "آپ کی ریاست کے اندر",
-    "interState": "دیگر ریاستیں"
+    "interState": "دیگر ریاستیں",
+    "nameTaken": "اس نام کی ٹیکس کی شرح پہلے سے موجود ہے"
   },
   "formats": {
     "preview": "پیش منظر",
@@ -608,6 +609,7 @@
     "encryptedFileTitle": "خفیہ بیک اپ",
     "encryptedFileHint": "وہ پاس فریز درج کریں جس سے یہ بیک اپ خفیہ کیا گیا تھا۔",
     "wrongPassphrase": "وہ پاس فریز اس بیک اپ کو نہیں کھولتا۔",
+    "countRange": "{{min}} سے {{max}} تک کا پورا عدد درج کریں",
     "interval_one": "ہر گھنٹے",
     "interval_other": "ہر {{count}} گھنٹے بعد",
     "someFailed_one": "{{count}} منزل ناکام ہوئی — نیچے دیکھیں",

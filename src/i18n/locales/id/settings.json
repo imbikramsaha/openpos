@@ -156,7 +156,8 @@
     "gstMode": "Mode GST India",
     "gstModeHint": "Membagi pajak menjadi CGST + SGST, atau IGST untuk penjualan antarnegara bagian, dan mencetak kode HSN.",
     "intraState": "Dalam provinsi Anda",
-    "interState": "Provinsi lain"
+    "interState": "Provinsi lain",
+    "nameTaken": "Tarif pajak dengan nama ini sudah ada"
   },
   "formats": {
     "preview": "Pratinjau",
@@ -600,6 +601,7 @@
     "noBackups": "Belum ada cadangan di sini.",
     "encryptedFileTitle": "Cadangan terenkripsi",
     "encryptedFileHint": "Masukkan frasa sandi yang digunakan untuk mengenkripsi cadangan ini.",
-    "wrongPassphrase": "Frasa sandi ini tidak dapat membuka cadangan ini."
+    "wrongPassphrase": "Frasa sandi ini tidak dapat membuka cadangan ini.",
+    "countRange": "Masukkan bilangan bulat dari {{min}} sampai {{max}}"
   }
 }

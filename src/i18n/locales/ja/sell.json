@@ -147,6 +147,7 @@
     "total": "合計",
     "change": "お釣り",
     "pointsEarned_other": "{{count}} ポイント獲得しました",
+    "pointsReversed_other": "{{count}} ポイントを取り消しました",
     "billTo": "請求先",
     "walkIn": "一般客",
     "paymentMode": "支払い方法",
@@ -175,5 +176,6 @@
   "editSaleDone": "{{number}} を取り消しました。修正して、もう一度会計してください。",
   "onlyInStock": "{{name}}の在庫は{{qty}}だけです",
   "wholeNumbersOnly": "この商品は整数単位で販売します",
-  "aboveZero": "0 より大きい値を入力してください"
+  "aboveZero": "0 より大きい値を入力してください",
+  "noDecimals": "{{currency}} の金額には小数点以下がありません"
 }

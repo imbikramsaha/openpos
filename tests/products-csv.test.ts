@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
 import type { Product, Tax } from '@/core/types'
-import { planImport } from '@/features/products/csv'
+import { planImport, productsToCsv } from '@/features/products/csv'
 
 const tax = (id: string, rate: number): Tax => ({ id, name: `T${rate}`, rate, createdAt: 0, updatedAt: 0 }) as Tax
 const product = (p: Partial<Product>): Product =>
@@ -40,6 +40,36 @@ describe('product CSV import', () => {
   it("keeps a product's own tax when several taxes share the exported rate", () => {
     const plan = planImport('barcode,tax_rate\n123,18\n', ctx({ products: [product({ barcode: '123', taxId: 'igst18' })] }))
     expect(plan.rows[0].taxId).toBe('igst18')
+  })
+
+  it('matches rows without a SKU or barcode by name instead of adding copies', () => {
+    const c = ctx({ products: [product({ id: 'p1', name: 'Crème Brûlée', sku: 'D-1' })] })
+    const plan = planImport('name,price\ncrème  brûlée,150\nNew thing,5\n', c)
+    expect(plan.rows.map((r) => [r.status, r.match?.id])).toEqual([['update', 'p1'], ['new', undefined]])
+    // Two products with that name: the row can't say which one.
+    const two = ctx({ products: [product({ id: 'a', name: 'Tea' }), product({ id: 'b', name: 'Tea' })] })
+    expect(issues('name,price\nTea,1\n', two)[0]).toContain('ambiguousName')
+    // A new code with an existing name is a new product, with a warning.
+    expect(issues('name,sku,price\nTea,NEW-1,1\n', ctx({ products: [product({ name: 'Tea' })] }))[0]).toContain('sameName')
+  })
+
+  it('applies the editor length limits and refuses a file with an unclosed quote', () => {
+    expect(issues(`name,price\n${'x'.repeat(121)},1\n`)[0]).toContain('tooLong')
+    const plan = planImport('name,price\n"unterminated,5\nB,6\n', ctx())
+    expect(plan.fatal).toEqual({ key: 'unclosedQuote', opts: { line: 2 } })
+  })
+
+  it('reads a decimal comma after 0 and rejects units written into amounts', () => {
+    const plan = planImport('name,price,stock\nMango,"0,500","0,500"\n', ctx())
+    expect([plan.rows[0].price, plan.rows[0].stock]).toEqual([50, 0.5])
+    expect(issues('name,price\nA,12kg\nB,12abc\nC,INR 40\nD,Rs. 40\n').map((x) => x.includes('invalidNumber'))).toEqual([true, true, false, false])
+  })
+
+  it('round-trips no tax, favourite, open price, colour and description through export', () => {
+    const p = product({ id: 'x', name: 'Gift wrap', taxId: undefined, favorite: true, openPrice: true, color: '#aabbcc', description: 'Any size' })
+    const csv = productsToCsv([p], new Map(), new Map())
+    const row = planImport(csv, ctx()).rows[0]
+    expect([row.taxId, row.favorite, row.openPrice, row.color, row.description]).toEqual([null, true, true, '#aabbcc', 'Any size'])
   })
 
   it('rejects negative stock when negative stock is off, except an unchanged level', () => {

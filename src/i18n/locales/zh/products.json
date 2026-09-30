@@ -172,7 +172,8 @@
     },
     "fatal": {
       "empty": "该文件没有可导入的行。",
-      "noColumns": "未识别到任何列。第一行必须包含表头,例如 name、sku、barcode、price。"
+      "noColumns": "未识别到任何列。第一行必须包含表头,例如 name、sku、barcode、price。",
+      "unclosedQuote": "第 {{line}} 行的引号 (\") 没有闭合，因此无法读取文件的其余部分。请修正文件后重试。"
     },
     "issue": {
       "invalidNumber": "“{{value}}”不是数字({{column}})",
@@ -189,7 +190,12 @@
       "aboveMrp": "价格高于建议零售价",
       "tooLarge": "{{column}} 过大",
       "noPrice": "无价格——将以价格 0 添加",
-      "barcodeScientific": "条码“{{value}}”被电子表格转换成了科学计数法数字。请将该列格式设为文本,然后重新导出。"
+      "barcodeScientific": "条码“{{value}}”被电子表格转换成了科学计数法数字。请将该列格式设为文本,然后重新导出。",
+      "tooLong": "{{column}} 超过 {{max}} 个字符",
+      "ambiguousName": "有多个商品名为“{{name}}”。请添加 SKU 或条码以指明是哪一个。",
+      "sameName": "已存在名为“{{name}}”的商品；此行将再添加一个",
+      "duplicateName": "与第 {{line}} 行名称相同",
+      "invalidColor": "颜色格式应为 #1a2b3c，而不是“{{value}}”"
     }
   },
   "labels": {

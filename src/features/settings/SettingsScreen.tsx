@@ -6,7 +6,8 @@ import { navigate, useRoute } from '@/router'
 import { useSession } from '@/stores/session'
 import { cn } from '@/lib/cn'
 import { Card, EmptyState, Page, PageBody, PageHeader, SearchInput } from '@/components/ui'
-import { GROUPS, SECTIONS, findSection, normalize, type SectionDef, type SectionId } from './registry'
+import { BRAND_LABELS, DESKTOP_ONLY, FALLBACK_ANCHOR, GROUPS, SECTIONS, findSection, normalize, type SectionDef, type SectionId } from './registry'
+import { isElectron } from '@/lib/platform'
 import { useMediaQuery } from './hooks'
 import { BusinessSection } from './sections/BusinessSection'
 import { TaxesSection } from './sections/TaxesSection'
@@ -61,10 +62,14 @@ function useSearch(query: string): SearchHit[] | null {
       if (!i18n.exists(`settings:${key}`)) return false
       return matches(t(key)) || matches(en(key))
     }
+    // An item's label is its own string, else its card title ("…Title"), else a product name.
+    const label = (id: string) => BRAND_LABELS[id] ?? (i18n.exists(`settings:${id}`) ? t(id) : i18n.exists(`settings:${id}Title`) ? t(`${id}Title`) : undefined)
+    const itemHit = (id: string) => (BRAND_LABELS[id] ? matches(BRAND_LABELS[id]) : false) || hit(id) || hit(`${id}Title`) || hit(`${id}Hint`)
+    const available = (id: string) => !DESKTOP_ONLY.has(id) || isElectron()
     return SECTIONS.map((section) => {
       const base = `sections.${section.id}`
       const sectionHit = hit(`${base}.title`) || hit(`${base}.desc`) || hit(`${base}.keywords`)
-      const items = section.items.filter((id) => hit(id) || hit(`${id}Hint`)).map((id) => ({ id, label: t(id) }))
+      const items = section.items.filter((id) => available(id) && !!label(id) && itemHit(id)).map((id) => ({ id, label: label(id)! }))
       return sectionHit || items.length ? { section, items } : null
     }).filter((x): x is SearchHit => !!x)
   }, [query, t])
@@ -80,7 +85,9 @@ function useHighlight(target: { id: string; n: number } | null) {
     let timer: ReturnType<typeof setTimeout> | undefined
     const cls = ['bg-primary-soft', 'ring-2', 'ring-inset', 'ring-primary']
     const find = () => {
-      el = document.querySelector<HTMLElement>(`[data-setting="${CSS.escape(target.id)}"]`)
+      // A setting that's hidden right now (e.g. loyalty rates while loyalty is off) highlights the switch that shows it.
+      const id = tries > 20 && FALLBACK_ANCHOR[target.id] ? FALLBACK_ANCHOR[target.id] : target.id
+      el = document.querySelector<HTMLElement>(`[data-setting="${CSS.escape(id)}"]`)
       if (el) {
         el.scrollIntoView({ behavior: 'smooth', block: 'center' })
         el.classList.add(...cls)

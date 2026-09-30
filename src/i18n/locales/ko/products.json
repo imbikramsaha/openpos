@@ -172,7 +172,8 @@
     },
     "fatal": {
       "empty": "이 파일에는 가져올 행이 없습니다.",
-      "noColumns": "인식할 수 있는 열이 없습니다. 첫 번째 행에 name, sku, barcode, price 같은 열 이름이 있어야 합니다."
+      "noColumns": "인식할 수 있는 열이 없습니다. 첫 번째 행에 name, sku, barcode, price 같은 열 이름이 있어야 합니다.",
+      "unclosedQuote": "{{line}}행의 따옴표(\")가 닫히지 않아 파일의 나머지를 읽을 수 없습니다. 파일을 수정한 후 다시 시도하세요."
     },
     "issue": {
       "invalidNumber": "“{{value}}”은(는) 숫자가 아닙니다({{column}})",
@@ -189,7 +190,12 @@
       "aboveMrp": "가격이 권장 소비자가보다 높습니다",
       "tooLarge": "{{column}}이(가) 너무 큽니다",
       "noPrice": "가격 없음 — 가격 0으로 추가됩니다",
-      "barcodeScientific": "바코드 “{{value}}”이(가) 스프레드시트에 의해 지수 표기 숫자로 변환되었습니다. 해당 열을 텍스트 서식으로 지정한 후 다시 내보내세요."
+      "barcodeScientific": "바코드 “{{value}}”이(가) 스프레드시트에 의해 지수 표기 숫자로 변환되었습니다. 해당 열을 텍스트 서식으로 지정한 후 다시 내보내세요.",
+      "tooLong": "{{column}}이(가) {{max}}자를 넘습니다",
+      "ambiguousName": "“{{name}}”(이)라는 이름의 상품이 여러 개입니다. 어느 상품인지 알 수 있도록 SKU나 바코드를 추가하세요.",
+      "sameName": "“{{name}}”(이)라는 상품이 이미 있습니다. 이 행은 상품을 하나 더 추가합니다",
+      "duplicateName": "{{line}}행과 이름이 같습니다",
+      "invalidColor": "색상은 “{{value}}”이(가) 아니라 #1a2b3c 형식이어야 합니다"
     }
   },
   "labels": {

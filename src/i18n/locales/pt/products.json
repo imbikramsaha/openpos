@@ -202,7 +202,8 @@
     },
     "fatal": {
       "empty": "O arquivo não tem linhas para importar.",
-      "noColumns": "Nenhuma coluna reconhecida. A primeira linha deve conter cabeçalhos como name, sku, barcode, price."
+      "noColumns": "Nenhuma coluna reconhecida. A primeira linha deve conter cabeçalhos como name, sku, barcode, price.",
+      "unclosedQuote": "Uma aspa (\") na linha {{line}} nunca é fechada, então o restante do arquivo não pode ser lido. Corrija o arquivo e tente novamente."
     },
     "issue": {
       "invalidNumber": "“{{value}}” não é um número ({{column}})",
@@ -219,7 +220,12 @@
       "aboveMrp": "O preço está acima do preço máximo (MRP)",
       "tooLarge": "{{column}} é grande demais",
       "noPrice": "Sem preço — será adicionado com preço 0",
-      "barcodeScientific": "A planilha transformou o código de barras “{{value}}” em um número científico. Formate a coluna como texto e exporte novamente."
+      "barcodeScientific": "A planilha transformou o código de barras “{{value}}” em um número científico. Formate a coluna como texto e exporte novamente.",
+      "tooLong": "{{column}} tem mais de {{max}} caracteres",
+      "ambiguousName": "Há vários produtos chamados “{{name}}”. Adicione um SKU ou código de barras para indicar qual.",
+      "sameName": "Já existe um produto chamado “{{name}}”; esta linha adiciona outro",
+      "duplicateName": "Mesmo nome da linha {{line}}",
+      "invalidColor": "A cor deve estar no formato #1a2b3c, não “{{value}}”"
     }
   },
   "labels": {

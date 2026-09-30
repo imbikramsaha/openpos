@@ -150,6 +150,8 @@
     "change": "ଫେରସ୍ତ",
     "pointsEarned_one": "ଆପଣ {{count}} ଲଏଲ୍ଟି ପଏଣ୍ଟ ପାଇଲେ",
     "pointsEarned_other": "ଆପଣ {{count}} ଲଏଲ୍ଟି ପଏଣ୍ଟ ପାଇଲେ",
+    "pointsReversed_one": "{{count}} ଲଏଲ୍ଟି ପଏଣ୍ଟ ଫେରାଇ ନିଆଗଲା",
+    "pointsReversed_other": "{{count}} ଲଏଲ୍ଟି ପଏଣ୍ଟ ଫେରାଇ ନିଆଗଲା",
     "billTo": "ବିଲ୍ ପ୍ରାପକ",
     "walkIn": "ସାଧାରଣ ଗ୍ରାହକ",
     "paymentMode": "ପେମେଣ୍ଟ",
@@ -178,5 +180,6 @@
   "editSaleDone": "{{number}} ବାତିଲ ହେଲା। ବିକ୍ରି ଠିକ୍ କରି ପୁଣି ଦେୟ ନିଅନ୍ତୁ।",
   "onlyInStock": "{{name}} କେବଳ {{qty}} ଷ୍ଟକରେ ଅଛି",
   "wholeNumbersOnly": "ଏହି ଜିନିଷ କେବଳ ପୂର୍ଣ୍ଣ ସଂଖ୍ୟାରେ ବିକ୍ରି ହୁଏ",
-  "aboveZero": "ଶୂନ୍ୟଠାରୁ ଅଧିକ ମୂଲ୍ୟ ଦିଅନ୍ତୁ"
+  "aboveZero": "ଶୂନ୍ୟଠାରୁ ଅଧିକ ମୂଲ୍ୟ ଦିଅନ୍ତୁ",
+  "noDecimals": "{{currency}}ରେ ରାଶିରେ ଦଶମିକ ସ୍ଥାନ ନାହିଁ"
 }

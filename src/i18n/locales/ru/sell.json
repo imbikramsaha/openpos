@@ -156,6 +156,10 @@
     "pointsEarned_few": "Вы получили {{count}} бонусных балла",
     "pointsEarned_many": "Вы получили {{count}} бонусных баллов",
     "pointsEarned_other": "Вы получили {{count}} бонусного балла",
+    "pointsReversed_one": "Списан {{count}} бонусный балл",
+    "pointsReversed_few": "Списано {{count}} бонусных балла",
+    "pointsReversed_many": "Списано {{count}} бонусных баллов",
+    "pointsReversed_other": "Списано {{count}} бонусного балла",
     "billTo": "Покупатель",
     "walkIn": "Разовый покупатель",
     "paymentMode": "Оплата",
@@ -184,5 +188,6 @@
   "editSaleDone": "{{number}} аннулирован. Исправьте продажу и снова примите оплату.",
   "onlyInStock": "{{name}}: в наличии только {{qty}}",
   "wholeNumbersOnly": "Этот товар продаётся только целыми единицами",
-  "aboveZero": "Введите значение больше нуля"
+  "aboveZero": "Введите значение больше нуля",
+  "noDecimals": "Суммы в {{currency}} не имеют дробной части"
 }

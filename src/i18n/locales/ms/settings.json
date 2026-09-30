@@ -156,7 +156,8 @@
     "gstMode": "Mod GST India",
     "gstModeHint": "Memisahkan cukai kepada CGST + SGST, atau IGST untuk jualan antara negeri, dan mencetak kod HSN.",
     "intraState": "Dalam negeri anda",
-    "interState": "Negeri lain"
+    "interState": "Negeri lain",
+    "nameTaken": "Kadar cukai dengan nama ini sudah wujud"
   },
   "formats": {
     "preview": "Pratonton",
@@ -600,6 +601,7 @@
     "noBackups": "Belum ada sandaran di sini.",
     "encryptedFileTitle": "Sandaran dienkripsi",
     "encryptedFileHint": "Masukkan frasa laluan yang digunakan untuk mengenkripsi sandaran ini.",
-    "wrongPassphrase": "Frasa laluan ini tidak dapat membuka sandaran ini."
+    "wrongPassphrase": "Frasa laluan ini tidak dapat membuka sandaran ini.",
+    "countRange": "Masukkan nombor bulat dari {{min}} hingga {{max}}"
   }
 }

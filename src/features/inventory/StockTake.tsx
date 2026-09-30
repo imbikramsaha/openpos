@@ -153,7 +153,8 @@ export function StockTake({ products, categories }: { products: Product[]; categ
   }
 
   const apply = async () => {
-    if (!summary.counted || busy) return
+    // Invalid counts must be fixed first: applying would silently drop them.
+    if (!summary.counted || summary.invalid || busy) return
     const ok = await confirmDialog({
       title: t('count.applyTitle', { count: summary.counted }),
       message: t('count.applyMessage', { changes: summary.changes, value: formatMoney(summary.value, { sign: true }) }),
@@ -332,7 +333,7 @@ export function StockTake({ products, categories }: { products: Product[]; categ
           <Button variant="ghost" onClick={clear} disabled={!summary.counted} className="max-sm:flex-1">
             {t('common:clear')}
           </Button>
-          <Button variant="primary" icon={<ClipboardCheck className="size-4" />} onClick={apply} disabled={!summary.counted} loading={busy} className="max-sm:flex-[2]">
+          <Button variant="primary" icon={<ClipboardCheck className="size-4" />} onClick={apply} disabled={!summary.counted || summary.invalid > 0} loading={busy} className="max-sm:flex-[2]">
             {t('count.apply')}
           </Button>
         </div>

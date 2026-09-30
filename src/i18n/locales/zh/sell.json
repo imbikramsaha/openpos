@@ -147,6 +147,7 @@
     "total": "合计",
     "change": "找零",
     "pointsEarned_other": "您获得了 {{count}} 积分",
+    "pointsReversed_other": "已扣回 {{count}} 积分",
     "billTo": "购买方",
     "walkIn": "散客",
     "paymentMode": "支付方式",
@@ -175,5 +176,6 @@
   "editSaleDone": "{{number}} 已作废。请修改订单后重新收款。",
   "onlyInStock": "{{name}} 库存仅剩 {{qty}}",
   "wholeNumbersOnly": "此商品只能按整数出售",
-  "aboveZero": "请输入大于 0 的值"
+  "aboveZero": "请输入大于 0 的值",
+  "noDecimals": "{{currency}} 金额没有小数位"
 }

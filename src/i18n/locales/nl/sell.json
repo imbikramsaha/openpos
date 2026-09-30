@@ -150,6 +150,8 @@
     "change": "Wisselgeld",
     "pointsEarned_one": "Je hebt {{count}} spaarpunt verdiend",
     "pointsEarned_other": "Je hebt {{count}} spaarpunten verdiend",
+    "pointsReversed_one": "{{count}} spaarpunt teruggedraaid",
+    "pointsReversed_other": "{{count}} spaarpunten teruggedraaid",
     "billTo": "Factuur aan",
     "walkIn": "Onbekende klant",
     "paymentMode": "Betaling",
@@ -178,5 +180,6 @@
   "editSaleDone": "{{number}} geannuleerd. Corrigeer de verkoop en reken opnieuw af.",
   "onlyInStock": "Nog maar {{qty}} van {{name}} op voorraad",
   "wholeNumbersOnly": "Dit artikel wordt alleen per stuk verkocht",
-  "aboveZero": "Voer een waarde boven nul in"
+  "aboveZero": "Voer een waarde boven nul in",
+  "noDecimals": "Bedragen in {{currency}} hebben geen decimalen"
 }

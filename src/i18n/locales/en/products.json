@@ -187,7 +187,8 @@
     },
     "fatal": {
       "empty": "The file has no rows to import.",
-      "noColumns": "No recognised columns. The first row must contain headers such as name, sku, barcode, price."
+      "noColumns": "No recognised columns. The first row must contain headers such as name, sku, barcode, price.",
+      "unclosedQuote": "A quote (\") on line {{line}} is never closed, so the rest of the file can’t be read. Fix the file and try again."
     },
     "issue": {
       "invalidNumber": "“{{value}}” is not a number ({{column}})",
@@ -204,7 +205,12 @@
       "aboveMrp": "Price is above the MRP",
       "tooLarge": "{{column}} is too large",
       "noPrice": "No price — it will be added with price 0",
-      "barcodeScientific": "Barcode “{{value}}” was turned into a scientific number by the spreadsheet. Format the column as text and export again."
+      "barcodeScientific": "Barcode “{{value}}” was turned into a scientific number by the spreadsheet. Format the column as text and export again.",
+      "tooLong": "{{column}} is longer than {{max}} characters",
+      "ambiguousName": "Several products are named “{{name}}”. Add a SKU or barcode to say which one.",
+      "sameName": "A product named “{{name}}” already exists; this row adds another one",
+      "duplicateName": "Same name as line {{line}}",
+      "invalidColor": "Colour must look like #1a2b3c, not “{{value}}”"
     }
   },
   "labels": {

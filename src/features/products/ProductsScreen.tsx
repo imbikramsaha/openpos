@@ -75,7 +75,7 @@ export default function ProductsScreen() {
     if (!file) return
     const text = await readFileText(file)
     const plan = planImport(text, { products: await db.products.toArray(), categories: await db.categories.toArray(), taxes, defaultTaxId, allowNegativeStock })
-    if (plan.fatal) return toast(t(`import.fatal.${plan.fatal.key}`), 'error')
+    if (plan.fatal) return toast(t(`import.fatal.${plan.fatal.key}`, plan.fatal.opts), 'error')
     setImported({ plan, file: file.name })
   }
 

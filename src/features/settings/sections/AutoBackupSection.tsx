@@ -74,8 +74,8 @@ export function AutoBackupSection() {
               options={INTERVALS.map((h) => ({ value: String(h), label: h ? t('autoBackup.interval', { count: h }) : t('autoBackup.onlyShift') }))}
             />
             <div className="grid grid-cols-2 gap-3">
-              <NumberInput label={t('autoBackup.keep')} hint={t('autoBackup.keepHint')} value={config.keep} onChange={(v) => v && v >= 1 && v <= 365 && void saveConfig({ keep: Math.round(v) })} />
-              <NumberInput label={t('autoBackup.keepOnDevice')} value={config.keepOnDevice} onChange={(v) => v && v >= 1 && v <= 30 && void saveConfig({ keepOnDevice: Math.round(v) })} />
+              <CountInput label={t('autoBackup.keep')} hint={t('autoBackup.keepHint')} value={config.keep} min={1} max={365} onSave={(keep) => void saveConfig({ keep })} />
+              <CountInput label={t('autoBackup.keepOnDevice')} value={config.keepOnDevice} min={1} max={30} onSave={(keepOnDevice) => void saveConfig({ keepOnDevice })} />
             </div>
           </div>
         </Row>
@@ -425,5 +425,35 @@ function RemoteList({ open, onClose, title, list, fetch }: { open: boolean; onCl
         </ul>
       )}
     </Modal>
+  )
+}
+
+/**
+ * A whole number in [min, max]: saved as soon as it's valid, an error while it isn't, and back
+ * to the saved value when the field is left invalid (so the screen never disagrees with the setting).
+ */
+function CountInput({ label, hint, value, min, max, onSave }: { label: string; hint?: string; value: number; min: number; max: number; onSave: (v: number) => void }) {
+  const { t } = useTranslation('settings')
+  const [draft, setDraft] = useState<number | undefined>(value)
+  const [reset, setReset] = useState(0)
+  const ok = (v: number | undefined): v is number => v !== undefined && Number.isInteger(v) && v >= min && v <= max
+  return (
+    <NumberInput
+      key={reset}
+      label={label}
+      hint={hint}
+      value={value}
+      inputMode="numeric"
+      onChange={(v) => {
+        setDraft(v)
+        if (ok(v)) onSave(v)
+      }}
+      onBlur={() => {
+        if (ok(draft)) return
+        setDraft(value)
+        setReset((n) => n + 1)
+      }}
+      error={ok(draft) ? undefined : t('autoBackup.countRange', { min, max })}
+    />
   )
 }

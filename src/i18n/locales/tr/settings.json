@@ -161,7 +161,8 @@
     "gstMode": "Hindistan GST modu",
     "gstModeHint": "Vergiyi CGST + SGST'ye veya eyaletler arası satışlar için IGST'ye ayırır ve HSN kodlarını yazdırır.",
     "intraState": "Eyaletiniz içinde",
-    "interState": "Diğer eyaletler"
+    "interState": "Diğer eyaletler",
+    "nameTaken": "Bu ada sahip bir vergi oranı zaten var"
   },
   "formats": {
     "preview": "Önizleme",
@@ -611,6 +612,7 @@
     "noBackups": "Burada henüz yedek yok.",
     "encryptedFileTitle": "Şifrelenmiş yedek",
     "encryptedFileHint": "Bu yedeğin şifrelendiği parolayı girin.",
-    "wrongPassphrase": "Bu parola bu yedeği açmıyor."
+    "wrongPassphrase": "Bu parola bu yedeği açmıyor.",
+    "countRange": "{{min}} ile {{max}} arasında bir tam sayı girin"
   }
 }

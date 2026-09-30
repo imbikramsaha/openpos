@@ -65,15 +65,21 @@ export function productColor(p: Pick<Product, 'color' | 'categoryId'>, cats: Map
   return p.color || (p.categoryId ? cats.get(p.categoryId)?.color : undefined)
 }
 
-/** Lower-cased "name sku barcode" used for fast multi-term search. */
-export const searchText = (p: Pick<Product, 'name' | 'sku' | 'barcode'>) => `${p.name} ${p.sku ?? ''} ${p.barcode ?? ''}`.toLowerCase()
+/**
+ * Lower-cased text without Latin/Greek/Cyrillic accents, so "creme" finds "Crème". Only the
+ * combining-diacritics block is removed: Indic vowel signs and other scripts are kept intact.
+ */
+export const fold = (s: string) => s.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase()
+
+/** Folded "name sku barcode" used for fast multi-term search. */
+export const searchText = (p: Pick<Product, 'name' | 'sku' | 'barcode'>) => fold(`${p.name} ${p.sku ?? ''} ${p.barcode ?? ''}`)
 
 export function matchesTerms(hay: string, terms: string[]): boolean {
   for (const t of terms) if (!hay.includes(t)) return false
   return true
 }
 
-export const splitTerms = (q: string) => q.trim().toLowerCase().split(/\s+/).filter(Boolean)
+export const splitTerms = (q: string) => fold(q.trim()).split(/\s+/).filter(Boolean)
 
 /** Date stamp for exported file names. */
 export const fileDate = () => toDateInput(Date.now())

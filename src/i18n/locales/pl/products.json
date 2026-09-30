@@ -217,7 +217,8 @@
     },
     "fatal": {
       "empty": "Plik nie zawiera wierszy do zaimportowania.",
-      "noColumns": "Nie rozpoznano kolumn. Pierwszy wiersz musi zawierać nagłówki, np. name, sku, barcode, price."
+      "noColumns": "Nie rozpoznano kolumn. Pierwszy wiersz musi zawierać nagłówki, np. name, sku, barcode, price.",
+      "unclosedQuote": "Cudzysłów (\") w wierszu {{line}} nie został zamknięty, więc nie można odczytać reszty pliku. Popraw plik i spróbuj ponownie."
     },
     "issue": {
       "invalidNumber": "„{{value}}” nie jest liczbą ({{column}})",
@@ -234,7 +235,12 @@
       "aboveMrp": "Cena jest wyższa niż MRP",
       "tooLarge": "{{column}} jest zbyt duże",
       "noPrice": "Brak ceny — zostanie dodany z ceną 0",
-      "barcodeScientific": "Arkusz kalkulacyjny zamienił kod kreskowy „{{value}}” na zapis naukowy. Sformatuj kolumnę jako tekst i wyeksportuj ponownie."
+      "barcodeScientific": "Arkusz kalkulacyjny zamienił kod kreskowy „{{value}}” na zapis naukowy. Sformatuj kolumnę jako tekst i wyeksportuj ponownie.",
+      "tooLong": "{{column}} ma więcej niż {{max}} znaków",
+      "ambiguousName": "Kilka produktów ma nazwę „{{name}}”. Dodaj SKU lub kod kreskowy, aby wskazać, o który chodzi.",
+      "sameName": "Produkt o nazwie „{{name}}” już istnieje; ten wiersz doda kolejny",
+      "duplicateName": "Taka sama nazwa jak w wierszu {{line}}",
+      "invalidColor": "Kolor musi mieć postać #1a2b3c, a nie „{{value}}”"
     }
   },
   "labels": {

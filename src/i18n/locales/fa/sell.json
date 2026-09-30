@@ -150,6 +150,8 @@
     "change": "پول برگشتی",
     "pointsEarned_one": "شما {{count}} امتیاز وفاداری کسب کردید",
     "pointsEarned_other": "شما {{count}} امتیاز وفاداری کسب کردید",
+    "pointsReversed_one": "{{count}} امتیاز وفاداری برگشت داده شد",
+    "pointsReversed_other": "{{count}} امتیاز وفاداری برگشت داده شد",
     "billTo": "صورتحساب برای",
     "walkIn": "مشتری بدون ثبت",
     "paymentMode": "روش پرداخت",
@@ -178,5 +180,6 @@
   "editSaleDone": "{{number}} ابطال شد. فروش را اصلاح کنید و دوباره دریافت کنید.",
   "onlyInStock": "فقط {{qty}} از {{name}} موجود است",
   "wholeNumbersOnly": "این کالا فقط به‌صورت عدد صحیح فروخته می‌شود",
-  "aboveZero": "مقداری بیشتر از صفر وارد کنید"
+  "aboveZero": "مقداری بیشتر از صفر وارد کنید",
+  "noDecimals": "مبالغ به {{currency}} رقم اعشار ندارند"
 }

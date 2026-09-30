@@ -1,7 +1,7 @@
 import type { Category, Product, Tax, Unit } from '@/core/types'
 import { db } from '@/db/db'
 import { moveStock, round3, tx } from '@/db/repo'
-import { parseCsv, toCsv } from '@/lib/csv'
+import { parseCsvDetailed, toCsv } from '@/lib/csv'
 import { fromMinor, parseDecimal, toMinor } from '@/lib/money'
 import { uuid } from '@/lib/uuid'
 import { MAX_AMOUNT, MAX_QTY, MEASURED_UNITS, SERVICE_UNITS, SWATCHES, UNITS } from './util'
@@ -10,7 +10,8 @@ import { MAX_AMOUNT, MAX_QTY, MEASURED_UNITS, SERVICE_UNITS, SWATCHES, UNITS } f
 // stores minor units. Import is two-step: planImport() validates every row without
 // writing anything (for the preview), applyImport() writes the valid rows in one transaction.
 
-export const CSV_COLUMNS = ['name', 'sku', 'barcode', 'category', 'price', 'cost', 'tax_rate', 'unit', 'stock', 'reorder_level', 'hsn', 'mrp', 'active'] as const
+// favorite … description come last so older files and templates line up with the first 13.
+export const CSV_COLUMNS = ['name', 'sku', 'barcode', 'category', 'price', 'cost', 'tax_rate', 'unit', 'stock', 'reorder_level', 'hsn', 'mrp', 'active', 'favorite', 'open_price', 'color', 'description'] as const
 type Col = (typeof CSV_COLUMNS)[number]
 
 // Common header spellings from spreadsheets and other POS exports.
@@ -27,6 +28,7 @@ const ALIASES: Record<string, Col> = {
   reorder: 'reorder_level', reorder_point: 'reorder_level', min_stock: 'reorder_level', minimum_stock: 'reorder_level',
   hsn_code: 'hsn', hsn_sac: 'hsn', 'hsn/sac': 'hsn', sac: 'hsn',
   status: 'active', enabled: 'active',
+  favourite: 'favorite', fav: 'favorite', openprice: 'open_price', ask_price: 'open_price', colour: 'color', notes: 'description',
 }
 
 const UNIT_ALIASES: Record<string, Unit> = {
@@ -43,6 +45,12 @@ const FALSE = new Set(['no', 'n', 'false', '0', 'inactive', 'off'])
 
 export const normaliseHeader = (h: string) => h.trim().toLowerCase().replace(/[\s-]+/g, '_')
 
+/** Same limits as the product editor and category dialog. */
+const MAX_LEN: Partial<Record<Col, number>> = { name: 120, sku: 40, barcode: 32, category: 60, hsn: 10, description: 500 }
+
+/** Names compared the way people see them: case, spacing and accents don't make a different product. */
+const nameKey = (n: string) => n.normalize('NFC').trim().replace(/\s+/g, ' ').toLocaleLowerCase()
+
 // ---- Export -------------------------------------------------------------------
 
 export function productsToCsv(products: Product[], cats: Map<string, Category>, taxes: Map<string, Tax>): string {
@@ -53,22 +61,28 @@ export function productsToCsv(products: Product[], cats: Map<string, Category>, 
     category: (p.categoryId && cats.get(p.categoryId)?.name) || '',
     price: fromMinor(p.price),
     cost: fromMinor(p.cost ?? 0),
-    tax_rate: p.taxId ? (taxes.get(p.taxId)?.rate ?? '') : '',
+    // "none" (not blank) so a restore keeps "No tax" instead of taking the default rate.
+    tax_rate: p.taxId ? (taxes.get(p.taxId)?.rate ?? '') : 'none',
     unit: p.unit,
     stock: p.trackStock ? p.stock : '',
     reorder_level: p.reorderLevel ?? '',
     hsn: p.hsn ?? '',
     mrp: p.mrp !== undefined ? fromMinor(p.mrp) : '',
     active: p.active ? 'yes' : 'no',
+    favorite: p.favorite ? 'yes' : 'no',
+    open_price: p.openPrice ? 'yes' : 'no',
+    color: p.color ?? '',
+    description: p.description ?? '',
   }))
+  // Photos are not exported (they would make the file huge); back up the device to keep them.
   return toCsv(rows, [...CSV_COLUMNS])
 }
 
 export function templateCsv(taxRate = 0): string {
   return toCsv(
     [
-      { name: 'Cappuccino', sku: 'BEV-001', barcode: '', category: 'Beverages', price: 3.5, cost: 1.2, tax_rate: taxRate, unit: 'pcs', stock: 50, reorder_level: 10, hsn: '', mrp: '', active: 'yes' },
-      { name: 'Basmati Rice', sku: 'GRO-014', barcode: '2912345678906', category: 'Grocery', price: 2.4, cost: 1.75, tax_rate: taxRate, unit: 'kg', stock: 25.5, reorder_level: 5, hsn: '', mrp: '', active: 'yes' },
+      { name: 'Cappuccino', sku: 'BEV-001', barcode: '', category: 'Beverages', price: 3.5, cost: 1.2, tax_rate: taxRate, unit: 'pcs', stock: 50, reorder_level: 10, hsn: '', mrp: '', active: 'yes', favorite: 'yes', open_price: 'no', color: '', description: '' },
+      { name: 'Basmati Rice', sku: 'GRO-014', barcode: '2912345678906', category: 'Grocery', price: 2.4, cost: 1.75, tax_rate: taxRate, unit: 'kg', stock: 25.5, reorder_level: 5, hsn: '', mrp: '', active: 'yes', favorite: 'no', open_price: 'no', color: '', description: '' },
     ],
     [...CSV_COLUMNS],
   )
@@ -105,6 +119,10 @@ export interface ImportRow {
   reorderLevel?: number
   hsn?: string
   active?: boolean
+  favorite?: boolean
+  openPrice?: boolean
+  color?: string
+  description?: string
 }
 
 export interface ImportPlan {
@@ -133,19 +151,37 @@ function parseAmount(s: string): number {
   if (accounting) t = t.slice(1, -1).trim()
   if (/^[+-]?\d+(?:\.\d+)?e[+-]?\d+$/i.test(t)) return Number(t) * (accounting ? -1 : 1)
   // Tolerate currency symbols anywhere and currency codes around the number: "₹ 1,250.00",
-  // "$3.50", "12,5 €", "Rs. 40", "-₹5". Anything else (e.g. "12abc34") is not a number.
-  t = t.replace(/\p{Sc}/gu, '').replace(/^\p{L}+\.?/u, '').replace(/\p{L}+\.?$/u, '').trim()
+  // "$3.50", "12,5 €", "Rs. 40", "INR 40", "-₹5". Other letters ("12kg", "12abc") are not a number.
+  t = t.replace(/\p{Sc}/gu, '').trim()
+  const lead = /^(\p{L}+)\.?\s*/u.exec(t)
+  if (lead && isCurrencyWord(lead[1])) t = t.slice(lead[0].length)
+  const trail = /\s*(\p{L}+)\.?$/u.exec(t)
+  if (trail && isCurrencyWord(trail[1])) t = t.slice(0, t.length - trail[0].length)
+  t = t.trim()
   if (/[^\d.,\s'+-]/.test(t)) return NaN
   const n = parseDecimal(t)
   return accounting ? -Math.abs(n) : n
+}
+
+/** Local names for currencies written next to amounts, besides ISO codes (INR, USD…). */
+const CURRENCY_WORDS = new Set(['rs', 'rp', 'rm', 'kr', 'tk', 'ksh', 'sh', 'fr', 'dh', 'dhs', 'lei', 'ft', 'kč', 'zł', 'tl', 'r'])
+let isoCodes: Set<string> | undefined
+function isCurrencyWord(w: string): boolean {
+  const l = w.toLowerCase()
+  if (CURRENCY_WORDS.has(l)) return true
+  if (!/^[a-z]{3}$/i.test(w)) return false
+  isoCodes ??= new Set((typeof Intl.supportedValuesOf === 'function' ? Intl.supportedValuesOf('currency') : []).map((c) => c.toLowerCase()))
+  return isoCodes.size ? isoCodes.has(l) : true
 }
 
 /** Excel turns long numeric codes into "8.90123E+12", which loses digits. */
 const SCIENTIFIC = /^\d+(?:[.,]\d+)?e\+?\d+$/i
 
 export function planImport(text: string, ctx: ImportContext): ImportPlan {
-  const records = parseCsv(text)
+  const { records, unclosedQuoteLine } = parseCsvDetailed(text)
   const plan: ImportPlan = { rows: [], counts: { new: 0, update: 0, error: 0 }, newCategories: [], ignoredColumns: [] }
+  // Everything after an unclosed quote was read as one field: refuse rather than import garbage.
+  if (unclosedQuoteLine) return { ...plan, fatal: { key: 'unclosedQuote', opts: { line: unclosedQuoteLine } } }
   if (!records.length) return { ...plan, fatal: { key: 'empty' } }
 
   // Map recognised columns to the file's own header spelling.
@@ -161,10 +197,14 @@ export function planImport(text: string, ctx: ImportContext): ImportPlan {
   const live = ctx.products.filter((p) => !p.deleted)
   const byBarcode = new Map<string, Product>()
   const bySku = new Map<string, Product>()
+  const byName = new Map<string, Product[]>()
   for (const p of live) {
     if (p.barcode) byBarcode.set(p.barcode, p)
     if (p.sku) bySku.set(p.sku.toLowerCase(), p)
+    const k = nameKey(p.name)
+    byName.set(k, [...(byName.get(k) ?? []), p])
   }
+  const seenName = new Map<string, number>()
   const catNames = new Set(ctx.categories.filter((c) => !c.deleted).map((c) => c.name.trim().toLowerCase()))
   const newCats = new Map<string, string>()
   const seenMatch = new Map<string, number>()
@@ -190,6 +230,9 @@ export function planImport(text: string, ctx: ImportContext): ImportPlan {
       return n
     }
 
+    for (const [c, max] of Object.entries(MAX_LEN) as Array<[Col, number]>) {
+      if (cell(c).length > max) err('tooLong', { column: c, max })
+    }
     row.name = cell('name') || undefined
     row.sku = cell('sku') || undefined
     row.barcode = cell('barcode').replace(/\s/g, '') || undefined
@@ -217,15 +260,32 @@ export function planImport(text: string, ctx: ImportContext): ImportPlan {
       else err('invalidUnit', { value: cell('unit') })
     }
 
-    const activeRaw = cell('active').toLowerCase()
-    if (activeRaw) {
-      if (TRUE.has(activeRaw)) row.active = true
-      else if (FALSE.has(activeRaw)) row.active = false
-      else err('invalidActive', { value: cell('active') })
+    const yesNo = (c: Col) => {
+      const raw = cell(c).toLowerCase()
+      if (!raw) return undefined
+      if (TRUE.has(raw)) return true
+      if (FALSE.has(raw)) return false
+      err('invalidActive', { value: cell(c) })
+      return undefined
     }
+    row.active = yesNo('active')
+    row.favorite = yesNo('favorite')
+    row.openPrice = yesNo('open_price')
+    const color = cell('color')
+    if (color) {
+      if (/^#[0-9a-f]{6}$/i.test(color)) row.color = color.toLowerCase()
+      else err('invalidColor', { value: color })
+    }
+    row.description = cell('description') || undefined
 
-    // Match existing products by barcode, then SKU.
+    // Match existing products by barcode, then SKU; a row with neither is matched by its name,
+    // so a price list without codes updates the products instead of adding copies.
     row.match = (row.barcode && byBarcode.get(row.barcode)) || (row.sku && bySku.get(row.sku.toLowerCase())) || undefined
+    const named = row.name ? (byName.get(nameKey(row.name)) ?? []) : []
+    if (!row.match && !row.barcode && !row.sku && named.length) {
+      if (named.length === 1) row.match = named[0]
+      else err('ambiguousName', { name: row.name })
+    } else if (!row.match && named.length) warn('sameName', { name: named[0].name })
 
     const taxRaw = cell('tax_rate')
     if (taxRaw) {
@@ -260,6 +320,12 @@ export function planImport(text: string, ctx: ImportContext): ImportPlan {
         const prev = seenSku.get(row.sku.toLowerCase())
         if (prev) err('duplicateSku', { line: prev })
         else seenSku.set(row.sku.toLowerCase(), line)
+      }
+      // Two new rows with the same name and no codes can't be told apart later.
+      if (row.name && !row.barcode && !row.sku) {
+        const prev = seenName.get(nameKey(row.name))
+        if (prev) warn('duplicateName', { line: prev })
+        else seenName.set(nameKey(row.name), line)
       }
     }
     // Negative stock only when allowed, or when it is simply the current level (export → import round trip).
@@ -331,6 +397,10 @@ export async function applyImport(plan: ImportPlan, ctx: { defaultTaxId?: string
       if (r.reorderLevel !== undefined) p.reorderLevel = r.reorderLevel
       if (r.hsn) p.hsn = r.hsn
       if (r.active !== undefined) p.active = r.active
+      if (r.favorite !== undefined) p.favorite = r.favorite || undefined
+      if (r.openPrice !== undefined) p.openPrice = r.openPrice || undefined
+      if (r.color) p.color = r.color
+      if (r.description) p.description = r.description
       records.push(p)
       if (base) updated++
       else created++

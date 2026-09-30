@@ -166,7 +166,8 @@
     "gstMode": "Modo GST da Índia",
     "gstModeHint": "Divide o imposto em CGST + SGST, ou IGST para vendas interestaduais, e imprime os códigos HSN.",
     "intraState": "Dentro do seu estado",
-    "interState": "Outros estados"
+    "interState": "Outros estados",
+    "nameTaken": "Já existe uma alíquota de imposto com este nome"
   },
   "formats": {
     "preview": "Pré-visualização",
@@ -622,6 +623,7 @@
     "noBackups": "Ainda não há backups aqui.",
     "encryptedFileTitle": "Backup criptografado",
     "encryptedFileHint": "Digite a frase secreta usada para criptografar este backup.",
-    "wrongPassphrase": "Essa frase secreta não abre este backup."
+    "wrongPassphrase": "Essa frase secreta não abre este backup.",
+    "countRange": "Digite um número inteiro de {{min}} a {{max}}"
   }
 }

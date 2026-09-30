@@ -161,7 +161,8 @@
     "gstMode": "Indien-GST-Modus",
     "gstModeHint": "Teilt die Steuer in CGST + SGST oder IGST bei bundesstaatenübergreifenden Verkäufen und druckt HSN-Codes.",
     "intraState": "Innerhalb deines Bundesstaats",
-    "interState": "Andere Bundesstaaten"
+    "interState": "Andere Bundesstaaten",
+    "nameTaken": "Ein Steuersatz mit diesem Namen existiert bereits"
   },
   "formats": {
     "preview": "Vorschau",
@@ -611,6 +612,7 @@
     "noBackups": "Hier noch keine Sicherungen.",
     "encryptedFileTitle": "Verschlüsselte Sicherung",
     "encryptedFileHint": "Gib die Passphrase ein, mit der diese Sicherung verschlüsselt wurde.",
-    "wrongPassphrase": "Diese Passphrase öffnet diese Sicherung nicht."
+    "wrongPassphrase": "Diese Passphrase öffnet diese Sicherung nicht.",
+    "countRange": "Gib eine ganze Zahl von {{min}} bis {{max}} ein"
   }
 }

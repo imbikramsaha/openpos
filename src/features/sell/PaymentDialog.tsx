@@ -70,7 +70,10 @@ export function PaymentDialog({ open, onClose, onComplete, onNeedCustomer }: { o
   const typed = text ? toMinor(parseDecimal(text)) : 0
   const pointValue = settings.loyaltyPointValue || 0
   const pointsValue = customer ? customer.loyaltyPoints * pointValue : 0
-  const typeKey = (k: string) => setText((s) => numKey(s, k, moneyConfig().decimals, MAX_MONEY_DIGITS))
+  const typeKey = (k: string) => {
+    if (k === '.' && moneyConfig().decimals <= 0) toast(t('noDecimals', { currency: moneyConfig().currency }), 'warning')
+    setText((s) => numKey(s, k, moneyConfig().decimals, MAX_MONEY_DIGITS))
+  }
 
   const methods = useMemo(() => {
     const list = [...settings.enabledPayments]
@@ -109,6 +112,8 @@ export function PaymentDialog({ open, onClose, onComplete, onNeedCustomer }: { o
   }
 
   const addTender = async (method: PaymentMethod, amount?: number, reference?: string) => {
+    // A typed 0 means nothing, not "the amount due".
+    if (amount === undefined && text && typed <= 0) return void toast(t('aboveZero'), 'warning')
     let amt = amount ?? (typed > 0 ? typed : due)
     if (amt <= 0 && due > 0) return
     if (method !== 'cash') amt = Math.min(amt, due)
@@ -175,7 +180,26 @@ export function PaymentDialog({ open, onClose, onComplete, onNeedCustomer }: { o
       flush
       dismissible={!busy}
       footer={
-        !upi && (
+        upi ? (
+          <>
+            <Button size="lg" onClick={() => setUpi(null)}>
+              {t('common:back')}
+            </Button>
+            <Button
+              size="lg"
+              variant="success"
+              className="flex-1"
+              loading={busy}
+              onClick={() => {
+                const amount = upi.amount
+                setUpi(null)
+                void add('upi', amount, 'QR')
+              }}
+            >
+              {t('paymentReceived')}
+            </Button>
+          </>
+        ) : (
           <Button variant="success" size="xl" block loading={busy} disabled={due > 0} onClick={() => finalize(payments)}>
             {t('completeSale')}
             <kbd className="hidden rounded-md border border-current/35 px-1.5 py-0.5 font-mono text-[11px] font-medium opacity-80 lg:inline-block">Enter</kbd>
@@ -241,24 +265,6 @@ export function PaymentDialog({ open, onClose, onComplete, onNeedCustomer }: { o
               <img src={upi.qr} alt="UPI QR" className="size-64 rounded-2xl border border-border bg-white p-2" />
               <div className="tnum text-3xl font-semibold tracking-tight">{formatMoney(upi.amount)}</div>
               <div className="text-xs text-muted">{settings.upiId}</div>
-              <div className="flex w-full gap-2">
-                <Button size="lg" onClick={() => setUpi(null)}>
-                  {t('common:back')}
-                </Button>
-                <Button
-                  size="lg"
-                  variant="success"
-                  block
-                  loading={busy}
-                  onClick={() => {
-                    const amount = upi.amount
-                    setUpi(null)
-                    void add('upi', amount, 'QR')
-                  }}
-                >
-                  {t('paymentReceived')}
-                </Button>
-              </div>
             </div>
           ) : (
             <>

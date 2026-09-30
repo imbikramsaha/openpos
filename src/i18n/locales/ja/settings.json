@@ -156,7 +156,8 @@
     "gstMode": "インド GST モード",
     "gstModeHint": "税を CGST + SGST に分割し、州をまたぐ売上には IGST を適用、HSN コードを印刷します。",
     "intraState": "同一州内",
-    "interState": "他州"
+    "interState": "他州",
+    "nameTaken": "この名前の税率はすでにあります"
   },
   "formats": {
     "preview": "プレビュー",
@@ -600,6 +601,7 @@
     "noBackups": "ここにはまだバックアップがありません。",
     "encryptedFileTitle": "暗号化されたバックアップ",
     "encryptedFileHint": "このバックアップの暗号化に使ったパスフレーズを入力してください。",
-    "wrongPassphrase": "そのパスフレーズではこのバックアップを開けません。"
+    "wrongPassphrase": "そのパスフレーズではこのバックアップを開けません。",
+    "countRange": "{{min}}〜{{max}} の整数を入力してください"
   }
 }

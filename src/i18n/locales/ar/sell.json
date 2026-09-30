@@ -162,6 +162,12 @@
     "pointsEarned_few": "كسبت {{count}} نقاط ولاء",
     "pointsEarned_many": "كسبت {{count}} نقطة ولاء",
     "pointsEarned_other": "كسبت {{count}} نقطة ولاء",
+    "pointsReversed_zero": "لم تُخصم أي نقاط ولاء",
+    "pointsReversed_one": "خُصمت نقطة ولاء واحدة",
+    "pointsReversed_two": "خُصمت نقطتا ولاء",
+    "pointsReversed_few": "خُصمت {{count}} نقاط ولاء",
+    "pointsReversed_many": "خُصمت {{count}} نقطة ولاء",
+    "pointsReversed_other": "خُصمت {{count}} نقطة ولاء",
     "billTo": "الفاتورة إلى",
     "walkIn": "عميل مباشر",
     "paymentMode": "طريقة الدفع",
@@ -190,5 +196,6 @@
   "editSaleDone": "تم إلغاء {{number}}. صحّح عملية البيع وحصّل المبلغ من جديد.",
   "onlyInStock": "يتوفر {{qty}} فقط من {{name}} في المخزون",
   "wholeNumbersOnly": "يُباع هذا الصنف بأعداد صحيحة",
-  "aboveZero": "أدخل قيمة أكبر من صفر"
+  "aboveZero": "أدخل قيمة أكبر من صفر",
+  "noDecimals": "المبالغ بعملة {{currency}} لا تحتوي على منازل عشرية"
 }

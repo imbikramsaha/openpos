@@ -187,7 +187,8 @@
     },
     "fatal": {
       "empty": "Het bestand bevat geen rijen om te importeren.",
-      "noColumns": "Geen herkende kolommen. De eerste rij moet kopteksten bevatten zoals name, sku, barcode, price."
+      "noColumns": "Geen herkende kolommen. De eerste rij moet kopteksten bevatten zoals name, sku, barcode, price.",
+      "unclosedQuote": "Een aanhalingsteken (\") op regel {{line}} wordt nooit gesloten, dus de rest van het bestand kan niet worden gelezen. Herstel het bestand en probeer het opnieuw."
     },
     "issue": {
       "invalidNumber": "‘{{value}}’ is geen getal ({{column}})",
@@ -204,7 +205,12 @@
       "aboveMrp": "Prijs ligt boven de adviesprijs",
       "tooLarge": "{{column}} is te groot",
       "noPrice": "Geen prijs — wordt toegevoegd met prijs 0",
-      "barcodeScientific": "De spreadsheet heeft de barcode ‘{{value}}’ omgezet in een wetenschappelijke notatie. Geef de kolom de notatie tekst en exporteer opnieuw."
+      "barcodeScientific": "De spreadsheet heeft de barcode ‘{{value}}’ omgezet in een wetenschappelijke notatie. Geef de kolom de notatie tekst en exporteer opnieuw.",
+      "tooLong": "{{column}} is langer dan {{max}} tekens",
+      "ambiguousName": "Er zijn meerdere producten met de naam ‘{{name}}’. Voeg een SKU of barcode toe om aan te geven welk product je bedoelt.",
+      "sameName": "Er bestaat al een product met de naam ‘{{name}}’; deze regel voegt er nog een toe",
+      "duplicateName": "Zelfde naam als regel {{line}}",
+      "invalidColor": "De kleur moet eruitzien als #1a2b3c, niet ‘{{value}}’"
     }
   },
   "labels": {

@@ -153,6 +153,9 @@
     "pointsEarned_one": "Vous avez gagné {{count}} point de fidélité",
     "pointsEarned_other": "Vous avez gagné {{count}} points de fidélité",
     "pointsEarned_many": "Vous avez gagné {{count}} points de fidélité",
+    "pointsReversed_one": "{{count}} point de fidélité annulé",
+    "pointsReversed_other": "{{count}} points de fidélité annulés",
+    "pointsReversed_many": "{{count}} points de fidélité annulés",
     "billTo": "Facturer à",
     "walkIn": "Client de passage",
     "paymentMode": "Paiement",
@@ -181,5 +184,6 @@
   "editSaleDone": "{{number}} annulée. Corrigez la vente et encaissez à nouveau.",
   "onlyInStock": "Il ne reste que {{qty}} de {{name}} en stock",
   "wholeNumbersOnly": "Cet article se vend à l'unité",
-  "aboveZero": "Saisissez une valeur supérieure à zéro"
+  "aboveZero": "Saisissez une valeur supérieure à zéro",
+  "noDecimals": "Les montants en {{currency}} n'ont pas de décimales"
 }

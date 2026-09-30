@@ -187,7 +187,8 @@
     },
     "fatal": {
       "empty": "Walang row na ma-import sa file na ito.",
-      "noColumns": "Walang nakilalang column. Dapat may header ang unang row tulad ng name, sku, barcode, price."
+      "noColumns": "Walang nakilalang column. Dapat may header ang unang row tulad ng name, sku, barcode, price.",
+      "unclosedQuote": "Hindi kailanman naisara ang isang quote (\") sa line {{line}}, kaya hindi mabasa ang natitirang bahagi ng file. Ayusin ang file at subukang muli."
     },
     "issue": {
       "invalidNumber": "Hindi numero ang “{{value}}” ({{column}})",
@@ -204,7 +205,12 @@
       "aboveMrp": "Mas mataas ang presyo kaysa sa MRP",
       "tooLarge": "Sobrang laki ng {{column}}",
       "noPrice": "Walang presyo — idaragdag ito nang may presyong 0",
-      "barcodeScientific": "Ginawang scientific number ng spreadsheet ang barcode na “{{value}}”. I-format bilang text ang column at i-export ulit."
+      "barcodeScientific": "Ginawang scientific number ng spreadsheet ang barcode na “{{value}}”. I-format bilang text ang column at i-export ulit.",
+      "tooLong": "Mas mahaba ang {{column}} sa {{max}} na character",
+      "ambiguousName": "May ilang produktong may pangalang “{{name}}”. Magdagdag ng SKU o barcode para matukoy kung alin.",
+      "sameName": "May produkto nang may pangalang “{{name}}”; magdadagdag ng isa pa ang row na ito",
+      "duplicateName": "Kaparehong pangalan ng line {{line}}",
+      "invalidColor": "Dapat ay tulad ng #1a2b3c ang kulay, hindi “{{value}}”"
     }
   },
   "labels": {

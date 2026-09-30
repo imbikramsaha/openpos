@@ -172,7 +172,8 @@
     },
     "fatal": {
       "empty": "File tidak memiliki baris untuk diimpor.",
-      "noColumns": "Tidak ada kolom yang dikenali. Baris pertama harus berisi header seperti name, sku, barcode, price."
+      "noColumns": "Tidak ada kolom yang dikenali. Baris pertama harus berisi header seperti name, sku, barcode, price.",
+      "unclosedQuote": "Tanda kutip (\") di baris {{line}} tidak pernah ditutup, sehingga sisa file tidak dapat dibaca. Perbaiki file lalu coba lagi."
     },
     "issue": {
       "invalidNumber": "“{{value}}” bukan angka ({{column}})",
@@ -189,7 +190,12 @@
       "aboveMrp": "Harga lebih tinggi dari MRP",
       "tooLarge": "{{column}} terlalu besar",
       "noPrice": "Tidak ada harga — akan ditambahkan dengan harga 0",
-      "barcodeScientific": "Barcode “{{value}}” diubah menjadi notasi ilmiah oleh spreadsheet. Atur format kolom sebagai teks lalu ekspor lagi."
+      "barcodeScientific": "Barcode “{{value}}” diubah menjadi notasi ilmiah oleh spreadsheet. Atur format kolom sebagai teks lalu ekspor lagi.",
+      "tooLong": "{{column}} lebih dari {{max}} karakter",
+      "ambiguousName": "Ada beberapa produk bernama “{{name}}”. Tambahkan SKU atau barcode untuk menunjukkan yang mana.",
+      "sameName": "Produk bernama “{{name}}” sudah ada; baris ini menambahkan satu lagi",
+      "duplicateName": "Nama sama dengan baris {{line}}",
+      "invalidColor": "Warna harus seperti #1a2b3c, bukan “{{value}}”"
     }
   },
   "labels": {

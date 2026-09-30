@@ -161,7 +161,8 @@
     "gstMode": "حالت GST هند",
     "gstModeHint": "مالیات را به CGST + SGST، یا IGST برای فروش بین‌استانی تقسیم می‌کند و کدهای HSN را چاپ می‌کند.",
     "intraState": "درون استان شما",
-    "interState": "سایر استان‌ها"
+    "interState": "سایر استان‌ها",
+    "nameTaken": "نرخ مالیاتی با این نام از قبل وجود دارد"
   },
   "formats": {
     "preview": "پیش‌نمایش",
@@ -608,6 +609,7 @@
     "encryptedFileTitle": "پشتیبان رمزگذاری‌شده",
     "encryptedFileHint": "عبارت عبوری که این پشتیبان با آن رمزگذاری شده را وارد کنید.",
     "wrongPassphrase": "آن عبارت عبور این پشتیبان را باز نمی‌کند.",
+    "countRange": "یک عدد صحیح از {{min}} تا {{max}} وارد کنید",
     "interval_one": "هر ساعت",
     "interval_other": "هر {{count}} ساعت",
     "someFailed_one": "{{count}} مقصد ناموفق بود — در زیر ببینید",

@@ -22,6 +22,14 @@ export function toCsv(rows: Array<Record<string, unknown>>, columns?: string[]):
 
 /** Parses CSV with a header row. Detects ";" as delimiter (common in European Excel exports). */
 export function parseCsv(text: string): Array<Record<string, string>> {
+  return parseCsvDetailed(text).records
+}
+
+/**
+ * parseCsv, plus the line where a quoted field was opened and never closed (the rest of the
+ * file was read into that one field, so callers should refuse the file).
+ */
+export function parseCsvDetailed(text: string): { records: Array<Record<string, string>>; unclosedQuoteLine?: number } {
   const src = text.replace(/^\uFEFF/, '')
   const firstLine = src.split(/\r?\n/, 1)[0] ?? ''
   const count = (ch: string) => firstLine.split(ch).length - 1
@@ -31,8 +39,11 @@ export function parseCsv(text: string): Array<Record<string, string>> {
   let row: string[] = []
   let field = ''
   let quoted = false
+  let line = 1
+  let quoteLine = 0
   for (let i = 0; i < src.length; i++) {
     const ch = src[i]
+    if (ch === '\n') line++
     if (quoted) {
       if (ch === '"') {
         if (src[i + 1] === '"') {
@@ -40,8 +51,10 @@ export function parseCsv(text: string): Array<Record<string, string>> {
           i++
         } else quoted = false
       } else field += ch
-    } else if (ch === '"') quoted = true
-    else if (ch === delim) {
+    } else if (ch === '"') {
+      quoted = true
+      quoteLine = line
+    } else if (ch === delim) {
       row.push(field)
       field = ''
     } else if (ch === '\n' || ch === '\r') {
@@ -54,11 +67,12 @@ export function parseCsv(text: string): Array<Record<string, string>> {
   }
   row.push(field)
   if (row.some((c) => c !== '')) rows.push(row)
-  if (!rows.length) return []
+  const unclosedQuoteLine = quoted ? quoteLine : undefined
+  if (!rows.length) return { records: [], unclosedQuoteLine }
   const header = rows[0].map((h) => h.trim())
   // Undo the export-time apostrophe that neutralises formula-like cells.
   const clean = (v: string) => v.trim().replace(/^'(?=[=+\-@])/, '')
-  return rows.slice(1).map((r) => {
+  const records = rows.slice(1).map((r) => {
     const out: Record<string, string> = {}
     // With a repeated header the first column wins, rather than silently the last.
     header.forEach((h, i) => {
@@ -66,4 +80,5 @@ export function parseCsv(text: string): Array<Record<string, string>> {
     })
     return out
   })
+  return { records, unclosedQuoteLine }
 }

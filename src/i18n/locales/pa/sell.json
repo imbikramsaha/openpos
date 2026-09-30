@@ -150,6 +150,8 @@
     "change": "ਵੱਟਾ",
     "pointsEarned_one": "ਤੁਹਾਨੂੰ {{count}} ਲੌਇਲਟੀ ਪੁਆਇੰਟ ਮਿਲਿਆ",
     "pointsEarned_other": "ਤੁਹਾਨੂੰ {{count}} ਲੌਇਲਟੀ ਪੁਆਇੰਟ ਮਿਲੇ",
+    "pointsReversed_one": "{{count}} ਲੌਇਲਟੀ ਪੁਆਇੰਟ ਵਾਪਸ ਲਿਆ ਗਿਆ",
+    "pointsReversed_other": "{{count}} ਲੌਇਲਟੀ ਪੁਆਇੰਟ ਵਾਪਸ ਲਏ ਗਏ",
     "billTo": "ਬਿੱਲ ਕਿਸ ਨੂੰ",
     "walkIn": "ਵਾਕ-ਇਨ ਗਾਹਕ",
     "paymentMode": "ਭੁਗਤਾਨ",
@@ -178,5 +180,6 @@
   "editSaleDone": "{{number}} ਰੱਦ ਕੀਤੀ ਗਈ। ਵਿਕਰੀ ਠੀਕ ਕਰੋ ਅਤੇ ਦੁਬਾਰਾ ਭੁਗਤਾਨ ਲਓ।",
   "onlyInStock": "{{name}} ਸਿਰਫ਼ {{qty}} ਸਟਾਕ ਵਿੱਚ ਹੈ",
   "wholeNumbersOnly": "ਇਹ ਚੀਜ਼ ਸਿਰਫ਼ ਪੂਰੀ ਗਿਣਤੀ ਵਿੱਚ ਵਿਕਦੀ ਹੈ",
-  "aboveZero": "ਸਿਫ਼ਰ ਤੋਂ ਵੱਧ ਮੁੱਲ ਪਾਓ"
+  "aboveZero": "ਸਿਫ਼ਰ ਤੋਂ ਵੱਧ ਮੁੱਲ ਪਾਓ",
+  "noDecimals": "{{currency}} ਵਿੱਚ ਰਕਮਾਂ ਦੇ ਦਸ਼ਮਲਵ ਸਥਾਨ ਨਹੀਂ ਹੁੰਦੇ"
 }

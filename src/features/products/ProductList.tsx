@@ -72,6 +72,8 @@ export function ProductList({ products, categories, filters, onFilters, onEdit, 
   }, [products, categories, hay, query, filters, category])
 
   useEffect(() => setLimit(PAGE_SIZE), [query, category, filters.status, filters.sort])
+  // A new search or filter starts a new selection, so bulk actions never reach rows that aren't shown.
+  useEffect(() => setSelected(new Set()), [query, category, filters.status])
 
   // Drop selections for products that disappeared (deleted here or on another terminal).
   const liveIds = useMemo(() => new Set(products.map((p) => p.id)), [products])

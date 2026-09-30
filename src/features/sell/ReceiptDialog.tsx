@@ -11,6 +11,7 @@ import { useSettings } from '@/stores/settings'
 import { toast } from '@/stores/ui'
 import { Button, Modal } from '@/components/ui'
 import { receiptHtml, receiptText } from './receipt'
+import { CALLING_CODES } from '@/lib/validate'
 
 export async function printSale(sale: Sale) {
   const s = useSettings.getState().settings
@@ -19,12 +20,6 @@ export async function printSale(sale: Sale) {
   for (let i = 0; i < Math.max(1, s.receipt.copies); i++) await printHtml(html, width)
 }
 
-// International calling codes for the country presets (wa.me needs the full number).
-const CALLING_CODES: Record<string, string> = {
-  IN: '91', US: '1', CA: '1', GB: '44', AE: '971', SA: '966', PK: '92', BD: '880', NP: '977', LK: '94', ID: '62', MY: '60',
-  SG: '65', PH: '63', TH: '66', VN: '84', JP: '81', KR: '82', CN: '86', DE: '49', FR: '33', ES: '34', IT: '39', NL: '31',
-  PL: '48', PT: '351', BR: '55', MX: '52', AU: '61', NZ: '64', ZA: '27', NG: '234', KE: '254', EG: '20', TR: '90', RU: '7', IR: '98',
-}
 
 /**
  * Digits for a wa.me link. Numbers saved without "+" are local numbers: WhatsApp would read

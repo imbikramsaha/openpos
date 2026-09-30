@@ -32,8 +32,9 @@ export function Overview({ products, categories, onOpen }: { products: Product[]
       // every tracked product (as the stock list and valuation export do); reorder only active ones.
       tracked++
       const qty = Math.max(p.stock, 0)
-      cost += qty * p.cost
-      retail += qty * p.price
+      // Round per product, as the stock list and valuation export do, so the totals agree.
+      cost += Math.round(qty * p.cost)
+      retail += Math.round(qty * p.price)
       if (!p.active) continue
       const s = stockStatus(p)
       if (s === 'out') out++

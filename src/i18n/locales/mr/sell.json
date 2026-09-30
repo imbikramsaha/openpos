@@ -150,6 +150,8 @@
     "change": "परत रक्कम",
     "pointsEarned_one": "तुम्हाला {{count}} लॉयल्टी पॉइंट मिळाला",
     "pointsEarned_other": "तुम्हाला {{count}} लॉयल्टी पॉइंट्स मिळाले",
+    "pointsReversed_one": "{{count}} लॉयल्टी पॉइंट परत घेतला",
+    "pointsReversed_other": "{{count}} लॉयल्टी पॉइंट्स परत घेतले",
     "billTo": "बिल कोणाला",
     "walkIn": "साधारण ग्राहक",
     "paymentMode": "पेमेंट",
@@ -178,5 +180,6 @@
   "editSaleDone": "{{number}} रद्द झाले. विक्री दुरुस्त करा आणि पुन्हा पैसे घ्या.",
   "onlyInStock": "{{name}} फक्त {{qty}} स्टॉकमध्ये आहे",
   "wholeNumbersOnly": "ही वस्तू फक्त पूर्ण संख्येत विकली जाते",
-  "aboveZero": "शून्यापेक्षा जास्त मूल्य टाका"
+  "aboveZero": "शून्यापेक्षा जास्त मूल्य टाका",
+  "noDecimals": "{{currency}} मधील रकमांना दशांश स्थान नसते"
 }

@@ -147,6 +147,7 @@
     "total": "Total",
     "change": "Kembalian",
     "pointsEarned_other": "Anda mendapat {{count}} poin loyalitas",
+    "pointsReversed_other": "{{count}} poin loyalitas dibatalkan",
     "billTo": "Ditagihkan kepada",
     "walkIn": "Pelanggan tanpa nama",
     "paymentMode": "Pembayaran",
@@ -175,5 +176,6 @@
   "editSaleDone": "{{number}} dibatalkan. Perbaiki penjualan lalu tagih lagi.",
   "onlyInStock": "Stok {{name}} tinggal {{qty}}",
   "wholeNumbersOnly": "Barang ini dijual dalam jumlah bulat",
-  "aboveZero": "Masukkan nilai lebih dari nol"
+  "aboveZero": "Masukkan nilai lebih dari nol",
+  "noDecimals": "Jumlah dalam {{currency}} tidak memiliki angka desimal"
 }

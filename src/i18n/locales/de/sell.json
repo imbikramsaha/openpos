@@ -150,6 +150,8 @@
     "change": "Rückgeld",
     "pointsEarned_one": "Du hast {{count}} Treuepunkt gesammelt",
     "pointsEarned_other": "Du hast {{count}} Treuepunkte gesammelt",
+    "pointsReversed_one": "{{count}} Treuepunkt zurückgebucht",
+    "pointsReversed_other": "{{count}} Treuepunkte zurückgebucht",
     "billTo": "Rechnung an",
     "walkIn": "Laufkunde",
     "paymentMode": "Zahlung",
@@ -178,5 +180,6 @@
   "editSaleDone": "{{number}} storniert. Korrigiere den Verkauf und kassiere erneut.",
   "onlyInStock": "Nur {{qty}} von {{name}} auf Lager",
   "wholeNumbersOnly": "Dieser Artikel wird nur in ganzen Stück verkauft",
-  "aboveZero": "Gib einen Wert über null ein"
+  "aboveZero": "Gib einen Wert über null ein",
+  "noDecimals": "Beträge in {{currency}} haben keine Nachkommastellen"
 }

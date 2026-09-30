@@ -171,7 +171,8 @@
     "gstMode": "Tryb GST (Indie)",
     "gstModeHint": "Dzieli podatek na CGST + SGST lub IGST dla sprzedaży międzystanowej i drukuje kody HSN.",
     "intraState": "W obrębie Twojego stanu",
-    "interState": "Inne stany"
+    "interState": "Inne stany",
+    "nameTaken": "Stawka podatku o tej nazwie już istnieje"
   },
   "formats": {
     "preview": "Podgląd",
@@ -633,6 +634,7 @@
     "noBackups": "Nie ma tu jeszcze żadnych kopii zapasowych.",
     "encryptedFileTitle": "Zaszyfrowana kopia zapasowa",
     "encryptedFileHint": "Wpisz hasło, którym zaszyfrowano tę kopię zapasową.",
-    "wrongPassphrase": "To hasło nie pasuje do tej kopii zapasowej."
+    "wrongPassphrase": "To hasło nie pasuje do tej kopii zapasowej.",
+    "countRange": "Wpisz liczbę całkowitą od {{min}} do {{max}}"
   }
 }

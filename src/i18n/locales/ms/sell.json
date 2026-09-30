@@ -147,6 +147,7 @@
     "total": "Jumlah",
     "change": "Baki tukar",
     "pointsEarned_other": "Anda memperoleh {{count}} mata ganjaran",
+    "pointsReversed_other": "{{count}} mata ganjaran dibatalkan",
     "billTo": "Bil kepada",
     "walkIn": "Pelanggan tanpa akaun",
     "paymentMode": "Pembayaran",
@@ -175,5 +176,6 @@
   "editSaleDone": "{{number}} dibatalkan. Betulkan jualan dan kenakan bayaran semula.",
   "onlyInStock": "Stok {{name}} tinggal {{qty}} sahaja",
   "wholeNumbersOnly": "Barang ini dijual dalam bilangan bulat",
-  "aboveZero": "Masukkan nilai lebih daripada sifar"
+  "aboveZero": "Masukkan nilai lebih daripada sifar",
+  "noDecimals": "Amaun dalam {{currency}} tiada tempat perpuluhan"
 }

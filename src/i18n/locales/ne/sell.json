@@ -150,6 +150,8 @@
     "change": "फिर्ता रकम",
     "pointsEarned_one": "तपाईंले {{count}} लोयल्टी पोइन्ट कमाउनुभयो",
     "pointsEarned_other": "तपाईंले {{count}} लोयल्टी पोइन्टहरू कमाउनुभयो",
+    "pointsReversed_one": "{{count}} लोयल्टी पोइन्ट फिर्ता लिइयो",
+    "pointsReversed_other": "{{count}} लोयल्टी पोइन्टहरू फिर्ता लिइए",
     "billTo": "बिल गर्ने",
     "walkIn": "वाक-इन ग्राहक",
     "paymentMode": "भुक्तानी",
@@ -178,5 +180,6 @@
   "editSaleDone": "{{number}} खारेज भयो। बिक्री सच्याएर फेरि भुक्तानी लिनुहोस्।",
   "onlyInStock": "{{name}} केवल {{qty}} स्टकमा छ",
   "wholeNumbersOnly": "यो सामान पूर्ण सङ्ख्यामा मात्र बिक्छ",
-  "aboveZero": "शून्यभन्दा बढी मान हाल्नुहोस्"
+  "aboveZero": "शून्यभन्दा बढी मान हाल्नुहोस्",
+  "noDecimals": "{{currency}} मा रकमहरूमा दशमलव स्थान हुँदैन"
 }

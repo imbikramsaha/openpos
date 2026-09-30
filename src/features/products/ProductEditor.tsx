@@ -477,7 +477,7 @@ function EditorPanel({ target, onClose, onDuplicate, onPrintLabel }: {
 
 function Clash({ text }: { text: string }) {
   return (
-    <p className="mt-1 flex items-start gap-1.5 text-xs font-medium text-warning">
+    <p className="mt-1 flex min-w-0 items-start gap-1.5 text-xs font-medium text-warning [overflow-wrap:anywhere]">
       <AlertTriangle className="mt-px size-3.5 shrink-0" /> {text}
     </p>
   )

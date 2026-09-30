@@ -150,6 +150,8 @@
     "change": "Change",
     "pointsEarned_one": "You earned {{count}} loyalty point",
     "pointsEarned_other": "You earned {{count}} loyalty points",
+    "pointsReversed_one": "{{count}} loyalty point reversed",
+    "pointsReversed_other": "{{count}} loyalty points reversed",
     "billTo": "Bill to",
     "walkIn": "Walk-in customer",
     "paymentMode": "Payment",
@@ -178,5 +180,6 @@
   "editSaleDone": "{{number}} voided. Fix the sale and charge again.",
   "onlyInStock": "Only {{qty}} of {{name}} in stock",
   "wholeNumbersOnly": "This item is sold in whole numbers",
-  "aboveZero": "Enter an amount above zero"
+  "aboveZero": "Enter an amount above zero",
+  "noDecimals": "Amounts in {{currency}} have no decimal places"
 }

@@ -77,6 +77,7 @@ function thermal(sale: Sale, s: Settings): string {
   .c { text-align: center } .r { text-align: end; white-space: nowrap; vertical-align: bottom } .b { font-weight: 700 }
   h1 { font-size: 16px; margin: 0 0 2px } .meta { color: #333; font-size: 11px }
   table { width: 100%; border-collapse: collapse } td { padding: 1px 0; vertical-align: top }
+  table.meta td:first-child { white-space: nowrap; padding-inline-end: 8px }
   .name { font-weight: 600; padding-top: 4px }
   hr { border: 0; border-top: 1px dashed #000; margin: 6px 0 }
   .total td { font-size: 16px; font-weight: 800; padding-top: 4px }
@@ -104,7 +105,7 @@ function thermal(sale: Sale, s: Settings): string {
   <table>${totals.map(([l, v, cls]) => `<tr class="${cls ?? ''}"><td>${e(l)}</td><td class="r">${formatMoney(v)}</td></tr>`).join('')}
   <tr class="total"><td>${e(t('receipt.total'))}</td><td class="r">${formatMoney(sale.total)}</td></tr></table>
   <hr><table>${payments}${sale.change ? `<tr class="b"><td>${e(t('receipt.change'))}</td><td class="r">${formatMoney(sale.change)}</td></tr>` : ''}</table>
-  ${sale.loyaltyEarned ? `<div class="meta c" style="margin-top:6px">${e(t('receipt.pointsEarned', { count: sale.loyaltyEarned }))}</div>` : ''}
+  ${sale.loyaltyEarned ? `<div class="meta c" style="margin-top:6px">${e(sale.loyaltyEarned > 0 ? t('receipt.pointsEarned', { count: sale.loyaltyEarned }) : t('receipt.pointsReversed', { count: -sale.loyaltyEarned }))}</div>` : ''}
   ${sale.note ? `<div class="meta" style="margin-top:6px">${e(sale.note)}</div>` : ''}
   ${r.footer ? `<hr><div class="c" style="white-space:pre-line">${e(r.footer)}</div>` : ''}
   ${r.showBarcode ? `<div class="bc">${barcodeSvg(sale.number)}</div>` : ''}
@@ -159,7 +160,7 @@ function invoiceA4(sale: Sale, s: Settings): string {
     <div class="r"><h2>${e(docTitle(sale, s)).toUpperCase()}</h2>
     <div><span class="m">${e(t('receipt.number'))}:</span> <b>${e(sale.number)}</b></div>
     <div><span class="m">${e(t('receipt.date'))}:</span> ${e(formatDateTime(sale.createdAt))}</div>
-    ${gst ? `<div><span class="m">${e(t('receipt.placeOfSupply'))}:</span> ${sale.interState ? e(t('receipt.interState')) : e(state?.[1] ?? '')}</div>` : ''}</div></div>
+    ${gst && (sale.interState || state) ? `<div><span class="m">${e(t('receipt.placeOfSupply'))}:</span> ${sale.interState ? e(t('receipt.interState')) : e(state![1])}</div>` : ''}</div></div>
   <div class="grid"><div class="box"><div class="m">${e(t('receipt.billTo'))}</div>
     <div class="b">${e(sale.customerName || t('receipt.walkIn'))}</div>
     ${sale.customerPhone ? `<div>${ltr(e(sale.customerPhone))}</div>` : ''}

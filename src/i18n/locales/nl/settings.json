@@ -161,7 +161,8 @@
     "gstMode": "India GST-modus",
     "gstModeHint": "Splitst belasting in CGST + SGST, of IGST voor verkopen tussen deelstaten, en drukt HSN-codes af.",
     "intraState": "Binnen je deelstaat",
-    "interState": "Andere deelstaten"
+    "interState": "Andere deelstaten",
+    "nameTaken": "Er bestaat al een belastingtarief met deze naam"
   },
   "formats": {
     "preview": "Voorbeeld",
@@ -611,6 +612,7 @@
     "noBackups": "Hier nog geen back-ups.",
     "encryptedFileTitle": "Versleutelde back-up",
     "encryptedFileHint": "Voer de wachtwoordzin in waarmee deze back-up is versleuteld.",
-    "wrongPassphrase": "Deze wachtwoordzin opent deze back-up niet."
+    "wrongPassphrase": "Deze wachtwoordzin opent deze back-up niet.",
+    "countRange": "Voer een geheel getal van {{min}} tot {{max}} in"
   }
 }

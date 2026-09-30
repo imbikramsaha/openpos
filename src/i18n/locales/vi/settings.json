@@ -156,7 +156,8 @@
     "gstMode": "Chế độ GST Ấn Độ",
     "gstModeHint": "Tách thuế thành CGST + SGST, hoặc IGST cho các đơn bán liên bang, và in mã HSN.",
     "intraState": "Trong bang của bạn",
-    "interState": "Các bang khác"
+    "interState": "Các bang khác",
+    "nameTaken": "Đã có thuế suất với tên này"
   },
   "formats": {
     "preview": "Xem trước",
@@ -600,6 +601,7 @@
     "noBackups": "Chưa có bản sao lưu nào ở đây.",
     "encryptedFileTitle": "Bản sao lưu đã mã hóa",
     "encryptedFileHint": "Nhập cụm mật khẩu đã dùng để mã hóa bản sao lưu này.",
-    "wrongPassphrase": "Cụm mật khẩu này không mở được bản sao lưu."
+    "wrongPassphrase": "Cụm mật khẩu này không mở được bản sao lưu.",
+    "countRange": "Nhập số nguyên từ {{min}} đến {{max}}"
   }
 }

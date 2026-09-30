@@ -17,7 +17,8 @@ import { Avatar, Badge, Button, DataTable, EmptyState, Page, PageBody, PageHeade
 import { MenuButton, useDebounced } from '@/features/sales/shared'
 import { CustomerDetail } from './CustomerDetail'
 import { CustomerForm } from './CustomerForm'
-import { CSV_COLUMNS, applyImport, customerStatsMap, customersCsv, phoneKey, planImport, type CustomerStats } from './ledger'
+import { CSV_COLUMNS, applyImport, customerStatsMap, customersCsv, planImport, type CustomerStats } from './ledger'
+import { phoneMatches } from '@/lib/validate'
 
 type Filter = 'all' | 'due' | 'points'
 type Sort = 'name' | 'balance' | 'recent'
@@ -73,7 +74,7 @@ export default function CustomersScreen() {
       out = out.filter(
         (c) =>
           c.name.toLowerCase().includes(s) ||
-          (digits.length >= 3 && phoneKey(c.phone).includes(digits.slice(-10))) ||
+          phoneMatches(c.phone, digits, settings.country) ||
           !!c.email?.toLowerCase().includes(s) ||
           !!c.taxNumber?.toLowerCase().includes(s),
       )

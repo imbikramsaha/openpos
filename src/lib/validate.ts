@@ -38,6 +38,34 @@ export function sanitizePhone(input: string): string {
 
 export const phoneDigits = (v: string) => v.replace(/\D/g, '')
 
+// International calling codes for the country presets (wa.me needs the full number).
+export const CALLING_CODES: Record<string, string> = {
+  IN: '91', US: '1', CA: '1', GB: '44', AE: '971', SA: '966', PK: '92', BD: '880', NP: '977', LK: '94', ID: '62', MY: '60',
+  SG: '65', PH: '63', TH: '66', VN: '84', JP: '81', KR: '82', CN: '86', DE: '49', FR: '33', ES: '34', IT: '39', NL: '31',
+  PL: '48', PT: '351', BR: '55', MX: '52', AU: '61', NZ: '64', ZA: '27', NG: '234', KE: '254', EG: '20', TR: '90', RU: '7', IR: '98',
+}
+
+/** Last 10 digits: the same local number with or without a country code. */
+export const phoneKey = (p?: string) => (p ?? '').replace(/\D/g, '').slice(-10)
+
+/**
+ * Whether typed digits find a phone number, with or without the country code or a leading 0:
+ * "+91 98765", "98765" and "098765" all find "+91 98765 43210" and "9876543210".
+ */
+export function phoneMatches(phone: string | undefined, digits: string, country?: string): boolean {
+  if (!phone || digits.length < 3) return false
+  const full = phoneDigits(phone)
+  if (full.includes(digits)) return true
+  const cc = country ? CALLING_CODES[country] : undefined
+  const local = (d: string) => {
+    let out = d.replace(/^0+/, '')
+    if (cc && out.startsWith(cc) && out.length > cc.length + 2) out = out.slice(cc.length)
+    return out
+  }
+  const q = local(digits)
+  return q.length >= 3 && local(full).includes(q)
+}
+
 export function phoneError(v: string | undefined): string | undefined {
   if (!v?.trim()) return undefined
   const n = phoneDigits(v).length

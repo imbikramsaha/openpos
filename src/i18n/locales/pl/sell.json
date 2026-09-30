@@ -156,6 +156,10 @@
     "pointsEarned_few": "Zdobyto {{count}} punkty lojalnościowe",
     "pointsEarned_many": "Zdobyto {{count}} punktów lojalnościowych",
     "pointsEarned_other": "Zdobyto {{count}} punktu lojalnościowego",
+    "pointsReversed_one": "Cofnięto {{count}} punkt lojalnościowy",
+    "pointsReversed_few": "Cofnięto {{count}} punkty lojalnościowe",
+    "pointsReversed_many": "Cofnięto {{count}} punktów lojalnościowych",
+    "pointsReversed_other": "Cofnięto {{count}} punktu lojalnościowego",
     "billTo": "Nabywca",
     "walkIn": "Klient anonimowy",
     "paymentMode": "Płatność",
@@ -184,5 +188,6 @@
   "editSaleDone": "Anulowano {{number}}. Popraw sprzedaż i przyjmij płatność ponownie.",
   "onlyInStock": "Na stanie tylko {{qty}} — {{name}}",
   "wholeNumbersOnly": "Ten produkt sprzedaje się tylko w całych sztukach",
-  "aboveZero": "Wpisz wartość większą od zera"
+  "aboveZero": "Wpisz wartość większą od zera",
+  "noDecimals": "Kwoty w {{currency}} nie mają miejsc po przecinku"
 }

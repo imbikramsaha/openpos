@@ -202,7 +202,8 @@
     },
     "fatal": {
       "empty": "El archivo no tiene filas para importar.",
-      "noColumns": "No se reconoció ninguna columna. La primera fila debe contener encabezados como name, sku, barcode, price."
+      "noColumns": "No se reconoció ninguna columna. La primera fila debe contener encabezados como name, sku, barcode, price.",
+      "unclosedQuote": "Unas comillas (\") de la línea {{line}} nunca se cierran, así que no se puede leer el resto del archivo. Corrige el archivo e inténtalo de nuevo."
     },
     "issue": {
       "invalidNumber": "“{{value}}” no es un número ({{column}})",
@@ -219,7 +220,12 @@
       "aboveMrp": "El precio supera el PVP máximo",
       "tooLarge": "{{column}} es demasiado grande",
       "noPrice": "Sin precio — se añadirá con precio 0",
-      "barcodeScientific": "La hoja de cálculo convirtió el código de barras “{{value}}” en un número científico. Da formato de texto a la columna y exporta de nuevo."
+      "barcodeScientific": "La hoja de cálculo convirtió el código de barras “{{value}}” en un número científico. Da formato de texto a la columna y exporta de nuevo.",
+      "tooLong": "{{column}} tiene más de {{max}} caracteres",
+      "ambiguousName": "Hay varios productos llamados “{{name}}”. Añade un SKU o un código de barras para indicar cuál.",
+      "sameName": "Ya existe un producto llamado “{{name}}”; esta fila añade otro",
+      "duplicateName": "Mismo nombre que la línea {{line}}",
+      "invalidColor": "El color debe tener el formato #1a2b3c, no “{{value}}”"
     }
   },
   "labels": {

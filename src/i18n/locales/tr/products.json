@@ -187,7 +187,8 @@
     },
     "fatal": {
       "empty": "Dosyada içe aktarılacak satır yok.",
-      "noColumns": "Tanınan sütun yok. İlk satır name, sku, barcode, price gibi başlıklar içermelidir."
+      "noColumns": "Tanınan sütun yok. İlk satır name, sku, barcode, price gibi başlıklar içermelidir.",
+      "unclosedQuote": "{{line}}. satırdaki bir tırnak işareti (\") hiç kapatılmamış, bu yüzden dosyanın geri kalanı okunamıyor. Dosyayı düzeltip yeniden deneyin."
     },
     "issue": {
       "invalidNumber": "“{{value}}” bir sayı değil ({{column}})",
@@ -204,7 +205,12 @@
       "aboveMrp": "Fiyat MRP'nin üzerinde",
       "tooLarge": "{{column}} çok büyük",
       "noPrice": "Fiyat yok — 0 fiyatla eklenecek",
-      "barcodeScientific": "“{{value}}” barkodu, e-tablo tarafından bilimsel bir sayıya dönüştürüldü. Sütunu metin olarak biçimlendirip yeniden dışa aktarın."
+      "barcodeScientific": "“{{value}}” barkodu, e-tablo tarafından bilimsel bir sayıya dönüştürüldü. Sütunu metin olarak biçimlendirip yeniden dışa aktarın.",
+      "tooLong": "{{column}} {{max}} karakterden uzun",
+      "ambiguousName": "“{{name}}” adlı birden fazla ürün var. Hangisi olduğunu belirtmek için bir SKU veya barkod ekleyin.",
+      "sameName": "“{{name}}” adlı bir ürün zaten var; bu satır bir tane daha ekler",
+      "duplicateName": "{{line}}. satırla aynı ad",
+      "invalidColor": "Renk #1a2b3c biçiminde olmalı, “{{value}}” değil"
     }
   },
   "labels": {

@@ -150,6 +150,8 @@
     "change": "ফেরত",
     "pointsEarned_one": "আপনি {{count}} লয়্যালটি পয়েন্ট পেয়েছেন",
     "pointsEarned_other": "আপনি {{count}} লয়্যালটি পয়েন্ট পেয়েছেন",
+    "pointsReversed_one": "{{count}} লয়্যালটি পয়েন্ট ফেরত নেওয়া হয়েছে",
+    "pointsReversed_other": "{{count}} লয়্যালটি পয়েন্ট ফেরত নেওয়া হয়েছে",
     "billTo": "বিল প্রাপক",
     "walkIn": "সাধারণ গ্রাহক",
     "paymentMode": "পেমেন্ট",
@@ -178,5 +180,6 @@
   "editSaleDone": "{{number}} বাতিল হয়েছে। বিক্রিটি ঠিক করে আবার টাকা নিন।",
   "onlyInStock": "{{name}} মাত্র {{qty}} স্টকে আছে",
   "wholeNumbersOnly": "এই পণ্য পূর্ণ সংখ্যায় বিক্রি হয়",
-  "aboveZero": "শূন্যের বেশি পরিমাণ দিন"
+  "aboveZero": "শূন্যের বেশি পরিমাণ দিন",
+  "noDecimals": "{{currency}}-এর পরিমাণে কোনো দশমিক স্থান নেই"
 }

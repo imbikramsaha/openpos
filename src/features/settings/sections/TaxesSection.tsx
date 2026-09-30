@@ -11,6 +11,7 @@ import { toast } from '@/stores/ui'
 import { Badge, Button, Checkbox, EmptyState, Input, Modal, NumberInput, Select } from '@/components/ui'
 import { Group, Notice, Row, Stack, ToggleRow } from '../ui'
 import { useSettingsDraft } from '../hooks'
+import { useSettings } from '@/stores/settings'
 
 export function TaxesSection() {
   const { t } = useTranslation('settings')
@@ -153,7 +154,9 @@ function TaxDialog({ tax, usage, isDefault, onClose }: { tax: Tax | 'new' | null
   }, [open, existing, isDefault])
 
   const rateError = rate === undefined ? undefined : rate < 0 || rate > 100 ? t('taxes.rateRange') : undefined
-  const valid = name.trim() && rate !== undefined && !rateError
+  const taxes = useSettings((s) => s.taxes)
+  const nameTaken = !!name.trim() && taxes.some((x) => !x.deleted && x.id !== existing?.id && x.name.trim().toLowerCase() === name.trim().toLowerCase())
+  const valid = name.trim() && !nameTaken && rate !== undefined && !rateError
   const rateChanged = existing && rate !== undefined && rate !== existing.rate && usage > 0
 
   const save = async () => {
@@ -192,7 +195,7 @@ function TaxDialog({ tax, usage, isDefault, onClose }: { tax: Tax | 'new' | null
       }
     >
       <form className="space-y-4" onSubmit={(e) => (e.preventDefault(), void save())}>
-        <Input label={t('taxes.name')} placeholder={t('taxes.namePlaceholder')} value={name} onChange={(e) => setName(e.target.value)} autoFocus maxLength={40} />
+        <Input label={t('taxes.name')} placeholder={t('taxes.namePlaceholder')} value={name} onChange={(e) => setName(e.target.value)} autoFocus maxLength={40} error={nameTaken ? t('taxes.nameTaken') : undefined} />
         <NumberInput label={t('taxes.rate')} value={rate} onChange={setRate} error={rateError} right={<span className="pe-2 text-sm text-subtle">%</span>} placeholder="18" />
         {!isDefault && <Checkbox checked={makeDefault} onChange={setMakeDefault} label={t('taxes.setAsDefault')} />}
         {rateChanged && <Notice tone="warning">{t('taxes.rateChangeWarning', { count: usage })}</Notice>}

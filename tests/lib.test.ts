@@ -26,6 +26,9 @@ describe('money', () => {
     expect(parseDecimal('1.234,50')).toBe(1234.5)
     expect(parseDecimal('1,234.50')).toBe(1234.5)
     expect(parseDecimal('1,500')).toBe(1500)
+    // A leading 0 is never a thousands group: "0,500" is half.
+    expect(parseDecimal('0,500')).toBe(0.5)
+    expect(parseDecimal('-0,250')).toBe(-0.25)
     expect(parseDecimal('1.234.567')).toBe(1234567)
     expect(parseDecimal(' 42 ')).toBe(42)
     expect(Number.isNaN(parseDecimal(''))).toBe(true)
@@ -133,5 +136,16 @@ describe('money edge cases', () => {
     expect(Number.isNaN(parseDecimal('12abc'))).toBe(true)
     expect(parseDecimal('−5')).toBe(-5)
     expect(parseDecimal('.5')).toBe(0.5)
+  })
+})
+
+describe('phone search', () => {
+  it('finds a number typed with or without the country code or a leading 0', async () => {
+    const { phoneMatches } = await import('@/lib/validate')
+    for (const stored of ['+91 98765 43210', '9876543210', '098765 43210']) {
+      for (const typed of ['98765', '9198765', '098765', '9876543210', '919876543210']) expect(phoneMatches(stored, typed, 'IN'), `${stored} / ${typed}`).toBe(true)
+    }
+    expect(phoneMatches('+91 98765 43210', '12345', 'IN')).toBe(false)
+    expect(phoneMatches('+91 98765 43210', '98', 'IN')).toBe(false)
   })
 })

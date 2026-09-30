@@ -65,7 +65,7 @@ export function ConfirmHost() {
         </>
       }
     >
-      {req?.message && <div className="text-sm text-muted">{req.message}</div>}
+      {req?.message && <div className="text-sm text-muted [overflow-wrap:anywhere]">{req.message}</div>}
     </Modal>
   )
 }
@@ -96,7 +96,7 @@ export function PromptHost() {
       }
     >
       <form onSubmit={(e) => (e.preventDefault(), value && close(value))} className="space-y-3">
-        {req?.message && <div className="text-sm text-muted">{req.message}</div>}
+        {req?.message && <div className="text-sm text-muted [overflow-wrap:anywhere]">{req.message}</div>}
         <Input label={req?.label} type={req?.type ?? 'text'} value={value} onChange={(e) => setValue(e.target.value)} autoFocus autoComplete="off" />
       </form>
     </Modal>

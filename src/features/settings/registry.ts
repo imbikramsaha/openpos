@@ -53,6 +53,13 @@ export const SECTIONS: SectionDef[] = [
 
 export const GROUPS: SectionGroup[] = ['store', 'terminal', 'system']
 
+/** Search labels that aren't translations (product names). */
+export const BRAND_LABELS: Record<string, string> = { 'autoBackup.gdrive': 'Google Drive', 'autoBackup.onedrive': 'OneDrive', 'autoBackup.dropbox': 'Dropbox' }
+/** Settings that only exist in the desktop app. */
+export const DESKTOP_ONLY = new Set(['device.silentPrint'])
+/** Settings shown only once another is on: search scrolls to that one when they're hidden. */
+export const FALLBACK_ANCHOR: Record<string, string> = { 'checkout.loyaltyEarnRate': 'checkout.loyalty', 'checkout.loyaltyPointValue': 'checkout.loyalty' }
+
 export const findSection = (id?: string) => SECTIONS.find((s) => s.id === id)
 
 /** Case- and accent-insensitive match used by the settings search. */

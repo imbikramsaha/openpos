@@ -161,7 +161,8 @@
     "gstMode": "Hali ya GST ya India",
     "gstModeHint": "Inagawanya kodi kwenye CGST + SGST, au IGST kwa mauzo ya nje ya jimbo, na kuchapisha misimbo ya HSN.",
     "intraState": "Ndani ya jimbo lako",
-    "interState": "Majimbo mengine"
+    "interState": "Majimbo mengine",
+    "nameTaken": "Kiwango cha kodi chenye jina hili tayari kipo"
   },
   "formats": {
     "preview": "Hakiki",
@@ -611,6 +612,7 @@
     "noBackups": "Hakuna nakala hapa bado.",
     "encryptedFileTitle": "Nakala iliyosimbwa kwa usiri",
     "encryptedFileHint": "Weka nenosiri lililotumika kusimba nakala hii.",
-    "wrongPassphrase": "Nenosiri hilo halifungui nakala hii."
+    "wrongPassphrase": "Nenosiri hilo halifungui nakala hii.",
+    "countRange": "Weka nambari kamili kuanzia {{min}} hadi {{max}}"
   }
 }

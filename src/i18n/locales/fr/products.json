@@ -202,7 +202,8 @@
     },
     "fatal": {
       "empty": "Le fichier ne contient aucune ligne à importer.",
-      "noColumns": "Aucune colonne reconnue. La première ligne doit contenir des en-têtes comme name, sku, barcode, price."
+      "noColumns": "Aucune colonne reconnue. La première ligne doit contenir des en-têtes comme name, sku, barcode, price.",
+      "unclosedQuote": "Un guillemet (\") à la ligne {{line}} n'est jamais fermé : le reste du fichier ne peut pas être lu. Corrigez le fichier et réessayez."
     },
     "issue": {
       "invalidNumber": "« {{value}} » n'est pas un nombre ({{column}})",
@@ -219,7 +220,12 @@
       "aboveMrp": "Le prix dépasse le prix maximum (MRP)",
       "tooLarge": "{{column}} est trop élevé",
       "noPrice": "Aucun prix — il sera ajouté avec un prix de 0",
-      "barcodeScientific": "Le tableur a converti le code-barres « {{value}} » en notation scientifique. Formatez la colonne en texte et exportez à nouveau."
+      "barcodeScientific": "Le tableur a converti le code-barres « {{value}} » en notation scientifique. Formatez la colonne en texte et exportez à nouveau.",
+      "tooLong": "{{column}} dépasse {{max}} caractères",
+      "ambiguousName": "Plusieurs produits s'appellent « {{name}} ». Ajoutez un SKU ou un code-barres pour indiquer lequel.",
+      "sameName": "Un produit nommé « {{name}} » existe déjà ; cette ligne en ajoute un autre",
+      "duplicateName": "Même nom que la ligne {{line}}",
+      "invalidColor": "La couleur doit ressembler à #1a2b3c, pas à « {{value}} »"
     }
   },
   "labels": {

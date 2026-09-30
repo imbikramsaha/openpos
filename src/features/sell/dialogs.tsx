@@ -14,7 +14,7 @@ import { useSettings } from '@/stores/settings'
 import { device } from '@/stores/device'
 import { toast, confirmDialog } from '@/stores/ui'
 import { Avatar, Badge, Button, EmailInput, EmptyState, Input, Modal, NumPad, PhoneInput, SearchInput, Segmented, Select, TaxIdInput, applyNumKey } from '@/components/ui'
-import { emailError, hasErrors, LIMITS, phoneDigits, phoneError, sanitizePhone, taxIdError } from '@/lib/validate'
+import { emailError, hasErrors, LIMITS, phoneDigits, phoneError, phoneKey, phoneMatches, sanitizePhone, taxIdError } from '@/lib/validate'
 import { calcCart } from './checkout'
 
 // ---- Keyboard entry helpers -------------------------------------------------
@@ -29,8 +29,8 @@ export const isCountUnit = (unit?: string) => unit === 'pcs' || unit === 'box' |
 
 /** applyNumKey with a cap on the integer digits, so 99999999999999 can't be typed. */
 export function numKey(value: string, key: string, decimals: number, maxDigits: number): string {
-  if (key === '.' && decimals <= 0) return value
-  const next = applyNumKey(value, key, decimals)
+  // Without decimals a "." is kept but nothing can follow it, so "2.5" reads as 2, not 25.
+  const next = applyNumKey(value, key, Math.max(decimals, 0))
   return next.split('.')[0].length > maxDigits ? value : next
 }
 
@@ -87,20 +87,13 @@ export function NumberDialog({ open, onClose, title, subtitle, initial, onSubmit
     if (open) {
       setText('')
       setNegative(initial < 0)
-      dotHit.current = false
     }
   }, [open, initial])
   const decimals = money ? moneyConfig().decimals : integer ? 0 : 3
   const maxDigits = money ? MAX_MONEY_DIGITS : MAX_QTY_DIGITS
-  // After a "." on a whole-number item, the digits that follow are ignored ("2.5" must not become 25).
-  const dotHit = useRef(false)
   const type = (k: string) => {
-    if (k === '.' && decimals <= 0) {
-      dotHit.current = true
-      return toast(t('sell:wholeNumbersOnly'), 'warning')
-    }
-    if (k === 'back' || k === 'clear') dotHit.current = false
-    else if (dotHit.current) return
+    if (k === 'clear') return setText('')
+    if (k === '.' && decimals <= 0) toast(money ? t('sell:noDecimals', { currency: moneyConfig().currency }) : t('sell:wholeNumbersOnly'), 'warning')
     setText((s) => numKey(s, k, decimals, maxDigits))
   }
   const display = text || String(Math.abs(money ? fromMinor(initial) : initial))
@@ -170,7 +163,10 @@ export function DiscountDialog({ open, onClose, line }: { open: boolean; onClose
     if (open) load(line ? 'line' : 'cart')
   }, [open])
   const decimals = type === 'amount' ? moneyConfig().decimals : 2
-  const typeKey = (k: string) => setText((s) => numKey(s, k, decimals, type === 'amount' ? MAX_MONEY_DIGITS : 3))
+  const typeKey = (k: string) => {
+    if (k === '.' && decimals <= 0) toast(t('noDecimals', { currency: moneyConfig().currency }), 'warning')
+    setText((s) => numKey(s, k, decimals, type === 'amount' ? MAX_MONEY_DIGITS : 3))
+  }
   const apply = (value?: number) => {
     const n = value ?? parseDecimal(text || current)
     const v = Number.isFinite(n) ? Math.max(n, 0) : 0
@@ -431,7 +427,7 @@ export function CustomerPicker({ open, onClose }: { open: boolean; onClose: () =
     // Phone numbers match on digits only, so "98765-43210" finds "98765 43210".
     const digits = phoneDigits(s)
     return list
-      .filter((c) => c.name.toLowerCase().includes(s) || (digits.length >= 3 && !!c.phone && phoneDigits(c.phone).includes(digits)) || c.email?.toLowerCase().includes(s) || c.taxNumber?.toLowerCase().includes(s))
+      .filter((c) => c.name.toLowerCase().includes(s) || phoneMatches(c.phone, digits, useSettings.getState().settings.country) || c.email?.toLowerCase().includes(s) || c.taxNumber?.toLowerCase().includes(s))
       .slice(0, 100)
   }, [customers, q])
 
@@ -452,10 +448,19 @@ export function CustomerPicker({ open, onClose }: { open: boolean; onClose: () =
     if (!form.name.trim() || formInvalid || saving.current) return
     saving.current = true
     try {
-      const digits = phoneDigits(form.phone)
-      const dup = digits ? (customers ?? []).find((c) => c.phone && phoneDigits(c.phone) === digits) : undefined
+      // Same duplicate rule as the customer form: the same local number, with or without +91.
+      const key = phoneKey(form.phone)
+      const dup = key.length >= 6 ? (customers ?? []).find((c) => phoneKey(c.phone) === key) : undefined
       if (dup && !(await confirmDialog({ title: t('customers:form.duplicateTitle'), message: t('customers:form.duplicatePhone', { name: dup.name }), confirmLabel: t('customers:form.saveAnyway') }))) return
-      const c = await put<Customer>('customers', { ...form, name: form.name.trim(), loyaltyPoints: 0, balance: 0 })
+      const opt = (v: string) => v.trim() || undefined
+      const c = await put<Customer>('customers', {
+        name: form.name.trim(),
+        phone: opt(form.phone),
+        email: opt(form.email.toLowerCase()),
+        taxNumber: opt(form.taxNumber.toUpperCase()),
+        loyaltyPoints: 0,
+        balance: 0,
+      })
       toast(t('customerAdded'))
       await pick(c)
     } finally {

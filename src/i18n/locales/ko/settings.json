@@ -156,7 +156,8 @@
     "gstMode": "인도 GST 모드",
     "gstModeHint": "세금을 CGST + SGST로 나누고, 주 간 판매에는 IGST를 적용하며, HSN 코드를 인쇄합니다.",
     "intraState": "동일 주 내",
-    "interState": "다른 주"
+    "interState": "다른 주",
+    "nameTaken": "이 이름의 세율이 이미 있습니다"
   },
   "formats": {
     "preview": "미리보기",
@@ -600,6 +601,7 @@
     "noBackups": "아직 여기에 백업이 없습니다.",
     "encryptedFileTitle": "암호화된 백업",
     "encryptedFileHint": "이 백업을 암호화할 때 사용한 암호 문구를 입력하세요.",
-    "wrongPassphrase": "이 암호 문구로는 백업을 열 수 없습니다."
+    "wrongPassphrase": "이 암호 문구로는 백업을 열 수 없습니다.",
+    "countRange": "{{min}}에서 {{max}} 사이의 정수를 입력하세요"
   }
 }

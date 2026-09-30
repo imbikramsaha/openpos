@@ -147,6 +147,7 @@
     "total": "합계",
     "change": "거스름돈",
     "pointsEarned_other": "{{count}} 포인트를 적립하셨습니다",
+    "pointsReversed_other": "{{count}} 포인트가 취소되었습니다",
     "billTo": "청구 대상",
     "walkIn": "비회원 고객",
     "paymentMode": "결제 방법",
@@ -175,5 +176,6 @@
   "editSaleDone": "{{number}}이(가) 취소되었습니다. 주문을 수정하고 다시 결제하세요.",
   "onlyInStock": "{{name}}의 재고가 {{qty}}뿐입니다",
   "wholeNumbersOnly": "이 상품은 정수 단위로만 판매됩니다",
-  "aboveZero": "0보다 큰 값을 입력하세요"
+  "aboveZero": "0보다 큰 값을 입력하세요",
+  "noDecimals": "{{currency}} 금액에는 소수점이 없습니다"
 }

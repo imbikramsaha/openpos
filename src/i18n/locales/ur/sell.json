@@ -150,6 +150,8 @@
     "change": "بقایا",
     "pointsEarned_one": "آپ نے {{count}} لائلٹی پوائنٹ کمایا",
     "pointsEarned_other": "آپ نے {{count}} لائلٹی پوائنٹس کمائے",
+    "pointsReversed_one": "{{count}} لائلٹی پوائنٹ واپس لیا گیا",
+    "pointsReversed_other": "{{count}} لائلٹی پوائنٹس واپس لیے گئے",
     "billTo": "بل برائے",
     "walkIn": "واک اِن گاہک",
     "paymentMode": "ادائیگی",
@@ -178,5 +180,6 @@
   "editSaleDone": "{{number}} منسوخ ہو گئی۔ فروخت درست کریں اور دوبارہ ادائیگی لیں۔",
   "onlyInStock": "{{name}} اسٹاک میں صرف {{qty}} ہے",
   "wholeNumbersOnly": "یہ چیز صرف پوری تعداد میں بکتی ہے",
-  "aboveZero": "صفر سے زیادہ قدر درج کریں"
+  "aboveZero": "صفر سے زیادہ قدر درج کریں",
+  "noDecimals": "{{currency}} میں رقوم کے اعشاری مقامات نہیں ہوتے"
 }

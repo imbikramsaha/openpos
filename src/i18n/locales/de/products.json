@@ -187,7 +187,8 @@
     },
     "fatal": {
       "empty": "Die Datei enthält keine zu importierenden Zeilen.",
-      "noColumns": "Keine erkannten Spalten. Die erste Zeile muss Überschriften wie name, sku, barcode, price enthalten."
+      "noColumns": "Keine erkannten Spalten. Die erste Zeile muss Überschriften wie name, sku, barcode, price enthalten.",
+      "unclosedQuote": "Ein Anführungszeichen (\") in Zeile {{line}} wird nie geschlossen, daher kann der Rest der Datei nicht gelesen werden. Korrigiere die Datei und versuche es erneut."
     },
     "issue": {
       "invalidNumber": "„{{value}}“ ist keine Zahl ({{column}})",
@@ -204,7 +205,12 @@
       "aboveMrp": "Preis liegt über der UVP",
       "tooLarge": "{{column}} ist zu groß",
       "noPrice": "Kein Preis — wird mit Preis 0 hinzugefügt",
-      "barcodeScientific": "Die Tabellenkalkulation hat den Barcode „{{value}}“ in eine wissenschaftliche Zahl umgewandelt. Formatiere die Spalte als Text und exportiere erneut."
+      "barcodeScientific": "Die Tabellenkalkulation hat den Barcode „{{value}}“ in eine wissenschaftliche Zahl umgewandelt. Formatiere die Spalte als Text und exportiere erneut.",
+      "tooLong": "{{column}} ist länger als {{max}} Zeichen",
+      "ambiguousName": "Mehrere Produkte heißen „{{name}}“. Gib eine SKU oder einen Barcode an, um das richtige zu bestimmen.",
+      "sameName": "Ein Produkt namens „{{name}}“ gibt es bereits; diese Zeile legt ein weiteres an",
+      "duplicateName": "Gleicher Name wie in Zeile {{line}}",
+      "invalidColor": "Die Farbe muss wie #1a2b3c aussehen, nicht „{{value}}“"
     }
   },
   "labels": {

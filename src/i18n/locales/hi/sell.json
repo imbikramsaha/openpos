@@ -150,6 +150,8 @@
     "change": "वापसी",
     "pointsEarned_one": "आपको {{count}} लॉयल्टी पॉइंट मिला",
     "pointsEarned_other": "आपको {{count}} लॉयल्टी पॉइंट मिले",
+    "pointsReversed_one": "{{count}} लॉयल्टी पॉइंट वापस लिया गया",
+    "pointsReversed_other": "{{count}} लॉयल्टी पॉइंट वापस लिए गए",
     "billTo": "बिल प्राप्तकर्ता",
     "walkIn": "सामान्य ग्राहक",
     "paymentMode": "भुगतान",
@@ -178,5 +180,6 @@
   "editSaleDone": "{{number}} रद्द हो गया। बिक्री ठीक करें और फिर से भुगतान लें।",
   "onlyInStock": "{{name}} सिर्फ़ {{qty}} स्टॉक में है",
   "wholeNumbersOnly": "यह आइटम सिर्फ़ पूरी संख्या में बिकता है",
-  "aboveZero": "शून्य से ज़्यादा मान डालें"
+  "aboveZero": "शून्य से ज़्यादा मान डालें",
+  "noDecimals": "{{currency}} में रकम दशमलव के बिना होती है"
 }

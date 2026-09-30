@@ -28,7 +28,7 @@ export function CashMoveDialog({ open, type: initial, onClose, expected }: { ope
 
   const tooMuch = type === 'out' && expected !== undefined && (amount ?? 0) > expected
   const error = amountError(amount)
-  const valid = !!amount && amount > 0 && !error
+  const valid = !!amount && amount > 0 && !error && !tooMuch
   const submit = async () => {
     if (!valid || busy) return
     setBusy(true)

@@ -147,6 +147,7 @@
     "total": "Tổng cộng",
     "change": "Tiền thừa",
     "pointsEarned_other": "Bạn đã nhận {{count}} điểm thưởng",
+    "pointsReversed_other": "Đã trừ {{count}} điểm thưởng",
     "billTo": "Xuất hóa đơn cho",
     "walkIn": "Khách lẻ",
     "paymentMode": "Hình thức thanh toán",
@@ -175,5 +176,6 @@
   "editSaleDone": "Đã hủy {{number}}. Hãy sửa đơn bán rồi thu tiền lại.",
   "onlyInStock": "{{name}} chỉ còn {{qty}} trong kho",
   "wholeNumbersOnly": "Mặt hàng này chỉ bán theo số nguyên",
-  "aboveZero": "Nhập giá trị lớn hơn 0"
+  "aboveZero": "Nhập giá trị lớn hơn 0",
+  "noDecimals": "Số tiền bằng {{currency}} không có phần thập phân"
 }

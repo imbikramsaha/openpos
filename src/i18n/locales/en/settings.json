@@ -161,7 +161,8 @@
     "gstMode": "India GST mode",
     "gstModeHint": "Splits tax into CGST + SGST, or IGST for inter-state sales, and prints HSN codes.",
     "intraState": "Within your state",
-    "interState": "Other states"
+    "interState": "Other states",
+    "nameTaken": "A tax rate with this name already exists"
   },
   "formats": {
     "preview": "Preview",
@@ -611,6 +612,7 @@
     "noBackups": "No backups here yet.",
     "encryptedFileTitle": "Encrypted backup",
     "encryptedFileHint": "Enter the passphrase this backup was encrypted with.",
-    "wrongPassphrase": "That passphrase doesn't open this backup."
+    "wrongPassphrase": "That passphrase doesn't open this backup.",
+    "countRange": "Enter a whole number from {{min}} to {{max}}"
   }
 }

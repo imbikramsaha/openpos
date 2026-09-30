@@ -22,6 +22,8 @@ const MAX_LOCK_MS = 5 * 60_000
 interface LockState {
   fails: number
   until: number
+  /** A PIN was checked, found wrong and not yet counted (the user may still be typing). */
+  pending?: boolean
 }
 
 // In-memory copy so the lockout still works when localStorage is unavailable (private mode).
@@ -52,7 +54,7 @@ function writeLock(v: LockState) {
 function registerFailure(): LockState {
   const cur = readLock()
   const fails = cur.fails + 1
-  const next = { fails, until: cur.until }
+  const next: LockState = { fails, until: cur.until }
   if (fails >= MAX_FAILS && fails % MAX_FAILS === 0) {
     next.until = Date.now() + Math.min(BASE_LOCK_MS * 2 ** (fails / MAX_FAILS - 1), MAX_LOCK_MS)
   }
@@ -76,6 +78,18 @@ export function PinPad({ onPin, minLength = 4, maxLength = 6, disabled, error }:
     setPinState(v)
   }
 
+  // PINs are 4 to 6 digits, so every PIN from minLength on is checked as it is typed, and a
+  // wrong one only counts once the user gives up on it: at the last digit, on Enter, on
+  // Backspace, or by leaving the pad. Otherwise "digit, Backspace" (or switching user, or a
+  // reload) could try every PIN without ever reaching the lockout. The pending guess is kept
+  // with the lock state, so a pad opened after one was left or reloaded counts it.
+  useEffect(() => {
+    if (readLock().pending) setLockedUntil(registerFailure().until)
+    return () => {
+      if (readLock().pending) registerFailure()
+    }
+  }, [])
+
   // Count down while locked (and pick up a lock set by another PIN pad on this terminal).
   useEffect(() => {
     if (!locked) return
@@ -86,16 +100,21 @@ export function PinPad({ onPin, minLength = 4, maxLength = 6, disabled, error }:
     return () => clearInterval(id)
   }, [locked])
 
-  const fail = () => {
+  /** Counts a wrong guess; true when it started the lockout. */
+  const countFailure = () => {
     const state = registerFailure()
     setLockedUntil(state.until)
     setNow(Date.now())
+    return state.until > Date.now()
+  }
+
+  const fail = () => {
+    countFailure()
     setWrong(true)
     setShake(true)
-    setTimeout(() => {
-      setShake(false)
-      setPin('')
-    }, 450)
+    // Clear at once so a quick retry isn't lost; the shake is only an animation.
+    setPin('')
+    setTimeout(() => setShake(false), 450)
   }
 
   const isLocked = () => {
@@ -109,8 +128,11 @@ export function PinPad({ onPin, minLength = 4, maxLength = 6, disabled, error }:
   }
 
   const push = async (key: string) => {
-    if (disabled || shake || checking.current || isLocked()) return
-    if (key === 'back') return setPin(pinRef.current.slice(0, -1))
+    if (disabled || checking.current || isLocked()) return
+    if (key === 'back') {
+      if (readLock().pending && countFailure()) return setPin('')
+      return setPin(pinRef.current.slice(0, -1))
+    }
     if (key === 'enter') {
       // Enter confirms a PIN shorter than the maximum: wrong 4-digit PINs get feedback too.
       if (pinRef.current.length >= minLength) fail()
@@ -129,6 +151,7 @@ export function PinPad({ onPin, minLength = 4, maxLength = 6, disabled, error }:
           writeLock({ fails: 0, until: 0 })
           setPin('')
         } else if (next.length >= maxLength) fail()
+        else writeLock({ ...readLock(), pending: true })
       } finally {
         checking.current = false
       }
@@ -168,7 +191,7 @@ export function PinPad({ onPin, minLength = 4, maxLength = 6, disabled, error }:
         {message}
       </div>
       <div className={cn('w-full max-w-[280px]', locked && 'pointer-events-none opacity-50')} dir="ltr">
-        <NumPad onKey={push} decimal={false} />
+        <NumPad onKey={push} decimal={false} extra={{ label: t('common:ok'), key: 'enter' }} />
       </div>
       <style>{`@keyframes shake{0%,100%{transform:translateX(0)}20%,60%{transform:translateX(-8px)}40%,80%{transform:translateX(8px)}}`}</style>
     </div>

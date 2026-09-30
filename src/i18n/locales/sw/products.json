@@ -187,7 +187,8 @@
     },
     "fatal": {
       "empty": "Faili hili halina safu za kuingiza.",
-      "noColumns": "Hakuna safu wima zinazotambulika. Safu ya kwanza lazima iwe na vichwa kama name, sku, barcode, price."
+      "noColumns": "Hakuna safu wima zinazotambulika. Safu ya kwanza lazima iwe na vichwa kama name, sku, barcode, price.",
+      "unclosedQuote": "Alama ya nukuu (\") katika mstari {{line}} haijafungwa kamwe, kwa hivyo sehemu iliyobaki ya faili haiwezi kusomwa. Rekebisha faili kisha ujaribu tena."
     },
     "issue": {
       "invalidNumber": "“{{value}}” si namba ({{column}})",
@@ -204,7 +205,12 @@
       "aboveMrp": "Bei iko juu ya MRP",
       "tooLarge": "{{column}} ni kubwa mno",
       "noPrice": "Hakuna bei — itaongezwa kwa bei 0",
-      "barcodeScientific": "Lahajedwali limebadilisha bakodi “{{value}}” kuwa namba ya kisayansi. Fanya safu kuwa maandishi (text) kisha uhamishe tena."
+      "barcodeScientific": "Lahajedwali limebadilisha bakodi “{{value}}” kuwa namba ya kisayansi. Fanya safu kuwa maandishi (text) kisha uhamishe tena.",
+      "tooLong": "{{column}} ina herufi zaidi ya {{max}}",
+      "ambiguousName": "Kuna bidhaa kadhaa zinazoitwa “{{name}}”. Ongeza SKU au bakodi ili kuonyesha ni ipi.",
+      "sameName": "Bidhaa inayoitwa “{{name}}” tayari ipo; mstari huu unaongeza nyingine",
+      "duplicateName": "Jina sawa na mstari {{line}}",
+      "invalidColor": "Rangi lazima iwe kama #1a2b3c, si “{{value}}”"
     }
   },
   "labels": {

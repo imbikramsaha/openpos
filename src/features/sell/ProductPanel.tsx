@@ -8,6 +8,7 @@ import { formatMoney, formatQty } from '@/lib/money'
 import { cn } from '@/lib/cn'
 import { useDevice } from '@/stores/device'
 import { Button, EmptyState, Kbd, SearchInput } from '@/components/ui'
+import { matchesTerms, searchText, splitTerms } from '@/features/products/util'
 
 const GRID = {
   sm: 'grid-cols-[repeat(auto-fill,minmax(112px,1fr))]',
@@ -139,14 +140,8 @@ export function ProductPanel({ onProduct, onEnter, searchRef, onCamera, onCustom
 }
 
 function filterProducts(list: Product[], query: string, category: string): Product[] {
-  const q = query.trim().toLowerCase()
-  if (q) {
-    const terms = q.split(/\s+/)
-    return list.filter((p) => {
-      const hay = `${p.name} ${p.sku ?? ''} ${p.barcode ?? ''}`.toLowerCase()
-      return terms.every((term) => hay.includes(term))
-    })
-  }
+  const terms = splitTerms(query)
+  if (terms.length) return list.filter((p) => matchesTerms(searchText(p), terms))
   if (category === 'fav') return list.filter((p) => p.favorite)
   if (category !== 'all') return list.filter((p) => p.categoryId === category)
   return list
