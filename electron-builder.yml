@@ -19,13 +19,15 @@ files:
   - "!node_modules/{react,react-dom,dexie,dexie-react-hooks,i18next,react-i18next,lucide-react,zustand,zxing-wasm,barcode-detector,jsbarcode,qrcode}{,/**}"
   - "!node_modules/@capacitor{,/**}"
 
-icon: build/icon.png
+# Icons: one file per platform, all made by scripts/generate-icons.mjs (see win/mac/linux below).
 asar: true
 compression: normal
 # Only the renderer uses dist/; no native modules to rebuild.
 npmRebuild: false
 
 win:
+  # 16 to 256 px in one .ico: Explorer, the taskbar, shortcuts and the installer.
+  icon: build/icon.ico
   target:
     - target: nsis
       arch: [x64]
@@ -48,6 +50,7 @@ portable:
   artifactName: OpenPOS-Portable-${arch}.${ext}
 
 mac:
+  icon: build/icon.icns
   # One universal build runs natively on Apple Silicon and Intel, so there is a single download.
   target:
     - target: dmg
@@ -81,6 +84,9 @@ linux:
     - target: deb
       arch: [x64, arm64]
   category: Office
+  # One PNG per icon-theme size (16 to 512 px). A single large PNG is installed only at its own
+  # size, which the hicolor theme doesn't index, so launchers showed a blank icon.
+  icon: build/icons
   executableName: openpos
   # Matches Electron's app_id (package.json desktopName) so docks show the right icon for the window.
   syncDesktopName: true

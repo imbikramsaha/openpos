@@ -294,10 +294,13 @@ function secureWebPreferences(extra = {}) {
   }
 }
 
-function devIcon() {
-  // Packaged builds get their icon from electron-builder; this is for `electron .` on Linux/Windows.
-  const icon = path.join(__dirname, '..', 'build', 'icon.png')
-  return !app.isPackaged && fs.existsSync(icon) ? icon : undefined
+function windowIcon() {
+  // Packaged Windows and macOS builds take the icon from the .exe / app bundle. Linux windows
+  // carry their own, for taskbars that don't match the window to its .desktop file (and for an
+  // AppImage run without desktop integration). `electron .` uses the build icon everywhere.
+  if (app.isPackaged && process.platform !== 'linux') return undefined
+  const icon = app.isPackaged ? path.join(__dirname, '..', 'dist', 'icons', 'icon-512.png') : path.join(__dirname, '..', 'build', 'icon.png')
+  return fs.existsSync(icon) ? icon : undefined
 }
 
 const stateFile = () => path.join(app.getPath('userData'), 'window-state.json')
@@ -369,7 +372,7 @@ function createMainWindow() {
     show: false,
     title: 'OpenPOS',
     backgroundColor: BACKGROUND,
-    icon: devIcon(),
+    icon: windowIcon(),
     autoHideMenuBar: true,
     kiosk: KIOSK,
     fullscreen: KIOSK || undefined,
@@ -411,7 +414,7 @@ function childWindowOptions(frameName) {
     show: true,
     backgroundColor: BACKGROUND,
     autoHideMenuBar: true,
-    icon: devIcon(),
+    icon: windowIcon(),
     minWidth: 320,
     minHeight: 240,
     webPreferences: secureWebPreferences(),
