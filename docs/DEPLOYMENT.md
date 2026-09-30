@@ -79,9 +79,13 @@ npm run dist:win      # or dist:mac / dist:linux → release/
 ### Releases and auto-update
 
 ```bash
-npm version 1.2.0 --no-git-tag-version && git commit -am "v1.2.0"
-git tag v1.2.0 && git push origin main v1.2.0
+bash scripts/release.sh 1.2.0        # or: npm run release -- 1.2.0
 ```
+
+The script bumps the version, commits, creates the draft release under your own GitHub account and
+pushes the tag. It stops before changing anything unless git and the `gh` CLI both use the repository
+owner's account, so every commit, tag and release shows the owner. Pushing a tag by hand still works,
+but the workflow then creates the release itself and GitHub shows github-actions as its author.
 
 `.github/workflows/release.yml` builds Windows, Mac, Linux (x64 and ARM64), Android and a zipped web build,
 uploads everything to a draft GitHub Release, adds a download table to the release notes, and publishes it

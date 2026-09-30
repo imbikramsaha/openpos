@@ -1,5 +1,7 @@
 # Builds installers for every platform and publishes one GitHub Release.
-#   git tag v1.2.3 && git push origin v1.2.3        (or: Actions → Release → Run workflow)
+#   bash scripts/release.sh 1.2.3      creates the draft release under your account, then pushes the tag
+# A bare `git tag v1.2.3 && git push origin v1.2.3` (or Actions → Release → Run workflow) also works,
+# but then this workflow creates the release itself and GitHub shows github-actions[bot] as its author.
 #
 # Every installer has a fixed file name (no version in it), so links such as
 #   https://github.com/<owner>/<repo>/releases/latest/download/OpenPOS-Setup-x64.exe
@@ -77,6 +79,7 @@ jobs:
           if gh release view "$TAG" >/dev/null 2>&1; then
             echo "Release $TAG already exists — assets will be added/replaced."
           else
+            echo "::warning::No draft release for $TAG, so github-actions[bot] creates it and is shown as its author. scripts/release.sh creates it under the owner's account."
             flags=(--draft --title "OpenPOS $TAG" --generate-notes --target "$GITHUB_SHA")
             [ "$PRE" = true ] && flags+=(--prerelease)
             gh release create "$TAG" "${flags[@]}"
