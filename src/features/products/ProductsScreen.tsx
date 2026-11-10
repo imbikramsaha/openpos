@@ -61,8 +61,7 @@ export default function ProductsScreen() {
 
   const exportCsv = () => {
     const list = (products ?? []).slice().sort(byName)
-    downloadText(`products-${fileDate()}.csv`, productsToCsv(list, catMap, taxMap), 'text/csv')
-    toast(t('exported', { count: list.length }))
+    if (downloadText(`products-${fileDate()}.csv`, productsToCsv(list, catMap, taxMap), 'text/csv')) toast(t('exported', { count: list.length }))
   }
 
   const downloadTemplate = () => {

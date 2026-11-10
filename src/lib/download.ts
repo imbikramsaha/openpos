@@ -1,10 +1,18 @@
+import i18n from 'i18next'
+import { canSaveFiles } from './platform'
+import { toast } from '@/stores/ui'
 
-export function downloadText(filename: string, text: string, mime = 'text/plain') {
+/** Saves a file through the browser. Returns false when nothing could be saved (the mobile apps, for now). */
+export function downloadText(filename: string, text: string, mime = 'text/plain'): boolean {
   const blob = new Blob([mime.includes('csv') ? '\uFEFF' + text : text], { type: `${mime};charset=utf-8` })
-  downloadBlob(filename, blob)
+  return downloadBlob(filename, blob)
 }
 
-export function downloadBlob(filename: string, blob: Blob) {
+export function downloadBlob(filename: string, blob: Blob): boolean {
+  if (!canSaveFiles()) {
+    toast(i18n.t('common:saveSoon'), 'info')
+    return false
+  }
   const url = URL.createObjectURL(blob)
   const a = document.createElement('a')
   a.href = url
@@ -13,6 +21,7 @@ export function downloadBlob(filename: string, blob: Blob) {
   a.click()
   a.remove()
   setTimeout(() => URL.revokeObjectURL(url), 5000)
+  return true
 }
 
 export function pickFile(accept: string): Promise<File | null> {

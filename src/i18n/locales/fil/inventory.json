@@ -140,6 +140,7 @@
     "paidInFull": "Buong bayad na",
     "due": "Balanseng utang",
     "dueHint": "Mananatiling utang ang {{amount}}",
+    "payLaterSoon": "Malapit nang magamit ang pagtatala ng mga susunod na bayad sa supplier.",
     "receivedBy": "Tinanggap ni",
     "repeat": "Umorder muli",
     "notFound": "Walang nahanap na produkto para sa “{{code}}”",

@@ -7,6 +7,7 @@ import type { Sale } from '@/core/types'
 import { db } from '@/db/db'
 import { formatMoney } from '@/lib/money'
 import { printHtml } from '@/lib/print'
+import { canPrint } from '@/lib/platform'
 import { useSettings } from '@/stores/settings'
 import { toast } from '@/stores/ui'
 import { Button, Modal } from '@/components/ui'
@@ -17,7 +18,7 @@ export async function printSale(sale: Sale) {
   const s = useSettings.getState().settings
   const html = receiptHtml(sale, s)
   const width = s.receipt.paperWidth === 'a4' ? undefined : s.receipt.paperWidth
-  for (let i = 0; i < Math.max(1, s.receipt.copies); i++) await printHtml(html, width)
+  for (let i = 0; i < Math.max(1, s.receipt.copies); i++) if (!(await printHtml(html, width))) return
 }
 
 
@@ -97,7 +98,7 @@ export function ReceiptDialog({ sale, onClose, onEdit }: { sale: Sale | null; on
   const customerEmail = useLiveQuery(async () => (sale?.customerId ? (await db.customers.get(sale.customerId))?.email || undefined : undefined), [sale?.customerId])
 
   useEffect(() => {
-    if (sale && autoPrint) void printSale(sale)
+    if (sale && autoPrint && canPrint()) void printSale(sale)
   }, [sale, autoPrint])
 
   useEffect(() => {

@@ -1,5 +1,7 @@
-import { electron } from './platform'
+import i18n from 'i18next'
+import { canPrint, electron } from './platform'
 import { device } from '@/stores/device'
+import { toast } from '@/stores/ui'
 
 /**
  * Prints a complete HTML document. Desktop (Electron) can print silently to the
@@ -10,6 +12,10 @@ export async function printHtml(html: string, widthMm?: number): Promise<boolean
   const bridge = electron()
   const d = device()
   if (bridge) return bridge.printHtml(html, { printer: d.printer || undefined, silent: d.silentPrint, widthMm })
+  if (!canPrint()) {
+    toast(i18n.t('common:printSoon'), 'info')
+    return false
+  }
   return new Promise((resolve) => {
     const frame = document.createElement('iframe')
     frame.setAttribute('aria-hidden', 'true')

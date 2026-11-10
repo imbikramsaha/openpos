@@ -140,6 +140,7 @@
     "paidInFull": "Vollständig bezahlt",
     "due": "Offener Betrag",
     "dueHint": "{{amount}} bleiben offen",
+    "payLaterSoon": "Das Erfassen späterer Zahlungen an den Lieferanten ist bald verfügbar.",
     "receivedBy": "Angenommen von",
     "repeat": "Erneut bestellen",
     "notFound": "Kein Produkt gefunden für „{{code}}“",

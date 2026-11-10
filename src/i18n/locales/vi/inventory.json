@@ -136,6 +136,7 @@
     "paidInFull": "Đã trả đủ",
     "due": "Còn phải trả",
     "dueHint": "Còn nợ lại {{amount}}",
+    "payLaterSoon": "Tính năng ghi nhận các khoản thanh toán sau cho nhà cung cấp sắp ra mắt.",
     "receivedBy": "Người nhận",
     "repeat": "Đặt lại",
     "notFound": "Không tìm thấy sản phẩm cho “{{code}}”",

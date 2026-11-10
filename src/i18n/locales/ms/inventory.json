@@ -136,6 +136,7 @@
     "paidInFull": "Dibayar penuh",
     "due": "Baki tertunggak",
     "dueHint": "{{amount}} akan kekal tertunggak",
+    "payLaterSoon": "Merekod bayaran kemudian kepada pembekal akan datang tidak lama lagi.",
     "receivedBy": "Diterima oleh",
     "repeat": "Pesan lagi",
     "notFound": "Tiada produk ditemui untuk “{{code}}”",

@@ -6,6 +6,7 @@ import { db } from '@/db/db'
 import { formatDateTime, relativeTime } from '@/lib/dates'
 import { formatNumber } from '@/lib/money'
 import { pickFile } from '@/lib/download'
+import { canSaveFiles } from '@/lib/platform'
 import { confirmDialog, toast } from '@/stores/ui'
 import { requirePermission } from '@/features/auth/permission'
 import { Button, Modal } from '@/components/ui'
@@ -24,13 +25,15 @@ export function BackupSection() {
   const [exporting, setExporting] = useState(false)
   const [summary, setSummary] = useState<BackupSummary | null>(null)
   const [restoring, setRestoring] = useState(false)
-  const stale = last !== undefined && Date.now() - last > WEEK
+  // The mobile apps can't save files yet, so there's no point nagging about exporting there.
+  const canSave = canSaveFiles()
+  const stale = canSave && last !== undefined && Date.now() - last > WEEK
 
   const doExport = async () => {
     setExporting(true)
     try {
-      const { filename } = await exportBackup()
-      toast(t('backup.exported', { file: filename }))
+      const saved = await exportBackup()
+      if (saved) toast(t('backup.exported', { file: saved.filename }))
     } catch (e) {
       toast(e instanceof Error ? e.message : String(e), 'error')
     } finally {
@@ -99,11 +102,13 @@ export function BackupSection() {
             ))}
           </div>
           <div className="mt-4 flex flex-wrap items-center gap-3">
-            <Button variant="primary" size="lg" icon={<Download className="size-5" />} loading={exporting} onClick={() => void doExport()}>
+            <Button variant="primary" size="lg" icon={<Download className="size-5" />} loading={exporting} disabled={!canSave} onClick={() => void doExport()}>
               {t('backup.exportButton')}
             </Button>
             <span className="text-sm text-muted">
-              {last ? (
+              {!canSave ? (
+                t('common:saveSoon')
+              ) : last ? (
                 <span title={formatDateTime(last)}>{t('backup.lastBackup', { time: relativeTime(last) })}</span>
               ) : (
                 t('backup.noBackupYet')

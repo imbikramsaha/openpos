@@ -136,6 +136,7 @@
     "paidInFull": "전액 결제 완료",
     "due": "미지급 잔액",
     "dueHint": "{{amount}}이(가) 미지급으로 남습니다",
+    "payLaterSoon": "공급업체에 대한 추후 지급 기록 기능은 곧 제공될 예정입니다.",
     "receivedBy": "입고 담당자",
     "repeat": "재주문",
     "notFound": "“{{code}}”에 해당하는 상품을 찾을 수 없습니다",

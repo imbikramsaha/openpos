@@ -148,6 +148,7 @@
     "paidInFull": "Zapłacono w całości",
     "due": "Do zapłaty",
     "dueHint": "Pozostanie do zapłaty {{amount}}",
+    "payLaterSoon": "Rejestrowanie późniejszych płatności dla dostawcy będzie dostępne wkrótce.",
     "receivedBy": "Przyjął(a)",
     "repeat": "Zamów ponownie",
     "notFound": "Nie znaleziono produktu dla „{{code}}”",

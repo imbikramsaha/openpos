@@ -140,6 +140,7 @@
     "paidInFull": "Imelipwa yote",
     "due": "Salio la deni",
     "dueHint": "{{amount}} itabaki kama deni",
+    "payLaterSoon": "Kurekodi malipo ya baadaye kwa msambazaji kunakuja hivi karibuni.",
     "receivedBy": "Imepokelewa na",
     "repeat": "Agiza tena",
     "notFound": "Hakuna bidhaa iliyopatikana kwa “{{code}}”",

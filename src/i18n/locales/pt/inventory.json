@@ -144,6 +144,7 @@
     "paidInFull": "Pago integralmente",
     "due": "Saldo devedor",
     "dueHint": "Ficarão {{amount}} pendentes",
+    "payLaterSoon": "Registrar pagamentos posteriores ao fornecedor estará disponível em breve.",
     "receivedBy": "Recebido por",
     "repeat": "Pedir novamente",
     "notFound": "Nenhum produto encontrado para “{{code}}”",

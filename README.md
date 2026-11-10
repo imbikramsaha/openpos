@@ -33,9 +33,6 @@ Every link below downloads the newest version. Older versions are on the [releas
 | **iPhone and iPad** | Open **https://appkasapos.netlify.app** in Safari, tap **Share**, then **Add to Home Screen** |
 | **Any device with a browser** (Chromebook, shared PCs) | **https://appkasapos.netlify.app**, then the **Install app** button (⬇) at the top |
 
-> [!NOTE]
-> This repository is private for now, so the download links only work when you're signed in to GitHub with access to it. They'll work for everyone once the repository is public.
-
 ### First launch
 
 The installers aren't code-signed yet, so each system asks once whether you trust the app:
@@ -46,7 +43,7 @@ The installers aren't code-signed yet, so each system asks once whether you trus
 - **Android**: open the downloaded APK. If asked, allow your browser to **install unknown apps**, then tap **Install**. If Play Protect warns about an unknown app, tap **More details → Install anyway**.
 - **iPhone and iPad**: after **Add to Home Screen**, OpenPOS opens from its icon full screen and works offline. An App Store version needs an Apple Developer account, see [docs/DEPLOYMENT.md](docs/DEPLOYMENT.md#5-ios--ipados).
 
-The desktop apps update themselves once the repository is public. The web app always runs the latest version.
+The Windows and Linux apps update themselves. The web app always runs the latest version.
 
 ---
 
@@ -69,13 +66,12 @@ The desktop apps update themselves once the repository is public. The web app al
 - **Split payments:** cash with quick-cash buttons and change, card, **UPI QR**, **on account (khata)** with credit limits, loyalty points, bank transfer, vouchers.
 - Customers attached in two taps, with automatic customer discounts and loyalty earning.
 - Returns with or without the original receipt, refunds with restock control, and voids behind manager approval. A mistake spotted right after a sale? **Back to edit** on the receipt voids it and puts the items back in the cart.
-- Restaurant mode: dine-in, takeaway and delivery, plus table numbers.
 - **Customer-facing display** for a second screen, showing items, total, the UPI QR and change due.
 - Keyboard shortcuts (F1 shows them all), and the cart survives crashes and reloads.
 
 ### Receipts & invoices
 - Thermal receipts (58/80 mm) and **A4 GST tax invoices**: HSN, CGST/SGST/IGST split, place of supply, amount in words.
-- Print (silent printing on desktop), WhatsApp, share sheet, email, or save as PDF.
+- Print (silent printing on desktop, or save as PDF from the print dialog), WhatsApp, share sheet or email.
 - Logo, header and footer; receipt barcode for fast refund lookup; credit notes for refunds.
 
 ### Back office
@@ -87,7 +83,16 @@ The desktop apps update themselves once the repository is public. The web app al
 - **Cash register:** open and close shifts, cash in/out, cash counting by denomination, over/short, X and Z reports.
 - **Users & roles:** admin, manager and cashier with fine-grained permissions, PIN login, **manager override** prompts, auto-lock, audit log.
 - **Settings:** business profile, taxes, currency and formats, payment methods, receipt designer with live preview, loyalty, scale barcodes, per-device printer, language and theme.
-- **Backup & restore** to a single file, **automatic backups** on a schedule and after each shift to this device, a folder, **Google Drive, OneDrive or Dropbox** (optionally encrypted), plus optional **multi-terminal sync** through a self-hosted server (LAN or cloud).
+- **Backup & restore** to a single file, **automatic backups** on a schedule and after each shift to this device or a folder (optionally encrypted), plus optional **multi-terminal sync** through a self-hosted server (LAN or cloud).
+
+### Coming soon
+
+These are partly built and show **Coming soon** in the app until they're finished:
+
+- **Restaurant mode:** dine-in, takeaway and delivery orders with table numbers.
+- **Cloud backups** straight to Google Drive, OneDrive and Dropbox. Until then, point the folder backup at your Drive, OneDrive or Dropbox folder on a desktop.
+- **Printing and saving files in the Android app** (receipts, reports, CSV exports and backup files). Until then, print and export from the desktop or web app.
+- **Paying suppliers later:** recording payments against a purchase that wasn't paid in full.
 
 ### Quality
 - Light and dark themes, a responsive layout from 360 px phones to large desktops, and touch-first controls.
@@ -113,13 +118,13 @@ The wizard sets your language, country (currency and tax preset), business detai
 | Android / iOS | `npm run android` · `npm run ios` (opens Android Studio / Xcode) |
 | Sync server | `npm run server` (see [`server/README.md`](server/README.md)) |
 
-Tagged releases (`git tag v1.2.3 && git push origin v1.2.3`) build the Windows, Mac, Linux and Android installers in GitHub Actions and publish them as a GitHub Release, which the [Download](#download) links always point to. See [`docs/DEPLOYMENT.md`](docs/DEPLOYMENT.md#releases-and-auto-update).
+Releases (`npm run release -- 1.2.3`) build the Windows, Mac, Linux and Android installers in GitHub Actions and publish them as a GitHub Release, which the [Download](#download) links always point to. See [`docs/DEPLOYMENT.md`](docs/DEPLOYMENT.md#releases-and-auto-update).
 
 ## Hardware
 
 - **Barcode scanners:** any USB or Bluetooth scanner in keyboard (HID) mode. No setup; scan anywhere on the sell screen.
 - **Receipt printers:** any 58/80 mm thermal printer with a system driver. Desktop builds can print silently to a chosen printer.
-- **Cash drawers:** RJ11 drawers connected to the receipt printer (desktop build).
+- **Cash drawers:** RJ11 drawers connected to the receipt printer, opened from the Sell menu (desktop app).
 - **Weighing scales:** EAN-13 labels with embedded weight or price. Configure the prefix and digits in Settings.
 - **Customer display:** any second monitor, via Sell menu → Customer display.
 
@@ -152,4 +157,4 @@ Planned next, contributions welcome:
 
 ## License
 
-Proprietary — all rights reserved. Choose a license before making the repository public.
+[MIT](LICENSE) © 2026 Bikram Saha

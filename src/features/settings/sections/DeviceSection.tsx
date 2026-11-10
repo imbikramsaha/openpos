@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next'
 import { LayoutGrid, Monitor, Moon, PanelLeft, PanelRight, Printer, RefreshCw, Sun } from 'lucide-react'
 import { db } from '@/db/db'
 import { getMeta } from '@/db/repo'
-import { electron } from '@/lib/platform'
+import { canPrint, electron } from '@/lib/platform'
 import { escapeHtml, printHtml } from '@/lib/print'
 import { formatDateTime } from '@/lib/dates'
 import { applyTheme, useDevice, type DeviceConfig } from '@/stores/device'
@@ -237,7 +237,7 @@ function PrinterGroup({ onSaved }: { onSaved: () => void }) {
   }
 
   return (
-    <Group title={t('device.printer')} description={bridge ? t('device.printerDesktopHint') : t('device.printerBrowserHint')}>
+    <Group title={t('device.printer')} description={bridge ? t('device.printerDesktopHint') : canPrint() ? t('device.printerBrowserHint') : undefined}>
       {bridge ? (
         <>
           <Row id="device.printer">
@@ -270,7 +270,7 @@ function PrinterGroup({ onSaved }: { onSaved: () => void }) {
             }}
           />
         </>
-      ) : (
+      ) : canPrint() ? (
         <Row id="device.printer">
           <ul className="list-disc space-y-1 ps-5 text-sm text-muted">
             <li>{t('device.browserTip1')}</li>
@@ -278,12 +278,18 @@ function PrinterGroup({ onSaved }: { onSaved: () => void }) {
             <li>{t('device.browserTip3')}</li>
           </ul>
         </Row>
+      ) : (
+        <Row id="device.printer">
+          <p className="text-sm text-muted">{t('common:printSoon')}</p>
+        </Row>
       )}
-      <Row id="device.testPage">
-        <Button icon={<Printer className="size-4" />} onClick={testPage}>
-          {t('device.testPage')}
-        </Button>
-      </Row>
+      {(bridge || canPrint()) && (
+        <Row id="device.testPage">
+          <Button icon={<Printer className="size-4" />} onClick={testPage}>
+            {t('device.testPage')}
+          </Button>
+        </Row>
+      )}
     </Group>
   )
 }

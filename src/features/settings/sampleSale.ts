@@ -1,6 +1,7 @@
 import i18n from 'i18next'
 import type { CartLine, Sale, Settings, Tax } from '@/core/types'
 import { calculateCart, loyaltyEarned, quickCashSuggestions } from '@/core/cart'
+import { ORDER_TYPES_READY } from '@/core/features'
 import { currencyDecimals } from '@/lib/money'
 
 // A realistic sale used for the live receipt preview and "Print test receipt".
@@ -72,8 +73,8 @@ export function buildSampleSale(s: Settings, taxes: Tax[], ctx: { terminal: stri
     change: tendered - calc.total,
     taxBreakdown: calc.taxBreakdown,
     interState: false,
-    table: s.orderTypes ? '12' : undefined,
-    orderType: s.orderTypes ? 'dinein' : undefined,
+    table: ORDER_TYPES_READY && s.orderTypes ? '12' : undefined,
+    orderType: ORDER_TYPES_READY && s.orderTypes ? 'dinein' : undefined,
     loyaltyEarned: s.loyaltyEnabled ? loyaltyEarned(calc.total, d, s.loyaltyEarnRate) || undefined : undefined,
     currency: s.currency,
   }

@@ -48,13 +48,11 @@ export default function InventoryScreen() {
 
   const tracked = useMemo(() => (products ?? []).filter((p) => p.trackStock).sort(byName), [products])
   const exportValuation = () => {
-    downloadText(`stock-valuation-${fileDate()}.csv`, valuationCsv(tracked, catMap), 'text/csv')
-    toast(t('exported'))
+    if (downloadText(`stock-valuation-${fileDate()}.csv`, valuationCsv(tracked, catMap), 'text/csv')) toast(t('exported'))
   }
   const exportLow = async () => {
     const low = tracked.filter((p) => p.active && ['low', 'out'].includes(stockStatus(p)))
-    downloadText(`low-stock-${fileDate()}.csv`, lowStockCsv(low, catMap, await soldSince(30)), 'text/csv')
-    toast(t('exported'))
+    if (downloadText(`low-stock-${fileDate()}.csv`, lowStockCsv(low, catMap, await soldSince(30)), 'text/csv')) toast(t('exported'))
   }
 
   if (!products || !categories) return <FullScreenLoader />

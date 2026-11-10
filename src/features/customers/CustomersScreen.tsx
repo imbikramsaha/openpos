@@ -106,8 +106,7 @@ export default function CustomersScreen() {
   const exportCsv = () => {
     const rows = filter === 'all' && !dq ? [...(customers ?? [])].sort((a, b) => a.name.localeCompare(b.name)) : list
     if (!rows.length) return toast(t('csv.nothing'), 'warning')
-    downloadText(`customers-${toDateInput(Date.now())}.csv`, customersCsv(rows, settings), 'text/csv')
-    toast(t('csv.exported', { count: rows.length }))
+    if (downloadText(`customers-${toDateInput(Date.now())}.csv`, customersCsv(rows, settings), 'text/csv')) toast(t('csv.exported', { count: rows.length }))
   }
 
   const template = () => downloadText('customers-template.csv', toCsv([], [...CSV_COLUMNS]), 'text/csv')

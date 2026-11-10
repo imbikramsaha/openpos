@@ -7,10 +7,11 @@ import {
 } from 'lucide-react'
 import type { CartLine, OrderType } from '@/core/types'
 import { gstSplit } from '@/core/cart'
+import { ORDER_TYPES_READY } from '@/core/features'
 import { db } from '@/db/db'
 import { formatMoney, formatPercent, formatQty } from '@/lib/money'
 import { cn } from '@/lib/cn'
-import { isElectron, electron } from '@/lib/platform'
+import { isElectron, isNative, electron } from '@/lib/platform'
 import { useCart } from '@/stores/cart'
 import { useSettings } from '@/stores/settings'
 import { useSession } from '@/stores/session'
@@ -18,6 +19,7 @@ import { useDevice } from '@/stores/device'
 import { confirmDialog, toast } from '@/stores/ui'
 import { Avatar, Badge, Button, Kbd } from '@/components/ui'
 import { audit } from '@/db/repo'
+import { requirePermission } from '@/features/auth/permission'
 import { calcCart } from './checkout'
 import { openCustomerDisplay } from '@/features/display/channel'
 
@@ -91,7 +93,7 @@ export function CartPanel({ actions, className }: { actions: CartActions; classN
         </div>
       </div>
 
-      {settings.orderTypes && <OrderTypeBar />}
+      {ORDER_TYPES_READY && settings.orderTypes && <OrderTypeBar />}
       {settings.requireShift && !shift && (
         <div className="flex items-center gap-2 bg-warning-soft px-4 py-2 text-xs font-medium text-warning">
           <Vault className="size-4" /> {t('noShiftOpen')}
@@ -300,11 +302,12 @@ function CartMenu({ onClose, actions, onClear }: { onClose: () => void; actions:
       {gstMode && item(<ReceiptText />, cart.interState ? t('intraState') : t('interState'), () => cart.setInterState(!cart.interState))}
       {isElectron() &&
         item(<Vault />, t('openDrawer'), async () => {
+          if (!(await requirePermission('cash_drawer'))) return
           const ok = await electron()?.openCashDrawer?.(printer || undefined)
           if (!ok) toast(t('drawerFailed'), 'error')
           else void audit('drawer.open')
         })}
-      {item(<MonitorSmartphone />, t('customerDisplay'), openCustomerDisplay)}
+      {!isNative() && item(<MonitorSmartphone />, t('customerDisplay'), openCustomerDisplay)}
       {item(<Keyboard />, t('shortcuts.title'), actions.onShortcuts, 'F1')}
       {item(<Ban />, t('clear'), onClear, undefined, true)}
       {cart.interState && gstMode && <div className="px-4 pb-2"><Badge tone="primary">IGST</Badge></div>}

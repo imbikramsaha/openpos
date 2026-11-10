@@ -79,8 +79,7 @@ export default function SalesScreen() {
     try {
       const { csv, count } = kind === 'sales' ? await salesCsv(filter) : await itemsCsv(filter)
       if (!count) return toast(t('export.empty'), 'warning')
-      downloadText(`${kind}-${toDateInput(range.from)}_${toDateInput(range.to)}.csv`, csv, 'text/csv')
-      toast(t('export.done', { count }))
+      if (downloadText(`${kind}-${toDateInput(range.from)}_${toDateInput(range.to)}.csv`, csv, 'text/csv')) toast(t('export.done', { count }))
     } catch (e) {
       toast(e instanceof Error ? e.message : String(e), 'error')
     } finally {

@@ -6,7 +6,8 @@ import { findPreset } from '@/core/presets'
 import { currencyDecimals, formatMoney, fromMinor, formatNumber, parseDecimal, toMinor } from '@/lib/money'
 import { escapeHtml, printHtml } from '@/lib/print'
 import { cn } from '@/lib/cn'
-import { Button, Input, MoneyInput, NumberInput, Select, Toggle } from '@/components/ui'
+import { Button, ComingSoon, Input, MoneyInput, NumberInput, Select, Toggle } from '@/components/ui'
+import { ORDER_TYPES_READY } from '@/core/features'
 import { ControlRow, Group, Notice, Row, Stack, ToggleRow } from '../ui'
 import { TYPING_DELAY, useSettingsDraft } from '../hooks'
 
@@ -42,7 +43,22 @@ export function CheckoutSection() {
       <Group title={t('checkout.rules')}>
         <ToggleRow id="checkout.allowNegativeStock" label={t('checkout.allowNegativeStock')} description={t('checkout.allowNegativeStockHint')} checked={draft.allowNegativeStock} onChange={(v) => set({ allowNegativeStock: v })} />
         <ToggleRow id="checkout.requireShift" label={t('checkout.requireShift')} description={t('checkout.requireShiftHint')} checked={draft.requireShift} onChange={(v) => set({ requireShift: v })} />
-        <ToggleRow id="checkout.orderTypes" label={t('checkout.orderTypes')} description={t('checkout.orderTypesHint')} checked={draft.orderTypes} onChange={(v) => set({ orderTypes: v })} />
+        {ORDER_TYPES_READY ? (
+          <ToggleRow id="checkout.orderTypes" label={t('checkout.orderTypes')} description={t('checkout.orderTypesHint')} checked={draft.orderTypes} onChange={(v) => set({ orderTypes: v })} />
+        ) : (
+          <ToggleRow
+            id="checkout.orderTypes"
+            label={
+              <span className="flex flex-wrap items-center gap-2">
+                {t('checkout.orderTypes')} <ComingSoon />
+              </span>
+            }
+            description={t('checkout.orderTypesHint')}
+            checked={false}
+            onChange={() => {}}
+            disabled
+          />
+        )}
       </Group>
 
       <Group title={t('checkout.security')}>

@@ -6,7 +6,7 @@
   "type": "module",
   "description": "Offline-first, cross-platform point of sale for retail, restaurants and services. Web, Windows, macOS, Linux, Android and iOS from one codebase.",
   "author": "OpenPOS",
-  "license": "UNLICENSED",
+  "license": "MIT",
   "main": "electron/main.cjs",
   "scripts": {
     "dev": "vite",

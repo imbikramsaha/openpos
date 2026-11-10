@@ -1,3 +1,4 @@
+import { CLOUD_BACKUP_READY } from '@/core/features'
 import { isElectron, isNative } from '@/lib/platform'
 import { kvDelete, kvGet, kvSet } from './store'
 
@@ -52,7 +53,7 @@ export const PROVIDERS: Record<CloudProvider, ProviderConfig> = {
   },
 }
 
-export const isConfigured = (p: CloudProvider) => !!PROVIDERS[p].clientId
+export const isConfigured = (p: CloudProvider) => CLOUD_BACKUP_READY && !!PROVIDERS[p].clientId
 
 /**
  * Cloud sign-in needs the pop-up to hand the result back to this page. The desktop and mobile

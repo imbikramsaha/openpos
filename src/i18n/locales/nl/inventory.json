@@ -140,6 +140,7 @@
     "paidInFull": "Volledig betaald",
     "due": "Openstaand saldo",
     "dueHint": "{{amount}} blijft openstaan",
+    "payLaterSoon": "Latere betalingen aan de leverancier vastleggen is binnenkort beschikbaar.",
     "receivedBy": "Ontvangen door",
     "repeat": "Opnieuw bestellen",
     "notFound": "Geen product gevonden voor ‘{{code}}’",

@@ -21,6 +21,10 @@ export const isElectron = () => !!electron()?.isElectron
 export const isNative = () => !!window.Capacitor?.isNativePlatform?.()
 export const nativePlatform = () => window.Capacitor?.getPlatform?.() ?? 'web'
 
+/** The Android/iOS shells don't implement window.print() or file downloads yet (coming soon). */
+export const canPrint = () => !isNative()
+export const canSaveFiles = () => !isNative()
+
 export function platformName(): string {
   if (isElectron()) return `desktop-${electron()!.platform}`
   if (isNative()) return nativePlatform()

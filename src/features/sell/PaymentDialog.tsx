@@ -76,10 +76,12 @@ export function PaymentDialog({ open, onClose, onComplete, onNeedCustomer }: { o
   }
 
   const methods = useMemo(() => {
-    const list = [...settings.enabledPayments]
-    if (settings.loyaltyEnabled && pointsValue > 0 && !list.includes('loyalty')) list.push('loyalty')
+    // Points can only be spent by an attached customer with at least one point, so the button is never a dead end.
+    const canRedeem = settings.loyaltyEnabled && pointValue > 0 && pointsValue >= pointValue
+    const list = settings.enabledPayments.filter((m) => m !== 'loyalty' || canRedeem)
+    if (canRedeem && !list.includes('loyalty')) list.push('loyalty')
     return list
-  }, [settings.enabledPayments, settings.loyaltyEnabled, pointsValue])
+  }, [settings.enabledPayments, settings.loyaltyEnabled, pointValue, pointsValue])
 
   const finalize = async (all: Payment[]) => {
     if (busyRef.current) return

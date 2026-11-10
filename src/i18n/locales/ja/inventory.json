@@ -136,6 +136,7 @@
     "paidInFull": "全額支払い済み",
     "due": "未払い残高",
     "dueHint": "{{amount}} が未払いのまま残ります",
+    "payLaterSoon": "仕入先への後日支払いの記録は近日対応予定です。",
     "receivedBy": "受取担当",
     "repeat": "再発注",
     "notFound": "「{{code}}」に一致する商品が見つかりません",

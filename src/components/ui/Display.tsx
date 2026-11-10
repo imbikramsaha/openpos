@@ -18,6 +18,16 @@ export function Badge({ tone = 'neutral', children, className }: { tone?: Tone; 
   return <span className={cn('inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-xs font-medium whitespace-nowrap', tones[tone], className)}>{children}</span>
 }
 
+/** Marks a feature that's visible but not available yet. */
+export function ComingSoon({ className }: { className?: string }) {
+  const { t } = useTranslation()
+  return (
+    <Badge tone="primary" className={className}>
+      {t('common:comingSoon')}
+    </Badge>
+  )
+}
+
 export function Card({ className, children, ...rest }: ComponentProps<'div'>) {
   return (
     <div className={cn('rounded-2xl border border-border bg-surface', className)} {...rest}>

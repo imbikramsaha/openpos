@@ -136,6 +136,7 @@
     "paidInFull": "Dibayar lunas",
     "due": "Sisa tagihan",
     "dueHint": "{{amount}} akan tetap terutang",
+    "payLaterSoon": "Mencatat pembayaran susulan ke pemasok akan segera hadir.",
     "receivedBy": "Diterima oleh",
     "repeat": "Pesan lagi",
     "notFound": "Produk tidak ditemukan untuk “{{code}}”",

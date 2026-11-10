@@ -140,6 +140,7 @@
     "paidInFull": "Tamamı ödendi",
     "due": "Kalan bakiye",
     "dueHint": "{{amount}} bakiye kalacak",
+    "payLaterSoon": "Tedarikçiye yapılan sonraki ödemeleri kaydetme yakında geliyor.",
     "receivedBy": "Teslim alan",
     "repeat": "Tekrar sipariş ver",
     "notFound": "“{{code}}” için ürün bulunamadı",

@@ -3,7 +3,7 @@
 # See docs/DEPLOYMENT.md for signing and the GitHub release workflow.
 appId: com.openpos.app
 productName: OpenPOS
-copyright: Copyright © OpenPOS
+copyright: Copyright © 2026 Bikram Saha
 
 directories:
   output: release

@@ -140,6 +140,7 @@
     "paidInFull": "Paid in full",
     "due": "Balance due",
     "dueHint": "{{amount}} will remain due",
+    "payLaterSoon": "Recording later payments to the supplier is coming soon.",
     "receivedBy": "Received by",
     "repeat": "Order again",
     "notFound": "No product found for “{{code}}”",

@@ -144,6 +144,7 @@
     "paidInFull": "Pagato per intero",
     "due": "Saldo dovuto",
     "dueHint": "Rimarranno da pagare {{amount}}",
+    "payLaterSoon": "La registrazione dei pagamenti successivi al fornitore sarà presto disponibile.",
     "receivedBy": "Ricevuto da",
     "repeat": "Ordina di nuovo",
     "notFound": "Nessun prodotto trovato per “{{code}}”",

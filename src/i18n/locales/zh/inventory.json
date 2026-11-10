@@ -136,6 +136,7 @@
     "paidInFull": "已全额付款",
     "due": "应付余额",
     "dueHint": "将有 {{amount}} 未付",
+    "payLaterSoon": "记录向供应商的后续付款功能即将推出。",
     "receivedBy": "收货人",
     "repeat": "再次订购",
     "notFound": "未找到条码为“{{code}}”的商品",

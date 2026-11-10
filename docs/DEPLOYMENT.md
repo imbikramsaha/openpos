@@ -209,6 +209,12 @@ doesn't need it, and a cloud server should use HTTPS anyway.
 
 ## 7. Automatic backups (device, folder, Google Drive, OneDrive, Dropbox)
 
+> [!NOTE]
+> **Google Drive, OneDrive and Dropbox are coming soon.** They've only been tested against mocked APIs,
+> so the app shows them as *Coming soon* and never runs them. Device and folder backups work today.
+> To finish them, set `CLOUD_BACKUP_READY` in `src/core/features.ts` to `true`, follow
+> *Setting up the cloud destinations* below, and test a real connect, backup and restore for each provider.
+
 *Settings → Automatic backup* makes a backup on a schedule (every 1, 4, 12 or 24 hours) and after each
 shift is closed, sends it to every destination that's switched on, and deletes copies beyond the
 "keep" count. Browsers can't run code while the app is closed, so backups run while OpenPOS is open:
@@ -219,9 +225,9 @@ online. A missed backup runs the next time the app opens.
 |---|---|---|
 | On this device | no | inside the app (`kasa-pos-local` IndexedDB), newest 1–30 copies. Protects against mistakes, not against losing the device |
 | Folder on this computer | no | any folder the user picks (Chrome, Edge, desktop app). Picking the Google Drive / OneDrive / Dropbox **sync folder** gets the files to the cloud through the provider's own desktop client |
-| Google Drive | yes, once per installation | a `OpenPOS Backups` folder. The `drive.file` scope only lets the app see files it created |
-| OneDrive | yes, once per installation | `Apps/<app name>/` (the `Files.ReadWrite.AppFolder` scope) |
-| Dropbox | yes, once per installation | `Apps/<app name>/` (an *App folder* app) |
+| Google Drive (coming soon) | yes, once per installation | a `OpenPOS Backups` folder. The `drive.file` scope only lets the app see files it created |
+| OneDrive (coming soon) | yes, once per installation | `Apps/<app name>/` (the `Files.ReadWrite.AppFolder` scope) |
+| Dropbox (coming soon) | yes, once per installation | `Apps/<app name>/` (an *App folder* app) |
 
 **Encryption.** With *Encrypt backups* on, files are AES-256-GCM encrypted with a key derived from a
 passphrase (PBKDF2-SHA-256, 310,000 iterations) and saved as `.openpos` instead of `.json`. *Backup & restore*,
@@ -313,14 +319,15 @@ The device and folder destinations work everywhere they're listed.
   list. On Linux/macOS add it in CUPS (`http://localhost:631` or System Settings). Generic ESC/POS
   printers usually work with the vendor's "80mm Series" or "POS-58" driver.
 - In the driver, set the paper to roll width (58 or 80 mm) and turn off headers, footers and scaling.
-- Choose the paper width in *Settings → Receipt*. Browsers and mobile use the system print dialog, which
-  also offers *Save as PDF*.
+- Choose the paper width in *Settings → Receipt*. Browsers use the system print dialog, which also
+  offers *Save as PDF*.
 - **Silent printing (desktop)**: choose the printer and enable *Silent print* in the device settings.
   The desktop app prints straight to that printer with no dialog. The page is sized exactly to the
   receipt (paper width × content height, no margins), so there's no long blank feed. A4 invoices use A4
   with the document's own margins.
-- Android: print through the system print service (install the vendor's print plugin, e.g. "Epson iPrint"
-  or "RawBT"). iOS: AirPrint printers, or the vendor's AirPrint bridge.
+- Android: printing from the Android app is coming soon (its web view has no print support yet). Until
+  then, open the web app in Chrome and print through the system print service (install the vendor's
+  print plugin, e.g. "Epson iPrint" or "RawBT"). iOS (web app): AirPrint printers, or the vendor's AirPrint bridge.
 
 ### Cash drawers
 - The drawer plugs into the receipt printer's **RJ11/RJ12 "DK" port**, not the computer. The desktop app

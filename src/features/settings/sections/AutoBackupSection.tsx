@@ -6,13 +6,14 @@ import { formatDateTime, relativeTime } from '@/lib/dates'
 import { downloadBlob } from '@/lib/download'
 import { cn } from '@/lib/cn'
 import { confirmDialog, toast } from '@/stores/ui'
-import { Badge, Button, Input, Modal, NumberInput, Select, Spinner, Toggle } from '@/components/ui'
+import { Badge, Button, ComingSoon, Input, Modal, NumberInput, Select, Spinner, Toggle } from '@/components/ui'
 import { requirePermission } from '@/features/auth/permission'
 import { InvalidBackup, parseBackup, readBackupText, restoreBackup } from '../backup'
 import { Group, Row, Stack } from '../ui'
 import { WrongPassphrase } from '@/features/backup/crypto'
 import { allowFolder, chooseFolder, folderName, folderSupported, forgetFolder, listFolder, readFromFolder } from '@/features/backup/folder'
 import { cloudSupported, connect, disconnect, isConfigured, isConnected, type CloudProvider } from '@/features/backup/oauth'
+import { CLOUD_BACKUP_READY } from '@/core/features'
 import { isElectron } from '@/lib/platform'
 import { CLOUD, type RemoteFile } from '@/features/backup/providers'
 import { CLOUD_TARGETS, clearStatus, hasPassphrase, loadAutoBackup, runAutoBackup, saveConfig, setPassphrase, useAutoBackup, type TargetId } from '@/features/backup/runner'
@@ -168,7 +169,16 @@ function EncryptionControl({ enabled, passphraseSet, onChange }: { enabled: bool
 
 // ---- Destination cards --------------------------------------------------------------------
 
-function TargetCard({ id, icon, title, subtitle, children, actions, unavailable }: { id: TargetId; icon: ReactNode; title: string; subtitle?: ReactNode; children?: ReactNode; actions?: ReactNode; unavailable?: boolean }) {
+function TargetCard({ id, icon, title, subtitle, badge, children, actions, unavailable }: {
+  id: TargetId
+  icon: ReactNode
+  title: string
+  subtitle?: ReactNode
+  badge?: ReactNode
+  children?: ReactNode
+  actions?: ReactNode
+  unavailable?: boolean
+}) {
   const { t } = useTranslation('settings')
   const { config, status } = useAutoBackup()
   const s = status[id]
@@ -178,7 +188,10 @@ function TargetCard({ id, icon, title, subtitle, children, actions, unavailable 
         <div className="flex items-start gap-3">
           <span className="flex size-10 shrink-0 items-center justify-center rounded-xl bg-primary-soft text-primary [&>svg]:size-5">{icon}</span>
           <div className="min-w-0 flex-1">
-            <div className="font-medium">{title}</div>
+            <div className="flex flex-wrap items-center gap-2 font-medium">
+              {title}
+              {badge}
+            </div>
             {subtitle && <div className="text-xs text-muted">{subtitle}</div>}
             {s && (
               <div className={cn('mt-1 flex items-center gap-1.5 text-xs', s.needs || (s.error && (s.lastAttempt ?? 0) > (s.lastSuccess ?? 0)) ? 'text-danger' : 'text-success')}>
@@ -302,6 +315,7 @@ function CloudTarget({ provider }: { provider: CloudProvider }) {
     void kvGet(accountKey, '').then(setAccount)
   }, [provider, accountKey])
 
+  if (!CLOUD_BACKUP_READY) return <TargetCard id={provider} icon={<CloudUpload />} title={BRAND[provider]} badge={<ComingSoon />} unavailable />
   if (!isConfigured(provider))
     return <TargetCard id={provider} icon={<CloudUpload />} title={BRAND[provider]} subtitle={t('autoBackup.notConfigured')} unavailable />
   if (!cloudSupported())

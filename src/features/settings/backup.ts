@@ -71,9 +71,10 @@ export async function buildBackup(): Promise<BuiltBackup> {
   return { blob: new Blob(parts, { type: 'application/json;charset=utf-8' }), filename, records, exportedAt }
 }
 
-export async function exportBackup(): Promise<{ filename: string; records: number }> {
+/** Saves a backup file. Returns null when this device can't save files (the mobile apps, for now). */
+export async function exportBackup(): Promise<{ filename: string; records: number } | null> {
   const { blob, filename, records, exportedAt } = await buildBackup()
-  downloadBlob(filename, blob)
+  if (!downloadBlob(filename, blob)) return null
   await setMeta('lastBackup', exportedAt)
   void audit('backup.export', 'backup', undefined, `${filename} (${records})`)
   return { filename, records }

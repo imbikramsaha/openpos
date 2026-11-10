@@ -153,7 +153,12 @@ export function PurchaseDetail({ id }: { id: string }) {
             <div className="border-t border-border bg-surface-2 px-5 py-3">
               <KeyValue label={t('common:total')} value={formatMoney(purchase.total)} strong />
               <KeyValue label={t('purchases.paidAmount')} value={formatMoney(purchase.paid)} />
-              {due > 0 && <KeyValue label={t('purchases.due')} value={<span className="font-semibold text-danger">{formatMoney(due)}</span>} />}
+              {due > 0 && (
+                <>
+                  <KeyValue label={t('purchases.due')} value={<span className="font-semibold text-danger">{formatMoney(due)}</span>} />
+                  <p className="mt-1 text-xs text-muted">{t('purchases.payLaterSoon')}</p>
+                </>
+              )}
             </div>
           </Card>
           <Card className="h-fit p-5">

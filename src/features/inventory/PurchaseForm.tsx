@@ -48,6 +48,7 @@ function loadDraft(): Draft {
 export function PurchaseForm({ products, params }: { products: Product[]; params: URLSearchParams }) {
   const { t } = useTranslation('inventory')
   const sound = useDevice((s) => s.sound)
+  const cameraButton = useDevice((s) => s.cameraScanner)
   const [draft, setDraft] = useState<Draft>(loadDraft)
   const [q, setQ] = useState('')
   const [hi, setHi] = useState(0)
@@ -251,14 +252,17 @@ export function PurchaseForm({ products, params }: { products: Product[]; params
         <Checkbox checked={draft.updateCost} onChange={(v) => set({ updateCost: v })} label={t('purchases.updateCost')} />
         <Toggle checked={draft.paidInFull} onChange={(v) => set({ paidInFull: v, paid: v ? undefined : draft.paid })} label={t('purchases.paidInFull')} />
         {!draft.paidInFull && (
-          <MoneyInput
-            label={t('purchases.paidAmount')}
-            value={draft.paid}
-            onChange={(v) => set({ paid: v })}
-            placeholder="0"
-            error={paidError ? t('purchases.badPaid') : undefined}
-            hint={total - paid > 0 ? t('purchases.dueHint', { amount: formatMoney(total - paid) }) : undefined}
-          />
+          <>
+            <MoneyInput
+              label={t('purchases.paidAmount')}
+              value={draft.paid}
+              onChange={(v) => set({ paid: v })}
+              placeholder="0"
+              error={paidError ? t('purchases.badPaid') : undefined}
+              hint={total - paid > 0 ? t('purchases.dueHint', { amount: formatMoney(total - paid) }) : undefined}
+            />
+            <p className="text-xs text-muted">{t('purchases.payLaterSoon')}</p>
+          </>
         )}
         {tried && saveError && <p className="text-sm font-medium text-danger">{saveError}</p>}
         <Button variant="primary" size="lg" block onClick={save} loading={busy} icon={<Truck className="size-5" />}>
@@ -303,9 +307,11 @@ export function PurchaseForm({ products, params }: { products: Product[]; params
                   aria-expanded={matches.length > 0}
                   aria-controls="purchase-matches"
                 />
-                <Button size="icon-lg" onClick={() => setCamera(true)} aria-label={t('sell:scanWithCamera')} title={t('sell:scanWithCamera')}>
-                  <ScanLine className="size-5" />
-                </Button>
+                {cameraButton && (
+                  <Button size="icon-lg" onClick={() => setCamera(true)} aria-label={t('sell:scanWithCamera')} title={t('sell:scanWithCamera')}>
+                    <ScanLine className="size-5" />
+                  </Button>
+                )}
               </div>
               {matches.length > 0 && (
                 <ul id="purchase-matches" role="listbox" className="animate-pop absolute inset-x-3 top-full z-20 -mt-1 overflow-hidden rounded-2xl border border-border bg-surface py-1 shadow-pop sm:inset-x-4">

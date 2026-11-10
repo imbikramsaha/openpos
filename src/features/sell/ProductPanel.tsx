@@ -29,6 +29,7 @@ export function ProductPanel({ onProduct, onEnter, searchRef, onCamera, onCustom
   const { t } = useTranslation('sell')
   const gridSize = useDevice((s) => s.gridSize)
   const showImages = useDevice((s) => s.showImages)
+  const camera = useDevice((s) => s.cameraScanner)
   const [query, setQuery] = useState('')
   const [category, setCategory] = useState<string>('all')
   const chipsRef = useRef<HTMLDivElement>(null)
@@ -80,9 +81,11 @@ export function ProductPanel({ onProduct, onEnter, searchRef, onCamera, onCustom
           }}
           right={<Kbd>F2</Kbd>}
         />
-        <Button size="icon-lg" onClick={onCamera} aria-label={t('scanWithCamera')} title={t('scanWithCamera')}>
-          <ScanLine className="size-5" />
-        </Button>
+        {camera && (
+          <Button size="icon-lg" onClick={onCamera} aria-label={t('scanWithCamera')} title={t('scanWithCamera')}>
+            <ScanLine className="size-5" />
+          </Button>
+        )}
         <Button size="icon-lg" onClick={onCustomItem} aria-label={t('customItem')} title={`${t('customItem')} (F9)`}>
           <Plus className="size-5" />
         </Button>
