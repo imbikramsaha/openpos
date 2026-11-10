@@ -1,0 +1,28 @@
+// Points the main button at the right download for this device and shows the newest version.
+(function () {
+  const ua = navigator.userAgent
+  const platform = (navigator.userAgentData && navigator.userAgentData.platform) || navigator.platform || ''
+  let os = 'web'
+  if (/Android/i.test(ua)) os = 'android'
+  else if (/iPhone|iPad|iPod/.test(ua) || (platform === 'MacIntel' && navigator.maxTouchPoints > 1)) os = 'ios'
+  else if (/Win/i.test(platform) || /Windows/.test(ua)) os = 'windows'
+  else if (/Mac/i.test(platform)) os = 'mac'
+  else if (/CrOS/.test(ua)) os = 'web'
+  else if (/Linux|X11/i.test(platform + ua)) os = 'linux'
+
+  const names = { windows: 'Windows', mac: 'Mac', linux: 'Linux', android: 'Android' }
+  const card = document.querySelector('.dl-card[data-os="' + os + '"]')
+  const cta = document.getElementById('cta')
+  if (card) card.classList.add('mine')
+  if (card && names[os]) {
+    cta.href = card.querySelector('.btn').href
+    cta.textContent = 'Download for ' + names[os]
+  }
+
+  fetch('https://api.github.com/repos/imbikramsaha/openpos/releases/latest')
+    .then((r) => (r.ok ? r.json() : null))
+    .then((d) => {
+      if (d && d.tag_name) document.getElementById('version').textContent = '· Version ' + d.tag_name.replace(/^v/, '')
+    })
+    .catch(() => {})
+})()

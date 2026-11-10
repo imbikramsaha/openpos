@@ -1,0 +1,247 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>OpenPOS: free, offline-first point of sale</title>
+  <meta name="description" content="Free and open-source point of sale for shops, cafés and supermarkets. Billing, stock, customer credit, GST invoices and reports. Works offline on Windows, Mac, Linux, Android and the web.">
+  <meta name="theme-color" content="#101012">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="OpenPOS: free, offline-first point of sale">
+  <meta property="og:description" content="Billing, stock, customer credit, GST invoices and reports. Works offline on Windows, Mac, Linux, Android and the web. Free and open source.">
+  <meta property="og:image" content="https://imbikramsaha.github.io/openpos/img/og.png">
+  <meta property="og:url" content="https://imbikramsaha.github.io/openpos/">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="top">
+    <div class="wrap top-in">
+      <a class="brand" href="#"><img src="favicon.svg" alt="" width="28" height="28"><span>OpenPOS</span></a>
+      <nav class="links" aria-label="Main">
+        <a href="#features">Features</a>
+        <a href="#download">Download</a>
+        <a href="#faq">FAQ</a>
+        <a class="gh" href="https://github.com/imbikramsaha/openpos"><svg viewBox="0 0 16 16" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>GitHub</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="wrap">
+        <p class="eyebrow">Free and open source · MIT licence</p>
+        <h1>The point of sale that keeps selling when the internet doesn't.</h1>
+        <p class="lede">Billing, stock, customer credit, GST invoices and reports for shops, cafés and supermarkets. One app for Windows, Mac, Linux, Android and the browser, with no account and no monthly fee.</p>
+        <div class="cta">
+          <a class="btn primary" id="cta" href="#download">Download OpenPOS</a>
+          <a class="btn" href="https://appkasapos.netlify.app">Open the web app</a>
+        </div>
+        <p class="fine"><a href="#download">All downloads</a> · No account needed <span id="version"></span></p>
+      </div>
+      <div class="wrap shot-wrap">
+        <figure class="window">
+          <div class="bar"><i></i><i></i><i></i></div>
+          <picture>
+            <source srcset="img/sell-dark.webp" media="(prefers-color-scheme: dark)">
+            <img src="img/sell-light.webp" width="2000" height="1250" alt="The OpenPOS sell screen: a product grid with categories on the left and a cart with five items and a Pay button on the right">
+          </picture>
+        </figure>
+      </div>
+    </section>
+
+    <section class="facts" aria-label="At a glance">
+      <div class="wrap facts-in">
+        <div><b>Offline-first</b><span>Every till keeps its own database</span></div>
+        <div><b>6 platforms</b><span>Windows, Mac, Linux, Android, iPhone, web</span></div>
+        <div><b>34 languages</b><span>Including Arabic, Urdu and Persian right to left</span></div>
+        <div><b>Free</b><span>No subscription, no sign-up, no ads</span></div>
+      </div>
+    </section>
+
+    <section id="features" class="features">
+      <div class="wrap">
+        <article class="feature">
+          <div class="text">
+            <h2>Fast at the counter</h2>
+            <p>Tap products, scan barcodes with a USB scanner or the phone camera, and take payment in two taps. The cart survives crashes and reloads.</p>
+            <ul>
+              <li>Split payments across cash, card, UPI and customer credit</li>
+              <li>A UPI QR code with the amount already filled in</li>
+              <li>Weighed items, scale barcodes, discounts, notes and held sales</li>
+              <li>Keyboard shortcuts for everything, and a second screen for the customer</li>
+            </ul>
+          </div>
+          <figure class="window"><div class="bar"><i></i><i></i><i></i></div><img src="img/pay.webp" width="2000" height="1250" loading="lazy" alt="The payment dialog showing ₹530 to pay and a UPI QR code"></figure>
+        </article>
+
+        <article class="feature flip">
+          <div class="text">
+            <h2>GST invoices and tax reports</h2>
+            <p>Print thermal receipts or A4 tax invoices with HSN codes, the CGST, SGST and IGST split, place of supply and the amount in words.</p>
+            <ul>
+              <li>Tax by rate and an HSN summary ready for your GSTR-1</li>
+              <li>B2B and B2C split, credit notes for refunds</li>
+              <li>Receipts by print, PDF, WhatsApp or email</li>
+            </ul>
+          </div>
+          <figure class="window"><div class="bar"><i></i><i></i><i></i></div><img src="img/tax.webp" width="2000" height="1250" loading="lazy" alt="The tax report with taxable value, CGST, SGST and IGST, tax by rate and an HSN summary"></figure>
+        </article>
+
+        <article class="feature">
+          <div class="text">
+            <h2>Reports that answer real questions</h2>
+            <p>What sold, when, who sold it and what you earned, compared with the period before. Every table exports to CSV or prints.</p>
+            <ul>
+              <li>Sales, profit, discounts and refunds with trends</li>
+              <li>Best sellers, categories, busy hours and staff</li>
+              <li>Payment methods, including dues customers paid off</li>
+            </ul>
+          </div>
+          <figure class="window"><div class="bar"><i></i><i></i><i></i></div><img src="img/reports.webp" width="2000" height="1250" loading="lazy" alt="The reports overview with net sales, transactions, profit and a sales trend chart"></figure>
+        </article>
+
+        <article class="feature flip">
+          <div class="text">
+            <h2>Customers and credit (khata)</h2>
+            <p>Sell on account with credit limits, take payments against the balance and send statements or a WhatsApp reminder.</p>
+            <ul>
+              <li>Purchase history and loyalty points</li>
+              <li>Automatic customer discounts</li>
+              <li>Printable payment receipts and statements</li>
+            </ul>
+          </div>
+          <figure class="window"><div class="bar"><i></i><i></i><i></i></div><img src="img/customer.webp" width="2000" height="1250" loading="lazy" alt="A customer with ₹1,027 due, a Receive payment button and their purchase history"></figure>
+        </article>
+
+        <article class="feature">
+          <div class="text">
+            <h2>Stock that keeps itself right</h2>
+            <p>Every sale, refund and delivery moves stock through one ledger, so the numbers always add up.</p>
+            <ul>
+              <li>Low-stock alerts and suggested reorder quantities</li>
+              <li>Purchases from suppliers, stock takes and adjustments</li>
+              <li>Barcode labels, CSV import and bulk editing</li>
+            </ul>
+          </div>
+          <figure class="window"><div class="bar"><i></i><i></i><i></i></div><img src="img/stock.webp" width="2000" height="1250" loading="lazy" alt="The stock overview with stock value, low-stock items and recent stock movements"></figure>
+        </article>
+
+        <article class="feature flip">
+          <div class="text">
+            <h2>In your language</h2>
+            <p>34 languages: 13 Indian languages, 20 major world languages and English. Arabic, Urdu and Persian get a full right-to-left layout, and numbers follow lakh and crore where you expect them.</p>
+          </div>
+          <figure class="window"><div class="bar"><i></i><i></i><i></i></div><img src="img/arabic.webp" width="2000" height="1250" loading="lazy" alt="The sell screen in Arabic with a right-to-left layout"></figure>
+        </article>
+      </div>
+    </section>
+
+    <section class="phones">
+      <div class="wrap phones-in">
+        <div class="text">
+          <h2>The same till on a phone or tablet</h2>
+          <p>Use an Android phone as a till, a tablet on the counter, or any browser. Everything works offline, and tills on the same shop sync through your own server when they're online.</p>
+        </div>
+        <div class="pair">
+          <img src="img/phone.webp" width="780" height="1688" loading="lazy" alt="OpenPOS on a phone with three items in the cart">
+          <img src="img/phone-hi.webp" width="780" height="1688" loading="lazy" alt="OpenPOS on a phone in Hindi">
+        </div>
+      </div>
+    </section>
+
+    <section class="grid-sec">
+      <div class="wrap">
+        <h2 class="center">Everything a shop needs</h2>
+        <div class="cards">
+          <div class="card"><h3>Staff and PINs</h3><p>Owner, manager and cashier roles. Each person signs in with a PIN, and risky actions need a manager.</p></div>
+          <div class="card"><h3>Cash register</h3><p>Open and close shifts, count the drawer and print the end-of-day report.</p></div>
+          <div class="card"><h3>Several tills</h3><p>Run more than one till and keep them in sync through a small server you host yourself.</p></div>
+          <div class="card"><h3>Backups</h3><p>Scheduled backup files to your computer or a folder, locked with a passphrase if you like.</p></div>
+          <div class="card"><h3>Returns and voids</h3><p>Refund with or without the receipt, restock or not, with a credit note.</p></div>
+          <div class="card"><h3>Your data stays yours</h3><p>No account and no cloud required. Your shop's data lives on your own devices.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="download" class="download">
+      <div class="wrap">
+        <h2 class="center">Download</h2>
+        <p class="center sub">Every link gets the newest version. <a href="https://github.com/imbikramsaha/openpos/releases">Older versions</a></p>
+        <div class="dl">
+          <div class="dl-card" data-os="windows">
+            <h3>Windows</h3><p class="m">Windows 10 and 11</p>
+            <a class="btn primary" href="https://github.com/imbikramsaha/openpos/releases/latest/download/OpenPOS-Setup-x64.exe">Installer (.exe)</a>
+            <a class="alt" href="https://github.com/imbikramsaha/openpos/releases/latest/download/OpenPOS-Portable-x64.exe">Portable version, no install</a>
+            <p class="note">If Windows says it protected your PC, click <b>More info</b>, then <b>Run anyway</b>. Updates install themselves.</p>
+          </div>
+          <div class="dl-card" data-os="mac">
+            <h3>Mac</h3><p class="m">Apple Silicon and Intel</p>
+            <a class="btn primary" href="https://github.com/imbikramsaha/openpos/releases/latest/download/OpenPOS-mac-universal.dmg">Download (.dmg)</a>
+            <p class="note">Drag OpenPOS into Applications. The first time, macOS asks you to allow it in <b>System Settings → Privacy &amp; Security → Open Anyway</b>.</p>
+          </div>
+          <div class="dl-card" data-os="linux">
+            <h3>Linux</h3><p class="m">Ubuntu, Debian, Mint and others</p>
+            <a class="btn primary" href="https://github.com/imbikramsaha/openpos/releases/latest/download/openpos-linux-amd64.deb">Download (.deb)</a>
+            <a class="alt" href="https://github.com/imbikramsaha/openpos/releases/latest/download/OpenPOS-linux-x86_64.AppImage">AppImage for any distribution</a>
+            <a class="alt" href="https://github.com/imbikramsaha/openpos/releases/latest/download/openpos-linux-arm64.deb">Raspberry Pi and ARM (.deb)</a>
+            <p class="note">Updates install themselves.</p>
+          </div>
+          <div class="dl-card" data-os="android">
+            <h3>Android</h3><p class="m">Android 7 or newer</p>
+            <a class="btn primary" href="https://github.com/imbikramsaha/openpos/releases/latest/download/OpenPOS-android.apk">Download (.apk)</a>
+            <p class="note">Allow your browser to install apps when asked. Early version: printing and saving files from the Android app are coming soon.</p>
+          </div>
+          <div class="dl-card" data-os="ios">
+            <h3>iPhone and iPad</h3><p class="m">Safari</p>
+            <a class="btn primary" href="https://appkasapos.netlify.app">Open in Safari</a>
+            <p class="note">Tap <b>Share</b>, then <b>Add to Home Screen</b>. It opens full screen and works offline.</p>
+          </div>
+          <div class="dl-card" data-os="web">
+            <h3>Any browser</h3><p class="m">Chromebooks and shared PCs</p>
+            <a class="btn primary" href="https://appkasapos.netlify.app">Open the web app</a>
+            <p class="note">Use the <b>Install app</b> button in the browser to keep it like a normal app.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="soon">
+      <div class="wrap">
+        <h2 class="center">Coming soon</h2>
+        <div class="soon-list">
+          <span>Restaurant mode: dine-in, takeaway, delivery and tables</span>
+          <span>Backups to Google Drive, OneDrive and Dropbox</span>
+          <span>Printing and saving files in the Android app</span>
+          <span>Recording later payments to suppliers</span>
+        </div>
+      </div>
+    </section>
+
+    <section id="faq" class="faq">
+      <div class="wrap narrow">
+        <h2 class="center">Questions</h2>
+        <details><summary>Is it really free?</summary><p>Yes. OpenPOS is open source under the MIT licence. There's no subscription, no per-till fee and no account to create.</p></details>
+        <details><summary>Where is my shop's data kept?</summary><p>On your own device, in the app's local database. Nothing is sent anywhere unless you set up syncing to your own server or a backup.</p></details>
+        <details><summary>Do I need the internet?</summary><p>No. Selling, printing, stock and reports all work offline. The internet is only used for updates and, if you set it up, syncing between tills.</p></details>
+        <details><summary>Can I use more than one till?</summary><p>Yes. Each till works on its own and they sync through a small server you can run on any PC or cloud machine. The setup is in the <a href="https://github.com/imbikramsaha/openpos/tree/main/server">server guide</a>.</p></details>
+        <details><summary>Does it print to my receipt printer?</summary><p>On Windows, Mac and Linux it prints to any installed printer, including 58 mm and 80 mm thermal printers, without a print dialog if you like. In the browser it uses the print dialog.</p></details>
+        <details><summary>Something doesn't work. Where do I report it?</summary><p>Open an issue on <a href="https://github.com/imbikramsaha/openpos/issues">GitHub</a>. Suggestions are welcome there too.</p></details>
+      </div>
+    </section>
+  </main>
+
+  <footer class="foot">
+    <div class="wrap foot-in">
+      <div class="brand"><img src="favicon.svg" alt="" width="24" height="24"><span>OpenPOS</span></div>
+      <p>MIT licence © 2026 Bikram Saha · <a href="https://github.com/imbikramsaha/openpos">Source code</a> · <a href="https://github.com/imbikramsaha/openpos/issues">Report a problem</a></p>
+    </div>
+  </footer>
+  <script src="main.js"></script>
+</body>
+</html>

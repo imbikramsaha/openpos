@@ -1,0 +1,152 @@
+/* OpenPOS site. Same near-monochrome "ink" palette as the app. */
+:root {
+  --bg: #ffffff;
+  --bg-2: #f6f6f7;
+  --surface: #ffffff;
+  --border: #e7e7ea;
+  --fg: #101012;
+  --muted: #55555d;
+  --subtle: #7a7a83;
+  --ink: #101012;
+  --ink-fg: #ffffff;
+  --ok: #0a7a4a;
+  --shadow: 0 1px 2px rgb(16 16 18 / 0.04), 0 12px 40px -12px rgb(16 16 18 / 0.18);
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #0a0a0b;
+    --bg-2: #111113;
+    --surface: #131315;
+    --border: #242428;
+    --fg: #ededf0;
+    --muted: #a5a5ad;
+    --subtle: #85858e;
+    --ink: #f2f2f4;
+    --ink-fg: #101012;
+    --ok: #3ccf8e;
+    --shadow: 0 1px 2px rgb(0 0 0 / 0.3), 0 16px 48px -12px rgb(0 0 0 / 0.6);
+    color-scheme: dark;
+  }
+}
+
+* { box-sizing: border-box }
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100% }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--fg);
+  font: 16px/1.6 Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Noto Sans', Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+img { display: block; max-width: 100%; height: auto }
+a { color: inherit }
+h1, h2, h3 { line-height: 1.15; letter-spacing: -0.02em; margin: 0 }
+p { margin: 0 }
+
+.wrap { width: min(1160px, 100% - 32px); margin-inline: auto }
+.narrow { width: min(760px, 100% - 32px) }
+.center { text-align: center }
+
+/* Header */
+.top { position: sticky; top: 0; z-index: 10; background: color-mix(in srgb, var(--bg) 85%, transparent); backdrop-filter: saturate(1.4) blur(12px); border-bottom: 1px solid var(--border) }
+.top-in { display: flex; align-items: center; justify-content: space-between; height: 60px }
+.brand { display: flex; align-items: center; gap: 10px; font-weight: 700; font-size: 17px; text-decoration: none; letter-spacing: -0.01em }
+.brand img { border-radius: 7px }
+.links { display: flex; align-items: center; gap: 22px; font-size: 15px }
+.links a { text-decoration: none; color: var(--muted) }
+.links a:hover { color: var(--fg) }
+.links .gh { display: inline-flex; align-items: center; gap: 7px; color: var(--fg); border: 1px solid var(--border); border-radius: 999px; padding: 6px 13px }
+@media (max-width: 640px) { .links a:not(.gh) { display: none } }
+
+/* Buttons */
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 46px; padding: 0 20px; border-radius: 12px; border: 1px solid var(--border); background: var(--surface); color: var(--fg); font-weight: 600; font-size: 15px; text-decoration: none; transition: transform .15s ease, background .15s ease }
+.btn:hover { transform: translateY(-1px) }
+.btn.primary { background: var(--ink); color: var(--ink-fg); border-color: var(--ink) }
+
+/* Hero */
+.hero { padding: 72px 0 0; text-align: center; background: radial-gradient(1000px 420px at 50% -80px, var(--bg-2), transparent) }
+.eyebrow { display: inline-block; font-size: 13px; font-weight: 600; color: var(--muted); border: 1px solid var(--border); border-radius: 999px; padding: 4px 12px; margin-bottom: 22px }
+.hero h1 { font-size: clamp(34px, 6vw, 62px); font-weight: 800; max-width: 900px; margin-inline: auto }
+.lede { font-size: clamp(17px, 2.2vw, 20px); color: var(--muted); max-width: 720px; margin: 22px auto 0 }
+.cta { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; margin-top: 32px }
+.fine { margin-top: 14px; font-size: 14px; color: var(--subtle) }
+.shot-wrap { margin-top: 56px }
+
+.window { margin: 0; border-radius: 14px; overflow: hidden; border: 1px solid var(--border); background: var(--surface); box-shadow: var(--shadow) }
+.window .bar { display: flex; gap: 7px; padding: 11px 14px; border-bottom: 1px solid var(--border); background: var(--bg-2) }
+.window .bar i { width: 11px; height: 11px; border-radius: 50%; background: var(--border) }
+.hero .window { border-bottom-left-radius: 0; border-bottom-right-radius: 0; border-bottom: 0 }
+
+/* Facts strip */
+.facts { border-block: 1px solid var(--border); background: var(--bg-2) }
+.facts-in { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; padding: 34px 0 }
+.facts b { display: block; font-size: 22px; letter-spacing: -0.02em }
+.facts span { color: var(--muted); font-size: 14px }
+@media (max-width: 800px) { .facts-in { grid-template-columns: repeat(2, 1fr) } }
+
+/* Features */
+.features { padding: 40px 0 }
+.feature { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: 56px; align-items: center; padding: 56px 0 }
+.feature.flip .text { order: 2 }
+.feature h2, .phones h2, .grid-sec h2, .download h2, .soon h2, .faq h2 { font-size: clamp(26px, 3.4vw, 38px); font-weight: 750 }
+.feature p { color: var(--muted); margin-top: 14px; font-size: 17px }
+.feature ul { margin: 18px 0 0; padding: 0; list-style: none; display: grid; gap: 9px }
+.feature li { position: relative; padding-inline-start: 26px; font-size: 15.5px }
+.feature li::before { content: ''; position: absolute; inset-inline-start: 2px; top: 7px; width: 12px; height: 7px; border-left: 2px solid var(--ok); border-bottom: 2px solid var(--ok); transform: rotate(-45deg) }
+@media (max-width: 880px) {
+  .feature { grid-template-columns: 1fr; gap: 26px; padding: 36px 0 }
+  .feature.flip .text { order: 0 }
+}
+
+/* Phones */
+.phones { padding: 72px 0; background: var(--bg-2); border-block: 1px solid var(--border) }
+.phones-in { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 6fr); gap: 56px; align-items: center }
+.phones p { color: var(--muted); margin-top: 14px; font-size: 17px }
+.pair { display: flex; gap: 22px; justify-content: center }
+.pair img { width: min(260px, 45%); border-radius: 30px; border: 1px solid var(--border); box-shadow: var(--shadow) }
+.pair img:last-child { margin-top: 48px }
+@media (max-width: 880px) { .phones-in { grid-template-columns: 1fr } }
+
+/* Cards */
+.grid-sec { padding: 84px 0 }
+.cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 36px }
+.card { border: 1px solid var(--border); border-radius: 14px; padding: 22px; background: var(--surface) }
+.card h3 { font-size: 17px }
+.card p { color: var(--muted); margin-top: 8px; font-size: 15px }
+@media (max-width: 880px) { .cards { grid-template-columns: 1fr 1fr } }
+@media (max-width: 560px) { .cards { grid-template-columns: 1fr } }
+
+/* Download */
+.download { padding: 84px 0; background: var(--bg-2); border-block: 1px solid var(--border) }
+.sub { color: var(--muted); margin-top: 10px }
+.dl { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 36px }
+.dl-card { display: flex; flex-direction: column; gap: 10px; border: 1px solid var(--border); border-radius: 14px; padding: 22px; background: var(--surface) }
+.dl-card.mine { border-color: var(--ink); box-shadow: 0 0 0 1px var(--ink) }
+.dl-card h3 { font-size: 19px }
+.dl-card .m { color: var(--subtle); font-size: 14px; margin-top: -6px }
+.dl-card .btn { margin-top: 6px }
+.dl-card .alt { font-size: 14px; color: var(--muted) }
+.dl-card .note { font-size: 13.5px; color: var(--muted); margin-top: auto; padding-top: 8px }
+@media (max-width: 880px) { .dl { grid-template-columns: 1fr 1fr } }
+@media (max-width: 560px) { .dl { grid-template-columns: 1fr } }
+
+/* Coming soon */
+.soon { padding: 72px 0 }
+.soon-list { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin-top: 26px }
+.soon-list span { border: 1px dashed var(--border); border-radius: 999px; padding: 8px 16px; font-size: 14.5px; color: var(--muted) }
+
+/* FAQ */
+.faq { padding: 24px 0 88px }
+.faq h2 { margin-bottom: 26px }
+details { border-bottom: 1px solid var(--border); padding: 18px 0 }
+summary { cursor: pointer; font-weight: 600; font-size: 17px; list-style: none; display: flex; justify-content: space-between; gap: 16px }
+summary::-webkit-details-marker { display: none }
+summary::after { content: '+'; color: var(--subtle); font-weight: 400; font-size: 22px; line-height: 1 }
+details[open] summary::after { content: '−' }
+details p { color: var(--muted); margin-top: 10px }
+
+/* Footer */
+.foot { border-top: 1px solid var(--border); padding: 28px 0 }
+.foot-in { display: flex; flex-wrap: wrap; gap: 12px 24px; align-items: center; justify-content: space-between; font-size: 14px; color: var(--muted) }
+.foot .brand { font-size: 15px; color: var(--fg) }

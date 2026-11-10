@@ -7,6 +7,8 @@ Fast, offline-first point of sale for shops, supermarkets, cafés, restaurants a
 One codebase → <b>Web (PWA) · Windows · macOS · Linux · Android · iOS</b> — phones, tablets and PCs.
 </p>
 
+<p align="center"><b><a href="https://imbikramsaha.github.io/openpos/">Website</a></b> · <a href="#download">Download</a> · <a href="https://appkasapos.netlify.app">Web app</a></p>
+
 <p align="center">
 <a href="https://github.com/imbikramsaha/openpos/releases/latest/download/OpenPOS-Setup-x64.exe"><img alt="Download for Windows" src="https://img.shields.io/badge/Windows-Download-0078D4?style=for-the-badge"></a>
 <a href="https://github.com/imbikramsaha/openpos/releases/latest/download/OpenPOS-mac-universal.dmg"><img alt="Download for Mac" src="https://img.shields.io/badge/Mac-Download-000000?style=for-the-badge&logo=apple&logoColor=white"></a>
