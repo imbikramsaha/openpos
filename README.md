@@ -18,6 +18,9 @@ One codebase → <b>Web (PWA) · Windows · macOS · Linux · Android · iOS</b>
 <a href="https://appkasapos.netlify.app"><img alt="Open in the browser" src="https://img.shields.io/badge/Web-Open-101012?style=for-the-badge&logo=googlechrome&logoColor=white"></a>
 </p>
 
+<p align="center"><a href="https://imbikramsaha.github.io/openpos/#demo"><img src="site/img/demo-thumb.jpg" width="760" alt="Watch the OpenPOS demo video (6 minutes)"></a></p>
+<p align="center"><a href="https://imbikramsaha.github.io/openpos/#demo">▶ Watch the 6-minute demo</a> · <a href="https://github.com/imbikramsaha/openpos/releases/download/v1.2.0/OpenPOS-demo-4K.mp4">Download it in 4K</a></p>
+
 ---
 
 ## Download

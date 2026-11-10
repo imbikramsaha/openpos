@@ -85,6 +85,15 @@ p { margin: 0 }
 .facts span { color: var(--muted); font-size: 14px }
 @media (max-width: 800px) { .facts-in { grid-template-columns: repeat(2, 1fr) } }
 
+/* Demo video */
+.demo { padding: 84px 0 16px }
+.player { margin-top: 32px }
+.player .frame { position: relative; background: #0d0d0f }
+.player video { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; background: #0d0d0f }
+.player .play { position: absolute; inset: 0; width: 100%; border: 0; padding: 0; background: transparent; cursor: pointer }
+.player .play:focus-visible { outline: 3px solid var(--ok); outline-offset: -3px }
+.player.playing .play { display: none }
+
 /* Features */
 .features { padding: 40px 0 }
 .feature { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: 56px; align-items: center; padding: 56px 0 }

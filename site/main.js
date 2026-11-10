@@ -19,6 +19,14 @@
     cta.textContent = 'Download for ' + names[os]
   }
 
+  // The cover image has its own play button; a click anywhere on it starts the video.
+  const video = document.getElementById('demo-video')
+  const play = document.querySelector('.player .play')
+  if (video && play) {
+    play.addEventListener('click', () => video.play())
+    video.addEventListener('play', () => video.closest('.player').classList.add('playing'))
+  }
+
   fetch('https://api.github.com/repos/imbikramsaha/openpos/releases/latest')
     .then((r) => (r.ok ? r.json() : null))
     .then((d) => {
