@@ -179,6 +179,8 @@ export interface Sale extends Base {
   customerName?: string
   customerPhone?: string
   customerTaxNumber?: string
+  /** The customer's state when the sale was made (a GST state code such as "27" in India). */
+  customerState?: string
   shiftId?: ID
   deviceId: string
   lines: SaleLine[]
@@ -273,6 +275,8 @@ export interface CustomerPayment extends Base {
   note?: string
   userId: ID
   shiftId?: ID
+  /** The till that took the payment (missing on payments saved before 1.2.1). */
+  deviceId?: string
 }
 
 export interface HeldOrder extends Base {

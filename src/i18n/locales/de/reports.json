@@ -94,7 +94,11 @@
     "byMethod": "Zahlungen nach Methode",
     "byDay": "Zahlungen im Zeitverlauf",
     "received": "Erhalten",
-    "net": "Netto"
+    "net": "Netto",
+    "fromAccounts": "Kontozahlungen",
+    "totalReceived": "Insgesamt erhalten",
+    "accountsTitle": "Zahlungen auf Kundenkonten",
+    "accountsHint": "Geld, das Kunden auf ihre offenen Beträge gezahlt haben. Es zählt nicht als Umsatz."
   },
   "staff": {
     "hint": "Verkäufe werden dem Benutzer gutgeschrieben, der sie abgewickelt hat.",
@@ -112,6 +116,7 @@
     "outstanding": "Offene Forderungen",
     "withDues_one": "{{count}} Kunde schuldet Geld",
     "withDues_other": "{{count}} Kunden schulden Geld",
+    "collected": "Eingezogene Forderungen",
     "topSpend": "Bester Kunde",
     "top": "Top-Kunden",
     "topHint": "Ausgaben sind, was Kunden in diesem Zeitraum bezahlt haben, inkl. Steuer.",

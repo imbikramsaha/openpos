@@ -94,7 +94,11 @@
     "byMethod": "Yönteme göre ödemeler",
     "byDay": "Zaman içinde ödemeler",
     "received": "Alınan",
-    "net": "Net"
+    "net": "Net",
+    "fromAccounts": "Hesap ödemeleri",
+    "totalReceived": "Toplam alınan",
+    "accountsTitle": "Müşteri hesaplarına ödemeler",
+    "accountsHint": "Müşterilerin borçlarına karşılık ödediği para. Satış olarak sayılmaz."
   },
   "staff": {
     "hint": "Satışlar, işlemi gerçekleştiren kullanıcıya yazılır.",
@@ -112,6 +116,7 @@
     "outstanding": "Tahsil edilmemiş bakiyeler",
     "withDues_one": "{{count}} müşterinin borcu var",
     "withDues_other": "{{count}} müşterinin borcu var",
+    "collected": "Tahsil edilen alacaklar",
     "topSpend": "En çok harcayan",
     "top": "En iyi müşteriler",
     "topHint": "Harcama, müşterilerin bu dönemde vergi dahil ödediği tutardır.",

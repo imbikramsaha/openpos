@@ -8,6 +8,7 @@ import { audit, put } from '@/db/repo'
 import { formatMoney, fromMinor, moneyConfig } from '@/lib/money'
 import { printHtml } from '@/lib/print'
 import { cn } from '@/lib/cn'
+import { device } from '@/stores/device'
 import { session } from '@/stores/session'
 import { settings as getSettings, useSettings } from '@/stores/settings'
 import { toast } from '@/stores/ui'
@@ -124,6 +125,7 @@ export function ReceivePaymentDialog({ customer, open, onClose }: { customer: Cu
         note: note.trim() || undefined,
         userId: user.id,
         shiftId: session().shift?.id,
+        deviceId: device().deviceId,
       })
       await recomputeCustomer(customer.id)
       const balanceAfter = (await db.customers.get(customer.id))?.balance ?? customer.balance - amount!

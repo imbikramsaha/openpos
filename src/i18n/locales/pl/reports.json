@@ -104,7 +104,11 @@
     "byMethod": "Płatności wg metody",
     "byDay": "Płatności w czasie",
     "received": "Otrzymano",
-    "net": "Netto"
+    "net": "Netto",
+    "fromAccounts": "Wpłaty na konto",
+    "totalReceived": "Łącznie otrzymano",
+    "accountsTitle": "Wpłaty na konta klientów",
+    "accountsHint": "Pieniądze wpłacone przez klientów na poczet zaległości. Nie są liczone jako sprzedaż."
   },
   "staff": {
     "hint": "Sprzedaż jest przypisywana użytkownikowi, który ją zarejestrował.",
@@ -126,6 +130,7 @@
     "withDues_few": "{{count}} klientów ma zaległość",
     "withDues_many": "{{count}} klientów ma zaległość",
     "withDues_other": "{{count}} klienta ma zaległość",
+    "collected": "Odzyskane należności",
     "topSpend": "Największy wydający",
     "top": "Najlepsi klienci",
     "topHint": "Wydatki to kwoty zapłacone przez klientów w tym okresie, z podatkiem.",

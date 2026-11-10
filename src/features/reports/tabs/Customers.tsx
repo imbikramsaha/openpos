@@ -50,11 +50,12 @@ export function CustomersTab({ data }: TabProps) {
 
   return (
     <div className="space-y-4">
-      <div className="grid grid-cols-2 gap-3 lg:grid-cols-4">
+      <div className="grid grid-cols-2 gap-3 lg:grid-cols-5">
         <KpiTile label={t('customers.served')} value={int(T.customers)} sub={t('customers.repeat', { count: repeat })} />
         <KpiTile label={t('customers.walkIn')} value={pct(share(T.walkIn, T.sales))} sub={t('salesCount', { count: T.walkIn })} />
         <KpiTile label={t('customers.outstanding')} value={moneyWhole(duesTotal)} title={formatMoney(duesTotal)} sub={t('customers.withDues', { count: dues.length })} />
-        <KpiTile label={t('customers.topSpend')} value={top.length ? moneyWhole(Math.max(...top.map((c) => c.total))) : '—'} sub={top.length ? [...top].sort((a, b) => b.total - a.total)[0].name : undefined} />
+        <KpiTile label={t('customers.collected')} value={moneyWhole(data.cur.accounts.total)} title={formatMoney(data.cur.accounts.total)} />
+        <KpiTile className="col-span-2 lg:col-span-1" label={t('customers.topSpend')} value={top.length ? moneyWhole(Math.max(...top.map((c) => c.total))) : '—'} sub={top.length ? [...top].sort((a, b) => b.total - a.total)[0].name : undefined} />
       </div>
       <ReportTable
         title={t('customers.top')}

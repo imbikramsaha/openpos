@@ -11,6 +11,7 @@ import { useSettings } from '@/stores/settings'
 import { useSession } from '@/stores/session'
 import { completeSale, refundSale, voidSale } from '@/features/sell/checkout'
 import { loadAggregate } from '@/features/reports/compute'
+import { receiptHtml } from '@/features/sell/receipt'
 import { bucketRangeTitle, bucketStarts, customRange, dayCount, granularityFor, presetRange, previousPeriod } from '@/features/reports/range'
 import { margin, signedPct } from '@/features/reports/format'
 import { addCashMovement, amountError, closeShift, openShift, shiftSummary } from '@/features/shifts/service'
@@ -101,6 +102,24 @@ describe('report aggregation', () => {
     const staff = [...agg.staff.values()][0]
     expect(staff).toMatchObject({ count: 4, net: 50858, total: 57600, refundsCount: 1, refunds: -13000, discounts: 13500, voids: 1, voidsAmount: 10500 })
     expect(agg.products.get(capp.id)).toMatchObject({ qty: 1, net: 11017, cost: 8060, profit: 2957 })
+
+    // Ravi's cash payment towards his account is money received, but not a sale.
+    expect(agg.accounts).toMatchObject({ total: 5000, count: 1 })
+    expect(agg.accounts.methods.get('cash')).toEqual({ count: 1, amount: 5000 })
+    expect(agg.accounts.list.map((p) => p.customerId)).toEqual([ravi.id])
+  })
+
+  it('leaves balance adjustments and other tills out of the account payments', async () => {
+    await dataset()
+    await put<CustomerPayment>('customerPayments', { customerId: ravi.id, amount: -20000, method: 'credit', note: 'Opening balance', userId: 'u1' })
+    await put<CustomerPayment>('customerPayments', { customerId: ravi.id, amount: 1000, method: 'upi', userId: 'u1', deviceId: 'another-till' })
+    const r = presetRange('today', 'en-IN')
+    const all = await loadAggregate(r.from, r.to, { starts: [] })
+    expect(all.accounts).toMatchObject({ total: 6000, count: 2 })
+    const here = await loadAggregate(r.from, r.to, { starts: [], deviceId: useSession.getState().shift!.deviceId })
+    expect(here.accounts).toMatchObject({ total: 5000, count: 1 })
+    const other = await loadAggregate(r.from, r.to, { starts: [], deviceId: 'another-till' })
+    expect(other.accounts).toMatchObject({ total: 1000, count: 1 })
   })
 
   it('ignores deleted documents and filters by terminal', async () => {
@@ -112,6 +131,27 @@ describe('report aggregation', () => {
     const other = await loadAggregate(r.from, r.to, { starts: [], deviceId: 'another-till' })
     expect(other.totals.sales).toBe(0)
     expect(other.allTerminals.size).toBe(1)
+  })
+})
+
+describe('GST invoice place of supply', () => {
+  const a4 = () => ({ ...useSettings.getState().settings, state: '19', receipt: { ...useSettings.getState().settings.receipt, paperWidth: 'a4' as const } })
+  // Place of supply is the last line of the invoice header (labels are empty without translations loaded).
+  const supply = (html: string) => html.match(/<div><span class="m">[^<]*:<\/span> ([^<]+)<\/div><\/div><\/div>/)?.[1]
+
+  it("prints the buyer's state for an inter-state sale, from their GSTIN when the sale has no state", async () => {
+    const { s4 } = await dataset()
+    expect(supply(receiptHtml(s4, a4()))).toBe('Maharashtra (27)')
+  })
+
+  it("saves the customer's state with the sale and prints the shop's state for a local sale", async () => {
+    await db.customers.update(ravi.id, { state: '29', taxNumber: undefined })
+    const sale = await completeSale({ lines: [line(milk, 1)], interState: true }, [pay('cash', 5600)], (await db.customers.get(ravi.id))!)
+    expect(sale.customerState).toBe('29')
+    const html = receiptHtml(sale, a4())
+    expect(supply(html)).toBe('Karnataka (29)')
+    const local = await completeSale({ lines: [line(milk, 1)] }, [pay('cash', 5600)])
+    expect(supply(receiptHtml(local, a4()))).toBe('West Bengal (19)')
   })
 })
 

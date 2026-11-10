@@ -94,7 +94,11 @@
     "byMethod": "Payments by method",
     "byDay": "Payments over time",
     "received": "Received",
-    "net": "Net"
+    "net": "Net",
+    "fromAccounts": "Account payments",
+    "totalReceived": "Total received",
+    "accountsTitle": "Payments on customer accounts",
+    "accountsHint": "Money customers paid towards what they owe. It isn't counted as sales."
   },
   "staff": {
     "hint": "Sales are credited to the user who rang them up.",
@@ -112,6 +116,7 @@
     "outstanding": "Outstanding dues",
     "withDues_one": "{{count}} customer owes money",
     "withDues_other": "{{count}} customers owe money",
+    "collected": "Dues collected",
     "topSpend": "Top spender",
     "top": "Top customers",
     "topHint": "Spend is what customers paid in this period, incl. tax.",

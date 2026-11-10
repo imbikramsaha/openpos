@@ -89,7 +89,11 @@
     "byMethod": "按支付方式统计",
     "byDay": "支付趋势",
     "received": "已收",
-    "net": "净额"
+    "net": "净额",
+    "fromAccounts": "账户还款",
+    "totalReceived": "收款合计",
+    "accountsTitle": "客户账户还款",
+    "accountsHint": "客户为欠款支付的金额，不计入销售额。"
   },
   "staff": {
     "hint": "销售业绩记入完成收银的员工名下。",
@@ -105,6 +109,7 @@
     "walkIn": "散客销售",
     "outstanding": "未结欠款",
     "withDues_other": "{{count}} 位顾客有欠款",
+    "collected": "已收回欠款",
     "topSpend": "消费最高顾客",
     "top": "顶级顾客",
     "topHint": "消费额为该时间段内顾客的实付金额(含税)。",

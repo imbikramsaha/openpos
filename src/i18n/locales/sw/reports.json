@@ -94,7 +94,11 @@
     "byMethod": "Malipo kwa njia",
     "byDay": "Malipo kwa muda",
     "received": "Yaliyopokelewa",
-    "net": "Halisi"
+    "net": "Halisi",
+    "fromAccounts": "Malipo ya akaunti",
+    "totalReceived": "Jumla iliyopokelewa",
+    "accountsTitle": "Malipo kwenye akaunti za wateja",
+    "accountsHint": "Pesa ambazo wateja walilipa kwa madeni yao. Haihesabiwi kama mauzo."
   },
   "staff": {
     "hint": "Mauzo yanawekwa kwa mtumiaji aliyeyafanya.",
@@ -112,6 +116,7 @@
     "outstanding": "Madeni yaliyobaki",
     "withDues_one": "Mteja {{count}} anadaiwa",
     "withDues_other": "Wateja {{count}} wanadaiwa",
+    "collected": "Madeni yaliyokusanywa",
     "topSpend": "Aliyetumia zaidi",
     "top": "Wateja bora",
     "topHint": "Matumizi ni kile wateja walicholipa kwenye kipindi hiki, pamoja na kodi.",

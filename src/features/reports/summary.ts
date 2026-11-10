@@ -35,6 +35,7 @@ export function printSummary(data: ReportData, report: ReportState, settings: Se
         [t('kpi.discounts'), money(T.discounts)],
         [t('kpi.refunds'), `${money(Math.abs(T.refunds))} (${int(T.refundsCount)})`],
         [t('inclTax'), money(T.total)],
+        ...(cur.accounts.count ? [[t('customers.collected'), money(cur.accounts.total)] as [string, string]] : []),
       ],
     },
     {

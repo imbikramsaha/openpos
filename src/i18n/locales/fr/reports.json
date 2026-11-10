@@ -99,7 +99,11 @@
     "byMethod": "Paiements par mode",
     "byDay": "Paiements dans le temps",
     "received": "Reçu",
-    "net": "Net"
+    "net": "Net",
+    "fromAccounts": "Paiements sur compte",
+    "totalReceived": "Total encaissé",
+    "accountsTitle": "Paiements sur les comptes clients",
+    "accountsHint": "Sommes versées par les clients sur leur solde dû. Non comptées dans les ventes."
   },
   "staff": {
     "hint": "Les ventes sont attribuées à l'utilisateur qui les a encaissées.",
@@ -118,6 +122,7 @@
     "outstanding": "Soldes dus",
     "withDues_one": "{{count}} client doit de l'argent",
     "withDues_other": "{{count}} clients doivent de l'argent",
+    "collected": "Créances encaissées",
     "withDues_many": "{{count}} clients doivent de l'argent",
     "topSpend": "Meilleur dépensier",
     "top": "Meilleurs clients",

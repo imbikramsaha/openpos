@@ -1,4 +1,4 @@
-import type { PaymentMethod, Sale, Unit } from '@/core/types'
+import type { CustomerPayment, PaymentMethod, Sale, Unit } from '@/core/types'
 import { db } from '@/db/db'
 import { bucketIndex } from './range'
 import { terminalCode } from './format'
@@ -135,6 +135,15 @@ export interface DocSplit {
   total: number
 }
 
+/** Money customers paid towards their account balance (khata). It isn't sales, so no sales total includes it. */
+export interface AccountPayments {
+  total: number
+  count: number
+  methods: Map<PaymentMethod, { count: number; amount: number }>
+  /** Each payment, oldest first (empty for comparison periods). */
+  list: CustomerPayment[]
+}
+
 export interface Aggregate {
   totals: Totals
   buckets: Bucket[]
@@ -155,6 +164,7 @@ export interface Aggregate {
   b2c: DocSplit
   b2bInvoices: Sale[]
   creditNotes: Sale[]
+  accounts: AccountPayments
 }
 
 export interface AggregateOptions {
@@ -199,6 +209,7 @@ export class Aggregator {
       b2c: split(),
       b2bInvoices: [],
       creditNotes: [],
+      accounts: { total: 0, count: 0, methods: new Map(), list: [] },
     }
   }
 
@@ -407,6 +418,25 @@ export class Aggregator {
     }
   }
 
+  /**
+   * A payment against a customer's account, taken on the till `deviceId`. Entries with the `credit`
+   * method are balance adjustments (opening balance, manual charge or reduction), not money received.
+   */
+  addAccountPayment(p: CustomerPayment, deviceId?: string): void {
+    const o = this.opts
+    if (p.deleted || p.method === 'credit') return
+    if (o.deviceId && deviceId !== o.deviceId) return
+    if (o.cutoff !== undefined && p.createdAt > o.cutoff) return
+    const a = this.agg.accounts
+    a.total += p.amount
+    a.count++
+    let m = a.methods.get(p.method)
+    if (!m) a.methods.set(p.method, (m = { count: 0, amount: 0 }))
+    m.count++
+    m.amount += p.amount
+    if (!o.light) a.list.push(p)
+  }
+
   private staffRow(s: Sale): StaffAgg {
     let st = this.agg.staff.get(s.userId)
     if (!st) this.agg.staff.set(s.userId, (st = { userId: s.userId, name: s.userName, count: 0, net: 0, total: 0, refundsCount: 0, refunds: 0, discounts: 0, voids: 0, voidsAmount: 0 }))
@@ -424,7 +454,7 @@ export function aggregate(sales: Iterable<Sale>, opts: AggregateOptions): Aggreg
 
 const CHUNK = 7 * 86_400_000
 
-/** Streams sales created in [from, to] from IndexedDB, a week at a time, into an aggregate. */
+/** Streams sales created in [from, to] from IndexedDB, a week at a time, into an aggregate, then adds the account payments. */
 export async function loadAggregate(from: number, to: number, opts: AggregateOptions): Promise<Aggregate> {
   const g = new Aggregator(opts)
   for (let a = from; a <= to; a += CHUNK) {
@@ -432,5 +462,11 @@ export async function loadAggregate(from: number, to: number, opts: AggregateOpt
     const chunk = await db.sales.where('createdAt').between(a, b, true, true).toArray()
     for (const s of chunk) g.add(s)
   }
+  const payments = await db.customerPayments.where('createdAt').between(from, to, true, true).toArray()
+  // Payments saved before they recorded their till are placed through their shift.
+  const shiftIds = opts.deviceId ? [...new Set(payments.filter((p) => !p.deviceId && p.shiftId).map((p) => p.shiftId!))] : []
+  const shiftTill = new Map<string, string>()
+  for (const sh of shiftIds.length ? await db.shifts.bulkGet(shiftIds) : []) if (sh) shiftTill.set(sh.id, sh.deviceId)
+  for (const p of payments.sort((x, y) => x.createdAt - y.createdAt)) g.addAccountPayment(p, p.deviceId ?? (p.shiftId ? shiftTill.get(p.shiftId) : undefined))
   return g.agg
 }

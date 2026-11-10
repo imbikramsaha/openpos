@@ -99,7 +99,11 @@
     "byMethod": "Pagos por método",
     "byDay": "Pagos a lo largo del tiempo",
     "received": "Recibido",
-    "net": "Neto"
+    "net": "Neto",
+    "fromAccounts": "Pagos a cuenta",
+    "totalReceived": "Total recibido",
+    "accountsTitle": "Pagos en cuentas de clientes",
+    "accountsHint": "Dinero que los clientes pagaron de lo que deben. No cuenta como ventas."
   },
   "staff": {
     "hint": "Las ventas se atribuyen al usuario que las registró.",
@@ -118,6 +122,7 @@
     "outstanding": "Saldos pendientes",
     "withDues_one": "{{count}} cliente debe dinero",
     "withDues_other": "{{count}} clientes deben dinero",
+    "collected": "Deudas cobradas",
     "withDues_many": "{{count}} clientes deben dinero",
     "topSpend": "Mayor gasto",
     "top": "Mejores clientes",

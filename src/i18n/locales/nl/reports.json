@@ -94,7 +94,11 @@
     "byMethod": "Betalingen per methode",
     "byDay": "Betalingen over tijd",
     "received": "Ontvangen",
-    "net": "Netto"
+    "net": "Netto",
+    "fromAccounts": "Betalingen op rekening",
+    "totalReceived": "Totaal ontvangen",
+    "accountsTitle": "Betalingen op klantrekeningen",
+    "accountsHint": "Geld dat klanten hebben betaald op wat ze verschuldigd zijn. Telt niet als omzet."
   },
   "staff": {
     "hint": "Verkopen worden toegeschreven aan de gebruiker die ze heeft afgerekend.",
@@ -112,6 +116,7 @@
     "outstanding": "Openstaande vorderingen",
     "withDues_one": "{{count}} klant heeft een openstaand bedrag",
     "withDues_other": "{{count}} klanten hebben een openstaand bedrag",
+    "collected": "Geïnde vorderingen",
     "topSpend": "Grootste besteder",
     "top": "Topklanten",
     "topHint": "Besteding is wat klanten in deze periode hebben betaald, incl. belasting.",

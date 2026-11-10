@@ -99,7 +99,11 @@
     "byMethod": "Pagamenti per metodo",
     "byDay": "Pagamenti nel tempo",
     "received": "Ricevuto",
-    "net": "Netto"
+    "net": "Netto",
+    "fromAccounts": "Pagamenti su conto",
+    "totalReceived": "Totale incassato",
+    "accountsTitle": "Pagamenti sui conti clienti",
+    "accountsHint": "Somme versate dai clienti per quanto devono. Non contano come vendite."
   },
   "staff": {
     "hint": "Le vendite vengono accreditate all'utente che le ha registrate.",
@@ -119,6 +123,7 @@
     "withDues_one": "{{count}} cliente ha un debito",
     "withDues_many": "{{count}} clienti hanno un debito",
     "withDues_other": "{{count}} clienti hanno un debito",
+    "collected": "Crediti incassati",
     "topSpend": "Cliente principale",
     "top": "Clienti principali",
     "topHint": "La spesa è quanto i clienti hanno pagato in questo periodo, imposta inclusa.",

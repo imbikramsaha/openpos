@@ -112,10 +112,21 @@ function thermal(sale: Sale, s: Settings): string {
 </body></html>`
 }
 
+/** The buyer's GST state: the one saved with the sale, else the first two digits of their GSTIN. */
+export function buyerState(sale: Sale): [string, string] | undefined {
+  const code = sale.customerState || sale.customerTaxNumber?.trim().slice(0, 2)
+  return code ? INDIAN_STATES.find(([c]) => c === code) : undefined
+}
+
+const stateText = ([code, name]: [string, string]) => `${e(name)} (${e(code)})`
+
 function invoiceA4(sale: Sale, s: Settings): string {
   const d = currencyDecimals(s.currency)
   const state = INDIAN_STATES.find(([c]) => c === s.state)
   const gst = s.gstMode
+  const buyer = gst ? buyerState(sale) : undefined
+  // Place of supply: the buyer's state for an inter-state supply, otherwise the shop's own state.
+  const supply = sale.interState ? (buyer ? stateText(buyer) : e(t('receipt.interState'))) : state ? stateText(state) : ''
   const dir = i18n.dir()
   const rows = sale.lines
     .map(
@@ -160,11 +171,12 @@ function invoiceA4(sale: Sale, s: Settings): string {
     <div class="r"><h2>${e(docTitle(sale, s)).toUpperCase()}</h2>
     <div><span class="m">${e(t('receipt.number'))}:</span> <b>${e(sale.number)}</b></div>
     <div><span class="m">${e(t('receipt.date'))}:</span> ${e(formatDateTime(sale.createdAt))}</div>
-    ${gst && (sale.interState || state) ? `<div><span class="m">${e(t('receipt.placeOfSupply'))}:</span> ${sale.interState ? e(t('receipt.interState')) : e(state![1])}</div>` : ''}</div></div>
+    ${gst && supply ? `<div><span class="m">${e(t('receipt.placeOfSupply'))}:</span> ${supply}</div>` : ''}</div></div>
   <div class="grid"><div class="box"><div class="m">${e(t('receipt.billTo'))}</div>
     <div class="b">${e(sale.customerName || t('receipt.walkIn'))}</div>
     ${sale.customerPhone ? `<div>${ltr(e(sale.customerPhone))}</div>` : ''}
-    ${sale.customerTaxNumber ? `<div>${e(s.taxLabel)}: ${ltr(e(sale.customerTaxNumber))}</div>` : ''}</div>
+    ${sale.customerTaxNumber ? `<div>${e(s.taxLabel)}: ${ltr(e(sale.customerTaxNumber))}</div>` : ''}
+    ${buyer ? `<div>${stateText(buyer)}</div>` : ''}</div>
     <div class="box"><div class="m">${e(t('receipt.cashier'))}</div><div>${e(sale.userName)}</div>
     <div class="m" style="margin-top:4px">${e(t('receipt.paymentMode'))}</div><div>${sale.payments.map((p) => e(methodLabel(p.method))).join(', ')}</div></div></div>
   <table><thead><tr><th>#</th><th>${e(t('receipt.item'))}</th>${gst ? '<th>HSN/SAC</th>' : ''}<th class="r">${e(t('receipt.qty'))}</th><th class="r">${e(t('receipt.rate'))}</th><th class="r">${e(t('receipt.discount'))}</th><th class="r">${e(t('receipt.taxable'))}</th><th class="r">${e(t('receipt.taxRate'))}</th><th class="r">${e(t('receipt.tax'))}</th><th class="r">${e(t('receipt.amount'))}</th></tr></thead><tbody>${rows}</tbody></table>

@@ -94,7 +94,11 @@
     "byMethod": "Bayad ayon sa paraan",
     "byDay": "Bayad sa paglipas ng panahon",
     "received": "Natanggap",
-    "net": "Net"
+    "net": "Net",
+    "fromAccounts": "Mga bayad sa account",
+    "totalReceived": "Kabuuang natanggap",
+    "accountsTitle": "Mga bayad sa account ng customer",
+    "accountsHint": "Perang ibinayad ng mga customer sa kanilang utang. Hindi ito binibilang bilang benta."
   },
   "staff": {
     "hint": "Ikinrekredito ang benta sa user na nag-ring up nito.",
@@ -112,6 +116,7 @@
     "outstanding": "Natitirang utang",
     "withDues_one": "{{count}} customer ang may utang",
     "withDues_other": "{{count}} customer ang may utang",
+    "collected": "Nasingil na utang",
     "topSpend": "Pinakamalaking gumastos",
     "top": "Nangungunang customer",
     "topHint": "Ang gastos ay ang binayaran ng mga customer sa panahong ito, kasama ang buwis.",

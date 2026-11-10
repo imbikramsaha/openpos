@@ -89,7 +89,11 @@
     "byMethod": "Pembayaran per metode",
     "byDay": "Pembayaran dari waktu ke waktu",
     "received": "Diterima",
-    "net": "Bersih"
+    "net": "Bersih",
+    "fromAccounts": "Pembayaran akun",
+    "totalReceived": "Total diterima",
+    "accountsTitle": "Pembayaran ke akun pelanggan",
+    "accountsHint": "Uang yang dibayar pelanggan untuk utang mereka. Tidak dihitung sebagai penjualan."
   },
   "staff": {
     "hint": "Penjualan dikreditkan ke pengguna yang mencatatnya.",
@@ -105,6 +109,7 @@
     "walkIn": "Penjualan tanpa nama",
     "outstanding": "Tunggakan terutang",
     "withDues_other": "{{count}} pelanggan memiliki tunggakan",
+    "collected": "Piutang tertagih",
     "topSpend": "Pembelanja teratas",
     "top": "Pelanggan teratas",
     "topHint": "Belanja adalah yang dibayar pelanggan pada periode ini, termasuk pajak.",
