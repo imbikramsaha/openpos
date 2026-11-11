@@ -1,4 +1,4 @@
-// Points the main button at the right download for this device.
+// Highlights the download for this device and starts the demo video from its cover.
 (function () {
   const ua = navigator.userAgent
   const platform = (navigator.userAgentData && navigator.userAgentData.platform) || navigator.platform || ''
@@ -10,14 +10,8 @@
   else if (/CrOS/.test(ua)) os = 'web'
   else if (/Linux|X11/i.test(platform + ua)) os = 'linux'
 
-  const names = { windows: 'Windows', mac: 'Mac', linux: 'Linux', android: 'Android' }
   const card = document.querySelector('.dl-card[data-os="' + os + '"]')
-  const cta = document.getElementById('cta')
   if (card) card.classList.add('mine')
-  if (card && names[os]) {
-    cta.href = card.querySelector('.btn').href
-    cta.textContent = 'Download for ' + names[os]
-  }
 
   // The cover image has its own play button; a click anywhere on it starts the video.
   const video = document.getElementById('demo-video')
