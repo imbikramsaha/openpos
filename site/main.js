@@ -1,4 +1,4 @@
-// Points the main button at the right download for this device and shows the newest version.
+// Points the main button at the right download for this device.
 (function () {
   const ua = navigator.userAgent
   const platform = (navigator.userAgentData && navigator.userAgentData.platform) || navigator.platform || ''
@@ -26,11 +26,4 @@
     play.addEventListener('click', () => video.play())
     video.addEventListener('play', () => video.closest('.player').classList.add('playing'))
   }
-
-  fetch('https://api.github.com/repos/imbikramsaha/openpos/releases/latest')
-    .then((r) => (r.ok ? r.json() : null))
-    .then((d) => {
-      if (d && d.tag_name) document.getElementById('version').textContent = '· Version ' + d.tag_name.replace(/^v/, '')
-    })
-    .catch(() => {})
 })()
